@@ -1,5 +1,8 @@
 ## Opening
-This is M Faran Aiki's personal website.
+This is Muhammad Faran Aiki's personal website.
+His social media:
+1. X/Twitter: https://x.com/FaranAiki
+2. LinkedIn: https://www.linkedin.com/in/muhammad-faran-aiki-8a6305343/
 
 ## Motivation
 One of my friends in the same faculty as mine (School of Electrical Engineering and Informatics - Computation) inspired me to make a personal website. So, I said, why not?
@@ -7,7 +10,7 @@ One of my friends in the same faculty as mine (School of Electrical Engineering 
 ## Preambule
 The first version (scratch and template) is generated using Gemini with the prompt of 
 >buatlah website untuk personal dengan menu:
-
+>
 >About Me
 >Music
 >Technology
