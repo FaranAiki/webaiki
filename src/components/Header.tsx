@@ -1,16 +1,18 @@
+// Event handlers
 "use client";
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const navLinks = [
-  { name: 'About Me', href: '/' },
+  { name: 'Home', href: '/' },
   { name: 'Music', href: '/music' },
   { name: 'Technology', href: '/technology' },
   { name: 'College Collections', href: '/collections' },
   { name: 'Publishing and Literature', href: '/literature' },
 ];
 
+// Header is used throughout the website
 export default function Header() {
   const pathname = usePathname();
 
@@ -26,8 +28,10 @@ export default function Header() {
                   href={link.href} 
                   className={`text-sm md:text-base transition-colors duration-300 ${
                     isActive 
-                      ? 'text-cyan-400 font-semibold' 
-                      : 'text-gray-300 hover:text-cyan-400'
+                      ? 'text-cyan-400 font-bold' 
+                      : 'text-gray-300 font-semibold hover:text-cyan-400 .scale-on-hover {
+      transition: transform 0.3s ease-in-out; /* Smooth transition */
+    }'
                   }`}
                 >
                   {link.name}

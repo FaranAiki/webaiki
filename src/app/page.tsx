@@ -6,11 +6,6 @@ import AskMePopup from "@/components/AskMePopup";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "Faran Aiki Website",
-  description: "Faran Aiki's personal files, portfolio, and others",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{

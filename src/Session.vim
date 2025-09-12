@@ -13,15 +13,20 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +1 app/page.tsx
-badd +1 app/layout.tsx
+badd +15 ./components/AskMePopup.tsx
+badd +48 ./components/Header.tsx
+badd +5 ../README.md
 argglobal
 %argdel
-$argadd app/page.tsx
-$argadd app/layout.tsx
-edit app/page.tsx
+$argadd ./components/AskMePopup.tsx
+$argadd ./components/Header.tsx
+edit ../README.md
 argglobal
-balt app/layout.tsx
+if bufexists(fnamemodify("../README.md", ":p")) | buffer ../README.md | else | edit ../README.md | endif
+if &buftype ==# 'terminal'
+  silent file ../README.md
+endif
+balt ./components/Header.tsx
 setlocal foldmethod=manual
 setlocal foldexpr=0
 setlocal foldmarker={{{,}}}
@@ -32,12 +37,12 @@ setlocal foldnestmax=20
 setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 7 - ((6 * winheight(0) + 22) / 45)
+let s:l = 5 - ((4 * winheight(0) + 22) / 45)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 7
-normal! 08|
+keepjumps 5
+normal! 0171|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

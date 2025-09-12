@@ -1,28 +1,29 @@
-"use client"; // Diperlukan karena menggunakan state dan event listeners
+// Using client for events
+"use client";
 
 import { useState } from 'react';
 import { MessageSquare, X } from 'lucide-react';
 
+// The layout for popup
 export default function AskMePopup() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [message, setMessage] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Di aplikasi nyata, Anda akan mengirim pesan ini ke sebuah API endpoint
-    console.log("Pesan Terkirim:", message);
-    alert(`Terima kasih atas pertanyaan Anda:\n"${message}"\n\n(Ini hanya simulasi, pesan belum terkirim.)`);
+    
+    console.log("Question:", message);
+    alert(`Use gemini here using API`);
     setMessage('');
-    setIsOpen(false);
+    setIsOpen(true);
   };
 
   return (
     <>
-      {/* Tombol untuk membuka popup */}
       <button
         onClick={() => setIsOpen(true)}
         className="fixed bottom-6 left-6 z-20 bg-cyan-600 text-white p-4 rounded-full shadow-lg hover:bg-cyan-500 transition-transform transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-opacity-75"
-        aria-label="Ask me a question"
+        aria-label="Ask me a question about Faran Aiki"
       >
         <MessageSquare size={24} />
       </button>
@@ -46,7 +47,7 @@ export default function AskMePopup() {
               <textarea
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                placeholder="Tulis pertanyaan Anda di sini..."
+                placeholder="..."
                 className="w-full h-32 p-2 bg-gray-900 text-gray-200 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500"
                 required
               />
