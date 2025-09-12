@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
+import { Inter } from "next/font/google"; // Impor font di sini
 import Header from "@/components/Header";
 import AskMePopup from "@/components/AskMePopup";
 
 const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "Faran Aiki Website",
+  description: "Faran Aiki's personal files, portfolio, and others",
+};
 
 export default function RootLayout({
   children,

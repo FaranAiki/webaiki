@@ -6,9 +6,10 @@ import { usePathname } from 'next/navigation';
 
 const navLinks = [
   { name: 'Home', href: '/' },
+  { name: 'Social', href: '/social' },
   { name: 'Music', href: '/music' },
   { name: 'Technology', href: '/technology' },
-  { name: 'College Collections', href: '/collections' },
+  { name: 'College Collection', href: '/college' },
   { name: 'Publishing and Literature', href: '/literature' },
 ];
 
@@ -16,6 +17,7 @@ const navLinks = [
 export default function Header() {
   const pathname = usePathname();
 
+  // Tailwind is overpowered as hell bro
   return (
     <header className="fixed top-0 left-0 right-0 z-10 bg-gray-900/80 backdrop-blur-sm border-b border-gray-700">
       <nav className="container mx-auto px-8 py-4">
@@ -26,12 +28,10 @@ export default function Header() {
               <li key={link.name}>
                 <Link 
                   href={link.href} 
-                  className={`text-sm md:text-base transition-colors duration-300 ${
+                  className={`text-sm md:text-base hover:text-lg transition-all duration-300 ${
                     isActive 
                       ? 'text-cyan-400 font-bold' 
-                      : 'text-gray-300 font-semibold hover:text-cyan-400 .scale-on-hover {
-      transition: transform 0.3s ease-in-out; /* Smooth transition */
-    }'
+                      : 'text-gray-300 font-semibold hover:text-cyan-400 opacity-75'
                   }`}
                 >
                   {link.name}
