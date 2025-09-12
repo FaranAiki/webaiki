@@ -1,5 +1,5 @@
 ## Opening
-This is Muhammad Faran Aiki's personal website.
+This is the source code of Muhammad Faran Aiki's personal website.
 His social media:
 1. X/Twitter: https://x.com/FaranAiki
 2. LinkedIn: https://www.linkedin.com/in/muhammad-faran-aiki-8a6305343/
@@ -7,7 +7,13 @@ His social media:
 ## Motivation
 One of my friends in the same faculty as mine (School of Electrical Engineering and Informatics - Computation) inspired me to make a personal website. So, I said, why not?
 
-## Preambule
+## What I have learned
+I learned
+1. How to use ReactJS + NextJS + Tailwind 
+2. How to use AI at its maximum potential
+3. How to do debug properly
+
+## Template 
 The first version (scratch and template) is generated using Gemini with the prompt of 
 >buatlah website untuk personal dengan menu:
 >

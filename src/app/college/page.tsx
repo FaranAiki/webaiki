@@ -1,7 +1,5 @@
-// This is the main page
-
 import type { Metadata } from "next";
-import "./globals.css";
+import "../globals.css";
 import { Inter } from "next/font/google";
 import AboutMe from '@/components/AboutMe'
 
@@ -23,10 +21,7 @@ export default function RootLayout({
         <main className="container mx-auto px-8 pt-24 pb-16">
           {children}
         </main>
-        <AboutMe />
       </body>
     </html>
   );
 }
-
-

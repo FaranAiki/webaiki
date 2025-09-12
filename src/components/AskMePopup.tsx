@@ -40,7 +40,8 @@ export async function POST(req: NextRequest) {
 
 // The layout for popup
 export default function AskMePopup() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+  const [ansMessage, setAnsMessage] = useState("Provide a question first.");
   const [message, setMessage] = useState('');
 
   // Gemini API how
@@ -49,7 +50,8 @@ export default function AskMePopup() {
     
     console.log("Question:", message);
     alert(`Use gemini here using API`);
-    setMessage('');
+    setMessage('')
+    setAnsMessage("Waiting for an answer ....");
     setIsOpen(true);
   };
 
@@ -73,7 +75,7 @@ export default function AskMePopup() {
         >
           <div className="bg-gray-800 border border-gray-700 rounded-lg shadow-2xl w-80">
             <div className="flex justify-between items-center p-4 border-b border-gray-600">
-              <h2 id="popup-title" className="text-lg font-semibold text-cyan-400">Ask me about Faran Aiki</h2>
+              <h2 id="popup-title" className="text-lg font-semibold text-white-400">Ask me about Faran Aiki</h2>
               <button onClick={() => setIsOpen(false)} className="text-gray-400 hover:text-white" aria-label="Close">
                 <X size={20} />
               </button>
@@ -86,6 +88,10 @@ export default function AskMePopup() {
                 className="w-full h-32 p-2 bg-gray-900 text-gray-200 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500"
                 required
               />
+              <textarea readOnly
+                className="w-full h-13 p-2 bg-gray-900 text-gray-200 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                placeholder={ansMessage}
+              /> 
               <button
                 type="submit"
                 className="mt-4 w-full bg-cyan-600 text-white py-2 px-4 rounded-md hover:bg-cyan-500 transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-opacity-75 font-semibold"

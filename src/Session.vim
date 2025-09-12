@@ -15,22 +15,23 @@ else
 endif
 badd +46 ./components/AskMePopup.tsx
 badd +20 ./components/Header.tsx
-badd +3 ../README.md
+badd +2 ../README.md
 badd +1 ../LICENSE
 badd +30 app/layout.tsx
-badd +5 ./app/page.tsx
-badd +1 ./components/AboutMe.tsx
+badd +1 ./app/page.tsx
+badd +7 ./components/AboutMe.tsx
+badd +0 LICENSE
 argglobal
 %argdel
 $argadd ./components/AskMePopup.tsx
 $argadd ./components/Header.tsx
 tabnew +setlocal\ bufhidden=wipe
 tabrewind
-edit ./app/page.tsx
+edit ./components/AboutMe.tsx
 argglobal
-if bufexists(fnamemodify("./app/page.tsx", ":p")) | buffer ./app/page.tsx | else | edit ./app/page.tsx | endif
+if bufexists(fnamemodify("./components/AboutMe.tsx", ":p")) | buffer ./components/AboutMe.tsx | else | edit ./components/AboutMe.tsx | endif
 if &buftype ==# 'terminal'
-  silent file ./app/page.tsx
+  silent file ./components/AboutMe.tsx
 endif
 balt app/layout.tsx
 setlocal foldmethod=manual
@@ -43,12 +44,12 @@ setlocal foldnestmax=20
 setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 3 - ((2 * winheight(0) + 22) / 45)
+let s:l = 7 - ((6 * winheight(0) + 22) / 45)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 3
-normal! 063|
+keepjumps 7
+normal! 029|
 tabnext
 edit ../README.md
 argglobal
@@ -56,6 +57,7 @@ if bufexists(fnamemodify("../README.md", ":p")) | buffer ../README.md | else | e
 if &buftype ==# 'terminal'
   silent file ../README.md
 endif
+balt ../LICENSE
 setlocal foldmethod=manual
 setlocal foldexpr=0
 setlocal foldmarker={{{,}}}
@@ -66,12 +68,12 @@ setlocal foldnestmax=20
 setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 3 - ((2 * winheight(0) + 22) / 45)
+let s:l = 2 - ((1 * winheight(0) + 22) / 45)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 3
-normal! 017|
+keepjumps 2
+normal! 026|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
