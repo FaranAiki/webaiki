@@ -35,7 +35,7 @@ export default function AboutMe() {
           </HoverableWords>
         </div>
         
-        <div className="order-first md:order-last flex-shrink-0">
+        <div className="order-first md:order-last justify-center flex-shrink-0">
           <Image
             src={carouselPhotos[currentIndex]}
             alt="Foto Muhammad Faran Aiki"
