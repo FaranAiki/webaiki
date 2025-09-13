@@ -3,11 +3,13 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
-// TODO MAKE THIS SHIT SMOOTHER
+// TODO MAKE THIS EASIER
 const images = [
   "/images/background_1.jpg", 
   "/images/background_2.jpg", 
-  "/images/background_3.jpg" 
+  "/images/background_3.jpg", 
+  "/images/background_4.jpg", 
+  "/images/background_5.jpg" 
 ];
 
 const SLIDE_DURATION = 10000; // Duration per slide 

@@ -27,11 +27,11 @@ export default function AboutMe() {
     // Generated using Gemini cuz I am too lazy to format lol
     <div className="flex flex-col md:flex-row pt-2 justify-center items-center gap-8 md:gap-8 max-w-4xl mx-auto">    
         <div className="text-center md:text-justify">
-          <h1 className="text-4xl md:text-5xl pt-4 font-bold text-white">
+          <h1 className="transition-all text-4xl md:text-5xl pt-4 font-bold text-white hover:opacity-85">
             About Me
           </h1>
           <HoverableWords className="mt-4 text-lg text-gray-250 max-w-lg">
-            Muhammad Faran Aiki (April 8, 2007) is currently a university student in School of Electrical Engineering and Informatics - Computation (SEEI-C), Bandung Institute of Technology.
+            Muhammad Faran Aiki (April 8, 2007) is currently a university student in School of Electrical Engineering and Informatics - Computation (SEEI-C), Bandung Institute of Technology. He is an intern at Analitica as the Education Team.
           </HoverableWords>
         </div>
         

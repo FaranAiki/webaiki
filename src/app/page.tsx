@@ -8,7 +8,7 @@ import AboutMe from '@/components/AboutMe'
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Faran Aiki Website",
+  title: "About Faran Aiki",
   description: "Faran Aiki's personal files, portfolio, and others",
 };
 

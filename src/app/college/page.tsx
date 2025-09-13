@@ -5,8 +5,8 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Faran Aiki Website",
-  description: "Faran Aiki's personal files, portfolio, and others",
+  title: "Faran Aiki's Personal College Collection",
+  description: "Faran Aiki's personal college collection",
 };
 
 export default function RootLayout({

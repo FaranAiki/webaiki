@@ -10,7 +10,7 @@ const navLinks = [
   { name: 'Music', href: '/music' },
   { name: 'Technology', href: '/technology' },
   { name: 'College', href: '/college' },
-  { name: 'Publishing and Literature', href: '/literature' },
+  { name: 'Literature', href: '/literature' },
 ];
 
 // Header is used throughout the website
