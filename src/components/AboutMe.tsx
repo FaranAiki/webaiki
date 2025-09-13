@@ -30,7 +30,7 @@ export default function AboutMe() {
           <h1 className="text-4xl md:text-5xl pt-4 font-bold text-white">
             About Me
           </h1>
-          <HoverableWords className="mt-4 text-lg text-gray-250 max-w-lg" priority>
+          <HoverableWords className="mt-4 text-lg text-gray-250 max-w-lg">
             Muhammad Faran Aiki (April 8, 2007) is currently a university student in School of Electrical Engineering and Informatics - Computation (SEEI-C), Bandung Institute of Technology.
           </HoverableWords>
         </div>
