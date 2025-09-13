@@ -2,6 +2,8 @@ import React from 'react';
 
 type HoverableWordsProps = {
   children: string;
+  className?: string;
+  prophover?: string;
 };
 
 export default function HoverableWords({ children, className='', prophover='transition-all inline-block duration-200 ease-in-out hover:text-xl hover:font-semibold cursor-pointer' }: HoverableWordsProps) {
