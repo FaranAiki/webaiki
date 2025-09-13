@@ -25,7 +25,7 @@ export default function AboutMe() {
 
   return (
     // Generated using Gemini cuz I am too lazy to format lol
-    <div className="flex flex-col md:flex-row pt-2 justify-center gap-8 md:gap-8 max-w-4xl mx-auto">    
+    <div className="flex flex-col md:flex-row pt-2 justify-center items-center gap-8 md:gap-8 max-w-4xl mx-auto">    
         <div className="text-center md:text-justify">
           <h1 className="text-4xl md:text-5xl pt-4 font-bold text-white">
             About Me
