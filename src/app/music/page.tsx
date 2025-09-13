@@ -12,6 +12,24 @@ export const metadata: Metadata = {
   description: "Faran Aiki's music made using either LMMS or other DAW",
 };
 
+// boo typescript 
+interface PlaylistItem {
+  id: string;
+  snippet: {
+    title: string;
+    thumbnails: {
+      medium: {
+        url: string;
+        width: number;
+        height: number;
+      };
+    };
+    resourceId: {
+      videoId: string;
+    };
+  };
+}
+
 const YOUTUBE_PLAYLIST_ITEMS_API = "https://www.googleapis.com/youtube/v3/playlistItems";
 const SPOTIFY_PLAYLIST_ITEMS_API = ""
 const SOUNDCLOUD_PLAYLIST_ITEMS_API = ""
@@ -27,7 +45,7 @@ export default async function RootLayout({
   const res = await fetch(`${YOUTUBE_PLAYLIST_ITEMS_API}?part=snippet&playlistId=PLh4mbEw6q2QncQrgz5uaLYAcTA0MolCTe&key=${process.env.YOUTUBE_API_KEY}&maxResults=50`);
   
   if (!res.ok) {
-    return <main className="text-white p-8">Gagal memuat data playlist.</main>
+    return <main className="text-white p-8">Cannot load playlist (is his account deleted?)</main>
   }
 
   const data = await res.json();
