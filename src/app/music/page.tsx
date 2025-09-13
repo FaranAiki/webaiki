@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "../globals.css";
 import { Inter } from "next/font/google";
 import AboutMe from '@/components/AboutMe'
-import Spotify from '@/components/MusicFinder'
 import Link from 'next/link';
 
 const inter = Inter({ subsets: ["latin"] });
