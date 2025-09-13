@@ -5,15 +5,15 @@ import { useState, useEffect } from 'react';
 
 // TODO MAKE THIS SHIT SMOOTHER
 const images = [
-  'https://placehold.co/1920x1080/000000/FFFFFF?text=Background+1',
-  'https://placehold.co/1920x1080/1a1a1a/FFFFFF?text=Background+2',
-  'https://placehold.co/1920x1080/2a2a2a/FFFFFF?text=Background+3',
+  "/images/background_1.jpg", 
+  "/images/background_2.jpg", 
+  "/images/background_3.jpg" 
 ];
 
-const SLIDE_DURATION = 5000; // Duration per slide 
+const SLIDE_DURATION = 10000; // Duration per slide 
 // --- ---
 
-export default function BackgroundCarousel() {
+export default function Background() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -34,13 +34,13 @@ export default function BackgroundCarousel() {
           layout="fill"
           objectFit="cover"
           quality={100}
-          priority={index === 0} // Prioritaskan gambar pertama agar dimuat lebih cepat
-          className={`transition-opacity duration-1000 ease-in-out ${
+          priority={index === 0}
+          className={`transition-opacity blur-xs duration-1000 ease-in-out ${
             index === currentIndex ? 'opacity-50' : 'opacity-0'
           }`}
         />
       ))}
-      {/* Lapisan overlay gelap agar teks lebih mudah dibaca */}
+      {/* Darken it to make texts easy to read */}
       <div className="absolute inset-0 bg-black opacity-50" />
     </div>
   );

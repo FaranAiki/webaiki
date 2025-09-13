@@ -1,6 +1,7 @@
 "use client";
 
 import Image from 'next/image';
+import HoverableWords from '@/components/HoverableWords'
 import { useState, useEffect } from 'react';
 
 const carouselPhotos = [
@@ -24,14 +25,14 @@ export default function AboutMe() {
 
   return (
     // Generated using Gemini cuz I am too lazy to format lol
-    <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-8 max-w-4xl mx-auto">    
-        <div className="text-center md:text-left">
-          <h1 className="text-4xl md:text-5xl font-bold text-white">
+    <div className="flex flex-col md:flex-row pt-2 justify-center gap-8 md:gap-8 max-w-4xl mx-auto">    
+        <div className="text-center md:text-justify">
+          <h1 className="text-4xl md:text-5xl pt-4 font-bold text-white">
             About Me
           </h1>
-          <p className="mt-4 text-lg text-gray-300 max-w-lg">
+          <HoverableWords className="mt-4 text-lg text-gray-250 max-w-lg" priority>
             Muhammad Faran Aiki (April 8, 2007) is currently a university student in School of Electrical Engineering and Informatics - Computation (SEEI-C), Bandung Institute of Technology.
-          </p>
+          </HoverableWords>
         </div>
         
         <div className="order-first md:order-last flex-shrink-0">
@@ -40,7 +41,7 @@ export default function AboutMe() {
             alt="Foto Muhammad Faran Aiki"
             width={200}
             height={200}
-            className="transition-all shadow-lg border-4 opacity-90 hover:opacity-100 scale-95 hover:scale-100"
+            className="transition-all shadow-lg border-4 opacity-90 hover:opacity-100 scale-95 hover:scale-100 "
             priority
           />
         </div>

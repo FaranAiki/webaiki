@@ -9,7 +9,7 @@ const navLinks = [
   { name: 'Social', href: '/social' },
   { name: 'Music', href: '/music' },
   { name: 'Technology', href: '/technology' },
-  { name: 'College Collection', href: '/college' },
+  { name: 'College', href: '/college' },
   { name: 'Publishing and Literature', href: '/literature' },
 ];
 
@@ -30,7 +30,7 @@ export default function Header() {
                   href={link.href} 
                   className={`text-sm md:text-base hover:text-lg transition-all duration-300 ${
                     isActive 
-                      ? 'text-cyan-400 font-bold' 
+                      ? 'text-cyan-400 font-bold opacity-100' 
                       : 'text-gray-300 font-semibold hover:text-cyan-400 opacity-75'
                   }`}
                 >

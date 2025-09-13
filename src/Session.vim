@@ -13,44 +13,22 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +46 ./components/AskMePopup.tsx
+badd +90 ./components/AskMePopup.tsx
 badd +20 ./components/Header.tsx
-badd +2 ../README.md
+badd +16 ../README.md
 badd +1 ../LICENSE
-badd +30 app/layout.tsx
+badd +34 app/layout.tsx
 badd +1 ./app/page.tsx
-badd +7 ./components/AboutMe.tsx
+badd +36 ./components/AboutMe.tsx
 badd +0 LICENSE
+badd +38 ./components/Background.tsx
+badd +28 ./components/HoverableWords.tsx
 argglobal
 %argdel
 $argadd ./components/AskMePopup.tsx
 $argadd ./components/Header.tsx
 tabnew +setlocal\ bufhidden=wipe
 tabrewind
-edit ./components/AboutMe.tsx
-argglobal
-if bufexists(fnamemodify("./components/AboutMe.tsx", ":p")) | buffer ./components/AboutMe.tsx | else | edit ./components/AboutMe.tsx | endif
-if &buftype ==# 'terminal'
-  silent file ./components/AboutMe.tsx
-endif
-balt app/layout.tsx
-setlocal foldmethod=manual
-setlocal foldexpr=0
-setlocal foldmarker={{{,}}}
-setlocal foldignore=#
-setlocal foldlevel=0
-setlocal foldminlines=1
-setlocal foldnestmax=20
-setlocal foldenable
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 7 - ((6 * winheight(0) + 22) / 45)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 7
-normal! 029|
-tabnext
 edit ../README.md
 argglobal
 if bufexists(fnamemodify("../README.md", ":p")) | buffer ../README.md | else | edit ../README.md | endif
@@ -68,13 +46,37 @@ setlocal foldnestmax=20
 setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 2 - ((1 * winheight(0) + 22) / 45)
+let s:l = 28 - ((27 * winheight(0) + 22) / 45)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 2
-normal! 026|
-tabnext 1
+keepjumps 28
+normal! 064|
+tabnext
+edit ./components/HoverableWords.tsx
+argglobal
+if bufexists(fnamemodify("./components/HoverableWords.tsx", ":p")) | buffer ./components/HoverableWords.tsx | else | edit ./components/HoverableWords.tsx | endif
+if &buftype ==# 'terminal'
+  silent file ./components/HoverableWords.tsx
+endif
+balt ./components/AboutMe.tsx
+setlocal foldmethod=manual
+setlocal foldexpr=0
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldenable
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 28 - ((27 * winheight(0) + 22) / 45)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 28
+normal! 0
+tabnext 2
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
 endif
