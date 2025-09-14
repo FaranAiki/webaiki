@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import "../globals.css";
 import { Inter } from "next/font/google";
 
+import InteractiveCollections from '@/components/InteractiveCollections';
+import college_json from "/json/college.json";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -14,12 +17,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <body className={`${inter.className} relative min-h-screen bg-gray-900 text-gray-100`}>
-        <main className="container mx-auto px-8 pt-24 pb-16">
+        <main className="container mx-auto pt-8 pb-16">
           {children}
         </main>
+        <InteractiveCollections/>
       </body>
     </html>
   );
