@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import HoverableWords from '@/components/HoverableWords'
 import { useState, useEffect } from 'react';
+import PdfViewer from '@/components/PdfViewer';
 
 const carouselPhotos = [
   "/images/fa_photo_red.jpg",
@@ -25,6 +26,7 @@ export default function AboutMe() {
 
   return (
     // Generated using Gemini cuz I am too lazy to format lol
+    <div>
     <div className="flex flex-col md:flex-row pt-2 justify-center items-center gap-8 md:gap-8 max-w-4xl mx-auto animate-fade-in">    
         <div className="text-center md:text-justify">
           <h1 className="transition-all text-4xl md:text-5xl pt-4 font-bold text-white hover:opacity-85">
@@ -45,10 +47,11 @@ export default function AboutMe() {
             priority
           />
         </div>
-        
-    </div>
-    <div className="justify-center items-center gap-8 md:gap-8 max-4xl">
-    </div>
+  </div>
+  <div className="opacity-70 hover:opacity-100 transition-all duration-250 justify-center items-center pt-4 gap-8 md:gap-8 max-4xl animate-fade-in">
+  {/*<PdfViewer className="hover:pt-6 hover:scale-105" file="/ats_cv.pdf" /> */}
+  </div>
+  </div>
   );
 }
 
