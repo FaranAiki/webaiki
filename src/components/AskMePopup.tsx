@@ -73,7 +73,7 @@ export default function AskMePopup() {
           aria-modal="true"
           aria-labelledby="popup-title"
         >
-          <div className="bg-gray-800 border border-gray-700 rounded-lg shadow-2xl w-80">
+          <div className="bg-gray-800/85 border border-gray-700 rounded-lg shadow-2xl w-80">
             <div className="flex justify-between items-center p-4 border-b border-gray-600">
               <h2 id="popup-title" className="text-lg font-semibold text-white-400">Ask me about Faran Aiki</h2>
               <button onClick={() => setIsOpen(false)} className="text-gray-400 hover:text-white" aria-label="Close">

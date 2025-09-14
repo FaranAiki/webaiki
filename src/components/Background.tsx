@@ -9,7 +9,8 @@ const images = [
   "/images/background_2.jpg", 
   "/images/background_3.jpg", 
   "/images/background_4.jpg", 
-  "/images/background_5.jpg" 
+  "/images/background_5.jpg", 
+  "/images/background_6.jpg", 
 ];
 
 const SLIDE_DURATION = 10000; // Duration per slide 
