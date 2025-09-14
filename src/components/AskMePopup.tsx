@@ -37,8 +37,12 @@ export default function AskMePopup() {
       setAnswer(data.answer); 
       setQuestion(''); 
 
-    } catch (err: Error) {
-      setError(err.message);
+    } catch (err: any) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("unknown");
+      }
       setAnswer(''); 
     } finally {
       setIsLoading(false);
