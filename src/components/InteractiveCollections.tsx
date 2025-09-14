@@ -11,7 +11,7 @@ const data: CollectionsData = collectionsData;
 
 // This is where the fun begins
 export default function InteractiveCollections() {
-  const [activeSemester, setActiveSemester] = useState<string | null>(Object.keys(data)[0] || null);
+  const [activeSemester, setActiveSemester] = useState<string | null>(null);
   const [activeCourse, setActiveCourse] = useState<string | null>(null);
 
   return (
@@ -23,7 +23,7 @@ export default function InteractiveCollections() {
               key={semesterName}
               className="w-full max-w-2xl"
               onMouseEnter={() => setActiveSemester(semesterName)}
-              onMouseLeave={() => setActiveSemester(null)}
+              onMouseLeave={() => activeCourse === null && setActiveSemester(null)}
             >
               <button
                 className={`w-full flex justify-between items-center text-left p-4 rounded-lg transition-all duration-300 ${
@@ -44,13 +44,14 @@ export default function InteractiveCollections() {
                     {Object.entries(courses).map(([courseName, documents]) => (
                       <li 
                         key={courseName}
-                        onMouseEnter={() => setActiveCourse(courseName)}
+                        onClick={() => activeCourse == courseName? setActiveCourse(null) : setActiveCourse(courseName)}
                       >
-                        <h3 className="font-bold text-white-400 cursor-pointer">{courseName}</h3>
+                        
+                        {Object.entries(documents).length > 0 && (<h3 className="font-bold text-white-400 cursor-pointer hover:text-cyan-500">{courseName}</h3>)}
                         
                         {activeCourse === courseName && (
                            Object.keys(documents).length > 0 ? (
-                            <ul className="pl-6 mt-2 space-y-1 list-disc list-inside text-gray-300 animate-fade-in">
+                            <ul className="pl-6 mt-2 space-y-2 list-inside text-gray-300 animate-fade-in">
                               {Object.entries(documents).map(([docName, url]) => (
                                 <li key={docName}>
                                   {url ? (

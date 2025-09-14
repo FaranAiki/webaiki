@@ -79,15 +79,17 @@ export default function AskMePopup() {
               </button>
             </div>
             <form onSubmit={handleSubmit} className="p-4">
+              <h3 id="popup-question" className="text-lg opacity-75 text-white-400">Question</h3>
               <textarea
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="..."
-                className="w-full h-32 p-2 bg-gray-900 text-gray-200 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="pt-2 w-full h-12 p-2 bg-gray-900 text-gray-200 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 no-scrollbar"
                 required
               />
+              <h3 id="popup-answer" className="text-lg opacity-75 text-white-400">Answer</h3>
               <textarea readOnly
-                className="w-full h-13 p-2 bg-gray-900 text-gray-200 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="pt-2 w-full h-32 p-2 bg-gray-900 text-gray-200 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 no-scrollbar"
                 placeholder={ansMessage}
               /> 
               <button

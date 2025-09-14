@@ -31,9 +31,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Header />
-        <Background />
         {children}
         <AskMePopup />
+        <Background />
       </body>
     </html>
   );
