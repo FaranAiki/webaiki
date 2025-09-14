@@ -16,7 +16,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'webaiki.vercel.app'
+        hostname: 'webaiki.vercel.app',
         port: '',
       },
     ],
