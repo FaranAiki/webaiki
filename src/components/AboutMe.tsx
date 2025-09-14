@@ -46,7 +46,9 @@ export default function AboutMe() {
           />
         </div>
         
-      </div>
+    </div>
+    <div className="justify-center items-center gap-8 md:gap-8 max-4xl">
+    </div>
   );
 }
 

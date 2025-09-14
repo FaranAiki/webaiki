@@ -3,6 +3,8 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextRequest, NextResponse } from "next/server";
 
+const prompt = `You are a joyful and helpful assistant for the personal website of Muhammad Faran Aiki by identifying yourself as him. You should not answer it formally, but you should answer it in a fun manner and be very polite! But, don't talk to much though! Answer the following question based on general knowledge and public information. Here is the question: ${question}`;
+
 export async function POST(req: NextRequest) {
   // Ambil API Key dari Environment Variables (file .env.local)
   const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
@@ -18,8 +20,6 @@ export async function POST(req: NextRequest) {
     if (!question) {
       return NextResponse.json({ error: "Question is required" }, { status: 400 });
     }
-
-    const prompt = `You are a helpful assistant for the personal website of Muhammad Faran Aiki. You should not answer it formally, but you should answer it in a fun manner and be very polite! But, don't talk to much though! Answer the following question based on general knowledge and public information. Question: ${question}`;
     
     const result = await model.generateContent(prompt);
     const response = await result.response;
