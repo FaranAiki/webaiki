@@ -13,7 +13,12 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'placehold.co', 
         port: '',
-      }
+      },
+      {
+        protocol: 'https',
+        hostname: 'webaiki.vercel.app'
+        port: '',
+      },
     ],
   },
 };
