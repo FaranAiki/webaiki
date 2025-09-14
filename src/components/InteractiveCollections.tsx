@@ -19,6 +19,7 @@ export default function InteractiveCollections() {
       <div className="container mx-auto max-w-4xl">
         <div className="flex flex-col items-center gap-4">
           {Object.entries(data).map(([semesterName, courses]) => (
+            (Object.entries(courses).length > 0) &&
             <div 
               key={semesterName}
               className="w-full max-w-2xl"
