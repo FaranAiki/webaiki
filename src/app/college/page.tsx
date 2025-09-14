@@ -3,7 +3,6 @@ import "../globals.css";
 import { Inter } from "next/font/google";
 
 import InteractiveCollections from '@/components/InteractiveCollections';
-import college_json from "/json/college.json";
 
 const inter = Inter({ subsets: ["latin"] });
 
