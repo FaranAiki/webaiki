@@ -23,13 +23,13 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Question is required" }, { status: 400 });
     }
 
-    // 3. Panggil Gemini API dari sisi server
+    // call Gemini API
     const prompt = `Answer this question: ${question}`;
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
 
-    // 4. Kirim kembali jawaban ke Front-End
+    // return to front end
     return NextResponse.json({ answer: text });
 
   } catch (error) {
@@ -53,6 +53,32 @@ export default function AskMePopup() {
     setMessage('')
     setAnsMessage("Waiting for an answer ....");
     setIsOpen(true);
+
+    try {
+      const response = await fetch('/api/gemini', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ question: question }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Something went wrong");
+      }
+      
+      const data = await response.json();
+      
+      setAnswerMessage(data.answer);
+
+    } catch (err: any) {
+      setError(err.message);
+      setAnswerMessage("Sorry, I couldn't get an answer.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
   };
 
   return (
@@ -85,11 +111,11 @@ export default function AskMePopup() {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="..."
-                className="w-full h-32 p-2 bg-gray-900 text-gray-200 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full h-13 p-2 bg-gray-900 text-gray-200 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500"
                 required
               />
               <textarea readOnly
-                className="w-full h-13 p-2 bg-gray-900 text-gray-200 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full h-32 p-2 bg-gray-900 text-gray-200 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500"
                 placeholder={ansMessage}
               /> 
               <button
