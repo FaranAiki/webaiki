@@ -1,4 +1,4 @@
-"use client"; // Menandakan ini adalah Client Component
+"use client"; 
 
 import { useState } from 'react';
 import Link from 'next/link';
