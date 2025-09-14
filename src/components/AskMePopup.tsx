@@ -2,7 +2,7 @@
 "use client";
 
 import { useState } from 'react';
-import { MessageSquare, X, Send, LoaderCircle } from 'lucide-react';
+import { MessageSquare, X, LoaderCircle } from 'lucide-react';
 
 export default function AskMePopup() {
   // State untuk visibilitas, pertanyaan, jawaban, loading, dan error

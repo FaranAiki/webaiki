@@ -1,3 +1,5 @@
+// Route for that specific ask me popup
+
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -17,13 +19,13 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Question is required" }, { status: 400 });
     }
 
-    const prompt = `You are a helpful assistant for the personal website of Muhammad Faran Aiki. Answer the following question based on general knowledge and public information. Question: ${question}`;
+    const prompt = `You are a helpful assistant for the personal website of Muhammad Faran Aiki. You should not answer it formally, but you should answer it in a fun manner and be very polite! But, don't talk to much though! Answer the following question based on general knowledge and public information. Question: ${question}`;
     
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
 
-    // Sent to Front End
+    // Send to Front End
     return NextResponse.json({ answer: text });
 
   } catch (error) {
