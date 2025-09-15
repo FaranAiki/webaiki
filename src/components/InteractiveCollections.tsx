@@ -13,7 +13,7 @@ const data: CollectionsData = collectionsData;
 export default function InteractiveCollections() {
   const [activeSemester, setActiveSemester] = useState<string | null>(null);
   const [activeCourse, setActiveCourse] = useState<string | null>(null);
-  const [leaveMouse, setLeaveMouse] = useState<bool>(false);
+  const [leaveMouse, setLeaveMouse] = useState<boolean>(false);
 
   return (
     <main className="min-h-screen text-white p-4 sm:p-8">
