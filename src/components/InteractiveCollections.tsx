@@ -13,6 +13,7 @@ const data: CollectionsData = collectionsData;
 export default function InteractiveCollections() {
   const [activeSemester, setActiveSemester] = useState<string | null>(null);
   const [activeCourse, setActiveCourse] = useState<string | null>(null);
+  const [leaveMouse, setLeaveMouse] = useState<bool>(false);
 
   return (
     <main className="min-h-screen text-white p-4 sm:p-8">
@@ -23,10 +24,11 @@ export default function InteractiveCollections() {
             <div 
               key={semesterName}
               className="w-full max-w-2xl"
-              onMouseEnter={() => setActiveSemester(semesterName)}
-              onMouseLeave={() => activeCourse === null && setActiveSemester(null)}
+              onMouseEnter={() => !leaveMouse && setActiveSemester(semesterName)}
+              onMouseLeave={() => activeCourse === null && setActiveSemester(null) && setLeaveMouse(false)}
             >
               <button
+                onClick={() => setActiveSemester(null) && setLeaveMouse(true)}
                 className={`w-full flex justify-between items-center text-left p-4 rounded-lg transition-all duration-300 ${
                   activeSemester === semesterName
                   ? 'bg-cyan-600/75 shadow-lg' 

@@ -58,28 +58,28 @@ const socialLinks = [
     name: "My Anime List",
     username: "FaranAiki",
     url: "https://myanimelist.net/profile/FaranAiki",
-    icon: <Image width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/7/7a/MyAnimeList_Logo.png" />,
+    icon: <Image alt='My Anime List icon' width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/7/7a/MyAnimeList_Logo.png" />,
     color: "hover:border-blue-600"
   },
   {
     name: "Lichess",
     username: "FaranAiki",
     url: "https://lichess.org/@/FaranAiki",
-    icon: <Image width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/d/da/Lichess_Logo_2019.svg" />,
+    icon: <Image alt='Lichess icon' width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/d/da/Lichess_Logo_2019.svg" />,
     color: "hover:border-white"
   },
   {
     name: "Quora",
     username: "Muhammad Faran Aiki",
     url: "https://id.quora.com/profile/Muhammad-Faran-Aiki-4",
-    icon: <Image width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/0/09/Quora_icon.svg" />,
+    icon: <Image alt='Quora icon' width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/0/09/Quora_icon.svg" />,
     color: "hover:border-red-600"
   },
   {
     name: "Reddit",
     username: "FaranAiki",
     url: "https://www.reddit.com/user/FaranAiki/",
-    icon: <Image width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Snoo.svg" />,
+    icon: <Image alt='Reddit icon' width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Snoo.svg" />,
     color: "hover:border-red-300"
   },
 ];
