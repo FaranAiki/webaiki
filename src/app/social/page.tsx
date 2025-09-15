@@ -48,6 +48,13 @@ const socialLinks = [
     color: "hover:border-red-600"
   },
   {
+    name: "TikTok",
+    username: "@faranaiki07",
+    url: "https://www.tiktok.com/@faranaiki07",
+    icon: <Image alt="Tiktok icon" width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Tiktok_icon.svg" />,
+    color: "hover:border-black"
+  },
+  {
     name: "Email",
     username: "faran.aiki.business@gmail.com",
     url: "mailto:faran.aiki.business@gmail.com",
