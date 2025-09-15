@@ -28,7 +28,7 @@ export default function InteractiveCollections() {
               onMouseLeave={() => activeCourse === null && setActiveSemester(null) && setLeaveMouse(false)}
             >
               <button
-                onClick={() => setActiveSemester(null) && setLeaveMouse(true)}
+                onClick={() => {setActiveSemester(null); setLeaveMouse(true)}}
                 className={`w-full flex justify-between items-center text-left p-4 rounded-lg transition-all duration-300 ${
                   activeSemester === semesterName
                   ? 'bg-cyan-600/75 shadow-lg' 
