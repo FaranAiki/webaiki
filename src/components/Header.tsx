@@ -1,4 +1,3 @@
-// Event handlers
 "use client";
 
 import Link from 'next/link';
@@ -20,13 +19,13 @@ export default function Header() {
 
   // Tailwind is overpowered as hell bro
   return (
-    <header className="fixed top-0 left-0 right-0 z-10 bg-gray-900/80 backdrop-blur-sm border-b border-gray-700 overflow-scroll no-scrollbar">
-      <nav className="container mx-auto px-8 py-4">
+    <header className="fixed top-0 left-0 right-0 z-10 bg-gray-900/80 backdrop-blur-sm border-b border-gray-700 overflow-x-scroll no-scrollbar">
+      <nav className="container flex justify-center mx-auto px-8 py-4">
         <ul className="flex items-center justify-center space-x-6 md:space-x-8 animate-fade-in">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
-              <li key={link.name}>
+              <li className="flex-shrink-0" key={link.name}>
                 <Link 
                   href={link.href} 
                   className={`text-sm md:text-base hover:text-lg transition-all duration-300 ${

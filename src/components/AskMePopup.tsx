@@ -70,7 +70,7 @@ export default function AskMePopup() {
 
       {isOpen && (
         <div 
-          className="transform transition-all fixed bottom-25 left-6 z-30 animate-fade-in duration-300"
+          className="transform transition-all fixed bottom-25 sm:left-0 left-6 z-30 animate-fade-in duration-300"
           role="dialog"
           aria-modal="true"
           aria-labelledby="popup-title"
