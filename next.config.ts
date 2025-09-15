@@ -16,6 +16,11 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'upload.wikimedia.org',
+        port: '',
+      },
+      {
+        protocol: 'https',
         hostname: 'webaiki.vercel.app',
         port: '',
       },
