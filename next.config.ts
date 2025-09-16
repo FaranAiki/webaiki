@@ -6,6 +6,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'static.wikia.nocookie.net',
+        port: '',
+      },
+      {
+        protocol: 'https',
         hostname: 'i.ytimg.com',
         port: '',
         pathname: '/vi/**',

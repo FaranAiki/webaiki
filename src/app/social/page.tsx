@@ -41,6 +41,13 @@ const socialLinks = [
     color: "hover:border-sky-500"
   },
   {
+    name: "Link Tree",
+    username: "Faran Aiki",
+    url: "linktr.ee/FaranAiki",
+    icon: <Image alt="LinkTree icon" width="48" height="48" src="https://upload.wikimedia.org/wikipedia/en/thumb/b/bf/Linktree_logo.svg/768px-Linktree_logo.svg.png?20230519151448" unoptimized />,
+    color: "hover:border-green-200"
+  },
+  {
     name: "YouTube",
     username: "Muhammad Faran Aiki",
     url: "https://www.youtube.com/@FaranAiki",
