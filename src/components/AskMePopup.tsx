@@ -83,7 +83,7 @@ export default function AskMePopup() {
           {(provided) => (
             <div {...provided.droppableProps} ref={provided.innerRef} className="w-full h-full">
               {isOpen && (
-                <Draggable draggableId="ask-me-popup" index={0} nodeRef={provided.innerReff}>
+                <Draggable draggableId="ask-me-popup" index={0}>
                   {(provided, snapshot) => (
                     <div
                       ref={provided.innerRef}
