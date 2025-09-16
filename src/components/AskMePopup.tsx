@@ -30,7 +30,7 @@ export default function AskMePopup() {
 
     setIsLoading(true);
     setError('');
-    setAnswer('Thinking...'); // Pesan sementara saat loading
+    setAnswer('Thinking...');
 
     try {
       const response = await fetch('/api/gemini', {
@@ -48,7 +48,7 @@ export default function AskMePopup() {
       
       const data = await response.json();
       setAnswer(data.answer); 
-      setQuestion(''); 
+      // setQuestion(''); 
 
     } catch (err) {
       if (err instanceof Error) {
