@@ -70,7 +70,6 @@ export default function AskMePopup() {
     setIsLoading(false);
   }
 
-  // TODO fix draggable, cannot drag for some reasons
   return (
     <>
       <button
@@ -89,7 +88,7 @@ export default function AskMePopup() {
                 <Draggable draggableId="ask-me-popup" index={0} nodeRef={popupRef}>
                   {(provided, snapshot) => (
                     <div
-                      ref={popupRef} // Kaitkan ref ke elemen DOM utama popup
+                      ref={provided.innerRef}
                       {...provided.draggableProps}
                       className="fixed bottom-25 md:left-6 left-0 flex items-center justify-center z-30 animate-fade-in duration-300"
                       role="dialog"
