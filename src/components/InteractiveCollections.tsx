@@ -25,10 +25,10 @@ export default function InteractiveCollections() {
               key={semesterName}
               className="w-full max-w-2xl"
               onMouseEnter={() => !leaveMouse && setActiveSemester(semesterName)}
-              onMouseLeave={() => activeCourse === null && setActiveSemester(null) && setLeaveMouse(false)}
+              onMouseLeave={() => (activeCourse === null) && setActiveSemester(null) && setLeaveMouse(false)}
             >
               <button
-                onClick={() => {setActiveSemester(null); setLeaveMouse(true)}}
+                onClick={() => (activeCourse !== null) ? !setActiveSemester(null) && setActiveCourse(null) && setLeaveMouse(true) : setActiveSemester(semesterName)}
                 className={`w-full flex justify-between items-center text-left p-4 rounded-lg transition-all duration-300 ${
                   activeSemester === semesterName
                   ? 'bg-cyan-600/75 shadow-lg' 
