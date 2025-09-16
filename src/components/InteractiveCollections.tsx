@@ -1,65 +1,73 @@
 "use client"; 
 
+// TODO create another component 
+
 import { useState } from 'react';
 import Link from 'next/link';
-import collectionsData from '@/../public/json/college.json';
 import { ChevronRight, Link as LinkIcon, FileText, XCircle } from 'lucide-react';
 
-// Definisikan tipe data untuk TypeScript agar lebih aman
-type CollectionsData = Record<string, Record<string, Record<string, string>>>;
-const data: CollectionsData = collectionsData;
+// Define typescript data
+export type CollectionsData = Record<string, Record<string, Record<string, string>>>;
+
+export type InteractiveCollectionsProps = {
+  data: CollectionsData;
+  force_click: boolean; // Use 'boolean', not 'bool'
+};
 
 // This is where the fun begins
-export default function InteractiveCollections() {
-  const [activeSemester, setActiveSemester] = useState<string | null>(null);
-  const [activeCourse, setActiveCourse] = useState<string | null>(null);
+// Imma span this lol
+export default function InteractiveCollections( { data, force_click }: InteractiveCollectionsProps ) {
+  const [activeHeadingOne, setActiveHeadingOne] = useState<string | null>(null);
+  const [activeHeadingTwo, setActiveHeadingTwo] = useState<string | null>(null);
   const [leaveMouse, setLeaveMouse] = useState<boolean>(false);
 
   return (
     <main className="min-h-screen text-white p-4 sm:p-8">
       <div className="container mx-auto max-w-4xl">
         <div className="flex flex-col items-center gap-4">
-          {Object.entries(data).map(([semesterName, courses]) => (
+          {Object.entries(data).map(([headingOne, courses]) => (
             (Object.entries(courses).length > 0) &&
             <div 
-              key={semesterName}
+              key={headingOne}
               className="w-full max-w-2xl"
-              onMouseEnter={() => !leaveMouse && setActiveSemester(semesterName)}
-              onMouseLeave={() => (activeCourse === null) && setActiveSemester(null) || setLeaveMouse(false)}
+              onMouseEnter={() => !force_click && !leaveMouse && setActiveHeadingOne(headingOne)}
+              onMouseLeave={() => !force_click && (activeHeadingTwo === null) && setActiveHeadingOne(null) || setLeaveMouse(false)}
             >
               <button
                 onClick={() => {
-                if (activeCourse !== null) {
-                    setActiveSemester(null);
-                    setActiveCourse(null);
+                  if (force_click) {
+                    setActiveHeadingOne(headingOne);
+                  } else if (activeHeadingTwo !== null) {
+                    setActiveHeadingOne(null);
+                    setActiveHeadingTwo(null);
                     setLeaveMouse(true);
                 } else {
-                    setActiveSemester(semesterName);
+                    setActiveHeadingOne(headingOne);
                 }}}
                 className={`w-full flex justify-between items-center text-left p-4 rounded-lg transition-all duration-300 ${
-                  activeSemester === semesterName
-                  ? 'bg-cyan-600/75 shadow-lg' 
-                  : 'bg-gray-800/75 hover:bg-gray-700'
+                  activeHeadingOne === headingOne
+                  ? 'bg-cyan-600/70 shadow-lg' 
+                  : 'bg-gray-800/70 hover:bg-gray-700'
                 }`}
               >
-                <span className="font-semibold text-lg">{semesterName}</span>
+                <span className="font-semibold text-lg">{headingOne}</span>
                 <ChevronRight className={`transition-transform duration-300 ${
-                  activeSemester === semesterName ? 'transform rotate-90' : ''
+                  activeHeadingOne === headingOne ? 'transform rotate-90' : ''
                 }`} />
               </button>
 
-              {activeSemester === semesterName && (
-                <div className="mt-2 bg-gray-800/50 p-6 rounded-lg shadow-xl border border-gray-700 animate-fade-in">
+              {activeHeadingOne === headingOne && (
+                <div className="mt-2 bg-gray-800/45 p-6 rounded-lg shadow-xl border border-gray-700 animate-fade-in">
                   <ul className="space-y-4">
-                    {Object.entries(courses).map(([courseName, documents]) => (
+                    {Object.entries(courses).map(([headingTwo, documents]) => (
                       <li 
-                        key={courseName}
-                        onClick={() => activeCourse == courseName? setActiveCourse(null) : setActiveCourse(courseName)}
+                        key={headingTwo}
+                        onClick={() => activeHeadingTwo == headingTwo? setActiveHeadingTwo(null) : setActiveHeadingTwo(headingTwo)}
                       >
                         
-                        {Object.entries(documents).length > 0 && (<h3 className="font-bold text-white-400 cursor-pointer hover:text-cyan-500">{courseName}</h3>)}
+                        {Object.entries(documents).length > 0 && (<h3 className="font-bold text-white-400 cursor-pointer hover:text-cyan-500">{headingTwo}</h3>)}
                         
-                        {activeCourse === courseName && (
+                        {activeHeadingTwo === headingTwo && (
                            Object.keys(documents).length > 0 ? (
                             <ul className="pl-6 mt-2 space-y-2 list-inside text-gray-300 animate-fade-in">
                               {Object.entries(documents).map(([docName, url]) => (

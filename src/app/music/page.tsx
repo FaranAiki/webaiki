@@ -49,12 +49,9 @@ export default async function RootLayout({
   const youtubeData = await res.json();
 
   return (
-    <html lang="en">
-      <body className={`${inter.className} relative min-h-screen bg-gray-900 text-gray-100`}>
-        <main className="container mx-auto pt-12 pb-16">
+        <main className={`${inter.className} container mx-auto px-8 pt-24 pb-16`}>
           {children}
-        </main>
-      <div className="flex flex-col md:flex-row pt-2 gap-4 md:gap-4 max-w-4xl mx-auto">    
+      <div className="flex flex-col md:flex-row gap-4 md:gap-4 max-w-4xl mx-auto">    
         <div className="text-center md:text-justify">
           <Link className="transition-all hover:text-green-500 duration-300 md:text-center text-5xl pt-4 font-bold text-white" href="https://open.spotify.com/artist/1PPAtm7YfRKghHpCqR3QZZ">
             Spotify
@@ -121,7 +118,6 @@ export default async function RootLayout({
         </section>
         </div>
       </div>
-      </body>
-    </html>
+      </main>
   );
 }

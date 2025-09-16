@@ -18,14 +18,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} relative min-h-screen bg-gray-900 text-gray-100`}>
-        <main className="container mx-auto px-8 pt-24 pb-16">
-          {children}
-        </main>
-        <AboutMe />
-      </body>
-    </html>
+    <main className={`${inter.className} container mx-auto px-8 pt-24 pb-16`}>
+        {children}
+    <AboutMe /> {/* I don't know why I don't the about me here */}
+    </main>
   );
 }
 
