@@ -18,8 +18,6 @@ export default function AskMePopup() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const popupRef = useRef(null);
-
   const onDragEnd = (result: DropResult) => {
     if (!result.destination) return;
   };
@@ -85,7 +83,7 @@ export default function AskMePopup() {
           {(provided) => (
             <div {...provided.droppableProps} ref={provided.innerRef} className="w-full h-full">
               {isOpen && (
-                <Draggable draggableId="ask-me-popup" index={0} nodeRef={popupRef}>
+                <Draggable draggableId="ask-me-popup" index={0} nodeRef={provided.innerReff}>
                   {(provided, snapshot) => (
                     <div
                       ref={provided.innerRef}
