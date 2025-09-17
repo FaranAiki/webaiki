@@ -119,7 +119,7 @@ export default function Background() {
           src={src}
           alt={`Background image ${index + 1}`}
           fill
-          //objectFit="cover"
+          objectFit="cover"
           quality={100}
           priority={index === 0}
           className={`transition-opacity blur-xs duration-1000 ease-in-out ${

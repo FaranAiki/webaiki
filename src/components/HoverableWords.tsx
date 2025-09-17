@@ -1,6 +1,6 @@
 import React from 'react';
 
-type HoverableWordsProps = {
+export type HoverableWordsProps = {
   children: string;
   className?: string;
   prophover?: string;

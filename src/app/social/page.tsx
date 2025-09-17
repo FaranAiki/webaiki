@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   description: "Faran Aiki's personal files, portfolio, and others",
 };
 
+// Cannot use /public/json/ lol because of optimization for icon
 const socialLinks = [
   {
     name: "GitHub",

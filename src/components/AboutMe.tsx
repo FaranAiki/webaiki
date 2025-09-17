@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import HoverableWords from '@/components/HoverableWords'
 import { useState, useEffect } from 'react';
-import PdfViewer from '@/components/PdfViewer';
 
 const carouselPhotos = [
   "/images/fa_photo_red.jpg",
