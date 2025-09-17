@@ -4,16 +4,6 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import React, { useRef } from 'react';
 
-// TODO MAKE THIS EASIER
-const images = [
-  "/images/background_1.jpg", 
-  "/images/background_2.jpg", 
-  "/images/background_3.jpg", 
-  "/images/background_4.jpg", 
-  "/images/background_5.jpg", 
-  "/images/background_6.jpg", 
-];
-
 const SLIDE_DURATION = 10000; // Duration per slide 
 // --- ---
 
@@ -100,7 +90,11 @@ const MatrixRain = () => {
   );
 };
 
-export default function Background() {
+export type BackgroundProps = {
+  [carousel: string]
+};
+
+export default function Background( {carousel}: BackgroundProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -113,13 +107,13 @@ export default function Background() {
 
   return (
     <div className="fixed inset-0 w-full h-full z-[-1]">
-      {images.map((src, index) => (
+      {carousel.map((src, index) => (
         <Image
           key={index}
-          src={src}
+          src={`/images/background/${src}`}
           alt={`Background image ${index + 1}`}
-          fill
-          objectFit="cover"
+          fill    
+          style={{objectFit:"cover"}} // thanks stackoverflow
           quality={100}
           priority={index === 0}
           className={`transition-opacity blur-xs duration-1000 ease-in-out ${

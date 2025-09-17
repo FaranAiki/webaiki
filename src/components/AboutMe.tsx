@@ -4,15 +4,14 @@ import Image from 'next/image';
 import HoverableWords from '@/components/HoverableWords'
 import { useState, useEffect } from 'react';
 
-const carouselPhotos = [
-  "/images/fa_photo_red.jpg",
-  "/images/fa_photo_teknik_informatika.jpg",
-  "/images/fa_photo_nerd.jpg",
-  "/images/fa_photo_batik.jpg"
-];
+export type AboutMeProps = {
+  [carouselPhotos: string],
+};
 
-export default function AboutMe() {
+export default function AboutMe( {carouselPhotos} : AboutMeProps ) {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  // const carouselPhotos = getFaranAikiPhoto();
 
   // Carousel things
   useEffect(() => {
@@ -38,7 +37,7 @@ export default function AboutMe() {
         
         <div className="order-first md:order-last justify-center flex-shrink-0">
           <Image
-            src={carouselPhotos[currentIndex]}
+            src={`/images/photo_faran_aiki/${carouselPhotos[currentIndex]}`}
             alt="Foto Muhammad Faran Aiki"
             width={200}
             height={200}

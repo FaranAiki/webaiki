@@ -8,6 +8,15 @@ import "./globals.css";
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 
+import fs from 'fs';
+import path from 'path';
+
+export function getBackgrounds() {
+  const photosDir = path.join(process.cwd(), 'public', 'images', 'background');
+
+  return fs.readdirSync(photosDir);
+}
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -17,11 +26,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
-export const metadata: Metadata = {
-  title: "Muhammad Faran Aiki personal website",
-  description: "Personal Website",
-};
 
 export default function RootLayout({
   children,
@@ -36,7 +40,7 @@ export default function RootLayout({
         <Header />
         {children}
         <AskMePopup />
-        <Background />
+        <Background carousel={getBackgrounds()}/>
       </body>
     </html>
   );

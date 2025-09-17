@@ -7,6 +7,15 @@ import AboutMe from '@/components/AboutMe'
 
 const inter = Inter({ subsets: ["latin"] });
 
+import fs from 'fs';
+import path from 'path';
+
+export function getFaranAikiPhoto() {
+  const photosDir = path.join(process.cwd(), 'public', 'images', 'photo_faran_aiki');
+
+  return fs.readdirSync(photosDir);
+}
+
 export const metadata: Metadata = {
   title: "About Faran Aiki",
   description: "Faran Aiki's personal files, portfolio, and others",
@@ -20,7 +29,7 @@ export default function RootLayout({
   return (
     <main className={`${inter.className} container mx-auto px-8 pt-24 pb-16`}>
         {children}
-    <AboutMe /> {/* I don't know why I don't the about me here */}
+    <AboutMe carouselPhotos={getFaranAikiPhoto()} /> {/* I don't know why I don't the about me here */}
     </main>
   );
 }
