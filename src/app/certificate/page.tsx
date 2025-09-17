@@ -24,7 +24,6 @@ export function getCertificatesData() {
         const yearPath = path.join(categoryPath, year);
 
         if (fs.statSync(yearPath).isDirectory()) {
-          // 2. FIX: Initialize the nested object for the current year
           allCertificatesData[category][year] = {};
           
           const files = fs.readdirSync(yearPath);
@@ -33,7 +32,6 @@ export function getCertificatesData() {
             const fileName = path.parse(file).name;
             const filePath = `/documents/certificate/${category}/${year}/${file}`;
             
-            // 3. FIX: Add the file to its correct year inside its category
             allCertificatesData[category][year][fileName] = filePath;
           }
         }

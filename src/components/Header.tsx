@@ -22,7 +22,7 @@ export default function Header() {
   return (
     <header className="w-screen fixed top-0 left-0 right-0 z-10 bg-gray-900/80 backdrop-blur-sm border-b border-gray-700 overflow-x-scroll no-scrollbar">
       <nav className="w-screen container flex mx-auto px-8 py-4 overflow-x-scroll no-scrollbar">
-        <ul className="w-screen flex flex-nowrap xs:justify-center md:justify-center space-x-6 md:space-x-8 animate-fade-in overflow-x-scroll no-scrollbar">
+        <ul className="w-screen flex flex-nowrap lg:justify-center md:justify-center space-x-6 md:space-x-8 animate-fade-in overflow-x-scroll no-scrollbar">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
             return (

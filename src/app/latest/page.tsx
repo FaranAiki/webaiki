@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "../globals.css";
 
 export const metadata: Metadata = {
-  title: "Faran Aiki's Certificate",
-  description: "Faran Aiki's project",
+  title: "Faran Aiki's Latest Information",
+  description: "Faran Aiki's yapping",
 };
 
 export default function RootLayout({
