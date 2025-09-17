@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import AskMePopup from "@/components/AskMePopup"
 import Header from "@/components/Header";
 import Background from "@/components/Background"

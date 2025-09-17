@@ -5,8 +5,8 @@ import { useState, useEffect } from 'react';
 import React, { useRef } from 'react';
 
 const SLIDE_DURATION = 10000; // Duration per slide 
-// --- ---
 
+// Matrix effect
 const MatrixRain = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -30,7 +30,7 @@ const MatrixRain = () => {
     const greek_alphabets = 'eΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣσςΤτΥυΦφΧχΨψΩω';
     const latin = 'abmnxyzw';
     const nums = '0123456789';
-    const characters = math_symbols + greek_alphabets + latin + nums;
+    const characters = math_symbols + greek_alphabets + latin + nums + music_code;
 
     const fontSize = 16;
     const columns = Math.floor(canvas.width / fontSize);
@@ -91,7 +91,7 @@ const MatrixRain = () => {
 };
 
 export type BackgroundProps = {
-  [carousel: string]
+  carousel: string[]
 };
 
 export default function Background( {carousel}: BackgroundProps) {
@@ -99,7 +99,7 @@ export default function Background( {carousel}: BackgroundProps) {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % carousel.length);
     }, SLIDE_DURATION);
 
     return () => clearInterval(interval);

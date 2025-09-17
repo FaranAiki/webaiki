@@ -4,6 +4,8 @@
 import { useState, useMemo } from 'react';
 import PdfPreview from '@/components/PdfPreview';
 
+import Image from 'next/image';
+
 export type CertificateData = {
   [category: string]: {
     [year: string]: {
@@ -108,7 +110,7 @@ export default function CertificatesDisplay({ certificates }: CertificatesDispla
                 {Object.entries(filteredFiles).map(([fileName, filePath]) => (
                   <div
                     key={fileName}
-                    className="bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-all hover:scale-105 hover:opacity-100 opacity-90"
+                    className="bg-gray-800 rounded-lg overflow-visible shadow-lg transition-all hover:scale-105 hover:opacity-100 opacity-90"
                   >
                     <a
                       href={filePath as string}
@@ -119,7 +121,7 @@ export default function CertificatesDisplay({ certificates }: CertificatesDispla
                       {(filePath as string).endsWith('.pdf') ? (
                         <PdfPreview fileUrl={filePath as string} />
                       ) : (
-                        <img
+                        <Image
                           src={filePath as string}
                           alt={fileName}
                           className="w-full h-full object-cover"

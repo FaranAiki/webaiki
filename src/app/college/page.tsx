@@ -3,7 +3,6 @@ import "../globals.css";
 import { Inter } from "next/font/google";
 
 import InteractiveCollections from '@/components/InteractiveCollections';
-import CollectionsData from '@/components/InteractiveCollections';
 
 import college_data from '@/../public/json/college.json';
 

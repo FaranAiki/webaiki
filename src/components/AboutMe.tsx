@@ -5,7 +5,7 @@ import HoverableWords from '@/components/HoverableWords'
 import { useState, useEffect } from 'react';
 
 export type AboutMeProps = {
-  [carouselPhotos: string],
+  carouselPhotos: string[],
 };
 
 export default function AboutMe( {carouselPhotos} : AboutMeProps ) {

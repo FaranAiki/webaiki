@@ -3,8 +3,7 @@
 // TODO create another component 
 
 import { useState } from 'react';
-import Link from 'next/link';
-import { ChevronRight, Link as LinkIcon, FileText, XCircle } from 'lucide-react';
+import { ChevronRight, Link as LinkIcon, XCircle } from 'lucide-react';
 
 // Define typescript data
 export type CollectionsData = Record<string, Record<string, Record<string, string>>>;
