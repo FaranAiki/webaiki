@@ -35,6 +35,12 @@
     scrollbar-width: none; /* Firefox */
   }
 
+  .no-select {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none; /* Standard syntax */
+  }
+
   .animate-fade-in {
     animation: fadeIn 0.5s ease-in-out;
   }

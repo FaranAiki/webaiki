@@ -17,6 +17,7 @@
     "pdfjs-dist": "^5.4.149",
     "react": "^18",
     "react-dom": "^18",
+    "react-draggable": "^4.5.0",
     "react-pdf": "^10.1.0",
     "type-check": "^0.4.0"
   },
@@ -31,9 +32,9 @@
     "tailwindcss": "^4",
     "typescript": "^5"
   },
- "browser": {
-  "fs": false,
-  "path": false,
-  "os": false
- }
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  }
 }
