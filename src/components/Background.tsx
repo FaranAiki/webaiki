@@ -29,7 +29,7 @@ const MatrixRain = () => {
     const greek_alphabets = 'eΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣσςΤτΥυΦφΧχΨψΩω';
     const latin = 'abmnxyzw';
     const nums = '0123456789';
-    const characters = math_symbols + greek_alphabets + latin + nums + music_code;
+    const characters = math_symbols + greek_alphabets + latin + nums;
 
     const fontSize = 16;
     const columns = Math.floor(canvas.width / fontSize);
