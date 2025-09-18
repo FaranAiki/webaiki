@@ -97,6 +97,34 @@ const socialLinks = [
     icon: <Image alt='Reddit icon' width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Snoo.svg" />,
     color: "hover:border-red-300"
   },
+  {
+    name: "SlideShare",
+    username: "Faran Aiki",
+    url: "https://www.slideshare.net/MuhammadFaranAiki",
+    icon: <Image alt='Slideshare icon' width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/e/e1/SlideShare_logo.svg" />,
+    color: "hover:border-orange-300"
+  },
+  {
+    name: "Scribd",
+    username: "Muhammad Faran Aiki",
+    url: "https://id.scribd.com/user/530310522/Muhammad-Faran-Aiki",
+    icon: <Image alt='Slideshare icon' width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/5/52/Scribd_logo_%282%29.svg" />,
+    color: "hover:border-green-300"
+  },
+  {
+    name: "Line",
+    username: "@faranaiki_",
+    url: "https://line.me/ti/p/8ZF2kENUEj",
+    icon: <Image alt='Line icon' width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" />,
+    color: "hover:border-green-400"
+  },
+  {
+    name: "Telegram",
+    username: "@FaranAiki",
+    url: "https://t.me/FaranAiki",
+    icon: <Image alt='Telegram icon' width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" />,
+    color: "hover:border-blue-300"
+  },
 ];
 
 export default function SocialPage() {
@@ -105,10 +133,8 @@ export default function SocialPage() {
       <div className="container mx-auto max-w-5xl pt-24">
         <h1 className="text-4xl font-bold text-center mb-10 hover:scale-105 opacity-80 hover:opacity-90 transition-all">Connect With Me</h1>
 
-        {/* 2. Gunakan Grid yang responsif */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
           
-          {/* 3. Lakukan iterasi pada data menggunakan .map() */}
           {socialLinks.map((link) => (
             <a
               key={link.name}
@@ -117,17 +143,14 @@ export default function SocialPage() {
               rel="noopener noreferrer"
               className={`group bg-gray-800/60 backdrop-blur-sm border border-gray-700 rounded-lg p-6 flex flex-col items-center justify-center text-center transition-all duration-300 transform hover:-translate-y-2 ${link.color}`}
             >
-              {/* Username (acc) */}
               <div className="text-sm text-gray-400 mb-4 group-hover:text-white transition-colors">
                 {link.username}
               </div>
 
-              {/* Logo */}
               <div className="mb-4">
                 {link.icon}
               </div>
 
-              {/* Nama Platform */}
               <div className="text-lg font-semibold">
                 {link.name}
               </div>
