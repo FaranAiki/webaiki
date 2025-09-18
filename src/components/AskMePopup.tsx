@@ -75,7 +75,7 @@ function AskMePopup() {
       <Draggable nodeRef={nodeRef} handle=".drag-handle">
       <div ref={nodeRef} className="absolute fixed w-screen h-screen top-0 left-0">
         <div
-          className="fixed bottom-25 md:w-auto md:left-6 -left-3 w-screen flex items-center justify-center z-30 animate-fade-in duration-300 transition-all"
+          className="fixed bottom-25 md:w-auto md:h-auto md:left-6 -left-3 flex items-center justify-center z-30 animate-fade-in duration-300 transition-all"
           role="dialog"
           aria-modal="true"
           aria-labelledby="popup-title"
@@ -85,7 +85,7 @@ function AskMePopup() {
               // This div is now the handle for dragging
               className="no-select drag-handle flex justify-between items-center p-4 border-b border-gray-600 cursor-grab active:cursor-grabbing"
             >
-              <h2 id="popup-title" className="text-lg font-semibold text-white">Ask me about Faran Aiki</h2>
+              <h2 id="popup-title" className="text-lg font-semibold text-white">Ask about Faran Aiki</h2>
               <button onClick={() => setIsOpen(false)} className="text-gray-400 hover:text-white" aria-label="Close">
                 <X size={20} />
               </button>
