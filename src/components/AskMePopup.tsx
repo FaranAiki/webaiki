@@ -76,7 +76,7 @@ function AskMePopup() {
       <Draggable nodeRef={nodeRef} handle=".drag-handle">
         <div className="fixed h-screen w-screen z-5" ref={nodeRef}>
         <div
-          className="fixed -top-585 sm:-top-285 md:-top-185 lg:-top-135 md:left-6 -left-3 flex items-center justify-center z-30 animate-fade-in duration-300 transition-all"
+          className="fixed flex items-center justify-center z-30 animate-fade-in duration-300 transition-all"
           role="dialog"
           aria-modal="true"
           aria-labelledby="popup-title"
