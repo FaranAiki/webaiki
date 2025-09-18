@@ -73,13 +73,14 @@ function AskMePopup() {
 
     {isOpen && (
       <Draggable nodeRef={nodeRef} handle=".drag-handle">
+      <div ref={nodeRef} className="absolute fixed w-screen h-screen top-0 left-0">
         <div
-          className="absolute fixed bottom-25 md:w-auto md:left-6 -left-3 w-screen flex xs:items-center xs:justify-center z-30 animate-fade-in duration-300 transition-all"
+          className="fixed bottom-25 md:w-auto md:left-6 -left-3 w-screen flex items-center justify-center z-30 animate-fade-in duration-300 transition-all"
           role="dialog"
           aria-modal="true"
           aria-labelledby="popup-title"
         >
-          <div ref={nodeRef} className="bg-gray-800/85 backdrop-blur-sm border border-gray-700 rounded-lg shadow-2xl w-95">
+          <div className="bg-gray-800/85 backdrop-blur-sm border border-gray-700 rounded-lg shadow-2xl w-95">
             <div
               // This div is now the handle for dragging
               className="no-select drag-handle flex justify-between items-center p-4 border-b border-gray-600 cursor-grab active:cursor-grabbing"
@@ -115,6 +116,7 @@ function AskMePopup() {
               </button>
             </form>
           </div>
+        </div>
         </div>
       </Draggable>
     )}
