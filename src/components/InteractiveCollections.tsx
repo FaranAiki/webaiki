@@ -22,15 +22,16 @@ export default function InteractiveCollections( { data, force_click }: Interacti
 
   return (
     <main className="min-h-screen text-white p-4 sm:p-8">
-      <div className="container mx-auto max-w-4xl">
-        <div className="flex flex-col items-center gap-4">
+      <div className="container mx-auto max-w-xl w-auto">
+        <div className="flex flex-col items-center gap-6 w-auto"
+        onMouseLeave = {() => !force_click && (activeHeadingTwo === null) && setActiveHeadingOne(null) || setLeaveMouse(false)}>
           {Object.entries(data).map(([headingOne, courses]) => (
             (Object.entries(courses).length > 0) &&
             <div 
               key={headingOne}
               className="w-full max-w-2xl"
               onMouseEnter={() => !force_click && !leaveMouse && setActiveHeadingOne(headingOne)}
-              onMouseLeave={() => !force_click && (activeHeadingTwo === null) && setActiveHeadingOne(null) || setLeaveMouse(false)}
+              onMouseLeave={() => false && !force_click && (activeHeadingTwo === null) && setActiveHeadingOne(null) || setLeaveMouse(false)}
             >
               <button
                 onClick={() => {

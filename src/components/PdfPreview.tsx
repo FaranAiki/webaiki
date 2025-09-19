@@ -24,7 +24,7 @@ export default function PdfPreview({ fileUrl }: PdfPreviewProps) {
         className="flex justify-center"
       >
         {/* We only show the first page as a preview */}
-        <Page pageNumber={1} width={300} />
+        <Page pageNumber={1} width={300} renderTextLayer={false} renderAnnotationLayer={false} />
       </Document>
     </div>
   );
