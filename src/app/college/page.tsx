@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import "../globals.css";
 import { Inter } from "next/font/google";
 
-import InteractiveCollections from '@/components/InteractiveCollections';
+import InteractiveCollections, { CollectionsData } from '@/components/InteractiveCollections';
+
 import CollegeLoader from './college-loader'
 
 // import college_data from '@/../public/json/college.json';
@@ -13,16 +14,16 @@ import path from 'path';
 const inter = Inter({ subsets: ["latin"] });
 
 // TODO implement this
-export function getCollegeData() {
+export function getCollectionsData() {
   const certificatesDir = path.join(process.cwd(), 'public', 'documents', 'college');
   const semesterFolders = fs.readdirSync(certificatesDir);
-  const allCollegeData: CollegeData = {};
+  const allCollectionsData: CollectionsData = {};
 
   for (const semester of semesterFolders) {
     const semesterPath = path.join(certificatesDir, semester);
     
     if (fs.statSync(semesterPath).isDirectory()) {
-      allCollegeData[semester] = {};
+      allCollectionsData[semester] = {};
       
       const subjectFolders = fs.readdirSync(semesterPath);
 
@@ -32,7 +33,7 @@ export function getCollegeData() {
         console.log(subjectPath);
         
         if (fs.statSync(subjectPath).isDirectory()) {
-          allCollegeData[semester][subject] = {};
+          allCollectionsData[semester][subject] = {};
           
           const files = fs.readdirSync(subjectPath);
 
@@ -46,16 +47,16 @@ export function getCollegeData() {
               openPath = `/documents/college/${semester}/${subject}/${file}`;
             }
 
-            allCollegeData[semester][subject][fileName] = openPath;
+            allCollectionsData[semester][subject][fileName] = openPath;
           }
         }
       }
     }
   }
 
-  console.log(allCollegeData);
+  console.log(allCollectionsData);
     
-  return allCollegeData;
+  return allCollectionsData;
 }
 
 export const metadata: Metadata = {
@@ -68,7 +69,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const college_data = getCollegeData();
+  const college_data = getCollectionsData();
 
   console.log(college_data);
 
