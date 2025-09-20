@@ -11,6 +11,12 @@ type CollegeData = {
   };
 };
 
+// TypeScript suckass
+export type CollegeLoaderProps = {
+  data: CollegeData;
+  force_click: boolean; // Use 'boolean', not 'bool'
+};
+
 // Use dynamic import for the component that needs browser APIs
 const CollegeDisplay = dynamic(
   () => import('@/components/InteractiveCollections'),
@@ -21,6 +27,6 @@ const CollegeDisplay = dynamic(
 );
 
 // This component receives the server-fetched data as props
-export default function CollegeLoader({ data }: { data: CollegeData }) {
+export default function CollegeLoader({ data, force_click }: CollegeLoaderProps) {
   return <CollegeDisplay data={data} />;
 }

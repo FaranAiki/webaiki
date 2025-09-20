@@ -40,7 +40,7 @@ export function getCollegeData() {
             const fileName = path.parse(file).name;
             let openPath: string = '';
 
-            if (file.endsWith('.lnk')) { 
+            if (file.endsWith('.link') || file.endsWith('.lnk')) { 
               openPath = fs.readFileSync(path.join(process.cwd(), 'public', 'documents', 'college', semester, subject, file), 'utf-8');
             } else {
               openPath = `/documents/college/${semester}/${subject}/${file}`;
