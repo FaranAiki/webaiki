@@ -28,5 +28,5 @@ const CollegeDisplay = dynamic(
 
 // This component receives the server-fetched data as props
 export default function CollegeLoader({ data, force_click }: CollegeLoaderProps) {
-  return <CollegeDisplay data={data} />;
+  return <CollegeDisplay data={data} force_click={force_click} />;
 }
