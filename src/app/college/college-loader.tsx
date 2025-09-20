@@ -3,9 +3,9 @@
 import dynamic from 'next/dynamic';
 
 // Define the type for the data we'll receive
-type CertificateData = {
-  [category: string]: {
-    [year: string]: {
+type CollegeData = {
+  [semester: string]: {
+    [subject: string]: {
       [fileName: string]: string;
     };
   };
@@ -13,14 +13,14 @@ type CertificateData = {
 
 // Use dynamic import for the component that needs browser APIs
 const CertificatesDisplay = dynamic(
-  () => import('@/components/CertificatesDisplay'),
+  () => import('@/components/InteractiveCollections'),
   { 
     ssr: false, // ssr: false is allowed here
-    loading: () => <h2 className="text-center">Loading certificates...</h2> 
+    loading: () => <h2 className="text-center">Loading college data...</h2> 
   }
 );
 
 // This component receives the server-fetched data as props
-export default function CertificateLoader({ certificates }: { certificates: CertificateData }) {
-  return <CertificatesDisplay certificates={certificates} />;
+export default function CollegeLoader({ college_data }: { college_data: CollegeData }) {
+  return <InteractiveCollections data={college_data} />;
 }
