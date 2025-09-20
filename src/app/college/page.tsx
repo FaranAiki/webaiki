@@ -54,8 +54,6 @@ export function getCollectionsData() {
     }
   }
 
-  console.log(allCollectionsData);
-    
   return allCollectionsData;
 }
 
@@ -70,8 +68,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const college_data = getCollectionsData();
-
-  console.log(college_data);
 
   return (
     <main className="container mx-auto pt-8 pb-16 pt-24">
