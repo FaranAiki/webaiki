@@ -3,8 +3,9 @@ import "../globals.css";
 import { Inter } from "next/font/google";
 
 import InteractiveCollections from '@/components/InteractiveCollections';
+import CollegeLoader from './college-loader'
 
-import college_data from '@/../public/json/college.json';
+// import college_data from '@/../public/json/college.json';
 
 import fs from 'fs';
 import path from 'path';
@@ -28,6 +29,8 @@ export function getCollegeData() {
       for (const subject of subjectFolders) {
         const subjectPath = path.join(semesterPath, subject);
 
+        console.log(subjectPath);
+        
         if (fs.statSync(subjectPath).isDirectory()) {
           allCollegeData[semester][subject] = {};
           
@@ -35,11 +38,12 @@ export function getCollegeData() {
 
           for (const file of files) {
             const fileName = path.parse(file).name;
-           
-            if (file.endsWith('.lnk')) {
-              const openPath = fs.readFileSync(`/documents/college_data/${semester}/${subject}/${file}`, 'utf-8');
+            let openPath: string = '';
+
+            if (file.endsWith('.lnk')) { 
+              openPath = fs.readFileSync(path.join(process.cwd(), 'public', 'documents', 'college', semester, subject, file), 'utf-8');
             } else {
-              const openPath = `/documents/college_data/${semester}/${subject}/${file}`;
+              openPath = `/documents/college/${semester}/${subject}/${file}`;
             }
 
             allCollegeData[semester][subject][fileName] = openPath;
@@ -64,11 +68,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const college_data = getCollegeData();
+
+  console.log(college_data);
 
   return (
     <main className="container mx-auto pt-8 pb-16 pt-24">
       {children}
-    <InteractiveCollections data={college_data} force_click={false} />
+      <CollegeLoader data={college_data} force_click={false} />
     </main>
   );
 }

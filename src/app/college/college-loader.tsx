@@ -6,13 +6,13 @@ import dynamic from 'next/dynamic';
 type CollegeData = {
   [semester: string]: {
     [subject: string]: {
-      [fileName: string]: string;
+      [fileName: string]: string; // be aware that the second string can be a link
     };
   };
 };
 
 // Use dynamic import for the component that needs browser APIs
-const CertificatesDisplay = dynamic(
+const CollegeDisplay = dynamic(
   () => import('@/components/InteractiveCollections'),
   { 
     ssr: false, // ssr: false is allowed here
@@ -21,6 +21,6 @@ const CertificatesDisplay = dynamic(
 );
 
 // This component receives the server-fetched data as props
-export default function CollegeLoader({ college_data }: { college_data: CollegeData }) {
-  return <InteractiveCollection data={college_data} />;
+export default function CollegeLoader({ data }: { data: CollegeData }) {
+  return <CollegeDisplay data={data} />;
 }
