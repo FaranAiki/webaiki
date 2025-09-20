@@ -22,5 +22,5 @@ const CertificatesDisplay = dynamic(
 
 // This component receives the server-fetched data as props
 export default function CollegeLoader({ college_data }: { college_data: CollegeData }) {
-  return <InteractiveCollections data={college_data} />;
+  return <InteractiveCollection data={college_data} />;
 }
