@@ -31,7 +31,7 @@ export default function AboutMe( {carouselPhotos} : AboutMeProps ) {
             About Me
           </h1>
           <HoverableWords className="mt-4 text-lg text-gray-250 max-w-lg">
-            Muhammad Faran Aiki (April 8, 2007) is currently a university student in School of Electrical Engineering and Informatics - Computation (SEEI-C), Bandung Institute of Technology. He is an intern at Analitica as the Education Team starting at May 2025. Moreover, he is a certified-proven human anomaly.
+            Muhammad Faran Aiki (April 8, 2007) is currently a university student in School of Electrical Engineering and Informatics - Computation (SEEI-C), Bandung Institute of Technology. He is an intern at Analitica as the Education Team starting at May 2025 and a Flutter front-end (Technology Team) programmer starting at September 2025. Moreover, he is a certified-proven human anomaly.
           </HoverableWords>
         </div>
         

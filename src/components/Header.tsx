@@ -8,10 +8,10 @@ const navLinks = [
   { name: 'Social', href: '/social' },
   { name: 'Certificate', href:'/certificate' },
   { name: 'Music', href: '/music' },
-  { name: 'Project', href: '/project' },
+  // { name: 'Project', href: '/project' },
   { name: 'College', href: '/college' },
   { name: 'Literature', href: '/literature' },
-  { name: 'Latest', href: '/latest' },
+  // { name: 'Latest', href: '/latest' },
 ];
 
 // Header is used throughout the website
