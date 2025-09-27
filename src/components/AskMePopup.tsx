@@ -5,6 +5,17 @@ import { MessageSquare, X, LoaderCircle } from 'lucide-react';
 import { useRef } from 'react';
 import Draggable from 'react-draggable';
 
+const typeOfWaitingAnswer = [
+  "That's a nice question...",
+  "Thinking...",
+  "I am preparing the best answer for you...",
+  "Oh... so you are very curious about him...",
+  "I am thinking the best reply...",
+  "Wait, let me call him...",
+  "Wait, let me message him...",
+  "Wait a minute..."
+];
+
 function AskMePopup() {
   // State untuk visibilitas, pertanyaan, jawaban, loading, dan error
   const [isOpen, setIsOpen] = useState(false);
@@ -21,7 +32,7 @@ function AskMePopup() {
 
     setIsLoading(true);
     setError('');
-    setAnswer('That\'s a nice question!');
+    setAnswer(typeOfWaitingAnswer[Math.floor(Math.random() * typeOfWaitingAnswer.length)]);
 
     try {
       const response = await fetch('/api/gemini', {
