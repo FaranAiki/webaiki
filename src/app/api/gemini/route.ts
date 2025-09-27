@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
   }
 
   const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
+  const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
   try {
     const { question } = await req.json();
@@ -34,10 +34,10 @@ export async function POST(req: NextRequest) {
     const text = response.text();
 
     // Send to Front End
-    return NextResponse.json({ answer: text });
+    return NextResponse.json({ answer: text.toString() });
 
   } catch (error) {
-    console.error("Error calling Gemini API:", error);
-    return NextResponse.json({ error: error }, { status: 500 });
+    console.error("Error calling Gemini API:", error.toString());
+    return NextResponse.json({ error: error.toString() }, { status: 500 });
   }
 }

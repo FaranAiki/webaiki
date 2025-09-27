@@ -21,7 +21,7 @@ function AskMePopup() {
 
     setIsLoading(true);
     setError('');
-    setAnswer('Thinking...');
+    setAnswer('That\'s a nice question!');
 
     try {
       const response = await fetch('/api/gemini', {
