@@ -21,6 +21,7 @@ export default function Header() {
   // Tailwind is overpowered as hell bro
   return (
     <header className="w-screen fixed top-0 left-0 right-0 z-10 bg-gray-900/80 backdrop-blur-sm border-b border-gray-700 overflow-x-scroll no-scrollbar">
+      <meta name="google-site-verification" content="xZMulZsvn0xj7TrxhEN8O9KLWSmNIfx6tqFtOpbgOV4" />
       <nav className="w-screen container flex mx-auto px-8 py-4 overflow-x-scroll no-scrollbar">
         <ul className="w-screen flex flex-nowrap md:justify-center space-x-6 md:space-x-8 animate-fade-in overflow-x-scroll no-scrollbar">
           {navLinks.map((link) => {
