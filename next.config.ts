@@ -1,10 +1,12 @@
 import type { NextConfig } from "next";
 
+// duplicates of img-src
 const cspHeader = `
     default-src 'self';
     script-src 'self' 'unsafe-eval' 'unsafe-inline';
     style-src 'self' 'unsafe-inline';
-    font-src 'self' fonts.gstatic.com;
+    img-src 'self' blob: data: static.wikia.nocookie.net i.ytimg.com placehold.co upload.wikimedia.org webaiki.vercel.app;
+    font-src 'self';
     object-src 'none';
     base-uri 'self';
     form-action 'self';

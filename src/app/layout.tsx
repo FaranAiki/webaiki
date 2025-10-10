@@ -57,7 +57,7 @@ export default async function RootLayout({
     await t('gemini_wait8')
   ];
 
-  const ask_title = await t('');
+  const ask_title = await t('Ask_About');
   const question_answer = await t('Question_Answer');
   const question_title = await t('Question_Title');
   const submit_q = await t('Submit');
