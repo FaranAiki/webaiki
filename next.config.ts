@@ -1,6 +1,34 @@
 import type { NextConfig } from "next";
 
+const cspHeader = `
+    default-src 'self';
+    script-src 'self' 'unsafe-eval' 'unsafe-inline';
+    style-src 'self' 'unsafe-inline';
+    font-src 'self' fonts.gstatic.com;
+    object-src 'none';
+    base-uri 'self';
+    form-action 'self';
+    frame-ancestors 'none';
+`;
+
 const nextConfig = {
+  async headers() {
+    return [
+      {
+        source: '/(.*)', // Apply this header to all routes
+        headers: [
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN', // Or 'DENY' if you never need to frame your site
+          },
+          {
+            key: 'Content-Security-Policy',
+            value: cspHeader.replace(/\s{2,}/g, ' ').trim(),
+          }
+        ],
+      },
+    ];
+  },
   images: {
     qualities: [75, 80, 90, 100],
     remotePatterns: [
@@ -34,4 +62,5 @@ const nextConfig = {
   },
 };
 
+// module.exports = nextConfig()
 export default nextConfig;

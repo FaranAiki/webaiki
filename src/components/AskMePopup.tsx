@@ -7,9 +7,14 @@ import Draggable from 'react-draggable';
 
 interface AskMePopupProps {
   typeOfWaitingAnswer: string[];
+  ask_title: string;
+  question_answer: string;
+  question_title: string;
+  submit: string;
+  waiting: string;
 }
 
-function AskMePopup({typeOfWaitingAnswer}: AskMePopupProps) {
+function AskMePopup({typeOfWaitingAnswer, ask_title, question_answer, question_title, submit, waiting }: AskMePopupProps) {
   // State untuk visibilitas, pertanyaan, jawaban, loading, dan error
   const [isOpen, setIsOpen] = useState(false);
   const [question, setQuestion] = useState('');
@@ -70,7 +75,7 @@ function AskMePopup({typeOfWaitingAnswer}: AskMePopupProps) {
     <button
       onClick={handleOpenPopup}
       className="fixed bottom-6 left-6 z-20 bg-cyan-600 text-white p-4 rounded-full shadow-lg hover:bg-cyan-500 transition-all transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-opacity-75"
-      aria-label="Ask me a question about Faran Aiki"
+      aria-label={ask_title}
     >
       <MessageSquare size={24} />
     </button>
@@ -116,7 +121,7 @@ function AskMePopup({typeOfWaitingAnswer}: AskMePopupProps) {
                 className="mt-4 w-full bg-cyan-600/85 text-white py-2 px-4 rounded-md hover:bg-cyan-500/85 transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-opacity-75 font-semibold disabled:bg-gray-500/85 disabled:cursor-not-allowed"
                 disabled={isLoading || !question.trim()}
               >
-                {isLoading ? 'Waiting...' : 'Submit'}
+                {isLoading ? waiting : submit}
               </button>
             </form>
           </div>

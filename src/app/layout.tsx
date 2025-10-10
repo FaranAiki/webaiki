@@ -57,6 +57,12 @@ export default async function RootLayout({
     await t('gemini_wait8')
   ];
 
+  const ask_title = await t('');
+  const question_answer = await t('Question_Answer');
+  const question_title = await t('Question_Title');
+  const submit_q = await t('Submit');
+  const waiting = await t('Waiting');
+  
   return (
     <html lang="en">
       <head>
@@ -68,7 +74,7 @@ export default async function RootLayout({
         <CookieInitializer />
         <Header navLinks={navLinks} />
         {children}
-        <AskMePopup typeOfWaitingAnswer={typeOfWaitingAnswer}/>
+        <AskMePopup typeOfWaitingAnswer={typeOfWaitingAnswer} ask_title={ask_title} question_title={question_title} question_answer={question_answer} submit={submit_q} waiting={waiting}/>
         <Background carousel={getBackgrounds()}/>
       </body>
     </html>
