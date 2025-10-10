@@ -12,9 +12,10 @@ interface AskMePopupProps {
   question_title: string;
   submit: string;
   waiting: string;
+  provide_question: string;
 }
 
-function AskMePopup({typeOfWaitingAnswer, ask_title, question_answer, question_title, submit, waiting }: AskMePopupProps) {
+function AskMePopup({typeOfWaitingAnswer, ask_title, question_answer, question_title, submit, waiting, provide_question }: AskMePopupProps) {
   // State untuk visibilitas, pertanyaan, jawaban, loading, dan error
   const [isOpen, setIsOpen] = useState(false);
   const [question, setQuestion] = useState('');
@@ -94,13 +95,13 @@ function AskMePopup({typeOfWaitingAnswer, ask_title, question_answer, question_t
               // This div is now the handle for dragging
               className="no-select drag-handle flex justify-between items-center p-4 border-b border-gray-600 cursor-grab active:cursor-grabbing"
             >
-              <h2 id="popup-title" className="text-lg font-semibold text-white">Ask about Faran Aiki</h2>
+              <h2 id="popup-title" className="text-lg font-semibold text-white">{ask_title}</h2>
               <button onClick={() => setIsOpen(false)} className="text-gray-400 hover:text-white" aria-label="Close">
                 <X size={20} />
               </button>
             </div>
             <form onSubmit={handleSubmit} className="p-4">
-              <h3 id="popup-question" className="text-base opacity-75 text-gray-300 mb-1">Question</h3>
+              <h3 id="popup-question" className="text-base opacity-75 text-gray-300 mb-1">{question_title}</h3>
               <textarea
                 value={question}
                 onChange={(e) => setQuestion(e.target.value)}
@@ -109,12 +110,12 @@ function AskMePopup({typeOfWaitingAnswer, ask_title, question_answer, question_t
                 required
                 disabled={isLoading}
               />
-              <h3 id="popup-answer" className="text-base opacity-75 text-gray-300 mt-2 mb-1">Answer</h3>
+              <h3 id="popup-answer" className="text-base opacity-75 text-gray-300 mt-2 mb-1">{question_answer}</h3>
               <div className="pt-2 w-full h-43 p-2 bg-gray-900/85 text-gray-200 border border-gray-600 rounded-md no-scrollbar overflow-y-auto">
                 {isLoading && <div className="flex items-center text-gray-400"><LoaderCircle size={16} className="animate-spin mr-2" /><span>{answer}</span></div>}
                 {error && <p className="text-red-400">{error}</p>}
                 {!isLoading && !error && answer && <p>{answer}</p>}
-                {!isLoading && !error && !answer && <p className="text-gray-500">Provide a question first.</p>}
+                {!isLoading && !error && !answer && <p className="text-gray-500">{provide_question}</p>}
               </div>
               <button
                 type="submit"

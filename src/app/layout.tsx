@@ -62,6 +62,7 @@ export default async function RootLayout({
   const question_title = await t('Question_Title');
   const submit_q = await t('Submit');
   const waiting = await t('Waiting');
+  const provide_question = await t('Provide_Question');
   
   return (
     <html lang="en">
@@ -74,7 +75,7 @@ export default async function RootLayout({
         <CookieInitializer />
         <Header navLinks={navLinks} />
         {children}
-        <AskMePopup typeOfWaitingAnswer={typeOfWaitingAnswer} ask_title={ask_title} question_title={question_title} question_answer={question_answer} submit={submit_q} waiting={waiting}/>
+        <AskMePopup typeOfWaitingAnswer={typeOfWaitingAnswer} ask_title={ask_title} question_title={question_title} question_answer={question_answer} submit={submit_q} waiting={waiting} provide_question={provide_question}/>
         <Background carousel={getBackgrounds()}/>
       </body>
     </html>
