@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https:/faranaiki.id
+
+# Sitemaps
+Sitemap: https:/faranaiki.id/sitemap.xml

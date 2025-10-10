@@ -5,18 +5,11 @@ import { MessageSquare, X, LoaderCircle } from 'lucide-react';
 import { useRef } from 'react';
 import Draggable from 'react-draggable';
 
-const typeOfWaitingAnswer = [
-  "That's a nice question...",
-  "Thinking...",
-  "I am preparing the best answer for you...",
-  "Oh... so you are very curious about him...",
-  "I am thinking the best reply...",
-  "Wait, let me call him...",
-  "Wait, let me message him...",
-  "Wait a minute..."
-];
+interface AskMePopupProps {
+  typeOfWaitingAnswer: string[];
+}
 
-function AskMePopup() {
+function AskMePopup({typeOfWaitingAnswer}: AskMePopupProps) {
   // State untuk visibilitas, pertanyaan, jawaban, loading, dan error
   const [isOpen, setIsOpen] = useState(false);
   const [question, setQuestion] = useState('');

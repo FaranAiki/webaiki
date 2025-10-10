@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import "../globals.css";
 
+import React from 'react';
+
 import CertificateLoader from './certificate-loader';
 import type { CertificateData } from '@/components/CertificatesDisplay';
+
+import { t } from '@/components/Translator';
 
 import fs from 'fs';
 import path from 'path';
@@ -55,8 +59,9 @@ export default function CertificatePage() {
       <div className="text-center mb-12">
 
       </div>
-      
+    <React.Suspense fallback={<h2 className="text-center">{t('Loading_Certificate')}</h2>}>
       <CertificateLoader certificates={certificates} />
+    </React.Suspense>
     </main>
   );
 }

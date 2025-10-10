@@ -3,19 +3,17 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-const navLinks = [
-  { name: 'Home', href: '/' },
-  { name: 'Social', href: '/social' },
-  { name: 'Certificate', href:'/certificate' },
-  { name: 'Music', href: '/music' },
-  // { name: 'Project', href: '/project' },
-  { name: 'College', href: '/college' },
-  { name: 'Literature', href: '/literature' },
-  // { name: 'Latest', href: '/latest' },
-];
+interface NavLink {
+  name: string; 
+  href: string;
+}
+
+interface HeaderProps {
+  navLinks: NavLink[];
+}
 
 // Header is used throughout the website
-export default function Header() {
+export default function Header({navLinks}: HeaderProps) {
   const pathname = usePathname();
 
   // Tailwind is overpowered as hell bro

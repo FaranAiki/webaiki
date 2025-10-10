@@ -4,8 +4,12 @@ import Background from "@/components/Background"
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+import { CookieInitializer }  from '@/components/CookieInitialize';
+
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
+
+import { t } from '@/components/Translator';
 
 import fs from 'fs';
 import path from 'path';
@@ -26,11 +30,33 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const navLinks = [
+    { name: await t('Home'), href: '/' },
+    { name: await t('Social'), href: '/social' },
+    { name: await t('Certificate'), href:'/certificate' },
+    { name: await t('Music'), href: '/music' },
+    // { name: t('Project'), href: '/project' },
+    { name: await t('College'), href: '/college' },
+    { name: await t('Literature'), href: '/literature' },
+    // { name: t('Latest'), href: '/latest' },
+  ];
+
+  const typeOfWaitingAnswer = [
+    await t('gemini_wait1'),
+    await t('gemini_wait2'),
+    await t('gemini_wait3'),
+    await t('gemini_wait4'),
+    await t('gemini_wait5'),
+    await t('gemini_wait6'),
+    await t('gemini_wait7'),
+    await t('gemini_wait8')
+  ];
+
   return (
     <html lang="en">
       <head>
@@ -39,9 +65,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header />
+        <CookieInitializer />
+        <Header navLinks={navLinks} />
         {children}
-        <AskMePopup />
+        <AskMePopup typeOfWaitingAnswer={typeOfWaitingAnswer}/>
         <Background carousel={getBackgrounds()}/>
       </body>
     </html>

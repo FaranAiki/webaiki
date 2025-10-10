@@ -4,6 +4,8 @@ import { Inter } from "next/font/google";
 import { Github, Linkedin, Instagram, Twitter, Mail, Youtube } from 'lucide-react';
 import Image from 'next/image';
 
+import { t, locales } from '@/components/Translator';
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -131,7 +133,7 @@ export default function SocialPage() {
   return (
     <main className={`${inter.className} relative min-h-screen text-gray-100`}>
       <div className="container mx-auto max-w-5xl pt-24">
-        <h1 className="text-4xl font-bold text-center mb-10 hover:scale-105 opacity-80 hover:opacity-90 transition-all">Connect With Me</h1>
+        <h1 className="text-4xl font-bold text-center mb-10 hover:scale-105 opacity-80 hover:opacity-90 transition-all">{t('Connect_Me')}</h1>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
           

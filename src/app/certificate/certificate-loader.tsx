@@ -16,11 +16,10 @@ const CertificatesDisplay = dynamic(
   () => import('@/components/CertificatesDisplay'),
   { 
     ssr: false, // ssr: false is allowed here
-    loading: () => <h2 className="text-center">Loading certificates...</h2> 
   }
 );
 
 // This component receives the server-fetched data as props
-export default function CertificateLoader({ certificates }: { certificates: CertificateData }) {
-  return <CertificatesDisplay certificates={certificates} />;
+export default function CertificateLoader({ certificates }: { certificates: CertificateData}) {
+  return <CertificatesDisplay certificates={certificates}  />;
 }

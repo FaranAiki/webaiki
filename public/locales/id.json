@@ -1,6 +1,6 @@
 {
-  "Faran_About": "",
-  "Faran_Photo": "",
+  "Faran_About": "Muhammad Faran Aiki (8 April, 2007) adalah seorang mahasiswa di Sekolah Teknik Elektro dan Informatika Komputasi (STEI-K), Institut Teknologi Bandung. Dia magang di Analitica sebagai Tim Edukasi mulai dari Mei 2025 dan insinyur perangkat lunak (Tim Teknologi) dalam pemrogram pemroses depan mulai dari Oktober 2025. Selain itu, dia memang seorang anomali.",
+  "Faran_Photo": "Koleksi foto Faran Aiki",
 
   "Home": "Beranda",
   "Social": "Sosial",
@@ -12,5 +12,19 @@
   "Latest": "Mutakhir",
 
   "Ask_About": "Tanya tentang Faran Aiki",
-  "About_Me": "Tentang Saya"
+  "About_Me": "Tentang Saya",
+  "Connect_Me": "Ayo Mutualan!",
+
+  "Loading_Certificate": "Mengunduh data sertifikat ....",
+  "Loading_College": "Mengunduh data perkuliahan ....",
+  "Loading_Literature": "Mengunduh data sastra ....",
+
+  "gemini_wait1": "Pertanyaan yang menarik!",
+  "gemini_wait2": "Sedang berpikir ....",
+  "gemini_wait3": "Sedang menyiapkan jawaban terbaik untukmu ....",
+  "gemini_wait4": "Ah, jadi kamu penasaran tentang dia ....",
+  "gemini_wait5": "Aku sedang memikirkan jawaban yang terbaik ....",
+  "gemini_wait6": "Sebentar, aku akan memanggil dia ....",
+  "gemini_wait7": "Biarkan aku mengirim pesan untuknya ....",
+  "gemini_wait8": "Sebentar ...."
 }

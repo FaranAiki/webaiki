@@ -1,17 +1,19 @@
 import type { Metadata } from "next";
 import "../globals.css";
-import { Inter } from "next/font/google";
 
-import InteractiveCollections, { CollectionsData } from '@/components/InteractiveCollections';
 
-import CollegeLoader from './college-loader'
+import { CollectionsData } from '@/components/InteractiveCollections';
+
+import React from 'react';
+
+import CollegeLoader from './college-loader';
+
+import { t } from '@/components/Translator';
 
 // import college_data from '@/../public/json/college.json';
 
 import fs from 'fs';
 import path from 'path';
-
-const inter = Inter({ subsets: ["latin"] });
 
 // TODO implement this
 export function getCollectionsData() {
@@ -30,8 +32,6 @@ export function getCollectionsData() {
       for (const subject of subjectFolders) {
         const subjectPath = path.join(semesterPath, subject);
 
-        console.log(subjectPath);
-        
         if (fs.statSync(subjectPath).isDirectory()) {
           allCollectionsData[semester][subject] = {};
           
@@ -72,7 +72,9 @@ export default function RootLayout({
   return (
     <main className="container mx-auto pt-8 pb-16 pt-24">
       {children}
-      <CollegeLoader data={college_data} force_click={false} />
+      <React.Suspense fallback={<h2 className="text-center">{t('Loading_College')}</h2>}>
+        <CollegeLoader data={college_data} force_click={false} />;
+     </React.Suspense>
     </main>
   );
 }

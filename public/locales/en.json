@@ -1,6 +1,6 @@
 {
-  "Faran_About": "",
-  "Faran_Photo": "",
+  "Faran_About": "Muhammad Faran Aiki (April 8, 2007) is currently a university student in School of Electrical Engineering and Informatics - Computation (SEEI-C), Bandung Institute of Technology. He is an intern at Analitica as the Education Team starting at May 2025 and a Flutter software engineer front-end (Technology Team) programmer starting at October 2025. Moreover, he is a certified-proven human anomaly.",
+  "Faran_Photo": "Faran Aiki's photo collections",
 
   "Home": "Home",
   "Social": "Social",
@@ -12,5 +12,19 @@
   "Latest": "Latest",
 
   "Ask_About": "Ask About Faran Aiki",
-  "About_Me": "About_Me"
+  "About_Me": "About Me",
+  "Connect_Me": "Connect with Me!",
+
+  "Loading_Certificate": "Loading certificates data ....",
+  "Loading_College": "Loading college data ....",
+  "Loading_Literature": "Loading literature data ....",
+
+  "gemini_wait1": "That's a nice question...",
+  "gemini_wait2": "Thinking...",
+  "gemini_wait3": "I am preparing the best answer for you...",
+  "gemini_wait4": "Oh... so you are very curious about him...",
+  "gemini_wait5": "I am thinking the best reply...",
+  "gemini_wait6": "Wait, let me call him...",
+  "gemini_wait7": "Wait, let me message him...",
+  "gemini_wait8": "Wait a minute..."
 }
