@@ -34,9 +34,15 @@ function getAllLocales(): AllLocales {
   return allLocales;
 }
 
+export async function currentLanguage() {
+  const cookieStore = await cookies();
+  const language = cookieStore.get('language') || {'name': 'language', 'value': 'id'};
+  return language.value;
+}
+
 export async function Translate(s: string): Promise<string> {
   const cookieStore = await cookies();
-  const language = cookieStore.get('language') || {'value': 'id'};
+  const language = cookieStore.get('language') || {'name': 'language', 'value': 'id'};
   if (!(s in locales[language.value])) 
     return 'error-no-locales';
   return locales[language.value][s]; 

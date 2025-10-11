@@ -9,7 +9,7 @@ import { CookieInitializer }  from '@/components/CookieInitialize';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 
-import { t } from '@/components/Translator';
+import { t, currentLanguage } from '@/components/Translator';
 
 import fs from 'fs';
 import path from 'path';
@@ -67,7 +67,9 @@ export default async function RootLayout({
   const en_lang = await t('English');
   const id_lang = await t('Indonesian');
   const jp_lang = await t('Japanese');
-
+  const ru_lang = await t('Russian');
+  const current_lang = await currentLanguage();
+  
   return (
     <html lang="en">
       <head>
@@ -77,7 +79,7 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <CookieInitializer />
-        <Header navLinks={navLinks} en_lang={en_lang} id_lang={id_lang} jp_lang={jp_lang} />
+        <Header navLinks={navLinks} current_lang={current_lang} en_lang={en_lang} id_lang={id_lang} jp_lang={jp_lang} ru_lang={ru_lang} />
         {children}
         <AskMePopup typeOfWaitingAnswer={typeOfWaitingAnswer} ask_title={ask_title} question_title={question_title} question_answer={question_answer} submit={submit_q} waiting={waiting} provide_question={provide_question}/>
         <Background carousel={getBackgrounds()}/>
