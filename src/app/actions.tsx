@@ -1,3 +1,4 @@
+// force use server
 "use server";
 
 import { cookies } from 'next/headers';
@@ -20,3 +21,12 @@ export async function initializeCookies() {
     }
   } 
 };
+
+export async function setCookies(name: string, val: string) {
+  const cookieStore = await cookies();
+  cookieStore.set(name, val, {
+    httpOnly: true, // Makes the cookie inaccessible to client-side JavaScript
+    secure: process.env.NODE_ENV === 'production', // Only send over HTTPS
+    path: '/',
+  });
+}

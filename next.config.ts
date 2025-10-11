@@ -11,6 +11,7 @@ const cspHeader = `
     base-uri 'self';
     form-action 'self';
     frame-ancestors 'none';
+    frame-src 'self' open.spotify.com w.soundcloud.com;
 `;
 
 const nextConfig = {

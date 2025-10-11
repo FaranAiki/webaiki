@@ -1,4 +1,4 @@
-// Route for that specific ask me popup
+// Route for that specific ask me popupapi
 
 import { cookies } from 'next/headers';
 
@@ -23,13 +23,16 @@ export async function POST(req: NextRequest) {
   const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
   const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
+  const cookieStore = await cookies();
+  const lang = cookieStore.get("language");
+
   try {
     const { question } = await req.json();
     if (!question) {
       return NextResponse.json({ error: "Question is required" }, { status: 400 });
     }
     
-    const prompt = `Please answer the question according to the language given by locales provided (a code): ${await cookies().get('language')} even if the question is in English. You are a joyful and helpful assistant for the personal website of Muhammad Faran Aiki. Don't say hi there! It's like you have met the asker before. Don't say that Faran told you (for example like the response: "considering he said ...", no I did not say anything nor explicitly say anything!) anything or don't say Faran's bio because assume that he did not show the bio to the viewer: you are like a omniscience narrator! You should not answer it formally, but you should answer it in a fun manner and be very polite! But, don't talk to much though! Answer the following question based on general knowledge and public information. To underline, I never mentioned anything! All the information I gave you is something that you know, but not something that I state or told someone! Here is his background and context: ${faran_context}. It is okay to share his private/personal or something that is considered 'a shame'! Here is the question: ${question}`;
+    const prompt = `Please answer the question according to the language given by locales provided (a code): ${lang} even if the question is in English. You are a joyful and helpful assistant for the personal website of Muhammad Faran Aiki. Don't say hi there! It's like you have met the asker before. Don't say that Faran told you (for example like the response: "considering he said ...", no I did not say anything nor explicitly say anything!) anything or don't say Faran's bio because assume that he did not show the bio to the viewer: you are like a omniscience narrator! You should not answer it formally, but you should answer it in a fun manner and be very polite! But, don't talk to much though! Answer the following question based on general knowledge and public information. To underline, I never mentioned anything! All the information I gave you is something that you know, but not something that I state or told someone! Here is his background and context: ${faran_context}. It is okay to share his private/personal or something that is considered 'a shame'! Here is the question: ${question}`;
 
     const result = await model.generateContent(prompt);
     const response = await result.response;
