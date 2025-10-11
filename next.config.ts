@@ -3,10 +3,11 @@ import type { Configuration as WebpackConfiguration } from 'webpack';
 // import TerserPlugin from 'terser-webpack-plugin';
 
 // duplicates of img-src
+// FUCK YOU UNSAFE-INLINEEEE
 const cspHeader = `
     default-src 'self';
-    script-src 'self';
-    style-src 'self';
+    script-src 'self' 'unsafe-inline';
+    style-src 'self' 'unsafe-inline';
     img-src 'self' blob: data: static.wikia.nocookie.net i.ytimg.com placehold.co upload.wikimedia.org webaiki.vercel.app;
     font-src 'self';
     object-src 'none';
