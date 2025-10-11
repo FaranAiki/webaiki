@@ -1,0 +1,67 @@
+{
+  "Faran_About": "Muhammad Faran Aiki (8 avril 2007) est actuellement étudiant à l'École d'Ingénierie Électrique et d'Informatique - Calcul (SEEI-C), de l'Institut de Technologie de Bandung. Il est stagiaire chez Analitica au sein de l'équipe éducative à partir de mai 2025 et ingénieur logiciel front-end Flutter (équipe technologique) à partir d'octobre 2025. De plus, il est une anomalie humaine certifiée et prouvée.",
+  "Faran_Photo": "Collections de photos de Faran Aiki",
+
+  "Home": "Accueil",
+  "Social": "Social",
+  "Work": "Travail",
+  "Certificate": "Certificat",
+  "Music": "Musique",
+  "Project": "Projet",
+  "College": "Université",
+  "Literature": "Littérature",
+  "Latest": "Dernier",
+
+  "Ask_About": "Demander à propos de Faran Aiki",
+  "Question_Answer": "Réponse",
+  "Question_Title": "Question",
+  "Submit": "Soumettre",
+  "Provide_Question": "Posez d'abord une question.",
+  "Waiting": "Attendez ....",
+  
+  "About_Me": "À propos de moi",
+  "Connect_Me": "Connectez-vous avec moi !",
+
+  "Loading_Certificate": "Chargement des données des certificats ....",
+  "Loading_College": "Chargement des données universitaires ....",
+  "Loading_Literature": "Chargement des données de littérature ....",
+
+  "gemini_wait1": "C'est une bonne question...",
+  "gemini_wait2": "Réflexion en cours...",
+  "gemini_wait3": "Je prépare la meilleure réponse pour vous...",
+  "gemini_wait4": "Oh... donc vous êtes très curieux à son sujet...",
+  "gemini_wait5": "Je pense à la meilleure réponse...",
+  "gemini_wait6": "Attendez, laissez-moi l'appeler...",
+  "gemini_wait7": "Attendez, laissez-moi lui envoyer un message...",
+  "gemini_wait8": "Attendez une minute...",
+
+  "FI1101": "Physique I (FI1101)",
+  "WI2005": "Langue Indonésienne (WI2005)",
+  "WI1116": "Laboratoire d'Interaction Homme-Machine (W1116)",
+  "WI1111": "Laboratoire de Physique de Base (WI1111)",
+  "WI1102": "Pensée Computationnelle (WI1102)",
+  "MA1101": "Mathématiques I (MA1101)",
+  "Others": "Autres",
+
+  "Personal": "Personnel",
+  "Committee": "Comité",
+
+  "Indonesian": "Indonésien",
+  "English": "Anglais",
+  "Japanese": "Japonais",
+  "Russian": "Russe",
+  "French": "Français",
+
+  "Software_Engineer": "Ingénieur Logiciel (Front-End Flutter)",
+  "Software_Engineer_Description": "Création et maintenance de widgets interactifs, tels que des graphiques interactifs, des statistiques interactives pour visualiser les données, et un diviseur de mots pour une courbe d'apprentissage plus facile en utilisant Flutter.",
+  "Mathematics_Private_Tutor": "Tuteur Privé de Mathématiques",
+  "Mathematics_Private_Tutor_Description": "Fournir un tutorat individuel aux élèves pour les olympiades de mathématiques au niveau du collège. Développer des plans de cours personnalisés pour aider les élèves à atteindre leurs objectifs académiques et à améliorer leur compréhension des concepts complexes.",
+  "Education_Team": "Équipe Éducative",
+  "Education_Team_Description": "A aidé à la création de matériel de contenu éducatif, tel que les mathématiques générales, et a créé 600 problèmes de physique, de chimie et de mathématiques pour le Tes Kemampuan Akademik (TKA) du lycée. A soutenu la planification et l'exécution de programmes d'apprentissage pour les étudiants et les professionnels, et a aidé à l'utilisation de l'intelligence artificielle.",
+  "August — Present": "Août — Présent",
+  "May — September": "Mai — Septembre",
+  "October — Present": "Octobre — Présent",
+
+  "": ""
+}
+

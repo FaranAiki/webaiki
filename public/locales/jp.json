@@ -4,6 +4,7 @@
 
   "Home": "ホーム",
   "Social": "ソーシャル",
+  "Work": "仕事",
   "Certificate": "証明書",
   "Music": "音楽",
   "Project": "プロジェクト",
@@ -46,7 +47,18 @@
   "Indonesian": "インドネシア語",
   "English": "英語",
   "Japanese": "日本語",
-  "Russian": "ロシア語", 
+  "Russian": "ロシア語",
+  "France": "フランス語",
+
+  "Software_Engineer": "ソフトウェアエンジニア（フロントエンドFlutter）",
+  "Software_Engineer_Description": "Flutterを使用して、インタラクティブなグラフ、データを視覚化するためのインタラクティブな統計、学習曲線を容易にするための単語分割などのインタラクティブなウィジェットを作成および保守します。",
+  "Mathematics_Private_Tutor": "数学の個人家庭教師",
+  "Mathematics_Private_Tutor_Description": "中学生の数学オリンピック大会の生徒に1対1の個別指導を提供します。生徒が学術目標を達成し、複雑な概念の理解を深めるのに役立つ、パーソナライズされた授業計画を作成します。",
+  "Education_Team": "教育チーム",
+  "Education_Team_Description": "一般数学などの教育コンテンツ教材の作成を支援し、高校の学力テスト（TKA）用に物理、化学、数学の問題を600問作成しました。学生や専門家向けの学習プログラムの計画と実行をサポートし、人工知能の利用を支援します。",
+  "August — Present": "8月 — 現在",
+  "May — September": "5月 — 9月",
+  "October — Present": "10月 — 現在",
 
   "": ""
 }

@@ -4,6 +4,7 @@
 
   "Home": "Beranda",
   "Social": "Sosial",
+  "Work": "Pekerjaan",
   "Certificate": "Sertifikat",
   "Music": "Musik",
   "Project": "Projek",
@@ -49,6 +50,17 @@
   "English": "Inggris",
   "Japanese": "Jepang",
   "Russian": "Russia",
+  "France": "Prancis",
+
+  "Software_Engineer": "Insinyur Perangkat Lunak (Pemroses Depan Flutter)",
+  "Software_Engineer_Description": "Membuat dan mengembangkan widget interaktif, seperti grafik interaktif, statistik interaktif untuk memvisualisasikan data, dan pemisah kata untuk kurva belajar yang lebih mudah menggunakan Flutter.",
+  "Mathematics_Private_Tutor": "Guru Les Privat Matematika",
+  "Mathematics_Private_Tutor_Description": "Memberikan bimbingan belajar satu-satu kepada siswa dalam olimpiade matematika untuk kompetisi sekolah menengah. Mengembangkan rencana pelajaran yang dipersonalisasi untuk membantu siswa mencapai tujuan akademik mereka dan meningkatkan pemahaman mereka tentang konsep-konsep yang kompleks.",
+  "Education_Team": "Tim Edukasi",
+  "Education_Team_Description": "Membantu dalam pembuatan materi konten pendidikan, seperti Matematika Wajib, dan membuat 600 soal fisika, kimia, dan matematika untuk Tes Kemampuan Akademik (TKA) sekolah menengah atas. Mendukung perencanaan dan pelaksanaan program pembelajaran untuk siswa dan para profesional, dan membantu dalam penggunaan kecerdasan buatan.",
+  "August — Present": "Agustus — Sekarang",
+  "May — September": "Mei — September",
+  "October — Present": "Oktober — Sekarang",
 
   "": ""
 }

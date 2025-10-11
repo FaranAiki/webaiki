@@ -4,6 +4,7 @@
 
   "Home": "Home",
   "Social": "Social",
+  "Work": "Work",
   "Certificate": "Certificate",
   "Music": "Music",
   "Project": "Project",
@@ -49,6 +50,17 @@
   "English": "English",
   "Japanese": "Japanese",
   "Russian": "Russian",
+  "French": "French",
+
+  "Software_Engineer": "Software Engineer (Front-End Flutter)",
+  "Software_Engineer_Description": "Creating and maintaining interactive widgets, such as interactive graph, interactive statistics to visualize data, and word-splitter for easier learning curve using Flutter.",
+  "Mathematics_Private_Tutor": "Mathematics Private Tutor",
+  "Mathematics_Private_Tutor_Description": "Providing one-on-one tutoring to students in mathematics olympiad for middle school competitions. Developing personalized lesson plans to help students achieve their academic goals and improve their understanding of complex concepts.",
+  "Education_Team": "Education Team",
+  "Education_Team_Description": "Assisted in creating educational content materials, such as General Mathematics, and made 600 problems of physics, chemistry, and mathematics for high school Tes Kemampuan Akademik (TKA). Supported the planning and execution of learning programs for students and professionals, and assisting in the use of artificial intelligence.",
+  "August — Present": "August — Present",
+  "May — September": "May — September",
+  "October — Present": "October — Present",
 
   "": ""
 }
