@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "../globals.css";
 
-
 import { CollectionsData } from '@/components/InteractiveCollections';
 
 import React from 'react';
@@ -16,7 +15,7 @@ import fs from 'fs';
 import path from 'path';
 
 // TODO implement this
-export function getCollectionsData() {
+export async function getCollectionsData() {
   const certificatesDir = path.join(process.cwd(), 'public', 'documents', 'college');
   const semesterFolders = fs.readdirSync(certificatesDir);
   const allCollectionsData: CollectionsData = {};
@@ -33,7 +32,9 @@ export function getCollectionsData() {
         const subjectPath = path.join(semesterPath, subject);
 
         if (fs.statSync(subjectPath).isDirectory()) {
-          allCollectionsData[semester][subject] = {};
+          // change subject name to given await
+          const subject_name = await t(subject); 
+          allCollectionsData[semester][subject_name] = {};
           
           const files = fs.readdirSync(subjectPath);
 
@@ -47,7 +48,7 @@ export function getCollectionsData() {
               openPath = `/documents/college/${semester}/${subject}/${file}`;
             }
 
-            allCollectionsData[semester][subject][fileName] = openPath;
+            allCollectionsData[semester][subject_name][fileName] = openPath;
           }
         }
       }
@@ -62,12 +63,12 @@ export const metadata: Metadata = {
   description: "Faran Aiki's personal college collection",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const college_data = getCollectionsData();
+  const college_data = await getCollectionsData();
 
   return (
     <main className="container mx-auto pt-8 pb-16 pt-24">

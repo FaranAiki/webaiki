@@ -32,5 +32,18 @@
   "gemini_wait5": "I am thinking the best reply...",
   "gemini_wait6": "Wait, let me call him...",
   "gemini_wait7": "Wait, let me message him...",
-  "gemini_wait8": "Wait a minute..."
+  "gemini_wait8": "Wait a minute...",
+
+  "FI1101": "Physics I (FI1101)",
+  "WI2005": "Indonesian Language (WI2005)",
+  "WI1116": "Interaction Computer Laboratory (W1116)",
+  "WI1111": "Basic Physics Laboratory (WI1111)",
+  "WI1102": "Computational Thinking (WI1102)",
+  "MA1101": "Mathematics I (MA1101)",
+  "Others": "Others",
+
+  "Personal": "Personal",
+  "Committee": "Committee",
+
+  "": ""
 }

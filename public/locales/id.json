@@ -32,5 +32,18 @@
   "gemini_wait5": "Aku sedang memikirkan jawaban yang terbaik ....",
   "gemini_wait6": "Sebentar, aku akan memanggil dia ....",
   "gemini_wait7": "Biarkan aku mengirim pesan untuknya ....",
-  "gemini_wait8": "Sebentar ...."
+  "gemini_wait8": "Sebentar ....",
+
+  "FI1101": "Fisika I (FI1101)",
+  "WI2005": "Bahasa Indonesia (WI2005)",
+  "WI1116": "Laboratorium Interaksi Komputer (W1116)",
+  "WI1111": "Laboratorium Fisika Dasar (WI1111)",
+  "WI1102": "Berpikir Komputasional (WI1102)",
+  "MA1101": "Matematika I (MA1101)",
+  "Others": "Lainnya",
+
+  "Personal": "Pribadi",
+  "Committee": "Kepanitiaan",
+
+  "": ""
 }
