@@ -1,4 +1,6 @@
 import type { NextConfig } from "next";
+import type { Configuration as WebpackConfiguration } from 'webpack';
+// import TerserPlugin from 'terser-webpack-plugin';
 
 // duplicates of img-src
 const cspHeader = `
@@ -19,12 +21,20 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
-  webpack: (config, { dev, isServer }) => {
-    if (!dev && !isServer) {
-      config.optimization.minimizer[0].options.terserOptions.format = {
-        ...config.optimization.minimizer[0].options.terserOptions.format,
-        comments: false, // This explicitly removes all comments
-      };
+  webpack: (
+    config: WebpackConfiguration,
+    { dev, isServer }: { dev: boolean; isServer: boolean }
+  ) => {
+    if (!dev && !isServer && config.optimization?.minimizer) {
+      // Temporarily cast the minimizer to 'any' to access its properties
+      const minimizer = config.optimization.minimizer[0] as any;
+      
+      if (minimizer.options.terserOptions) {
+        minimizer.options.terserOptions.format = {
+          ...minimizer.options.terserOptions.format,
+          comments: false,
+        };
+      }
     }
     return config;
   },
