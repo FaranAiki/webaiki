@@ -12,6 +12,9 @@ interface NavLink {
 
 interface HeaderProps {
   navLinks: NavLink[];
+  en_lang: string;
+  id_lang: string;
+  jp_lang: string;
 }
 
 // Simple Globe Icon Component
@@ -25,15 +28,16 @@ function GlobeIcon() {
   );
 }
 
-export default function Header({ navLinks }: HeaderProps) {
+export default function Header({ navLinks, en_lang, id_lang, jp_lang }: HeaderProps) {
   const pathname = usePathname();
   const router = useRouter();
   const [isLangMenuVisible, setLangMenuVisible] = useState(false);
 
   // Example languages
   const languages = [
-    { code: 'en', name: 'English' },
-    { code: 'id', name: 'Indonesia' },
+    { code: 'en', name: en_lang },
+    { code: 'id', name: id_lang },
+    { code: 'jp', name: jp_lang },
   ];
 
   const handleLanguageChange = async (langCode: string) => {

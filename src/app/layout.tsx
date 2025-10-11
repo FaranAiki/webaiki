@@ -63,7 +63,11 @@ export default async function RootLayout({
   const submit_q = await t('Submit');
   const waiting = await t('Waiting');
   const provide_question = await t('Provide_Question');
-  
+ 
+  const en_lang = await t('English');
+  const id_lang = await t('Indonesian');
+  const jp_lang = await t('Japanese');
+
   return (
     <html lang="en">
       <head>
@@ -73,7 +77,7 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <CookieInitializer />
-        <Header navLinks={navLinks} />
+        <Header navLinks={navLinks} en_lang={en_lang} id_lang={id_lang} jp_lang={jp_lang} />
         {children}
         <AskMePopup typeOfWaitingAnswer={typeOfWaitingAnswer} ask_title={ask_title} question_title={question_title} question_answer={question_answer} submit={submit_q} waiting={waiting} provide_question={provide_question}/>
         <Background carousel={getBackgrounds()}/>
