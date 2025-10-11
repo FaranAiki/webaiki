@@ -3,8 +3,8 @@ import type { NextConfig } from "next";
 // duplicates of img-src
 const cspHeader = `
     default-src 'self';
-    script-src 'self' 'unsafe-eval' 'unsafe-inline';
-    style-src 'self' 'unsafe-inline';
+    script-src 'self';
+    style-src 'self';
     img-src 'self' blob: data: static.wikia.nocookie.net i.ytimg.com placehold.co upload.wikimedia.org webaiki.vercel.app;
     font-src 'self';
     object-src 'none';
@@ -15,6 +15,19 @@ const cspHeader = `
 `;
 
 const nextConfig = {
+  poweredByHeader: false,
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  webpack: (config, { dev, isServer }) => {
+    if (!dev && !isServer) {
+      config.optimization.minimizer[0].options.terserOptions.format = {
+        ...config.optimization.minimizer[0].options.terserOptions.format,
+        comments: false, // This explicitly removes all comments
+      };
+    }
+    return config;
+  },
   async headers() {
     return [
       {
@@ -27,7 +40,20 @@ const nextConfig = {
           {
             key: 'Content-Security-Policy',
             value: cspHeader.replace(/\s{2,}/g, ' ').trim(),
-          }
+          },
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=31536000; includeSubDomains',
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'Cache-Control',
+            // This is a common, robust "do not cache" directive
+            value: 'private, no-cache, no-store, must-revalidate',
+          },
         ],
       },
     ];
