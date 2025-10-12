@@ -5,8 +5,28 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://faranaiki.id/project'),
+
   title: "Faran Aiki's Project",
-  description: "Faran Aiki's project",
+  description: "Faran Aiki's project history and others",
+  
+  openGraph: {
+    title: "Faran Aiki's Project",
+    description: "Faran Aiki's project history and others",
+    url: 'https://faranaiki.id/project',
+    siteName: 'Faran Aiki\'s Project', 
+    type: 'website',
+  },
+
+  icons: {
+    icon: '/icon.ico',
+    shortcut: '/icon.ico',
+    apple: '/icon.ico',
+  },
+  
+  alternates: {
+    canonical: '/',
+  },
 };
 
 export default function RootLayout({

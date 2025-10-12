@@ -4,8 +4,28 @@ import { t } from '@/components/Translator';
 import ExperiencesClient from '@/components/ExperienceDisplayer';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://faranaiki.id/work'),
+
   title: "Faran Aiki's Work History",
   description: "Faran Aiki's Work History and Internships",
+  
+  openGraph: {
+    title: "Faran Aiki's Work History",
+    description: "Faran Aiki's Work History and Internships",
+    url: 'https://faranaiki.id/work',
+    siteName: 'Faran Aiki\'s Work History', 
+    type: 'website',
+  },
+
+  icons: {
+    icon: '/icon.ico',
+    shortcut: '/icon.ico',
+    apple: '/icon.ico',
+  },
+  
+  alternates: {
+    canonical: '/',
+  },
 };
 
 // This is the main Server Component
@@ -23,7 +43,7 @@ export default async function WorkExperiencesPage() {
           image: [
             '/documents/work/Analitica Software Engineer_0.png',
             '/documents/work/Analitica Software Engineer_1.png',
-          ] // TODO make this a carousel
+          ]
         },
         {
           date: await t('August — Present'),
@@ -34,7 +54,7 @@ export default async function WorkExperiencesPage() {
             '/documents/work/KPM-Nol Persen_0.png',
             '/documents/work/KPM-Nol Persen_1.jpg',
             '/documents/work/KPM-Nol Persen_2.jpg'
-          ]// TODO make this a carousel
+          ]
         },
         {
           date: await t('May — September'),
@@ -44,7 +64,7 @@ export default async function WorkExperiencesPage() {
           image: [
             '/documents/work/Analitica Education Team_0.png',
             '/documents/work/Analitica Education Team_1.png',
-          ]// TODO make this a carousel
+          ]
         }
       ]
     }

@@ -47,8 +47,28 @@ export function getCertificatesData() {
 }
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://faranaiki.id/certificate'),
+
   title: "Faran Aiki's Certificate",
   description: "Faran Aiki's personal certificates",
+  
+  openGraph: {
+    title: "Faran Aiki's Certificate",
+    description: "Faran Aiki's personal certificates",
+    url: 'https://faranaiki.id/certificate',
+    siteName: 'Faran Aiki\'s Certificate', 
+    type: 'website',
+  },
+
+  icons: {
+    icon: '/icon.ico',
+    shortcut: '/icon.ico',
+    apple: '/icon.ico',
+  },
+  
+  alternates: {
+    canonical: '/',
+  },
 };
 
 export default function CertificatePage() {

@@ -9,8 +9,28 @@ import { t, locales } from '@/components/Translator';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://faranaiki.id/social'),
+
   title: "Faran Aiki's Social Media",
-  description: "Faran Aiki's personal files, portfolio, and others",
+  description: "Faran Aiki's social media and connections",
+  
+  openGraph: {
+    title: "Faran Aiki's Social Media",
+    description: "Faran Aiki's social media and connections",
+    url: 'https://faranaiki.id/social',
+    siteName: 'Faran Aiki\'s Social Media', 
+    type: 'website',
+  },
+
+  icons: {
+    icon: '/icon.ico',
+    shortcut: '/icon.ico',
+    apple: '/icon.ico',
+  },
+  
+  alternates: {
+    canonical: '/',
+  },
 };
 
 // Cannot use /public/json/ lol because of optimization for icon

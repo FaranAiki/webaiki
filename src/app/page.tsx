@@ -19,8 +19,28 @@ export function getFaranAikiPhoto() {
 };
 
 export const metadata: Metadata = {
-  title: "About Faran Aiki",
-  description: "Faran Aiki's personal files, portfolio, and others",
+  metadataBase: new URL('https://faranaiki.id'),
+
+  title: 'About Faran Aiki',
+  description: 'Muhammad Faran Aiki\'s personal files, portfolio, and others',
+  
+  openGraph: {
+    title: 'About Faran Aiki',
+    description: 'Muhammad Faran Aiki\'s personal files, portfolio, and others',
+    url: 'https://faranaiki.id',
+    siteName: 'About Faran Aiki', 
+    type: 'website',
+  },
+
+  icons: {
+    icon: '/icon.ico',
+    shortcut: '/icon.ico',
+    apple: '/icon.ico',
+  },
+  
+  alternates: {
+    canonical: '/',
+  },
 };
 
 export default async function RootLayout({

@@ -59,8 +59,28 @@ export async function getCollectionsData() {
 }
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://faranaiki.id/college'),
+
   title: "Faran Aiki's Personal College Collection",
   description: "Faran Aiki's personal college collection",
+  
+  openGraph: {
+    title: "Faran Aiki's Personal College Collection",
+    description: "Faran Aiki's personal college collection",
+    url: 'https://faranaiki.id/college',
+    siteName: 'Faran Aiki\'s Personal College Collection', 
+    type: 'website',
+  },
+
+  icons: {
+    icon: '/icon.ico',
+    shortcut: '/icon.ico',
+    apple: '/icon.ico',
+  },
+  
+  alternates: {
+    canonical: '/',
+  },
 };
 
 export default async function RootLayout({

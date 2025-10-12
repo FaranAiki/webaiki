@@ -10,8 +10,28 @@ import fs from 'fs';
 import path from 'path';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://faranaiki.id/literature'),
+
   title: "Faran Aiki in Literature",
   description: "Faran Aiki's short stories or poems",
+  
+  openGraph: {
+    title: "Faran Aiki in Literature",
+    description: "Faran Aiki's short stories or poems",
+    url: 'https://faranaiki.id/literature',
+    siteName: 'Faran Aiki in Literature', 
+    type: 'website',
+  },
+
+  icons: {
+    icon: '/icon.ico',
+    shortcut: '/icon.ico',
+    apple: '/icon.ico',
+  },
+  
+  alternates: {
+    canonical: '/',
+  },
 };
 
 // TODO implement this

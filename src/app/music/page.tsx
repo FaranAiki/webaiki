@@ -7,8 +7,28 @@ import Image from 'next/image';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://faranaiki.id/music'),
+
   title: "Faran Aiki's Music",
   description: "Faran Aiki's music made using either LMMS or other DAW",
+  
+  openGraph: {
+    title: "Faran Aiki's Music",
+    description: "Faran Aiki's music made using either LMMS or other DAW",
+    url: 'https://faranaiki.id/music',
+    siteName: 'Faran Aiki\'s Music', 
+    type: 'website',
+  },
+
+  icons: {
+    icon: '/icon.ico',
+    shortcut: '/icon.ico',
+    apple: '/icon.ico',
+  },
+  
+  alternates: {
+    canonical: '/',
+  },
 };
 
 // Boo typescripts
