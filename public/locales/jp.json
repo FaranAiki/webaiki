@@ -2,6 +2,8 @@
   "Faran_About": "ムハンマド・ファラン・アイキ（2007年4月8日生まれ）は、現在、バンドン工科大学の電気工学・情報学部計算機科学科（SEEI-C）の大学生です。2025年5月からアナリティカ社で教育チームのインターンとして、2025年10月からはFlutterソフトウェアエンジニアのフロントエンド（技術チーム）プログラマーとして勤務しています。さらに、彼は認定された人間の特異点です。",
   "Faran_Photo": "ファラン・アイキの写真コレクション",
 
+  "All": "全て",
+
   "Home": "ホーム",
   "Social": "ソーシャル",
   "Work": "仕事",
@@ -11,7 +13,12 @@
   "College": "大学",
   "Literature": "文学",
   "Latest": "最新",
-  
+ 
+  "Olympiad and Contest": "オリンピック・コンテスト",
+  "Other": "その他",
+  "Skill": "スキル",
+  "Writing": "執筆",
+
   "Ask_About": "ファラン・アイキについて尋ねる",
   "Question_Answer": "回答",
   "Question_Title": "質問",
@@ -25,7 +32,16 @@
   "Loading_Certificate": "証明書データを読み込み中...",
   "Loading_College": "大学データを読み込み中...",
   "Loading_Literature": "文学データを読み込み中...",
-  
+ 
+  "1st Semester": "第1学期",
+  "2nd Semester": "第2学期",
+  "3rd Semester": "第3学期",
+  "4th Semester": "第4学期",
+  "5th Semester": "第5学期",
+  "6th Semester": "第6学期",
+  "7th Semester": "第7学期",
+  "8th Semester": "第8学期",
+
   "gemini_wait1": "いい質問ですね…",
   "gemini_wait2": "考え中…",
   "gemini_wait3": "あなたに最適な答えを準備しています…",
@@ -50,7 +66,8 @@
   "Japanese": "日本語",
   "Russian": "ロシア語",
   "French": "フランス語",
-
+  "Arabic": "アラビア語",
+  
   "Software_Engineer": "ソフトウェアエンジニア（フロントエンドFlutter）",
   "Software_Engineer_Description": "Flutterを使用して、インタラクティブなグラフ、データを視覚化するためのインタラクティブな統計、学習曲線を容易にするための単語分割などのインタラクティブなウィジェットを作成および保守します。",
   "Mathematics_Private_Tutor": "数学の個人家庭教師",

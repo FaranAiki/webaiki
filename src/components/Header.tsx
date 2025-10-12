@@ -19,6 +19,7 @@ interface HeaderProps {
   jp_lang: string;
   ru_lang: string;
   fr_lang: string;
+  ar_lang: string;
 }
 
 function GlobeIcon() {
@@ -52,7 +53,7 @@ function CloseIcon() {
 
 // --- Main Header Component ---
 
-export default function Header({ navLinks, current_lang, en_lang, id_lang, jp_lang, ru_lang, fr_lang }: HeaderProps) {
+export default function Header({ navLinks, current_lang, en_lang, id_lang, jp_lang, ru_lang, fr_lang, ar_lang }: HeaderProps) {
   const pathname = usePathname();
   const router = useRouter();
   const [isLangMenuVisible, setLangMenuVisible] = useState(false);
@@ -78,6 +79,7 @@ export default function Header({ navLinks, current_lang, en_lang, id_lang, jp_la
     { code: 'jp', name: jp_lang },
     { code: 'ru', name: ru_lang },
     { code: 'fr', name: fr_lang },
+    { code: 'ar', name: ar_lang },
   ];
 
   const handleLanguageChange = async (langCode: string) => {

@@ -51,8 +51,8 @@ export default async function OrganizationExperiencesPage() {
           company: await t('STEI-K'),
           description: await t('Treasurer_SYNC_Description'),
           image: [
-            '',
-            '',
+            '/documents/organization/SYNC_0.jpg',
+            '/documents/organization/SYNC_1.jpg',
           ]
         },
         {
@@ -76,13 +76,13 @@ export default async function OrganizationExperiencesPage() {
           company: 'IT Club SMAN 1 Kota Depok',
           description: await t('IT_Club_Tutor_Description'),
           image: [
-            '',
-            '',
+            '/documents/organization/NBK_0.JPG',
+            '/documents/organization/NBK_1.JPG',
+            '/documents/organization/NBK_2.JPG',
           ]
         },
       ]
     },
-    /*
     {
       year: '2023',
       jobs: [
@@ -90,12 +90,20 @@ export default async function OrganizationExperiencesPage() {
       ]
     },
     {
-      year: '2023',
+      year: '2022',
       jobs: [
-
+        {
+          date: await t('June — December'),
+          title: await t('NBK_Member'),
+          company: 'Nihongo Benkyoukai 1 Depok',
+          description: await t('NBK_Member_Description'),
+          image: [
+            '',
+            '',
+          ]
+        }
       ]
-    }
-    */
+    },
   ];
 
   // Render the client component and pass the fully resolved data as props

@@ -4,7 +4,7 @@ import { Inter } from "next/font/google";
 import { Github, Linkedin, Instagram, Twitter, Mail, Youtube } from 'lucide-react';
 import Image from 'next/image';
 
-import { t, locales } from '@/components/Translator';
+import { t } from '@/components/Translator';
 
 const inter = Inter({ subsets: ["latin"] });
 

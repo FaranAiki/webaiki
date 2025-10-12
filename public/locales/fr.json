@@ -2,6 +2,8 @@
   "Faran_About": "Muhammad Faran Aiki (8 avril 2007) est actuellement étudiant à l'École d'Ingénierie Électrique et d'Informatique - Calcul (SEEI-C), de l'Institut de Technologie de Bandung. Il est stagiaire chez Analitica au sein de l'équipe éducative à partir de mai 2025 et ingénieur logiciel front-end Flutter (équipe technologique) à partir d'octobre 2025. De plus, il est une anomalie humaine certifiée et prouvée.",
   "Faran_Photo": "Collections de photos de Faran Aiki",
 
+  "All": "Tout",
+
   "Home": "Accueil",
   "Social": "Social",
   "Work": "Travail",
@@ -12,6 +14,11 @@
   "Literature": "Littérature",
   "Latest": "Dernier",
   "Organization": "Organisation",
+  
+  "Olympiad and Contest": "Olympiade et Concours",
+  "Other": "Autre",
+  "Skill": "Compétence",
+  "Writing": "Écriture",
 
   "Ask_About": "Demander à propos de Faran Aiki",
   "Question_Answer": "Réponse",
@@ -26,6 +33,15 @@
   "Loading_Certificate": "Chargement des données des certificats ....",
   "Loading_College": "Chargement des données universitaires ....",
   "Loading_Literature": "Chargement des données de littérature ....",
+
+  "1st Semester": "1er semestre",
+  "2nd Semester": "2ème semestre",
+  "3rd Semester": "3ème semestre",
+  "4th Semester": "4ème semestre",
+  "5th Semester": "5ème semestre",
+  "6th Semester": "6ème semestre",
+  "7th Semester": "7ème semestre",
+  "8th Semester": "8ème semestre",
 
   "gemini_wait1": "C'est une bonne question...",
   "gemini_wait2": "Réflexion en cours...",
@@ -52,6 +68,7 @@
   "Japanese": "Japonais",
   "Russian": "Russe",
   "French": "Français",
+  "Arabic": "Arabe",
 
   "Software_Engineer": "Ingénieur Logiciel (Front-End Flutter)",
   "Software_Engineer_Description": "Création et maintenance de widgets interactifs, tels que des graphiques interactifs, des statistiques interactives pour visualiser les données, et un diviseur de mots pour une courbe d'apprentissage plus facile en utilisant Flutter.",

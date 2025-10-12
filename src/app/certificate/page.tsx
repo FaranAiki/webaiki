@@ -11,7 +11,7 @@ import { t } from '@/components/Translator';
 import fs from 'fs';
 import path from 'path';
 
-export function getCertificatesData() {
+export async function getCertificatesData() {
   const certificatesDir = path.join(process.cwd(), 'public', 'documents', 'certificate');
   const categoryFolders = fs.readdirSync(certificatesDir);
   const allCertificatesData: CertificateData = {};
@@ -20,7 +20,9 @@ export function getCertificatesData() {
     const categoryPath = path.join(certificatesDir, category);
     
     if (fs.statSync(categoryPath).isDirectory()) {
-      allCertificatesData[category] = {};
+      const categoryName = await t(category);
+      console.log(categoryName);
+      allCertificatesData[categoryName] = {};
       
       const yearFolders = fs.readdirSync(categoryPath);
 
@@ -28,7 +30,7 @@ export function getCertificatesData() {
         const yearPath = path.join(categoryPath, year);
 
         if (fs.statSync(yearPath).isDirectory()) {
-          allCertificatesData[category][year] = {};
+          allCertificatesData[categoryName][year] = {};
           
           const files = fs.readdirSync(yearPath);
 
@@ -36,7 +38,7 @@ export function getCertificatesData() {
             const fileName = path.parse(file).name;
             const filePath = `/documents/certificate/${category}/${year}/${file}`;
             
-            allCertificatesData[category][year][fileName] = filePath;
+            allCertificatesData[categoryName][year][fileName] = filePath;
           }
         }
       }
@@ -71,8 +73,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function CertificatePage() {
-  const certificates = getCertificatesData();
+export default async function CertificatePage() {
+  const certificates = await getCertificatesData();
+  const allTranslation = await t('All');
 
   return (
     <main className="min-h-screen py-12">
@@ -80,7 +83,7 @@ export default function CertificatePage() {
 
       </div>
     <React.Suspense fallback={<h2 className="text-center">{t('Loading_Certificate')}</h2>}>
-      <CertificateLoader certificates={certificates} />
+      <CertificateLoader certificates={certificates} allTranslation={allTranslation} />
     </React.Suspense>
     </main>
   );

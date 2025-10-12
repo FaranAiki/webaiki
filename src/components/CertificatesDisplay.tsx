@@ -16,9 +16,10 @@ export type CertificateData = {
 
 export type CertificatesDisplayProps = {
   certificates: CertificateData;
+  allTranslation: string;
 };
 
-export default function CertificatesDisplay({ certificates }: CertificatesDisplayProps) {
+export default function CertificatesDisplay({ certificates, allTranslation }: CertificatesDisplayProps) {
   // NextJS (react)'s states are overpowered
   const [openCategories, setOpenCategories] = useState<string[]>([]);
   const [selectedYears, setSelectedYears] = useState<{ [key: string]: string }>({});
@@ -84,7 +85,7 @@ export default function CertificatesDisplay({ certificates }: CertificatesDispla
                       : 'bg-gray-800 hover:bg-gray-700'
                   }`}
                 >
-                  All
+                  {allTranslation}
                 </button>
                 {categoryYears[category].map((year) => (
                   <button

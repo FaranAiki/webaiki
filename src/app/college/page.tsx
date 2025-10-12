@@ -22,9 +22,10 @@ export async function getCollectionsData() {
 
   for (const semester of semesterFolders) {
     const semesterPath = path.join(certificatesDir, semester);
-    
+    const semesterName = await t(semester);
+
     if (fs.statSync(semesterPath).isDirectory()) {
-      allCollectionsData[semester] = {};
+      allCollectionsData[semesterName] = {};
       
       const subjectFolders = fs.readdirSync(semesterPath);
 
@@ -34,7 +35,7 @@ export async function getCollectionsData() {
         if (fs.statSync(subjectPath).isDirectory()) {
           // change subject name to given await
           const subject_name = await t(subject); 
-          allCollectionsData[semester][subject_name] = {};
+          allCollectionsData[semesterName][subject_name] = {};
           
           const files = fs.readdirSync(subjectPath);
 
@@ -48,7 +49,7 @@ export async function getCollectionsData() {
               openPath = `/documents/college/${semester}/${subject}/${file}`;
             }
 
-            allCollectionsData[semester][subject_name][fileName] = openPath;
+            allCollectionsData[semesterName][subject_name][fileName] = openPath;
           }
         }
       }
