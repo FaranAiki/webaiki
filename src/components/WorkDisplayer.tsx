@@ -20,33 +20,33 @@ interface WorkExperienceClientProps {
     workExperiences: Experience[];
 }
 
-// This component handles all state and user interaction
 export default function WorkExperienceClient({ workExperiences }: WorkExperienceClientProps) {
-    // State for the currently hovered job
     const [activeJob, setActiveJob] = useState(workExperiences[0].jobs[0]);
-    
-    // New state for the current image index in the carousel
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-    // Effect to reset the image index to 0 whenever the activeJob changes
+    // ✅ Consolidated useEffect to manage the image carousel
     useEffect(() => {
+        // 1. Immediately reset to the first image for the new activeJob
         setCurrentImageIndex(0);
-    }, [activeJob]);
 
-    // Effect to handle the auto-carousel logic using setTimeout
-    useEffect(() => {
-        // Only run the carousel if there is more than one image
-        if (activeJob.image.length <= 1) return;
+        // 2. If the new job has only one image (or none), do nothing else.
+        if (activeJob.image.length <= 1) {
+            return;
+        }
 
-        // Set a timer to switch to the next image
-        const timer = setTimeout(() => {
+        // 3. Start a new interval timer for the carousel
+        const timer = setInterval(() => {
             setCurrentImageIndex((prevIndex) =>
+                // Cycle to the next image, looping back to the start
                 (prevIndex + 1) % activeJob.image.length
             );
-        }, 3000);
+        }, 3000); // Switch image every 3 seconds
 
-        return () => clearTimeout(timer);
-    }, [currentImageIndex, activeJob]);
+        // 4. Cleanup function: This is crucial!
+        // It clears the interval when the component unmounts OR when `activeJob` changes again.
+        return () => clearInterval(timer);
+
+    }, [activeJob]); // <-- This effect runs ONLY when `activeJob` changes
 
     return (
         <div className="text-white min-h-screen font-sans p-4 sm:p-8 md:p-12">
@@ -56,7 +56,7 @@ export default function WorkExperienceClient({ workExperiences }: WorkExperience
                     <div className="w-full md:w-1/2">
                         {workExperiences.map((experience) => (
                             <div key={experience.year} className="mb-12">
-                                <h2 className="text-3xl font-bold text-white mb-6 sticky top-0 py-2">{experience.year}</h2>
+                                <h2 className="transition-all hover:scale-105 text-3xl font-bold text-white mb-6 sticky top-0 py-2 xs:text-center">{experience.year}</h2>
                                 <div className="space-y-4">
                                     {experience.jobs.map((job, index) => (
                                         <div
@@ -75,18 +75,21 @@ export default function WorkExperienceClient({ workExperiences }: WorkExperience
                         ))}
                     </div>
 
-                    {/* Right Column: Image Display (Now a Carousel) */}
+                    {/* Right Column: Image Display (Carousel) */}
                     <div className="hidden md:block w-1/2">
                         <div className="sticky top-24">
                             <div className="aspect-w-16 aspect-h-9">
-                                <Image
-                                    width={24}
-                                    height={16}
-                                    src={activeJob.image[currentImageIndex]}
-                                    alt={`${activeJob.company} placeholder image`}
-                                    className="w-full h-full object-cover rounded-lg shadow-2xl transition-opacity duration-300"
-                                    unoptimized
-                                />
+                                {activeJob.image.length > 0 && (
+                                     <Image
+                                        // key={activeJob.image[currentImageIndex]}
+                                        width={24}
+                                        height={16}
+                                        src={activeJob.image[currentImageIndex]}
+                                        alt={`${activeJob.company} placeholder image`}
+                                        className="w-full h-full object-cover rounded-lg shadow-2xl transition-opacity duration-300"
+                                        unoptimized
+                                    />
+                                )}
                             </div>
                             <div className="mt-4 text-center">
                                 <h3 className="text-2xl font-bold">{activeJob.title}</h3>

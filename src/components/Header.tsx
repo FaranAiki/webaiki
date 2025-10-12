@@ -18,6 +18,7 @@ interface HeaderProps {
   id_lang: string;
   jp_lang: string;
   ru_lang: string;
+  fr_lang: string;
 }
 
 // --- SVG Icons ---
@@ -53,7 +54,7 @@ function CloseIcon() {
 
 // --- Main Header Component ---
 
-export default function Header({ navLinks, en_lang, id_lang, jp_lang, ru_lang, current_lang }: HeaderProps) {
+export default function Header({ navLinks, current_lang, en_lang, id_lang, jp_lang, ru_lang, fr_lang }: HeaderProps) {
   const pathname = usePathname();
   const router = useRouter();
   const [isLangMenuVisible, setLangMenuVisible] = useState(false);
@@ -78,6 +79,7 @@ export default function Header({ navLinks, en_lang, id_lang, jp_lang, ru_lang, c
     { code: 'en', name: en_lang },
     { code: 'jp', name: jp_lang },
     { code: 'ru', name: ru_lang },
+    { code: 'fr', name: fr_lang },
   ];
 
   const handleLanguageChange = async (langCode: string) => {
