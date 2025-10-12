@@ -4,14 +4,14 @@ import { t } from '@/components/Translator';
 import ExperiencesClient from '@/components/ExperienceDisplayer';
 
 export const metadata: Metadata = {
-  title: "Faran Aiki's Work History",
-  description: "Faran Aiki's Work History and Internships",
+  title: "Faran Aiki's Organization History",
+  description: "Faran Aiki's Organization and Activities",
 };
 
 // This is the main Server Component
-export default async function WorkExperiencesPage() {
+export default async function OrganizationExperiencesPage() {
   // All async data fetching happens here on the server
-  const workExperiences = [
+  const organizationExperiences = [
     {
       year: '2025',
       jobs: [
@@ -51,5 +51,5 @@ export default async function WorkExperiencesPage() {
   ];
 
   // Render the client component and pass the fully resolved data as props
-  return <ExperiencesClient experiences={workExperiences} />;
+  return <ExperiencesClient experiences={organizationExperiences} />;
 }

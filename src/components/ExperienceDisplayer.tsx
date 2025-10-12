@@ -16,17 +16,15 @@ type Experience = {
     jobs: Job[];
 };
 
-interface WorkExperienceClientProps {
-    workExperiences: Experience[];
+interface ExperiencesClientProps {
+    experiences: Experience[];
 }
 
-export default function WorkExperienceClient({ workExperiences }: WorkExperienceClientProps) {
-    const [activeJob, setActiveJob] = useState(workExperiences[0].jobs[0]);
+export default function ExperiencesClient({ experiences }: ExperiencesClientProps) {
+    const [activeJob, setActiveJob] = useState(experiences[0].jobs[0]);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-    // ✅ Consolidated useEffect to manage the image carousel
     useEffect(() => {
-        // 1. Immediately reset to the first image for the new activeJob
         setCurrentImageIndex(0);
 
         // 2. If the new job has only one image (or none), do nothing else.
@@ -34,19 +32,15 @@ export default function WorkExperienceClient({ workExperiences }: WorkExperience
             return;
         }
 
-        // 3. Start a new interval timer for the carousel
         const timer = setInterval(() => {
             setCurrentImageIndex((prevIndex) =>
-                // Cycle to the next image, looping back to the start
                 (prevIndex + 1) % activeJob.image.length
             );
         }, 3000); // Switch image every 3 seconds
 
-        // 4. Cleanup function: This is crucial!
-        // It clears the interval when the component unmounts OR when `activeJob` changes again.
         return () => clearInterval(timer);
 
-    }, [activeJob]); // <-- This effect runs ONLY when `activeJob` changes
+    }, [activeJob]); 
 
     return (
         <div className="text-white min-h-screen font-sans p-4 sm:p-8 md:p-12">
@@ -54,8 +48,8 @@ export default function WorkExperienceClient({ workExperiences }: WorkExperience
                 <div className="flex flex-col md:flex-row gap-8 md:gap-16">
                     {/* Left Column: Job List (Interactive) */}
                     <div className="w-full md:w-1/2">
-                        {workExperiences.map((experience) => (
-                            <div key={experience.year} className="mb-12">
+                        {experiences.map((experience) => (
+                            <div key={experience.year} className="mb-12 text-center md:text-justify">
                                 <h2 className="transition-all hover:scale-105 text-3xl font-bold text-white mb-6 sticky top-0 py-2 xs:text-center">{experience.year}</h2>
                                 <div className="space-y-4">
                                     {experience.jobs.map((job, index) => (
