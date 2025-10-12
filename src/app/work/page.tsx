@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "../globals.css";
-import { t } from '@/components/Translator';
+import { t, from_to } from '@/components/Translator';
 import ExperiencesClient from '@/components/ExperienceDisplayer';
 
 export const metadata: Metadata = {
@@ -36,7 +36,7 @@ export default async function WorkExperiencesPage() {
       year: '2025',
       jobs: [
         {
-          date: await t('October — Present'),
+          date: await from_to('October', 'Present'),
           title: await t('Software_Engineer'),
           company: 'Analitica',
           description: await t('Software_Engineer_Description'),
@@ -46,7 +46,7 @@ export default async function WorkExperiencesPage() {
           ]
         },
         {
-          date: await t('August — Present'),
+          date: await from_to('August', 'Present'),
           title: await t('Mathematics_Private_Tutor'),
           company: 'KPM-Nol Persen',
           description: await t('Mathematics_Private_Tutor_Description'),
@@ -57,7 +57,7 @@ export default async function WorkExperiencesPage() {
           ]
         },
         {
-          date: await t('May — September'),
+          date: await from_to('May', 'September'),
           title: await t('Education_Team'),
           company: 'Analitica',
           description: await t('Education_Team_Description'),

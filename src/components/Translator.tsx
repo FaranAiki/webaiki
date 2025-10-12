@@ -34,7 +34,7 @@ function getAllLocales(): AllLocales {
   return allLocales;
 }
 
-export async function currentLanguage() {
+export async function currentLanguage(): Promise<string> {
   const cookieStore = await cookies();
   const language = cookieStore.get('language') || {'name': 'language', 'value': 'id'};
   return language.value;
@@ -46,6 +46,13 @@ export async function Translate(s: string): Promise<string> {
   if (!(s in locales[language.value])) 
     return 'error-no-locales';
   return locales[language.value][s]; 
+}
+
+export async function from_to(from_m: string, to_m: string): Promise<string> {
+  const from_translated = await Translate(from_m);
+  const to_translated = await Translate(to_m);
+
+  return from_translated + " — " + to_translated;
 }
 
 export const t = Translate;

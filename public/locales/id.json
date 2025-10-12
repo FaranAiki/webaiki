@@ -1,4 +1,18 @@
 {
+  "January": "Januari",
+  "February": "Februari",
+  "March": "Maret",
+  "April": "April",
+  "May": "Mei",
+  "June": "Juni",
+  "July": "Juli",
+  "August": "Agustus",
+  "September": "September",
+  "October": "Oktober",
+  "November": "November",
+  "December": "Desember",
+  "Present": "Sekarang",
+
   "Faran_About": "Muhammad Faran Aiki (8 April, 2007) adalah seorang mahasiswa di Sekolah Teknik Elektro dan Informatika Komputasi (STEI-K), Institut Teknologi Bandung. Dia magang di Analitica sebagai Tim Edukasi mulai dari Mei 2025 dan insinyur perangkat lunak (Tim Teknologi) dalam pemrogram pemroses depan mulai dari Oktober 2025. Selain itu, dia memang seorang anomali.",
   "Faran_Photo": "Koleksi foto Faran Aiki",
 
@@ -33,6 +47,11 @@
   "Loading_Certificate": "Mengunduh data sertifikat ....",
   "Loading_College": "Mengunduh data perkuliahan ....",
   "Loading_Literature": "Mengunduh data sastra ....",
+
+  "Poem_Indonesia": "Puisi (Indonesia)",
+  "Short_Story_Indonesia": "Cerita Pendek (Indonesia)",
+  "Poem_English": "Puisi (Inggris)",
+  "Short_Story_English": "Cerita Pendek (Inggris)",
 
   "1st Semester": "Semester ke-1",
   "2nd Semester": "Semester ke-2",
@@ -76,9 +95,23 @@
   "Mathematics_Private_Tutor_Description": "Memberikan bimbingan belajar satu-satu kepada siswa dalam olimpiade matematika untuk kompetisi sekolah menengah. Mengembangkan rencana pelajaran yang dipersonalisasi untuk membantu siswa mencapai tujuan akademik mereka dan meningkatkan pemahaman mereka tentang konsep-konsep yang kompleks.",
   "Education_Team": "Tim Edukasi",
   "Education_Team_Description": "Membantu dalam pembuatan materi konten pendidikan, seperti Matematika Wajib, dan membuat 600 soal fisika, kimia, dan matematika untuk Tes Kemampuan Akademik (TKA) sekolah menengah atas. Mendukung perencanaan dan pelaksanaan program pembelajaran untuk siswa dan para profesional, dan membantu dalam penggunaan kecerdasan buatan.",
-  "August — Present": "Agustus — Sekarang",
-  "May — September": "Mei — September",
-  "October — Present": "Oktober — Sekarang",
+
+  "ITB": "Institut Teknologi Bandung",
+  "Sponsorship_Wisokto_ITB": "Divisi 2 Sponsorship Wisokto ITB 2025",
+  "Sponsorship_Wisokto_ITB_Description": "Menghubungi dan mengontak beberapa perusahaan untuk bekerja sama dalam acara Wisuda Oktober 2025 Institut Teknologi Bandung, seperti Mamikos.",
+  "Treasurer_SYNC": "Bendahara Acara Gathering STEI-K",
+  "STEI-K": "Sekolah Teknik Elektro dan Informatika - Komputasi",
+  "Treasurer_SYNC_Description": "Mendapatkan sponsorship senilai satu juta untuk acara perkumpulan fakultas SYNC: Say Yes to New Connections dan membantu dalam mengurus keuangan.",
+  "IT_Club_Vice_Renpy": "Wakil Ketua Pelaksana Projek Akhir IT Club 2024",
+  "IT_Club_Vice_Renpy_Description": "Mengawasi pembuatan permainan (gim) dalam bahasa Python menggunakan RenPy berbentuk visual novel.",
+  "IT_Club_Tutor": "Pengajar Klub Informatika",
+  "IT_Club_Tutor_Description": "Mengajari anggota Klub Informatika mengenai Python dan pengembangan situs.",
+  "Student_Club_Member": "Anggota Klub Siswa",
+  "Student_Club_Member_Description": "Menjadi anggota dari Klub Siswa SMA Negeri 1 Kota Depok yang aktif mengikuti kontes dan olimpiade, seperti meraih medali perunggu dalam KMNR ke-19.",
+  "English_Club_Member": "Anggota Klub Inggris",
+  "English_Club_Member_Description": "Membuat dan mengadaptasi konten-konten seperti cerita dongeng \"Ugly Duckling\".",
+  "NBK_Member": "Anggota Klub Nihongo Benkyoukai",
+  "NBK_Member_Description": "Mengikuti kegiatan klub yang berorientasi Jepang dan mempelajari bahasanya.",
 
   "": ""
 }

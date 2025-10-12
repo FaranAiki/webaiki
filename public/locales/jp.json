@@ -1,4 +1,18 @@
 {
+  "January": "1月",
+  "February": "2月",
+  "March": "3月",
+  "April": "4月",
+  "May": "5月",
+  "June": "6月",
+  "July": "7月",
+  "August": "8月",
+  "September": "9月",
+  "October": "10月",
+  "November": "11月",
+  "December": "12月",
+  "Present": "現在",
+
   "Faran_About": "ムハンマド・ファラン・アイキ（2007年4月8日生まれ）は、現在、バンドン工科大学の電気工学・情報学部計算機科学科（SEEI-C）の大学生です。2025年5月からアナリティカ社で教育チームのインターンとして、2025年10月からはFlutterソフトウェアエンジニアのフロントエンド（技術チーム）プログラマーとして勤務しています。さらに、彼は認定された人間の特異点です。",
   "Faran_Photo": "ファラン・アイキの写真コレクション",
 
@@ -32,7 +46,12 @@
   "Loading_Certificate": "証明書データを読み込み中...",
   "Loading_College": "大学データを読み込み中...",
   "Loading_Literature": "文学データを読み込み中...",
- 
+
+  "Poem_Indonesia": "詩（インドネシア語）",
+  "Short_Story_Indonesia": "短編小説（インドネシア語）",
+  "Poem_English": "詩（英語）",
+  "Short_Story_English": "短編小説（英語）",
+
   "1st Semester": "第1学期",
   "2nd Semester": "第2学期",
   "3rd Semester": "第3学期",
@@ -74,9 +93,23 @@
   "Mathematics_Private_Tutor_Description": "中学生の数学オリンピック大会の生徒に1対1の個別指導を提供します。生徒が学術目標を達成し、複雑な概念の理解を深めるのに役立つ、パーソナライズされた授業計画を作成します。",
   "Education_Team": "教育チーム",
   "Education_Team_Description": "一般数学などの教育コンテンツ教材の作成を支援し、高校の学力テスト（TKA）用に物理、化学、数学の問題を600問作成しました。学生や専門家向けの学習プログラムの計画と実行をサポートし、人工知能の利用を支援します。",
-  "August — Present": "8月 — 現在",
-  "May — September": "5月 — 9月",
-  "October — Present": "10月 — 現在",
+
+  "ITB": "バンドン工科大学",
+  "Sponsorship_Wisokto_ITB": "2025年ITB10月卒業式スポンサーシップ第2部門",
+  "Sponsorship_Wisokto_ITB_Description": "バンドン工科大学2025年10月卒業式のイベントパートナーシップのため、Mamikosなどの複数の企業に連絡・調整。",
+  "Treasurer_SYNC": "STEI-K交流会イベントの会計",
+  "STEI-K": "電気情報工学部 - 計算科学",
+  "Treasurer_SYNC_Description": "学部交流イベント「SYNC: Say Yes to New Connections」のために100万ルピアのスポンサーシップを確保し、財務管理を支援。",
+  "IT_Club_Vice_Renpy": "2024年ITクラブ最終プロジェクト副プロジェクトマネージャー",
+  "IT_Club_Vice_Renpy_Description": "Python言語とRen'Pyを使用したビジュアルノベルゲームの開発を監督。",
+  "IT_Club_Tutor": "情報科学クラブのチューター",
+  "IT_Club_Tutor_Description": "情報科学クラブのメンバーにPythonとウェブ開発を指導。",
+  "Student_Club_Member": "生徒会クラブメンバー",
+  "Student_Club_Member_Description": "デポック市第1国立高校生徒会クラブの現役メンバーとして、第19回全国数学競技会（KMNR）で銅メダルを獲得するなど、コンテストやオリンピックに参加。",
+  "English_Club_Member": "英語クラブメンバー",
+  "English_Club_Member_Description": "童話「みにくいアヒルの子」などのコンテンツを作成・翻案。",
+  "NBK_Member": "日本語勉強会クラブメンバー",
+  "NBK_Member_Description": "日本志向のクラブ活動に参加し、日本語を学習。",
 
   "": ""
 }

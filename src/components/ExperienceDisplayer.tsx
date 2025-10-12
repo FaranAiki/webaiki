@@ -70,10 +70,10 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
                     </div>
 
                     {/* Right Column: Image Display (Carousel) */}
-                    <div className="hidden md:block w-1/2">
+                    {activeJob.image.length > 0 && (activeJob.image[currentImageIndex] !== '' || activeJob.image[currentImageIndex] !== null ) &&  (
+                    <div className="transition-all duration-200 hidden md:block w-1/2 hover:scale-105">
                         <div className="sticky top-24">
                             <div className="aspect-w-16 aspect-h-9">
-                                {activeJob.image.length > 0 && (
                                      <Image
                                         // key={activeJob.image[currentImageIndex]}
                                         width={24}
@@ -83,7 +83,6 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
                                         className="w-full h-full object-cover rounded-lg shadow-2xl transition-opacity duration-300"
                                         unoptimized
                                     />
-                                )}
                             </div>
                             <div className="mt-4 text-center">
                                 <h3 className="text-2xl font-bold">{activeJob.title}</h3>
@@ -91,6 +90,7 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
                             </div>
                         </div>
                     </div>
+                    )}
                 </div>
             </div>
         </div>

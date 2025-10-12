@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "../globals.css";
-import { t } from '@/components/Translator';
+import { t, from_to } from '@/components/Translator';
 import ExperiencesClient from '@/components/ExperienceDisplayer';
 
 export const metadata: Metadata = {
@@ -36,17 +36,14 @@ export default async function OrganizationExperiencesPage() {
       year: '2025',
       jobs: [
         {
-          date: await t('September — October'),
-          title: await t('Fundraising_Wisokto_ITB'),
+          date: await from_to("September", "October"),
+          title: await t('Sponsorship_Wisokto_ITB'),
           company: await t('ITB'),
           description: await t('Sponsorship_Wisokto_ITB_Description'),
-          image: [
-            '',
-            '',
-          ]
+          image: []
         },
         {
-          date: await t('June — August'),
+          date: await from_to('June', 'August'),
           title: await t('Treasurer_SYNC'),
           company: await t('STEI-K'),
           description: await t('Treasurer_SYNC_Description'),
@@ -56,14 +53,11 @@ export default async function OrganizationExperiencesPage() {
           ]
         },
         {
-          date: await t('January — May'),
+          date: await from_to('January', 'May'),
           title: await t('IT_Club_Vice_Renpy'),
           company: 'IT Club SMAN 1 Kota Depok',
           description: await t('IT_Club_Vice_Renpy_Description'),
-          image: [
-            '',
-            '',
-          ]
+          image: [] 
         }
       ]
     },
@@ -71,14 +65,14 @@ export default async function OrganizationExperiencesPage() {
       year: '2024',
       jobs: [
         {
-          date: await t('June — May'),
+          date: await from_to('June', 'May'),
           title: await t('IT_Club_Tutor'),
           company: 'IT Club SMAN 1 Kota Depok',
           description: await t('IT_Club_Tutor_Description'),
           image: [
-            '/documents/organization/NBK_0.JPG',
-            '/documents/organization/NBK_1.JPG',
-            '/documents/organization/NBK_2.JPG',
+            '/documents/organization/IT_Tutor_0.jpg',
+            '/documents/organization/IT_Tutor_1.jpg',
+
           ]
         },
       ]
@@ -86,20 +80,34 @@ export default async function OrganizationExperiencesPage() {
     {
       year: '2023',
       jobs: [
-
+        {
+  date: await from_to('January', 'December'),
+          title: await t('Student_Club_Member'),
+          company: 'Student Club 1 Depok',
+          description: await t('Student_Club_Member_Description'),
+          image: []
+        },
       ]
     },
     {
       year: '2022',
       jobs: [
         {
-          date: await t('June — December'),
+          date: await from_to('July', 'December'),
+          title: await t('English_Club_Member'),
+          company: 'English Club 1 Depok',
+          description: await t('English_Club_Member_Description'),
+          image: []
+        },
+        {
+          date: await from_to('July', 'December'),
           title: await t('NBK_Member'),
           company: 'Nihongo Benkyoukai 1 Depok',
           description: await t('NBK_Member_Description'),
           image: [
-            '',
-            '',
+            '/documents/organization/NBK_0.JPG',
+            '/documents/organization/NBK_1.JPG',
+            '/documents/organization/NBK_2.JPG',
           ]
         }
       ]
