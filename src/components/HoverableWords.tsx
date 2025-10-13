@@ -6,22 +6,26 @@ export type HoverableWordsProps = {
   prophover?: string;
 };
 
-export default function HoverableWords({ children, className='', prophover='transition-all inline-block duration-200 ease-in-out hover:text-xl hover:font-semibold cursor-pointer' }: HoverableWordsProps) {
-  const words = children.split(' ');
+// Using gemini algo to just solve things cuz I am too lazy
+export default function HoverableWords({ children, className, prophover }: HoverableWordsProps) {
+  const finalClassName = className || '';
+  const finalPropHover = prophover || 'transition-all inline-block duration-200 ease-in-out hover:text-xl hover:font-semibold cursor-pointer';
+
+  const separatorRegex = /[\"\'\[\]\(\)\s]+/;
+
+  const parts = children.split(new RegExp(`(${separatorRegex.source})`)).filter(Boolean);
 
   return (
-    // How to make this className still works lol
-    <p className={`text-lg text-gray-300 max-w-lg leading-relaxed ${className}`}>
-      {words.map((word, index) => (
-        <React.Fragment key={index}>
-          <span
-            className={prophover}
-          >
-            {word}
+    <p className={`text-lg text-gray-300 max-w-lg leading-relaxed ${finalClassName}`}>
+      {parts.map((part, index) =>
+        separatorRegex.test(part) ? (
+          <React.Fragment key={index}>{part}</React.Fragment>
+        ) : (
+          <span key={index} className={finalPropHover}>
+            {part}
           </span>
-          {' '} {/* Adding spaces */}
-        </React.Fragment>
-      ))}
+        )
+      )}
     </p>
   );
 }

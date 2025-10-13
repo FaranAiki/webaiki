@@ -95,7 +95,7 @@ export default async function RootLayout({
     <main className="container mx-auto pt-8 pb-16 pt-24">
       {children}
       <React.Suspense fallback={<h2 className="text-center">{t('Loading_College')}</h2>}>
-        <CollegeLoader data={college_data} force_click={false} />;
+        <CollegeLoader data={college_data} force_click={false} />
      </React.Suspense>
     </main>
   );

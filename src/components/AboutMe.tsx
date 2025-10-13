@@ -8,10 +8,20 @@ interface AboutMeProps {
   carouselPhotos: string[];
   about_text: string;
   about_title: string;
+  about_philosophy_title: string;
+  about_philosophy: string;
+  about_principle_title: string;
+  about_principle: string;
+  about_vision_mission_title: string;
+  about_vision_mission: string;
   faran_photo: string;
 }
 
-export default function AboutMe( {carouselPhotos, about_text, about_title, faran_photo} : AboutMeProps ) {
+export default function AboutMe( {carouselPhotos, about_text, about_title, 
+                                about_philosophy_title, about_philosophy,
+                                about_principle_title, about_principle,
+                                about_vision_mission_title, about_vision_mission,
+                                faran_photo} : AboutMeProps ) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // const carouselPhotos = getFaranAikiPhoto();
@@ -26,7 +36,8 @@ export default function AboutMe( {carouselPhotos, about_text, about_title, faran
   }, []);
 
   return (
-    // Generated using Gemini cuz I am too lazy to format lol
+    // Base generated using Gemini cuz I am too lazy to format lol
+    // Why should I separate this from the main file bruh, should I remove AboutMe component and make this a page instead?
     <div>
     <div className="flex flex-col md:flex-row pt-2 justify-center items-center gap-8 md:gap-8 max-w-4xl mx-auto animate-fade-in">    
         <div className="text-center md:text-justify">
@@ -38,7 +49,7 @@ export default function AboutMe( {carouselPhotos, about_text, about_title, faran
           </HoverableWords>
         </div>
         
-        <div className="order-first md:order-last justify-center flex-shrink-0">
+        <div className="order-first md:order-last flex-shrink-0">
           <Image
             src={`/images/photo_faran_aiki/${carouselPhotos[currentIndex]}`}
             alt={faran_photo}
@@ -48,10 +59,68 @@ export default function AboutMe( {carouselPhotos, about_text, about_title, faran
             priority
           />
         </div>
-  </div>
-  <div className="opacity-70 hover:opacity-100 transition-all duration-250 justify-center items-center pt-4 gap-8 md:gap-8 max-4xl animate-fade-in">
-  {/*<PdfViewer className="hover:pt-6 hover:scale-105" file="/ats_cv.pdf" /> */}
-  </div>
+    </div>
+
+    <div className="flex flex-col md:flex-row pt-6 justify-center items-center gap-8 md:gap-8 max-w-4xl mx-auto animate-fade-in">
+        <div className="text-center md:text-justify">
+          <h2 className="transition-all text-3xl md:text-4xl pt-4 font-bold text-white hover:opacity-85" >
+            {about_philosophy_title}
+          </h2>
+          <HoverableWords className="mt-4 text-lg text-gray-250 max-w-lg" prophover='transition-all inline-block duration-200 ease-in-out hover:text-cyan-300 hover:font-semibold cursor-pointer'>
+            {about_philosophy} 
+          </HoverableWords>
+        </div>
+        <div className="order-first md:order-last flex-shrink-0">
+          <Image
+            src={`/images/move_forward.png`}
+            alt={faran_photo}
+            width={200}
+            height={200}
+            className="transition-all shadow-lg border-4 opacity-90 hover:opacity-100 scale-95 hover:scale-100 "
+            priority
+          />
+        </div>
+    </div>
+
+    
+    {// TODO implement this
+      /*
+    <div className="flex flex-col md:flex-row pt-6 justify-center items-center gap-8 md:gap-8 max-w-4xl mx-auto animate-fade-in">
+        <div className="text-center md:text-justify">
+          <h2 className="transition-all text-3xl md:text-4xl pt-4 font-bold text-white hover:opacity-85">
+            {about_principle_title}
+          </h2>
+          <HoverableWords className="mt-4 text-lg text-gray-250 max-w-lg">
+            {about_principle} 
+          </HoverableWords>
+        </div>
+
+        <div className="order-first md:order-last flex-shrink-0">
+          <Image
+            src={`/images/tree.png`}
+            alt={faran_photo}
+            width={200}
+            height={200}
+            className="transition-all shadow-lg border-4 opacity-90 hover:opacity-100 scale-95 hover:scale-100 "
+            priority
+          />
+        </div>
+    </div>
+    <div className="flex flex-col md:flex-row pt-6 justify-center items-center gap-8 md:gap-8 max-w-4xl mx-auto animate-fade-in">
+        <div className="text-center md:text-justify">
+          <h2 className="transition-all text-3xl md:text-4xl pt-4 font-bold text-white hover:opacity-85">
+            {about_vision_mission_title}
+          </h2>
+          <HoverableWords className="mt-4 text-lg text-gray-250 max-w-lg">
+            {about_vision_mission} 
+          </HoverableWords>
+        </div>
+    </div> */}
+
+
+    <div className="opacity-70 hover:opacity-100 transition-all duration-250 justify-center items-center pt-4 gap-8 md:gap-8 max-4xl animate-fade-in">
+     {/*<PdfViewer className="hover:pt-6 hover:scale-105" file="/ats_cv.pdf" /> */}
+    </div>
   </div>
   );
 }

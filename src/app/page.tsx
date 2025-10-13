@@ -51,7 +51,11 @@ export default async function RootLayout({
   return (
     <main className={`${inter.className} container mx-auto px-8 pt-24 pb-16`}>
         {children}
-    <AboutMe carouselPhotos={getFaranAikiPhoto()} faran_photo={await t('Faran_Photo')} about_title={await t('About_Me')} about_text={await t('Faran_About')} /> {/* I don't know why I don't the about me here */}
+    <AboutMe carouselPhotos={getFaranAikiPhoto()} faran_photo={await t('Faran_Photo')}
+    about_philosophy_title={await t('Faran_Philosophy_Title')} about_philosophy={await t('Faran_Philosophy')}
+    about_principle_title={await t('Faran_Principle_Title')} about_principle={await t('Faran_Principle')}
+    about_vision_mission_title={await t('Faran_Vision_Mission_Title')} about_vision_mission={await t('Faran_Vision_Mission')}
+    about_title={await t('About_Me')} about_text={await t('Faran_About')} /> {/* I don't know why I don't the about me here */}
     </main>
   );
 }
