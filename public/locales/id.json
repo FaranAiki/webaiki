@@ -13,6 +13,8 @@
   "December": "Desember",
   "Present": "Sekarang",
 
+  "Not_Found": "Halaman ini tidak ditemukan. Tolong klik Beranda pada bar navigasi.",
+
   "Faran_About": "Muhammad Faran Aiki (8 April, 2007) adalah seorang mahasiswa di Sekolah Teknik Elektro dan Informatika Komputasi (STEI-K), Institut Teknologi Bandung. Dia magang di Analitica sebagai Tim Edukasi mulai dari Mei 2025 dan insinyur perangkat lunak (Tim Teknologi) dalam pemrogram pemroses depan mulai dari Oktober 2025. Selain itu, dia memang seorang anomali.",
   "Faran_Photo": "Koleksi foto Faran Aiki",
 
@@ -52,6 +54,8 @@
   "Short_Story_Indonesia": "Cerita Pendek (Indonesia)",
   "Poem_English": "Puisi (Inggris)",
   "Short_Story_English": "Cerita Pendek (Inggris)",
+  "Essay_Indonesia": "Esai (Indonesia)",
+  "Essay_English": "Esai (Inggris)",
 
   "1st Semester": "Semester ke-1",
   "2nd Semester": "Semester ke-2",
@@ -112,6 +116,10 @@
   "English_Club_Member_Description": "Membuat dan mengadaptasi konten-konten seperti cerita dongeng \"Ugly Duckling\".",
   "NBK_Member": "Anggota Klub Nihongo Benkyoukai",
   "NBK_Member_Description": "Mengikuti kegiatan klub yang berorientasi Jepang dan mempelajari bahasanya.",
+  "PARAS": "Desainer Logo dan Penyunting Naskah MC PARAS Glorigion 1445H",
+  "PARAS_Description": "Mendesain logo utama dari acara PARAS (Paket Ramadan Spesial) Glorigion 2024 melalui kerja sama dengan desainer lainnya dan menyunting dan mengedit tata letak naskah untuk Master of Ceremony.",
+  "Concerto": "Penanggung Jawab Tingkat Final Lomba Concerto",
+  "Concerto_Description": "Membuat, mengoreksi, mengoordinasi, dan mengawasi soal-soal perlombaan, seperti Matematika, IPA, dan IPS, yang dibuat untuk tingkat final perlombaan.",
 
   "": ""
 }

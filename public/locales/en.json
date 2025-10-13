@@ -13,6 +13,8 @@
   "December": "December",
   "Present": "Present",
 
+  "Not_Found": "This page was not found. Please click Home on the navigation bar.",
+
   "Faran_About": "Muhammad Faran Aiki (April 8, 2007) is currently a university student in School of Electrical Engineering and Informatics - Computation (SEEI-C), Bandung Institute of Technology. He is an intern at Analitica as the Education Team starting at May 2025 and a Flutter software engineer front-end (Technology Team) programmer starting at October 2025. Moreover, he is a certified-proven human anomaly.",
   "Faran_Photo": "Faran Aiki's photo collections",
 
@@ -52,6 +54,8 @@
   "Short_Story_Indonesia": "Short Story (Indonesian)",
   "Poem_English": "Poem (English)",
   "Short_Story_English": "Short Story (English)",
+  "Essay_Indonesia": "Essay (Indonesian)",
+  "Essay_English": "Essay (English)",
 
   "1st Semester": "1st Semester",
   "2nd Semester": "2nd Semester",
@@ -112,6 +116,10 @@
   "English_Club_Member_Description": "Created and adapted content, such as the fairy tale \"The Ugly Duckling\".",
   "NBK_Member": "Nihongo Benkyoukai Club Member",
   "NBK_Member_Description": "Participated in Japan-oriented club activities and studied the language.",
+  "PARAS": "Logo Designer and MC Script Editor for PARAS Glorigion 1445H",
+  "PARAS_Description": "Designed the main logo for the PARAS (Paket Ramadan Spesial) Glorigion 2024 event in collaboration with other designers, and proofread and edited the layout of the script for the Master of Ceremony.",
+  "Concerto": "Coordinator for the Final Stage of the Concerto Competition",
+  "Concerto_Description": "Created, proofread, coordinated, and supervised competition questions, such as Mathematics, Natural Science (IPA), and Social Studies (IPS), prepared for the final stage of the competition.",
 
   "": ""
 }

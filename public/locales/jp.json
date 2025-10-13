@@ -13,6 +13,8 @@
   "December": "12月",
   "Present": "現在",
 
+  "Not_Found": "このページは見つかりませんでした。ナビゲーションバーの「ホーム」をクリックしてください。",
+
   "Faran_About": "ムハンマド・ファラン・アイキ（2007年4月8日生まれ）は、現在、バンドン工科大学の電気工学・情報学部計算機科学科（SEEI-C）の大学生です。2025年5月からアナリティカ社で教育チームのインターンとして、2025年10月からはFlutterソフトウェアエンジニアのフロントエンド（技術チーム）プログラマーとして勤務しています。さらに、彼は認定された人間の特異点です。",
   "Faran_Photo": "ファラン・アイキの写真コレクション",
 
@@ -51,6 +53,8 @@
   "Short_Story_Indonesia": "短編小説（インドネシア語）",
   "Poem_English": "詩（英語）",
   "Short_Story_English": "短編小説（英語）",
+  "Essay_Indonesia": "エッセイ（インドネシア語）",
+  "Essay_English": "エッセイ（英語）",
 
   "1st Semester": "第1学期",
   "2nd Semester": "第2学期",
@@ -110,6 +114,10 @@
   "English_Club_Member_Description": "童話「みにくいアヒルの子」などのコンテンツを作成・翻案。",
   "NBK_Member": "日本語勉強会クラブメンバー",
   "NBK_Member_Description": "日本志向のクラブ活動に参加し、日本語を学習。",
+  "PARAS": "PARAS Glorigion 2024のロゴデザイナーおよびMC原稿編集者",
+  "PARAS_Description": "他のデザイナーと協力してPARAS (特別ラマダンパッケージ) Glorigion 1445H のメインロゴをデザインし、司会者（Master of Ceremony）用の原稿のレイアウト校正と編集を行った。",
+  "Concerto": "コンチェルト（Concerto）コンペティション決勝戦の責任者",
+  "Concerto_Description": "コンペティションの決勝戦のために用意された、数学、IPA（自然科学）、IPS（社会科学）などの問題の作成、校正、調整、および監督を行った。",
 
   "": ""
 }

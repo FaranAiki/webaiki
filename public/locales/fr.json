@@ -13,6 +13,8 @@
   "December": "Décembre",
   "Present": "Présent",
 
+  "Not_Found": "Cette page n'a pas été trouvée. Veuillez cliquer sur Accueil dans la barre de navigation.",
+
   "Faran_About": "Muhammad Faran Aiki (8 avril 2007) est actuellement étudiant à l'École d'Ingénierie Électrique et d'Informatique - Calcul (SEEI-C), de l'Institut de Technologie de Bandung. Il est stagiaire chez Analitica au sein de l'équipe éducative à partir de mai 2025 et ingénieur logiciel front-end Flutter (équipe technologique) à partir d'octobre 2025. De plus, il est une anomalie humaine certifiée et prouvée.",
   "Faran_Photo": "Collections de photos de Faran Aiki",
 
@@ -52,6 +54,8 @@
   "Short_Story_Indonesia": "Nouvelle (Indonésien)",
   "Poem_English": "Poème (Anglais)",
   "Short_Story_English": "Nouvelle (Anglais)",
+  "Essay_Indonesia": "Essai (Indonésien)",
+  "Essay_English": "Essai (Anglais)",
 
   "1st Semester": "1er semestre",
   "2nd Semester": "2ème semestre",
@@ -112,6 +116,10 @@
   "English_Club_Member_Description": "A créé et adapté des contenus, tels que le conte de fées \"Le Vilain Petit Canard\".",
   "NBK_Member": "Membre du Club Nihongo Benkyoukai",
   "NBK_Member_Description": "A participé aux activités du club axées sur le Japon et a étudié la langue.",
+  "PARAS": "Designer de logo et éditeur de script de MC pour PARAS Glorigion 1445H",
+  "PARAS_Description": "Conçu le logo principal de l'événement PARAS (Forfait spécial Ramadan) Glorigion 2024 en collaboration avec d'autres designers, et a révisé et édité la mise en page du script pour le Maître de Cérémonie (MC).",
+  "Concerto": "Coordonnateur pour la phase finale du Concours Concerto",
+  "Concerto_Description": "Créé, révisé, coordonné et supervisé les questions du concours, telles que les mathématiques, les sciences (IPA) et les études sociales (IPS), préparées pour la phase finale de la compétition.",
 
   "": ""
 }

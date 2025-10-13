@@ -43,6 +43,7 @@ export default async function WorkExperiencesPage() {
           image: [
             '/documents/work/Analitica Software Engineer_0.png',
             '/documents/work/Analitica Software Engineer_1.png',
+            '/documents/work/Analitica Software Engineer_2.png',
           ]
         },
         {
@@ -53,7 +54,7 @@ export default async function WorkExperiencesPage() {
           image: [
             '/documents/work/KPM-Nol Persen_0.png',
             '/documents/work/KPM-Nol Persen_1.jpg',
-            '/documents/work/KPM-Nol Persen_2.jpg'
+            '/documents/work/KPM-Nol Persen_2.jpg',
           ]
         },
         {
@@ -64,6 +65,7 @@ export default async function WorkExperiencesPage() {
           image: [
             '/documents/work/Analitica Education Team_0.png',
             '/documents/work/Analitica Education Team_1.png',
+            '/documents/work/Analitica Education Team_2.jpg',
           ]
         }
       ]

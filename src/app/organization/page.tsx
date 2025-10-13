@@ -49,7 +49,7 @@ export default async function OrganizationExperiencesPage() {
           description: await t('Treasurer_SYNC_Description'),
           image: [
             '/documents/organization/SYNC_0.jpg',
-            '/documents/organization/SYNC_1.jpg',
+            '/documents/organization/SYNC_1.JPG',
           ]
         },
         {
@@ -57,7 +57,9 @@ export default async function OrganizationExperiencesPage() {
           title: await t('IT_Club_Vice_Renpy'),
           company: 'IT Club SMAN 1 Kota Depok',
           description: await t('IT_Club_Vice_Renpy_Description'),
-          image: [] 
+          image: [
+            '/documents/organization/Renpy_0.png',
+          ] 
         }
       ]
     },
@@ -75,13 +77,33 @@ export default async function OrganizationExperiencesPage() {
 
           ]
         },
+        {
+          date: await from_to('March', 'April'),
+          title: await t('PARAS'),
+          company: 'SMA Negeri 1 Kota Depok',
+          description: await t('PARAS_Description'),
+          image: [
+            '/documents/organization/Paras_0.png',
+            '/documents/organization/Paras_1.png',
+          ]
+        },
       ]
     },
     {
       year: '2023',
       jobs: [
         {
-  date: await from_to('January', 'December'),
+          date: await from_to('August', 'September'),
+          title: await t('Concerto'),
+          company: 'Student Club 1 Depok',
+          description: await t('Concerto_Description'),
+          image: [
+            '/documents/organization/Concerto_0.png',
+            '/documents/organization/Concerto_1.png',
+          ]
+        },
+        {
+          date: await from_to('January', 'December'),
           title: await t('Student_Club_Member'),
           company: 'Student Club 1 Depok',
           description: await t('Student_Club_Member_Description'),
