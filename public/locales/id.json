@@ -19,12 +19,10 @@
   "Faran_Photo": "Koleksi foto Faran Aiki",
   "Faran_Philosophy_Title": "Filosofi Kehidupan",
   "Faran_Philosophy": "Nama Faran Aiki berasal dari kata Faran \"advance\" yang berarti 'maju', sementara nama Aiki berasal dari kata \"ai\" (愛) dan \"ki\" (気) yang berarti energi (dari) cinta. Dengan demikian, \"Faran Aiki\" memiliki arti (orang yang) mencintai kemajuan dan progres.",
-
   "Faran_Principle_Title": "Prinsip Kehidupan",
-  "Faran_Principle": "1a 2b 3c",
-
+  "Faran_Principle": "Bersumpah mencintai, memaknai, menjunjung tinggi, dan mengglorifikasi (1) Tuhan, (2) Ilmu Pengetahuan dan Kebijaksanaan, dan (3) Hasrat untuk Maju dan Berprogres. Dengan prinsip-prinsip ini yang dijadikan sebagai standar serta tolok ukur untuk melanjutkan kehidupan, dia memiliki patokan dan dasar agar tidak pantang menyerah dalam melanjutkan hari-hari yang berat. Meskipun terkadang melenceng dari prinsip-prinsip di atas, dia tidak pernah lupa untuk kembali kepada jalan ini yang sudah membawanya sejauh ini karena pada dasarnya, manusia tidak bisa menjadi sempurna, tetapi bisa berusaha untuk tetap berpegang teguh pada apa yang menjadi pedoman hidupnya.",
   "Faran_Vision_Mission_Title": "Visi dan Misi",
-  "Faran_Vision_Mission": "1a 2b 3c",
+  "Faran_Vision_Mission": "Menjadi pribadi yang terus bertumbuh dan berkembang serta mampu mendorong kemajuan, baik dalam hal fisik, mental, maupun pengetahuan, secara kolektif dan holistik yang berlandaskan cinta dan kasih sayang yang didorong oleh rasionalitas dan empati. Dengan visi tersebut, dia berusaha untuk belajar tanpa henti, seperti mempelajari sains, teknologi, dan sosial-humaniora, serta melakukan refleksi melalui pengalaman diri sendiri ataupun orang lain guna menciptakan suatu solusi inovatif untuk permasalahan yang ada. Selain itu, dia juga mengutamakan nilai-nilai kebaikan yang berterima secara luas, global, dan rasional. Hal ini dia lakukan demi membuktikan kelayakan arti namanya, yaitu maju dan progres, baik secara individual maupun kelompok.",
 
   "All": "Semua",
 
@@ -94,12 +92,14 @@
   "Personal": "Pribadi",
   "Committee": "Kepanitiaan",
 
+  "Select_Language": "Pilih bahasa",
   "Indonesian": "Indonesia",
   "English": "Inggris",
   "Japanese": "Jepang",
   "Russian": "Russia",
   "French": "Prancis",
   "Arabic": "Arab",
+  "Mandarin": "Mandarin",
 
   "Software_Engineer": "Insinyur Perangkat Lunak (Pemroses Depan Flutter)",
   "Software_Engineer_Description": "Membuat dan mengembangkan widget interaktif, seperti grafik interaktif, statistik interaktif untuk memvisualisasikan data, dan pemisah kata untuk kurva belajar yang lebih mudah menggunakan Flutter.",

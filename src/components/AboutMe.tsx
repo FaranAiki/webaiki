@@ -83,14 +83,12 @@ export default function AboutMe( {carouselPhotos, about_text, about_title,
     </div>
 
     
-    {// TODO implement this
-      /*
     <div className="flex flex-col md:flex-row pt-6 justify-center items-center gap-8 md:gap-8 max-w-4xl mx-auto animate-fade-in">
         <div className="text-center md:text-justify">
           <h2 className="transition-all text-3xl md:text-4xl pt-4 font-bold text-white hover:opacity-85">
             {about_principle_title}
           </h2>
-          <HoverableWords className="mt-4 text-lg text-gray-250 max-w-lg">
+          <HoverableWords className="mt-4 text-lg text-gray-250 max-w-lg" prophover='transition-all inline-block duration-200 ease-in-out hover:scale-95 hover:italic hover:opacity-90 cursor-pointer'>
             {about_principle} 
           </HoverableWords>
         </div>
@@ -111,11 +109,21 @@ export default function AboutMe( {carouselPhotos, about_text, about_title,
           <h2 className="transition-all text-3xl md:text-4xl pt-4 font-bold text-white hover:opacity-85">
             {about_vision_mission_title}
           </h2>
-          <HoverableWords className="mt-4 text-lg text-gray-250 max-w-lg">
+          <HoverableWords className="mt-4 text-lg text-gray-250 max-w-lg" prophover='transition-all inline-block duration-200 ease-in-out hover:scale-95 hover:italic hover:opacity-90 cursor-pointer hover:text-cyan-300 '>
             {about_vision_mission} 
           </HoverableWords>
         </div>
-    </div> */}
+        <div className="order-first md:order-last flex-shrink-0">
+          <Image
+            src={`/images/vission_mission.png`}
+            alt={faran_photo}
+            width={200}
+            height={200}
+            className="transition-all shadow-lg border-4 opacity-90 hover:opacity-100 scale-95 hover:scale-100 "
+            priority
+          />
+        </div>
+    </div>
 
 
     <div className="opacity-70 hover:opacity-100 transition-all duration-250 justify-center items-center pt-4 gap-8 md:gap-8 max-4xl animate-fade-in">

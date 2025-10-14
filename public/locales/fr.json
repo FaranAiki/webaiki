@@ -19,6 +19,10 @@
   "Faran_Photo": "Collections de photos de Faran Aiki",
   "Faran_Philosophy_Title": "Philosophie de Vie",
   "Faran_Philosophy": "Le nom Faran Aiki vient du mot Faran « advance » qui signifie 'avancer', tandis que le nom Aiki vient des mots japonais « ai » (愛) et « ki » (気) qui signifient 'l'énergie de l'amour'. Ainsi, « Faran Aiki » signifie '(celui qui) aime l'avancement et le progrès'.",
+  "Faran_Principle_Title": "Principes de Vie",
+  "Faran_Principle": "Faire le vœu d'aimer, de donner un sens, de défendre et de glorifier (1) Dieu, (2) la Connaissance et la Sagesse, et (3) la Passion pour l'Avancement et le Progrès. Avec ces principes comme norme et référence pour continuer sa vie, il a une fondation et une base pour ne pas abandonner face aux jours difficiles. Bien qu'il s'écarte parfois des principes ci-dessus, il n'oublie jamais de revenir sur ce chemin qui l'a mené si loin car, fondamentalement, les humains ne peuvent pas être parfaits, mais ils peuvent s'efforcer de s'accrocher fermement à ce qui guide leur vie.",
+  "Faran_Vision_Mission_Title": "Vision et Mission",
+  "Faran_Vision_Mission": "Être une personne qui grandit et se développe continuellement, et qui est capable d'encourager le progrès — que ce soit physique, mental ou intellectuel — de manière collective et holistique, fondée sur l'amour et l'affection, animée par la rationalité et l'empathie. Avec cette vision, il s'efforce d'apprendre sans relâche, notamment en étudiant les sciences, la technologie et les sciences humaines et sociales, ainsi qu'en réfléchissant à travers ses propres expériences ou celles des autres pour créer des solutions innovantes aux problèmes existants. De plus, il privilégie également les valeurs de bonté qui sont largement, mondialement et rationnellement acceptées. Il le fait pour prouver la valeur de la signification de son nom, qui est d'avancer et de progresser, tant individuellement qu'en groupe.",
 
   "All": "Tout",
 
@@ -88,12 +92,14 @@
   "Personal": "Personnel",
   "Committee": "Comité",
 
+  "Select_Language": "Sélectionner la langue",
   "Indonesian": "Indonésien",
   "English": "Anglais",
   "Japanese": "Japonais",
   "Russian": "Russe",
   "French": "Français",
   "Arabic": "Arabe",
+  "Mandarin": "Mandarin",
 
   "Software_Engineer": "Ingénieur Logiciel (Front-End Flutter)",
   "Software_Engineer_Description": "Création et maintenance de widgets interactifs, tels que des graphiques interactifs, des statistiques interactives pour visualiser les données, et un diviseur de mots pour une courbe d'apprentissage plus facile en utilisant Flutter.",

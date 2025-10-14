@@ -15,11 +15,13 @@ interface HeaderProps {
   navLinks: NavLink[];
   current_lang: string;
   en_lang: string;
+  zh_lang: string;
   id_lang: string;
   jp_lang: string;
   ru_lang: string;
   fr_lang: string;
   ar_lang: string;
+  select_lang: string;
 }
 
 function GlobeIcon() {
@@ -53,7 +55,7 @@ function CloseIcon() {
 
 // --- Main Header Component ---
 
-export default function Header({ navLinks, current_lang, en_lang, id_lang, jp_lang, ru_lang, fr_lang, ar_lang }: HeaderProps) {
+export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_lang, jp_lang, ru_lang, fr_lang, ar_lang, select_lang }: HeaderProps) {
   const pathname = usePathname();
   const router = useRouter();
   const [isLangMenuVisible, setLangMenuVisible] = useState(false);
@@ -76,6 +78,7 @@ export default function Header({ navLinks, current_lang, en_lang, id_lang, jp_la
   const languages = [
     { code: 'id', name: id_lang },
     { code: 'en', name: en_lang },
+    { code: 'zh', name: zh_lang },
     { code: 'jp', name: jp_lang },
     { code: 'ru', name: ru_lang },
     { code: 'fr', name: fr_lang },
@@ -203,7 +206,7 @@ export default function Header({ navLinks, current_lang, en_lang, id_lang, jp_la
                 })}
               </ul>
               <div className="mt-8 border-t border-gray-700 pt-6">
-                  <p className="px-4 text-sm font-semibold text-gray-400 mb-2">Language</p>
+                  <p className="px-4 text-sm font-semibold text-gray-400 mb-2">{select_lang}</p>
                   <LanguageMenu />
               </div>
           </nav>
