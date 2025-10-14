@@ -44,7 +44,7 @@ export default function AboutMe( {carouselPhotos, about_text, about_title,
           <h1 className="transition-all text-4xl md:text-5xl pt-4 font-bold text-white hover:opacity-85">
             {about_title}
           </h1>
-          <HoverableWords className="mt-4 text-lg text-gray-250 max-w-lg">
+          <HoverableWords className="text-justify mt-4 text-lg text-gray-250 max-w-lg">
             {about_text} 
           </HoverableWords>
         </div>
@@ -66,7 +66,7 @@ export default function AboutMe( {carouselPhotos, about_text, about_title,
           <h2 className="transition-all text-3xl md:text-4xl pt-4 font-bold text-white hover:opacity-85" >
             {about_philosophy_title}
           </h2>
-          <HoverableWords className="mt-4 text-lg text-gray-250 max-w-lg" prophover='transition-all inline-block duration-200 ease-in-out hover:text-cyan-300 hover:font-semibold cursor-pointer'>
+          <HoverableWords className="text-justify mt-4 text-lg text-gray-250 max-w-lg" prophover='transition-all inline-block duration-200 ease-in-out hover:text-cyan-300 hover:font-semibold cursor-pointer'>
             {about_philosophy} 
           </HoverableWords>
         </div>
@@ -88,7 +88,7 @@ export default function AboutMe( {carouselPhotos, about_text, about_title,
           <h2 className="transition-all text-3xl md:text-4xl pt-4 font-bold text-white hover:opacity-85">
             {about_principle_title}
           </h2>
-          <HoverableWords className="mt-4 text-lg text-gray-250 max-w-lg" prophover='transition-all inline-block duration-200 ease-in-out hover:scale-95 hover:italic hover:opacity-90 cursor-pointer'>
+          <HoverableWords className="text-justify mt-4 text-lg text-gray-250 max-w-lg" prophover='transition-all inline-block duration-200 ease-in-out hover:scale-95 hover:italic hover:opacity-90 cursor-pointer'>
             {about_principle} 
           </HoverableWords>
         </div>
@@ -109,7 +109,7 @@ export default function AboutMe( {carouselPhotos, about_text, about_title,
           <h2 className="transition-all text-3xl md:text-4xl pt-4 font-bold text-white hover:opacity-85">
             {about_vision_mission_title}
           </h2>
-          <HoverableWords className="mt-4 text-lg text-gray-250 max-w-lg" prophover='transition-all inline-block duration-200 ease-in-out hover:scale-95 hover:italic hover:opacity-90 cursor-pointer hover:text-cyan-300 '>
+          <HoverableWords className="text-justify mt-4 text-lg text-gray-250 max-w-lg" prophover='transition-all inline-block duration-200 ease-in-out hover:scale-95 hover:italic hover:opacity-90 cursor-pointer hover:text-cyan-300 '>
             {about_vision_mission} 
           </HoverableWords>
         </div>

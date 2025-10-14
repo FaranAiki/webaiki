@@ -49,8 +49,8 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
                     {/* Left Column: Job List (Interactive) */}
                     <div className="w-full md:w-1/2">
                         {experiences.map((experience) => (
-                            <div key={experience.year} className="mb-12 text-center md:text-justify">
-                                <h2 className="transition-all hover:scale-105 text-3xl font-bold text-white mb-6 sticky top-0 py-2 xs:text-center">{experience.year}</h2>
+                            <div key={experience.year} className="mb-12 text-center md:text-justify cursor-pointer">
+                                <h2 className="transition-all hover:scale-105 text-2xl font-bold text-white mb-6 top-0 py-2 xs:text-center">{experience.year}</h2>
                                 <div className="space-y-4">
                                     {experience.jobs.map((job, index) => (
                                         <div
@@ -61,7 +61,22 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
                                             <p className="text-gray-400 text-sm mb-1">{job.date}</p>
                                             <h3 className="text-xl font-semibold text-gray-100">{job.title}</h3>
                                             <p className="text-cyan-400 font-medium mb-3">{job.company}</p>
-                                            <p className="text-gray-300 leading-relaxed">{job.description}</p>
+                                            <p className="text-justify text-gray-300 leading-relaxed">{job.description}</p>
+                                            {job === activeJob && activeJob.image.length > 0 && (activeJob.image[currentImageIndex] !== '' || activeJob.image[currentImageIndex] !== null ) &&  (
+                                            <div className="flex pt-4 w-full justify-center transition-all duration-200 block md:hidden w-1/2 hover:scale-101">
+                                              <div className="aspect-w-16 aspect-h-9">
+                                                <Image
+                                                // key={activeJob.image[currentImageIndex]}
+                                                width={24}
+                                                height={16}
+                                                src={activeJob.image[currentImageIndex]}
+                                                alt={`${activeJob.company} placeholder image`}
+                                                className="w-full h-full object-cover rounded-lg shadow-2xl transition-opacity duration-300"
+                                                unoptimized
+                                                />
+                                              </div>
+                                            </div>
+                                            )}
                                         </div>
                                     ))}
                                 </div>

@@ -119,7 +119,11 @@ export default async function OrganizationExperiencesPage() {
           title: await t('English_Club_Member'),
           company: 'English Club 1 Depok',
           description: await t('English_Club_Member_Description'),
-          image: []
+          image: [
+            '/documents/organization/EC_0.png',
+            '/documents/organization/EC_1.png',
+            '/documents/organization/EC_2.png',
+          ]
         },
         {
           date: await from_to('July', 'December'),

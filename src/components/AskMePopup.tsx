@@ -85,7 +85,7 @@ function AskMePopup({typeOfWaitingAnswer, ask_title, question_answer, question_t
       <Draggable nodeRef={nodeRef} handle=".drag-handle">
       <div ref={nodeRef} className="absolute fixed w-screen h-screen top-0 left-0">
         <div
-          className="fixed bottom-25 md:w-auto md:h-auto md:left-6 -left-3 flex items-center justify-center z-30 animate-fade-in duration-300 transition-all"
+          className="fixed bottom-25 w-auto md:h-auto md:left-6 -left-3 flex items-center justify-center z-30 animate-fade-in duration-300 transition-all"
           role="dialog"
           aria-modal="true"
           aria-labelledby="popup-title"
