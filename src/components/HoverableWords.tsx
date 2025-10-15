@@ -16,7 +16,7 @@ export default function HoverableWords({ children, className, prophover }: Hover
   const parts = children.split(new RegExp(`(${separatorRegex.source})`)).filter(Boolean);
 
   return (
-    <p className={`text-lg text-gray-300 max-w-lg leading-relaxed ${finalClassName}`}>
+    <p className={finalClassName}>
       {parts.map((part, index) =>
         separatorRegex.test(part) ? (
           <React.Fragment key={index}>{part}</React.Fragment>

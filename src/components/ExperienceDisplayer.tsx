@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import HoverableWords from '@/components/HoverableWords';
 
 type Job = {
     date: string;
@@ -58,10 +59,12 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
                                             onMouseEnter={() => setActiveJob(job)}
                                             className={`p-6 rounded-lg transition-all duration-300 cursor-pointer border-2 ${activeJob.title === job.title && activeJob.company === job.company ? 'bg-gray-800 border-cyan-500' : 'bg-gray-800/50 border-transparent hover:bg-gray-800 hover:border-cyan-500/50'}`}
                                         >
-                                            <p className="text-gray-400 text-sm mb-1">{job.date}</p>
-                                            <h3 className="text-xl font-semibold text-gray-100">{job.title}</h3>
-                                            <p className="text-cyan-400 font-medium mb-3">{job.company}</p>
-                                            <p className="text-justify text-gray-300 leading-relaxed">{job.description}</p>
+                                            <p className="text-gray-400 text-sm mb-1 duration-100 hover:text-gray-300 hover:italic transition-all">{job.date}</p>
+                                            <h3 className="text-xl font-semibold text-gray-100 hover:font-bold transition-all duration-200 hover:scale-101">{job.title}</h3>
+                                            <p className="text-cyan-400 font-medium mb-3 transition-all hover:font-bold hover:scale-105 duration-200">{job.company}</p>
+                                            <HoverableWords className="leading-relaxed text-justify lg:text-lg md:text-md text-gray-300" prophover='transition-all inline-block duration-100 ease-in-out hover:scale-95 hover:text-cyan-300 hover:underline hover:font-semibold hover:opacity-85'>
+                                              {job.description} 
+                                            </HoverableWords>
                                             {job === activeJob && activeJob.image.length > 0 && (activeJob.image[currentImageIndex] !== '' || activeJob.image[currentImageIndex] !== null ) &&  (
                                             <div className="flex pt-4 w-full justify-center transition-all duration-200 block md:hidden w-1/2 hover:scale-101">
                                               <div className="aspect-w-16 aspect-h-9">

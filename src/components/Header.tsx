@@ -1,7 +1,7 @@
 "use client";
 
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter, redirect } from 'next/navigation';
 import Image from 'next/image';
 import { setCookies } from '@/app/actions';
 import { useState, useEffect } from 'react';
@@ -154,6 +154,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                     {/* Left section (spacer) */}
                     <div className="flex-1">
                         <Image
+                            onClick={() => redirect('/')}
                             src='/icon.ico'
                             alt={"logo"}
                             width={30}

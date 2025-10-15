@@ -105,7 +105,7 @@ export default function Background( {carousel}: BackgroundProps) {
   }, []);
 
   return (
-    <div className="fixed inset-0 w-full h-full z-[-1]">
+    <div className="fixed inset-0 w-full h-full z-[-1] transition-all duration-200">
       {carousel.map((src, index) => (
         <Image
           key={index}
