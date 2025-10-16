@@ -23,21 +23,28 @@ export default function AboutMe( {carouselPhotos, about_text, about_title,
                                  about_vision_mission_title, about_vision_mission,
                                  faran_photo} : AboutMeProps ) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isFading, setIsFading] = useState(false);
 
   // Carousel things
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % carouselPhotos.length);
-    }, 5000); // 5000 milliseconds = 5 seconds
+      setIsFading(true);
+
+      setTimeout(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % carouselPhotos.length);
+        setIsFading(false); // Start fading in the new image
+      }, 300); // Match this duration with the CSS transition duration below
+
+    }, 4000); // Change image every 5 seconds
 
     return () => clearInterval(interval);
-  }, [carouselPhotos.length]); // Added dependency to avoid potential issues
+  }, [carouselPhotos.length]);
 
   return (
     // Base generated using Gemini cuz I am too lazy to format lol
     // Why should I separate this from the main file bruh, should I remove AboutMe component and make this a page instead?
     <div>
-    <div className="flex flex-col md:flex-row pt-2 justify-center items-center gap-8 md:gap-8 max-w-4xl mx-auto animate-fade-in">
+    <div className="flex flex-col md:flex-row pt-2 justify-center items-center gap-8 md:gap-8 max-w-4xl mx-auto animate-fade-in duration-300">
         <div className="text-center md:text-justify">
           <h1 className="transition-all text-4xl md:text-5xl pt-4 font-bold text-white hover:opacity-85">
             {about_title}
@@ -53,7 +60,12 @@ export default function AboutMe( {carouselPhotos, about_text, about_title,
             alt={faran_photo}
             width={200}
             height={200}
-            className="transition-all shadow-lg border-4 opacity-90 hover:opacity-100 scale-95 hover:scale-100 hover:shadow-gray-500/50"
+            className={`
+              transition-all duration-300
+              shadow-lg border-4 scale-95 hover:scale-100 hover:shadow-gray-500/50
+              duration-500 ease-in-out
+              ${isFading ? 'opacity-0' : 'opacity-90 hover:opacity-100'}
+            `}
             priority
           />
         </div>
@@ -75,7 +87,6 @@ export default function AboutMe( {carouselPhotos, about_text, about_title,
             alt="Move Forward Philosophy"
             width={200}
             height={200}
-            // EFFECT ADDED: Subtle rotation and a blue shadow on hover
             className="animate-float transition-all duration-300 ease-in-out shadow-lg border-4 opacity-90 hover:opacity-100 scale-95 hover:scale-100 hover:-rotate-2 hover:shadow-lg hover:shadow-blue-500/50"
             priority
           />

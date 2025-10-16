@@ -48,7 +48,7 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
             <div className="container mx-auto max-w-6xl pt-16">
                 <div className="flex flex-col md:flex-row gap-8 md:gap-16">
                     {/* Left Column: Job List (Interactive) */}
-                    <div className="w-full md:w-1/2">
+                    <div className="w-full md:w-1/2 hover:translateY(-5px)">
                         {experiences.map((experience) => (
                             <div key={experience.year} className="mb-12 text-center md:text-justify cursor-pointer">
                                 <h2 className="transition-all hover:scale-105 text-2xl font-bold text-white mb-6 top-0 py-2 xs:text-center">{experience.year}</h2>
