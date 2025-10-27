@@ -40,7 +40,12 @@ export default async function OrganizationExperiencesPage() {
           title: await t('Sponsorship_Wisokto_ITB'),
           company: await t('ITB'),
           description: await t('Sponsorship_Wisokto_ITB_Description'),
-          image: []
+          image: [
+            '/documents/organization/Wisokto_0.jpg',
+            '/documents/organization/Wisokto_1.jpg',
+            '/documents/organization/Wisokto_2.jpg',
+            '/documents/organization/Wisokto_3.jpg',
+          ]
         },
         {
           date: await from_to('June', 'August'),
