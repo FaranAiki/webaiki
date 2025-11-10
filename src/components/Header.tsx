@@ -159,7 +159,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                             alt={"logo"}
                             width={30}
                             height={30}
-                            className="transition-all shadow-lg border-4 opacity-100 hover:opacity-75 scale-95 hover:scale-100 "
+                            className="transition-all shadow-lg border-4 opacity-100 hover:opacity-75 scale-95 hover:scale-100 cursor-pointer"
                             priority
                         />
                     </div>
@@ -199,7 +199,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                     <div className="flex-1 flex justify-end">
                         {/* --- Desktop Language Selector --- */}
                         <div
-                            className="hidden md:flex relative"
+                            className="hidden md:flex relative cursor-pointer"
                             onMouseEnter={() => setLangMenuVisible(true)}
                         >
                             <button className="group">
@@ -213,7 +213,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                         </div>
 
                         {/* --- Mobile Menu Button --- */}
-                        <div className="md:hidden flex items-center">
+                        <div className="md:hidden flex items-center cursor-pointer">
                             <button
                                 onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
                                 className="text-gray-300 hover:text-cyan-400 transition-colors z-50"
