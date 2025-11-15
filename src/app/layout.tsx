@@ -37,9 +37,10 @@ export default async function RootLayout({
 }>) {
   const navLinks = [
     { name: await t('Home'), href: '/' },
+    { name: await t('Social'), href: '/social' },
     { name: await t('Work'), href: '/work' },
     { name: await t('Organization'), href: '/organization' },
-    { name: await t('Social'), href: '/social' },
+    { name: await t('Award'), href: '/award' },
     { name: await t('Certificate'), href:'/certificate' },
     { name: await t('Music'), href: '/music' },
     // { name: t('Project'), href: '/project' },

@@ -43,6 +43,7 @@
   "Music": "Musique",
   "Project": "Projet",
   "College": "Université",
+  "Award": "Prix",
   "Literature": "Littérature",
   "Latest": "Dernier",
   "Organization": "Organisation",
@@ -139,6 +140,10 @@
   "PARAS_Description": "Conçu le logo principal de l'événement PARAS (Forfait spécial Ramadan) Glorigion 2024 en collaboration avec d'autres designers, et a révisé et édité la mise en page du script pour le Maître de Cérémonie (MC).",
   "Concerto": "Coordonnateur pour la phase finale du Concours Concerto",
   "Concerto_Description": "Créé, révisé, coordonné et supervisé les questions du concours, telles que les mathématiques, les sciences (IPA) et les études sociales (IPS), préparées pour la phase finale de la compétition.",
+
+  "Paragon_Scholarship_Title": "Boursier du Programme d'Excellence Paragon - Promotion 2025",
+  "Paragon_Scholarship_Desc": "Bénéficiaire de la bourse Paragon (Programme d'Excellence Paragon) - Promotion 2025.",
+  "PT Paragon": "PT Paragon",
 
   "": ""
 }

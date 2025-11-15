@@ -41,6 +41,7 @@
   "Work": "工作",
   "Certificate": "证书",
   "Music": "音乐",
+  "Award": "奖项",
   "Project": "项目",
   "College": "大学",
   "Literature": "文学",
@@ -139,7 +140,11 @@
   "PARAS_Description": "与其他设计师合作，为PARAS（特别斋月套餐）Glorigion 2024活动设计了主标志，并校对和编辑了主持人的稿件布局。",
   "Concerto": "协奏曲比赛决赛阶段协调员",
   "Concerto_Description": "为比赛的最后阶段创建、校对、协调和监督比赛问题，例如数学、自然科学（IPA）和社会研究（IPS）。",
-
+  
+  "Paragon_Scholarship_Title": "2025届 Paragon 卓越奖学金获得者",
+  "Paragon_Scholarship_Desc": "Paragon 奖学金（Paragon 卓越奖学金计划）2025届获得者。",
+  "PT Paragon": "PT Paragon",
+  
   "": ""
 }
 

@@ -40,6 +40,7 @@
   "Social": "ソーシャル",
   "Work": "仕事",
   "Certificate": "証明書",
+  "Award": "受賞",
   "Music": "音楽",
   "Project": "プロジェクト",
   "College": "大学",
@@ -138,6 +139,10 @@
   "PARAS_Description": "他のデザイナーと協力してPARAS (特別ラマダンパッケージ) Glorigion 1445H のメインロゴをデザインし、司会者（Master of Ceremony）用の原稿のレイアウト校正と編集を行った。",
   "Concerto": "コンチェルト（Concerto）コンペティション決勝戦の責任者",
   "Concerto_Description": "コンペティションの決勝戦のために用意された、数学、IPA（自然科学）、IPS（社会科学）などの問題の作成、校正、調整、および監督を行った。",
+
+  "Paragon_Scholarship_Title": "2025年度 Paragon スカラーシップ・プログラム・エクセレンス奨学生",
+  "Paragon_Scholarship_Desc": "Paragon 奨学金（Paragon スカラーシップ・プログラム・エクセレンス）2025年度受給者。",
+  "PT Paragon": "PT Paragon",
 
   "": ""
 }

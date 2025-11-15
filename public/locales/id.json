@@ -45,6 +45,7 @@
   "Social": "Sosial",
   "Work": "Pekerjaan",
   "Certificate": "Sertifikat",
+  "Award": "Penghargaan",
   "Music": "Musik",
   "Project": "Projek",
   "College": "Kuliah",
@@ -139,6 +140,10 @@
   "PARAS_Description": "Mendesain logo utama dari acara PARAS (Paket Ramadan Spesial) Glorigion 2024 melalui kerja sama dengan desainer lainnya dan menyunting dan mengedit tata letak naskah untuk Master of Ceremony.",
   "Concerto": "Penanggung Jawab Tingkat Final Lomba Concerto",
   "Concerto_Description": "Membuat, mengoreksi, mengoordinasi, dan mengawasi soal-soal perlombaan, seperti Matematika, IPA, dan IPS, yang dibuat untuk tingkat final perlombaan.",
+
+  "Paragon_Scholarship_Title": "Paragon Scholarship Program Excellence Grantee Angkatan 2025",
+  "Paragon_Scholarship_Desc": "Penerima beasiswa Paragon (Paragon Scholarship Program Excellence) angkatan 2025.",
+  "PT Paragon": "PT Paragon",
 
   "": ""
 }
