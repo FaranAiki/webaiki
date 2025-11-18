@@ -8,13 +8,13 @@ const cspHeader = `
     default-src 'self';
     script-src 'self' 'unsafe-inline' 'unsafe-eval' https://faranaiki.id https://cdn.jsdelivr.net;
     style-src 'self' 'unsafe-inline';
-    img-src 'self' blob: data: static.wikia.nocookie.net i.ytimg.com placehold.co upload.wikimedia.org webaiki.vercel.app;
+    img-src 'self' blob: data: https://static.wikia.nocookie.net https://i.ytimg.com https://placehold.co https://upload.wikimedia.org https://webaiki.vercel.app https://faranaiki.id https://faranaiki.site;
     font-src 'self';
     object-src 'self';
     base-uri 'self';
     form-action 'self';
     frame-ancestors 'none';
-    frame-src 'self' open.spotify.com w.soundcloud.com;
+    frame-src 'self' https://open.spotify.com https://w.soundcloud.com;
     connect-src 'self' https://cdn.jsdelivr.net https://faranaiki.id;
     worker-src 'self' blob:;
 `;
