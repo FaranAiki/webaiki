@@ -66,6 +66,9 @@
   "Loading_College": "大学データを読み込み中...",
   "Loading_Literature": "文学データを読み込み中...",
 
+  "Loading_Python": "Pythonとソースコードをダウンロード中....",
+  "Python_Web_Title": "Python対話型インターフェース",
+
   "Poem_Indonesia": "詩（インドネシア語）",
   "Short_Story_Indonesia": "短編小説（インドネシア語）",
   "Poem_English": "詩（英語）",
@@ -97,6 +100,7 @@
   "WI1111": "基礎物理学実験室 (WI1111)",
   "WI1102": "計算論的思考 (WI1102)",
   "MA1101": "数学I (MA1101)",
+  "WI1102_Practicum": "計算論的思考実習 (WI1111)",
 
   "Others": "その他",
   "Personal": "個人",

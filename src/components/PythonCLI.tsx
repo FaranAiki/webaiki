@@ -7,9 +7,8 @@ import React, {
   useCallback,
   FormEvent,
   ChangeEvent,
+  KeyboardEvent,
 } from "react";
-
-// --- Types ---
 
 type HistoryType = 'output' | 'error' | 'system' | 'input';
 
@@ -24,14 +23,16 @@ interface WorkerMessageData {
 }
 
 interface PythonCLIProps {
+  loadingText: string, 
+  terminalTitle: string,
   searchParams: {
     type?: string;
     source?: string;
   };
 }
 
-// --- Skrip Demo ---
 const DEMO_SCRIPT = `
+print("Welcome to the Python Web Terminal!")
 while True:
     eval(input(">>> "))
 `;
@@ -41,7 +42,6 @@ importScripts("https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js");
 
 let pyodide = null;
 let stdinBuffer = null;
-// Decoder untuk mengubah Uint8Array dari 'write' handler menjadi string
 const decoder = new TextDecoder();
 
 self.onmessage = async (event) => {
@@ -53,13 +53,10 @@ self.onmessage = async (event) => {
 
       pyodide = await loadPyodide({ indexURL: "https://cdn.jsdelivr.net/pyodide/v0.26.1/full/" });
       
-      // FIX: Mengganti 'batched' dengan 'write' untuk mendukung 'isatty: true'
       pyodide.setStdout({
         write: (buffer) => {
-          // buffer adalah Uint8Array, kita decode ke string
           const text = decoder.decode(buffer);
           self.postMessage({ type: 'output', text: text });
-          // return jumlah bytes yang ditulis (wajib)
           return buffer.length;
         },
         isatty: true
@@ -78,13 +75,14 @@ self.onmessage = async (event) => {
         stdin: () => {
           self.postMessage({ type: 'input_request' });
           
+          // Block until main thread notifies
           Atomics.wait(stdinBuffer, 0, 0);
+          // Reset flag immediately after waking
           Atomics.store(stdinBuffer, 0, 0);
           
           const length = stdinBuffer[1];
           const sharedBytes = new Uint8Array(data.sab, 8, length);
           const localBytes = new Uint8Array(sharedBytes); 
-          // Decode input dari main thread
           const str = new TextDecoder().decode(localBytes);
           
           return str;
@@ -113,6 +111,8 @@ self.onmessage = async (event) => {
 
 export default function PythonCLI({
   searchParams,
+  terminalTitle,
+  loadingText,
 }: PythonCLIProps) {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isFetchingScript, setIsFetchingScript] = useState<boolean>(false);
@@ -120,17 +120,16 @@ export default function PythonCLI({
   const [isWaitingForInput, setIsWaitingForInput] = useState<boolean>(false);
   const [currentInput, setCurrentInput] = useState<string>("");
   const [script, setScript] = useState<string | null>(null);
-  
+   
   const workerRef = useRef<Worker | null>(null);
   const sabRef = useRef<SharedArrayBuffer | null>(null);
-  const ranScriptRef = useRef<string | null>(null); // Track execution to prevent double runs
-  
+  const ranScriptRef = useRef<string | null>(null); 
+   
   const terminalContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const addToHistory = useCallback((item: HistoryItem) => {
     setHistory((prev) => {
-      // Logika gabung output
       if (prev.length > 0) {
         const lastIdx = prev.length - 1;
         const lastItem = prev[lastIdx];
@@ -153,7 +152,7 @@ export default function PythonCLI({
     if (typeof SharedArrayBuffer === "undefined") {
       addToHistory({ 
         type: "error", 
-        text: "CRITICAL ERROR: SharedArrayBuffer is not defined.\nPastikan header COOP & COEP aktif." 
+        text: "CRITICAL ERROR: SharedArrayBuffer is not defined.\nEnsure Cross-Origin-Opener-Policy (COOP) and Cross-Origin-Embedder-Policy (COEP) headers are set on the server." 
       });
       setIsLoading(false);
       return;
@@ -164,6 +163,7 @@ export default function PythonCLI({
     workerRef.current = worker;
 
     const sab = new SharedArrayBuffer(1024 * 10);
+    sabRef.current = sab; // Store SAB in ref
 
     worker.onmessage = (e: MessageEvent<WorkerMessageData>) => {
       const { type, text } = e.data;
@@ -171,7 +171,6 @@ export default function PythonCLI({
       switch (type) {
         case 'ready':
           setIsLoading(false);
-          addToHistory({ type: "system", text: "Python Environment Ready.\n" });
           break;
         case 'output':
           if (text !== undefined) addToHistory({ type: "output", text: text });
@@ -183,7 +182,7 @@ export default function PythonCLI({
           }
           break;
         case 'input_request':
-          // Saat input diminta, pastikan tidak ada newline di akhir prompt terakhir
+          // Remove trailing newline from the last output to keep prompt on same line
           setHistory(prev => {
             if (prev.length === 0) return prev;
             const newHistory = [...prev];
@@ -200,10 +199,9 @@ export default function PythonCLI({
           });
           
           setIsWaitingForInput(true);
-          setTimeout(() => inputRef.current?.focus(), 10);
           break;
         case 'finished':
-          addToHistory({ type: "system", text: "\n--- Program Selesai ---\n" });
+          addToHistory({ type: "system", text: "\n--- Program Finished ---\n" });
           break;
       }
     };
@@ -215,21 +213,17 @@ export default function PythonCLI({
     };
   }, [addToHistory]);
 
-  // --- Script Fetching ---
   useEffect(() => {
-    const controller = new AbortController(); // Create controller
+    const controller = new AbortController();
     let isSubscribed = true;
 
     async function fetchScript() {
       if (searchParams.type === "python" && searchParams.source) {
         if (isSubscribed) setIsFetchingScript(true);
         
-        // Reset ranScriptRef so new scripts can run
         if (ranScriptRef.current !== searchParams.source) {
             ranScriptRef.current = null; 
         }
-        
-        addToHistory({ type: "system", text: `Fetching ${searchParams.source}...\n` });
         
         try {
           const res = await fetch(searchParams.source!, { 
@@ -241,17 +235,15 @@ export default function PythonCLI({
           
           if (isSubscribed) {
             setScript(text);
-            addToHistory({ type: "system", text: "Script loaded.\n" });
+            // addToHistory({ type: "system", text: "Script loaded.\n" });
           }
         } catch (e: unknown) {
-          if (e instanceof Error && e.name === 'AbortError') {
-             // Request was aborted, do nothing
-             return; 
-          }
+          if (e instanceof Error && e.name === 'AbortError') return;
+          
           if (isSubscribed) {
             const errorMessage = e instanceof Error ? e.message : String(e);
-            addToHistory({ type: "error", text: `Fetch Error: ${errorMessage}\n` });
-            setScript(DEMO_SCRIPT); // Fallback to demo
+            // addToHistory({ type: "error", text: `Fetch Error: ${errorMessage}\n` });
+            setScript(DEMO_SCRIPT); 
           }
         } finally {
           if (isSubscribed) setIsFetchingScript(false);
@@ -265,15 +257,12 @@ export default function PythonCLI({
 
     return () => {
       isSubscribed = false;
-      controller.abort(); // Cancel request on unmount/re-run
+      controller.abort();
     };
   }, [searchParams, addToHistory]);
 
   // --- Auto Run ---
   useEffect(() => {
-    // Only run if:
-    // 1. Everything is ready
-    // 2. We haven't already run this exact script content (tracked by ranScriptRef)
     if (
         !isLoading && 
         !isFetchingScript && 
@@ -281,22 +270,25 @@ export default function PythonCLI({
         workerRef.current && 
         ranScriptRef.current !== script
     ) {
-      addToHistory({ type: "system", text: "--- Running Script ---\n" });
       workerRef.current.postMessage({ type: 'run', data: { script } });
-      ranScriptRef.current = script; // Mark this script as run
+      ranScriptRef.current = script; 
     }
   }, [isLoading, isFetchingScript, script, addToHistory]);
 
-  // --- Auto Scroll ---
   useEffect(() => {
     if (terminalContainerRef.current) {
       terminalContainerRef.current.scrollTop = terminalContainerRef.current.scrollHeight;
     }
   }, [history, isWaitingForInput]);
 
-  // --- Input Logic ---
-  const handleInputSubmit = (e: FormEvent) => {
-    e.preventDefault();
+  // Force focus when waiting for input
+  useEffect(() => {
+    if (isWaitingForInput && inputRef.current) {
+        inputRef.current.focus();
+    }
+  }, [isWaitingForInput]);
+
+  const submitInput = () => {
     if (!isWaitingForInput || !sabRef.current) return;
 
     addToHistory({ type: "input", text: currentInput + "\n" });
@@ -307,7 +299,7 @@ export default function PythonCLI({
     const bytes = encoder.encode(currentInput);
 
     if (bytes.length > 1024 * 8) {
-      alert("Input too long!");
+      addToHistory({ type: "error", text: "Input too long!\n" });
       return;
     }
 
@@ -322,6 +314,18 @@ export default function PythonCLI({
     setCurrentInput("");
   };
 
+  const handleFormSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    submitInput();
+  };
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        submitInput();
+    }
+  };
+
   const handleTerminalClick = () => {
     if (isWaitingForInput && inputRef.current) {
       inputRef.current.focus();
@@ -334,33 +338,39 @@ export default function PythonCLI({
 
   return (
     <div className="font-sans flex items-center justify-center min-h-screen p-4 no-scrollbar">
-      <div className="w-full max-w-3xl bg-gray-900 text-gray-100 rounded-lg shadow-2xl overflow-hidden flex flex-col h-[80vh]">
+      <div className="w-full max-w-3xl bg-gray-900 text-gray-100 rounded-lg shadow-2xl overflow-hidden flex flex-col h-[80vh] border border-gray-800">
         
-        {/* Header */}
-        <div className="flex items-center justify-between p-3 bg-gray-800 border-b border-gray-700 shrink-0">
-          <div className="flex space-x-2">
-            <span className="w-3 h-3 bg-red-500 rounded-full"></span>
-            <span className="w-3 h-3 bg-yellow-500 rounded-full"></span>
-            <span className="w-3 h-3 bg-green-500 rounded-full"></span>
-          </div>
-          <span className="font-mono text-sm opacity-80">Python Web Terminal</span>
-          <div className="w-24 text-right text-xs text-blue-300 animate-pulse">
-            {(isLoading || isFetchingScript) && "Loading..."}
-          </div>
+        {/* Updated Header: Centered and Bold Title */}
+        <div className="flex items-center justify-between p-3 bg-gray-800 border-b border-gray-700 shrink-0 select-none">
+          <div className="w-24"></div> {/* Spacer to balance the layout */}
+          <span className="font-mono text-sm font-bold opacity-80 text-center">
+             {terminalTitle}
+          </span>
+          <div className="w-24"></div> {/* Empty spacer for symmetry */}
         </div>
 
-        {/* Terminal Body (REPL Style) */}
         <div 
           ref={terminalContainerRef} 
-          className="flex-1 p-4 font-mono text-sm overflow-y-auto cursor-text"
+          className="flex-1 p-4 font-mono text-sm overflow-y-auto cursor-text scroll-smooth"
           onClick={handleTerminalClick}
         >
-          <pre className="whitespace-pre-wrap break-words font-mono">
+          <div className="whitespace-pre-wrap break-words font-mono no-scrollbar">
+            
+            {/* Loading Text: Appears inside terminal, deleted when done */}
+            {(isLoading || isFetchingScript) && (
+                <div className="text-blue-300 animate-pulse mb-2">
+                    {loadingText}
+                </div>
+            )}
+
             {history.map((item, index) => (
               <span 
                 key={index} 
                 className={
-                  item.type === "system" ? "text-gray-500 italic" : "text-gray-100"
+                  item.type === "system" ? "text-gray-500 italic" : 
+                  // item.type === "error" ? "text-red-400" :
+                  item.type === "input" ? "text-white font-bold" :
+                  "text-gray-100"
                 }
               >
                 {item.text}
@@ -368,14 +378,15 @@ export default function PythonCLI({
             ))}
 
             {isWaitingForInput && (
-              <span className="inline-flex">
-                <form onSubmit={handleInputSubmit} className="inline">
+              <span className="inline-flex align-baseline">
+                <form onSubmit={handleFormSubmit} className="inline">
                   <input
                     ref={inputRef}
                     type="text"
                     value={currentInput}
                     onChange={handleInputChange}
-                    className="bg-transparent border-none outline-none text-cyan-300 font-bold p-0 m-0 min-w-[1ch] w-auto"
+                    onKeyDown={handleKeyDown}
+                    className="bg-transparent border-none outline-none text-cyan-300 font-bold p-0 m-0 min-w-[1ch]"
                     autoFocus
                     autoComplete="off"
                     style={{ 
@@ -386,7 +397,11 @@ export default function PythonCLI({
                 </form>
               </span>
             )}
-          </pre>
+            
+            {!isWaitingForInput && !isLoading && (
+                  <span className="inline-block w-2 h-4 bg-gray-500 animate-pulse align-middle ml-1" />
+            )}
+          </div>
         </div>
 
       </div>

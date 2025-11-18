@@ -67,6 +67,9 @@
   "Loading_College": "Loading college data ....",
   "Loading_Literature": "Loading literature data ....",
 
+  "Loading_Python": "Downloading Python and Source Code....",
+  "Python_Web_Title": "Python Interactive Interface",
+
   "Poem_Indonesia": "Poem (Indonesian)",
   "Short_Story_Indonesia": "Short Story (Indonesian)",
   "Poem_English": "Poem (English)",
@@ -98,6 +101,7 @@
   "WI1111": "Basic Physics Laboratory (WI1111)",
   "WI1102": "Computational Thinking (WI1102)",
   "MA1101": "Mathematics I (MA1101)",
+  "WI1102_Practicum": "Computational Thinking Practicum (WI1111)",
   "Others": "Others",
 
   "Personal": "Personal",

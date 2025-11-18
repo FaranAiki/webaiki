@@ -67,6 +67,9 @@
   "Loading_College": "正在加载大学数据....",
   "Loading_Literature": "正在加载文学数据....",
 
+  "Loading_Python": "正在下载 Python 和源代码....",
+  "Python_Web_Title": "Python 交互式界面",
+
   "Poem_Indonesia": "诗歌（印尼语）",
   "Short_Story_Indonesia": "短篇小说（印尼语）",
   "Poem_English": "诗歌（英语）",
@@ -98,6 +101,7 @@
   "WI1111": "基础物理实验室 (WI1111)",
   "WI1102": "计算思维 (WI1102)",
   "MA1101": "数学 I (MA1101)",
+  "WI1102_Practicum": "计算思维实践 (WI1111)",
   "Others": "其他",
 
   "Personal": "个人",

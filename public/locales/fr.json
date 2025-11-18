@@ -67,6 +67,9 @@
   "Loading_College": "Chargement des données universitaires ....",
   "Loading_Literature": "Chargement des données de littérature ....",
 
+  "Loading_Python": "Téléchargement de Python et du code source....",
+  "Python_Web_Title": "Interface interactive Python",
+
   "Poem_Indonesia": "Poème (Indonésien)",
   "Short_Story_Indonesia": "Nouvelle (Indonésien)",
   "Poem_English": "Poème (Anglais)",
@@ -98,6 +101,7 @@
   "WI1111": "Laboratoire de Physique de Base (WI1111)",
   "WI1102": "Pensée Computationnelle (WI1102)",
   "MA1101": "Mathématiques I (MA1101)",
+  "WI1102_Practicum": "Travaux pratiques de pensée informatique (WI1111)",
   "Others": "Autres",
 
   "Personal": "Personnel",

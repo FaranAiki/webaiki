@@ -58,14 +58,17 @@
   "Question_Title": "Pertanyaan",
   "Submit": "Kirim",
   "Provide_Question": "Tulis pertanyaan terlebih dahulu.",
-  "Waiting": "Sebentar ....",
+  "Waiting": "Sebentar....",
 
   "About_Me": "Tentang Saya",
   "Connect_Me": "Ayo Mutualan!",
 
-  "Loading_Certificate": "Mengunduh data sertifikat ....",
-  "Loading_College": "Mengunduh data perkuliahan ....",
-  "Loading_Literature": "Mengunduh data sastra ....",
+  "Loading_Certificate": "Mengunduh data sertifikat....",
+  "Loading_College": "Mengunduh data perkuliahan....",
+  "Loading_Literature": "Mengunduh data sastra....",
+  
+  "Loading_Python": "Mengunduh Python dan Kode Sumbernya....",
+  "Python_Web_Title": "Antarmuka Interaktif Python",
 
   "Poem_Indonesia": "Puisi (Indonesia)",
   "Short_Story_Indonesia": "Cerita Pendek (Indonesia)",
@@ -84,13 +87,13 @@
   "8th Semester": "Semester ke-8",
 
   "gemini_wait1": "Pertanyaan yang menarik!",
-  "gemini_wait2": "Sedang berpikir ....",
-  "gemini_wait3": "Sedang menyiapkan jawaban terbaik untukmu ....",
-  "gemini_wait4": "Ah, jadi kamu penasaran tentang dia ....",
-  "gemini_wait5": "Aku sedang memikirkan jawaban yang terbaik ....",
-  "gemini_wait6": "Sebentar, aku akan memanggil dia ....",
-  "gemini_wait7": "Biarkan aku mengirim pesan untuknya ....",
-  "gemini_wait8": "Sebentar ....",
+  "gemini_wait2": "Sedang berpikir....",
+  "gemini_wait3": "Sedang menyiapkan jawaban terbaik untukmu....",
+  "gemini_wait4": "Ah, jadi kamu penasaran tentang dia....",
+  "gemini_wait5": "Aku sedang memikirkan jawaban yang terbaik....",
+  "gemini_wait6": "Sebentar, aku akan memanggil dia....",
+  "gemini_wait7": "Biarkan aku mengirim pesan untuknya....",
+  "gemini_wait8": "Sebentar....",
 
   "FI1101": "Fisika I (FI1101)",
   "WI2005": "Bahasa Indonesia (WI2005)",
@@ -98,6 +101,7 @@
   "WI1111": "Laboratorium Fisika Dasar (WI1111)",
   "WI1102": "Berpikir Komputasional (WI1102)",
   "MA1101": "Matematika I (MA1101)",
+  "WI1102_Practicum": "Praktikum Berpikir Komputasional (WI1111)",
   "Others": "Lainnya",
 
   "Personal": "Pribadi",
