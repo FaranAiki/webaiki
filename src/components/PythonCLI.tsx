@@ -164,7 +164,6 @@ export default function PythonCLI({
     workerRef.current = worker;
 
     const sab = new SharedArrayBuffer(1024 * 10);
-    sabRef.current = sab;
 
     worker.onmessage = (e: MessageEvent<WorkerMessageData>) => {
       const { type, text } = e.data;
@@ -334,7 +333,7 @@ export default function PythonCLI({
   };
 
   return (
-    <div className="font-sans flex items-center justify-center min-h-screen p-4 no-scrollbar bg-black">
+    <div className="font-sans flex items-center justify-center min-h-screen p-4 no-scrollbar">
       <div className="w-full max-w-3xl bg-gray-900 text-gray-100 rounded-lg shadow-2xl overflow-hidden flex flex-col h-[80vh]">
         
         {/* Header */}
