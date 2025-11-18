@@ -5,36 +5,37 @@ import React, {
   useEffect,
   useRef,
   useCallback,
-  JSX,
+  FormEvent,
+  ChangeEvent,
 } from "react";
+
+// --- Types ---
+
+type HistoryType = 'output' | 'error' | 'system' | 'input';
+
+interface HistoryItem {
+  type: HistoryType;
+  text: string;
+}
+
+interface WorkerMessageData {
+  type: 'ready' | 'output' | 'error' | 'input_request' | 'finished';
+  text?: string;
+}
+
+interface PythonCLIProps {
+  searchParams: {
+    type?: string;
+    source?: string;
+  };
+}
 
 // --- Skrip Demo ---
 const DEMO_SCRIPT = `
-import sys
-import platform
-import time
-
-print(f"Hello from Pyodide!")
-print(f"Python version: {sys.version}")
-
-print("\\n--- Running a demo loop ---")
-for i in range(3):
-    print(f"Count: {i}")
-    time.sleep(0.5) 
-
-print("\\n--- Testing Input (REPL Style) ---")
-
-# Karena 'isatty: true' sudah diset di worker, prompt input akan otomatis di-flush
-name = input("Siapa nama kamu? ") 
-print(f"Halo, {name}!")
-
-age = input(f"Berapa umur {name}? ")
-print(f"Wow, {age} tahun!")
-
-"Demo selesai."
+while True:
+    eval(input(">>> "))
 `;
 
-// --- Worker Code ---
 const WORKER_CODE = `
 importScripts("https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js");
 
@@ -110,33 +111,22 @@ self.onmessage = async (event) => {
 };
 `;
 
-interface HistoryItem {
-  type: "system" | "input" | "output" | "error";
-  text: string;
-}
-
-type PythonCLIProps = {
-  searchParams: {
-    type?: string;
-    source?: string;
-  };
-};
-
 export default function PythonCLI({
   searchParams,
-}: PythonCLIProps): JSX.Element {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isFetchingScript, setIsFetchingScript] = useState(false);
+}: PythonCLIProps) {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isFetchingScript, setIsFetchingScript] = useState<boolean>(false);
   const [history, setHistory] = useState<HistoryItem[]>([]);
-  const [isWaitingForInput, setIsWaitingForInput] = useState(false);
-  const [currentInput, setCurrentInput] = useState("");
+  const [isWaitingForInput, setIsWaitingForInput] = useState<boolean>(false);
+  const [currentInput, setCurrentInput] = useState<string>("");
   const [script, setScript] = useState<string | null>(null);
   
   const workerRef = useRef<Worker | null>(null);
   const sabRef = useRef<SharedArrayBuffer | null>(null);
+  const ranScriptRef = useRef<string | null>(null); // Track execution to prevent double runs
   
-  const terminalContainerRef = useRef<HTMLDivElement | null>(null);
-  const inputRef = useRef<HTMLInputElement | null>(null);
+  const terminalContainerRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const addToHistory = useCallback((item: HistoryItem) => {
     setHistory((prev) => {
@@ -176,7 +166,7 @@ export default function PythonCLI({
     const sab = new SharedArrayBuffer(1024 * 10);
     sabRef.current = sab;
 
-    worker.onmessage = (e) => {
+    worker.onmessage = (e: MessageEvent<WorkerMessageData>) => {
       const { type, text } = e.data;
       
       switch (type) {
@@ -185,11 +175,13 @@ export default function PythonCLI({
           addToHistory({ type: "system", text: "Python Environment Ready.\n" });
           break;
         case 'output':
-          addToHistory({ type: "output", text: text });
+          if (text !== undefined) addToHistory({ type: "output", text: text });
           break;
         case 'error':
-          const cleanMsg = text.replace(/^PythonError: Traceback \(most recent call last\):/, 'Traceback:');
-          addToHistory({ type: "error", text: cleanMsg });
+          if (text !== undefined) {
+            const cleanMsg = text.replace(/^PythonError: Traceback \(most recent call last\):/, 'Traceback:');
+            addToHistory({ type: "error", text: cleanMsg });
+          }
           break;
         case 'input_request':
           // Saat input diminta, pastikan tidak ada newline di akhir prompt terakhir
@@ -226,36 +218,73 @@ export default function PythonCLI({
 
   // --- Script Fetching ---
   useEffect(() => {
+    const controller = new AbortController(); // Create controller
+    let isSubscribed = true;
+
     async function fetchScript() {
       if (searchParams.type === "python" && searchParams.source) {
-        setIsFetchingScript(true);
+        if (isSubscribed) setIsFetchingScript(true);
+        
+        // Reset ranScriptRef so new scripts can run
+        if (ranScriptRef.current !== searchParams.source) {
+            ranScriptRef.current = null; 
+        }
+        
         addToHistory({ type: "system", text: `Fetching ${searchParams.source}...\n` });
+        
         try {
-          const res = await fetch(searchParams.source);
+          const res = await fetch(searchParams.source!, { 
+              signal: controller.signal 
+          });
+          
           if (!res.ok) throw new Error(res.statusText);
           const text = await res.text();
-          setScript(text);
-          addToHistory({ type: "system", text: "Script loaded.\n" });
+          
+          if (isSubscribed) {
+            setScript(text);
+            addToHistory({ type: "system", text: "Script loaded.\n" });
+          }
         } catch (e: unknown) {
-          // Fix for "Unexpected any" error
-          const errorMessage = e instanceof Error ? e.message : String(e);
-          addToHistory({ type: "error", text: `Fetch Error: ${errorMessage}\n` });
-          setScript(DEMO_SCRIPT);
+          if (e instanceof Error && e.name === 'AbortError') {
+             // Request was aborted, do nothing
+             return; 
+          }
+          if (isSubscribed) {
+            const errorMessage = e instanceof Error ? e.message : String(e);
+            addToHistory({ type: "error", text: `Fetch Error: ${errorMessage}\n` });
+            setScript(DEMO_SCRIPT); // Fallback to demo
+          }
         } finally {
-          setIsFetchingScript(false);
+          if (isSubscribed) setIsFetchingScript(false);
         }
       } else {
-        setScript(DEMO_SCRIPT);
+        if (isSubscribed) setScript(DEMO_SCRIPT);
       }
     }
+
     fetchScript();
+
+    return () => {
+      isSubscribed = false;
+      controller.abort(); // Cancel request on unmount/re-run
+    };
   }, [searchParams, addToHistory]);
 
   // --- Auto Run ---
   useEffect(() => {
-    if (!isLoading && !isFetchingScript && script && workerRef.current) {
+    // Only run if:
+    // 1. Everything is ready
+    // 2. We haven't already run this exact script content (tracked by ranScriptRef)
+    if (
+        !isLoading && 
+        !isFetchingScript && 
+        script && 
+        workerRef.current && 
+        ranScriptRef.current !== script
+    ) {
       addToHistory({ type: "system", text: "--- Running Script ---\n" });
       workerRef.current.postMessage({ type: 'run', data: { script } });
+      ranScriptRef.current = script; // Mark this script as run
     }
   }, [isLoading, isFetchingScript, script, addToHistory]);
 
@@ -267,7 +296,7 @@ export default function PythonCLI({
   }, [history, isWaitingForInput]);
 
   // --- Input Logic ---
-  const handleInputSubmit = (e: React.FormEvent) => {
+  const handleInputSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (!isWaitingForInput || !sabRef.current) return;
 
@@ -300,6 +329,10 @@ export default function PythonCLI({
     }
   };
 
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setCurrentInput(e.target.value);
+  };
+
   return (
     <div className="font-sans flex items-center justify-center min-h-screen p-4 no-scrollbar bg-black">
       <div className="w-full max-w-3xl bg-gray-900 text-gray-100 rounded-lg shadow-2xl overflow-hidden flex flex-col h-[80vh]">
@@ -328,8 +361,6 @@ export default function PythonCLI({
               <span 
                 key={index} 
                 className={
-                  // item.type === "input" ? "text-cyan-300 font-bold" :
-                  // item.type === "error" ? "text-gray-" : // Changed from red-400 to amber-400
                   item.type === "system" ? "text-gray-500 italic" : "text-gray-100"
                 }
               >
@@ -344,7 +375,7 @@ export default function PythonCLI({
                     ref={inputRef}
                     type="text"
                     value={currentInput}
-                    onChange={(e) => setCurrentInput(e.target.value)}
+                    onChange={handleInputChange}
                     className="bg-transparent border-none outline-none text-cyan-300 font-bold p-0 m-0 min-w-[1ch] w-auto"
                     autoFocus
                     autoComplete="off"
