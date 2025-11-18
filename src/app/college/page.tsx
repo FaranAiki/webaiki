@@ -45,6 +45,8 @@ export async function getCollectionsData() {
 
             if (file.endsWith('.link') || file.endsWith('.lnk')) { 
               openPath = fs.readFileSync(path.join(process.cwd(), 'public', 'documents', 'college', semester, subject, file), 'utf-8');
+            } else if (file.endsWith('py') || file.endsWith('python')) {
+              openPath= `https://faranaiki.id/project?type=python&source=/documents/college/${semester}/${subject}/${file}`;
             } else {
               openPath = `/documents/college/${semester}/${subject}/${file}`;
             }

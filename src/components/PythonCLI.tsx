@@ -236,8 +236,10 @@ export default function PythonCLI({
           const text = await res.text();
           setScript(text);
           addToHistory({ type: "system", text: "Script loaded.\n" });
-        } catch (e: any) {
-          addToHistory({ type: "error", text: `Fetch Error: ${e.message}\n` });
+        } catch (e: unknown) {
+          // Fix for "Unexpected any" error
+          const errorMessage = e instanceof Error ? e.message : String(e);
+          addToHistory({ type: "error", text: `Fetch Error: ${errorMessage}\n` });
           setScript(DEMO_SCRIPT);
         } finally {
           setIsFetchingScript(false);
@@ -352,7 +354,6 @@ export default function PythonCLI({
                     }}
                   />
                 </form>
-                {/* Removed the flashing block caret span */}
               </span>
             )}
           </pre>
