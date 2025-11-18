@@ -6,15 +6,17 @@ import type { Configuration as WebpackConfiguration } from 'webpack';
 // FUCK YOU UNSAFE-INLINEEEE
 const cspHeader = `
     default-src 'self';
-    script-src 'self' 'unsafe-inline';
+    script-src 'self' 'unsafe-inline' 'unsafe-eval' https://faranaiki.id https://cdn.jsdelivr.net;
     style-src 'self' 'unsafe-inline';
     img-src 'self' blob: data: static.wikia.nocookie.net i.ytimg.com placehold.co upload.wikimedia.org webaiki.vercel.app;
     font-src 'self';
-    object-src 'none';
+    object-src 'self';
     base-uri 'self';
     form-action 'self';
     frame-ancestors 'none';
     frame-src 'self' open.spotify.com w.soundcloud.com;
+    connect-src 'self' https://cdn.jsdelivr.net https://faranaiki.id;
+    worker-src 'self' blob:;
 `;
 
 const nextConfig = {
@@ -62,8 +64,15 @@ const nextConfig = {
           },
           {
             key: 'Cache-Control',
-            // This is a common, robust "do not cache" directive
             value: 'private, no-cache, no-store, must-revalidate',
+          },
+          {
+            key: 'Cross-Origin-Opener-Policy',
+            value: 'same-origin',
+          },
+          {
+            key: 'Cross-Origin-Embedder-Policy',
+            value: 'require-corp',
           },
         ],
       },
