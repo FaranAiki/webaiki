@@ -68,7 +68,7 @@ const nextConfig = {
           },
           {
             key: 'Cross-Origin-Opener-Policy',
-            value: 'same-origin',
+            value: 'credentialless', // bahaya wlee
           },
           {
             key: 'Cross-Origin-Embedder-Policy',
