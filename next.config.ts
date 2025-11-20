@@ -14,7 +14,7 @@ const cspHeader = `
     base-uri 'self';
     form-action 'self';
     frame-ancestors 'none';
-    frame-src 'self' https://open.spotify.com https://w.soundcloud.com;
+    frame-src 'self' open.spotify.com  https://open.spotify.com https://w.soundcloud.com w.soundcloud.com;
     connect-src 'self' https://cdn.jsdelivr.net https://faranaiki.id;
     worker-src 'self' blob:;
 `;
@@ -68,7 +68,7 @@ const nextConfig = {
           },
           {
             key: 'Cross-Origin-Opener-Policy',
-            value: 'credentialless', // bahaya wlee
+            value: 'same-origin',
           },
           {
             key: 'Cross-Origin-Embedder-Policy',
