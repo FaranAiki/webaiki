@@ -14,6 +14,7 @@ const inter = Inter({ subsets: ["latin"] });
 interface NavLink {
     name: string;
     href: string;
+    subLinks?: NavLink[];
 }
 
 interface HeaderProps {
@@ -58,7 +59,13 @@ function CloseIcon() {
     );
 }
 
-// --- Main Header Component ---
+function ChevronDown() {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-1">
+            <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+    );
+}
 
 export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_lang, jp_lang, ru_lang, fr_lang, ar_lang, select_lang }: HeaderProps) {
     const pathname = usePathname();
@@ -66,11 +73,9 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
     const [isLangMenuVisible, setLangMenuVisible] = useState(false);
     const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-    // --- 1. NEW STATE TO TRACK SCROLL POSITION & VISIBILITY ---
     const [shouldShowHeader, setShouldShowHeader] = useState(true);
     const [lastYPos, setLastYPos] = useState(0);
 
-    // Prevent body scroll when mobile menu is open
     useEffect(() => {
         if (isMobileMenuOpen) {
             document.body.style.overflow = 'hidden';
@@ -82,20 +87,17 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
         };
     }, [isMobileMenuOpen]);
 
-    // --- 2. NEW EFFECT TO HANDLE SCROLL EVENTS ---
     useEffect(() => {
         function handleScroll() {
             const currentYPos = window.scrollY;
             const isScrollingUp = currentYPos < lastYPos;
 
-            // Show header if scrolling up or at the very top of the page
             setShouldShowHeader(isScrollingUp || currentYPos < 10);
             setLastYPos(currentYPos);
         }
 
         window.addEventListener('scroll', handleScroll, { passive: true });
 
-        // Cleanup function to remove the event listener
         return () => window.removeEventListener('scroll', handleScroll);
     }, [lastYPos]);
 
@@ -136,11 +138,21 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
         </div>
     );
 
-    const currentPageTitle = navLinks.find(link => pathname === link.href)?.name;
+    const findPageTitle = (links: NavLink[]): string | undefined => {
+        for (const link of links) {
+            if (link.href === pathname) return link.name;
+            if (link.subLinks) {
+                const found = findPageTitle(link.subLinks);
+                if (found) return found;
+            }
+        }
+        return undefined;
+    };
+
+    const currentPageTitle = findPageTitle(navLinks);
 
     return (
         <>
-            {/* --- 3. UPDATED HEADER WITH DYNAMIC CLASSES --- */}
             <header
                 className={`
           w-full fixed top-0 left-0 right-0 z-30 bg-gray-900/80 backdrop-blur-sm border-b border-gray-700
@@ -151,7 +163,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
             >
                 <div className="container flex items-center justify-between mx-auto px-4 sm:px-8 py-4">
 
-                    {/* Left section (spacer) */}
+                    {/* Left section (Logo) */}
                     <div className="flex-1">
                         <Image
                             onClick={() => redirect('/')}
@@ -177,14 +189,57 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                     <nav className="hidden md:flex flex-shrink-0">
                         <ul className="flex items-center space-x-8">
                             {navLinks.map((link) => {
+                                const hasSubLinks = link.subLinks && link.subLinks.length > 0;
+
+                                if (hasSubLinks) {
+                                    const isChildActive = link.subLinks?.some(sub => pathname === sub.href);
+
+                                    return (
+                                        <li key={link.name} className="relative group">
+                                            <button
+                                                className={`flex items-center text-base transition-all duration-300 ${isChildActive
+                                                        ? 'text-cyan-400 font-bold'
+                                                        : 'text-gray-300 font-semibold group-hover:text-cyan-400'
+                                                    }`}
+                                            >
+                                                {link.name}
+                                                <ChevronDown />
+                                            </button>
+
+                                            {/* Dropdown Menu */}
+                                            <div className="absolute top-full left-1/2 transform -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-80 group-hover:visible transition-all duration-200 ease-in-out">
+                                                <ul className="bg-gray-900 border border-gray-700 rounded-md shadow-xl py-2 min-w-[180px]">
+                                                    {link.subLinks!.map((subLink) => {
+                                                        const isSubActive = pathname === subLink.href;
+                                                        return (
+                                                            <li key={subLink.href}>
+                                                                <Link
+                                                                    href={subLink.href}
+                                                                    className={`block px-4 py-2 text-sm hover:bg-gray-800 transition-colors ${isSubActive
+                                                                            ? 'text-cyan-400 font-bold bg-gray-800/50'
+                                                                            : 'text-gray-300 hover:text-cyan-400'
+                                                                        }`}
+                                                                >
+                                                                    {subLink.name}
+                                                                </Link>
+                                                            </li>
+                                                        );
+                                                    })}
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    );
+                                }
+
+                                // Render Standard Link
                                 const isActive = pathname === link.href;
                                 return (
                                     <li key={link.href}>
                                         <Link
                                             href={link.href}
                                             className={`text-base transition-all duration-300 ${isActive
-                                                ? 'text-cyan-400 font-bold'
-                                                : 'text-gray-300 font-semibold hover:text-cyan-400'
+                                                    ? 'text-cyan-400 font-bold'
+                                                    : 'text-gray-300 font-semibold hover:text-cyan-400'
                                                 }`}
                                         >
                                             {link.name}
@@ -228,9 +283,40 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
 
             {/* --- Mobile Sidebar Navigation --- */}
             <div className={`no-scrollbar fixed top-0 right-0 h-full w-64 bg-gray-900/95 backdrop-blur-md shadow-2xl z-20 transform transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} md:hidden overflow-y-auto`}>
-                <nav className="mt-20 px-4 pb-8">
-                    <ul className="flex flex-col space-y-6">
+                <nav className="mt-20 px-6 pb-8">
+                    <ul className="flex flex-col space-y-4">
                         {navLinks.map((link) => {
+                            // Handle Group Items in Mobile
+                            if (link.subLinks && link.subLinks.length > 0) {
+                                return (
+                                    <li key={link.name} className="border-b border-gray-800 pb-2">
+                                        <span className="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-3 mt-2">
+                                            {link.name}
+                                        </span>
+                                        <ul className="flex flex-col space-y-3 pl-2">
+                                            {link.subLinks.map(subLink => {
+                                                const isActive = pathname === subLink.href;
+                                                return (
+                                                    <li key={subLink.href}>
+                                                        <Link
+                                                            href={subLink.href}
+                                                            onClick={() => setMobileMenuOpen(false)}
+                                                            className={`block text-lg transition-all duration-300 ${isActive
+                                                                    ? 'text-cyan-400 font-bold'
+                                                                    : 'text-gray-300 font-semibold hover:text-cyan-400'
+                                                                }`}
+                                                        >
+                                                            {subLink.name}
+                                                        </Link>
+                                                    </li>
+                                                )
+                                            })}
+                                        </ul>
+                                    </li>
+                                );
+                            }
+
+                            // Handle Standard Items in Mobile
                             const isActive = pathname === link.href;
                             return (
                                 <li key={link.href}>
@@ -238,8 +324,8 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                         href={link.href}
                                         onClick={() => setMobileMenuOpen(false)}
                                         className={`block text-lg transition-all duration-300 ${isActive
-                                            ? 'text-cyan-400 font-bold'
-                                            : 'text-gray-300 font-semibold hover:text-cyan-400'
+                                                ? 'text-cyan-400 font-bold'
+                                                : 'text-gray-300 font-semibold hover:text-cyan-400'
                                             }`}
                                     >
                                         {link.name}
@@ -249,7 +335,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                         })}
                     </ul>
                     <div className="mt-8 border-t border-gray-700 pt-6">
-                        <p className="px-4 text-sm font-semibold text-gray-400 mb-2">{select_lang}</p>
+                        <p className="px-0 text-sm font-semibold text-gray-400 mb-2">{select_lang}</p>
                         <LanguageMenu />
                     </div>
                 </nav>

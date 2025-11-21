@@ -4,7 +4,7 @@ import Background from "@/components/Background"
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-import { CookieInitializer }  from '@/components/CookieInitialize';
+import { CookieInitializer } from '@/components/CookieInitialize';
 
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
@@ -37,16 +37,36 @@ export default async function RootLayout({
 }>) {
   const navLinks = [
     { name: await t('Home'), href: '/' },
-    { name: await t('Social'), href: '/social' },
-    { name: await t('Work'), href: '/work' },
-    { name: await t('Organization'), href: '/organization' },
-    { name: await t('Award'), href: '/award' },
-    { name: await t('Certificate'), href:'/certificate' },
-    { name: await t('Music'), href: '/music' },
-    // { name: t('Project'), href: '/project' },
+    
+    { 
+      name: await t('Profile'), 
+      href: '#',
+      subLinks: [
+        { name: await t('Social'), href: '/social' },
+        { name: await t('Certificate'), href:'/certificate' },
+      ]
+    },
+
+    { 
+      name: await t('Experience'), 
+      href: '#',
+      subLinks: [
+        { name: await t('Work'), href: '/work' },
+        { name: await t('Organization'), href: '/organization' },
+        { name: await t('Award'), href: '/award' },
+      ]
+    },
+
+    { 
+      name: await t('Artwork'), 
+      href: '#',
+      subLinks: [
+        { name: await t('Music'), href: '/music' },
+        { name: await t('Literature'), href:'/literature' },
+      ]
+    },
+
     { name: await t('College'), href: '/college' },
-    { name: await t('Literature'), href: '/literature' },
-    // { name: t('Latest'), href: '/latest' },
   ];
 
   const typeOfWaitingAnswer = [
@@ -66,7 +86,7 @@ export default async function RootLayout({
   const submit_q = await t('Submit');
   const waiting = await t('Waiting');
   const provide_question = await t('Provide_Question');
- 
+  
   const en_lang = await t('English');
   const id_lang = await t('Indonesian');
   const jp_lang = await t('Japanese');
