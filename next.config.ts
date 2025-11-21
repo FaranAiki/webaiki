@@ -70,10 +70,6 @@ const nextConfig = {
             key: 'Cross-Origin-Opener-Policy',
             value: 'same-origin',
           },
-          {
-            key: 'Cross-Origin-Embedder-Policy',
-            value: 'credentialless', // ini agak bahaya tapi oke 
-          }
         ],
       },
     ];
