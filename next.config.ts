@@ -72,9 +72,8 @@ const nextConfig = {
           },
           {
             key: 'Cross-Origin-Embedder-Policy',
-            value: 'credentialess',
-          },
-
+            value: 'credentialless', // ini agak bahaya tapi oke 
+          }
         ],
       },
     ];
