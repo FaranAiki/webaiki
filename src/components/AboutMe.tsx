@@ -1,7 +1,7 @@
 "use client";
 
 import Image from 'next/image';
-import HoverableWords from '@/components/HoverableWords'
+import HoverableWords from '@/components/HoverableWords';
 import { useState, useEffect } from 'react';
 
 interface AboutMeProps {
@@ -17,11 +17,24 @@ interface AboutMeProps {
   faran_photo: string;
 }
 
-export default function AboutMe( {carouselPhotos, about_text, about_title,
-                                 about_philosophy_title, about_philosophy,
-                                 about_principle_title, about_principle,
-                                 about_vision_mission_title, about_vision_mission,
-                                 faran_photo} : AboutMeProps ) {
+const SectionSeparator = () => (
+  <div className="w-full max-w-4xl mx-auto my-16">
+    <div className="h-px bg-gradient-to-r from-transparent via-gray-500/50 to-transparent" />
+  </div>
+);
+
+export default function AboutMe({
+  carouselPhotos,
+  about_text,
+  about_title,
+  about_philosophy_title,
+  about_philosophy,
+  about_principle_title,
+  about_principle,
+  about_vision_mission_title,
+  about_vision_mission,
+  faran_photo
+}: AboutMeProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFading, setIsFading] = useState(false);
 
@@ -32,116 +45,139 @@ export default function AboutMe( {carouselPhotos, about_text, about_title,
 
       setTimeout(() => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % carouselPhotos.length);
-        setIsFading(false); // Start fading in the new image
-      }, 300); // Match this duration with the CSS transition duration below
+        setIsFading(false); 
+      }, 300); 
 
-    }, 4000); // Change image every 5 seconds
+    }, 4000); 
 
     return () => clearInterval(interval);
   }, [carouselPhotos.length]);
 
   return (
-    // Base generated using Gemini cuz I am too lazy to format lol
-    // Why should I separate this from the main file bruh, should I remove AboutMe component and make this a page instead?
-    <div>
-    <div className="flex flex-col md:flex-row pt-2 justify-center items-center gap-8 md:gap-8 max-w-4xl mx-auto animate-fade-in duration-300">
-        <div className="text-center md:text-justify">
-          <h1 className="transition-all text-4xl md:text-5xl pt-4 font-bold text-white hover:opacity-85">
+    <div className="w-full px-10 py-10">
+      
+      {/* About Me */}
+      <div className="flex flex-col md:flex-row justify-center items-center gap-12 max-w-5xl mx-auto animate-fade-in">
+        <div className="flex-1 text-center md:text-justify">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 hover:opacity-85 transition-opacity">
             {about_title}
           </h1>
-          <HoverableWords className="text-justify mt-4 text-lg text-gray-250 max-w-lg">
+          <HoverableWords className="text-lg text-gray-250 leading-relaxed text-justify">
             {about_text}
           </HoverableWords>
         </div>
 
-        <div className="order-first md:order-last flex-shrink-0">
-          <Image
-            src={`/images/photo_faran_aiki/${carouselPhotos[currentIndex]}`}
-            alt={faran_photo}
-            width={200}
-            height={200}
-            className={`
-              transition-all duration-300
-              shadow-lg border-4 scale-95 hover:scale-100 hover:shadow-gray-500/50
-              duration-500 ease-in-out
-              ${isFading ? 'opacity-0' : 'opacity-90 hover:opacity-100'}
-            `}
-            priority
-          />
+        <div className="flex-shrink-0 relative">
+          <div className="relative w-64 h-64 md:w-72 md:h-72">
+             {/* Decorative backdrop blur */}
+            <div className="absolute inset-0 bg-blue-500/20 blur-2xl rounded-full transform scale-90"></div>
+            <Image
+              src={`/images/photo_faran_aiki/${carouselPhotos[currentIndex]}`}
+              alt={faran_photo}
+              fill
+              className={`
+                object-cover rounded-xl
+                transition-all duration-500 ease-in-out
+                shadow-2xl border-2 border-white/10
+                hover:scale-105 hover:shadow-blue-500/30
+                ${isFading ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}
+              `}
+              priority
+            />
+          </div>
         </div>
-    </div>
+      </div>
 
-    {/* Section with move_forward.png */}
-    <div className="flex flex-col md:flex-row pt-6 justify-center items-center gap-8 md:gap-8 max-w-4xl mx-auto animate-fade-in">
-        <div className="text-center md:text-justify">
-          <h2 className="transition-all text-3xl md:text-4xl pt-4 font-bold text-white hover:opacity-85" >
+      <SectionSeparator />
+
+      {/* Philosophy  */}
+      <div className="flex flex-col md:flex-row-reverse justify-center items-center gap-12 max-w-5xl mx-auto animate-fade-in">
+        <div className="flex-1 text-center md:text-justify">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 hover:opacity-85 transition-opacity">
             {about_philosophy_title}
           </h2>
-          <HoverableWords className="text-justify mt-4 text-lg text-gray-250 max-w-lg" prophover='transition-all inline-block duration-200 ease-in-out hover:text-cyan-300 hover:font-semibold cursor-pointer'>
+          <HoverableWords 
+            className="text-lg text-gray-250 leading-relaxed text-justify md:text-justify" 
+            prophover='transition-all inline-block duration-200 ease-in-out hover:text-cyan-300 hover:font-semibold cursor-pointer'
+          >
             {about_philosophy}
           </HoverableWords>
         </div>
-        <div className="order-first md:order-last flex-shrink-0">
-          <Image
-            src={`/images/move_forward.png`}
-            alt="Move Forward Philosophy"
-            width={200}
-            height={200}
-            className="animate-float transition-all duration-300 ease-in-out shadow-lg border-4 opacity-90 hover:opacity-100 scale-95 hover:scale-100 hover:-rotate-2 hover:shadow-lg hover:shadow-blue-500/50"
-            priority
-          />
+
+        <div className="flex-shrink-0">
+          <div className="relative w-56 h-56 md:w-64 md:h-64">
+            <Image
+              src={`/images/move_forward.png`}
+              alt="Move Forward Philosophy"
+              fill
+              className="object-contain animate-float transition-all duration-300 ease-in-out opacity-90 hover:opacity-100 hover:-rotate-2 drop-shadow-lg hover:drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]"
+              priority
+            />
+          </div>
         </div>
-    </div>
+      </div>
 
+      <SectionSeparator />
 
-    <div className="flex flex-col md:flex-row pt-6 justify-center items-center gap-8 md:gap-8 max-w-4xl mx-auto animate-fade-in">
-        <div className="text-center md:text-justify">
-          <h2 className="transition-all text-3xl md:text-4xl pt-4 font-bold text-white hover:opacity-85">
+      {/* Principles */}
+      <div className="flex flex-col md:flex-row justify-center items-center gap-12 max-w-5xl mx-auto animate-fade-in">
+        <div className="flex-1 text-center md:text-justify">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 hover:opacity-85 transition-opacity">
             {about_principle_title}
           </h2>
-          <HoverableWords className="text-justify mt-4 text-lg text-gray-250 max-w-lg" prophover='transition-all inline-block duration-100 ease-in-out hover:scale-95 hover:italic hover:opacity-90 cursor-pointer'>
+          <HoverableWords 
+            className="text-lg text-gray-250 leading-relaxed text-justify" 
+            prophover='transition-all inline-block duration-100 ease-in-out hover:scale-95 hover:italic hover:opacity-90 cursor-pointer'
+          >
             {about_principle}
           </HoverableWords>
         </div>
 
-        <div className="order-first md:order-last flex-shrink-0">
-          <Image
-            src={`/images/tree.png`}
-            alt="Guiding Principles Tree"
-            width={200}
-            height={200}
-            className="transition-all duration-300 ease-in-out shadow-lg border-4 opacity-90 hover:opacity-100 scale-95 hover:scale-100 hover:shadow-2xl hover:rotate-2  hover:shadow-emerald-500/60"
-            priority
-          />
+        <div className="flex-shrink-0">
+           <div className="relative w-56 h-56 md:w-64 md:h-64">
+            <Image
+              src={`/images/tree.png`}
+              alt="Guiding Principles Tree"
+              fill
+              className="object-contain transition-all duration-300 ease-in-out opacity-90 hover:opacity-100 hover:scale-105 hover:rotate-2 drop-shadow-lg hover:drop-shadow-[0_0_15px_rgba(16,185,129,0.5)]"
+              priority
+            />
+          </div>
         </div>
-    </div>
+      </div>
 
-    <div className="flex flex-col md:flex-row pt-6 justify-center items-center gap-8 md:gap-8 max-w-4xl mx-auto animate-fade-in">
-        <div className="text-center md:text-justify">
-          <h2 className="transition-all text-3xl md:text-4xl pt-4 font-bold text-white hover:opacity-85">
+      <SectionSeparator />
+
+      {/* Vision & Mission  */}
+      <div className="flex flex-col md:flex-row-reverse justify-center items-center gap-12 max-w-5xl mx-auto animate-fade-in">
+        <div className="flex-1 text-center md:text-justify">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 hover:opacity-85 transition-opacity">
             {about_vision_mission_title}
           </h2>
-          <HoverableWords className="text-justify mt-4 text-lg text-gray-250 max-w-lg" prophover='transition-all inline-block duration-100 ease-in-out hover:scale-95 hover:italic hover:opacity-90 cursor-pointer hover:text-cyan-300 '>
+          <HoverableWords 
+            className="text-lg text-gray-250 leading-relaxed text-justify md:text-justify" 
+            prophover='transition-all inline-block duration-100 ease-in-out hover:scale-95 hover:italic hover:opacity-90 cursor-pointer hover:text-cyan-300'
+          >
             {about_vision_mission}
           </HoverableWords>
         </div>
-        <div className="order-first md:order-last flex-shrink-0">
-          <Image
-            src={`/images/vission_mission.png`}
-            alt="Vision and Mission"
-            width={200}
-            height={200}
-            className="transition-all animate-float duration-300 ease-in-out shadow-lg border-4 opacity-90 hover:opacity-100 scale-95 hover:scale-100 hover:brightness-110 hover:shadow-lg hover:shadow-purple-500/50"
-            priority
-          />
+
+        <div className="flex-shrink-0">
+          <div className="relative w-56 h-56 md:w-64 md:h-64">
+            <Image
+              src={`/images/vission_mission.png`}
+              alt="Vision and Mission"
+              fill
+              className="object-contain animate-float transition-all duration-300 ease-in-out opacity-90 hover:opacity-100 hover:scale-105 hover:brightness-110 drop-shadow-lg hover:drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]"
+              priority
+            />
+          </div>
         </div>
-    </div>
+      </div>
 
-
-    <div className="opacity-70 hover:opacity-100 transition-all duration-250 justify-center items-center pt-4 gap-8 md:gap-8 max-4xl animate-fade-in">
-      {/*<PdfViewer className="hover:pt-6 hover:scale-105" file="/ats_cv.pdf" /> */}
+      <div className="opacity-70 hover:opacity-100 transition-all duration-250 flex justify-center items-center py-8">
+        {/* <PdfViewer className="hover:pt-6 hover:scale-105" file="/ats_cv.pdf" /> */}
+      </div>
     </div>
-  </div>
   );
 }
-
