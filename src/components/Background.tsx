@@ -1,91 +1,191 @@
 "use client";
 
-import Image from 'next/image';
-import { useState, useEffect } from 'react';
-import React, { useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
-const SLIDE_DURATION = 10000; // Duration per slide 
+const SLIDE_DURATION = 10000;
 
-// Matrix effect
-const MatrixRain = () => {
+/**
+ * A professional geometric pattern visualization.
+ * It creates a "Constellation" or "Neural Network" effect where nodes
+ * connect automatically when close, simulating data topology.
+ */
+const GeometricPattern = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  // Store mouse position for interaction
+  const mouseRef = useRef({ x: 0, y: 0, isActive: false });
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    const container = containerRef.current;
+    if (!canvas || !container) return;
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Set canvas dimensions to fill the screen
-    const setCanvasDimensions = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    setCanvasDimensions();
+    let animationFrameId: number;
+    let particles: Particle[] = [];
 
-    // The characters to be used in the rain effect
-    const math_symbols = '∀∁∂∃∄∅∆∇∈∉∊∋∌∍∎∏∐∑−∓∔∕∖∗∘⋅√∛∜∝∞∟∠∡∢∣∤∥∦∧∨∩∪∫∬∭∮∯∰∱∲∳∴∵∶∷∸∹∺∻∼∽∾∿≀≁≂≃≄≅≆≇≈≉≊≋≌≍≎≏≐≑≒≓≔≕≖≗≘≙≚≛≜≝≞≟≠≡≢≤≥≦≧≨≩≪≫≬≭≮≯≰≱≲≳≴≵≶≷≸≹≺≻≼≽≾≿⊀⊁⊂⊃⊄⊅⊆⊇⊈⊉⊊⊋⊌⊍⊎⊏⊐⊑⊒⊓⊔⊕⊖⊗⊘⊙⊚⊛⊜⊝⊞⊟⊠⊡⊢⊣⊤⊥⊦⊧⊨⊩⊪⊫⊬⊭⊮⊯⊰⊱⊲⊳⊴⊵⊶⊷⊸⊹⊺⊻⊼⊽⊾⊿⋀⋁⋂⋃⋅∗⋇⋈⋉⋊⋋⋌⋍⋎⋏⋐⋑⋒⋓⋔⋕⋖⋗⋘⋙⋚⋛⋜⋝⋞⋟⋠⋡⋢⋣⋤⋥⋦⋧⋨⋩⋪⋫⋬⋭⋮⋯⋰⋱⋲⋳⋴⋵⋶⋷⋸⋹⋺⋻⋼⋽⋾⋿⨀⨁⨂⨃⨄⨅⨆⨌⨍⨎⨏⨐⨑⨒⨓⨔⨕⨖⨗⨘⨙⨚⨛⨜⨝⩽⩾⩿⪀⪁⪂⪃⪄⪅⪆⪇⪈⪉⪊⪋⪌⪍⪎⪏⪐⪑⪒⪓⪔⪕⪖⪗⪘⪙⪚⪛⪜⪝⪞⪟⪠⪮⪯⪰⪱⪲⪳⪴⪵⪶⪷⪸⪹⪺><=⫹⫺';
-    const greek_alphabets = 'eΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣσςΤτΥυΦφΧχΨψΩω';
-    const latin = 'abmnxyzw';
-    const nums = '0123456789';
-    const characters = math_symbols + greek_alphabets + latin + nums;
+    // Configuration
+    const PARTICLE_COUNT = 225; // Number of nodes
+    const CONNECTION_DISTANCE = 150; // Max distance to draw a line
+    const MOUSE_RADIUS = 100; // Interaction radius
+    const BASE_COLOR = { r: 100, g: 200, b: 255 }; // Cyan/Teal tech theme
 
-    const fontSize = 16;
-    const columns = Math.floor(canvas.width / fontSize);
+    class Particle {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      size: number;
+      baseX: number;
+      baseY: number;
 
-    const drops: number[] = [];
-    for (let i = 0; i < columns; i++) {
-      drops[i] = 1;
+      constructor(w: number, h: number) {
+        this.x = Math.random() * w;
+        this.y = Math.random() * h;
+        // Random velocity between -0.5 and 0.5
+        this.vx = (Math.random() - 0.5) * 0.5; 
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.size = Math.random() * 2 + 1;
+        this.baseX = this.x;
+        this.baseY = this.y;
+      }
+
+      update(w: number, h: number) {
+        // specific movement logic
+        this.x += this.vx;
+        this.y += this.vy;
+
+        // Bounce off edges
+        if (this.x < 0 || this.x > w) this.vx *= -1;
+        if (this.y < 0 || this.y > h) this.vy *= -1;
+
+        // Mouse Interaction
+        if (mouseRef.current.isActive) {
+          const dx = mouseRef.current.x - this.x;
+          const dy = mouseRef.current.y - this.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < MOUSE_RADIUS) {
+            const forceDirectionX = dx / distance;
+            const forceDirectionY = dy / distance;
+            const force = (MOUSE_RADIUS - distance) / MOUSE_RADIUS;
+            const directionX = forceDirectionX * force * 2; // Push strength
+            const directionY = forceDirectionY * force * 2;
+
+            this.x -= directionX;
+            this.y -= directionY;
+          }
+        }
+      }
+
+      draw() {
+        if (!ctx) return;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${BASE_COLOR.r}, ${BASE_COLOR.g}, ${BASE_COLOR.b}, 0.6)`;
+        ctx.fill();
+      }
     }
 
-    const draw = () => {
-      // Create the fading effect by drawing a semi-transparent black rectangle
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      // Set the color and font for the characters
-      ctx.fillStyle = `rgb(${17 + Math.floor(Math.random() * 10 - 5)}, ${255 + Math.floor(Math.random() * 10 - 5)}, ${240 + Math.floor(Math.random() * 10 - 5)})`; // '#11EEFF'; // Cyan text is basic
-      ctx.font = `${fontSize}px monospace`;
-
-      // Loop through each column
-      for (let i = 0; i < drops.length; i++) {
-        // Pick a random character
-        const text = characters.charAt(Math.floor(Math.random() * characters.length));
+    const init = () => {
+        const dpr = window.devicePixelRatio || 1;
+        const rect = container.getBoundingClientRect();
         
-        // Draw the character
-        ctx.fillText(text, i * fontSize *(1 + (Math.random() -0.5)*0.025), drops[i] * fontSize);
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        
+        ctx.scale(dpr, dpr);
+        
+        canvas.style.width = `${rect.width}px`;
+        canvas.style.height = `${rect.height}px`;
 
-        // Reset the drop to the top of the screen randomly to make the rain effect uneven
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
+        particles = [];
+        for (let i = 0; i < PARTICLE_COUNT; i++) {
+          particles.push(new Particle(rect.width, rect.height));
         }
+    };
 
-        // Move the drop down
-        drops[i]++;
+    const animate = () => {
+      if (!ctx || !canvas) return;
+      
+      const width = canvas.width / (window.devicePixelRatio || 1);
+      const height = canvas.height / (window.devicePixelRatio || 1);
+
+      ctx.clearRect(0, 0, width, height);
+      
+      particles.forEach((particle) => {
+        particle.update(width, height);
+        particle.draw();
+      });
+
+      connectParticles(width, height);
+      
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    const connectParticles = (w: number, h: number) => {
+      for (let a = 0; a < particles.length; a++) {
+        for (let b = a; b < particles.length; b++) {
+          const dx = particles[a].x - particles[b].x;
+          const dy = particles[a].y - particles[b].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < CONNECTION_DISTANCE) {
+            // Opacity is determined by distance (fade out as they get further)
+            const opacity = 1 - distance / CONNECTION_DISTANCE;
+            ctx.strokeStyle = `rgba(${BASE_COLOR.r}, ${BASE_COLOR.g}, ${BASE_COLOR.b}, ${opacity * 0.3})`;
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(particles[a].x, particles[a].y);
+            ctx.lineTo(particles[b].x, particles[b].y);
+            ctx.stroke();
+          }
+        }
       }
     };
 
-    // 33 from 1000/60 (60 fps) ~ 33 ms 
-    const animationInterval = setInterval(draw, 33);
-
-    const handleResize = () => {
-      setCanvasDimensions();
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      mouseRef.current = {
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+        isActive: true
+      };
     };
-    window.addEventListener('resize', handleResize);
 
-    // Cleanup function to stop the animation and remove event listener
+    const handleMouseLeave = () => {
+      mouseRef.current.isActive = false;
+    };
+    
+    const handleResize = () => {
+        init();
+    };
+
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('mousemove', handleMouseMove); 
+    
+    init();
+    animate();
+
     return () => {
-      clearInterval(animationInterval);
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('mousemove', handleMouseMove);
+      cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full z-[-1] bg-black opacity-30 hover:opacity-40 transition-all"
-    />
+    <div ref={containerRef} className="fixed top-0 left-0 w-full h-full z-[-1] pointer-events-none">
+       {/* The canvas itself has pointer-events-none so it doesn't block clicks on your actual content,
+         but we track mouse movements globally in the effect hook.
+       */}
+      <canvas
+        ref={canvasRef}
+        className="block w-full h-full opacity-65"
+      />
+    </div>
   );
 };
 
@@ -93,35 +193,43 @@ export type BackgroundProps = {
   carousel: string[]
 };
 
-export default function Background( {carousel}: BackgroundProps) {
+export default function Background({ carousel }: BackgroundProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
+    if (!carousel || carousel.length === 0) return;
+
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % carousel.length);
     }, SLIDE_DURATION);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [carousel]);
 
   return (
-    <div className="fixed inset-0 w-full h-full z-[-1] transition-all duration-200">
+    <div className="fixed inset-0 w-full h-full z-[-1] bg-black">
+      {/* Background Image Layer */}
       {carousel.map((src, index) => (
-        <Image
-          key={index}
-          src={`/images/background/${src}`}
-          alt={`Background image ${index + 1}`}
-          fill    
-          style={{objectFit:"cover"}} // thanks stackoverflow
-          quality={100}
-          priority={index === 0}
-          className={`transition-opacity blur-md duration-1000 ease-in-out ${
-            index === currentIndex ? 'opacity-45' : 'opacity-0'
-          }`}
-        />
+        <div
+            key={index}
+            className={`blur-md absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
+                index === currentIndex ? 'opacity-60' : 'opacity-0'
+            }`}
+        >
+            {/* Replaced Next.js Image with standard img */}
+            <img
+                src={`/images/background/${src}`}
+                alt={`Background image ${index + 1}`}
+                className="w-full h-full object-cover"
+            />
+        </div>
       ))}
-      <div className="absolute inset-0 bg-black opacity-60" />
-      <MatrixRain/>
+      
+      {/* Overlay Darkener to ensure text readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80" />
+      
+      {/* The Visualization Layer */}
+      <GeometricPattern />
     </div>
   );
 }
