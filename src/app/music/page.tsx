@@ -79,6 +79,7 @@ export default async function RootLayout({
           <br></br>
           <br></br>
             <iframe
+              credentialless="true"
               className="animate-fade-in"
               title="Spotify Artist Player"
               data-testid="embed-iframe"
@@ -98,6 +99,7 @@ export default async function RootLayout({
           <br></br>
           <br></br>
           <iframe
+            credentialless="true"
             className="animate-fade-in"
             width="100%" 
             height="300" 
