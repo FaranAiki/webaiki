@@ -115,13 +115,12 @@ export default function Background( {carousel}: BackgroundProps) {
           style={{objectFit:"cover"}} // thanks stackoverflow
           quality={100}
           priority={index === 0}
-          className={`transition-opacity blur-xs duration-1000 ease-in-out ${
-            index === currentIndex ? 'opacity-50' : 'opacity-0'
+          className={`transition-opacity blur-md duration-1000 ease-in-out ${
+            index === currentIndex ? 'opacity-45' : 'opacity-0'
           }`}
         />
       ))}
-      {/* Darken it to make texts easy to read */}
-      <div className="absolute inset-0 bg-black opacity-50" />
+      <div className="absolute inset-0 bg-black opacity-60" />
       <MatrixRain/>
     </div>
   );
