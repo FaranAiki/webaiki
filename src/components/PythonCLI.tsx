@@ -341,7 +341,7 @@ export default function PythonCLI({
       <div className="w-full max-w-3xl bg-gray-900 text-gray-100 rounded-lg shadow-2xl overflow-hidden flex flex-col h-[80vh] border border-gray-800">
         
         {/* Updated Header: Centered and Bold Title */}
-        <div className="flex items-center justify-between p-3 bg-gray-800 border-b border-gray-700 shrink-0 select-none">
+        <div className="flex items-center justify-between p-3 bg-gray-800 border-b border-gray-700 shrink-0 select-none bg-opacity-90">
           <div className="w-24"></div> {/* Spacer to balance the layout */}
           <span className="font-mono text-sm font-bold opacity-80 text-center">
              {terminalTitle}
@@ -351,7 +351,7 @@ export default function PythonCLI({
 
         <div 
           ref={terminalContainerRef} 
-          className="flex-1 p-4 font-mono text-sm overflow-y-auto cursor-text scroll-smooth"
+          className="flex-1 p-4 font-mono text-sm overflow-y-auto cursor-text scroll-smooth bg-opacity-80"
           onClick={handleTerminalClick}
         >
           <div className="whitespace-pre-wrap break-words font-mono no-scrollbar">
