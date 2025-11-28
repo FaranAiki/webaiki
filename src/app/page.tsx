@@ -1,3 +1,5 @@
+'use server';
+
 // This is the main page
 
 import type { Metadata } from "next";
@@ -43,6 +45,8 @@ export const metadata: Metadata = {
   },
 };
 
+// TODO make this more good
+// efficient and effective 
 export default async function RootLayout({
   children,
 }: Readonly<{

@@ -1,3 +1,5 @@
+'use server';
+
 import type { Metadata } from "next";
 import "../globals.css";
 import { t, from_to } from '@/components/Translator';
@@ -28,9 +30,9 @@ export const metadata: Metadata = {
   },
 };
 
-// This is the main Server Component
+// server component
 export default async function WorkExperiencesPage() {
-  // All async data fetching happens here on the server
+  // async as this is a server side
   const workExperiences = [
     {
       year: '2025',
@@ -70,6 +72,6 @@ export default async function WorkExperiencesPage() {
     }
   ];
 
-  // Render the client component and pass the fully resolved data as props
+  // use experiences client defined in the components 
   return <ExperiencesClient experiences={workExperiences} />;
 }

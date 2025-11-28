@@ -1,3 +1,5 @@
+'use server';
+
 import type { Metadata } from "next";
 import "../globals.css";
 import { t, from_to } from '@/components/Translator';
@@ -28,9 +30,9 @@ export const metadata: Metadata = {
   },
 };
 
-// This is the main Server Component
+// main component
 export default async function OrganizationExperiencesPage() {
-  // All async data fetching happens here on the server
+  // async from use server
   const organizationExperiences = [
     {
       year: '2025',

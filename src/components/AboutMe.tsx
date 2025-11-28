@@ -69,7 +69,7 @@ export default function AboutMe({
 
         <div className="flex-shrink-0 relative">
           <div className="relative w-64 h-64 md:w-72 md:h-72">
-             {/* Decorative backdrop blur */}
+             {/* Decorative backdrop blur with some nice <-> graph */}
             <div className="absolute inset-0 bg-blue-500/20 blur-2xl rounded-full transform scale-90"></div>
             <Image
               src={`/images/photo_faran_aiki/${carouselPhotos[currentIndex]}`}

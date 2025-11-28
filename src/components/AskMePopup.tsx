@@ -16,7 +16,7 @@ interface AskMePopupProps {
 }
 
 function AskMePopup({typeOfWaitingAnswer, ask_title, question_answer, question_title, submit, waiting, provide_question }: AskMePopupProps) {
-  // State untuk visibilitas, pertanyaan, jawaban, loading, dan error
+  // state for visibility and others
   const [isOpen, setIsOpen] = useState(false);
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
