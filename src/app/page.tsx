@@ -1,5 +1,3 @@
-'use server';
-
 // This is the main page
 
 import type { Metadata } from "next";

@@ -1,5 +1,3 @@
-'use server';
-
 import type { Metadata } from "next";
 import "../globals.css";
 import { t, from_to } from '@/components/Translator';

@@ -1,5 +1,3 @@
-'use server';
-
 import type { Metadata } from "next";
 import "../globals.css";
 import { Inter } from "next/font/google";
@@ -151,7 +149,7 @@ const socialLinks = [
   },
 ];
 
-export default function SocialPage() {
+export default async function SocialPage() {
   return (
     <main className={`${inter.className} relative min-h-screen text-gray-100`}>
       <div className="container mx-auto max-w-5xl pt-24">
