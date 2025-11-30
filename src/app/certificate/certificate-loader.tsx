@@ -1,8 +1,8 @@
-'use client'; // <-- This is the crucial part
+'use client'; // <-- use client because this is frontend 
 
 import dynamic from 'next/dynamic';
 
-// Define the type for the data we'll receive
+// type of certificate data
 type CertificateData = {
   [category: string]: {
     [year: string]: {
