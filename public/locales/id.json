@@ -36,12 +36,12 @@
 
   "All": "Semua",
 
-  "Olympiad and Contest": "Kontes dan Olimpiade",
-  "Other": "Lainnya",
-  "Skill": "Keterampilan",
-  "Course": "Kursus",
-  "Profession": "Profesi",
-  "Writing": "Tulisan",
+  "02Olympiad and Contest": "Kontes dan Olimpiade",
+  "06Other": "Lainnya",
+  "03Skill": "Keterampilan",
+  "05Course": "Kursus",
+  "01Profession": "Profesi",
+  "04Writing": "Tulisan",
 
   "Profile": "Profil",
   "Experience": "Pengalaman",

@@ -51,12 +51,12 @@
   "Latest": "Latest",
   "Organization": "Organization",
 
-  "Olympiad and Contest": "Olympiad and Contest",
-  "Other": "Other",
-  "Skill": "Skill",
-  "Course": "Course",
-  "Profession": "Profession",
-  "Writing": "Writing",
+  "02Olympiad and Contest": "Olympiad and Contest",
+  "06Other": "Other",
+  "03Skill": "Skill",
+  "05Course": "Course",
+  "01Profession": "Profession",
+  "04Writing": "Writing",
 
   "Ask_About": "Ask About Faran Aiki",
   "Question_Answer": "Answer",

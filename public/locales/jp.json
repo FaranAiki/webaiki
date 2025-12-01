@@ -49,12 +49,12 @@
   "Literature": "文学",
   "Latest": "最新",
 
-  "Olympiad and Contest": "オリンピック・コンテスト",
-  "Other": "その他",
-  "Skill": "スキル",
-  "Course": "コース",
-  "Profession": "職業",
-  "Writing": "執筆",
+  "02Olympiad and Contest": "オリンピック・コンテスト",
+  "06Other": "その他",
+  "04Skill": "スキル",
+  "05Course": "コース",
+  "01Profession": "職業",
+  "04Writing": "執筆",
 
   "Ask_About": "ファラン・アイキについて尋ねる",
   "Question_Answer": "回答",

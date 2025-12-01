@@ -51,12 +51,12 @@
   "Latest": "Dernier",
   "Organization": "Organisation",
   
-  "Olympiad and Contest": "Olympiade et Concours",
-  "Other": "Autre",
-  "Skill": "Compétence",
-  "Course": "Cours",
-  "Profession": "Profession",
-  "Writing": "Écriture",
+  "02Olympiad and Contest": "Olympiade et Concours",
+  "06Other": "Autre",
+  "03Skill": "Compétence",
+  "05Course": "Cours",
+  "01Profession": "Profession",
+  "04Writing": "Écriture",
 
   "Ask_About": "Demander à propos de Faran Aiki",
   "Question_Answer": "Réponse",

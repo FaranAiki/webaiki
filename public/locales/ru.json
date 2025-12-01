@@ -51,12 +51,12 @@
   "Latest": "Последнее",
   "Organization": "организация",
 
-  "Olympiad and Contest": "Олимпиада и Конкурс",
-  "Other": "Другое",
-  "Skill": "Навык",
-  "Course": "Курс",
-  "Profession": "Профессия",
-  "Writing": "Письмо",
+  "02Olympiad and Contest": "Олимпиада и Конкурс",
+  "06Other": "Другое",
+  "03Skill": "Навык",
+  "05Course": "Курс",
+  "01Profession": "Профессия",
+  "04Writing": "Письмо",
 
   "Ask_About": "Спросить о Фаране Айки",
   "Question_Answer": "Ответ",

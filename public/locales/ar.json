@@ -50,12 +50,12 @@
   "Latest": "الأحدث",
   "Organization": "المنظمات",
 
-  "Olympiad and Contest": "الأولمبياد والمسابقات",
-  "Other": "أخرى",
-  "Skill": "المهارات",
-  "Course": "دورة",
-  "Profession": "مهنة",
-  "Writing": "الكتابة",
+  "02Olympiad and Contest": "الأولمبياد والمسابقات",
+  "06Other": "أخرى",
+  "03Skill": "المهارات",
+  "05Course": "دورة",
+  "01Profession": "مهنة",
+  "04Writing": "الكتابة",
 
   "Ask_About": "اسأل عن فاران آيكي",
   "Question_Answer": "الإجابة",
