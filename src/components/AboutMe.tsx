@@ -55,9 +55,10 @@ export default function AboutMe({
 
   return (
     <div className="w-full px-10 py-10">
-      
+       
       {/* About Me */}
-      <div className="flex flex-col md:flex-row justify-center items-center gap-12 max-w-5xl mx-auto animate-fade-in">
+      {/* Changed flex-col to flex-col-reverse so image appears on top on mobile */}
+      <div className="flex flex-col-reverse md:flex-row justify-center items-center gap-12 max-w-5xl mx-auto animate-fade-in">
         <div className="flex-1 text-center md:text-justify">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 hover:opacity-85 transition-opacity">
             {about_title}
@@ -91,7 +92,8 @@ export default function AboutMe({
       <SectionSeparator />
 
       {/* Philosophy  */}
-      <div className="flex flex-col md:flex-row-reverse justify-center items-center gap-12 max-w-5xl mx-auto animate-fade-in">
+      {/* Changed flex-col to flex-col-reverse so image appears on top on mobile */}
+      <div className="flex flex-col-reverse md:flex-row-reverse justify-center items-center gap-12 max-w-5xl mx-auto animate-fade-in">
         <div className="flex-1 text-center md:text-justify">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 hover:opacity-85 transition-opacity">
             {about_philosophy_title}
@@ -120,7 +122,8 @@ export default function AboutMe({
       <SectionSeparator />
 
       {/* Principles */}
-      <div className="flex flex-col md:flex-row justify-center items-center gap-12 max-w-5xl mx-auto animate-fade-in">
+      {/* Changed flex-col to flex-col-reverse so image appears on top on mobile */}
+      <div className="flex flex-col-reverse md:flex-row justify-center items-center gap-12 max-w-5xl mx-auto animate-fade-in">
         <div className="flex-1 text-center md:text-justify">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 hover:opacity-85 transition-opacity">
             {about_principle_title}
@@ -149,7 +152,8 @@ export default function AboutMe({
       <SectionSeparator />
 
       {/* Vision & Mission  */}
-      <div className="flex flex-col md:flex-row-reverse justify-center items-center gap-12 max-w-5xl mx-auto animate-fade-in">
+      {/* Changed flex-col to flex-col-reverse so image appears on top on mobile */}
+      <div className="flex flex-col-reverse md:flex-row-reverse justify-center items-center gap-12 max-w-5xl mx-auto animate-fade-in">
         <div className="flex-1 text-center md:text-justify">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 hover:opacity-85 transition-opacity">
             {about_vision_mission_title}
