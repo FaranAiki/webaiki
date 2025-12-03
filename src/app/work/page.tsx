@@ -41,7 +41,9 @@ export default async function WorkExperiencesPage() {
           company: 'Analitica',
           description: await t('Software_Engineer_Description'),
           image: [
-
+            '/documents/work/Analitica Software Engineer_0.png',
+            '/documents/work/Analitica Software Engineer_1.png',
+            '/documents/work/Analitica Software Engineer_2.png',
           ]
         },
         {
