@@ -22,6 +22,10 @@ const cspHeader = `
 const nextConfig = {
   output: "standalone",
   poweredByHeader: false,
+  experimental: {
+    turbo: {
+    },
+  },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },

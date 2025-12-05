@@ -8,7 +8,11 @@ const SLIDE_DURATION = 10000;
 /**
  * A professional geometric pattern visualization.
  */
-const GeometricPattern = (isDark) => {
+interface GeometricPatternProps {
+  isDark: boolean;
+}
+
+function GeometricPattern({isDark}: GeometricPatternProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const mouseRef = useRef({ x: 0, y: 0, isActive: false });
@@ -27,7 +31,7 @@ const GeometricPattern = (isDark) => {
     const PARTICLE_COUNT = 225;
     const CONNECTION_DISTANCE = 150; 
     const MOUSE_RADIUS = 100;
-    let BASE_COLOR = isDark ? { r: 100, g: 200, b: 255 } : {r: 25, g: 125, b: 200}; 
+    const BASE_COLOR = isDark ? { r: 100, g: 200, b: 255 } : {r: 25, g: 125, b: 200}; 
 
     class Particle {
       x: number;
