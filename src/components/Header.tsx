@@ -11,10 +11,11 @@ import { useTheme } from 'next-themes';
 
 const inter = Inter({ subsets: ["latin"] });
 
-interface NavLink {
+export interface NavLink {
     name: string;
     href: string;
     subLinks?: NavLink[];
+    icon?: React.ReactNode;
 }
 
 interface HeaderProps {
@@ -219,6 +220,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                                         : `${textColor} font-semibold group-hover:text-cyan-600`
                                                     }`}
                                             >
+                                                {link.icon && <span className="mr-2">{link.icon}</span>}
                                                 {link.name}
                                                 <ChevronDown />
                                             </button>
@@ -232,11 +234,12 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                                             <li key={subLink.href}>
                                                                 <Link
                                                                     href={subLink.href}
-                                                                    className={`block px-4 py-2 text-sm hover:${isDark ? 'bg-gray-800' : 'bg-gray-100'} transition-colors ${isSubActive
+                                                                    className={`flex items-center px-4 py-2 text-sm hover:${isDark ? 'bg-gray-800' : 'bg-gray-100'} transition-colors ${isSubActive
                                                                             ? `${activeText} font-bold ${isDark ? 'bg-gray-800/50' : 'bg-white'}`
                                                                             : `${textColor} hover:text-cyan-600`
                                                                         }`}
                                                                 >
+                                                                    {subLink.icon && <span className="mr-2 opacity-70 group-hover:opacity-100">{subLink.icon}</span>}
                                                                     {subLink.name}
                                                                 </Link>
                                                             </li>
@@ -254,11 +257,12 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                     <li key={link.href}>
                                         <Link
                                             href={link.href}
-                                            className={`text-base transition-all duration-300 ${isActive
+                                            className={`flex items-center text-base transition-all duration-300 ${isActive
                                                     ? `${activeText} font-bold`
                                                     : `${textColor} font-semibold hover:text-cyan-600`
                                                 }`}
                                         >
+                                            {link.icon && <span className="mr-2">{link.icon}</span>}
                                             {link.name}
                                         </Link>
                                     </li>
@@ -315,7 +319,8 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                             if (link.subLinks && link.subLinks.length > 0) {
                                 return (
                                     <li key={link.name} className={`border-b ${isDark ? 'border-gray-800' : 'border-gray-200'} pb-2`}>
-                                        <span className="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-3 mt-2">
+                                        <span className="flex items-center text-xs font-bold uppercase tracking-widest text-gray-500 mb-3 mt-2">
+                                            {link.icon && <span className="mr-2">{link.icon}</span>}
                                             {link.name}
                                         </span>
                                         <ul className="flex flex-col space-y-3 pl-2">
@@ -326,11 +331,12 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                                         <Link
                                                             href={subLink.href}
                                                             onClick={() => setMobileMenuOpen(false)}
-                                                            className={`block text-lg transition-all duration-300 ${isActive
+                                                            className={`flex items-center text-lg transition-all duration-300 ${isActive
                                                                     ? `${activeText} font-bold`
                                                                     : `${textColor} font-semibold hover:text-cyan-600`
                                                                 }`}
                                                         >
+                                                            {subLink.icon && <span className="mr-2 scale-90">{subLink.icon}</span>}
                                                             {subLink.name}
                                                         </Link>
                                                     </li>
@@ -347,11 +353,12 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                     <Link
                                         href={link.href}
                                         onClick={() => setMobileMenuOpen(false)}
-                                        className={`block text-lg transition-all duration-300 ${isActive
+                                        className={`flex items-center text-lg transition-all duration-300 ${isActive
                                                 ? `${activeText} font-bold`
                                                 : `${textColor} font-semibold hover:text-cyan-600`
                                             }`}
                                     >
+                                        {link.icon && <span className="mr-2">{link.icon}</span>}
                                         {link.name}
                                     </Link>
                                 </li>

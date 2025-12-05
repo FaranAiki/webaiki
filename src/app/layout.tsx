@@ -16,6 +16,21 @@ import { t, currentLanguage } from '@/components/Translator';
 import fs from 'fs';
 import path from 'path';
 
+// Import Lucide Icons
+import { 
+  Home, 
+  User, 
+  Share2, 
+  FileCheck, 
+  Briefcase, 
+  Users, 
+  Trophy, 
+  Palette, 
+  Music, 
+  BookOpen, 
+  GraduationCap
+} from 'lucide-react';
+
 // Helper to get backgrounds
 export function getBackgrounds() {
   const photosDir = path.join(process.cwd(), 'public', 'images', 'background');
@@ -39,39 +54,50 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Navigation Links
+  // Navigation Links with Icons
   const navLinks = [
-    { name: await t('Home'), href: '/' },
+    { 
+      name: await t('Home'), 
+      href: '/',
+      icon: <Home size={18} />
+    },
     
     { 
       name: await t('Profile'), 
       href: '#',
+      icon: <User size={18} />,
       subLinks: [
-        { name: await t('Social'), href: '/social' },
-        { name: await t('Certificate'), href:'/certificate' },
+        { name: await t('Social'), href: '/social', icon: <Share2 size={16} /> },
+        { name: await t('Certificate'), href:'/certificate', icon: <FileCheck size={16} /> },
       ]
     },
 
     { 
       name: await t('Experience'), 
       href: '#',
+      icon: <Briefcase size={18} />,
       subLinks: [
-        { name: await t('Work'), href: '/work' },
-        { name: await t('Organization'), href: '/organization' },
-        { name: await t('Award'), href: '/award' },
+        { name: await t('Work'), href: '/work', icon: <Briefcase size={16} /> },
+        { name: await t('Organization'), href: '/organization', icon: <Users size={16} /> },
+        { name: await t('Award'), href: '/award', icon: <Trophy size={16} /> },
       ]
     },
 
     { 
       name: await t('Artwork'), 
       href: '#',
+      icon: <Palette size={18} />,
       subLinks: [
-        { name: await t('Music'), href: '/music' },
-        { name: await t('Literature'), href:'/literature' },
+        { name: await t('Music'), href: '/music', icon: <Music size={16} /> },
+        { name: await t('Literature'), href:'/literature', icon: <BookOpen size={16} /> },
       ]
     },
 
-    { name: await t('College'), href: '/college' },
+    { 
+      name: await t('College'), 
+      href: '/college',
+      icon: <GraduationCap size={18} />
+    },
   ];
 
   // AskMePopup Data
