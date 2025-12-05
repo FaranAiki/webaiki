@@ -1,26 +1,69 @@
 // force use server
 "use server";
 
-import { cookies } from 'next/headers';
+import { cookies, headers } from 'next/headers';
 import "./globals.css";
+import fs from 'fs';
+import path from 'path';
 
-// TODO implement this (?)
 const cookie_default : { [key: string]: string } = {
-  'language': 'id',
-  'theme': 'dark'
+  'theme': 'system' 
 };
 
 export async function initializeCookies() {
   const cookieStore = await cookies();
+  
   for (const item in cookie_default) {
-    if (!(item in cookieStore)) {
+    if (!cookieStore.has(item)) {
       cookieStore.set(item, cookie_default[item], {
-        httpOnly: true, // cookies inaccessible to client-side JavaScript for safety measure
-        secure: process.env.NODE_ENV === 'production', // if production, make it secure, otherwise just ignore it (false)
+        httpOnly: true, 
+        secure: process.env.NODE_ENV === 'production', 
         path: '/',
       });
     }
   } 
+
+  if (!cookieStore.has('language')) {
+    const headersList = await headers();
+    const country = headersList.get('x-vercel-ip-country') || 'US';
+    
+    let selectedLanguage = 'en';
+
+    const countryToLang: { [key: string]: string } = {
+        'ID': 'id', // Indonesia
+        'RU': 'ru', // Russia
+        'CN': 'zh', // China
+        'JP': 'jp', // Japan
+        'FR': 'fr', // France
+        'SA': 'ar', // Saudi Arabia
+        'AE': 'ar', // UAE
+        'EG': 'ar', // Egypt
+    };
+
+    const candidateLang = countryToLang[country] || country.toLowerCase();
+
+    try {
+      const localesDir = path.join(process.cwd(), 'public', 'locales');
+      if (fs.existsSync(localesDir)) {
+        const availableLocales = fs.readdirSync(localesDir)
+          .filter(file => file.endsWith('.json'))
+          .map(file => path.basename(file, '.json')); 
+
+        if (availableLocales.includes(candidateLang)) {
+          selectedLanguage = candidateLang;
+        }
+      }
+    } catch (error) {
+      console.error("Error reading locales directory:", error);
+    }
+
+    // Set the cookie
+    cookieStore.set('language', selectedLanguage, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      path: '/',
+    });
+  }
 };
 
 export async function setCookies(name: string, val: string) {

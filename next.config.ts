@@ -20,6 +20,7 @@ const cspHeader = `
 `;
 
 const nextConfig = {
+  output: "standalone",
   poweredByHeader: false,
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',

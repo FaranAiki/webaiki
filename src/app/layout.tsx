@@ -4,6 +4,8 @@ import Background from "@/components/Background"
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+// Import Providers
+import { Providers } from "@/components/Providers";
 import { CookieInitializer } from '@/components/CookieInitialize';
 
 import 'react-pdf/dist/Page/AnnotationLayer.css';
@@ -14,9 +16,11 @@ import { t, currentLanguage } from '@/components/Translator';
 import fs from 'fs';
 import path from 'path';
 
+// Helper to get backgrounds
 export function getBackgrounds() {
   const photosDir = path.join(process.cwd(), 'public', 'images', 'background');
-
+  // Check if directory exists to avoid build errors
+  if (!fs.existsSync(photosDir)) return [];
   return fs.readdirSync(photosDir);
 }
 
@@ -35,6 +39,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Navigation Links
   const navLinks = [
     { name: await t('Home'), href: '/' },
     
@@ -69,6 +74,7 @@ export default async function RootLayout({
     { name: await t('College'), href: '/college' },
   ];
 
+  // AskMePopup Data
   const typeOfWaitingAnswer = [
     await t('gemini_wait1'),
     await t('gemini_wait2'),
@@ -87,6 +93,7 @@ export default async function RootLayout({
   const waiting = await t('Waiting');
   const provide_question = await t('Provide_Question');
   
+  // Header Translations
   const en_lang = await t('English');
   const id_lang = await t('Indonesian');
   const jp_lang = await t('Japanese');
@@ -98,18 +105,39 @@ export default async function RootLayout({
   const select_lang = await t('Select_Language');
 
   return (
-    <html lang={current_lang}>
+    <html lang={current_lang} suppressHydrationWarning={true}>
       <head>
         <meta name="google-site-verification" content="xZMulZsvn0xj7TrxhEN8O9KLWSmNIfx6tqFtOpbgOV4" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <CookieInitializer />
-        <Header navLinks={navLinks} current_lang={current_lang} en_lang={en_lang} zh_lang={zh_lang} id_lang={id_lang} jp_lang={jp_lang} ru_lang={ru_lang} fr_lang={fr_lang} ar_lang={ar_lang} select_lang={select_lang}/>
-        {children}
-        <AskMePopup typeOfWaitingAnswer={typeOfWaitingAnswer} ask_title={ask_title} question_title={question_title} question_answer={question_answer} submit={submit_q} waiting={waiting} provide_question={provide_question}/>
-        <Background carousel={getBackgrounds()}/>
+        <Providers>
+          <CookieInitializer />
+          <Header 
+            navLinks={navLinks} 
+            current_lang={current_lang} 
+            en_lang={en_lang} 
+            zh_lang={zh_lang} 
+            id_lang={id_lang} 
+            jp_lang={jp_lang} 
+            ru_lang={ru_lang} 
+            fr_lang={fr_lang} 
+            ar_lang={ar_lang} 
+            select_lang={select_lang}
+          />
+          {children}
+          <AskMePopup 
+            typeOfWaitingAnswer={typeOfWaitingAnswer} 
+            ask_title={ask_title} 
+            question_title={question_title} 
+            question_answer={question_answer} 
+            submit={submit_q} 
+            waiting={waiting} 
+            provide_question={provide_question}
+          />
+          <Background carousel={getBackgrounds()}/>
+        </Providers>
       </body>
     </html>
   );

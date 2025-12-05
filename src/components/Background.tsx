@@ -1,18 +1,16 @@
 "use client";
 
 import { useState, useEffect, useRef } from 'react';
+import { useTheme } from 'next-themes';
 
 const SLIDE_DURATION = 10000;
 
 /**
  * A professional geometric pattern visualization.
- * It creates a "Constellation" or "Neural Network" effect where nodes
- * connect automatically when close, simulating data topology.
  */
-const GeometricPattern = () => {
+const GeometricPattern = (isDark) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  // Store mouse position for interaction
   const mouseRef = useRef({ x: 0, y: 0, isActive: false });
 
   useEffect(() => {
@@ -26,11 +24,10 @@ const GeometricPattern = () => {
     let animationFrameId: number;
     let particles: Particle[] = [];
 
-    // Configuration
-    const PARTICLE_COUNT = 225; // Number of nodes
-    const CONNECTION_DISTANCE = 150; // Max distance to draw a line
-    const MOUSE_RADIUS = 100; // Interaction radius
-    const BASE_COLOR = { r: 100, g: 200, b: 255 }; // Cyan/Teal tech theme
+    const PARTICLE_COUNT = 225;
+    const CONNECTION_DISTANCE = 150; 
+    const MOUSE_RADIUS = 100;
+    let BASE_COLOR = isDark ? { r: 100, g: 200, b: 255 } : {r: 25, g: 125, b: 200}; 
 
     class Particle {
       x: number;
@@ -44,7 +41,6 @@ const GeometricPattern = () => {
       constructor(w: number, h: number) {
         this.x = Math.random() * w;
         this.y = Math.random() * h;
-        // Random velocity between -0.5 and 0.5
         this.vx = (Math.random() - 0.5) * 0.5; 
         this.vy = (Math.random() - 0.5) * 0.5;
         this.size = Math.random() * 2 + 1;
@@ -53,15 +49,12 @@ const GeometricPattern = () => {
       }
 
       update(w: number, h: number) {
-        // specific movement logic
         this.x += this.vx;
         this.y += this.vy;
 
-        // Bounce off edges
         if (this.x < 0 || this.x > w) this.vx *= -1;
         if (this.y < 0 || this.y > h) this.vy *= -1;
 
-        // Mouse Interaction
         if (mouseRef.current.isActive) {
           const dx = mouseRef.current.x - this.x;
           const dy = mouseRef.current.y - this.y;
@@ -71,7 +64,7 @@ const GeometricPattern = () => {
             const forceDirectionX = dx / distance;
             const forceDirectionY = dy / distance;
             const force = (MOUSE_RADIUS - distance) / MOUSE_RADIUS;
-            const directionX = forceDirectionX * force * 2; // Push strength
+            const directionX = forceDirectionX * force * 2; 
             const directionY = forceDirectionY * force * 2;
 
             this.x -= directionX;
@@ -133,7 +126,6 @@ const GeometricPattern = () => {
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < CONNECTION_DISTANCE) {
-            // Opacity is determined by distance (fade out as they get further)
             const opacity = 1 - distance / CONNECTION_DISTANCE;
             ctx.strokeStyle = `rgba(${BASE_COLOR.r}, ${BASE_COLOR.g}, ${BASE_COLOR.b}, ${opacity * 0.3})`;
             ctx.lineWidth = 2;
@@ -153,10 +145,6 @@ const GeometricPattern = () => {
         y: e.clientY - rect.top,
         isActive: true
       };
-    };
-
-    const handleMouseLeave = () => {
-      mouseRef.current.isActive = false;
     };
     
     const handleResize = () => {
@@ -178,9 +166,6 @@ const GeometricPattern = () => {
 
   return (
     <div ref={containerRef} className="fixed top-0 left-0 w-full h-full z-[-1] pointer-events-none">
-       {/* The canvas itself has pointer-events-none so it doesn't block clicks on your actual content,
-         but we track mouse movements globally in the effect hook.
-       */}
       <canvas
         ref={canvasRef}
         className="block w-full h-full opacity-65"
@@ -195,6 +180,12 @@ export type BackgroundProps = {
 
 export default function Background({ carousel }: BackgroundProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [mounted, setMounted] = useState(false);
+  const { resolvedTheme } = useTheme(); // Use the hook to get the true theme state
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (!carousel || carousel.length === 0) return;
@@ -206,30 +197,32 @@ export default function Background({ carousel }: BackgroundProps) {
     return () => clearInterval(interval);
   }, [carousel]);
 
+  if (!mounted) return null;
+
+  const isDark = resolvedTheme === 'dark';
+
   return (
-    <div className="fixed inset-0 w-full h-full z-[-1] bg-black">
-      {/* Background Image Layer */}
-      {carousel.map((src, index) => (
-        <div
-            key={index}
-            className={`blur-md absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
-                index === currentIndex ? 'opacity-60' : 'opacity-0'
-            }`}
-        >
-            {/* Replaced Next.js Image with standard img */}
-            <img
-                src={`/images/background/${src}`}
-                alt={`Background image ${index + 1}`}
-                className="w-full h-full object-cover"
-            />
-        </div>
-      ))}
+    <div className={`fixed inset-0 w-full h-full z-[-1] transition-colors duration-500 ${isDark ? 'bg-black' : 'bg-white'}`}>
       
-      {/* Overlay Darkener to ensure text readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80" />
-      
-      {/* The Visualization Layer */}
-      <GeometricPattern />
+      <div className={`transition-opacity duration-500 w-full h-full absolute inset-0 ${isDark ? 'opacity-100' : 'opacity-20'}`}>
+        {carousel.map((src, index) => (
+            <div
+                key={index}
+                className={`blur-md absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
+                    index === currentIndex ? 'opacity-60' : 'opacity-0'
+                }`}
+            >
+                <img
+                    src={`/images/background/${src}`}
+                    alt={`Background image ${index + 1}`}
+                    className="w-full h-full object-cover"
+                />
+            </div>
+        ))}
+        
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80" />
+        <GeometricPattern isDark={isDark}/>
+      </div>
     </div>
   );
 }

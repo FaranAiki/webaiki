@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import HoverableWords from '@/components/HoverableWords';
+import { useTheme } from 'next-themes';
 
 type Job = {
     date: string;
@@ -24,11 +25,13 @@ interface ExperiencesClientProps {
 export default function ExperiencesClient({ experiences }: ExperiencesClientProps) {
     const [activeJob, setActiveJob] = useState(experiences[0].jobs[0]);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const { resolvedTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
+        setMounted(true);
         setCurrentImageIndex(0);
 
-        // 2. If the new job has only one image (or none), do nothing else.
         if (activeJob.image.length <= 1) {
             return;
         }
@@ -37,39 +40,55 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
             setCurrentImageIndex((prevIndex) =>
                 (prevIndex + 1) % activeJob.image.length
             );
-        }, 3000); // Switch image every 3 seconds
+        }, 3000); 
 
         return () => clearInterval(timer);
 
     }, [activeJob]); 
 
+    if (!mounted) return null;
+    
+    const isDark = resolvedTheme === 'dark';
+    const mainText = isDark ? 'text-white' : 'text-black';
+    const subText = isDark ? 'text-gray-400' : 'text-gray-600';
+    const descText = isDark ? 'text-gray-300' : 'text-gray-700';
+    const activeCardBg = isDark ? 'bg-gray-800' : 'bg-gray-100 border-cyan-500';
+    const inactiveCardBg = isDark ? 'bg-gray-800/50 hover:bg-gray-800' : 'bg-white hover:bg-gray-50';
+    const cardBorder = isDark ? 'border-transparent' : 'border-gray-200';
+
     return (
-        <div className="text-white min-h-screen font-sans p-4 sm:p-8 md:p-12">
+        <div className={`${isDark ? 'text-white' : 'text-gray-900'} min-h-screen font-sans p-4 sm:p-8 md:p-12`}>
             <div className="container mx-auto max-w-6xl pt-16">
                 <div className="flex flex-col md:flex-row gap-8 md:gap-16">
                     {/* Left Column: Job List (Interactive) */}
                     <div className="w-full md:w-1/2 hover:translateY(-5px)">
                         {experiences.map((experience) => (
                             <div key={experience.year} className="mb-12 text-center md:text-justify cursor-pointer">
-                                <h2 className="transition-all hover:scale-105 text-2xl font-bold text-white mb-6 top-0 py-2 xs:text-center">{experience.year}</h2>
+                                <h2 className={`transition-all hover:scale-105 text-2xl font-bold ${mainText} mb-6 top-0 py-2 xs:text-center`}>{experience.year}</h2>
                                 <div className="space-y-4">
                                     {experience.jobs.map((job, index) => (
                                         <div
                                             key={index}
                                             onMouseEnter={() => setActiveJob(job)}
-                                            className={`p-6 rounded-lg transition-all duration-300 cursor-pointer border-2 ${activeJob.title === job.title && activeJob.company === job.company ? 'bg-gray-800 border-cyan-500' : 'bg-gray-800/50 border-transparent hover:bg-gray-800 hover:border-cyan-500/50'}`}
+                                            className={`p-6 rounded-lg transition-all duration-300 cursor-pointer border-2 shadow-sm dark:shadow-none
+                                                ${activeJob.title === job.title && activeJob.company === job.company 
+                                                    ? `${activeCardBg}` 
+                                                    : `${inactiveCardBg} ${cardBorder} hover:border-cyan-500/50`
+                                                }`}
                                         >
-                                            <p className="text-gray-400 text-sm mb-1 duration-100 hover:text-gray-300 hover:italic transition-all">{job.date}</p>
-                                            <h3 className="text-xl font-semibold text-gray-100 hover:font-bold transition-all duration-200 hover:scale-101">{job.title}</h3>
-                                            <p className="text-cyan-400 font-medium mb-3 transition-all hover:font-bold hover:scale-105 duration-200">{job.company}</p>
-                                            <HoverableWords className="leading-relaxed text-justify lg:text-lg md:text-md text-gray-300" prophover='transition-all inline-block duration-100 ease-in-out hover:scale-95 hover:text-cyan-300 hover:underline hover:font-semibold hover:opacity-85'>
+                                            <p className={`${subText} text-sm mb-1 duration-100 hover:text-gray-700 dark:hover:text-gray-300 hover:italic transition-all`}>{job.date}</p>
+                                            <h3 className={`text-xl font-semibold ${mainText} hover:font-bold transition-all duration-200 hover:scale-101`}>{job.title}</h3>
+                                            <p className="text-cyan-600 dark:text-cyan-400 font-medium mb-3 transition-all hover:font-bold hover:scale-105 duration-200">{job.company}</p>
+                                            <HoverableWords 
+                                                className={`leading-relaxed text-justify lg:text-lg md:text-md ${descText}`}
+                                                prophover='transition-all inline-block duration-100 ease-in-out hover:scale-95 hover:text-cyan-600 dark:hover:text-cyan-300 hover:underline hover:font-semibold hover:opacity-85'
+                                            >
                                               {job.description} 
                                             </HoverableWords>
                                             {job === activeJob && activeJob.image.length > 0 && (activeJob.image[currentImageIndex] !== '' || activeJob.image[currentImageIndex] !== null ) &&  (
                                             <div className="flex pt-4 w-full justify-center transition-all duration-200 block md:hidden w-1/2 hover:scale-101">
                                               <div className="aspect-w-16 aspect-h-9">
                                                 <Image
-                                                // key={activeJob.image[currentImageIndex]}
                                                 width={24}
                                                 height={16}
                                                 src={activeJob.image[currentImageIndex]}
@@ -93,18 +112,17 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
                         <div className="sticky top-24">
                             <div className="aspect-w-16 aspect-h-9">
                                      <Image
-                                        // key={activeJob.image[currentImageIndex]}
                                         width={24}
                                         height={16}
                                         src={activeJob.image[currentImageIndex]}
                                         alt={`${activeJob.company} placeholder image`}
-                                        className="w-full h-full object-cover rounded-lg shadow-2xl transition-opacity duration-300"
+                                        className={`w-full h-full object-cover rounded-lg shadow-2xl transition-opacity duration-300 border-2 ${cardBorder}`}
                                         unoptimized
                                     />
                             </div>
                             <div className="mt-4 text-center">
-                                <h3 className="text-2xl font-bold">{activeJob.title}</h3>
-                                <p className="text-cyan-400 text-lg">{activeJob.company}</p>
+                                <h3 className={`text-2xl font-bold ${mainText}`}>{activeJob.title}</h3>
+                                <p className="text-cyan-600 dark:text-cyan-400 text-lg">{activeJob.company}</p>
                             </div>
                         </div>
                     </div>

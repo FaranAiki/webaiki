@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState, memo } from 'react';
+import React, { useState, memo, useEffect } from 'react';
 import { MessageSquare, X, LoaderCircle } from 'lucide-react';
 import { useRef } from 'react';
 import Draggable from 'react-draggable';
+import { useTheme } from 'next-themes';
 
 interface AskMePopupProps {
   typeOfWaitingAnswer: string[];
@@ -16,14 +17,19 @@ interface AskMePopupProps {
 }
 
 function AskMePopup({typeOfWaitingAnswer, ask_title, question_answer, question_title, submit, waiting, provide_question }: AskMePopupProps) {
-  // state for visibility and others
   const [isOpen, setIsOpen] = useState(false);
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   const nodeRef = useRef(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,8 +55,6 @@ function AskMePopup({typeOfWaitingAnswer, ask_title, question_answer, question_t
       
       const data = await response.json();
       setAnswer(data.answer); 
-      // setQuestion(''); 
-
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
@@ -71,6 +75,19 @@ function AskMePopup({typeOfWaitingAnswer, ask_title, question_answer, question_t
     setIsLoading(false);
   }
 
+  if (!mounted) return null;
+
+  const isDark = resolvedTheme === 'dark';
+
+  // Dynamic Styles
+  const popupBg = isDark ? 'bg-gray-800/95 border-gray-700' : 'bg-white/95 border-gray-300';
+  const headerBorder = isDark ? 'border-gray-600' : 'border-gray-200';
+  const titleText = isDark ? 'text-white' : 'text-gray-900';
+  const closeBtn = isDark ? 'text-gray-400 hover:text-white' : 'text-gray-500 hover:text-black';
+  const labelText = isDark ? 'text-gray-300' : 'text-gray-700';
+  const inputBg = isDark ? 'bg-gray-900/85 text-gray-200 border-gray-600' : 'bg-gray-50 text-gray-900 border-gray-300';
+  const answerBg = isDark ? 'bg-gray-900/85 text-gray-200 border-gray-600' : 'bg-gray-50 text-gray-900 border-gray-300';
+
   return (
   <>
     <button
@@ -90,28 +107,27 @@ function AskMePopup({typeOfWaitingAnswer, ask_title, question_answer, question_t
           aria-modal="true"
           aria-labelledby="popup-title"
         >
-          <div className="bg-gray-800/85 backdrop-blur-sm border border-gray-700 rounded-lg shadow-2xl w-95">
+          <div className={`${popupBg} backdrop-blur-sm border rounded-lg shadow-2xl w-95`}>
             <div
-              // This div is now the handle for dragging
-              className="no-select drag-handle flex justify-between items-center p-4 border-b border-gray-600 cursor-grab active:cursor-grabbing"
+              className={`no-select drag-handle flex justify-between items-center p-4 border-b ${headerBorder} cursor-grab active:cursor-grabbing`}
             >
-              <h2 id="popup-title" className="text-lg font-semibold text-white">{ask_title}</h2>
-              <button onClick={() => setIsOpen(false)} className="text-gray-400 hover:text-white" aria-label="Close">
+              <h2 id="popup-title" className={`text-lg font-semibold ${titleText}`}>{ask_title}</h2>
+              <button onClick={() => setIsOpen(false)} className={closeBtn} aria-label="Close">
                 <X size={20} />
               </button>
             </div>
             <form onSubmit={handleSubmit} className="p-4">
-              <h3 id="popup-question" className="text-base opacity-75 text-gray-300 mb-1">{question_title}</h3>
+              <h3 id="popup-question" className={`text-base opacity-75 ${labelText} mb-1`}>{question_title}</h3>
               <textarea
                 value={question}
                 onChange={(e) => setQuestion(e.target.value)}
                 placeholder="..."
-                className="pt-2 w-full h-12 p-2 bg-gray-900/85 text-gray-200 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 no-scrollbar"
+                className={`pt-2 w-full h-12 p-2 ${inputBg} border rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 no-scrollbar`}
                 required
                 disabled={isLoading}
               />
-              <h3 id="popup-answer" className="text-base opacity-75 text-gray-300 mt-2 mb-1">{question_answer}</h3>
-              <div className="pt-2 w-full h-43 p-2 bg-gray-900/85 text-gray-200 border border-gray-600 rounded-md no-scrollbar overflow-y-auto">
+              <h3 id="popup-answer" className={`text-base opacity-75 ${labelText} mt-2 mb-1`}>{question_answer}</h3>
+              <div className={`pt-2 w-full h-43 p-2 ${answerBg} border rounded-md no-scrollbar overflow-y-auto`}>
                 {isLoading && <div className="flex items-center text-gray-400"><LoaderCircle size={16} className="animate-spin mr-2" /><span>{answer}</span></div>}
                 {error && <p className="text-red-400">{error}</p>}
                 {!isLoading && !error && answer && <p>{answer}</p>}
@@ -133,4 +149,4 @@ function AskMePopup({typeOfWaitingAnswer, ask_title, question_answer, question_t
   </>
 );}
 
-export default memo(AskMePopup); 
+export default memo(AskMePopup);

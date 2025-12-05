@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import HoverableWords from '@/components/HoverableWords';
 import { useState, useEffect } from 'react';
+import { useTheme } from 'next-themes';
 
 interface AboutMeProps {
   carouselPhotos: string[];
@@ -17,9 +18,9 @@ interface AboutMeProps {
   faran_photo: string;
 }
 
-const SectionSeparator = () => (
+const SectionSeparator = ({ isDark }: { isDark: boolean }) => (
   <div className="w-full max-w-4xl mx-auto my-16">
-    <div className="h-px bg-gradient-to-r from-transparent via-gray-500/50 to-transparent" />
+    <div className={`h-px bg-gradient-to-r from-transparent ${isDark ? 'via-gray-500/50' : 'via-gray-300'} to-transparent`} />
   </div>
 );
 
@@ -37,9 +38,17 @@ export default function AboutMe({
 }: AboutMeProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFading, setIsFading] = useState(false);
+  
+  // Use useTheme hook to get the actual resolved theme state (light/dark)
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-  // Carousel things
+  // Carousel things & Mount Check
   useEffect(() => {
+    setMounted(true);
+
+    if (carouselPhotos.length <= 1) return;
+    
     const interval = setInterval(() => {
       setIsFading(true);
 
@@ -53,24 +62,37 @@ export default function AboutMe({
     return () => clearInterval(interval);
   }, [carouselPhotos.length]);
 
+  // Prevent hydration mismatch by rendering placeholder until mounted
+  if (!mounted) {
+    return <div className="w-full px-10 py-10 min-h-screen opacity-0"></div>;
+  }
+
+  // Determine dark mode state via JS
+  const isDark = resolvedTheme === 'dark';
+
+  // Dynamic Class Names based on JS state
+  const titleClass = isDark ? 'text-white' : 'text-black';
+  const textClass = isDark ? 'text-gray-300' : 'text-black';
+  const borderClass = isDark ? 'border-white/10' : 'border-gray-200';
+
   return (
     <div className="w-full px-10 py-10">
        
       {/* About Me */}
-      {/* Changed flex-col to flex-col-reverse so image appears on top on mobile */}
       <div className="flex flex-col-reverse md:flex-row justify-center items-center gap-12 max-w-5xl mx-auto animate-fade-in">
         <div className="flex-1 text-center md:text-justify">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 hover:opacity-85 transition-opacity">
+          <h1 className={`text-4xl md:text-5xl font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
             {about_title}
           </h1>
-          <HoverableWords className="text-lg text-gray-250 leading-relaxed text-justify">
+          {/* Using textClass calculated from resolvedTheme to ensure correct color */}
+          <HoverableWords className={`text-lg ${textClass} leading-relaxed text-justify`}>
             {about_text}
           </HoverableWords>
         </div>
 
         <div className="flex-shrink-0 relative">
           <div className="relative w-64 h-64 md:w-72 md:h-72">
-             {/* Decorative backdrop blur with some nice <-> graph */}
+             {/* Decorative backdrop blur */}
             <div className="absolute inset-0 bg-blue-500/20 blur-2xl rounded-full transform scale-90"></div>
             <Image
               src={`/images/photo_faran_aiki/${carouselPhotos[currentIndex]}`}
@@ -79,7 +101,7 @@ export default function AboutMe({
               className={`
                 object-cover rounded-xl
                 transition-all duration-500 ease-in-out
-                shadow-2xl border-2 border-white/10
+                shadow-2xl border-2 ${borderClass}
                 hover:scale-105 hover:shadow-blue-500/30
                 ${isFading ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}
               `}
@@ -89,18 +111,17 @@ export default function AboutMe({
         </div>
       </div>
 
-      <SectionSeparator />
+      <SectionSeparator isDark={isDark} />
 
       {/* Philosophy  */}
-      {/* Changed flex-col to flex-col-reverse so image appears on top on mobile */}
       <div className="flex flex-col-reverse md:flex-row-reverse justify-center items-center gap-12 max-w-5xl mx-auto animate-fade-in">
         <div className="flex-1 text-center md:text-justify">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 hover:opacity-85 transition-opacity">
+          <h2 className={`text-3xl md:text-4xl font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
             {about_philosophy_title}
           </h2>
           <HoverableWords 
-            className="text-lg text-gray-250 leading-relaxed text-justify md:text-justify" 
-            prophover='transition-all inline-block duration-200 ease-in-out hover:text-cyan-300 hover:font-semibold cursor-pointer'
+            className={`text-lg ${textClass} leading-relaxed text-justify md:text-justify`} 
+            prophover={`transition-all inline-block duration-200 ease-in-out hover:text-cyan-600 ${isDark ? 'dark:hover:text-cyan-300' : ''} hover:font-semibold cursor-pointer`}
           >
             {about_philosophy}
           </HoverableWords>
@@ -119,17 +140,16 @@ export default function AboutMe({
         </div>
       </div>
 
-      <SectionSeparator />
+      <SectionSeparator isDark={isDark} />
 
       {/* Principles */}
-      {/* Changed flex-col to flex-col-reverse so image appears on top on mobile */}
       <div className="flex flex-col-reverse md:flex-row justify-center items-center gap-12 max-w-5xl mx-auto animate-fade-in">
         <div className="flex-1 text-center md:text-justify">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 hover:opacity-85 transition-opacity">
+          <h2 className={`text-3xl md:text-4xl font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
             {about_principle_title}
           </h2>
           <HoverableWords 
-            className="text-lg text-gray-250 leading-relaxed text-justify" 
+            className={`text-lg ${textClass} leading-relaxed text-justify`} 
             prophover='transition-all inline-block duration-100 ease-in-out hover:scale-95 hover:italic hover:opacity-90 cursor-pointer'
           >
             {about_principle}
@@ -149,18 +169,17 @@ export default function AboutMe({
         </div>
       </div>
 
-      <SectionSeparator />
+      <SectionSeparator isDark={isDark} />
 
       {/* Vision & Mission  */}
-      {/* Changed flex-col to flex-col-reverse so image appears on top on mobile */}
       <div className="flex flex-col-reverse md:flex-row-reverse justify-center items-center gap-12 max-w-5xl mx-auto animate-fade-in">
         <div className="flex-1 text-center md:text-justify">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 hover:opacity-85 transition-opacity">
+          <h2 className={`text-3xl md:text-4xl font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
             {about_vision_mission_title}
           </h2>
           <HoverableWords 
-            className="text-lg text-gray-250 leading-relaxed text-justify md:text-justify" 
-            prophover='transition-all inline-block duration-100 ease-in-out hover:scale-95 hover:italic hover:opacity-90 cursor-pointer hover:text-cyan-300'
+            className={`text-lg ${textClass} leading-relaxed text-justify md:text-justify`} 
+            prophover={`transition-all inline-block duration-100 ease-in-out hover:scale-95 hover:italic hover:opacity-90 cursor-pointer hover:text-cyan-600 ${isDark ? 'dark:hover:text-cyan-300' : ''}`}
           >
             {about_vision_mission}
           </HoverableWords>
@@ -177,10 +196,6 @@ export default function AboutMe({
             />
           </div>
         </div>
-      </div>
-
-      <div className="opacity-70 hover:opacity-100 transition-all duration-250 flex justify-center items-center py-8">
-        {/* <PdfViewer className="hover:pt-6 hover:scale-105" file="/ats_cv.pdf" /> */}
       </div>
     </div>
   );

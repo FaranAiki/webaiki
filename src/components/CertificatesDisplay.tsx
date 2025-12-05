@@ -1,10 +1,9 @@
 'use client';
 
-// I don't know how to code and program so I just vibe-code and vibe-program
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import PdfPreview from '@/components/PdfPreview';
-
 import Image from 'next/image';
+import { useTheme } from 'next-themes';
 
 export type CertificateData = {
   [category: string]: {
@@ -20,9 +19,14 @@ export type CertificatesDisplayProps = {
 };
 
 export default function CertificatesDisplay({ certificates, allTranslation }: CertificatesDisplayProps) {
-  // NextJS (react)'s states are overpowered
   const [openCategories, setOpenCategories] = useState<string[]>([]);
   const [selectedYears, setSelectedYears] = useState<{ [key: string]: string }>({});
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleCategoryClick = (category: string) => {
     setOpenCategories((prev) =>
@@ -46,6 +50,18 @@ export default function CertificatesDisplay({ certificates, allTranslation }: Ce
     return years;
   }, [certificates]);
 
+  if (!mounted) return null;
+
+  const isDark = resolvedTheme === 'dark';
+  
+  // Dynamic Classes
+  const titleColor = isDark ? 'text-white' : 'text-black';
+  const borderColor = isDark ? 'border-gray-700' : 'border-gray-300';
+  const cardBg = isDark ? 'bg-gray-800' : 'bg-white';
+  const cardBorder = isDark ? 'border-transparent' : 'border-gray-200';
+  const buttonInactiveBg = isDark ? 'bg-gray-800' : 'bg-gray-200';
+  const buttonInactiveText = isDark ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-300';
+
   return (
     <div className="w-full max-w-5xl mx-auto p-4 space-y-6">
       {Object.entries(certificates).map(([category, yearsData]) => {
@@ -63,17 +79,17 @@ export default function CertificatesDisplay({ certificates, allTranslation }: Ce
         })();
 
         return (
-          <div key={category} className="border-b border-gray-700 pb-4">
+          <div key={category} className={`border-b ${borderColor} pb-4`}>
             <button
               onClick={() => handleCategoryClick(category)}
-              className="w-full text-left text-2xl font-bold hover:text-cyan-300 hover:scale-102 transition-all"
+              className={`w-full text-left text-2xl font-bold ${titleColor} hover:text-cyan-600 dark:hover:text-cyan-300 hover:scale-102 transition-all`}
             >
               {category}
             </button>
 
             <div
               className={`transition-all duration-250 animate-fade-in ease-in-out overflow-hidden ${
-                isOpen ? 'max-h-[10000px] mt-4' : 'max-h-0' // Use a large max-h value
+                isOpen ? 'max-h-[10000px] mt-4' : 'max-h-0'
               }`}
             >
               <div className="flex flex-wrap gap-2 mb-6">
@@ -81,8 +97,8 @@ export default function CertificatesDisplay({ certificates, allTranslation }: Ce
                   onClick={() => handleYearClick(category, 'All')}
                   className={`px-3 py-1 text-sm rounded-full ${
                     activeYear === 'All'
-                      ? 'bg-cyan-500 text-white transition-all hover:scale-105'
-                      : 'bg-gray-800 hover:bg-gray-700'
+                      ? 'bg-cyan-600 dark:bg-cyan-500 text-white transition-all hover:scale-105'
+                      : `${buttonInactiveBg} ${buttonInactiveText}`
                   }`}
                 >
                   {allTranslation}
@@ -93,8 +109,8 @@ export default function CertificatesDisplay({ certificates, allTranslation }: Ce
                     onClick={() => handleYearClick(category, year)}
                     className={`px-3 py-1 text-sm rounded-full ${
                       activeYear === year
-                        ? 'bg-cyan-500 text-white'
-                        : 'bg-gray-800 hover:bg-gray-700 transition-all hover:scale-105'
+                        ? 'bg-cyan-600 dark:bg-cyan-500 text-white'
+                        : `${buttonInactiveBg} ${buttonInactiveText} transition-all hover:scale-105`
                     }`}
                   >
                     {year}
@@ -106,7 +122,7 @@ export default function CertificatesDisplay({ certificates, allTranslation }: Ce
                 {Object.entries(filteredFiles).map(([fileName, filePath]) => (
                   <div
                     key={fileName}
-                    className="bg-gray-800 rounded-lg overflow-visible shadow-lg transition-all hover:scale-105 hover:opacity-100 opacity-90"
+                    className={`${cardBg} rounded-lg overflow-visible shadow-lg transition-all hover:scale-105 hover:opacity-100 opacity-90 border ${cardBorder}`}
                   >
                     <a
                       href={filePath as string}
@@ -120,12 +136,14 @@ export default function CertificatesDisplay({ certificates, allTranslation }: Ce
                         <Image
                           src={filePath as string}
                           alt={fileName}
-                          className="w-full h-full object-cover"
+                          width={400}
+                          height={300}
+                          className="w-full h-full object-cover rounded-t-lg"
                         />
                       )}
                     </a>
                     <div className="p-4">
-                      <h3 className="font-semibold text-white truncate">
+                      <h3 className={`font-semibold ${titleColor} truncate`}>
                         {fileName}
                       </h3>
                     </div>

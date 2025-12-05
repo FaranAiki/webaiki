@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  web:
+    container_name: faranaiki-webaiki
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      # Later on the virtual private server (if I have any)
+      # - GEMINI_API_KEY=${GEMINI_API_KEY}
+      # - YOUTUBE_API_KEY=${YOUTUBE_API_KEY}
+      # - SPOTIFY_CLIENT_ID=${SPOTIFY_CLIENT_ID}
+      # - SPOTIFY_CLIENT_SECRET=${SPOTIFY_CLIENT_SECRET}
+      # - SPOTIFY_REFRESH_TOKEN=${SPOTIFY_REFRESH_TOKEN}
+      # Recommended Next.js vars
+      - NODE_ENV=production
