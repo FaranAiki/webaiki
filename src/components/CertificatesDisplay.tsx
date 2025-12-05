@@ -82,7 +82,7 @@ export default function CertificatesDisplay({ certificates, allTranslation }: Ce
           <div key={category} className={`border-b ${borderColor} pb-4`}>
             <button
               onClick={() => handleCategoryClick(category)}
-              className={`w-full text-left text-2xl font-bold ${titleColor} hover:text-cyan-600 dark:hover:text-cyan-300 hover:scale-102 transition-all`}
+              className={`w-full text-left text-2xl font-bold ${titleColor} hover:text-cyan-500 hover:scale-102 transition-all`}
             >
               {category}
             </button>
@@ -97,7 +97,7 @@ export default function CertificatesDisplay({ certificates, allTranslation }: Ce
                   onClick={() => handleYearClick(category, 'All')}
                   className={`px-3 py-1 text-sm rounded-full ${
                     activeYear === 'All'
-                      ? 'bg-cyan-600 dark:bg-cyan-500 text-white transition-all hover:scale-105'
+                      ? 'bg-cyan-500 text-white transition-all hover:scale-105'
                       : `${buttonInactiveBg} ${buttonInactiveText}`
                   }`}
                 >
@@ -109,7 +109,7 @@ export default function CertificatesDisplay({ certificates, allTranslation }: Ce
                     onClick={() => handleYearClick(category, year)}
                     className={`px-3 py-1 text-sm rounded-full ${
                       activeYear === year
-                        ? 'bg-cyan-600 dark:bg-cyan-500 text-white'
+                        ? 'bg-cyan-500 text-white'
                         : `${buttonInactiveBg} ${buttonInactiveText} transition-all hover:scale-105`
                     }`}
                   >

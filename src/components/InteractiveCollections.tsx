@@ -78,7 +78,7 @@ export default function InteractiveCollections( { data, force_click }: Interacti
                         onClick={() => activeHeadingTwo == headingTwo? setActiveHeadingTwo(null) : setActiveHeadingTwo(headingTwo)}
                       >
                         
-                        {Object.entries(documents).length > 0 && (<h3 className={`font-bold ${headingTwoText} cursor-pointer hover:text-cyan-600 dark:hover:text-cyan-500 transition-colors`}>{headingTwo}</h3>)}
+                        {Object.entries(documents).length > 0 && (<h3 className={`font-bold ${headingTwoText} cursor-pointer hover:text-cyan-600 transition-colors`}>{headingTwo}</h3>)}
                         
                         {activeHeadingTwo === headingTwo && (
                            Object.keys(documents).length > 0 ? (
@@ -86,12 +86,12 @@ export default function InteractiveCollections( { data, force_click }: Interacti
                               {Object.entries(documents).map(([docName, url]) => (
                                 <li key={docName}>
                                   {url ? (
-                                    <a href={url} target="_blank" rel="noopener noreferrer" className="flex items-center hover:text-cyan-600 dark:hover:text-cyan-300 transition-colors">
+                                    <a href={url} target="_blank" rel="noopener noreferrer" className="flex items-center hover:text-cyan-600 transition-colors">
                                       <LinkIcon size={16} className="mr-2 flex-shrink-0" />
                                       <span>{docName}</span>
                                     </a>
                                   ) : (
-                                    <span className="flex items-center text-gray-400 dark:text-gray-500 cursor-not-allowed">
+                                    <span className="flex items-center text-gray-400 cursor-not-allowed">
                                       <XCircle size={16} className="mr-2 flex-shrink-0" />
                                       <span>{docName} (Not available)</span>
                                     </span>

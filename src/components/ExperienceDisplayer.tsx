@@ -70,18 +70,18 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
                                         <div
                                             key={index}
                                             onMouseEnter={() => setActiveJob(job)}
-                                            className={`p-6 rounded-lg transition-all duration-300 cursor-pointer border-2 shadow-sm dark:shadow-none
+                                            className={`p-6 rounded-lg transition-all duration-300 cursor-pointer border-2 shadow-sm 
                                                 ${activeJob.title === job.title && activeJob.company === job.company 
                                                     ? `${activeCardBg}` 
                                                     : `${inactiveCardBg} ${cardBorder} hover:border-cyan-500/50`
                                                 }`}
                                         >
-                                            <p className={`${subText} text-sm mb-1 duration-100 hover:text-gray-700 dark:hover:text-gray-300 hover:italic transition-all`}>{job.date}</p>
+                                            <p className={`${subText} text-sm mb-1 duration-100 hover:text-gray-700 hover:italic transition-all`}>{job.date}</p>
                                             <h3 className={`text-xl font-semibold ${mainText} hover:font-bold transition-all duration-200 hover:scale-101`}>{job.title}</h3>
-                                            <p className="text-cyan-600 dark:text-cyan-400 font-medium mb-3 transition-all hover:font-bold hover:scale-105 duration-200">{job.company}</p>
+                                            <p className="text-cyan-600 font-medium mb-3 transition-all hover:font-bold hover:scale-105 duration-200">{job.company}</p>
                                             <HoverableWords 
                                                 className={`leading-relaxed text-justify lg:text-lg md:text-md ${descText}`}
-                                                prophover='transition-all inline-block duration-100 ease-in-out hover:scale-95 hover:text-cyan-600 dark:hover:text-cyan-300 hover:underline hover:font-semibold hover:opacity-85'
+                                                prophover='transition-all inline-block duration-100 ease-in-out hover:scale-95 hover:text-cyan-600 hover:underline hover:font-semibold hover:opacity-85'
                                             >
                                               {job.description} 
                                             </HoverableWords>
@@ -122,7 +122,7 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
                             </div>
                             <div className="mt-4 text-center">
                                 <h3 className={`text-2xl font-bold ${mainText}`}>{activeJob.title}</h3>
-                                <p className="text-cyan-600 dark:text-cyan-400 text-lg">{activeJob.company}</p>
+                                <p className="text-cyan-600 text-lg">{activeJob.company}</p>
                             </div>
                         </div>
                     </div>

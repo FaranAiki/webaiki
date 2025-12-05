@@ -42,11 +42,11 @@ export default function ThemeToggle() {
 
   return (
     <>
-      {/* Mobile/Tablet (md and below): Single Click-Click Button */}
+      {/* Mobile/Tablet (md only): Single Click-Click Button */}
       {/* Visible up to lg breakpoint (so that it is visible on md) */}
       <button
         onClick={cycleTheme}
-        className={`lg:hidden p-2 rounded-full transition-all duration-300 border ${
+        className={`hidden md:block lg:hidden p-2 rounded-full transition-all duration-300 border ${
           isDark 
             ? "bg-gray-800 border-gray-700 text-yellow-400 hover:bg-gray-700" 
             : "bg-white border-gray-300 text-orange-500 hover:bg-gray-100 shadow-sm"
@@ -56,27 +56,15 @@ export default function ThemeToggle() {
         <CurrentIcon size={20} />
       </button>
 
-      {/* Desktop (lg and up): Full Toggle Switch */}
-      <div className={`hidden lg:flex items-center space-x-2 rounded-full p-1 border ${desktopContainerClass} transition-colors duration-300`}>
-        <button
-          type="button"
-          onClick={() => handleThemeChange("light")}
-          className={`p-1.5 rounded-full transition-all duration-200 ${
-            theme === "light"
-              ? "bg-gray-100 text-orange-500 shadow-sm ring-1 ring-gray-200"
-              : "text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
-          }`}
-          aria-label="Light Mode"
-        >
-          <Sun size={16} />
-        </button>
+      {/* Desktop (!md): Full Toggle Switch */}
+      <div className={`block md:hidden lg:flex items-center space-x-2 rounded-full p-1 border ${desktopContainerClass} transition-colors duration-300`}>
         <button
           type="button"
           onClick={() => handleThemeChange("system")}
           className={`p-1.5 rounded-full transition-all duration-200 ${
             theme === "system"
-              ? "bg-gray-100 dark:bg-gray-700 text-blue-500 shadow-sm ring-1 ring-gray-200 dark:ring-gray-600"
-              : "text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+              ? "bg-gray-100 text-blue-500 shadow-sm ring-1 ring-gray-200"
+              : "text-gray-400 hover:text-gray-600"
           }`}
           aria-label="System Mode"
         >
@@ -84,11 +72,23 @@ export default function ThemeToggle() {
         </button>
         <button
           type="button"
+          onClick={() => handleThemeChange("light")}
+          className={`p-1.5 rounded-full transition-all duration-200 ${
+            theme === "light"
+              ? "bg-gray-100 text-orange-500 shadow-sm ring-1 ring-gray-200"
+              : "text-gray-400 hover:text-gray-600"
+          }`}
+          aria-label="Light Mode"
+        >
+          <Sun size={16} />
+        </button>
+        <button
+          type="button"
           onClick={() => handleThemeChange("dark")}
           className={`p-1.5 rounded-full transition-all duration-200 ${
             theme === "dark"
               ? "bg-gray-700 text-yellow-400 shadow-sm ring-1 ring-gray-600"
-              : "text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+              : "text-gray-400 hover:text-gray-600"
           }`}
           aria-label="Dark Mode"
         >

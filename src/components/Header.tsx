@@ -32,7 +32,7 @@ interface HeaderProps {
 
 function GlobeIcon({ isDark }: { isDark: boolean }) {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`${isDark ? 'text-gray-300' : 'text-slate-700'} group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors duration-300`}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`${isDark ? 'text-gray-300' : 'text-slate-700'} group-hover:text-cyan-600 transition-colors duration-300`}>
             <circle cx="12" cy="12" r="10"></circle>
             <line x1="2" y1="12" x2="22" y2="12"></line>
             <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
@@ -140,7 +140,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                         <li key={lang.code}>
                             <button
                                 onClick={() => handleLanguageChange(lang.code)}
-                                className={`w-full text-left px-4 py-2 text-sm hover:${isDark? 'bg-gray-100' : 'bg-gray-700'} dark:hover:bg-gray-700 hover:${isDark? 'text-cyan-600' : 'text-cyan-400'} dark:hover:text-cyan-400 transition-colors duration-200 text-md ${isCurrent ? `${activeText} font-bold` : textColor}`}
+                                className={`w-full text-left px-4 py-2 text-sm hover:${isDark? 'bg-gray-800' : 'bg-gray-200'} hover:${isDark? 'text-cyan-600' : 'text-cyan-400'} transition-colors duration-200 text-md ${isCurrent ? `${activeText} font-bold` : textColor}`}
                             >
                                 {lang.name}
                             </button>
@@ -164,7 +164,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
 
     const currentPageTitle = findPageTitle(navLinks);
 
-    if (!mounted) return <div className="h-16 w-full fixed top-0 z-30 bg-slate-200/90 dark:bg-gray-900/80" />;
+    if (!mounted) return <div className="h-16 w-full fixed top-0 z-30 bg-slate-200/90" />;
 
     return (
         <>
@@ -181,14 +181,14 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                 <div className="container flex items-center justify-between mx-auto px-4 sm:px-8 py-4">
 
                     {/* Left section (Logo) */}
-                    <div className="flex-1 flex items-center gap-4">
+                    <div className="block md:hidden lg:block flex-1 flex items-center gap-4">
                         <Image
                             onClick={() => redirect('/')}
                             src='/icon.ico'
                             alt={"logo"}
                             width={30}
                             height={30}
-                            className="transition-all shadow-lg border-2 border-white dark:border-transparent opacity-100 hover:opacity-75 scale-95 hover:scale-100 cursor-pointer rounded-full"
+                            className={`transition-all shadow-lg border-2 ${isDark ? "border-cyan-800" : "border-gray-200"} opacity-100 hover:opacity-75 scale-95 hover:scale-100 cursor-pointer rounded-full`}
                             priority
                         />
                     </div>
@@ -196,7 +196,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                     {/* --- Mobile Title (Center) --- */}
                     <div className={`md:hidden ${inter.className}`} >
                         {currentPageTitle && (
-                            <h1 className={`transition-all duration-200 text-xl font-bold hover:text-cyan-600 dark:hover:text-cyan-200 ${isDark ? 'text-white' : 'text-slate-800'} whitespace-nowrap cursor-pointer hover:scale-105 opacity-90`}>
+                            <h1 className={`transition-all duration-200 text-xl font-bold hover:text-cyan-600 ${isDark ? 'text-white' : 'text-slate-800'} whitespace-nowrap cursor-pointer hover:scale-105 opacity-90`}>
                                 {currentPageTitle}
                             </h1>
                         )}
@@ -216,7 +216,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                             <button
                                                 className={`flex items-center text-base transition-all duration-300 ${isChildActive
                                                         ? `${activeText} font-bold`
-                                                        : `${textColor} font-semibold group-hover:text-cyan-600 dark:group-hover:text-cyan-400`
+                                                        : `${textColor} font-semibold group-hover:text-cyan-600`
                                                     }`}
                                             >
                                                 {link.name}
@@ -232,9 +232,9 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                                             <li key={subLink.href}>
                                                                 <Link
                                                                     href={subLink.href}
-                                                                    className={`block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors ${isSubActive
-                                                                            ? `${activeText} font-bold bg-gray-50 dark:bg-gray-800/50`
-                                                                            : `${textColor} hover:text-cyan-600 dark:hover:text-cyan-400`
+                                                                    className={`block px-4 py-2 text-sm hover:${isDark ? 'bg-gray-800' : 'bg-gray-100'} transition-colors ${isSubActive
+                                                                            ? `${activeText} font-bold ${isDark ? 'bg-gray-800/50' : 'bg-white'}`
+                                                                            : `${textColor} hover:text-cyan-600`
                                                                         }`}
                                                                 >
                                                                     {subLink.name}
@@ -256,7 +256,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                             href={link.href}
                                             className={`text-base transition-all duration-300 ${isActive
                                                     ? `${activeText} font-bold`
-                                                    : `${textColor} font-semibold hover:text-cyan-600 dark:hover:text-cyan-400`
+                                                    : `${textColor} font-semibold hover:text-cyan-600`
                                                 }`}
                                         >
                                             {link.name}
@@ -279,7 +279,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                             className="hidden md:flex relative cursor-pointer"
                             onMouseEnter={() => setLangMenuVisible(true)}
                         >
-                            <button className="group p-2 rounded-full hover:bg-white/50 dark:hover:bg-gray-800 transition-colors">
+                            <button className={`group p-2 rounded-full hover:${isDark ? 'bg-white/50' : 'bg-gray-100/50'}  transition-colors`}>
                                 <GlobeIcon isDark={isDark} />
                             </button>
                             {isLangMenuVisible && (
@@ -293,7 +293,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                         <div className="md:hidden flex items-center cursor-pointer">
                             <button
                                 onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
-                                className={`${textColor} hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors z-50 p-2`}
+                                className={`${textColor} hover:text-cyan-600 transition-colors z-50 p-2`}
                                 aria-label="Toggle menu"
                             >
                                 {isMobileMenuOpen ? <CloseIcon isDark={isDark} /> : <MenuIcon isDark={isDark} />}
@@ -328,7 +328,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                                             onClick={() => setMobileMenuOpen(false)}
                                                             className={`block text-lg transition-all duration-300 ${isActive
                                                                     ? `${activeText} font-bold`
-                                                                    : `${textColor} font-semibold hover:text-cyan-600 dark:hover:text-cyan-400`
+                                                                    : `${textColor} font-semibold hover:text-cyan-600`
                                                                 }`}
                                                         >
                                                             {subLink.name}
@@ -349,7 +349,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                         onClick={() => setMobileMenuOpen(false)}
                                         className={`block text-lg transition-all duration-300 ${isActive
                                                 ? `${activeText} font-bold`
-                                                : `${textColor} font-semibold hover:text-cyan-600 dark:hover:text-cyan-400`
+                                                : `${textColor} font-semibold hover:text-cyan-600`
                                             }`}
                                     >
                                         {link.name}
@@ -367,7 +367,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
 
             {isMobileMenuOpen && (
                 <div
-                    className="md:hidden fixed inset-0 bg-black/20 dark:bg-black/50 z-10 backdrop-blur-sm"
+                    className="md:hidden fixed inset-0 bg-black/20 z-10 backdrop-blur-sm"
                     onClick={() => setMobileMenuOpen(false)}
                 ></div>
             )}

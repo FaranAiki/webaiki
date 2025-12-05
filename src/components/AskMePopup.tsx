@@ -92,7 +92,7 @@ function AskMePopup({typeOfWaitingAnswer, ask_title, question_answer, question_t
   <>
     <button
       onClick={handleOpenPopup}
-      className="fixed bottom-6 left-6 z-20 bg-cyan-600 text-white p-4 rounded-full shadow-lg hover:bg-cyan-500 transition-all transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-opacity-75"
+      className={`fixed bottom-6 left-6 z-20 ${isDark? 'bg-cyan-600' : 'bg-cyan-100'} text-white p-4 rounded-full shadow-lg hover:${isDark? 'bg-cyan-500' : 'bg-cyan-200'} transition-all transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-opacity-75`}
       aria-label={ask_title}
     >
       <MessageSquare size={24} />
