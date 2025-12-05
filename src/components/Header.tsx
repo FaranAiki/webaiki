@@ -152,18 +152,19 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
         </div>
     );
 
-    const findPageTitle = (links: NavLink[]): string | undefined => {
+    // Updated to return the full link object instead of just the name
+    const findActiveLink = (links: NavLink[]): NavLink | undefined => {
         for (const link of links) {
-            if (link.href === pathname) return link.name;
+            if (link.href === pathname) return link;
             if (link.subLinks) {
-                const found = findPageTitle(link.subLinks);
+                const found = findActiveLink(link.subLinks);
                 if (found) return found;
             }
         }
         return undefined;
     };
 
-    const currentPageTitle = findPageTitle(navLinks);
+    const activeLink = findActiveLink(navLinks);
 
     if (!mounted) return <div className="h-16 w-full fixed top-0 z-30 bg-slate-200/90" />;
 
@@ -196,9 +197,10 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
 
                     {/* --- Mobile Title (Center) --- */}
                     <div className={`md:hidden ${inter.className}`} >
-                        {currentPageTitle && (
-                            <h1 className={`transition-all duration-200 text-xl font-bold hover:text-cyan-600 ${isDark ? 'text-white' : 'text-slate-800'} whitespace-nowrap cursor-pointer hover:scale-105 opacity-90`}>
-                                {currentPageTitle}
+                        {activeLink && (
+                            <h1 className={`flex items-center justify-center transition-all duration-200 text-xl font-bold hover:text-cyan-600 ${isDark ? 'text-white' : 'text-slate-800'} whitespace-nowrap cursor-pointer hover:scale-105 opacity-90`}>
+                                {activeLink.icon && <span className="mr-2 flex items-center">{activeLink.icon}</span>}
+                                {activeLink.name}
                             </h1>
                         )}
                     </div>
@@ -220,7 +222,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                                         : `${textColor} font-semibold group-hover:text-cyan-600`
                                                     }`}
                                             >
-                                                {link.icon && <span className="mr-2">{link.icon}</span>}
+                                                {link.icon && <span className="mr-2 hidden lg:inline-block">{link.icon}</span>}
                                                 {link.name}
                                                 <ChevronDown />
                                             </button>
@@ -239,7 +241,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                                                             : `${textColor} hover:text-cyan-600`
                                                                         }`}
                                                                 >
-                                                                    {subLink.icon && <span className="mr-2 opacity-70 group-hover:opacity-100">{subLink.icon}</span>}
+                                                                    {subLink.icon && <span className="mr-2 opacity-70 group-hover:opacity-100 hidden lg:inline-block">{subLink.icon}</span>}
                                                                     {subLink.name}
                                                                 </Link>
                                                             </li>
@@ -262,7 +264,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                                     : `${textColor} font-semibold hover:text-cyan-600`
                                                 }`}
                                         >
-                                            {link.icon && <span className="mr-2">{link.icon}</span>}
+                                            {link.icon && <span className="mr-2 hidden lg:inline-block">{link.icon}</span>}
                                             {link.name}
                                         </Link>
                                     </li>
@@ -320,7 +322,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                 return (
                                     <li key={link.name} className={`border-b ${isDark ? 'border-gray-800' : 'border-gray-200'} pb-2`}>
                                         <span className="flex items-center text-xs font-bold uppercase tracking-widest text-gray-500 mb-3 mt-2">
-                                            {link.icon && <span className="mr-2">{link.icon}</span>}
+                                            {link.icon && <span className="mr-2 inline-block flex-shrink-0">{link.icon}</span>}
                                             {link.name}
                                         </span>
                                         <ul className="flex flex-col space-y-3 pl-2">
@@ -336,7 +338,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                                                     : `${textColor} font-semibold hover:text-cyan-600`
                                                                 }`}
                                                         >
-                                                            {subLink.icon && <span className="mr-2 scale-90">{subLink.icon}</span>}
+                                                            {subLink.icon && <span className="mr-2 scale-90 inline-block flex-shrink-0">{subLink.icon}</span>}
                                                             {subLink.name}
                                                         </Link>
                                                     </li>
@@ -358,7 +360,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                                 : `${textColor} font-semibold hover:text-cyan-600`
                                             }`}
                                     >
-                                        {link.icon && <span className="mr-2">{link.icon}</span>}
+                                        {link.icon && <span className="mr-2 inline-block flex-shrink-0">{link.icon}</span>}
                                         {link.name}
                                     </Link>
                                 </li>
