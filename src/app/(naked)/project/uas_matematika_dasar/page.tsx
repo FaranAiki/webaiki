@@ -14,7 +14,7 @@ export default function UasMTK() {
     <main className="w-full h-screen flex flex-col">
         <iframe
           credentialless="true"
-          src="/projects/uas_matematika_dasar/index.html"
+          src="analitica-graph.web.app"
           className="w-full h-full border-none"
           title="UAS Matematika Dasar"
         />
