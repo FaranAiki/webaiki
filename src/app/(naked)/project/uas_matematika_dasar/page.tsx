@@ -9,43 +9,9 @@ import { t } from '@/components/Translator';
 
 const inter = Inter({ subsets: ["latin"] });
 
-import fs from 'fs';
-import path from 'path';
-
-export function getFaranAikiPhoto() {
-  const photosDir = path.join(process.cwd(), 'public', 'images', 'photo_faran_aiki');
-
-  return fs.readdirSync(photosDir);
-};
-
-export const metadata: Metadata = {
-  metadataBase: new URL('https://faranaiki.id'),
-
-  title: 'About Faran Aiki',
-  description: 'Muhammad Faran Aiki\'s personal files, portfolio, and others',
-  
-  openGraph: {
-    title: 'About Faran Aiki',
-    description: 'Muhammad Faran Aiki\'s personal files, portfolio, and others',
-    url: 'https://faranaiki.id',
-    siteName: 'About Faran Aiki', 
-    type: 'website',
-  },
-
-  icons: {
-    icon: '/icon.ico',
-    shortcut: '/icon.ico',
-    apple: '/icon.ico',
-  },
-  
-  alternates: {
-    canonical: '/',
-  },
-};
-
 export default function UasMTK() {
   return (
-    <main className="w-full h-screen flex flex-col items-center justify-center pt-24 text-white">
+    <main className="w-full h-screen flex flex-col">
         <iframe
           credentialless="true"
           src="/projects/uas_matematika_dasar/index.html"
