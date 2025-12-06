@@ -1,0 +1,261 @@
+{
+  "type": "doc",
+  "content": [
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 1,
+        "textAlign": "center"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Riemann Kanan & Tengah: Mencari Posisi Pas"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Kalau tadi kita pakai titik kiri, sekarang kita coba variasi lain. Bayangkan kita sedang menyusun buku di rak yang miring. Kita bisa menyandarkannya ke kiri, ke kanan, atau menaruhnya tepat di tengah."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Metode 2: Titik Ujung Kanan (Right Riemann Sum)"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Sesuai namanya, tinggi balok ditentukan oleh nilai fungsi di sisi "
+        },
+        {
+          "type": "text",
+          "text": "KANAN",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": " interval."
+        }
+      ]
+    },
+    {
+      "type": "riemann_sum",
+      "attrs": {
+        "widget": {
+          "title": "Simulasi Riemann Kanan",
+          "method": "right",
+          "editable": false,
+          "function": "0.1*x^2",
+          "goal": {
+            "prompt": "Perhatikan grafik $f(x) = 0.1x^2$ (kurva naik). Apakah Riemann Kanan memberikan hasil yang Lebih Besar atau Lebih Kecil dari luas asli?",
+            "type": "multipleChoice",
+            "condition": {
+              "answer": "Lebih Besar (Overestimate)"
+            },
+            "successMessage": "Tepat! Karena kurvanya naik, titik kanan selalu lebih tinggi, jadi baloknya 'kebablasan' ke atas.",
+            "failedMessage": "Lihat bagian oranye yang menonjol di atas garis biru. Itu artinya luasnya kelebihan, kan?",
+            "lockOnAchieved": true
+          },
+          "answers": [
+            "Lebih Kecil (Underestimate)",
+            "Lebih Besar (Overestimate)",
+            "Sama Persis"
+          ]
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Metode 3: Titik Tengah (Midpoint Rule)"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Nah, ini penengahnya. Kita ambil titik "
+        },
+        {
+          "type": "text",
+          "text": "TENGAH",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": " interval sebagai tinggi balok. Biasanya ini memberikan aproksimasi yang jauh lebih baik dengan jumlah partisi yang sama."
+        }
+      ]
+    },
+    {
+      "type": "riemann_sum",
+      "attrs": {
+        "widget": {
+          "title": "Simulasi Riemann Tengah",
+          "method": "midpoint",
+          "editable": false,
+          "function": "0.1*x^2",
+          "goal": {
+            "prompt": "Bandingkan error (selisih area) pada n=4 antara Kiri, Kanan, dan Tengah. Mana yang secara visual paling mendekati kurva biru?",
+            "type": "multipleChoice",
+            "condition": {
+              "answer": "Tengah (Midpoint)"
+            },
+            "successMessage": "Benar! Midpoint menyeimbangkan error: bagian yang berlebih dan bagian yang kurang saling meniadakan sebagian.",
+            "failedMessage": "Coba perhatikan baik-baik 'segitiga' kecil yang terbuang dan berlebih di metode Tengah. Mereka hampir seukuran, kan?",
+            "lockOnAchieved": true
+          },
+          "answers": [
+            "Kiri (Left)",
+            "Kanan (Right)",
+            "Tengah (Midpoint)"
+          ]
+        }
+      }
+    },
+    {
+      "type": "colorBlock",
+      "attrs": {
+        "colorBlockType": "kesalahanumum-card"
+      },
+      "content": [
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 3
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Mitos: 'Harus Pake Midpoint Terus?'"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Meski Midpoint seringkali lebih akurat untuk n kecil, definisi Integral Tentu "
+            },
+            {
+              "type": "text",
+              "text": "TIDAK PEDULI",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " titik mana yang kamu pakai (Kiri, Kanan, Tengah, atau Random). Selama "
+            },
+            {
+              "type": "text",
+              "text": "$n \\to \\infty$",
+              "marks": [
+                {
+                  "type": "code"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ", semuanya akan menuju hasil yang "
+            },
+            {
+              "type": "text",
+              "text": "SAMA",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "!"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "match",
+      "attrs": {
+        "widget": {
+          "title": "Review Kilat",
+          "elements_title": [
+            "Kondisi Grafik",
+            "Metode Paling Cocok"
+          ],
+          "elements": [
+            [
+              "Fungsi Naik",
+              "Fungsi Turun",
+              "Akurasi Terbaik (umumnya)"
+            ],
+            [
+              "Riemann Kanan = Overestimate",
+              "Riemann Kiri = Overestimate",
+              "Midpoint Rule"
+            ]
+          ],
+          "goal": {
+            "prompt": "Pasangkan kondisi grafik dengan sifat estimasinya!",
+            "condition": {
+              "edges": [
+                [
+                  [0, 0],
+                  [1, 0]
+                ],
+                [
+                  [0, 1],
+                  [1, 1]
+                ],
+                [
+                  [0, 2],
+                  [1, 2]
+                ]
+              ]
+            },
+            "successMessage": "Sip! Kamu sudah paham perilaku error tiap metode.",
+            "failedMessage": "Ingat analogi tangga. Kalau naik, tangga kanan lebih tinggi (over). Kalau turun, tangga kiri yang lebih tinggi (over).",
+            "lockOnAchieved": true
+          }
+        }
+      }
+    }
+  ]
+}

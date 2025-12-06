@@ -1,0 +1,165 @@
+{
+  "type": "doc",
+  "content": [
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 1,
+        "textAlign": "center"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Review Akhir & Persiapan UAS"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Selamat! Kamu telah menyelesaikan seluruh materi. Sekarang saatnya menguji pemahamanmu tentang hubungan antara Fungsi Transenden, Turunan, dan Integral dalam satu paket."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "1. Kilas Balik Rumus Penting"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Kunci sukses kalkulus adalah mengenali pola. Pasangkan fungsi berikut dengan hasil turunan atau integralnya yang tepat."
+        }
+      ]
+    },
+    {
+      "type": "match",
+      "attrs": {
+        "widget": {
+          "title": "Mix & Match Rumus",
+          "elements_title": [
+            "Operasi",
+            "Hasil"
+          ],
+          "elements": [
+            [
+              "$\\frac{d}{dx} (\\ln x)$",
+              "$\\int e^x dx$",
+              "$\\frac{d}{dx} (\\sin^{-1} x)$",
+              "$\\int \\frac{1}{1+x^2} dx$"
+            ],
+            [
+              "$\\frac{1}{x}$",
+              "$e^x + C$",
+              "$\\frac{1}{\\sqrt{1-x^2}}$",
+              "$\\tan^{-1} x + C$"
+            ]
+          ],
+          "goal": {
+            "prompt": "Hubungkan operasi di kiri dengan hasilnya di kanan!",
+            "condition": {
+              "edges": [
+                [
+                  [0, 0],
+                  [1, 0]
+                ],
+                [
+                  [0, 1],
+                  [1, 1]
+                ],
+                [
+                  [0, 2],
+                  [1, 2]
+                ],
+                [
+                  [0, 3],
+                  [1, 3]
+                ]
+              ]
+            },
+            "successMessage": "Sempurna! Ingat pola ini baik-baik untuk ujian.",
+            "failedMessage": "Hati-hati tertukar antara Invers Sinus (pakai akar) dan Invers Tangen (tanpa akar).",
+            "lockOnAchieved": true
+          }
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "2. Visualisasi Benda Putar Eksponensial"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Fungsi eksponensial $y = e^{-x}$ sangat unik karena mendekati sumbu-x dengan sangat cepat tapi tidak pernah menyentuhnya. Mari kita lihat bentuk benda putarnya (sering disebut Terompet Gabriel jika batasnya tak hingga)."
+        }
+      ]
+    },
+    {
+      "type": "volume_revolution",
+      "attrs": {
+        "widget": {
+          "title": "Solid of Revolution: Exponential",
+          "initialFunction": "3 * 2.718^(-0.5 * x)",
+          "goal": {
+            "prompt": "Gunakan metode 'Cakram X'. Perhatikan bagaimana jari-jari cakram mengecil secara eksponensial seiring x bertambah.",
+            "type": "interaction",
+            "successMessage": "Visualisasi yang bagus! Volume benda ini konvergen (memiliki nilai hingga) meskipun panjangnya tak terhingga.",
+            "failedMessage": "Coba putar slider partisi untuk melihat tumpukan cakramnya.",
+            "lockOnAchieved": true
+          }
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "3. Analisis Pertumbuhan"
+        }
+      ]
+    },
+    {
+      "type": "essay_ai",
+      "attrs": {
+        "widget": {
+          "title": "Eksponen vs Polinomial",
+          "prompt": "Dalam jangka panjang (saat $x$ sangat besar), manakah yang akan tumbuh lebih cepat: fungsi eksponensial ($e^x$) atau fungsi pangkat ($x^{100}$)? Jelaskan alasannya!",
+          "referenceAnswer": "Fungsi eksponensial (e^x) akan tumbuh jauh lebih cepat. Meskipun x^100 terlihat besar di awal, laju pertumbuhan eksponensial sebanding dengan nilainya sendiri, sehingga pada akhirnya akan selalu menyalip fungsi polinomial manapun.",
+          "placeholder": "Jelaskan prediksimu...",
+          "goal": {
+            "successMessage": "Analisis yang tajam! Eksponensial adalah 'raja' pertumbuhan.",
+            "failedMessage": "Kurang tepat. Ingat, turunan e^x adalah dirinya sendiri (makin besar makin cepat), sedangkan turunan polinomial akan terus turun derajatnya.",
+            "lockOnAchieved": true
+          }
+        }
+      }
+    }
+  ]
+}

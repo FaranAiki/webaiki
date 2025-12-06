@@ -1,0 +1,173 @@
+{
+  "type": "doc",
+  "content": [
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 1,
+        "textAlign": "center"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Mencari Koordinat X (x-bar)"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Koordinat $\\bar{x}$ adalah titik seimbang horizontal. Bayangkan kita mengiris area menjadi persegi panjang tipis vertikal."
+        }
+      ]
+    },
+    {
+      "type": "centerOfMass",
+      "attrs": {
+        "widget": {
+          "title": "Visualisasi Pusat Massa",
+          "function": "sqrt(9 - x^2)",
+          "initialA": -3,
+          "initialB": 3,
+          "minX": -3,
+          "maxX": 3,
+          "minY": 0,
+          "maxY": 5
+        }
+      }
+    },
+    {
+      "type": "colorBlock",
+      "attrs": {
+        "colorBlockType": "tips-card"
+      },
+      "content": [
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 3
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Analogi Jungkat-jungkit"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Momen ($M$) mirip dengan torsi. "
+            },
+            {
+              "type": "text",
+              "text": "$Momen = Jarak \\times Massa$",
+              "marks": [
+                {
+                  "type": "code"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ". Untuk irisan vertikal pada posisi $x$:"
+            }
+          ]
+        },
+        {
+          "type": "bullet_list",
+          "content": [
+            {
+              "type": "list_item",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Jarak ke sumbu-y (lengan momen) = $x$"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "list_item",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Massa (Luas) = Tinggi $\\times$ Lebar = $f(x) \\, dx$"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Rumus Momen terhadap Sumbu-Y ($M_y$)"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Kita jumlahkan (integralkan) semua momen irisan kecil tersebut:"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": "center",
+        "style": "font-size: 1.2em; font-weight: bold;"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "$M_y = \\int_{a}^{b} x \\cdot f(x) \\, dx$"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Maka, koordinat $\\bar{x}$ adalah rata-rata momen tertimbang:"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": "center",
+        "style": "font-size: 1.2em; font-weight: bold;"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "$\\bar{x} = \\frac{M_y}{A} = \\frac{\\int_{a}^{b} x f(x) \\, dx}{\\int_{a}^{b} f(x) \\, dx}$"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "type": "doc",
+  "content": [
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 1,
+        "textAlign": "center"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Pusat Massa: Titik Keseimbangan"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Pernahkah kamu mencoba menyeimbangkan penggaris di ujung jarimu? Titik di mana penggaris itu seimbang sempurna disebut "
+        },
+        {
+          "type": "text",
+          "text": "Pusat Massa",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": " atau titik berat."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Dalam kalkulus, kita bisa mencari titik keseimbangan $(\\bar{x}, \\bar{y})$ untuk sebuah lempengan tipis (lamina) yang dibatasi oleh kurva fungsi $f(x)$."
+        }
+      ]
+    },
+    {
+      "type": "centerOfMass",
+      "attrs": {
+        "widget": {
+          "title": "Visualisasi Pusat Massa",
+          "function": "4 - x^2",
+          "initialA": -2,
+          "initialB": 2,
+          "minX": -3,
+          "maxX": 3,
+          "minY": 0,
+          "maxY": 5
+        }
+      }
+    },
+    {
+      "type": "colorBlock",
+      "attrs": {
+        "colorBlockType": "definisi-card"
+      },
+      "content": [
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 3
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Konsep Momen"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Untuk mencari pusat massa, kita butuh dua hal: "
+            },
+            {
+              "type": "text",
+              "text": "Momen",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " (kecenderungan untuk berputar) dan "
+            },
+            {
+              "type": "text",
+              "text": "Massa Total",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " (atau Luas Area jika kerapatan konstan)."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "textAlign": "center"
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "$\\bar{x} = \\frac{M_y}{A} \\quad \\text{dan} \\quad \\bar{y} = \\frac{M_x}{A}$"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dimana $M_y$ adalah momen terhadap sumbu-y dan $M_x$ adalah momen terhadap sumbu-x."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

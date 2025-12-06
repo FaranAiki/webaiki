@@ -1,0 +1,226 @@
+{
+  "type": "doc",
+  "content": [
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 1,
+        "textAlign": "center"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Misteri Pangkat -1: Logaritma Natural"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Kita sudah punya Aturan Pangkat (Power Rule):"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": "center"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "$\\int x^n \\, dx = \\frac{x^{n+1}}{n+1}$"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Tapi rumus ini "
+        },
+        {
+          "type": "text",
+          "text": "MELEDAK (Error)",
+          "marks": [
+            {
+              "type": "bold"
+            },
+            {
+              "type": "textStyle",
+              "attrs": {
+                "color": "#FF0000"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": " jika $n = -1$ (karena pembagian dengan nol, $\\frac{1}{0}$)."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Definisi Integral Logaritma Natural"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Karena aturan pangkat gagal, matematikawan mendefinisikan fungsi baru bernama Logaritma Natural ($\\ln x$) menggunakan konsep luas area (akumulasi)."
+        }
+      ]
+    },
+    {
+      "type": "colorBlock",
+      "attrs": {
+        "colorBlockType": "definisi-card"
+      },
+      "content": [
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 3
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "The Natural Logarithm"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "textAlign": "center"
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "$\\ln x = \\int_{1}^{x} \\frac{1}{t} \\, dt, \\quad x > 0$"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artinya: $\\ln(x)$ adalah luas area di bawah kurva $y=\\frac{1}{t}$ diukur mulai dari $t=1$ sampai $t=x$."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Laboratorium Logaritma"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Grafik biru di bawah adalah $f(t) = \\frac{1}{t}$. Grafik oranye adalah fungsi akumulasinya $A(x) = \\ln(x)$. Perhatikan bahwa kita mulai mengukur area dari $x=1$ (dimana $\\ln(1) = 0$)."
+        }
+      ]
+    },
+    {
+      "type": "accumulation_graph",
+      "attrs": {
+        "widget": {
+          "title": "Visualisasi ln(x)",
+          "function": "1/x",
+          "xMin": 1,
+          "xMax": 10,
+          "goal": {
+            "prompt": "Geser slider x ke kanan (x > 1). Perhatikan grafik oranye (nilai ln x) terus naik, tapi kenaikannya melambat seiring f(t) makin landai.",
+            "type": "interaction",
+            "successMessage": "Tepat! Area terus bertambah positif saat x > 1. Inilah sifat grafik Logaritma.",
+            "failedMessage": "Geser slider melewati angka 1 untuk melihat area terbentuk.",
+            "lockOnAchieved": true
+          }
+        }
+      }
+    },
+    {
+      "type": "multiple_choice",
+      "attrs": {
+        "widget": {
+          "title": "Cek Pemahaman Grafik",
+          "goal": {
+            "prompt": "Berdasarkan definisi integral di atas, apa yang terjadi pada nilai $\\ln(x)$ jika $0 < x < 1$ (kita bergerak mundur dari 1)?",
+            "type": "multipleChoice",
+            "condition": {
+              "answer": "Nilainya Negatif"
+            },
+            "successMessage": "Cerdas! Karena batas atas integral ($x$) lebih kecil dari batas bawah ($1$), hasil integralnya adalah negatif luas area.",
+            "failedMessage": "Ingat sifat integral: $\\int_a^b = -\\int_b^a$. Jika kita mundur ke kiri dari 1, hasilnya negatif.",
+            "lockOnAchieved": true
+          },
+          "answers": [
+            "Nilainya Positif",
+            "Nilainya Negatif",
+            "Nilainya Nol",
+            "Tidak Terdefinisi"
+          ]
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Turunan Logaritma Natural"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Menggunakan Teorema Dasar Kalkulus I, karena $\\ln x$ didefinisikan sebagai integral dari $\\frac{1}{t}$, maka turunannya adalah fungsi di dalam integral itu sendiri:"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": "center",
+        "style": "font-size: 1.2em; font-weight: bold;"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "$\\frac{d}{dx} (\\ln x) = \\frac{1}{x}$"
+        }
+      ]
+    }
+  ]
+}

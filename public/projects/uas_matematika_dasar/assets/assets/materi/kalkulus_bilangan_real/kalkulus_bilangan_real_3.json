@@ -1,0 +1,107 @@
+{
+  "type": "doc",
+  "content": [
+    {
+      "type": "heading",
+      "attrs": { "level": 2 },
+      "content": [{ "type": "text", "text": "Elemen Penting Operasi" }]
+    },
+    {
+      "type": "paragraph",
+      "content": [{ "type": "text", "text": "Jika bilangan tidak berinteraksi, tentunya akan membosankan. Interaksi ini disebut Operasi. Mari kita kembangkan konsepnya." }]
+    },
+    {
+      "type": "bullet_list",
+      "content": [
+        {
+          "type": "list_item",
+          "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Penjumlahan ($+$): Menggabungkan nilai." }] }]
+        },
+        {
+          "type": "list_item",
+          "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Pengurangan ($-$): Mengambil sebagian nilai atau mencari selisih." }] }]
+        },
+        {
+          "type": "list_item",
+          "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Perkalian ($\\times$): Penjumlahan berulang." }] }]
+        },
+        {
+          "type": "list_item",
+          "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "Pembagian ($\\div$): Memecah nilai menjadi kelompok sama besar." }] }]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": { "level": 3 },
+      "content": [{ "type": "text", "text": "Operasi Lanjutan" }]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        { "type": "text", "text": "1. Perpangkatan (" },
+        { "type": "text", "text": "$a^b$" },
+        { "type": "text", "text": "): Perkalian berulang." }
+      ]
+    },
+    {
+      "type": "colorBlock",
+      "attrs": { "colorBlockType": "analogi-card" },
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            { "type": "text", "text": "Analogi Bakteri: Menit 1 ada 2 bakteri. Menit 2 jadi 4. Menit 3 jadi 8. Jumlah bakteri di menit ke-5 bisa ditulis singkat sebagai " },
+            { "type": "text", "text": "$2^5$" },
+            { "type": "text", "text": "." }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [{ "type": "text", "text": "2. Akar: Kebalikan dari perpangkatan. Menebak angka basisnya." }]
+    },
+    {
+      "type": "colorBlock",
+      "attrs": { "colorBlockType": "analogi-card" },
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            { "type": "text", "text": "Analogi Mencari Tahu: Jika " },
+            { "type": "text", "text": "$2^5 = 32$" },
+            { "type": "text", "text": ", maka pertanyaan akar pangkat 5 dari 32 itu sama saja bertanya: Angka berapa yang dipangkatkan 5 hasilnya 32? Jawabannya 2." }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "dragDrop",
+      "attrs": {
+        "widget": {
+          "title": {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "Tentukan operasinya!"}]}]},
+          "elements": [
+            {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "+"}]}]},
+            {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "-"}]}]},
+            {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "$\\times$"}]}]},
+            {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "$\\div$"}]}]},
+            {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "^"}]}]}
+          ],
+          "prompts": [
+            {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "2"}]}]},
+            {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "\\drop"}]}]},
+            {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "3"}]}]},
+            {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "="}]}]},
+            {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "8"}]}]}
+          ],
+          "goal": {
+            "type": "math",
+            "condition": { "0": 4 },
+            "successMessage": "Benar! $2^3$ (2 pangkat 3) adalah 8."
+          }
+        }
+      }
+    }
+  ]
+}

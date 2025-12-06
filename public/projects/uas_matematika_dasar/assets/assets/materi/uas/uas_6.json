@@ -1,0 +1,149 @@
+{
+  "type": "doc",
+  "content": [
+    {
+      "type": "heading",
+      "attrs": { "level": 1, "textAlign": "center" },
+      "content": [{ "type": "text", "text": "Pembuktian: Integral Pangkat" }]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        { "type": "text", "text": "Rumus integral tak tentu untuk fungsi pangkat adalah:" }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": { "textAlign": "center", "style": "font-weight: bold; font-size: 1.2em;" },
+      "content": [{ "type": "text", "text": "$\\int x^n \\, dx = \\frac{x^{n+1}}{n+1} + C, \\quad n \\neq -1$" }]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        { "type": "text", "text": "Kenapa rumusnya begitu? Karena integral adalah " },
+        { "type": "text", "text": "antiturunan", "marks": [{ "type": "bold" }] },
+        { "type": "text", "text": ".  Kita bisa membuktikannya dengan cara membalik proses turunan (diferensial)." }
+      ]
+    },
+    {
+      "type": "accumulationGraph",
+      "attrs": {
+        "widget": {
+          "title": "Dari $x^2$ menjadi $\\\\frac{1}{3}x^3$",
+          "function": "x^2",
+          "goal": {
+            "prompt": "Geser slider x ke kanan. Perhatikan garis hijau (kemiringan) pada grafik A(x). Nilainya SAMA dengan tinggi grafik f(t) saat itu!",
+            "type": "interaction",
+            "successMessage": "Aha! Kamu baru saja melihat bukti visual bahwa Turunan dari Integral adalah Fungsi itu sendiri.",
+            "failedMessage": "Coba geser slidernya lebih jauh lagi untuk melihat pola perubahannya.",
+            "lockOnAchieved": true
+          }
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "attrs": { "level": 2 },
+      "content": [{ "type": "text", "text": "Langkah Pembuktian" }]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        { "type": "text", "text": "Mari kita coba turunkan fungsi hasil di ruas kanan, yaitu " },
+        { "type": "text", "text": "$F(x) = \\frac{x^{n+1}}{n+1}$", "marks": [{ "type": "code" }] },
+        { "type": "text", "text": "." }
+      ]
+    },
+    {
+      "type": "colorBlock",
+      "attrs": { "colorBlockType": "catatan-card" },
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            { "type": "text", "text": "Ingat aturan turunan pangkat (Power Rule for Derivatives): " },
+            { "type": "text", "text": "$\\frac{d}{dx}(x^k) = k \\cdot x^{k-1}$", "marks": [{ "type": "bold" }] }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [{ "type": "text", "text": "Terapkan aturan tersebut pada $F(x)$. Karena $\\frac{1}{n+1}$ adalah konstanta, kita bisa keluarkan:" }]
+    },
+    {
+      "type": "paragraph",
+      "attrs": { "textAlign": "center" },
+      "content": [
+        { "type": "text", "text": "$\\frac{d}{dx} \\left( \\frac{x^{n+1}}{n+1} \\right) = \\frac{1}{n+1} \\cdot \\frac{d}{dx}(x^{n+1})$" }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [{ "type": "text", "text": "Turunkan $x^{n+1}$ (pangkat turun ke depan, pangkat dikurang 1):" }]
+    },
+    {
+      "type": "paragraph",
+      "attrs": { "textAlign": "center" },
+      "content": [
+        { "type": "text", "text": "$= \\frac{1}{n+1} \\cdot (n+1) x^{(n+1)-1}$" }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [{ "type": "text", "text": "Coret $(n+1)$ di pembilang dan penyebut:" }]
+    },
+    {
+      "type": "paragraph",
+      "attrs": { "textAlign": "center" },
+      "content": [
+        { "type": "text", "text": "$= 1 \\cdot x^n = x^n$" }
+      ]
+    },
+    {
+      "type": "colorBlock",
+      "attrs": { "colorBlockType": "definisi-card" },
+      "content": [
+        {
+          "type": "heading",
+          "attrs": { "level": 3 },
+          "content": [{ "type": "text", "text": "Kesimpulan" }]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            { "type": "text", "text": "Karena turunan dari " },
+            { "type": "text", "text": "$\\frac{x^{n+1}}{n+1}$", "marks": [{ "type": "code" }] },
+            { "type": "text", "text": " adalah " },
+            { "type": "text", "text": "$x^n$", "marks": [{ "type": "code" }] },
+            { "type": "text", "text": ", maka integral (antiturunan) dari " },
+            { "type": "text", "text": "$x^n$", "marks": [{ "type": "code" }] },
+            { "type": "text", "text": " adalah " },
+            { "type": "text", "text": "$\\frac{x^{n+1}}{n+1}$", "marks": [{ "type": "code" }] },
+            { "type": "text", "text": "." }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "multiple_choice",
+      "attrs": {
+        "widget": {
+          "title": "Cek Pemahaman",
+          "goal": {
+            "prompt": "Mengapa rumus ini diberikan syarat $n \\neq -1$?",
+            "type": "multipleChoice",
+            "condition": { "answer": "Pembagian dengan nol (undefined)" },
+            "successMessage": "Benar! Jika n = -1, maka penyebut n+1 menjadi 0, yang dilarang dalam matematika.",
+            "failedMessage": "Coba masukkan n=-1 ke dalam rumus $\\frac{x^{n+1}}{n+1}$. Apa yang terjadi pada penyebutnya?"
+          },
+          "answers": [
+            "Karena x menjadi 0",
+            "Pembagian dengan nol (undefined)",
+            "Hasilnya menjadi negatif"
+          ]
+        }
+      }
+    }
+  ]
+}

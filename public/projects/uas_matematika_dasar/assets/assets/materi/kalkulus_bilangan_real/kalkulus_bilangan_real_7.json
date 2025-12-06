@@ -1,0 +1,50 @@
+{
+  "type": "doc",
+  "content": [
+    {
+      "type": "heading",
+      "attrs": { "level": 2 },
+      "content": [{ "type": "text", "text": "Paritas Bilangan Bulat" }]
+    },
+    {
+      "type": "paragraph",
+      "content": [{ "type": "text", "text": "Bilangan bulat memiliki sifat Paritas: Genap atau Ganjil. Interaksi mereka memiliki pola unik." }]
+    },
+    {
+      "type": "colorBlock",
+      "attrs": { "colorBlockType": "analogi-card" },
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            { "type": "text", "text": "Bayangkan membagi 9 kue ke 2 orang. Pasti ada sisa 1 kue. Itu karena 9 adalah Ganjil." }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "dragDrop",
+      "attrs": {
+        "widget": {
+          "title": {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "Lengkapi aturan paritas"}]}]},
+          "elements": [
+            {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "Genap"}]}]},
+            {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "Ganjil"}]}]}
+          ],
+          "prompts": [
+            {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "Genap"}]}]},
+            {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "+"}]}]},
+            {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "Ganjil"}]}]},
+            {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "="}]}]},
+            {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "\\drop"}]}]}
+          ],
+          "goal": {
+            "type": "normal",
+            "condition": { "0": 1 },
+            "successMessage": "Betul! (Misal: 2 + 3 = 5)."
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,248 @@
+{
+  "type": "doc",
+  "content": [
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 1,
+        "textAlign": "center"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Volume Benda Putar: Metode Cakram"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Sekarang kita masuk ke detail. Metode paling dasar untuk menghitung volume benda putar adalah "
+        },
+        {
+          "type": "text",
+          "text": "Metode Cakram (Disk Method)",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "volume_revolution",
+      "attrs": {
+        "widget": {
+          "title": "Analisis Cakram",
+          "initialFunction": "0.25 * x^2 + 0.5",
+          "goal": {
+            "prompt": "Gunakan metode 'Cakram Sumbu-X'. Geser slider partisi (N). Perhatikan bahwa setiap potongan adalah tabung pendek (koin) dengan jari-jari f(x) dan tebal dx.",
+            "type": "interaction",
+            "successMessage": "Betul, volume total adalah jumlahan dari volume koin-koin ini.",
+            "failedMessage": "Pastikan mode yang dipilih adalah Cakram Sumbu-X dan mainkan slidernya.",
+            "lockOnAchieved": true
+          }
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Kenapa Rumusnya Begitu?"
+        }
+      ]
+    },
+    {
+      "type": "colorBlock",
+      "attrs": {
+        "colorBlockType": "definisi-card"
+      },
+      "content": [
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 3
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Anatomi Satu Cakram"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cakram itu sebenarnya adalah sebuah "
+            },
+            {
+              "type": "text",
+              "text": "Tabung Pendek",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ". Rumus volume tabung adalah:"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "textAlign": "center"
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "$V_{tabung} = \\text{Luas Alas} \\times \\text{Tinggi} = (\\pi r^2) \\cdot h$"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dalam konteks benda putar kita:"
+            }
+          ]
+        },
+        {
+          "type": "bullet_list",
+          "content": [
+            {
+              "type": "list_item",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Jari-jari ($r$) = Tinggi fungsi, yaitu $f(x)$."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "list_item",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Tinggi tabung ($h$) = Ketebalan irisan, yaitu $\\Delta x$."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Jadi, volume satu irisan kecil ($\\,\\Delta V$) adalah:"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "textAlign": "center"
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "$\\Delta V \\approx \\pi [f(x)]^2 \\Delta x$"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": "center"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "$V = \\int_{a}^{b} \\pi [f(x)]^2 \\, dx$",
+          "marks": [
+            {
+              "type": "code"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "match",
+      "attrs": {
+        "widget": {
+          "title": "Cek Konsep Cakram",
+          "elements_title": [
+            "Komponen",
+            "Representasi Matematika"
+          ],
+          "elements": [
+            [
+              "Jari-jari Cakram",
+              "Tebal Cakram",
+              "Luas Alas Cakram"
+            ],
+            [
+              "$f(x)$",
+              "$dx$",
+              "$\\pi [f(x)]^2$"
+            ]
+          ],
+          "goal": {
+            "prompt": "Hubungkan komponen fisik cakram dengan simbol matematikanya!",
+            "condition": {
+              "edges": [
+                [
+                  [0, 0],
+                  [1, 0]
+                ],
+                [
+                  [0, 1],
+                  [1, 1]
+                ],
+                [
+                  [0, 2],
+                  [1, 2]
+                ]
+              ]
+            },
+            "successMessage": "Sempurna! Kamu sudah paham 'DNA' dari metode cakram.",
+            "failedMessage": "Ingat rumus luas lingkaran: pi kali jari-jari kuadrat.",
+            "lockOnAchieved": true
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,293 @@
+{
+  "type": "doc",
+  "content": [
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 1,
+        "textAlign": "center"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Duel Metode: Integral vs Pappus"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Mari kita pecahkan satu soal volume dengan dua cara berbeda. Misal kita punya daerah di bawah kurva "
+        },
+        {
+          "type": "text",
+          "text": "$f(x) = 4 - x^2$",
+          "marks": [
+            {
+              "type": "code"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": " pada interval "
+        },
+        {
+          "type": "text",
+          "text": "$[0, 2]$",
+          "marks": [
+            {
+              "type": "code"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": ". Daerah ini diputar mengelilingi "
+        },
+        {
+          "type": "text",
+          "text": "sumbu-y",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": ". Berapa volumenya?"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Sudut Pandang 1: Integral Kulit Tabung"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Cara klasik di kalkulus adalah mengiris tipis-tipis sejajar sumbu putar. Rumusnya:"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": "center",
+        "style": "font-size: 1.1em; font-weight: bold;"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "$V = \\int_{a}^{b} 2\\pi x f(x) \\, dx$"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Mari kita hitung manual:"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": "center"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "$V = 2\\pi \\int_{0}^{2} x(4 - x^2) \\, dx = 2\\pi \\int_{0}^{2} (4x - x^3) \\, dx$"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": "center"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "$= 2\\pi [2x^2 - \\frac{1}{4}x^4]_0^2 = 2\\pi (8 - 4) = 8\\pi \\approx 25.13$"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Sudut Pandang 2: Teorema Pappus"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Teorema Pappus menawarkan cara 'curang': Kita cukup tahu Luas Area ($A$) dan jarak Pusat Massa ($x$) ke sumbu putar."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": "center",
+        "style": "font-size: 1.2em; font-weight: bold; color: #FF2970;"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "$V = 2\\pi \\bar{x} A$"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Cari nilai $\\bar{x}$ dan $A$ menggunakan alat di bawah ini:"
+        }
+      ]
+    },
+    {
+      "type": "centerOfMass",
+      "attrs": {
+        "widget": {
+          "title": "Pencari Pusat Massa",
+          "function": "4 - x^2",
+          "initialA": 0,
+          "initialB": 2,
+          "minX": -1,
+          "maxX": 4,
+          "minY": 0,
+          "maxY": 5
+        }
+      }
+    },
+    {
+      "type": "colorBlock",
+      "attrs": {
+        "colorBlockType": "catatan-card"
+      },
+      "content": [
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 3
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Hasil dari Visualisasi"
+            }
+          ]
+        },
+        {
+          "type": "bullet_list",
+          "content": [
+            {
+              "type": "list_item",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Luas Area ($A$) = $5.333$ (atau $16/3$)"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "list_item",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Pusat Massa ($\\bar{x}$) = $0.75$ (atau $3/4$)"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Sekarang kita masukkan ke rumus Pappus:"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "textAlign": "center"
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "$V = 2\\pi (\\frac{3}{4}) (\\frac{16}{3}) = 2\\pi (4) = 8\\pi$"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Lihat? Hasilnya SAMA PERSIS! Metode Pappus sangat berguna jika kita sudah tahu letak titik berat bangun datar (misal lingkaran atau persegi) tanpa perlu integrasi ulang."
+        }
+      ]
+    },
+    {
+      "type": "short_answer",
+      "attrs": {
+        "widget": {
+          "title": "Cek Logika Pappus",
+          "prompt": "Jika area yang sama ($A=16/3$) digeser menjauh dari sumbu putar sehingga $\\bar{x}$ menjadi 2 kali lipat lebih jauh, berapa kali lipat volume benda putarnya membesar?",
+          "placeholder": "Masukkan angka...",
+          "correctAnswers": [
+            "2",
+            "2 kali",
+            "dua"
+          ],
+          "goal": {
+            "successMessage": "Benar! V sebanding lurus dengan jarak pusat massa ($\\\\bar{x}$). Jarak double = Volume double.",
+            "failedMessage": "Lihat rumus $V = 2\\\\pi \\\\bar{x} A$. Hubungan V dan x-bar adalah linear."
+          }
+        }
+      }
+    }
+  ]
+}

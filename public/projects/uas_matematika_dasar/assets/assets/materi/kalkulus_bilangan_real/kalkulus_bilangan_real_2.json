@@ -1,0 +1,66 @@
+{
+  "type": "doc",
+  "content": [
+    {
+      "type": "heading",
+      "attrs": { "level": 2 },
+      "content": [{ "type": "text", "text": "Hubungan Antar Bilangan" }]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        { "type": "text", "text": "Kalian pasti memasukkan beberapa angka yang sama ke beberapa kotak kan? Itu karena ada jenis bilangan yang juga jadi bagian dari jenis bilangan yang lain." }
+      ]
+    },
+    {
+      "type": "colorBlock",
+      "attrs": { "colorBlockType": "tips-card" },
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            { "type": "text", "text": "Hubungan mereka sebenarnya bertingkat. Asli ada di dalam Bulat, Bulat ada di dalam Rasional, dan semuanya adalah Bilangan Real." }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        { "type": "text", "text": "Coba buatkan diagramnya!" }
+      ]
+    },
+    {
+      "type": "venn",
+      "attrs": {
+        "widget": {
+          "title": {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "Hierarki Bilangan"}]}]},
+          "classes": [
+            {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "Asli ($\\mathbb{N}$)"}]}]},
+            {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "Bulat ($\\mathbb{Z}$)"}]}]},
+            {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "Real ($\\mathbb{R}$)"}]}]}
+          ],
+          "subsets": {
+            "2": ["1", "0"],
+            "1": ["0"]
+          },
+          "elements": [
+            {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "5"}]}]},
+            {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "-3"}]}]},
+            {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "0.5"}]}]},
+            {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "$\\sqrt{2}$"}]}]}
+          ],
+          "goal": {
+            "type": "math",
+            "condition": {
+              "0": [0],
+              "1": [1],
+              "2": [2, 3]
+            },
+            "successMessage": "Tepat! Ini visualisasi bagaimana bilangan saling berkaitan."
+          }
+        }
+      }
+    }
+  ]
+}

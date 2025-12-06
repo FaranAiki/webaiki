@@ -1,0 +1,194 @@
+{
+  "type": "doc",
+  "content": [
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 1,
+        "textAlign": "center"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Persamaan Diferensial Linear Orde Satu"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Bentuk umum PD Linear Orde Satu adalah:"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": "center",
+        "style": "font-weight: bold; font-size: 1.2em;"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "$\\frac{dy}{dx} + P(x)y = Q(x)$"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Kunci untuk menyelesaikan persamaan ini adalah sebuah trik pintar bernama "
+        },
+        {
+          "type": "text",
+          "text": "Faktor Integrasi",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "colorBlock",
+      "attrs": {
+        "colorBlockType": "tips-card"
+      },
+      "content": [
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 3
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Resep Faktor Integrasi"
+            }
+          ]
+        },
+        {
+          "type": "ordered_list",
+          "attrs": {
+            "start": 1
+          },
+          "content": [
+            {
+              "type": "list_item",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Pastikan PD sudah dalam bentuk standar (koefisien dy/dx harus 1)."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "list_item",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Hitung faktor integrasi: "
+                    },
+                    {
+                      "type": "text",
+                      "text": "$I(x) = e^{\\int P(x) dx}$",
+                      "marks": [
+                        {
+                          "type": "code"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "list_item",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Kalikan kedua ruas PD dengan $I(x)$."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "list_item",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Ruas kiri akan otomatis menjadi turunan dari perkalian: "
+                    },
+                    {
+                      "type": "text",
+                      "text": "$\\frac{d}{dx}[y \\cdot I(x)]$",
+                      "marks": [
+                        {
+                          "type": "code"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "list_item",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Integralkan kedua ruas untuk mendapatkan solusi."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "essay_ai",
+      "attrs": {
+        "widget": {
+          "title": "Cek Pemahaman Konsep",
+          "prompt": "Jelaskan dengan bahasamu sendiri, kenapa kita perlu mengalikan PD dengan 'Faktor Integrasi'? Apa tujuannya?",
+          "referenceAnswer": "Tujuan mengalikan dengan faktor integrasi adalah untuk mengubah ruas kiri persamaan menjadi bentuk turunan hasil kali (product rule) yang sempurna, yaitu d/dx [y * I(x)]. Dengan begitu, kita bisa dengan mudah mengintegralkan kedua ruas untuk mencari solusi y.",
+          "placeholder": "Contoh: Supaya ruas kiri bisa diringkas menjadi...",
+          "goal": {
+            "successMessage": "Penjelasan yang bagus! Intinya adalah memanipulasi persamaan agar mudah diintegralkan.",
+            "failedMessage": "Kurang tepat. Fokus pada 'Product Rule' (Turunan Hasil Kali). Tujuannya menyederhanakan ruas kiri.",
+            "lockOnAchieved": true
+          }
+        }
+      }
+    }
+  ]
+}

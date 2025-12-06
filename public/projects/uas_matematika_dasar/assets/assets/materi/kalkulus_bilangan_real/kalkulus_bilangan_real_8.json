@@ -1,0 +1,66 @@
+{
+  "type": "doc",
+  "content": [
+    {
+      "type": "heading",
+      "attrs": { "level": 2 },
+      "content": [{ "type": "text", "text": "Konsep Infinity" }]
+    },
+    {
+      "type": "paragraph",
+      "content": [{ "type": "text", "text": "Coba tulis suatu bilangan, pasti ada bilangan yang lebih besar. Proses ini tak berakhir, melahirkan konsep Infinity (∞)." }]
+    },
+    {
+      "type": "colorBlock",
+      "attrs": { "colorBlockType": "kamuperlutau-card" },
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            { "type": "text", "text": "Srinivasa Ramanujan, jenius matematika India, menyumbang banyak pada teori ketakhinggaan. Kisahnya difilmkan dalam 'The Man Who Knew Infinity'." }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "multipleChoice",
+      "attrs": {
+        "widget": {
+          "title": {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "Ada berapa banyak bilangan real antara 1 dan 5?"}]}]},
+          "answers": [
+            {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "4"}]}]},
+            {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "100"}]}]},
+            {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "Tak Terhingga"}]}]}
+          ],
+          "goal": {
+            "condition": { "answer": "Tak Terhingga" },
+            "successMessage": "Benar! Di antara dua bilangan real, selalu ada bilangan real lain."
+          }
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "content": [{ "type": "text", "text": "Salah satu contoh indah konsep tak hingga adalah lingkaran. Lingkaran sebenarnya bisa dianggap sebagai poligon (segi banyak) dengan jumlah sisi yang tak terhingga." }]
+    },
+    {
+      "type": "pi_approximator",
+      "attrs": {
+        "widget": {
+          "title": {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "Aproksimasi Pi"}]}]},
+          "goal": {
+            "prompt": "Geser slider untuk melihat bagaimana poligon mendekati bentuk lingkaran.",
+            "type": "visualize",
+            "successMessage": "Semakin banyak sisi, semakin akurat nilai Pi!"
+          }
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        { "type": "text", "text": "--- You are a finite being who has infinite potentials ---", "marks": [{ "type": "italic" }] }
+      ]
+    }
+  ]
+}

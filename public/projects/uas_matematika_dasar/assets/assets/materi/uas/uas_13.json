@@ -1,0 +1,172 @@
+{
+  "type": "doc",
+  "content": [
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 1,
+        "textAlign": "center"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Aplikasi Fisika: Mengangkat Tali Berat"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Menghitung usaha ("
+        },
+        {
+          "type": "text",
+          "text": "Work",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": ") untuk mengangkat benda titik itu mudah: $W = m \\cdot g \\cdot h$. Namun, bagaimana jika kita harus menarik rantai atau tali tambang yang panjang dan berat ke atas gedung? Beratnya tidak terpusat di satu titik, tapi tersebar!"
+        }
+      ]
+    },
+    {
+      "type": "colorBlock",
+      "attrs": {
+        "colorBlockType": "definisi-card"
+      },
+      "content": [
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 3
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Kepadatan Linear (Density)"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Karena beratnya tersebar, kita menggunakan satuan berat per meter, sering disimbolkan $\\delta$ (delta) atau $w$."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "textAlign": "center"
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Berat Potongan Kecil ($\\Delta F$) = Kepadatan $\\times$ Panjang Potongan ($\\Delta x$)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Menyusun Integral"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Misalkan $x$ adalah jarak potongan tali dari ujung atas (atap). Kita potong tali menjadi bagian kecil $\\Delta x$. Setiap potongan harus ditarik sejauh $x$ meter untuk sampai ke atas."
+        }
+      ]
+    },
+    {
+      "type": "drag_drop",
+      "attrs": {
+        "widget": {
+          "title": "Susun Rumus Usaha",
+          "prompts": [
+            "Gaya Berat Potongan =",
+            "\\drop",
+            "Jarak Tempuh =",
+            "\\drop"
+          ],
+          "elements": [
+            "$x$",
+            "$\\delta \\cdot \\Delta x$",
+            "$L - x$"
+          ],
+          "goal": {
+            "type": "math",
+            "condition": {
+              "0": "$\\delta \\cdot \\Delta x$",
+              "1": "$x$"
+            },
+            "successMessage": "Tepat! Usaha ($\\\\Delta W$) = Gaya $\\\\times$ Jarak = $(\\\\delta \\\\Delta x) \\\\cdot x$.",
+            "failedMessage": "Berat bergantung pada $\\\\Delta x$, Jarak bergantung pada posisi $x$.",
+            "lockOnAchieved": true
+          }
+        }
+      }
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Maka total usahanya adalah integral dari $x=0$ sampai $x=L$ (panjang tali):"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": "center",
+        "style": "font-size: 1.2em; font-weight: bold;"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "$W = \\int_{0}^{L} x \\cdot \\delta \\, dx$"
+        }
+      ]
+    },
+    {
+      "type": "short_answer",
+      "attrs": {
+        "widget": {
+          "title": "Latihan Kasus",
+          "prompt": "Sebuah rantai baja homogen memiliki panjang 10 meter dan berat jenis 5 N/meter. Rantai tersebut menjuntai bebas dari lantai 2. Hitung usaha (Joule) untuk menarik seluruh rantai ke atas lantai.",
+          "placeholder": "Masukkan angka saja...",
+          "correctAnswers": [
+            "250",
+            "250 J",
+            "250 Joule"
+          ],
+          "goal": {
+            "successMessage": "Benar! $\\\\int_0^{10} 5x \\\\, dx = [2.5x^2]_0^{10} = 250$ Joule.",
+            "failedMessage": "Hitung integral dari $5x$ dengan batas 0 sampai 10."
+          }
+        }
+      }
+    }
+  ]
+}

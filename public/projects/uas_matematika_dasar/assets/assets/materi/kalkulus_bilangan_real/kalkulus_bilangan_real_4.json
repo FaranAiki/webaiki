@@ -1,0 +1,76 @@
+{
+  "type": "doc",
+  "content": [
+    {
+      "type": "heading",
+      "attrs": { "level": 2 },
+      "content": [{ "type": "text", "text": "Sifat & Prioritas (PEMDAS)" }]
+    },
+    {
+      "type": "paragraph",
+      "content": [{ "type": "text", "text": "Setiap operasi memiliki sifat-sifat yang melekat." }]
+    },
+    {
+      "type": "heading",
+      "attrs": { "level": 3 },
+      "content": [{ "type": "text", "text": "Sifat Komutatif (Bolak-Balik)" }]
+    },
+    {
+      "type": "paragraph",
+      "content": [{ "type": "text", "text": "Berlaku untuk Penjumlahan dan Perkalian. Contoh: 2 + 3 = 3 + 2." }]
+    },
+    {
+      "type": "colorBlock",
+      "attrs": { "colorBlockType": "kesalahanumum-card" },
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            { "type": "text", "text": "Hati-hati! Pengurangan dan Pembagian TIDAK Komutatif." }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "multipleChoice",
+      "attrs": {
+        "widget": {
+          "title": {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "Apakah $5 - 2$ sama dengan $2 - 5$?"}]}]},
+          "answers": [
+            {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "Ya"}]}]},
+            {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "Tidak"}]}]}
+          ],
+          "goal": {
+            "condition": { "answer": "Tidak" },
+            "successMessage": "Tepat! $3$ tidak sama dengan $-3$."
+          }
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "attrs": { "level": 3 },
+      "content": [{ "type": "text", "text": "Prioritas Operasi (PEMDAS)" }]
+    },
+    {
+      "type": "paragraph",
+      "content": [{ "type": "text", "text": "Urutan: Parentheses (Kurung) > Exponents (Pangkat) > Multiplication/Division (Kali/Bagi) > Addition/Subtraction (Tambah/Kurang)." }]
+    },
+    {
+      "type": "multipleChoice",
+      "attrs": {
+        "widget": {
+          "title": {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "Hitunglah: $6 / 2 (1 + 2)$"}]}]},
+          "answers": [
+            {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "1"}]}]},
+            {"type": "doc", "content": [{"type": "paragraph", "content": [{"type": "text", "text": "9"}]}]}
+          ],
+          "goal": {
+            "condition": { "answer": "9" },
+            "successMessage": "Benar! Kerjakan kurung dulu (3), lalu $6 \\div 2 \\times 3$ dari kiri ke kanan = 9."
+          }
+        }
+      }
+    }
+  ]
+}

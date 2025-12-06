@@ -1,0 +1,188 @@
+{
+  "type": "doc",
+  "content": [
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 1,
+        "textAlign": "center"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Deep Dive: Metode Kulit Tabung"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Kenapa rumusnya beda banget sama cakram? Mari kita lihat visualisasinya."
+        }
+      ]
+    },
+    {
+      "type": "volume_revolution",
+      "attrs": {
+        "widget": {
+          "title": "Analisis Kulit Tabung",
+          "initialFunction": "-(x-2)^2 + 4.5",
+          "goal": {
+            "prompt": "Pilih 'Metode Kulit Tabung' dan putar slider N. Lihat bagaimana benda ini tersusun dari lapisan-lapisan tipis seperti bawang, bukan tumpukan koin.",
+            "type": "interaction",
+            "successMessage": "Tepat! Kita menyusun selongsong pipa dari jari-jari kecil ke besar.",
+            "failedMessage": "Pastikan mode yang dipilih adalah 'Kulit Tabung (Y)'.",
+            "lockOnAchieved": true
+          }
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Bedah Rumus: Membuka Gulungan"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Untuk menghitung volume satu kulit tipis, kita bisa mengguntingnya dan membentangkannya menjadi lembaran datar."
+        }
+      ]
+    },
+    {
+      "type": "circle_unroller",
+      "attrs": {
+        "widget": {
+          "title": "Visualisasi Membuka Gulungan",
+          "goal": {
+            "prompt": "Perhatikan animasi. Saat lingkaran 'dibuka' (unrolled), panjang garis lurus yang terbentuk adalah...?",
+            "type": "multipleChoice",
+            "condition": {
+              "answer": "Keliling Lingkaran (2πr)"
+            },
+            "successMessage": "GENIUS! Itulah asal muasal 2πx dalam rumus.",
+            "failedMessage": "Panjang bentangan lingkaran itu sama dengan kelilingnya.",
+            "lockOnAchieved": true
+          },
+          "answers": [
+            "Diameter Lingkaran (2r)",
+            "Luas Lingkaran (πr²)",
+            "Keliling Lingkaran (2πr)"
+          ]
+        }
+      }
+    },
+    {
+      "type": "colorBlock",
+      "attrs": {
+        "colorBlockType": "definisi-card"
+      },
+      "content": [
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 3
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Rumus Volume Kulit (ΔV)"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Setelah dibentangkan, kulit tabung menjadi balok tipis dengan:"
+            }
+          ]
+        },
+        {
+          "type": "bullet_list",
+          "content": [
+            {
+              "type": "list_item",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Panjang = Keliling = $2\\pi x$"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "list_item",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Tinggi = $f(x)$"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "list_item",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Tebal = $\\Delta x$"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "textAlign": "center"
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "$\\Delta V \\approx 2\\pi x \\cdot f(x) \\cdot \\Delta x$"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": "center",
+        "style": "font-size: 1.2em; font-weight: bold;"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "$V = \\int_{a}^{b} 2\\pi x f(x) \\, dx$"
+        }
+      ]
+    }
+  ]
+}

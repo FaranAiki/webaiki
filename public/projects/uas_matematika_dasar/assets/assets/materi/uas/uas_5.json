@@ -1,0 +1,263 @@
+{
+  "type": "doc",
+  "content": [
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 1,
+        "textAlign": "center"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Integral sebagai Fungsi Akumulasi"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Bayangkan sebuah keran air mengisi tangki. "
+        },
+        {
+          "type": "text",
+          "text": "$f(t)$",
+          "marks": [
+            {
+              "type": "code"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": " adalah derasnya aliran air (debit), sedangkan "
+        },
+        {
+          "type": "text",
+          "text": "A(x)",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": " adalah total air yang terkumpul sampai waktu x. Semakin deras alirannya (grafik f tinggi), semakin cepat airnya naik (grafik A makin nanjak)."
+        }
+      ]
+    },
+    {
+      "type": "accumulation_graph",
+      "attrs": {
+        "widget": {
+          "title": "Eksperimen Akumulasi",
+          "function": "0.5 * x + 1",
+          "goal": {
+            "prompt": "Geser slider x ke kanan. Perhatikan garis hijau (kemiringan) pada grafik A(x). Nilainya SAMA dengan tinggi grafik f(t) saat itu!",
+            "type": "interaction",
+            "successMessage": "Aha! Kamu baru saja melihat bukti visual bahwa Turunan dari Integral adalah Fungsi itu sendiri.",
+            "failedMessage": "Coba geser slidernya lebih jauh lagi untuk melihat pola perubahannya.",
+            "lockOnAchieved": true
+          }
+        }
+      }
+    },
+    {
+      "type": "colorBlock",
+      "attrs": {
+        "colorBlockType": "kamuperlutau-card"
+      },
+      "content": [
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 3
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "The Second Fundamental Theorem"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Jika kita mendefinisikan fungsi akumulasi "
+            },
+            {
+              "type": "text",
+              "text": "$A(x) = \\int_{a}^{x} f(t) \\, dt$",
+              "marks": [
+                {
+                  "type": "code"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ", maka turunannya adalah:"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "textAlign": "center"
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "$A'(x) = \\frac{d}{dx} \\left[ \\int_{a}^{x} f(t) \\, dt \\right] = f(x)$"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Ini membuktikan secara resmi bahwa Integral dan Turunan adalah operasi yang saling membatalkan (invers), seperti kali dan bagi."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "multiple_choice",
+      "attrs": {
+        "widget": {
+          "title": "Cek Konsep Akumulasi",
+          "goal": {
+            "prompt": "Jika grafik f(t) bernilai POSITIF terus (berada di atas sumbu-x), bagaimana bentuk grafik akumulasi A(x)?",
+            "type": "multipleChoice",
+            "condition": {
+              "answer": "Selalu Naik"
+            },
+            "successMessage": "Betul! Selama air terus mengalir masuk (positif), isi tangki pasti terus bertambah (naik).",
+            "failedMessage": "Bayangkan menabung uang setiap hari (positif). Apakah tabunganmu akan berkurang?",
+            "lockOnAchieved": true
+          },
+          "answers": [
+            "Selalu Naik",
+            "Selalu Turun",
+            "Naik lalu Turun",
+            "Datar"
+          ]
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Teorema Nilai Rata-rata (MVT) Integral"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Pernah main pasir pantai? Kalau gundukan pasir (luas di bawah kurva) kamu ratakan menjadi persegi panjang datar, tingginya disebut "
+        },
+        {
+          "type": "text",
+          "text": "Nilai Rata-rata fungsi",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "mvt_integral",
+      "attrs": {
+        "widget": {
+          "title": "Visualisasi MVT",
+          "function": "-(x-2)^2 + 5",
+          "xMin": 0,
+          "xMax": 4,
+          "goal": {
+            "prompt": "Geser slider tinggi (Height) agar luas persegi oranye SAMA PERSIS dengan luas area biru. Di ketinggian berapa mereka setara?",
+            "type": "interaction",
+            "successMessage": "Pas sekali! Tinggi itulah yang disebut nilai rata-rata fungsi pada interval tersebut.",
+            "failedMessage": "Coba lagi. Kalau perseginya kekecilan, naikkan. Kalau kegedean, turunkan.",
+            "lockOnAchieved": true
+          }
+        }
+      }
+    },
+    {
+      "type": "colorBlock",
+      "attrs": {
+        "colorBlockType": "tips-card"
+      },
+      "content": [
+        {
+          "type": "paragraph",
+          "attrs": {
+            "textAlign": "center"
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "$f_{avg} = \\frac{1}{b-a} \\int_{a}^{b} f(x) \\, dx$"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "MVT menjamin bahwa pasti ada setidaknya satu titik "
+            },
+            {
+              "type": "text",
+              "text": "$c$",
+              "marks": [
+                {
+                  "type": "code"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " di mana nilai fungsi aslinya sama persis dengan nilai rata-ratanya: "
+            },
+            {
+              "type": "text",
+              "text": "$f(c) = f_{avg}$",
+              "marks": [
+                {
+                  "type": "code"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

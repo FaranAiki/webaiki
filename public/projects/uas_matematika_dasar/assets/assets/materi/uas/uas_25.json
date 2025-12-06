@@ -1,0 +1,249 @@
+{
+  "type": "doc",
+  "content": [
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 1,
+        "textAlign": "center"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Fungsi Invers Trigonometri"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Kita tahu grafik sinus dan cosinus itu bergelombang naik-turun selamanya. Artinya, mereka "
+        },
+        {
+          "type": "text",
+          "text": "TIDAK Satu-satu (Not One-to-One)",
+          "marks": [
+            {
+              "type": "bold"
+            },
+            {
+              "type": "textStyle",
+              "attrs": {
+                "color": "#FF0000"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": ". Agar punya invers, kita harus membatasi wilayahnya (Restriksi Domain)."
+        }
+      ]
+    },
+    {
+      "type": "circleUnroller"
+    },
+    {
+      "type": "colorBlock",
+      "attrs": {
+        "colorBlockType": "tips-card"
+      },
+      "content": [
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 3
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Restriksi Domain Penting"
+            }
+          ]
+        },
+        {
+          "type": "bullet_list",
+          "content": [
+            {
+              "type": "list_item",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Sinus: $[-\\frac{\\pi}{2}, \\frac{\\pi}{2}]$"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "list_item",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Cosinus: $[0, \\pi]$"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "list_item",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Tangen: $(-\\frac{\\pi}{2}, \\frac{\\pi}{2})$"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Turunan Invers Trigonometri"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Rumus turunan ini unik karena hasilnya adalah fungsi aljabar biasa (tidak ada trigono-nya lagi!). Ini sangat berguna untuk menyelesaikan integral yang melibatkan akar kuadrat."
+        }
+      ]
+    },
+    {
+      "type": "match",
+      "attrs": {
+        "widget": {
+          "title": "Hafalan Rumus Turunan",
+          "elements_title": [
+            "Fungsi y",
+            "Turunan y'"
+          ],
+          "elements": [
+            [
+              "$\\sin^{-1} x$",
+              "$\\tan^{-1} x$",
+              "$\\sec^{-1} x$"
+            ],
+            [
+              "$\\frac{1}{\\sqrt{1-x^2}}$",
+              "$\\frac{1}{1+x^2}$",
+              "$\\frac{1}{|x|\\sqrt{x^2-1}}$"
+            ]
+          ],
+          "goal": {
+            "prompt": "Hubungkan fungsi invers trigono dengan turunannya!",
+            "condition": {
+              "edges": [
+                [
+                  [0, 0],
+                  [1, 0]
+                ],
+                [
+                  [0, 1],
+                  [1, 1]
+                ],
+                [
+                  [0, 2],
+                  [1, 2]
+                ]
+              ]
+            },
+            "successMessage": "Hebat! Perhatikan pola akarnya. Tanpa akar untuk Tan, akar 1-x² untuk Sin.",
+            "failedMessage": "Tips: Turunan Tan⁻¹ tidak punya akar kuadrat.",
+            "lockOnAchieved": true
+          }
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Integral yang Menghasilkan Invers Trigono"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Karena integral adalah antiturunan, kita bisa membalik rumus di atas. Contoh paling sering muncul adalah integral yang menghasilkan "
+        },
+        {
+          "type": "text",
+          "text": "ArcTan",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": "center"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "$\\int \\frac{1}{a^2 + x^2} dx = \\frac{1}{a} \\tan^{-1}(\\frac{x}{a}) + C$"
+        }
+      ]
+    },
+    {
+      "type": "short_answer",
+      "attrs": {
+        "widget": {
+          "title": "Latihan Integral Tentu",
+          "prompt": "Hitunglah nilai dari integral tentu berikut: $\\int_{0}^{1} \\frac{4}{1+x^2} dx$. (Petunjuk: $\\tan^{-1}(1) = \\pi/4$). Tulis jawaban dalam bentuk simbol pi (contoh: 2pi).",
+          "placeholder": "Jawaban...",
+          "correctAnswers": [
+            "pi",
+            "3.14",
+            "1 pi"
+          ],
+          "caseSensitive": false,
+          "goal": {
+            "successMessage": "Benar! 4 * [arctan(1) - arctan(0)] = 4 * (pi/4 - 0) = pi.",
+            "failedMessage": "Gunakan rumus arctan. Integral 1/(1+x^2) adalah arctan(x). Kalikan 4."
+          }
+        }
+      }
+    }
+  ]
+}

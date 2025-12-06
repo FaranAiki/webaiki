@@ -1,0 +1,219 @@
+{
+  "type": "doc",
+  "content": [
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 1,
+        "textAlign": "center"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Fungsi Invers & Turunannya"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Setelah memahami logaritma, kita perlu alat bantu baru: Fungsi Invers. Bayangkan ini sebagai tombol 'Undo'. Jika fungsi $f$ memetakan $x$ ke $y$, maka inversnya $f^{-1}$ mengembalikan $y$ ke $x$."
+        }
+      ]
+    },
+    {
+      "type": "colorBlock",
+      "attrs": {
+        "colorBlockType": "tips-card"
+      },
+      "content": [
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 3
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Syarat Punya Invers"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Tidak semua fungsi bisa di-undo! Fungsi harus "
+            },
+            {
+              "type": "text",
+              "text": "Satu-satu (One-to-One)",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ". Cara ceknya paling gampang pakai "
+            },
+            {
+              "type": "text",
+              "text": "Uji Garis Horizontal",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": ": Jika garis mendatar memotong grafik lebih dari sekali, dia GAGAL punya invers."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "interactive_graph",
+      "attrs": {
+        "widget": {
+          "title": "Cek Fungsi Satu-satu",
+          "viewport": {
+            "bounds": {
+              "xMin": -5,
+              "xMax": 5,
+              "yMin": -5,
+              "yMax": 5
+            }
+          },
+          "expressions": [
+            {
+              "formula": "x^3",
+              "color": 4280391411,
+              "thickness": 3,
+              "style": "solid"
+            },
+            {
+              "formula": "x^2",
+              "color": 4294901760,
+              "style": "dashed",
+              "thickness": 2
+            }
+          ],
+          "goal": {
+            "prompt": "Fungsi biru ($x^3$) lulus uji garis horizontal. Fungsi merah ($x^2$) gagal. Kenapa? Karena untuk $y=4$, ada dua nilai $x$ (-2 dan 2).",
+            "type": "interaction",
+            "successMessage": "Betul! Fungsi $x^2$ tidak punya invers kecuali kita batasi domainnya (misal $x \\geq 0$).",
+            "failedMessage": "Perhatikan grafik merah. Ada dua nilai $x$ untuk satu ketinggian $y$ yang sama.",
+            "lockOnAchieved": true
+          }
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Sifat Grafik Invers"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Grafik $f^{-1}$ adalah pencerminan grafik $f$ terhadap garis $y = x$. Domain $f$ menjadi Range $f^{-1}$, dan sebaliknya."
+        }
+      ]
+    },
+    {
+      "type": "match",
+      "attrs": {
+        "widget": {
+          "title": "Sifat Invers",
+          "elements_title": [
+            "Fungsi Asli $f$",
+            "Fungsi Invers $f^{-1}$"
+          ],
+          "elements": [
+            [
+              "Domain (Input)",
+              "Range (Output)",
+              "Titik $(a, b)$"
+            ],
+            [
+              "Range (Output)",
+              "Domain (Input)",
+              "Titik $(b, a)$"
+            ]
+          ],
+          "goal": {
+            "prompt": "Hubungkan sifat yang saling bertukar!",
+            "condition": {
+              "edges": [
+                [
+                  [0, 0],
+                  [1, 1]
+                ],
+                [
+                  [0, 1],
+                  [1, 0]
+                ],
+                [
+                  [0, 2],
+                  [1, 2]
+                ]
+              ]
+            },
+            "successMessage": "Mantap! Input jadi output, output jadi input.",
+            "failedMessage": "Ingat prinsip tukar tempat: x jadi y, y jadi x.",
+            "lockOnAchieved": true
+          }
+        }
+      }
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "Turunan Fungsi Invers"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attrs": {
+        "textAlign": "center"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "$(f^{-1})'(y) = \\frac{1}{f'(x)}$"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Ini sangat berguna! Kita bisa mencari kemiringan fungsi invers tanpa harus mencari rumus fungsi inversnya terlebih dahulu."
+        }
+      ]
+    }
+  ]
+}
