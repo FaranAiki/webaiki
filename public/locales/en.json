@@ -25,14 +25,17 @@
 
   "Not_Found": "This page was not found. Please click Home on the navigation bar.",
 
-  "Faran_About": "Hi! Muhammad Faran Aiki (April 8th, 2007), a student at the School of Electrical Engineering and Informatics - Computation (SEEI-C), Bandung Institute of Technology, is here! I have been an intern at Analitica on the Education Team since May 2025 and a Front End software engineer (Technology Team) since October 2025. Additionally, I am an awardee/grantee of the PSP Excellence 2025 scholarship.",
+  "Faran_About_1": "Hi! <b>Muhammad Faran Aiki</b> (April 8th, 2007), a student at the <i>School of Electrical Engineering and Informatics - Computation (SEEI-C)</i>, <b>Bandung Institute of Technology</b>, is here!",
+  "Faran_About_2": "I have been an intern at <b>Analitica</b> on the Education Team since May 2025 and a Front End software engineer (Technology Team) since October 2025. Additionally, I am an awardee/grantee of the <b>PSP Excellence 2025</b> scholarship.",
   "Faran_Photo": "Faran Aiki's photo collections",
   "Faran_Philosophy_Title": "Philosophy of Life",
   "Faran_Philosophy": "The name Faran Aiki comes from the word Faran \"advance\", while the name Aiki comes from the Japanese words \"ai\" (愛) and \"ki\" (気) which mean 'the energy of love'. Thus, \"Faran Aiki\" means '(one who) loves advancement and progress'.",
   "Faran_Principle_Title": "Principles of Life",
-  "Faran_Principle": "To vow to love, give meaning to, uphold, and glorify (1) God, (2) Knowledge and Wisdom, and (3) The Passion for Advancement and Progress. With these principles as a standard and benchmark to carry on with life, I have a foundation and basis not to give up in continuing through hard days. Although sometimes deviating from the principles above, I never forget to return to this path that has brought him this far because, fundamentally, humans cannot be perfect, but I can strive to hold fast to what guides their life.",
+  "Faran_Principle_1": "To vow to love, give meaning to, uphold, and glorify (1) <b>God</b>, (2) <b>Knowledge and Wisdom</b>, and (3) <b>The Passion for Advancement and Progress</b>.",
+  "Faran_Principle_2": "With these principles as a standard and benchmark to carry on with life, I have a foundation and basis not to give up in continuing through hard days. Although sometimes deviating from the principles above, I never forget to return to this path that has brought him this far because, fundamentally, <i>humans cannot be perfect</i>, but I can strive to hold fast to what guides their life.",
   "Faran_Vision_Mission_Title": "Vision and Mission",
-  "Faran_Vision_Mission": "To be a person who continuously grows and develops, and is able to encourage progress—be it physical, mental, or intellectual—collectively and holistically, based on love and affection driven by rationality and empathy. With this vision, I strive to learn relentlessly, such as studying science, technology, and social-humanities, as well as reflecting through his own experiences or those of others to create innovative solutions for existing problems. Furthermore, I also prioritize the values of goodness that are widely, globally, and rationally accepted. I do this to prove the worthiness of his name's meaning, which is to advance and progress, both individually and as a group.", 
+  "Faran_Vision_Mission_1": "To be a person who continuously grows and develops, and is able to encourage progress—be it physical, mental, or intellectual—collectively and holistically, based on <b>love and affection driven by rationality and empathy</b>.",
+  "Faran_Vision_Mission_2": "With this vision, I strive to learn relentlessly, such as studying science, technology, and social-humanities, as well as reflecting through his own experiences or those of others to create innovative solutions for existing problems. Furthermore, I also prioritize the values of goodness that are widely, globally, and rationally accepted. I do this to prove the worthiness of his name's meaning, which is to <i>advance and progress</i>, both individually and as a group.", 
 
   "All": "All",
 

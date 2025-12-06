@@ -7,33 +7,40 @@ import { useTheme } from 'next-themes';
 
 interface AboutMeProps {
   carouselPhotos: string[];
-  about_text: string;
+  about_text_1: string;
+  about_text_2: string;
   about_title: string;
   about_philosophy_title: string;
   about_philosophy: string;
   about_principle_title: string;
-  about_principle: string;
+  about_principle_1: string;
+  about_principle_2: string;
   about_vision_mission_title: string;
-  about_vision_mission: string;
+  about_vision_mission_1: string;
+  about_vision_mission_2: string;
   faran_photo: string;
 }
 
 const SectionSeparator = ({ isDark }: { isDark: boolean }) => (
-  <div className="w-full max-w-4xl mx-auto my-16">
-    <div className={`h-px bg-gradient-to-r from-transparent ${isDark ? 'via-gray-500/50' : 'via-gray-300'} to-transparent`} />
+  // Reduced vertical margin from my-16 to my-10 for tighter section spacing
+  <div className="w-full max-w-4xl mx-auto my-10">
+    <div className={`h-px bg-gradient-to-r from-transparent ${isDark ? 'via-gray-500/50' : 'via-black'} to-transparent`} />
   </div>
 );
 
 export default function AboutMe({
   carouselPhotos,
-  about_text,
+  about_text_1,
+  about_text_2,
   about_title,
   about_philosophy_title,
   about_philosophy,
   about_principle_title,
-  about_principle,
+  about_principle_1,
+  about_principle_2,
   about_vision_mission_title,
-  about_vision_mission,
+  about_vision_mission_1,
+  about_vision_mission_2,
   faran_photo
 }: AboutMeProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -76,24 +83,30 @@ export default function AboutMe({
   const borderClass = isDark ? 'border-white/10' : 'border-gray-200';
 
   return (
-    <div className="w-full px-10 py-10">
+    <div className="w-full py-5 md:px-5">
        
       {/* About Me */}
-      <div className="flex flex-col-reverse md:flex-row justify-center items-center gap-12 max-w-5xl mx-auto animate-fade-in">
+      <div className="flex flex-col-reverse md:flex-row justify-center items-center gap-6 max-w-5xl mx-auto animate-fade-in">
         <div className="flex-1 text-center md:text-justify">
-          <h1 className={`text-4xl md:text-5xl font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
+          <h1 className={`text-4xl md:text-5xl font-bold ${titleClass} mb-4 hover:opacity-85 transition-opacity`}>
             {about_title}
           </h1>
           {/* Using textClass calculated from resolvedTheme to ensure correct color */}
-          <HoverableWords className={`text-lg ${textClass} leading-relaxed text-justify`}>
-            {about_text}
-          </HoverableWords>
+          <div className="space-y-3">
+            <HoverableWords className={`text-lg ${textClass} leading-relaxed text-justify`}>
+              {about_text_1}
+            </HoverableWords>
+            <HoverableWords className={`text-lg ${textClass} leading-relaxed text-justify`}>
+              {about_text_2}
+            </HoverableWords>
+          </div>
         </div>
 
         <div className="flex-shrink-0 relative">
           <div className="relative w-64 h-64 md:w-72 md:h-72">
              {/* Decorative backdrop blur */}
             <div className="absolute inset-0 bg-blue-500/20 blur-2xl rounded-full transform scale-90"></div>
+            {carouselPhotos.length > 0 && (
             <Image
               src={`/images/photo_faran_aiki/${carouselPhotos[currentIndex]}`}
               alt={faran_photo}
@@ -107,6 +120,7 @@ export default function AboutMe({
               `}
               priority
             />
+            )}
           </div>
         </div>
       </div>
@@ -114,9 +128,9 @@ export default function AboutMe({
       <SectionSeparator isDark={isDark} />
 
       {/* Philosophy  */}
-      <div className="flex flex-col-reverse md:flex-row-reverse justify-center items-center gap-12 max-w-5xl mx-auto animate-fade-in">
+      <div className="flex flex-col-reverse md:flex-row-reverse justify-center items-center gap-8 max-w-5xl mx-auto animate-fade-in">
         <div className="flex-1 text-center md:text-justify">
-          <h2 className={`text-3xl md:text-4xl font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
+          <h2 className={`text-3xl md:text-4xl font-bold ${titleClass} mb-4 hover:opacity-85 transition-opacity`}>
             {about_philosophy_title}
           </h2>
           <HoverableWords 
@@ -143,17 +157,25 @@ export default function AboutMe({
       <SectionSeparator isDark={isDark} />
 
       {/* Principles */}
-      <div className="flex flex-col-reverse md:flex-row justify-center items-center gap-12 max-w-5xl mx-auto animate-fade-in">
+      <div className="flex flex-col-reverse md:flex-row justify-center items-center gap-8 max-w-5xl mx-auto animate-fade-in">
         <div className="flex-1 text-center md:text-justify">
-          <h2 className={`text-3xl md:text-4xl font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
+          <h2 className={`text-3xl md:text-4xl font-bold ${titleClass} mb-4 hover:opacity-85 transition-opacity`}>
             {about_principle_title}
           </h2>
-          <HoverableWords 
-            className={`text-lg ${textClass} leading-relaxed text-justify`} 
-            prophover='transition-all inline-block duration-100 ease-in-out hover:scale-95 hover:italic hover:opacity-90 cursor-pointer'
-          >
-            {about_principle}
-          </HoverableWords>
+          <div className="space-y-3">
+            <HoverableWords 
+                className={`text-lg ${textClass} leading-relaxed text-justify`} 
+                prophover='transition-all inline-block duration-100 ease-in-out hover:scale-95 hover:italic hover:opacity-90 cursor-pointer'
+            >
+                {about_principle_1}
+            </HoverableWords>
+            <HoverableWords 
+                className={`text-lg ${textClass} leading-relaxed text-justify`} 
+                prophover='transition-all inline-block duration-100 ease-in-out hover:scale-95 hover:italic hover:opacity-90 cursor-pointer'
+            >
+                {about_principle_2}
+            </HoverableWords>
+          </div>
         </div>
 
         <div className="flex-shrink-0">
@@ -172,17 +194,25 @@ export default function AboutMe({
       <SectionSeparator isDark={isDark} />
 
       {/* Vision & Mission  */}
-      <div className="flex flex-col-reverse md:flex-row-reverse justify-center items-center gap-12 max-w-5xl mx-auto animate-fade-in">
+      <div className="flex flex-col-reverse md:flex-row-reverse justify-center items-center gap-8 max-w-5xl mx-auto animate-fade-in">
         <div className="flex-1 text-center md:text-justify">
-          <h2 className={`text-3xl md:text-4xl font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
+          <h2 className={`text-3xl md:text-4xl font-bold ${titleClass} mb-4 hover:opacity-85 transition-opacity`}>
             {about_vision_mission_title}
           </h2>
-          <HoverableWords 
-            className={`text-lg ${textClass} leading-relaxed text-justify md:text-justify`} 
-            prophover={`transition-all inline-block duration-100 ease-in-out hover:scale-95 hover:italic hover:opacity-90 cursor-pointer hover:text-cyan-600 ${isDark ? 'dark:hover:text-cyan-300' : ''}`}
-          >
-            {about_vision_mission}
-          </HoverableWords>
+          <div className="space-y-3">
+            <HoverableWords 
+                className={`text-lg ${textClass} leading-relaxed text-justify md:text-justify`} 
+                prophover={`transition-all inline-block duration-100 ease-in-out hover:scale-95 hover:italic hover:opacity-90 cursor-pointer hover:text-cyan-600 ${isDark ? 'dark:hover:text-cyan-300' : ''}`}
+            >
+                {about_vision_mission_1}
+            </HoverableWords>
+            <HoverableWords 
+                className={`text-lg ${textClass} leading-relaxed text-justify md:text-justify`} 
+                prophover={`transition-all inline-block duration-100 ease-in-out hover:scale-95 hover:italic hover:opacity-90 cursor-pointer hover:text-cyan-600 ${isDark ? 'dark:hover:text-cyan-300' : ''}`}
+            >
+                {about_vision_mission_2}
+            </HoverableWords>
+          </div>
         </div>
 
         <div className="flex-shrink-0">

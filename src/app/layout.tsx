@@ -28,7 +28,8 @@ import {
   Palette, 
   Music, 
   BookOpen, 
-  GraduationCap
+  GraduationCap,
+  Compass // Imported Compass for Experience/Journey
 } from 'lucide-react';
 
 // Helper to get backgrounds
@@ -75,7 +76,8 @@ export default async function RootLayout({
     { 
       name: await t('Experience'), 
       href: '#',
-      icon: <Briefcase size={18} />,
+      // Changed to Compass to represent "Journey" and avoid duplicate Briefcase
+      icon: <Compass size={18} />, 
       subLinks: [
         { name: await t('Work'), href: '/work', icon: <Briefcase size={16} /> },
         { name: await t('Organization'), href: '/organization', icon: <Users size={16} /> },

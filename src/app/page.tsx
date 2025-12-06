@@ -15,6 +15,11 @@ import path from 'path';
 export function getFaranAikiPhoto() {
   const photosDir = path.join(process.cwd(), 'public', 'images', 'photo_faran_aiki');
 
+  // Ensure directory exists to prevent build errors
+  if (!fs.existsSync(photosDir)) {
+    return [];
+  }
+
   return fs.readdirSync(photosDir);
 };
 
@@ -43,7 +48,6 @@ export const metadata: Metadata = {
   },
 };
 
-// TODO make this more good
 // efficient and effective 
 export default async function RootLayout({
   children,
@@ -51,15 +55,27 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className={`${inter.className} container mx-auto px-8 pt-24 pb-16`}>
+    // Adjusted padding: px-4 on mobile (was px-8), md:px-8 on desktop
+    <main className={`${inter.className} container mx-auto px-4 md:px-8 pt-24 pb-16`}>
         {children}
-    <AboutMe carouselPhotos={getFaranAikiPhoto()} faran_photo={await t('Faran_Photo')}
-    about_philosophy_title={await t('Faran_Philosophy_Title')} about_philosophy={await t('Faran_Philosophy')}
-    about_principle_title={await t('Faran_Principle_Title')} about_principle={await t('Faran_Principle')}
-    about_vision_mission_title={await t('Faran_Vision_Mission_Title')} about_vision_mission={await t('Faran_Vision_Mission')}
-    about_title={await t('About_Me')} about_text={await t('Faran_About')} /> {/* I don't know why I don't the about me here */}
+    <AboutMe 
+      carouselPhotos={getFaranAikiPhoto()} 
+      faran_photo={await t('Faran_Photo')}
+      about_philosophy_title={await t('Faran_Philosophy_Title')} 
+      about_philosophy={await t('Faran_Philosophy')}
+      about_principle_title={await t('Faran_Principle_Title')} 
+      // Split Principles
+      about_principle_1={await t('Faran_Principle_1')}
+      about_principle_2={await t('Faran_Principle_2')}
+      about_vision_mission_title={await t('Faran_Vision_Mission_Title')} 
+      // Split Vision Mission
+      about_vision_mission_1={await t('Faran_Vision_Mission_1')}
+      about_vision_mission_2={await t('Faran_Vision_Mission_2')}
+      about_title={await t('About_Me')} 
+      // Fetching split paragraphs
+      about_text_1={await t('Faran_About_1')} 
+      about_text_2={await t('Faran_About_2')} 
+    />
     </main>
   );
 }
-
-
