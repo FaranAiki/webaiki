@@ -14,7 +14,7 @@ const cspHeader = `
     base-uri 'self';
     form-action 'self';
     frame-ancestors 'self';
-    frame-src 'self' open.spotify.com  https://open.spotify.com https://w.soundcloud.com w.soundcloud.com;
+    frame-src 'self' analitica-graph.web.app https://analitica-graph.web.app open.spotify.com  https://open.spotify.com https://w.soundcloud.com w.soundcloud.com;
     connect-src 'self' https://cdn.jsdelivr.net https://faranaiki.id https://fonts.gstatic.com  https://www.gstatic.com https://fonts.googleapis.com;
     worker-src 'self' blob:;
 `;
