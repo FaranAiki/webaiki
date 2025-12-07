@@ -1,6 +1,7 @@
 import Background from "@/components/Background"
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 // Import Providers
 import { Providers } from "@/components/Providers";
@@ -46,11 +47,11 @@ export default async function NotFound() {
             <h1 className="text-4xl hover:scale-105 transition-all duration-200 hover:text-cyan-400 hover:font-bold hover:opacity-75 cursor-pointer">
             {not_found_text}
             </h1>
-          <a href="/" className="flex items-center space-x-2 text-xl font-semibold hover:text-cyan-500 hover:scale-105 transition-all duration-200">
+        </div>
+          <Link href="/" className="flex items-center space-x-2 text-xl font-semibold hover:text-cyan-500 hover:scale-105 transition-all duration-200">
              <Home size={24} />
              <span>{home_text}</span>
-          </a>
-        </div>
+          </Link>
       </main>
 
       <Background carousel={getBackgrounds()}/>
