@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import PythonCLI from "@/components/PythonCLI"; 
+import ExperiencesClient from '@/components/ExperienceDisplayer';
 import "../globals.css"; 
 
-import { t, currentLanguage } from '@/components/Translator';
+import { t, from_to } from '@/components/Translator';
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://faranaiki.id/project"),
@@ -30,5 +30,54 @@ export const metadata: Metadata = {
 };
 
 export default async function ProjectPage() {
-  
+  // async as this is a server side
+  const projectExperiences = [
+    {
+      year: '2025',
+      jobs: [
+        {
+          date: await from_to('November', 'Present'),
+          title: await t('Make_Interactive_UAS'),
+          company: 'Analitica',
+          description: await t('Make_Interactive_UAS_Description'),
+          image: [
+            '/documents/project/UAS_0.png',
+            '/documents/project/UAS_1.png',
+            '/documents/project/UAS_2.png',
+          ],
+          url: 'https://faranaiki.id/project/uas_matematika_dasar',
+        },
+        {
+          date: await from_to('October', 'Present'),
+          title: await t('Make_Website'),
+          company: 'faranaiki.id',
+          description: await t('Make_Website_Description'),
+          image: [
+            '/documents/project/Web_0.png',
+            '/documents/project/Web_1.png',
+            '/documents/project/Web_2.png',
+          ],
+          url: 'https://faranaiki.id'
+        }
+      ]
+    },
+    {
+      year: '2023',
+      jobs: [
+        {
+          date: await from_to('November', 'Present'),
+          title: await t('Make_Nihwm'),
+          company: 'Linux',
+          description: await t('Make_Nihwm_Description'),
+          image: [
+            '/documents/project/Nihwm_0.png',
+          ],
+          url: 'https://www.github.com/FaranAiki/nihwm',
+        },
+      ]
+    },
+  ];
+
+  // use experiences client defined in the components 
+  return <ExperiencesClient experiences={projectExperiences} />;
 }

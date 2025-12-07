@@ -1,0 +1,59 @@
+import type { Metadata } from "next";
+import PythonCLI from "@/components/PythonCLI"; 
+import "../globals.css"; 
+
+import { t, currentLanguage } from '@/components/Translator';
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://faranaiki.id/project"),
+
+  title: "Faran Aiki's Project",
+  description: "Faran Aiki's project history and others",
+
+  openGraph: {
+    title: "Faran Aiki's Project",
+    description: "Faran Aiki's project history and others",
+    url: "https://faranaiki.id/project",
+    siteName: "Faran Aiki's Project",
+    type: "website",
+  },
+
+  icons: {
+    icon: "/icon.ico",
+    shortcut: "/icon.ico",
+    apple: "/icon.ico",
+  },
+
+  alternates: {
+    canonical: "/",
+  },
+};
+
+export default async function ProjectPage() {
+  // async as this is a server side
+  const projectExperiences = [
+    {
+      year: '2025',
+      jobs: [
+        {
+          date: await from_to('October', 'Present'),
+          title: await t('Make_Website'),
+          company: 'faranaiki.id',
+          description: await t('Make_Web_Description'),
+          image: [
+            '/documents/work/Analitica Software Engineer_0.png',
+            '/documents/work/Analitica Software Engineer_1.png',
+            '/documents/work/Analitica Software Engineer_2.png',
+          ]
+        },
+        {
+          date: await from_to('October', 'Present'),
+          title: await t('')
+        }
+      ]
+    }
+  ];
+
+  // use experiences client defined in the components 
+  return <ExperiencesClient experiences={projectExperiences} />;
+}

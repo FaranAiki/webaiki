@@ -23,7 +23,7 @@
   "December": "十二月",
   "Present": "至今",
 
-  "Not_Found": "找不到此页面。请点击导航栏上的主页。",
+  "Not_Found": "找不到此页面。",
 
   "Faran_About_1": "我叫 <b>Muhammad Faran Aiki</b>（2007年4月8日出生），是万隆理工学院（ITB）电气工程与信息学院计算专业（<i>SEEI-C</i>）的学生。",
   "Faran_About_2": "自2025年5月起，我在 <b>Analitica</b> 教育团队担任实习生，并于2025年10月起担任前端软件工程师（技术团队）。此外，我也是2025年 <b>PSP 卓越奖学金</b>的获得者。",
@@ -124,6 +124,13 @@
   "French": "法语",
   "Arabic": "阿拉伯语",
   "Mandarin": "中国人",
+
+  "Make_Interactive_UAS": "MA1101 ITB 期末考试互动学习",
+  "Make_Interactive_UAS_Description": "开发基于 Flutter/Dart 的应用程序，通过使用交互式小部件和 Gemini 人工智能来可视化复杂概念，帮助万隆理工学院的学生准备基础数学 I 期末考试，从而加深理解。",
+  "Make_Website": "个人网站 faranaiki.id",
+  "Make_Website_Description": "使用 NextJS、TailwindCSS 和 Vercel（用于测试）创建一个主要的个人网站，作为一个包含我自身发展的身份标识。",
+  "Make_Nihwm": "NihWM 窗口管理器",
+  "Make_Nihwm_Description": "使用 C 语言和 XOrg 库为 Arch Linux 创建一个窗口管理器，它是动态窗口管理器 (dwm) 的衍生品（分叉），由于经过了个性化定制，至今仍在使用。",
 
   "Software_Engineer": "软件工程师 (前端 Flutter)",
   "Software_Engineer_Description": "使用Flutter创建和维护交互式小部件，例如交互式图表、可视化数据的交互式统计数据以及用于简化学习曲线的分词器。",

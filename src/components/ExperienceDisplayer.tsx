@@ -11,6 +11,7 @@ type Job = {
     company: string;
     description: string;
     image: string[]; // This is an array of image URLs
+    url?: string;
 };
 
 type Experience = {
@@ -77,7 +78,16 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
                                                 }`}
                                         >
                                             <p className={`${subText} text-sm mb-1 duration-100 hover:text-gray-700 hover:italic transition-all`}>{job.date}</p>
-                                            <h3 className={`text-xl font-semibold ${mainText} hover:font-bold transition-all duration-200 hover:scale-101`}>{job.title}</h3>
+                                            
+                                            {/* Clickable Title if URL exists */}
+                                            {job.url ? (
+                                                <a href={job.url} target="_blank" rel="noopener noreferrer" className="block w-fit">
+                                                    <h3 className={`text-xl font-semibold ${mainText} hover:font-bold hover:text-cyan-500 transition-all duration-200 hover:scale-101 underline decoration-dotted decoration-cyan-500/50`}>{job.title}</h3>
+                                                </a>
+                                            ) : (
+                                                <h3 className={`text-xl font-semibold ${mainText} hover:font-bold transition-all duration-200 hover:scale-101`}>{job.title}</h3>
+                                            )}
+
                                             <p className="text-cyan-600 font-medium mb-3 transition-all hover:font-bold hover:scale-105 duration-200">{job.company}</p>
                                             <HoverableWords 
                                                 className={`leading-relaxed text-justify lg:text-lg md:text-md ${descText}`}
@@ -85,17 +95,32 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
                                             >
                                               {job.description} 
                                             </HoverableWords>
+                                            
+                                            {/* Mobile Image Display */}
                                             {job === activeJob && activeJob.image.length > 0 && (activeJob.image[currentImageIndex] !== '' || activeJob.image[currentImageIndex] !== null ) &&  (
                                             <div className="flex pt-4 w-full justify-center transition-all duration-200 block md:hidden w-1/2 hover:scale-101">
                                               <div className="aspect-w-16 aspect-h-9">
-                                                <Image
-                                                width={24}
-                                                height={16}
-                                                src={activeJob.image[currentImageIndex]}
-                                                alt={`${activeJob.company} placeholder image`}
-                                                className="w-full h-full object-cover rounded-lg shadow-2xl transition-opacity duration-300"
-                                                unoptimized
-                                                />
+                                                {job.url ? (
+                                                    <a href={job.url} target="_blank" rel="noopener noreferrer">
+                                                        <Image
+                                                        width={24}
+                                                        height={16}
+                                                        src={activeJob.image[currentImageIndex]}
+                                                        alt={`${activeJob.company} placeholder image`}
+                                                        className="w-full h-full object-cover rounded-lg shadow-2xl transition-opacity duration-300 hover:opacity-80"
+                                                        unoptimized
+                                                        />
+                                                    </a>
+                                                ) : (
+                                                    <Image
+                                                    width={24}
+                                                    height={16}
+                                                    src={activeJob.image[currentImageIndex]}
+                                                    alt={`${activeJob.company} placeholder image`}
+                                                    className="w-full h-full object-cover rounded-lg shadow-2xl transition-opacity duration-300"
+                                                    unoptimized
+                                                    />
+                                                )}
                                               </div>
                                             </div>
                                             )}
@@ -106,12 +131,24 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
                         ))}
                     </div>
 
-                    {/* Right Column: Image Display (Carousel) */}
+                    {/* Right Column: Image Display (Carousel) - Desktop */}
                     {activeJob.image.length > 0 && (activeJob.image[currentImageIndex] !== '' || activeJob.image[currentImageIndex] !== null ) &&  (
                     <div className="transition-all duration-200 hidden md:block w-1/2 hover:scale-105">
                         <div className="sticky top-24">
                             <div className="aspect-w-16 aspect-h-9">
-                                     <Image
+                                {activeJob.url ? (
+                                    <a href={activeJob.url} target="_blank" rel="noopener noreferrer">
+                                         <Image
+                                            width={24}
+                                            height={16}
+                                            src={activeJob.image[currentImageIndex]}
+                                            alt={`${activeJob.company} placeholder image`}
+                                            className={`w-full h-full object-cover rounded-lg shadow-2xl transition-opacity duration-300 border-2 ${cardBorder} hover:opacity-85 hover:border-cyan-500`}
+                                            unoptimized
+                                        />
+                                    </a>
+                                ) : (
+                                    <Image
                                         width={24}
                                         height={16}
                                         src={activeJob.image[currentImageIndex]}
@@ -119,9 +156,16 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
                                         className={`w-full h-full object-cover rounded-lg shadow-2xl transition-opacity duration-300 border-2 ${cardBorder}`}
                                         unoptimized
                                     />
+                                )}
                             </div>
                             <div className="mt-4 text-center">
-                                <h3 className={`text-2xl font-bold ${mainText}`}>{activeJob.title}</h3>
+                                {activeJob.url ? (
+                                    <a href={activeJob.url} target="_blank" rel="noopener noreferrer" className="hover:text-cyan-500 transition-colors">
+                                        <h3 className={`text-2xl font-bold ${mainText}`}>{activeJob.title}</h3>
+                                    </a>
+                                ) : (
+                                    <h3 className={`text-2xl font-bold ${mainText}`}>{activeJob.title}</h3>
+                                )}
                                 <p className="text-cyan-600 text-lg">{activeJob.company}</p>
                             </div>
                         </div>

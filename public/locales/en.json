@@ -23,7 +23,7 @@
   "December": "December",
   "Present": "Present",
 
-  "Not_Found": "This page was not found. Please click Home on the navigation bar.",
+  "Not_Found": "This page was not found.",
 
   "Faran_About_1": "Hi! <b>Muhammad Faran Aiki</b> (April 8th, 2007), a student at the <i>School of Electrical Engineering and Informatics - Computation (SEEI-C)</i>, <b>Bandung Institute of Technology</b>, is here!",
   "Faran_About_2": "I have been an intern at <b>Analitica</b> on the Education Team since May 2025 and a Front End software engineer (Technology Team) since October 2025. Additionally, I am an awardee/grantee of the <b>PSP Excellence 2025</b> scholarship.",
@@ -124,6 +124,13 @@
   "French": "French",
   "Arabic": "Arabic",
   "Mandarin": "Mandarin",
+
+  "Make_Interactive_UAS": "Interactive Learning for UAS MA1101 ITB",
+  "Make_Interactive_UAS_Description": "Developing a Flutter/Dart-based application to assist students in preparing for the Calculus I final exam at Bandung Institute of Technology, using interactive widgets and Gemini artificial intelligence to deepen understanding through visualization of complex concepts.",
+  "Make_Website": "Personal Website faranaiki.id",
+  "Make_Website_Description": "Creating a main personal website using NextJS, TailwindCSS, and Vercel (for testing) as an identity \"displayer\" that encompasses my personal development.",
+  "Make_Nihwm": "NihWM Window Manager",
+  "Make_Nihwm_Description": "Creating a window manager that is a derivative (fork) of dynamic window manager (dwm) in C language using the XOrg library for Arch Linux usage and is still used today as it has been personalized.",
 
   "Software_Engineer": "Software Engineer (Front-End Flutter)",
   "Software_Engineer_Description": "Creating and maintaining interactive widgets, such as interactive graph, interactive statistics to visualize data, and word-splitter for easier learning curve using Flutter.",

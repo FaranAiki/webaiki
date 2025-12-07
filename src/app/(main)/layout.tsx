@@ -29,7 +29,8 @@ import {
   Music, 
   BookOpen, 
   GraduationCap,
-  Compass // Imported Compass for Experience/Journey
+  Compass, // Imported Compass for Experience/Journey
+  Code // Imported Code for Project
 } from 'lucide-react';
 
 // Helper to get backgrounds
@@ -80,6 +81,7 @@ export default async function RootLayout({
       icon: <Compass size={18} />, 
       subLinks: [
         { name: await t('Work'), href: '/work', icon: <Briefcase size={16} /> },
+        { name: await t('Project'), href: '/project', icon: <Code size={16} /> },
         { name: await t('Organization'), href: '/organization', icon: <Users size={16} /> },
         { name: await t('Award'), href: '/award', icon: <Trophy size={16} /> },
       ]

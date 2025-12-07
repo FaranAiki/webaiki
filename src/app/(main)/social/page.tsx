@@ -146,7 +146,7 @@ export default function SocialDisplay({ pageTitle }: SocialDisplayProps) {
   ];
 
   return (
-    <div className={`container mx-auto max-w-5xl pt-24 ${containerText}`}>
+    <div className={`container mx-auto max-w-5xl pt-12 ${containerText}`}>
       <h1 className="text-4xl font-bold text-center mb-10 hover:scale-105 opacity-80 hover:opacity-90 transition-all">
         {pageTitle}
       </h1>

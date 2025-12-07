@@ -23,7 +23,7 @@
   "December": "Décembre",
   "Present": "Présent",
 
-  "Not_Found": "Cette page n'a pas été trouvée. Veuillez cliquer sur Accueil dans la barre de navigation.",
+  "Not_Found": "Cette page n'a pas été trouvée.",
 
   "Faran_About_1": "Je m'appelle <b>Muhammad Faran Aiki</b> (8 avril 2007) et je suis étudiant à l'École de génie électrique et informatique - Calcul (<i>SEEI-C</i>) de l'Institut de technologie de Bandung (ITB).",
   "Faran_About_2": "Je suis stagiaire chez <b>Analitica</b> au sein de l'équipe Éducation depuis mai 2025 et ingénieur logiciel Front End (équipe Technologie) depuis octobre 2025. De plus, je suis lauréat de la bourse d'excellence <b>PSP 2025</b>.",
@@ -124,6 +124,13 @@
   "French": "Français",
   "Arabic": "Arabe",
   "Mandarin": "Mandarin",
+
+  "Make_Interactive_UAS": "Apprentissage Interactif pour l'Examen MA1101 ITB",
+  "Make_Interactive_UAS_Description": "Développement d'une application basée sur Flutter/Dart pour aider les étudiants à préparer l'examen final du cours de Mathématiques Élémentaires I à l'Institut de Technologie de Bandung, en utilisant des widgets interactifs et l'intelligence artificielle Gemini pour aider à une compréhension plus approfondie grâce à la visualisation de concepts complexes.",
+  "Make_Website": "Site Personnel faranaiki.id",
+  "Make_Website_Description": "Création d'un site personnel principal utilisant NextJS, TailwindCSS et Vercel (pour les tests) comme identité englobant mon propre développement.",
+  "Make_Nihwm": "Gestionnaire de Fenêtres NihWM",
+  "Make_Nihwm_Description": "Création d'un gestionnaire de fenêtres dérivé (fork) du dynamic window manager (dwm) en langage C utilisant la bibliothèque XOrg pour Arch Linux, toujours utilisé aujourd'hui car il a été personnalisé.",
 
   "Software_Engineer": "Ingénieur Logiciel (Front-End Flutter)",
   "Software_Engineer_Description": "Création et maintenance de widgets interactifs, tels que des graphiques interactifs, des statistiques interactives pour visualiser les données, et un diviseur de mots pour une courbe d'apprentissage plus facile en utilisant Flutter.",

@@ -23,7 +23,7 @@
   "December": "Desember",
   "Present": "Sekarang",
 
-  "Not_Found": "Halaman ini tidak ditemukan. Tolong klik Beranda pada bar navigasi.",
+  "Not_Found": "Halaman ini tidak ditemukan.",
 
   "Faran_About_1": "Halo! <b>Muhammad Faran Aiki</b> (8 April 2007), mahasiswa STEI-K ITB (<i>Sekolah Teknik Elektro dan Informatika - Komputasi</i>) di sini.",
   "Faran_About_2": "Saat ini, saya sedang aktif mengembangkan diri sebagai Software Engineer Intern di <b>Analitica</b>. Saya memulai perjalanan di sana bersama Tim Edukasi (Mei 2025) dan kini fokus menangani Front-End Development di Tim Teknologi (sejak Oktober 2025). Selain coding, saya juga bersyukur menjadi salah satu penerima beasiswa <b>PSP Excellence 2025</b>.",
@@ -124,6 +124,13 @@
   "French": "Prancis",
   "Arabic": "Arab",
   "Mandarin": "Mandarin",
+
+  "Make_Interactive_UAS": "Pembelajaran Interaktif untuk UAS MA1101 ITB",
+  "Make_Interactive_UAS_Description": "Membuat aplikasi berbasis Flutter/Dart yang dapat membantu mahasiswa dalam persiapan ujian akhir semester mata kuliah Matematika Dasar I Institut Teknologi Bandung dengan menggunakan widget-widget interaktif dan juga kecerdasan buatan Gemini untuk membantu pemahaman yang lebih dalam dengan visualisasi konsep yang rumit.",
+  "Make_Website": "Situs Personal faranaiki.id",
+  "Make_Website_Description": "Membuat situs utama personal dengan memakai NextJS, TailwindCSS, dan Vercel (sebagai testing) sebagai identitas yang mencakup perkembangan dari diri saya sendiri.",
+  "Make_Nihwm": "NihWM Window Manager",
+  "Make_Nihwm_Description": "Membuat sebuah window manager yang merupakan turunan (hasil fork) dari dynamic window manager (dwm) dalam bahasa C menggunakan library XOrg untuk penggunaan Arch Linux dan sampai sekarang masih dipakai karena sudah dipersonalisasi.",
 
   "Software_Engineer": "Insinyur Perangkat Lunak (Front End Flutter)",
   "Software_Engineer_Description": "Membuat dan mengembangkan widget interaktif, seperti grafik interaktif, statistik interaktif untuk memvisualisasikan data, dan pemisah kata untuk kurva belajar yang lebih mudah menggunakan Flutter.",

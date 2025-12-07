@@ -23,7 +23,7 @@
   "December": "12月",
   "Present": "現在",
 
-  "Not_Found": "このページは見つかりませんでした。ナビゲーションバーの「ホーム」をクリックしてください。",
+  "Not_Found": "このページは見つかりませんでした。",
 
   "Faran_About_1": "私の名前は<b>ムハンマド・ファラン・アイキ</b>（2007年4月8日生まれ）です。バンドン工科大学（ITB）の電気工学・情報科学部（<i>SEEI-C</i>）に在籍しています。",
   "Faran_About_2": "2025年5月から<b>Analitica</b>の教育チームでインターンをしており、2025年10月からはフロントエンド・ソフトウェアエンジニア（技術チーム）として働いています。また、<b>PSPエクセレンス2025</b>奨学金の受給者でもあります。",
@@ -122,6 +122,13 @@
   "French": "フランス語",
   "Arabic": "アラビア語",
   "Mandarin": "中国人",
+
+  "Make_Interactive_UAS": "MA1101 ITB 期末試験のためのインタラクティブ学習",
+  "Make_Interactive_UAS_Description": "バンドン工科大学の基礎数学 I (Calculus I) の期末試験準備を支援するため、Flutter/Dart ベースのアプリケーションを開発しました。インタラクティブなウィジェットと Gemini 人工知能を使用し、複雑な概念を可視化することで、より深い理解を助けます。",
+  "Make_Website": "個人ウェブサイト faranaiki.id",
+  "Make_Website_Description": "NextJS、TailwindCSS、Vercel (テスト用) を使用して、自身の成長を網羅するアイデンティティとしての主要な個人ウェブサイトを作成しました。",
+  "Make_Nihwm": "NihWM ウィンドウマネージャ",
+  "Make_Nihwm_Description": "Arch Linux 用に XOrg ライブラリを使用した C 言語による dynamic window manager (dwm) の派生版 (フォーク) であるウィンドウマネージャを作成しました。パーソナライズされているため、現在も使用しています。",
 
   "Software_Engineer": "ソフトウェアエンジニア（フロントエンドFlutter）",
   "Software_Engineer_Description": "Flutterを使用して、インタラクティブなグラフ、データを視覚化するためのインタラクティブな統計、学習曲線を容易にするための単語分割などのインタラクティブなウィジェットを作成および保守します。",
