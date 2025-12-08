@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 
 export default function UasMTK() {
   return (
-    <main className="w-full h-full">
+    <main className="w-screen h-screen">
         <iframe
           credentialless="true"
           src="https://analitica-graph.web.app/"
