@@ -1,11 +1,9 @@
-// This is the main page
+// This is the Flutter project
 
 import type { Metadata } from "next";
 import "../../globals.css";
 import { Inter } from "next/font/google";
-import AboutMe from '@/components/AboutMe';
-
-import { t } from '@/components/Translator';
+import UasHeader from "./UasHeader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -36,16 +34,16 @@ export const metadata: Metadata = {
 
 export default function UasMTK() {
   return (
-    <main className="w-screen h-screen">
-        <iframe
-          credentialless="true"
-          src="https://analitica-graph.web.app/"
-          className="w-full h-full border-none"
-          title="UAS Matematika Dasar"
-        />
+    <main className="w-screen h-screen flex flex-col overflow-hidden">
+        <UasHeader />
+        <div className="flex-1 w-full relative bg-gray-100">
+            <iframe
+              credentialless="true"
+              src="https://analitica-graph.web.app/"
+              className="w-full h-full border-none"
+              title="UAS Matematika Dasar"
+            />
+        </div>
     </main>
   );
 }
-
-
-
