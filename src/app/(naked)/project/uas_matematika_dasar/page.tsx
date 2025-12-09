@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 
 export default function UasMTK() {
   return (
-    <main className="w-screen h-screen flex flex-col overflow-hidden">
+    <main className="w-screen h-[100dvh] flex flex-col overflow-hidden">
         <UasHeader />
         <div className="flex-1 w-full relative bg-gray-100">
             <iframe
