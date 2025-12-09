@@ -44,7 +44,7 @@ export async function Translate(s: string): Promise<string> {
   const cookieStore = await cookies();
   const language = cookieStore.get('language') || {'name': 'language', 'value': 'id'};
   if (!(s in locales[language.value])) 
-    return 'error-no-locales';
+    return '';
   return locales[language.value][s]; 
 }
 

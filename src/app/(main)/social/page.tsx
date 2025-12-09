@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { Github, Linkedin, Instagram, Twitter, Mail, Youtube } from 'lucide-react';
 import Image from 'next/image';
+import FadeInSection from '@/components/FadeInSection';
 
 interface SocialDisplayProps {
   pageTitle: string;
@@ -62,7 +63,7 @@ export default function SocialDisplay({ pageTitle }: SocialDisplayProps) {
     {
       name: "Link Tree",
       username: "Faran Aiki",
-      url: "linktr.ee/FaranAiki",
+      url: "https://linktr.ee/FaranAiki", // Fixed: Added protocol
       icon: <Image alt="LinkTree icon" width="48" height="48" src="https://upload.wikimedia.org/wikipedia/en/thumb/b/bf/Linktree_logo.svg/768px-Linktree_logo.svg.png?20230519151448" unoptimized />,
       color: "hover:border-green-200"
     },
@@ -147,31 +148,36 @@ export default function SocialDisplay({ pageTitle }: SocialDisplayProps) {
 
   return (
     <div className={`container mx-auto max-w-5xl pt-12 ${containerText}`}>
-      <h1 className="text-4xl font-bold text-center mb-10 hover:scale-105 opacity-80 hover:opacity-90 transition-all">
-        {pageTitle}
-      </h1>
+      <FadeInSection>
+        <h1 className="text-4xl font-bold text-center mb-10 hover:scale-105 opacity-80 hover:opacity-90 transition-all">
+            {pageTitle}
+        </h1>
+      </FadeInSection>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
-        {socialLinks.map((link) => (
-          <a
-            key={link.name}
-            href={link.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`group ${cardBg} backdrop-blur-sm border rounded-lg p-6 flex flex-col items-center justify-center text-center transition-all duration-300 transform hover:-translate-y-2 ${link.color}`}
-          >
-            <div className={`text-sm ${usernameText} mb-4 transition-colors`}>
-              {link.username}
-            </div>
+        {socialLinks.map((link, index) => (
+          // Adjusted logic: Cap the delay to avoid excessive waiting for items at the bottom of the list.
+          // Using (index % 4) ensures the staggering effect resets every row (approx), keeping animations snappy.
+          <FadeInSection key={link.name} delay={(index % 6) * 50} className="h-full">
+            <a
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`group ${cardBg} backdrop-blur-sm border rounded-lg p-6 flex flex-col items-center justify-center text-center transition-all duration-300 transform hover:-translate-y-2 ${link.color} h-full`}
+            >
+                <div className={`text-sm ${usernameText} mb-4 transition-colors`}>
+                {link.username}
+                </div>
 
-            <div className="mb-4">
-              {link.icon}
-            </div>
+                <div className="mb-4">
+                {link.icon}
+                </div>
 
-            <div className={`text-lg font-semibold ${nameText}`}>
-              {link.name}
-            </div>
-          </a>
+                <div className={`text-lg font-semibold ${nameText}`}>
+                {link.name}
+                </div>
+            </a>
+          </FadeInSection>
         ))}
       </div>
     </div>

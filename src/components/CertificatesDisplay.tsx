@@ -4,6 +4,7 @@ import { useState, useMemo, useEffect } from 'react';
 import PdfPreview from '@/components/PdfPreview';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
+import FadeInSection from '@/components/FadeInSection';
 
 export type CertificateData = {
   [category: string]: {
@@ -80,76 +81,85 @@ export default function CertificatesDisplay({ certificates, allTranslation }: Ce
 
         return (
           <div key={category} className={`border-b ${borderColor} pb-4`}>
-            <button
-              onClick={() => handleCategoryClick(category)}
-              className={`w-full text-left text-2xl font-bold ${titleColor} hover:text-cyan-500 hover:scale-102 transition-all`}
-            >
-              {category}
-            </button>
+            {/* Category Title FadeIn */}
+            <FadeInSection delay={50}>
+                <button
+                onClick={() => handleCategoryClick(category)}
+                className={`w-full text-left text-2xl font-bold ${titleColor} hover:text-cyan-500 hover:scale-102 transition-all`}
+                >
+                {category}
+                </button>
+            </FadeInSection>
 
             <div
-              className={`transition-all duration-250 animate-fade-in ease-in-out overflow-hidden ${
+            className={`transition-all duration-250 animate-fade-in ease-in-out overflow-hidden ${
                 isOpen ? 'max-h-[10000px] mt-4' : 'max-h-0'
-              }`}
+            }`}
             >
-              <div className="flex flex-wrap gap-2 mb-6">
-                <button
-                  onClick={() => handleYearClick(category, 'All')}
-                  className={`px-3 py-1 text-sm rounded-full ${
-                    activeYear === 'All'
-                      ? 'bg-cyan-500 text-white transition-all hover:scale-105'
-                      : `${buttonInactiveBg} ${buttonInactiveText}`
-                  }`}
-                >
-                  {allTranslation}
-                </button>
-                {categoryYears[category].map((year) => (
-                  <button
-                    key={year}
-                    onClick={() => handleYearClick(category, year)}
+            {/* Year Selection FadeIn */}
+            <FadeInSection delay={50}>
+                <div className="flex flex-wrap gap-2 mb-6">
+                    <button
+                    onClick={() => handleYearClick(category, 'All')}
                     className={`px-3 py-1 text-sm rounded-full ${
-                      activeYear === year
-                        ? 'bg-cyan-500 text-white'
-                        : `${buttonInactiveBg} ${buttonInactiveText} transition-all hover:scale-105`
+                        activeYear === 'All'
+                        ? 'bg-cyan-500 text-white transition-all hover:scale-105'
+                        : `${buttonInactiveBg} ${buttonInactiveText}`
                     }`}
-                  >
-                    {year}
-                  </button>
-                ))}
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                {Object.entries(filteredFiles).map(([fileName, filePath]) => (
-                  <div
-                    key={fileName}
-                    className={`${cardBg} rounded-lg overflow-visible shadow-lg transition-all hover:scale-105 hover:opacity-100 opacity-90 border ${cardBorder}`}
-                  >
-                    <a
-                      href={filePath as string}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block h-48"
                     >
-                      {(filePath as string).endsWith('.pdf') ? (
-                        <PdfPreview fileUrl={filePath as string} />
-                      ) : (
-                        <Image
-                          src={filePath as string}
-                          alt={fileName}
-                          width={400}
-                          height={300}
-                          className="w-full h-full object-cover rounded-t-lg"
-                        />
-                      )}
-                    </a>
-                    <div className="p-4">
-                      <h3 className={`font-semibold ${titleColor} truncate`}>
-                        {fileName}
-                      </h3>
+                    {allTranslation}
+                    </button>
+                    {categoryYears[category].map((year) => (
+                    <button
+                        key={year}
+                        onClick={() => handleYearClick(category, year)}
+                        className={`px-3 py-1 text-sm rounded-full ${
+                        activeYear === year
+                            ? 'bg-cyan-500 text-white'
+                            : `${buttonInactiveBg} ${buttonInactiveText} transition-all hover:scale-105`
+                        }`}
+                    >
+                        {year}
+                    </button>
+                    ))}
+                </div>
+            </FadeInSection>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                {Object.entries(filteredFiles).map(([fileName, filePath]) => (
+                <FadeInSection delay={50} key={fileName} className="h-full">
+                    <div
+                        className={`${cardBg} rounded-lg overflow-visible shadow-lg transition-all hover:scale-105 hover:opacity-100 opacity-90 border ${cardBorder} h-full flex flex-col`}
+                    >
+                        <a
+                        href={filePath as string}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block h-48 w-full relative"
+                        >
+                        {(filePath as string).endsWith('.pdf') ? (
+                            <div className="w-full h-full overflow-hidden">
+                                <PdfPreview fileUrl={filePath as string} />
+                            </div>
+                        ) : (
+                            <Image
+                            src={filePath as string}
+                            alt={fileName}
+                            fill
+                            className="object-cover rounded-t-lg"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            />
+                        )}
+                        </a>
+                        <div className="p-4 flex-grow">
+                        <h3 className={`font-semibold ${titleColor} truncate`}>
+                            {fileName}
+                        </h3>
+                        </div>
                     </div>
-                  </div>
+                </FadeInSection>
                 ))}
-              </div>
+            </div>
             </div>
           </div>
         );

@@ -67,10 +67,12 @@ export default async function RootLayout({
       // Split Principles
       about_principle_1={await t('Faran_Principle_1')}
       about_principle_2={await t('Faran_Principle_2')}
+      about_principle_3={await t('Faran_Principle_3')} // Added
       about_vision_mission_title={await t('Faran_Vision_Mission_Title')} 
       // Split Vision Mission
       about_vision_mission_1={await t('Faran_Vision_Mission_1')}
       about_vision_mission_2={await t('Faran_Vision_Mission_2')}
+      about_vision_mission_3={await t('Faran_Vision_Mission_3')} // Added
       about_title={await t('About_Me')} 
       // Fetching split paragraphs
       about_text_1={await t('Faran_About_1')} 

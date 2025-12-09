@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { ChevronRight, Link as LinkIcon, XCircle } from 'lucide-react';
 import { useTheme } from 'next-themes';
+import FadeInSection from '@/components/FadeInSection';
 
 // Define typescript data
 export type CollectionsData = Record<string, Record<string, Record<string, string>>>;
@@ -40,75 +41,83 @@ export default function InteractiveCollections( { data, force_click }: Interacti
         onMouseLeave = {() => !force_click && (activeHeadingTwo === null) && setActiveHeadingOne(null) || setLeaveMouse(false)}>
           {Object.entries(data).map(([headingOne, courses]) => (
             (Object.entries(courses).length > 0) &&
-            <div 
-              key={headingOne}
-              className="w-full max-w-2xl"
-              onMouseEnter={() => !force_click && !leaveMouse && setActiveHeadingOne(headingOne)}
-              onMouseLeave={() => false && !force_click && (activeHeadingTwo === null) && setActiveHeadingOne(null) || setLeaveMouse(false)}
-            >
-              <button
-                onClick={() => {
-                  if (force_click) {
-                    setActiveHeadingOne(headingOne);
-                  } else if (activeHeadingTwo !== null) {
-                    setActiveHeadingOne(null);
-                    setActiveHeadingTwo(null);
-                    setLeaveMouse(true);
-                } else {
-                    setActiveHeadingOne(headingOne);
-                }}}
-                className={`w-full flex justify-between items-center text-left p-4 rounded-lg transition-all duration-300 border-transparent ${
-                  activeHeadingOne === headingOne
-                  ? activeButtonBg 
-                  : `${buttonBg} ${buttonText}`
-                }`}
-              >
-                <span className="font-semibold text-lg">{headingOne}</span>
-                <ChevronRight className={`transition-transform duration-300 ${
-                  activeHeadingOne === headingOne ? 'transform rotate-90' : ''
-                }`} />
-              </button>
+            <FadeInSection key={headingOne} className="w-full max-w-2xl">
+                <div 
+                className="w-full"
+                onMouseEnter={() => !force_click && !leaveMouse && (activeHeadingTwo === null) && setActiveHeadingOne(headingOne)}
+                onMouseLeave={() => false && !force_click && (activeHeadingTwo === null) && setActiveHeadingOne(null) || setLeaveMouse(false)}
+                >
+                <button
+                    onClick={() => {
+                    if (force_click) {
+                        setActiveHeadingOne(headingOne);
+                    } else if (activeHeadingTwo !== null) {
+                        setActiveHeadingOne(null);
+                        setActiveHeadingTwo(null);
+                        setLeaveMouse(true);
+                    } else {
+                        setActiveHeadingOne(headingOne);
+                    }}}
+                    className={`w-full flex justify-between items-center text-left p-4 rounded-lg transition-all duration-300 border-transparent ${
+                    activeHeadingOne === headingOne
+                    ? activeButtonBg 
+                    : `${buttonBg} ${buttonText}`
+                    }`}
+                >
+                    <span className="font-semibold text-lg">{headingOne}</span>
+                    <ChevronRight className={`transition-transform duration-300 ${
+                    activeHeadingOne === headingOne ? 'transform rotate-90' : ''
+                    }`} />
+                </button>
 
-              {activeHeadingOne === headingOne && (
-                <div className={`mt-2 ${dropdownBg} p-6 rounded-lg border animate-fade-in backdrop-blur-sm`}>
-                  <ul className="space-y-4">
-                    {Object.entries(courses).map(([headingTwo, documents]) => (
-                      <li 
-                        key={headingTwo}
-                        onClick={() => activeHeadingTwo == headingTwo? setActiveHeadingTwo(null) : setActiveHeadingTwo(headingTwo)}
-                      >
-                        
-                        {Object.entries(documents).length > 0 && (<h3 className={`font-bold ${headingTwoText} cursor-pointer hover:text-cyan-600 transition-colors`}>{headingTwo}</h3>)}
-                        
-                        {activeHeadingTwo === headingTwo && (
-                           Object.keys(documents).length > 0 ? (
-                            <ul className={`pl-6 mt-2 space-y-2 list-inside ${linkText} animate-fade-in`}>
-                              {Object.entries(documents).map(([docName, url]) => (
-                                <li key={docName}>
-                                  {url ? (
-                                    <a href={url} target="_blank" rel="noopener noreferrer" className="flex items-center hover:text-cyan-600 transition-colors">
-                                      <LinkIcon size={16} className="mr-2 flex-shrink-0" />
-                                      <span>{docName}</span>
-                                    </a>
-                                  ) : (
-                                    <span className="flex items-center text-gray-400 cursor-not-allowed">
-                                      <XCircle size={16} className="mr-2 flex-shrink-0" />
-                                      <span>{docName} (Not available)</span>
-                                    </span>
-                                  )}
-                                </li>
-                              ))}
-                            </ul>
-                          ) : (
-                            <p className="pl-6 mt-1 text-sm text-gray-500 italic animate-fade-in">No documents available.</p>
-                          )
-                        )}
-                      </li>
-                    ))}
-                  </ul>
+                {activeHeadingOne === headingOne && (
+                    <div className={`mt-2 ${dropdownBg} p-6 rounded-lg border animate-fade-in backdrop-blur-sm`}>
+                    <div className="space-y-4">
+                        {Object.entries(courses).map(([headingTwo, documents], index) => (
+                        <FadeInSection 
+                            key={headingTwo} 
+                            delay={index * 50} // Staggered delay for each course title
+                        >
+                            <div 
+                                onClick={() => activeHeadingTwo == headingTwo? setActiveHeadingTwo(null) : setActiveHeadingTwo(headingTwo)}
+                            >
+                                
+                                {Object.entries(documents).length > 0 && (<h3 className={`font-bold ${headingTwoText} cursor-pointer hover:text-cyan-600 transition-colors`}>{headingTwo}</h3>)}
+                                
+                                {activeHeadingTwo === headingTwo && (
+                                Object.keys(documents).length > 0 ? (
+                                    <div className={`pl-6 mt-2 space-y-2 ${linkText} animate-fade-in`}>
+                                    {Object.entries(documents).map(([docName, url], docIndex) => (
+                                        <FadeInSection 
+                                            key={docName} 
+                                            delay={docIndex * 30} // Staggered delay for each document
+                                        >
+                                            {url ? (
+                                                <a href={url} target="_blank" rel="noopener noreferrer" className="flex items-center hover:text-cyan-600 transition-colors">
+                                                <LinkIcon size={16} className="mr-2 flex-shrink-0" />
+                                                <span>{docName}</span>
+                                                </a>
+                                            ) : (
+                                                <span className="flex items-center text-gray-400 cursor-not-allowed">
+                                                <XCircle size={16} className="mr-2 flex-shrink-0" />
+                                                <span>{docName} (Not available)</span>
+                                                </span>
+                                            )}
+                                        </FadeInSection>
+                                    ))}
+                                    </div>
+                                ) : (
+                                    <p className="pl-6 mt-1 text-sm text-gray-500 italic animate-fade-in">No documents available.</p>
+                                )
+                                )}
+                            </div>
+                        </FadeInSection>
+                        ))}
+                    </div>
+                    </div>
+                )}
                 </div>
-              )}
-            </div>
+            </FadeInSection>
           ))}
         </div>
       </div>

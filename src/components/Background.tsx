@@ -5,9 +5,6 @@ import { useTheme } from 'next-themes';
 
 const SLIDE_DURATION = 10000;
 
-/**
- * A professional geometric pattern visualization.
- */
 interface GeometricPatternProps {
   isDark: boolean;
 }
@@ -16,6 +13,12 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const mouseRef = useRef({ x: 0, y: 0, isActive: false });
+  // Ref to track theme inside animation loop without restarting effect
+  const isDarkRef = useRef(isDark);
+
+  useEffect(() => {
+    isDarkRef.current = isDark;
+  }, [isDark]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -31,7 +34,6 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
     const PARTICLE_COUNT = 225;
     const CONNECTION_DISTANCE = 150; 
     const MOUSE_RADIUS = 100;
-    const BASE_COLOR = isDark ? { r: 100, g: 200, b: 255 } : {r: 25, g: 125, b: 200}; 
 
     class Particle {
       x: number;
@@ -77,11 +79,11 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
         }
       }
 
-      draw() {
+      draw(currentColor: {r: number, g: number, b: number}) {
         if (!ctx) return;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${BASE_COLOR.r}, ${BASE_COLOR.g}, ${BASE_COLOR.b}, 0.6)`;
+        ctx.fillStyle = `rgba(${currentColor.r}, ${currentColor.g}, ${currentColor.b}, 0.6)`;
         ctx.fill();
       }
     }
@@ -110,19 +112,24 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
       const width = canvas.width / (window.devicePixelRatio || 1);
       const height = canvas.height / (window.devicePixelRatio || 1);
 
+      // Determine color based on current theme ref
+      const BASE_COLOR = isDarkRef.current 
+        ? { r: 100, g: 200, b: 255 } 
+        : { r: 25, g: 125, b: 200 };
+
       ctx.clearRect(0, 0, width, height);
       
       particles.forEach((particle) => {
         particle.update(width, height);
-        particle.draw();
+        particle.draw(BASE_COLOR);
       });
 
-      connectParticles(width, height);
+      connectParticles(width, height, BASE_COLOR);
       
       animationFrameId = requestAnimationFrame(animate);
     };
 
-    const connectParticles = (w: number, h: number) => {
+    const connectParticles = (w: number, h: number, color: {r: number, g: number, b: number}) => {
       for (let a = 0; a < particles.length; a++) {
         for (let b = a; b < particles.length; b++) {
           const dx = particles[a].x - particles[b].x;
@@ -131,7 +138,7 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
 
           if (distance < CONNECTION_DISTANCE) {
             const opacity = 1 - distance / CONNECTION_DISTANCE;
-            ctx.strokeStyle = `rgba(${BASE_COLOR.r}, ${BASE_COLOR.g}, ${BASE_COLOR.b}, ${opacity * 0.3})`;
+            ctx.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity * 0.3})`;
             ctx.lineWidth = 2;
             ctx.beginPath();
             ctx.moveTo(particles[a].x, particles[a].y);
@@ -166,13 +173,14 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
       window.removeEventListener('mousemove', handleMouseMove);
       cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, []); // Run once, but use Ref for isDark updates
 
   return (
     <div ref={containerRef} className="fixed top-0 left-0 w-full h-full z-[-1] pointer-events-none">
+      {/* Added transition for canvas opacity to help smooth theme switches */}
       <canvas
         ref={canvasRef}
-        className="block w-full h-full opacity-65"
+        className="block w-full h-full opacity-65 transition-opacity duration-1000"
       />
     </div>
   );
@@ -185,7 +193,7 @@ export type BackgroundProps = {
 export default function Background({ carousel }: BackgroundProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [mounted, setMounted] = useState(false);
-  const { resolvedTheme } = useTheme(); // Use the hook to get the true theme state
+  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
@@ -206,9 +214,9 @@ export default function Background({ carousel }: BackgroundProps) {
   const isDark = resolvedTheme === 'dark';
 
   return (
-    <div className={`fixed inset-0 w-full h-full z-[-1] transition-colors duration-500 ${isDark ? 'bg-black' : 'bg-white'}`}>
+    <div className={`fixed inset-0 w-full h-full z-[-1] transition-colors duration-[1500ms] ease-in-out ${isDark ? 'bg-black' : 'bg-white'}`}>
       
-      <div className={`transition-opacity duration-500 w-full h-full absolute inset-0 ${isDark ? 'opacity-100' : 'opacity-20'}`}>
+      <div className={`transition-opacity duration-[1500ms] ease-in-out w-full h-full absolute inset-0 ${isDark ? 'opacity-100' : 'opacity-20'}`}>
         {carousel.map((src, index) => (
             <div
                 key={index}
@@ -224,7 +232,13 @@ export default function Background({ carousel }: BackgroundProps) {
             </div>
         ))}
         
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80" />
+        {/* Adjusted Gradient to improve text readability on all backgrounds with SLOW transition for epilepsy prevention */}
+        <div className={`absolute inset-0 transition-all duration-[1500ms] ease-in-out bg-gradient-to-b ${
+            isDark 
+            ? 'from-black/70 via-black/40 to-black/80' 
+            : 'from-white/70 via-white/50 to-white/90' 
+        }`} />
+        
         <GeometricPattern isDark={isDark}/>
       </div>
     </div>

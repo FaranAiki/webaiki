@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 
+// don't use others
 pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
 
 type PdfPreviewProps = {

@@ -34,4 +34,16 @@ The first version (scratch and template) is generated using Gemini with the prom
 >dan dengan satu menu popup yang berjudul "Ask me about anything" dengan textbox dan tombol submit di bawah kiri
 >Menggunakan next.js dan tailwind dengan fail yang terpisah untuk github
 
+## Version 0.1.0 
+This is the first version, of course this sucks.
+
+## Version 0.1.1 
+This is the second version, there are many revisions.
+
+## Version 0.1.2 
+This is the more advanced version compared to the previous.
+
+TODO:
+there are jsons that are invalid, like in arabic, japanese, .etc because I am too lazy to handle it lol
+
 Other than that, the website is made by me for a simple project.

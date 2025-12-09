@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import HoverableWords from '@/components/HoverableWords';
 import { useTheme } from 'next-themes';
+import FadeInSection from '@/components/FadeInSection';
 
 type Job = {
     date: string;
@@ -29,11 +30,19 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
     const { resolvedTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
 
+    // FIX: Calculate a safe index immediately during render. 
+    // This prevents "undefined" source errors when switching from a job with many images 
+    // to a job with fewer images before the useEffect has a chance to reset the index.
+    const safeImageIndex = (activeJob?.image && currentImageIndex < activeJob.image.length) ? currentImageIndex : 0;
+    const activeImageSrc = activeJob?.image?.[safeImageIndex];
+    const hasValidImage = activeJob?.image?.length > 0 && !!activeImageSrc;
+
     useEffect(() => {
         setMounted(true);
+        // Reset index whenever the active job changes
         setCurrentImageIndex(0);
 
-        if (activeJob.image.length <= 1) {
+        if (!activeJob?.image || activeJob.image.length <= 1) {
             return;
         }
 
@@ -65,66 +74,74 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
                     <div className="w-full md:w-1/2 hover:translateY(-5px)">
                         {experiences.map((experience) => (
                             <div key={experience.year} className="mb-12 text-center md:text-justify cursor-pointer">
-                                <h2 className={`transition-all hover:scale-105 text-2xl font-bold ${mainText} mb-6 top-0 py-2 xs:text-center`}>{experience.year}</h2>
+                                {/* Year Title inside its own FadeInSection */}
+                                <FadeInSection>
+                                    <h2 className={`transition-all hover:scale-105 text-2xl font-bold ${mainText} mb-6 top-0 py-2 xs:text-center`}>
+                                        {experience.year}
+                                    </h2>
+                                </FadeInSection>
+                                
                                 <div className="space-y-4">
                                     {experience.jobs.map((job, index) => (
-                                        <div
-                                            key={index}
-                                            onMouseEnter={() => setActiveJob(job)}
-                                            className={`p-6 rounded-lg transition-all duration-300 cursor-pointer border-2 shadow-sm 
-                                                ${activeJob.title === job.title && activeJob.company === job.company 
-                                                    ? `${activeCardBg}` 
-                                                    : `${inactiveCardBg} ${cardBorder} hover:border-cyan-500/50`
-                                                }`}
-                                        >
-                                            <p className={`${subText} text-sm mb-1 duration-100 hover:text-gray-700 hover:italic transition-all`}>{job.date}</p>
-                                            
-                                            {/* Clickable Title if URL exists */}
-                                            {job.url ? (
-                                                <a href={job.url} target="_blank" rel="noopener noreferrer" className="block w-fit">
-                                                    <h3 className={`text-xl font-semibold ${mainText} hover:font-bold hover:text-cyan-500 transition-all duration-200 hover:scale-101 underline decoration-dotted decoration-cyan-500/50`}>{job.title}</h3>
-                                                </a>
-                                            ) : (
-                                                <h3 className={`text-xl font-semibold ${mainText} hover:font-bold transition-all duration-200 hover:scale-101`}>{job.title}</h3>
-                                            )}
-
-                                            <p className="text-cyan-600 font-medium mb-3 transition-all hover:font-bold hover:scale-105 duration-200">{job.company}</p>
-                                            <HoverableWords 
-                                                className={`leading-relaxed text-justify lg:text-lg md:text-md ${descText}`}
-                                                prophover='transition-all inline-block duration-100 ease-in-out hover:scale-95 hover:text-cyan-600 hover:underline hover:font-semibold hover:opacity-85'
+                                        // FadeInSection applied PER CARD (JOB)
+                                        <FadeInSection key={`${experience.year}-${index}`}>
+                                            <div
+                                                onMouseEnter={() => setActiveJob(job)}
+                                                className={`p-6 rounded-lg transition-all duration-300 cursor-pointer border-2 shadow-sm 
+                                                    ${activeJob.title === job.title && activeJob.company === job.company 
+                                                        ? `${activeCardBg}` 
+                                                        : `${inactiveCardBg} ${cardBorder} hover:border-cyan-500/50`
+                                                    }`}
                                             >
-                                              {job.description} 
-                                            </HoverableWords>
-                                            
-                                            {/* Mobile Image Display */}
-                                            {job === activeJob && activeJob.image.length > 0 && (activeJob.image[currentImageIndex] !== '' || activeJob.image[currentImageIndex] !== null ) &&  (
-                                            <div className="flex pt-4 w-full justify-center transition-all duration-200 block md:hidden w-1/2 hover:scale-101">
-                                              <div className="aspect-w-16 aspect-h-9">
+                                                <p className={`${subText} text-sm mb-1 duration-100 hover:text-gray-700 hover:italic transition-all`}>{job.date}</p>
+                                                
+                                                {/* Clickable Title if URL exists */}
                                                 {job.url ? (
-                                                    <a href={job.url} target="_blank" rel="noopener noreferrer">
-                                                        <Image
-                                                        width={24}
-                                                        height={16}
-                                                        src={activeJob.image[currentImageIndex]}
-                                                        alt={`${activeJob.company} placeholder image`}
-                                                        className="w-full h-full object-cover rounded-lg shadow-2xl transition-opacity duration-300 hover:opacity-80"
-                                                        unoptimized
-                                                        />
+                                                    <a href={job.url} target="_blank" rel="noopener noreferrer" className="block w-fit">
+                                                        <h3 className={`text-xl font-semibold ${mainText} hover:font-bold hover:text-cyan-500 transition-all duration-200 hover:scale-101 underline decoration-dotted decoration-cyan-500/50`}>{job.title}</h3>
                                                     </a>
                                                 ) : (
-                                                    <Image
-                                                    width={24}
-                                                    height={16}
-                                                    src={activeJob.image[currentImageIndex]}
-                                                    alt={`${activeJob.company} placeholder image`}
-                                                    className="w-full h-full object-cover rounded-lg shadow-2xl transition-opacity duration-300"
-                                                    unoptimized
-                                                    />
+                                                    <h3 className={`text-xl font-semibold ${mainText} hover:font-bold transition-all duration-200 hover:scale-101`}>{job.title}</h3>
                                                 )}
-                                              </div>
+
+                                                <p className="text-cyan-600 font-medium mb-3 transition-all hover:font-bold hover:scale-105 duration-200">{job.company}</p>
+                                                <HoverableWords 
+                                                    className={`leading-relaxed text-justify lg:text-lg md:text-md ${descText}`}
+                                                    prophover='transition-all inline-block duration-100 ease-in-out hover:scale-95 hover:text-cyan-600 hover:underline hover:font-semibold hover:opacity-85'
+                                                >
+                                                {job.description} 
+                                                </HoverableWords>
+                                                
+                                                {/* Mobile Image Display */}
+                                                {job === activeJob && hasValidImage && (
+                                                <div className="flex pt-4 w-full justify-center transition-all duration-200 block md:hidden w-1/2 hover:scale-101">
+                                                    <div className="aspect-w-16 aspect-h-9">
+                                                        {job.url ? (
+                                                            <a href={job.url} target="_blank" rel="noopener noreferrer">
+                                                                <Image
+                                                                    width={400}
+                                                                    height={300}
+                                                                    src={activeImageSrc}
+                                                                    alt={`${activeJob.company} placeholder image`}
+                                                                    className="w-full h-full object-cover rounded-lg shadow-2xl transition-opacity duration-300 hover:opacity-80"
+                                                                    unoptimized
+                                                                />
+                                                            </a>
+                                                        ) : (
+                                                            <Image
+                                                                width={400}
+                                                                height={300}
+                                                                src={activeImageSrc}
+                                                                alt={`${activeJob.company} placeholder image`}
+                                                                className="w-full h-full object-cover rounded-lg shadow-2xl transition-opacity duration-300"
+                                                                unoptimized
+                                                            />
+                                                        )}
+                                                    </div>
+                                                </div>
+                                                )}
                                             </div>
-                                            )}
-                                        </div>
+                                        </FadeInSection>
                                     ))}
                                 </div>
                             </div>
@@ -132,45 +149,51 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
                     </div>
 
                     {/* Right Column: Image Display (Carousel) - Desktop */}
-                    {activeJob.image.length > 0 && (activeJob.image[currentImageIndex] !== '' || activeJob.image[currentImageIndex] !== null ) &&  (
-                    <div className="transition-all duration-200 hidden md:block w-1/2 hover:scale-105">
-                        <div className="sticky top-24">
-                            <div className="aspect-w-16 aspect-h-9">
-                                {activeJob.url ? (
-                                    <a href={activeJob.url} target="_blank" rel="noopener noreferrer">
-                                         <Image
-                                            width={24}
-                                            height={16}
-                                            src={activeJob.image[currentImageIndex]}
-                                            alt={`${activeJob.company} placeholder image`}
-                                            className={`w-full h-full object-cover rounded-lg shadow-2xl transition-opacity duration-300 border-2 ${cardBorder} hover:opacity-85 hover:border-cyan-500`}
-                                            unoptimized
-                                        />
-                                    </a>
-                                ) : (
-                                    <Image
-                                        width={24}
-                                        height={16}
-                                        src={activeJob.image[currentImageIndex]}
-                                        alt={`${activeJob.company} placeholder image`}
-                                        className={`w-full h-full object-cover rounded-lg shadow-2xl transition-opacity duration-300 border-2 ${cardBorder}`}
-                                        unoptimized
-                                    />
-                                )}
-                            </div>
-                            <div className="mt-4 text-center">
-                                {activeJob.url ? (
-                                    <a href={activeJob.url} target="_blank" rel="noopener noreferrer" className="hover:text-cyan-500 transition-colors">
-                                        <h3 className={`text-2xl font-bold ${mainText}`}>{activeJob.title}</h3>
-                                    </a>
-                                ) : (
-                                    <h3 className={`text-2xl font-bold ${mainText}`}>{activeJob.title}</h3>
-                                )}
-                                <p className="text-cyan-600 text-lg">{activeJob.company}</p>
-                            </div>
+                    <div className="hidden md:block w-1/2">
+                        {/* We keep the container even if empty to preserve layout space or use a placeholder if needed */}
+                         <div className="sticky top-24 transition-all duration-200 hover:scale-105">
+                            {hasValidImage ? (
+                                <>
+                                    <div className="aspect-w-16 aspect-h-9">
+                                        {activeJob.url ? (
+                                            <a href={activeJob.url} target="_blank" rel="noopener noreferrer">
+                                                <Image
+                                                    width={600}
+                                                    height={400}
+                                                    src={activeImageSrc}
+                                                    alt={`${activeJob.company} placeholder image`}
+                                                    className={`w-full h-full object-cover rounded-lg shadow-2xl transition-opacity duration-300 border-2 ${cardBorder} hover:opacity-85 hover:border-cyan-500`}
+                                                    unoptimized
+                                                />
+                                            </a>
+                                        ) : (
+                                            <Image
+                                                width={600}
+                                                height={400}
+                                                src={activeImageSrc}
+                                                alt={`${activeJob.company} placeholder image`}
+                                                className={`w-full h-full object-cover rounded-lg shadow-2xl transition-opacity duration-300 border-2 ${cardBorder}`}
+                                                unoptimized
+                                            />
+                                        )}
+                                    </div>
+                                    <div className="mt-4 text-center">
+                                        {activeJob.url ? (
+                                            <a href={activeJob.url} target="_blank" rel="noopener noreferrer" className="hover:text-cyan-500 transition-colors">
+                                                <h3 className={`text-2xl font-bold ${mainText}`}>{activeJob.title}</h3>
+                                            </a>
+                                        ) : (
+                                            <h3 className={`text-2xl font-bold ${mainText}`}>{activeJob.title}</h3>
+                                        )}
+                                        <p className="text-cyan-600 text-lg">{activeJob.company}</p>
+                                    </div>
+                                </>
+                            ) : (
+                                <div className="flex items-center justify-center h-64 border-2 border-dashed border-gray-700/30 rounded-lg">
+                                </div>
+                            )}
                         </div>
                     </div>
-                    )}
                 </div>
             </div>
         </div>
