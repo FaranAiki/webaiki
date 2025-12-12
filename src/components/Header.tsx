@@ -83,6 +83,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
         setMounted(true);
     }, []);
 
+    // Handle body overflow when mobile menu is open
     useEffect(() => {
         if (isMobileMenuOpen) {
             document.body.style.overflow = 'hidden';
@@ -93,6 +94,18 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
             document.body.style.overflow = 'auto';
         };
     }, [isMobileMenuOpen]);
+
+    // Close mobile menu on window resize (fixes desktop unresponsive issue after resizing)
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 768) { // md breakpoint
+                setMobileMenuOpen(false);
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     useEffect(() => {
         function handleScroll() {
@@ -316,7 +329,6 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
             <div className={`no-scrollbar fixed top-0 right-0 h-full w-[80%] max-w-sm ${mobileMenuBg} backdrop-blur-xl shadow-2xl z-30 transform transition-transform duration-300 ease-out ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} md:hidden overflow-y-auto`}>
                 <nav className="mt-24 px-8 pb-12">
                     <div className={`flex justify-between items-center mb-8 border-b ${isDark ? 'border-gray-700' : 'border-gray-200'} pb-6`}>
-                        <span className={`text-sm font-semibold uppercase tracking-wider ${textColor} opacity-60`}>Appearance</span>
                         <ThemeToggle />
                     </div>
 
