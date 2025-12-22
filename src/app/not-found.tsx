@@ -1,5 +1,4 @@
 import Background from "@/components/Background"
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 
@@ -7,7 +6,7 @@ import Link from "next/link";
 import { Providers } from "@/components/Providers";
 import { CookieInitializer } from '@/components/CookieInitialize';
 
-import { t, currentLanguage } from '@/components/Translator';
+import { t } from '@/components/Translator';
 
 import fs from 'fs';
 import path from 'path';
@@ -23,20 +22,9 @@ function getBackgrounds() {
   return fs.readdirSync(photosDir);
 }
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export default async function NotFound() {
   const not_found_text = await t('Not_Found');
 
-  const current_lang = await currentLanguage();
   const home_text = await t('Home');
 
   return (

@@ -241,7 +241,7 @@ export default function PythonCLI({
           if (e instanceof Error && e.name === 'AbortError') return;
           
           if (isSubscribed) {
-            const errorMessage = e instanceof Error ? e.message : String(e);
+            // const errorMessage = e instanceof Error ? e.message : String(e);
             // addToHistory({ type: "error", text: `Fetch Error: ${errorMessage}\n` });
             setScript(DEMO_SCRIPT); 
           }

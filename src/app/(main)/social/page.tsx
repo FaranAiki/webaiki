@@ -5,6 +5,7 @@ import { useTheme } from 'next-themes';
 import { Github, Linkedin, Instagram, Twitter, Mail, Youtube } from 'lucide-react';
 import Image from 'next/image';
 import FadeInSection from '@/components/FadeInSection';
+import PopRotateSection from '@/components/PopRotateSection';
 
 interface SocialDisplayProps {
   pageTitle: string;
@@ -158,7 +159,7 @@ export default function SocialDisplay({ pageTitle }: SocialDisplayProps) {
         {socialLinks.map((link, index) => (
           // Adjusted logic: Cap the delay to avoid excessive waiting for items at the bottom of the list.
           // Using (index % 4) ensures the staggering effect resets every row (approx), keeping animations snappy.
-          <FadeInSection key={link.name} delay={(index % 6) * 50} className="h-full">
+          <PopRotateSection key={link.name} delay={(index % 6) * 50} className="h-full">
             <a
                 href={link.url}
                 target="_blank"
@@ -177,7 +178,7 @@ export default function SocialDisplay({ pageTitle }: SocialDisplayProps) {
                 {link.name}
                 </div>
             </a>
-          </FadeInSection>
+          </PopRotateSection>
         ))}
       </div>
     </div>

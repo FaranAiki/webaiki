@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PythonCLI from "@/components/PythonCLI"; 
 import "../../globals.css"; 
 
-import { t, currentLanguage } from '@/components/Translator';
+import { t } from '@/components/Translator';
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://faranaiki.id/project"),

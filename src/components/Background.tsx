@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useTheme } from 'next-themes';
+import Image from 'next/image'
 
 const SLIDE_DURATION = 10000;
 
@@ -224,7 +225,7 @@ export default function Background({ carousel }: BackgroundProps) {
                     index === currentIndex ? 'opacity-60' : 'opacity-0'
                 }`}
             >
-                <img
+                <Image
                     src={`/images/background/${src}`}
                     alt={`Background image ${index + 1}`}
                     className="w-full h-full object-cover"
