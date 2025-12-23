@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { ChevronRight, Link as LinkIcon, XCircle } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import FadeInSection from '@/components/FadeInSection';
+import PopRotateSection from '@/components/PopRotateSection';
 
 // Define typescript data
 export type CollectionsData = Record<string, Record<string, Record<string, string>>>;
@@ -74,9 +75,9 @@ export default function InteractiveCollections( { data, force_click }: Interacti
                     <div className={`mt-2 ${dropdownBg} p-6 rounded-lg border animate-fade-in backdrop-blur-sm`}>
                     <div className="space-y-4">
                         {Object.entries(courses).map(([headingTwo, documents], index) => (
-                        <FadeInSection 
+                        <PopRotateSection 
                             key={headingTwo} 
-                            delay={index * 50} // Staggered delay for each course title
+                            delay={index * 50} 
                         >
                             <div 
                                 onClick={() => activeHeadingTwo == headingTwo? setActiveHeadingTwo(null) : setActiveHeadingTwo(headingTwo)}
@@ -111,7 +112,7 @@ export default function InteractiveCollections( { data, force_click }: Interacti
                                 )
                                 )}
                             </div>
-                        </FadeInSection>
+                        </PopRotateSection>
                         ))}
                     </div>
                     </div>

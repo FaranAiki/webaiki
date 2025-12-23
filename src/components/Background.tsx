@@ -226,6 +226,7 @@ export default function Background({ carousel }: BackgroundProps) {
                 }`}
             >
                 <Image
+                    fill={true}
                     src={`/images/background/${src}`}
                     alt={`Background image ${index + 1}`}
                     className="w-full h-full object-cover"

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import HoverableWords from '@/components/HoverableWords';
 import { useTheme } from 'next-themes';
 import FadeInSection from '@/components/FadeInSection';
+import PopRotateSection from '@/components/PopRotateSection';
 
 type Job = {
     date: string;
@@ -30,16 +31,12 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
     const { resolvedTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
 
-    // FIX: Calculate a safe index immediately during render. 
-    // This prevents "undefined" source errors when switching from a job with many images 
-    // to a job with fewer images before the useEffect has a chance to reset the index.
     const safeImageIndex = (activeJob?.image && currentImageIndex < activeJob.image.length) ? currentImageIndex : 0;
     const activeImageSrc = activeJob?.image?.[safeImageIndex];
     const hasValidImage = activeJob?.image?.length > 0 && !!activeImageSrc;
 
     useEffect(() => {
         setMounted(true);
-        // Reset index whenever the active job changes
         setCurrentImageIndex(0);
 
         if (!activeJob?.image || activeJob.image.length <= 1) {
@@ -74,7 +71,7 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
                     <div className="w-full md:w-1/2 hover:translateY(-5px)">
                         {experiences.map((experience) => (
                             <div key={experience.year} className="mb-12 text-center md:text-justify cursor-pointer">
-                                {/* Year Title inside its own FadeInSection */}
+                                {/* Year */}
                                 <FadeInSection>
                                     <h2 className={`transition-all hover:scale-105 text-2xl font-bold ${mainText} mb-6 top-0 py-2 xs:text-center`}>
                                         {experience.year}
@@ -82,8 +79,7 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
                                 </FadeInSection>
                                 
                                 <div className="space-y-4">
-                                    {experience.jobs.map((job, index) => (
-                                        // FadeInSection applied PER CARD (JOB)
+                                    {experience.jobs.map((job, index) => ( 
                                         <FadeInSection key={`${experience.year}-${index}`}>
                                             <div
                                                 onMouseEnter={() => setActiveJob(job)}
@@ -95,7 +91,7 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
                                             >
                                                 <p className={`${subText} text-sm mb-1 duration-100 hover:text-gray-700 hover:italic transition-all`}>{job.date}</p>
                                                 
-                                                {/* Clickable Title if URL exists */}
+                                                {/* Clickable Title IF URL exists, otherwise skip */}
                                                 {job.url ? (
                                                     <a href={job.url} target="_blank" rel="noopener noreferrer" className="block w-fit">
                                                         <h3 className={`text-xl font-semibold ${mainText} hover:font-bold hover:text-cyan-500 transition-all duration-200 hover:scale-101 underline decoration-dotted decoration-cyan-500/50`}>{job.title}</h3>
@@ -116,6 +112,7 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
                                                 {job === activeJob && hasValidImage && (
                                                 <div className="flex pt-4 w-full justify-center transition-all duration-200 block md:hidden w-1/2 hover:scale-101">
                                                     <div className="aspect-w-16 aspect-h-9">
+                                                      <PopRotateSection>
                                                         {job.url ? (
                                                             <a href={job.url} target="_blank" rel="noopener noreferrer">
                                                                 <Image
@@ -137,6 +134,7 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
                                                                 unoptimized
                                                             />
                                                         )}
+                                                      </PopRotateSection>
                                                     </div>
                                                 </div>
                                                 )}
@@ -148,9 +146,8 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
                         ))}
                     </div>
 
-                    {/* Right Column: Image Display (Carousel) - Desktop */}
+                    {/* Right Column: Image Display (Carousel) [on desktop] */}
                     <div className="hidden md:block w-1/2">
-                        {/* We keep the container even if empty to preserve layout space or use a placeholder if needed */}
                          <div className="sticky top-24 transition-all duration-200 hover:scale-105">
                             {hasValidImage ? (
                                 <>

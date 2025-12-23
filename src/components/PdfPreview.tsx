@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+// import { useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 
 // don't use others
@@ -11,17 +11,19 @@ type PdfPreviewProps = {
 };
 
 export default function PdfPreview({ fileUrl }: PdfPreviewProps) {
+  /*
   const [numPages, setNumPages] = useState<number | null>(null);
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
     setNumPages(numPages);
-  }
+  }*/
 
   return (
     <div className="w-full h-full overflow-hidden flex justify-center items-center bg-gray-700">
+      {/* if needed, add this line */}
+      {/* onLoadSuccess={onDocumentLoadSuccess} */}
       <Document
         file={fileUrl}
-        onLoadSuccess={onDocumentLoadSuccess}
         className="flex justify-center"
       >
         {/* We only show the first page as a preview */}

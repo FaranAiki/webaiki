@@ -5,6 +5,9 @@ import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import Image from 'next/image';
 
+import FadeInSection from '@/components/FadeInSection';
+import PopRotateSection from '@/components/PopRotateSection';
+
 interface PlaylistItem {
   id: string;
   snippet: {
@@ -74,28 +77,32 @@ export default function MusicDisplay({ youtubeItems = [], error }: MusicDisplayP
           ></iframe>
           <br /><br />
           
-          <Link className={`transition-all hover:text-orange-400 duration-300 md:text-center text-5xl pt-4 font-bold ${containerText}`} href="https://soundcloud.com/muhammadfaranaiki">
-            SoundCloud
-          </Link>
-          <br /><br />
-          <iframe
-            credentialless="true"
-            className="animate-fade-in"
-            width="100%" 
-            height="300" 
-            scrolling="no" 
-            frameBorder="no" 
-            allow="autoplay"  
-            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/667105430&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&visual=false&show_artwork=false"
-          ></iframe>
-          <br /><br />
+          <FadeInSection>
+            <Link className={`transition-all hover:text-orange-400 duration-300 md:text-center text-5xl pt-4 font-bold ${containerText}`} href="https://soundcloud.com/muhammadfaranaiki">
+              SoundCloud
+            </Link>
+            <br /><br />
+            <iframe
+              credentialless="true"
+              className="animate-fade-in"
+              width="100%" 
+              height="300" 
+              scrolling="no" 
+              frameBorder="no" 
+              allow="autoplay"  
+              src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/667105430&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&visual=false&show_artwork=false"
+            ></iframe>
+            <br /><br />
+          </FadeInSection>
           
-          <Link className={`transition-all hover:text-red-500 duration-300 md:text-center text-5xl pt-4 font-bold ${containerText}`} href="https://www.youtube.com/playlist?list=PLh4mbEw6q2QncQrgz5uaLYAcTA0MolCTe">
-            YouTube
-          </Link>
-          <br /><br />
+          <FadeInSection>
+            <Link className={`transition-all hover:text-red-500 duration-300 md:text-center text-5xl pt-4 font-bold ${containerText}`} href="https://www.youtube.com/playlist?list=PLh4mbEw6q2QncQrgz5uaLYAcTA0MolCTe">
+              YouTube
+            </Link>
+            <br /><br />
+          </FadeInSection>
           
-          <section>
+          <PopRotateSection>
             {items.length > 0 ? (
               <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 animate-fade-in">
                 {items.map((item) => (
@@ -118,7 +125,7 @@ export default function MusicDisplay({ youtubeItems = [], error }: MusicDisplayP
             ) : (
               <p className="text-gray-400">Cannot load video or playlist is empty.</p>
             )}
-          </section>
+          </PopRotateSection>
         </div>
       </div>
     </div>

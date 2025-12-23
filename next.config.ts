@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 import type { Configuration as WebpackConfiguration } from 'webpack';
+
+const path = require('path');
 // import TerserPlugin from 'terser-webpack-plugin';
 
 // duplicates of img-src
@@ -22,9 +24,8 @@ const cspHeader = `
 const nextConfig = {
   output: "standalone",
   poweredByHeader: false,
-  experimental: {
-    turbo: {
-    },
+  turbo: {
+    root: __dirname 
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
