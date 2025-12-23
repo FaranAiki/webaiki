@@ -24,14 +24,11 @@ const cspHeader = `
 const nextConfig = {
   output: "standalone",
   poweredByHeader: false,
-  experimental: {
-    turbo: {
-      root: __dirname 
-    },
-  },
+
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
+
   webpack: (
     config: WebpackConfiguration,
     { dev, isServer }: { dev: boolean; isServer: boolean }
@@ -49,6 +46,7 @@ const nextConfig = {
     }
     return config;
   },
+
   async headers() {
     return [
       {
@@ -86,6 +84,7 @@ const nextConfig = {
       },
     ];
   },
+
   images: {
     qualities: [75, 80, 90, 100],
     remotePatterns: [
@@ -117,6 +116,10 @@ const nextConfig = {
       },
     ],
   },
+
+  turbopack: {
+    root: __dirname
+  }
 };
 
 // module.exports = nextConfig()
