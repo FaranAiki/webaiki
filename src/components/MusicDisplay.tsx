@@ -106,8 +106,8 @@ export default function MusicDisplay({ youtubeItems = [], error }: MusicDisplayP
             {items.length > 0 ? (
               <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 animate-fade-in">
                 {items.map((item) => (
-                  <PopRotateSection>
-                    <li key={item.id} className={`${cardBg} rounded-lg overflow-visible ${cardShadow} transform hover:scale-105 transition-all ${linkHover} duration-300`}>
+                  <PopRotateSection key={item.id}> 
+                    <li className={`${cardBg} rounded-lg overflow-visible ${cardShadow} transform hover:scale-105 transition-all ${linkHover} duration-300`}>
                       <a href={`https://www.youtube.com/watch?v=${item.snippet.resourceId.videoId}`} target="_blank" rel="noopener noreferrer">
                         <Image 
                           width={item.snippet.thumbnails.medium.width} 
@@ -121,7 +121,7 @@ export default function MusicDisplay({ youtubeItems = [], error }: MusicDisplayP
                         </div>
                       </a>
                     </li>
-                  </PopRotateSection>
+                  </PopRotateSection> 
                 ))}
               </ul>
             ) : (
