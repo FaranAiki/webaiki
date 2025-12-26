@@ -135,11 +135,6 @@ export default withSentryConfig(nextConfig, {
   // Only print logs for uploading source maps in CI
   silent: !process.env.CI,
 
-  // This reduces the overhead by not uploading source maps for every build
-  hideSourceMaps: true, 
-  // Disable automatic instrumentation for components/logic you don't need
-  disableServerWebpackPlugin: true,
-
   // For all available options, see:
   // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
 
@@ -151,6 +146,10 @@ export default withSentryConfig(nextConfig, {
   // Note: Check that the configured route will not match with your Next.js middleware, otherwise reporting of client-
   // side errors will fail.
   tunnelRoute: "/monitoring",
+
+// Tree-shaking to keep the bundle small
+  disableServerWebpackPlugin: true,
+  disableClientWebpackPlugin: true,
 
   webpack: {
     // Enables automatic instrumentation of Vercel Cron Monitors. (Does not yet work with App Router route handlers.)
