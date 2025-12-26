@@ -8,6 +8,9 @@ import "./globals.css";
 import { Providers } from "@/components/Providers";
 import { CookieInitializer } from '@/components/CookieInitialize';
 
+// For Umami (GA-like provider) using Script instead of <script>
+import Script from 'next/script'
+
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 
@@ -168,6 +171,11 @@ export default async function RootLayout({
           />
           <Background carousel={getBackgrounds()}/>
         </Providers>
+        <Script
+          defer
+          src="https://cloud.umami.is/script.js" 
+          data-website-id="a418298f-fdca-4df0-a3bf-be453b48eeaf"
+        />
       </body>
     </html>
   );

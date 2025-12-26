@@ -18,6 +18,11 @@ export default async function RootLayout({
       <body
       >
         {children}
+        <Script
+          defer
+          src="https://cloud.umami.is/script.js" 
+          data-website-id="a418298f-fdca-4df0-a3bf-be453b48eeaf"
+        />
       </body>
     </html>
   );

@@ -12,6 +12,7 @@ However, there are some real benefits of creating this page, such as
 * College: this is where I share most of my college assignments so people can learn
 * Portfolio: to flex things
 * Hobby: I love creating things!
+* See the BACCM
 
 ### Motivation
 One of my friends in the same faculty as mine (School of Electrical Engineering and Informatics - Computation) inspired me to make a personal website. So, I said, why not? Because of that single motivation, I learned a bunch of things. Thank you, the leader of SEEI-C 2025.
@@ -130,17 +131,20 @@ The first version (scratch and template) is generated using Gemini with the prom
 ## Version Control
 This is to keep the track of the versions that are available.
 
-### Version 0.1.0 
+#### Version 0.1.0 
 This is the first version. This has the basic setup.
 
-### Version 0.1.1 
+#### Version 0.1.1 
 This is the second version, there are many revisions and improvements.
 
-### Version 0.1.2 
+#### Version 0.1.2 
 This is the more advanced version compared to the previous versions.
 
-### Version 0.1.3 
-Animations and standardized procedures in README.md and others .
+#### Version 0.1.3 
+Animations and standardized procedures in README.md and others.
+
+#### Version 0.1.4 
+Adding Sentry and Umami for error-tracing/telemetry and analytics.
 
 # Closing
 Other than that, the website is made by me for a simple project.
