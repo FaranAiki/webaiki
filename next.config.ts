@@ -149,7 +149,7 @@ export default withSentryConfig(nextConfig, {
 
   // Tree-shaking to keep the bundle small
   // disableServerWebpackPlugin: true, (? wtf)
-  disableClientWebpackPlugin: true,
+  // disableClientWebpackPlugin: true,
 
   webpack: {
     // Enables automatic instrumentation of Vercel Cron Monitors. (Does not yet work with App Router route handlers.)
