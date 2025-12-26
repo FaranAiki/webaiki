@@ -147,8 +147,8 @@ export default withSentryConfig(nextConfig, {
   // side errors will fail.
   tunnelRoute: "/monitoring",
 
-// Tree-shaking to keep the bundle small
-  disableServerWebpackPlugin: true,
+  // Tree-shaking to keep the bundle small
+  // disableServerWebpackPlugin: true, (? wtf)
   disableClientWebpackPlugin: true,
 
   webpack: {
