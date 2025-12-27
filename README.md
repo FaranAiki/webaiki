@@ -145,6 +145,7 @@ Animations and standardized procedures in README.md and others.
 
 #### Version 0.1.4 
 Adding Sentry and Umami for error-tracing/telemetry and analytics.
+Removing Sentry because it is too costly.
 
 # Closing
 Other than that, the website is made by me for a simple project.
