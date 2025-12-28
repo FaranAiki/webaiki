@@ -8,7 +8,7 @@ const path = require('path');
 // FUCK YOU UNSAFE-INLINEEEE
 const cspHeader = `
     default-src 'self';
-    script-src 'self' 'unsafe-inline' 'unsafe-eval' https://faranaiki.id https://cdn.jsdelivr.net https://storage.googleapis.com https://www.gstatic.com https://cloud.umami.is;
+    script-src 'self' 'unsafe-inline' 'unsafe-eval' https://faranaiki.id https://cdn.jsdelivr.net https://storage.googleapis.com https://www.gstatic.com https://cloud.umami.is https://api-gateway.umami.dev/api/send;
     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;;
     img-src 'self' blob: data: https://static.wikia.nocookie.net https://i.ytimg.com https://placehold.co https://upload.wikimedia.org https://webaiki.vercel.app https://faranaiki.id https://faranaiki.site https://storage.googleapis.com;
     font-src 'self' https://fonts.gstatic.com;
@@ -17,7 +17,7 @@ const cspHeader = `
     form-action 'self';
     frame-ancestors 'self';
     frame-src 'self' analitica-graph.web.app https://analitica-graph.web.app open.spotify.com  https://open.spotify.com https://w.soundcloud.com w.soundcloud.com;
-    connect-src 'self' https://cdn.jsdelivr.net https://faranaiki.id https://fonts.gstatic.com  https://www.gstatic.com https://fonts.googleapis.com https://cloud.umami.is;
+    connect-src 'self' https://cdn.jsdelivr.net https://faranaiki.id https://fonts.gstatic.com  https://www.gstatic.com https://fonts.googleapis.com https://cloud.umami.is https://api-gateway.umami.dev/api/send;
     worker-src 'self' blob:;
 `;
 
