@@ -4,11 +4,12 @@ import type { NextRequest } from 'next/server';
 // This is for security shits
 // I understand, but too lazy to implement it myself
 export function middleware(request: NextRequest) {
+  // randomized shit and make base64 so that it looks cool lol
   const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
 
   const cspHeader = `
     default-src 'self';
-    script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https: 'unsafe-inline' ${
+    script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https: 'unsafe-inline' 'wasm-unsafe-eval' ${
       process.env.NODE_ENV === 'development' ? "'unsafe-eval'" : ''
     };
     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
@@ -25,6 +26,7 @@ export function middleware(request: NextRequest) {
   `.replace(/\s{2,}/g, ' ').trim();
 
   const requestHeaders = new Headers(request.headers);
+  // send to header
   requestHeaders.set('x-nonce', nonce);
   requestHeaders.set('Content-Security-Policy', cspHeader);
 
@@ -34,7 +36,6 @@ export function middleware(request: NextRequest) {
     },
   });
 
-  // 4. Set the CSP header on the response
   response.headers.set('Content-Security-Policy', cspHeader);
 
   return response;
