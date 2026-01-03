@@ -3,6 +3,7 @@ import 'react-pdf/dist/Page/TextLayer.css';
 
 import Script from 'next/script';
 
+import { headers } from 'next/headers';
 import { currentLanguage } from '@/components/Translator';
 
 export default async function RootLayout({
