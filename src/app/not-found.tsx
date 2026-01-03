@@ -28,8 +28,9 @@ export default async function NotFound() {
   const home_text = await t('Home');
 
   return (
+    <>
+    <CookieInitializer />
     <Providers>
-      <CookieInitializer />
       <main className="container mx-auto px-8 pt-24 pb-16 min-h-screen flex items-center justify-center">
         <div className='flex text-center text-lg justify-center cursor-pointer'>
             <h1 className="text-4xl hover:scale-105 transition-all duration-200 hover:text-cyan-400 hover:font-bold hover:opacity-75 cursor-pointer">
@@ -44,5 +45,6 @@ export default async function NotFound() {
 
       <Background carousel={getBackgrounds()}/>
     </Providers>
+    </>
   );
 }

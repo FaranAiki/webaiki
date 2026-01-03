@@ -10,10 +10,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const nonce = (await headers()).get('x-nonce') || undefined;
+
   const current_lang = await currentLanguage();
 
   return (
-    <html lang={current_lang} suppressHydrationWarning={true}>
+    <html lang={current_lang} suppressHydrationWarning={true} nonce={nonce}>
       <head>
         <meta name="google-site-verification" content="xZMulZsvn0xj7TrxhEN8O9KLWSmNIfx6tqFtOpbgOV4" />
       </head>

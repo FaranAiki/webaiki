@@ -1,31 +1,15 @@
 import type { NextConfig } from "next";
 import type { Configuration as WebpackConfiguration } from 'webpack';
 
-const path = require('path');
-// import TerserPlugin from 'terser-webpack-plugin';
-
-// duplicates of img-src
-// FUCK YOU UNSAFE-INLINEEEE
-const cspHeader = `
-    default-src 'self';
-    script-src 'self' 'unsafe-inline' 'unsafe-eval' https://faranaiki.id https://cdn.jsdelivr.net https://storage.googleapis.com https://www.gstatic.com https://cloud.umami.is https://api-gateway.umami.dev/api/send;
-    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;;
-    img-src 'self' blob: data: https://static.wikia.nocookie.net https://i.ytimg.com https://placehold.co https://upload.wikimedia.org https://webaiki.vercel.app https://faranaiki.id https://faranaiki.site https://storage.googleapis.com;
-    font-src 'self' https://fonts.gstatic.com;
-    object-src 'self';
-    base-uri 'self';
-    form-action 'self';
-    frame-ancestors 'self';
-    frame-src 'self' analitica-graph.web.app https://analitica-graph.web.app open.spotify.com  https://open.spotify.com https://w.soundcloud.com w.soundcloud.com;
-    connect-src 'self' https://cdn.jsdelivr.net https://faranaiki.id https://fonts.gstatic.com  https://www.gstatic.com https://fonts.googleapis.com https://cloud.umami.is https://api-gateway.umami.dev/api/send;
-    worker-src 'self' blob:;
-`;
-
-const nextConfig = {
+const nextConfig: NextConfig = {
+  // Set output to standalone for optimized production builds
   output: "standalone",
+  
+  // Security: Remove the X-Powered-By header to hide the tech stack
   poweredByHeader: false,
 
   compiler: {
+    // Remove console logs in production for security and performance
     removeConsole: process.env.NODE_ENV === 'production',
   },
 
@@ -33,10 +17,9 @@ const nextConfig = {
     config: WebpackConfiguration,
     { dev, isServer }: { dev: boolean; isServer: boolean }
   ) => {
+    // Optimization: Remove comments from the minified output in production
     if (!dev && !isServer && config.optimization?.minimizer) {
-      // Temporarily cast the minimizer to 'any' to access its properties
       const minimizer = config.optimization.minimizer[0] as any;
-      
       if (minimizer.options.terserOptions) {
         minimizer.options.terserOptions.format = {
           ...minimizer.options.terserOptions.format,
@@ -50,76 +33,56 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: '/(.*)', // Apply this header to all routes
+        source: '/(.*)',
         headers: [
           {
+            // Security: Prevent clickjacking by denying framing from other origins
             key: 'X-Frame-Options',
-            value: 'SAMEORIGIN', // Or 'DENY' if you never need to frame your site
+            value: 'DENY',
           },
           {
-            key: 'Content-Security-Policy',
-            value: cspHeader.replace(/\s{2,}/g, ' ').trim(),
-          },
-          {
+            // Security: Enforce HTTPS for a year, including subdomains
             key: 'Strict-Transport-Security',
-            value: 'max-age=31536000; includeSubDomains',
+            value: 'max-age=31536000; includeSubDomains; preload',
           },
           {
+            // Security: Prevent browsers from MIME-sniffing a response away from the declared content-type
             key: 'X-Content-Type-Options',
             value: 'nosniff',
           },
           {
+            // Security: Standard cache control for sensitive data
             key: 'Cache-Control',
             value: 'private, no-cache, no-store, must-revalidate',
           },
           {
+            // Security: Isolate the browsing context to prevent cross-origin data leaks
             key: 'Cross-Origin-Opener-Policy',
             value: 'same-origin',
           },
           {
+            // Security: Required for certain shared buffer features used by Pyodide
             key: 'Cross-Origin-Embedder-Policy',
-            value: 'credentialless', // ini agak bahaya tapi oke 
+            value: 'credentialless',
           }
+          // Note: Content-Security-Policy is omitted here because it is 
+          // generated dynamically with a Nonce in middleware.ts
         ],
       },
     ];
   },
 
   images: {
+    // Configure allowed image sources for next/image
     qualities: [75, 80, 90, 100],
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'static.wikia.nocookie.net',
-        port: '',
-      },
-      {
-        protocol: 'https',
-        hostname: 'i.ytimg.com',
-        port: '',
-        pathname: '/vi/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'placehold.co', 
-        port: '',
-      },
-      {
-        protocol: 'https',
-        hostname: 'upload.wikimedia.org',
-        port: '',
-      },
-      {
-        protocol: 'https',
-        hostname: 'webaiki.vercel.app',
-        port: '',
-      },
+      { protocol: 'https', hostname: 'static.wikia.nocookie.net' },
+      { protocol: 'https', hostname: 'i.ytimg.com', pathname: '/vi/**' },
+      { protocol: 'https', hostname: 'placehold.co' },
+      { protocol: 'https', hostname: 'upload.wikimedia.org' },
+      { protocol: 'https', hostname: 'webaiki.vercel.app' },
     ],
   },
-
-  turbopack: {
-    root: __dirname
-  }
 };
 
-module.exports = nextConfig
+export default nextConfig;

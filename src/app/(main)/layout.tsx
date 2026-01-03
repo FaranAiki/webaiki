@@ -7,6 +7,7 @@ import "./globals.css";
 // Import Providers
 import { Providers } from "@/components/Providers";
 import { CookieInitializer } from '@/components/CookieInitialize';
+import { headers } from 'next/headers';
 
 // For Umami (GA-like provider) using Script instead of <script>
 import Script from 'next/script'
@@ -59,6 +60,9 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Nonce shit 
+  const nonce = (await headers()).get('x-nonce') || undefined;
+
   // Navigation Links with Icons
   const navLinks = [
     { 
@@ -138,7 +142,8 @@ export default async function RootLayout({
   const select_lang = await t('Select_Language');
 
   return (
-    <html lang={current_lang} suppressHydrationWarning={true}>
+    <html lang={current_lang} suppressHydrationWarning={true} nonce={nonce}>
+      <CookieInitializer />
       <head>
         <meta name="google-site-verification" content="xZMulZsvn0xj7TrxhEN8O9KLWSmNIfx6tqFtOpbgOV4" />
       </head>
@@ -146,7 +151,6 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>
-          <CookieInitializer />
           <Header 
             navLinks={navLinks} 
             current_lang={current_lang} 

@@ -1,0 +1,54 @@
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+
+// This is for security shits
+// I understand, but too lazy to implement it myself
+export function middleware(request: NextRequest) {
+  const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
+
+  const cspHeader = `
+    default-src 'self';
+    script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https: 'unsafe-inline' ${
+      process.env.NODE_ENV === 'development' ? "'unsafe-eval'" : ''
+    };
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    img-src 'self' blob: data: https://static.wikia.nocookie.net https://i.ytimg.com https://placehold.co https://upload.wikimedia.org https://webaiki.vercel.app https://faranaiki.id https://faranaiki.site https://storage.googleapis.com;
+    font-src 'self' https://fonts.gstatic.com;
+    object-src 'none';
+    base-uri 'none';
+    form-action 'self';
+    frame-ancestors 'none';
+    frame-src 'self' https://analitica-graph.web.app https://open.spotify.com https://w.soundcloud.com;
+    connect-src 'self' https://cdn.jsdelivr.net https://faranaiki.id https://fonts.gstatic.com https://www.gstatic.com https://fonts.googleapis.com https://cloud.umami.is https://api-gateway.umami.dev/api/send;
+    worker-src 'self' blob:;
+    upgrade-insecure-requests;
+  `.replace(/\s{2,}/g, ' ').trim();
+
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set('x-nonce', nonce);
+  requestHeaders.set('Content-Security-Policy', cspHeader);
+
+  const response = NextResponse.next({
+    request: {
+      headers: requestHeaders,
+    },
+  });
+
+  // 4. Set the CSP header on the response
+  response.headers.set('Content-Security-Policy', cspHeader);
+
+  return response;
+}
+
+// Ensure middleware runs on all routes except static assets
+export const config = {
+  matcher: [
+    {
+      source: '/((?!api|_next/static|_next/image|favicon.ico).*)',
+      missing: [
+        { type: 'header', key: 'next-router-prefetch' },
+        { type: 'header', key: 'purpose', value: 'prefetch' },
+      ],
+    },
+  ],
+};

@@ -65,7 +65,7 @@ export default function SocialDisplay({ pageTitle }: SocialDisplayProps) {
       name: "Link Tree",
       username: "Faran Aiki",
       url: "https://linktr.ee/FaranAiki", // Fixed: Added protocol
-      icon: <Image alt="LinkTree icon" width="48" height="48" src="https://upload.wikimedia.org/wikipedia/en/thumb/b/bf/Linktree_logo.svg/768px-Linktree_logo.svg.png?20230519151448" unoptimized />,
+      icon: <Image alt="LinkTree icon" width="48" height="48" src="https://upload.wikimedia.org/wikipedia/en/thumb/b/bf/Linktree_logo.svg/768px-Linktree_logo.svg.png?20230519151448" unoptimized priority />,
       color: "hover:border-green-200"
     },
     {
@@ -79,7 +79,7 @@ export default function SocialDisplay({ pageTitle }: SocialDisplayProps) {
       name: "TikTok",
       username: "@faranaiki07",
       url: "https://www.tiktok.com/@faranaiki07",
-      icon: <Image alt="Tiktok icon" width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Tiktok_icon.svg" />,
+      icon: <Image alt="Tiktok icon" width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Tiktok_icon.svg" priority unoptimized />,
       color: "hover:border-black"
     },
     {
@@ -93,7 +93,7 @@ export default function SocialDisplay({ pageTitle }: SocialDisplayProps) {
       name: "My Anime List",
       username: "FaranAiki",
       url: "https://myanimelist.net/profile/FaranAiki",
-      icon: <Image alt='My Anime List icon' width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/7/7a/MyAnimeList_Logo.png" />,
+      icon: <Image alt='My Anime List icon' width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/7/7a/MyAnimeList_Logo.png" priority unoptimized />,
       color: "hover:border-blue-600"
     },
     {
@@ -107,42 +107,42 @@ export default function SocialDisplay({ pageTitle }: SocialDisplayProps) {
       name: "Quora",
       username: "Muhammad Faran Aiki",
       url: "https://id.quora.com/profile/Muhammad-Faran-Aiki-4",
-      icon: <Image alt='Quora icon' width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/0/09/Quora_icon.svg" />,
+      icon: <Image alt='Quora icon' width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/0/09/Quora_icon.svg" priority unoptimized />,
       color: "hover:border-red-600"
     },
     {
       name: "Reddit",
       username: "FaranAiki",
       url: "https://www.reddit.com/user/FaranAiki/",
-      icon: <Image alt='Reddit icon' width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Snoo.svg" />,
+      icon: <Image alt='Reddit icon' width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Snoo.svg" priority unoptimized />,
       color: "hover:border-red-300"
     },
     {
       name: "SlideShare",
       username: "Faran Aiki",
       url: "https://www.slideshare.net/MuhammadFaranAiki",
-      icon: <Image alt='Slideshare icon' width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/e/e1/SlideShare_logo.svg" />,
+      icon: <Image alt='Slideshare icon' width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/e/e1/SlideShare_logo.svg" priority unoptimized />,
       color: "hover:border-orange-300"
     },
     {
       name: "Scribd",
       username: "Muhammad Faran Aiki",
       url: "https://id.scribd.com/user/530310522/Muhammad-Faran-Aiki",
-      icon: <Image alt='Slideshare icon' width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/5/52/Scribd_logo_%282%29.svg" />,
+      icon: <Image alt='Slideshare icon' width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/5/52/Scribd_logo_%282%29.svg" priority unoptimized />,
       color: "hover:border-green-300"
     },
     {
       name: "Line",
       username: "@faranaiki_",
       url: "https://line.me/ti/p/8ZF2kENUEj",
-      icon: <Image alt='Line icon' width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" />,
+      icon: <Image alt='Line icon' width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" priority unoptimized />,
       color: "hover:border-green-400"
     },
     {
       name: "Telegram",
       username: "@FaranAiki",
       url: "https://t.me/FaranAiki",
-      icon: <Image alt='Telegram icon' width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" />,
+      icon: <Image alt='Telegram icon' width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" priority unoptimized />,
       color: "hover:border-blue-300"
     },
   ];

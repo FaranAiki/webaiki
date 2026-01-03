@@ -1,5 +1,7 @@
 "use client";
 
+// TODO add pygame
+
 import React, {
   useState,
   useEffect,
