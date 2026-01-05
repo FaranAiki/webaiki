@@ -22,6 +22,12 @@ interface WorkerMessageData {
   text?: string;
 }
 
+interface RunPayload {
+  script: string;
+  isPygame: boolean;
+  canvas?: OffscreenCanvas;
+}
+
 interface PythonCLIProps {
   loadingText: string, 
   terminalTitle: string,
@@ -78,8 +84,7 @@ self.onmessage = async (event) => {
 
       pyodide = await loadPyodide({ indexURL: "https://cdn.jsdelivr.net/pyodide/v0.26.1/full/" });
       
-      // Fix: Use simple object assignments instead of Proxies to avoid recursion errors.
-      // Proxies can cause infinite loops when Pyodide's getattr/setattr calls trigger traps.
+      // Stable environmental shims using static Object assignments to avoid recursion.
       await pyodide.runPythonAsync(\`
         import js
         from js import Object
@@ -375,7 +380,7 @@ export default function PythonCLI({
         workerRef.current && 
         ranScriptRef.current !== script
     ) {
-      const payload: any = { script, isPygame };
+      const payload: RunPayload = { script, isPygame };
       
       if (isPygame && canvasRef.current) {
         try {
