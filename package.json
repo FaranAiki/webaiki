@@ -1,6 +1,6 @@
 {
   "name": "webaiki",
-  "version": "0.1.4",
+  "version": "1.0.0",
   "private": false,
   "scripts": {
     "next-sitemap": "next-sitemap",
