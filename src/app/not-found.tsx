@@ -33,11 +33,12 @@ export default async function NotFound() {
     <Providers>
       <main className="container mx-auto px-8 pt-24 pb-16 min-h-screen flex items-center justify-center">
         <div className='flex text-center text-lg justify-center cursor-pointer'>
-            <h1 className="text-4xl hover:scale-105 transition-all duration-200 hover:text-cyan-400 hover:font-bold hover:opacity-75 cursor-pointer">
+            <h1 className="text-4xl transition-all duration-200 hover:opacity-75 cursor-pointer">
             {not_found_text}
             </h1>
         </div>
           <Link href="/" className="flex items-center space-x-2 text-xl font-semibold hover:text-cyan-500 hover:scale-105 transition-all duration-200">
+            <span> </span>
              <Home size={24} />
              <span>{home_text}</span>
           </Link>
