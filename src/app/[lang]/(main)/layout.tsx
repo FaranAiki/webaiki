@@ -1,9 +1,9 @@
-import AskMePopup from "@/components/AskMePopup"
 import Header from "@/components/Header";
-import Background from "@/components/Background"
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { cache } from 'react';
+// Replace React's per-request cache with Next.js's global cross-request cache
+import { unstable_cache } from 'next/cache';
+import dynamic from 'next/dynamic';
 
 // Import Providers
 import { Providers } from "@/components/Providers";
@@ -38,12 +38,20 @@ import {
   Code
 } from 'lucide-react';
 
-// Cache the background fetching!
-export const getBackgrounds = cache(() => {
-  const photosDir = path.join(process.cwd(), 'public', 'images', 'background');
-  if (!fs.existsSync(photosDir)) return [];
-  return fs.readdirSync(photosDir);
-});
+// Dynamically import heavy client components so they don't block the initial load
+const AskMePopup = dynamic(() => import("@/components/AskMePopup"), { ssr: false });
+const Background = dynamic(() => import("@/components/Background"), { ssr: false });
+
+// Cache the background fetching globally across ALL requests!
+export const getBackgrounds = unstable_cache(
+  async () => {
+    const photosDir = path.join(process.cwd(), 'public', 'images', 'background');
+    if (!fs.existsSync(photosDir)) return [];
+    return fs.readdirSync(photosDir);
+  },
+  ['background-images-cache'], // unique key for this cache
+  { revalidate: false } // cache indefinitely until the next build or server restart
+);
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -68,6 +76,9 @@ export default async function RootLayout({
   // Use the url parameter directly and load dictionary
   const { lang } = await params;
   const dict = await getDictionary(lang);
+  
+  // Await our globally cached backgrounds list
+  const backgrounds = await getBackgrounds();
 
   // Navigation Links with Icons
   const navLinks = [
@@ -160,7 +171,8 @@ export default async function RootLayout({
             waiting={dict.Waiting} 
             provide_question={dict.Provide_Question}
           />
-          <Background carousel={getBackgrounds()}/>
+          {/* Use the dynamically fetched backgrounds */}
+          <Background carousel={backgrounds}/>
         </Providers>
         <Script
           strategy="lazyOnload"

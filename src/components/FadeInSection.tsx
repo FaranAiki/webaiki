@@ -41,10 +41,10 @@ export default function FadeInSection({ children, delay = 0, className = "" }: F
     <div
       ref={domRef}
       style={{ transitionDelay: `${delay}ms` }}
-      className={`transition-all duration-500 ease-out transform ${className} ${
+      className={`transition-[opacity,transform] duration-500 ease-out transform will-change-[opacity,transform] ${className} ${
         isVisible
-          ? 'opacity-100 translate-y-0 blur-0'
-          : 'opacity-0 translate-y-8 blur-sm' // Reduced translation to 2rem (32px) to prevent layout thrashing/glitches
+          ? 'opacity-100 translate-y-0'
+          : 'opacity-0 translate-y-8' 
       }`}
     >
       {children}

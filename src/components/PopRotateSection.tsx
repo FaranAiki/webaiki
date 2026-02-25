@@ -35,10 +35,10 @@ export default function PopRotateSection({ children, delay = 0, className = "" }
       ref={domRef}
       style={{ transitionDelay: `${delay}ms` }}
       // Uses a bouncy cubic-bezier for the 'Pop' effect
-      className={`transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] transform ${className} ${
+      className={`transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] transform will-change-[opacity,transform] ${className} ${
         isVisible
-          ? 'opacity-100 scale-100 rotate-0 translate-y-0 blur-0'
-          : 'opacity-0 scale-75 rotate-6 translate-y-12 blur-sm' 
+          ? 'opacity-100 scale-100 rotate-0 translate-y-0'
+          : 'opacity-0 scale-75 rotate-6 translate-y-12' 
       }`}
     >
       {children}
