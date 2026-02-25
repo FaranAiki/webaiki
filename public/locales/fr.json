@@ -115,6 +115,15 @@
   "WI1102_Practicum": "Travaux pratiques de pensée informatique (WI1111)",
   "Others": "Autres",
 
+  "IF1210": "Algorithmes et Programmation 1",
+  "II1200": "Introduction aux systèmes et technologies de l'information",
+  "WI1101": "Pancasila",
+  "WI2001": "Introduction à l'ingénierie et au design",
+  "WI2002": "Littératie des données et intelligence artificielle",
+  "WI2003": "Sport / Éducation physique",
+  "WI2006": "Éducation civique",
+  "WI2011": "Religion islamique",
+
   "Personal": "Personnel",
   "Committee": "Comité",
   "UKM": "Unité d'Activité Étudiante",
@@ -147,8 +156,6 @@
   "Mathematics_Private_Tutor_Description": "Fournir un tutorat individuel aux élèves pour les olympiades de mathématiques au niveau du collège. Développer des plans de cours personnalisés pour aider les élèves à atteindre leurs objectifs académiques et à améliorer leur compréhension des concepts complexes.",
   "Education_Team": "Équipe Éducative",
   "Education_Team_Description": "A aidé à la création de matériel de contenu éducatif, tel que les mathématiques générales, et a créé 600 problèmes de physique, de chimie et de mathématiques pour le Tes Kemampuan Akademik (TKA) du lycée. A soutenu la planification et l'exécution de programmes d'apprentissage pour les étudiants et les professionnels, et a aidé à l'utilisation de l'intelligence artificielle.",
-  "Alkyl_Compiler": "لغة البرمجة والمترجم Alkyl",
-  "Alkyl_Compiler_Description": "لغة برمجة Alkyl هي لغة برمجة كُتبت لأول مرة بلغة C باستخدام LLVM-IR. يهدف المشروع إلى إنشاء لغة برمجة يسهل على الذكاء الاصطناعي توليدها، ولكنها قابلة للقراءة أيضًا من قبل البشر. بناء الجملة الخاص بها مشابه للغة C، ولكن بدون إسهاب/أسهل.",
   "Alkyl_Compiler": "Langage de programmation et compilateur Alkyl",
   "Alkyl_Compiler_Description": "Le langage de programmation Alkyl est un langage de programmation initialement écrit en C en utilisant LLVM-IR. Le projet vise à créer un langage de programmation plus facile à générer pour l'intelligence artificielle, mais également lisible par l'homme. Sa syntaxe est similaire à celle du C, mais sans verbosité/plus facile.",
 
