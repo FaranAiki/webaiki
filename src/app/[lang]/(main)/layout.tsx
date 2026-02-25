@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Background from "@/components/Background"
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { cache } from 'react';
 
 // Import Providers
 import { Providers } from "@/components/Providers";
@@ -16,8 +17,6 @@ import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 
 import { getDictionary } from '@/components/Translator';
-
-import { cache } from 'react';
 
 import fs from 'fs';
 import path from 'path';
@@ -35,14 +34,13 @@ import {
   Music, 
   BookOpen, 
   GraduationCap,
-  Compass, // Imported Compass for Experience/Journey
-  Code // Imported Code for Project
+  Compass,
+  Code
 } from 'lucide-react';
 
-// Helper to get backgrounds
-export const getBackgrounds = cache( () => {
+// Cache the background fetching!
+export const getBackgrounds = cache(() => {
   const photosDir = path.join(process.cwd(), 'public', 'images', 'background');
-  // Check if directory exists to avoid build errors
   if (!fs.existsSync(photosDir)) return [];
   return fs.readdirSync(photosDir);
 });
@@ -92,7 +90,6 @@ export default async function RootLayout({
     { 
       name: dict.Experience, 
       href: '#',
-      // Changed to Compass to represent "Journey" and avoid duplicate Briefcase
       icon: <Compass size={18} />, 
       subLinks: [
         { name: dict.Work, href: '/work', icon: <Briefcase size={16} /> },
@@ -166,7 +163,7 @@ export default async function RootLayout({
           <Background carousel={getBackgrounds()}/>
         </Providers>
         <Script
-          defer
+          strategy="lazyOnload"
           src="https://cloud.umami.is/script.js" 
           data-website-id="a418298f-fdca-4df0-a3bf-be453b48eeaf"
         />

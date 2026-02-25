@@ -4,10 +4,10 @@ import "../globals.css";
 import { CollectionsData } from '@/components/InteractiveCollections';
 import LiteratureLoader from './literature-loader'
 import { getDictionary } from '@/components/Translator';
+import { cache } from 'react';
 
 import fs from 'fs';
 import path from 'path';
-import { cache } from 'react';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://faranaiki.id/literature'),
@@ -15,8 +15,13 @@ export const metadata: Metadata = {
   description: "Faran Aiki's short stories or poems",
 };
 
-export const getCollectionsData = cache ( async (dict: Record<string, string>)) => {
+// Wrap in cache and pass `lang`
+export const getCollectionsData = cache(async (lang: string) => {
+  const dict = await getDictionary(lang);
   const literatureDir = path.join(process.cwd(), 'public', 'documents', 'literature');
+  
+  if (!fs.existsSync(literatureDir)) return {};
+
   const typeLiteratureFolders = fs.readdirSync(literatureDir);
   const allCollectionsData: CollectionsData = {};
 
@@ -56,8 +61,7 @@ export const getCollectionsData = cache ( async (dict: Record<string, string>)) 
 
 export default async function LiteraturePage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang);
-  const literature_data = await getCollectionsData(dict);
+  const literature_data = await getCollectionsData(lang);
 
   return (
     <main className="container mx-auto px-6 pb-16 pt-24">

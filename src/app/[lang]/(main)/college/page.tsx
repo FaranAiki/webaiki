@@ -2,17 +2,21 @@ import type { Metadata } from "next";
 import "../globals.css";
 
 import { CollectionsData } from '@/components/InteractiveCollections';
-import React from 'react';
+import React, { cache } from 'react';
 import CollegeLoader from './college-loader';
 import { getDictionary } from '@/components/Translator';
 
 import fs from 'fs';
 import path from 'path';
 
-import { cache } from 'react';
-
-export const getCollectionsData = cache(async (dict: Record<string, string>) => {
+// Wrap in cache and pass `lang` instead of `dict` object
+export const getCollectionsData = cache(async (lang: string) => {
+  const dict = await getDictionary(lang);
   const certificatesDir = path.join(process.cwd(), 'public', 'documents', 'college');
+  
+  // Return empty if directory doesn't exist to prevent crashes
+  if (!fs.existsSync(certificatesDir)) return {};
+
   const semesterFolders = fs.readdirSync(certificatesDir);
   const allCollectionsData: CollectionsData = {};
 
@@ -62,7 +66,8 @@ export const metadata: Metadata = {
 export default async function CollegePage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
-  const college_data = await getCollectionsData(dict);
+  // Pass lang to our cached function
+  const college_data = await getCollectionsData(lang);
 
   return (
     <main className="container mx-auto pt-8 pb-16 pt-24">

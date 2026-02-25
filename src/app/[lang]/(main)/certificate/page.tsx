@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "../globals.css";
 
-import React from 'react';
+import React, { cache } from 'react';
 
 import CertificateLoader from './certificate-loader';
 import type { CertificateData } from '@/components/CertificatesDisplay';
@@ -9,11 +9,16 @@ import type { CertificateData } from '@/components/CertificatesDisplay';
 import { getDictionary } from '@/components/Translator';
 
 import fs from 'fs/promises';
+import { existsSync } from 'fs';
 import path from 'path';
 
-// Pass dictionary context here
-export async function getCertificatesData(dict: Record<string, string>) {
+// Wrap in cache and pass `lang`
+export const getCertificatesData = cache(async (lang: string) => {
+  const dict = await getDictionary(lang);
   const certificatesDir = path.join(process.cwd(), 'public', 'documents', 'certificate');
+  
+  if (!existsSync(certificatesDir)) return {};
+
   const categoryFolders = await fs.readdir(certificatesDir);
   const allCertificatesData: CertificateData = {};
 
@@ -22,7 +27,7 @@ export async function getCertificatesData(dict: Record<string, string>) {
     const stat = await fs.stat(categoryPath);
     
     if (stat.isDirectory()) {
-      const categoryName = dict[category] || category; // Look up directly
+      const categoryName = dict[category] || category;
       allCertificatesData[categoryName] = {};
       
       const yearFolders = await fs.readdir(categoryPath);
@@ -48,7 +53,7 @@ export async function getCertificatesData(dict: Record<string, string>) {
   }
 
   return allCertificatesData;
-}
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://faranaiki.id/certificate'),
@@ -66,7 +71,8 @@ export default async function CertificatePage({ params }: { params: Promise<{ la
   const { lang } = await params;
   const dict = await getDictionary(lang);
   
-  const certificates = await getCertificatesData(dict);
+  // Call cached function
+  const certificates = await getCertificatesData(lang);
 
   return (
     <main className="min-h-screen py-12">
