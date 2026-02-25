@@ -142,7 +142,18 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
 
     const handleLanguageChange = async (langCode: string) => {
         await setCookies("language", langCode);
-        router.refresh();
+        
+        let newPathname = pathname;
+        if (pathname.startsWith(`/${current_lang}/`)) {
+            newPathname = pathname.replace(`/${current_lang}/`, `/${langCode}/`);
+        } else if (pathname === `/${current_lang}`) {
+            newPathname = `/${langCode}`;
+        }
+
+        setLangMenuVisible(false);
+        setMobileMenuOpen(false);
+        router.push(newPathname);
+        router.refresh(); 
     };
 
     const LanguageMenu = () => (
