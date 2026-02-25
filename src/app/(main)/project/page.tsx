@@ -33,6 +33,23 @@ export default async function ProjectPage() {
   // async as this is a server side
   const projectExperiences = [
     {
+      year: '2026',
+      jobs: [
+        {
+          date: await from_to('February', 'Present'),
+          title: await t('Alkyl_Compiler'),
+          company: 'LLVM, C',
+          description: await t('Alkyl_Compiler_Description'),
+          image: [
+            '/documents/project/Alkyl_0.png',
+            '/documents/project/Alkyl_1.png',
+            '/documents/project/Alkyl_2.png',
+          ],
+          url: 'https://github.com/FaranAiki/alkyl',
+        },
+      ]
+    },
+    {
       year: '2025',
       jobs: [
         {

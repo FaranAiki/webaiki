@@ -33,6 +33,39 @@ export default async function WorkExperiencesPage() {
   // async as this is a server side
   const workExperiences = [
     {
+      year: '2026',
+      jobs: [
+        {
+          date: await from_to('February', 'Present'),
+          title: await t('Education_Freelance'),
+          company: 'Analitica',
+          description: await t('Education_Freelance_Description'),
+          image: [
+          
+          ]
+        },
+        {
+          date: await from_to('February', 'Present'),
+          title: await t('SAT_Tutor'),
+          company: 'Kobi Education',
+          description: await t('SAT_Tutor_Description'),
+          image: [
+
+          ]
+        },
+        {
+          date: await from_to('January', 'Present'),
+          title: await t('Compile_Module_Author'),
+          company: 'STEI-K 2025',
+          description: await t('Compile_Module_Author_Description'),
+          image: [
+            '/documents/work/COMPILE_UTBK_0.png',
+            '/documents/work/COMPILE_UTBK_1.png',
+          ]
+        },
+      ],
+    },
+    {
       year: '2025',
       jobs: [
         {
