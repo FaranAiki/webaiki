@@ -7,6 +7,7 @@ import { getDictionary } from '@/components/Translator';
 
 import fs from 'fs';
 import path from 'path';
+import { cache } from 'react';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://faranaiki.id/literature'),
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
   description: "Faran Aiki's short stories or poems",
 };
 
-export async function getCollectionsData(dict: Record<string, string>) {
+export const getCollectionsData = cache ( async (dict: Record<string, string>)) => {
   const literatureDir = path.join(process.cwd(), 'public', 'documents', 'literature');
   const typeLiteratureFolders = fs.readdirSync(literatureDir);
   const allCollectionsData: CollectionsData = {};
@@ -51,7 +52,7 @@ export async function getCollectionsData(dict: Record<string, string>) {
     }
   }
   return allCollectionsData;
-}
+});
 
 export default async function LiteraturePage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;

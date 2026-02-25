@@ -5,13 +5,15 @@ import { getDictionary } from '@/components/Translator';
 import fs from 'fs';
 import path from 'path';
 
+import { cache } from 'next';
+
 const inter = Inter({ subsets: ["latin"] });
 
-export function getFaranAikiPhoto() {
+export const getFaranAikiPhoto = cache( () => {
   const photosDir = path.join(process.cwd(), 'public', 'images', 'photo_faran_aiki');
   if (!fs.existsSync(photosDir)) return [];
   return fs.readdirSync(photosDir);
-};
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://faranaiki.id'),

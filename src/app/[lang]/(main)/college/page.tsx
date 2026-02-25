@@ -9,7 +9,9 @@ import { getDictionary } from '@/components/Translator';
 import fs from 'fs';
 import path from 'path';
 
-export async function getCollectionsData(dict: Record<string, string>) {
+import { cache } from 'react';
+
+export const getCollectionsData = cache(async (dict: Record<string, string>) => {
   const certificatesDir = path.join(process.cwd(), 'public', 'documents', 'college');
   const semesterFolders = fs.readdirSync(certificatesDir);
   const allCollectionsData: CollectionsData = {};
@@ -49,7 +51,7 @@ export async function getCollectionsData(dict: Record<string, string>) {
     }
   }
   return allCollectionsData;
-}
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://faranaiki.id/college'),

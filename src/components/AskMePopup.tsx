@@ -3,8 +3,10 @@
 import React, { useState, memo, useEffect } from 'react';
 import { MessageSquare, X, LoaderCircle } from 'lucide-react';
 import { useRef } from 'react';
-import Draggable from 'react-draggable';
 import { useTheme } from 'next-themes';
+import dynamic from 'next/dynamic';
+
+const Draggable = dynamic(() => import('react-draggable'), { ssr: false });
 
 interface AskMePopupProps {
   typeOfWaitingAnswer: string[];

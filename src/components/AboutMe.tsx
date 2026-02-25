@@ -107,7 +107,6 @@ export default function AboutMe({
               <div className="absolute inset-0 bg-cyan-500/30 blur-3xl rounded-full transform scale-90 group-hover:scale-100 transition-transform duration-700"></div>
               {carouselPhotos && carouselPhotos.length > 0 && (
               <Image
-                unoptimized
                 src={`/images/photo_faran_aiki/${carouselPhotos[currentIndex]}`}
                 alt={faran_photo}
                 fill

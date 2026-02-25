@@ -17,6 +17,8 @@ import 'react-pdf/dist/Page/TextLayer.css';
 
 import { getDictionary } from '@/components/Translator';
 
+import { cache } from 'react';
+
 import fs from 'fs';
 import path from 'path';
 
@@ -38,12 +40,12 @@ import {
 } from 'lucide-react';
 
 // Helper to get backgrounds
-export function getBackgrounds() {
+export const getBackgrounds = cache( () => {
   const photosDir = path.join(process.cwd(), 'public', 'images', 'background');
   // Check if directory exists to avoid build errors
   if (!fs.existsSync(photosDir)) return [];
   return fs.readdirSync(photosDir);
-}
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

@@ -11,16 +11,18 @@ import { getDictionaryFromCookie } from '@/components/Translator';
 import fs from 'fs';
 import path from 'path';
 
+import { cache } from 'react';
+
 import { 
   Home, 
 } from 'lucide-react';
 
 // Helper to get backgrounds
-function getBackgrounds() {
+const getBackgrounds = cache( () => {
   const photosDir = path.join(process.cwd(), 'public', 'images', 'background');
   if (!fs.existsSync(photosDir)) return [];
   return fs.readdirSync(photosDir);
-}
+});
 
 export default async function NotFound() {
   const dict = await getDictionaryFromCookie();

@@ -110,22 +110,25 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
     const animate = () => {
       if (!ctx || !canvas) return;
       
-      const width = canvas.width / (window.devicePixelRatio || 1);
-      const height = canvas.height / (window.devicePixelRatio || 1);
+      if (document.visibilityState === 'visible') {
+        const width = canvas.width / (window.devicePixelRatio || 1);
+        const height = canvas.height / (window.devicePixelRatio || 1);
 
-      // Determine color based on current theme ref
-      const BASE_COLOR = isDarkRef.current 
-        ? { r: 100, g: 200, b: 255 } 
-        : { r: 25, g: 125, b: 200 };
+        // Determine color based on current theme ref
+        const BASE_COLOR = isDarkRef.current 
+          ? { r: 100, g: 200, b: 255 } 
+          : { r: 25, g: 125, b: 200 };
 
-      ctx.clearRect(0, 0, width, height);
-      
-      particles.forEach((particle) => {
-        particle.update(width, height);
-        particle.draw(BASE_COLOR);
-      });
+        ctx.clearRect(0, 0, width, height);
+        
+        particles.forEach((particle) => {
+          particle.update(width, height);
+          particle.draw(BASE_COLOR);
+        });
 
-      connectParticles(width, height, BASE_COLOR);
+        connectParticles(width, height, BASE_COLOR);
+        
+      }
       
       animationFrameId = requestAnimationFrame(animate);
     };
