@@ -9,7 +9,7 @@ import { getDictionary } from '@/components/Translator';
 import fs from 'fs';
 import path from 'path';
 
-export async function getCollectionsData(dict: any) {
+export async function getCollectionsData(dict: Record<string, string>) {
   const certificatesDir = path.join(process.cwd(), 'public', 'documents', 'college');
   const semesterFolders = fs.readdirSync(certificatesDir);
   const allCollectionsData: CollectionsData = {};

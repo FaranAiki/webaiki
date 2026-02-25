@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   description: "Faran Aiki's short stories or poems",
 };
 
-export async function getCollectionsData(dict: any) {
+export async function getCollectionsData(dict: Record<string, string>) {
   const literatureDir = path.join(process.cwd(), 'public', 'documents', 'literature');
   const typeLiteratureFolders = fs.readdirSync(literatureDir);
   const allCollectionsData: CollectionsData = {};

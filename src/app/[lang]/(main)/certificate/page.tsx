@@ -12,7 +12,7 @@ import fs from 'fs/promises';
 import path from 'path';
 
 // Pass dictionary context here
-export async function getCertificatesData(dict: any) {
+export async function getCertificatesData(dict: Record<string, string>) {
   const certificatesDir = path.join(process.cwd(), 'public', 'documents', 'certificate');
   const categoryFolders = await fs.readdir(certificatesDir);
   const allCertificatesData: CertificateData = {};

@@ -13,7 +13,7 @@ const dictionaries = {
 };
 
 // Fetch the entire dictionary once based on the locale
-export const getDictionary = async (locale: string): Promise<any> => {
+export const getDictionary = async (locale: string): Promise<Record<string, string>> => {
   if (locale in dictionaries) {
     return dictionaries[locale as keyof typeof dictionaries]();
   }
