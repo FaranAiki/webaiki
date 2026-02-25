@@ -3,8 +3,9 @@
 // import { useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 
-// don't use others
-pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
+// Fix: Use the Unpkg CDN that exactly matches your installed pdfjs version.
+// This prevents 404 errors, stops the "fake worker", and restores website speed.
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 type PdfPreviewProps = {
   fileUrl: string;

@@ -38,7 +38,9 @@ export default async function WorkExperiencesPage({ params }: { params: Promise<
           title: dict.SAT_Tutor,
           company: 'Kobi Education',
           description: dict.SAT_Tutor_Description,
-          image: []
+          image: [
+            '/documents/work/SAT_Tutor_0.jpg',
+          ]
         },
         {
           date: `${dict.January} — ${dict.Present}`,
