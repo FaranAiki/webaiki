@@ -32,7 +32,7 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
     let animationFrameId: number;
     let particles: Particle[] = [];
 
-    const PARTICLE_COUNT = 225;
+    const PARTICLE_COUNT = 80;
     const CONNECTION_DISTANCE = 150; 
     const MOUSE_RADIUS = 100;
 

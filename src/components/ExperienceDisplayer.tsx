@@ -121,7 +121,6 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
                                                                     src={activeImageSrc}
                                                                     alt={`${activeJob.company} placeholder image`}
                                                                     className="w-full h-full object-cover rounded-lg shadow-2xl transition-opacity duration-300 hover:opacity-80"
-                                                                    unoptimized
                                                                 />
                                                             </a>
                                                         ) : (
@@ -131,7 +130,6 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
                                                                 src={activeImageSrc}
                                                                 alt={`${activeJob.company} placeholder image`}
                                                                 className="w-full h-full object-cover rounded-lg shadow-2xl transition-opacity duration-300"
-                                                                unoptimized
                                                             />
                                                         )}
                                                       </PopRotateSection>
@@ -160,7 +158,6 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
                                                     src={activeImageSrc}
                                                     alt={`${activeJob.company} placeholder image`}
                                                     className={`w-full h-full object-cover rounded-lg shadow-2xl transition-opacity duration-300 border-2 ${cardBorder} hover:opacity-85 hover:border-cyan-500`}
-                                                    unoptimized
                                                 />
                                             </a>
                                         ) : (
@@ -170,7 +167,6 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
                                                 src={activeImageSrc}
                                                 alt={`${activeJob.company} placeholder image`}
                                                 className={`w-full h-full object-cover rounded-lg shadow-2xl transition-opacity duration-300 border-2 ${cardBorder}`}
-                                                unoptimized
                                             />
                                         )}
                                     </div>

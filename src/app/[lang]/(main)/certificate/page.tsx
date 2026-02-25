@@ -8,7 +8,7 @@ import type { CertificateData } from '@/components/CertificatesDisplay';
 
 import { t } from '@/components/Translator';
 
-import fs from 'fs';
+import fs from 'fs/promises';
 import path from 'path';
 
 export async function getCertificatesData() {
@@ -24,7 +24,7 @@ export async function getCertificatesData() {
       console.log(categoryName);
       allCertificatesData[categoryName] = {};
       
-      const yearFolders = fs.readdirSync(categoryPath);
+      const yearFolders = await fs.readdirSync(categoryPath);
 
       for (const year of yearFolders) {
         const yearPath = path.join(categoryPath, year);
@@ -32,7 +32,7 @@ export async function getCertificatesData() {
         if (fs.statSync(yearPath).isDirectory()) {
           allCertificatesData[categoryName][year] = {};
           
-          const files = fs.readdirSync(yearPath);
+          const files = await fs.readdirSync(yearPath);
 
           for (const file of files) {
             const fileName = path.parse(file).name;
