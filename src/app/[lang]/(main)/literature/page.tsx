@@ -2,51 +2,29 @@ import type { Metadata } from "next";
 import "../globals.css";
 
 import { CollectionsData } from '@/components/InteractiveCollections';
-
 import LiteratureLoader from './literature-loader'
-
-import { t } from '@/components/Translator';
+import { getDictionary } from '@/components/Translator';
 
 import fs from 'fs';
 import path from 'path';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://faranaiki.id/literature'),
-
   title: "Faran Aiki in Literature",
   description: "Faran Aiki's short stories or poems",
-  
-  openGraph: {
-    title: "Faran Aiki in Literature",
-    description: "Faran Aiki's short stories or poems",
-    url: 'https://faranaiki.id/literature',
-    siteName: 'Faran Aiki in Literature', 
-    type: 'website',
-  },
-
-  icons: {
-    icon: '/icon.ico',
-    shortcut: '/icon.ico',
-    apple: '/icon.ico',
-  },
-  
-  alternates: {
-    canonical: '/',
-  },
 };
 
-export async function getCollectionsData() {
+export async function getCollectionsData(dict: any) {
   const literatureDir = path.join(process.cwd(), 'public', 'documents', 'literature');
   const typeLiteratureFolders = fs.readdirSync(literatureDir);
   const allCollectionsData: CollectionsData = {};
 
   for (const typeLiterature of typeLiteratureFolders) {
     const typeLiteraturePath = path.join(literatureDir, typeLiterature);
-    const literatureName = await t(typeLiterature);
+    const literatureName = dict[typeLiterature] || typeLiterature;
 
     if (fs.statSync(typeLiteraturePath).isDirectory()) {
       allCollectionsData[literatureName] = {};
-
       const yearFolders = fs.readdirSync(typeLiteraturePath);
 
       for (const year of yearFolders) {
@@ -54,7 +32,6 @@ export async function getCollectionsData() {
 
         if (fs.statSync(yearPath).isDirectory()) {
           allCollectionsData[literatureName][year] = {};
-          
           const files = fs.readdirSync(yearPath);
 
           for (const file of files) {
@@ -73,20 +50,16 @@ export async function getCollectionsData() {
       }
     }
   }
-
   return allCollectionsData;
 }
 
-export default async function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  const literature_data = await getCollectionsData();
+export default async function LiteraturePage({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang);
+  const literature_data = await getCollectionsData(dict);
 
   return (
     <main className="container mx-auto px-6 pb-16 pt-24">
-      {children} 
       <LiteratureLoader data={literature_data} force_click={true} />
     </main>
   );

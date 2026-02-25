@@ -2,14 +2,12 @@ import type { Metadata } from "next";
 import ExperiencesClient from '@/components/ExperienceDisplayer';
 import "../globals.css"; 
 
-import { t, from_to } from '@/components/Translator';
+import { getDictionary } from '@/components/Translator';
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://faranaiki.id/project"),
-
   title: "Faran Aiki's Project",
   description: "Faran Aiki's project history and others",
-
   openGraph: {
     title: "Faran Aiki's Project",
     description: "Faran Aiki's project history and others",
@@ -17,29 +15,23 @@ export const metadata: Metadata = {
     siteName: "Faran Aiki's Project",
     type: "website",
   },
-
-  icons: {
-    icon: "/icon.ico",
-    shortcut: "/icon.ico",
-    apple: "/icon.ico",
-  },
-
-  alternates: {
-    canonical: "/",
-  },
+  icons: { icon: "/icon.ico", shortcut: "/icon.ico", apple: "/icon.ico" },
+  alternates: { canonical: "/" },
 };
 
-export default async function ProjectPage() {
-  // async as this is a server side
+export default async function ProjectPage({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang);
+
   const projectExperiences = [
     {
       year: '2026',
       jobs: [
         {
-          date: await from_to('February', 'Present'),
-          title: await t('Alkyl_Compiler'),
+          date: `${dict.February} — ${dict.Present}`,
+          title: dict.Alkyl_Compiler,
           company: 'LLVM, C',
-          description: await t('Alkyl_Compiler_Description'),
+          description: dict.Alkyl_Compiler_Description,
           image: [
             '/documents/project/Alkyl_0.png',
             '/documents/project/Alkyl_1.png',
@@ -53,10 +45,10 @@ export default async function ProjectPage() {
       year: '2025',
       jobs: [
         {
-          date: await from_to('November', 'Present'),
-          title: await t('Make_Interactive_UAS'),
+          date: `${dict.November} — ${dict.Present}`,
+          title: dict.Make_Interactive_UAS,
           company: 'Analitica',
-          description: await t('Make_Interactive_UAS_Description'),
+          description: dict.Make_Interactive_UAS_Description,
           image: [
             '/documents/project/UAS_0.png',
             '/documents/project/UAS_1.png',
@@ -65,10 +57,10 @@ export default async function ProjectPage() {
           url: 'https://faranaiki.id/project/uas_matematika_dasar',
         },
         {
-          date: await from_to('October', 'Present'),
-          title: await t('Make_Website'),
+          date: `${dict.October} — ${dict.Present}`,
+          title: dict.Make_Website,
           company: 'faranaiki.id',
-          description: await t('Make_Website_Description'),
+          description: dict.Make_Website_Description,
           image: [
             '/documents/project/Web_0.png',
             '/documents/project/Web_1.png',
@@ -82,10 +74,10 @@ export default async function ProjectPage() {
       year: '2023',
       jobs: [
         {
-          date: await from_to('November', 'Present'),
-          title: await t('Make_Nihwm'),
+          date: `${dict.November} — ${dict.Present}`,
+          title: dict.Make_Nihwm,
           company: 'Linux',
-          description: await t('Make_Nihwm_Description'),
+          description: dict.Make_Nihwm_Description,
           image: [
             '/documents/project/Nihwm_0.png',
           ],
@@ -95,6 +87,5 @@ export default async function ProjectPage() {
     },
   ];
 
-  // use experiences client defined in the components 
   return <ExperiencesClient experiences={projectExperiences} />;
 }

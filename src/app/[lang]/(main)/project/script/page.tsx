@@ -2,14 +2,12 @@ import type { Metadata } from "next";
 import PythonCLI from "@/components/PythonCLI"; 
 import "../../globals.css"; 
 
-import { t } from '@/components/Translator';
+import { getDictionary } from '@/components/Translator';
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://faranaiki.id/project"),
-
   title: "Faran Aiki's Project",
   description: "Faran Aiki's project history and others",
-
   openGraph: {
     title: "Faran Aiki's Project",
     description: "Faran Aiki's project history and others",
@@ -17,34 +15,24 @@ export const metadata: Metadata = {
     siteName: "Faran Aiki's Project",
     type: "website",
   },
-
-  icons: {
-    icon: "/icon.ico",
-    shortcut: "/icon.ico",
-    apple: "/icon.ico",
-  },
-
-  alternates: {
-    canonical: "/",
-  },
+  icons: { icon: "/icon.ico", shortcut: "/icon.ico", apple: "/icon.ico" },
+  alternates: { canonical: "/" },
 };
 
 type ProjectPageProps = {
+  params: Promise<{ lang: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-export default async function ProjectPage({ searchParams }: ProjectPageProps) {
+export default async function ProjectPage({ params, searchParams }: ProjectPageProps) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang);
   const resolvedParams = await searchParams;
 
-  // conversion for typescript shit
   const serializedParams = {
     type: typeof resolvedParams?.type === 'string' ? resolvedParams.type : undefined,
     source: typeof resolvedParams?.source === 'string' ? resolvedParams.source : undefined,
   };
 
-  const terminalTitle = await t('Python_Web_Title');
-  const loadingText = await t('Loading_Python');
-
-  // render the python CLI
-  return <PythonCLI searchParams={serializedParams} terminalTitle={terminalTitle} loadingText={loadingText}/>;
+  return <PythonCLI searchParams={serializedParams} terminalTitle={dict.Python_Web_Title} loadingText={dict.Loading_Python}/>;
 }

@@ -6,33 +6,35 @@ import React from 'react';
 import CertificateLoader from './certificate-loader';
 import type { CertificateData } from '@/components/CertificatesDisplay';
 
-import { t } from '@/components/Translator';
+import { getDictionary } from '@/components/Translator';
 
 import fs from 'fs/promises';
 import path from 'path';
 
-export async function getCertificatesData() {
+// Pass dictionary context here
+export async function getCertificatesData(dict: any) {
   const certificatesDir = path.join(process.cwd(), 'public', 'documents', 'certificate');
-  const categoryFolders = fs.readdirSync(certificatesDir);
+  const categoryFolders = await fs.readdir(certificatesDir);
   const allCertificatesData: CertificateData = {};
 
   for (const category of categoryFolders) {
     const categoryPath = path.join(certificatesDir, category);
+    const stat = await fs.stat(categoryPath);
     
-    if (fs.statSync(categoryPath).isDirectory()) {
-      const categoryName = await t(category);
-      console.log(categoryName);
+    if (stat.isDirectory()) {
+      const categoryName = dict[category] || category; // Look up directly
       allCertificatesData[categoryName] = {};
       
-      const yearFolders = await fs.readdirSync(categoryPath);
+      const yearFolders = await fs.readdir(categoryPath);
 
       for (const year of yearFolders) {
         const yearPath = path.join(categoryPath, year);
+        const yearStat = await fs.stat(yearPath);
 
-        if (fs.statSync(yearPath).isDirectory()) {
+        if (yearStat.isDirectory()) {
           allCertificatesData[categoryName][year] = {};
           
-          const files = await fs.readdirSync(yearPath);
+          const files = await fs.readdir(yearPath);
 
           for (const file of files) {
             const fileName = path.parse(file).name;
@@ -50,41 +52,28 @@ export async function getCertificatesData() {
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://faranaiki.id/certificate'),
-
   title: "Faran Aiki's Certificate",
   description: "Faran Aiki's personal certificates",
-  
   openGraph: {
     title: "Faran Aiki's Certificate",
-    description: "Faran Aiki's personal certificates",
     url: 'https://faranaiki.id/certificate',
     siteName: 'Faran Aiki\'s Certificate', 
     type: 'website',
   },
-
-  icons: {
-    icon: '/icon.ico',
-    shortcut: '/icon.ico',
-    apple: '/icon.ico',
-  },
-  
-  alternates: {
-    canonical: '/',
-  },
 };
 
-export default async function CertificatePage() {
-  const certificates = await getCertificatesData();
-  const allTranslation = await t('All');
+export default async function CertificatePage({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang);
+  
+  const certificates = await getCertificatesData(dict);
 
   return (
     <main className="min-h-screen py-12">
-      <div className="text-center mb-12">
-
-      </div>
-    <React.Suspense fallback={<h2 className="text-center">{t('Loading_Certificate')}</h2>}>
-      <CertificateLoader certificates={certificates} allTranslation={allTranslation} />
-    </React.Suspense>
+      <div className="text-center mb-12"></div>
+      <React.Suspense fallback={<h2 className="text-center">{dict.Loading_Certificate}</h2>}>
+        <CertificateLoader certificates={certificates} allTranslation={dict.All} />
+      </React.Suspense>
     </main>
   );
 }

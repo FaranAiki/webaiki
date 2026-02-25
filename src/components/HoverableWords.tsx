@@ -1,7 +1,7 @@
 import React from 'react';
 
 export type HoverableWordsProps = {
-  children: string;
+  children?: string; // Make children optional to handle undefined gracefully
   className?: string;
   prophover?: string;
 };
@@ -23,6 +23,12 @@ const processWords = (text: string, separatorRegex: RegExp, hoverClass: string) 
 
 export default function HoverableWords({ children, className, prophover }: HoverableWordsProps) {
   const finalClassName = className || '';
+  
+  // Return early if no children are provided to prevent crash
+  if (!children) {
+    return <p className={finalClassName}></p>;
+  }
+
   const finalPropHover = prophover || 'transition-all inline-block duration-200 ease-in-out hover:text-xl hover:font-semibold cursor-pointer';
 
   const separatorRegex = /[\"\'\[\]\(\)\s]+/;
@@ -31,7 +37,8 @@ export default function HoverableWords({ children, className, prophover }: Hover
   // Note: This does not support nested tags for simplicity
   const tagRegex = /(<b>.*?<\/b>|<i>.*?<\/i>)/g;
 
-  const segments = children.split(tagRegex).filter(Boolean);
+  // Ensure children is treated as a string before splitting
+  const segments = String(children).split(tagRegex).filter(Boolean);
 
   return (
     <p className={finalClassName}>

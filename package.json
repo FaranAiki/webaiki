@@ -24,6 +24,7 @@
     "react-dom": "^18",
     "react-draggable": "^4.5.0",
     "react-pdf": "^10.1.0",
+    "sharp": "^0.34.5",
     "type-check": "^0.4.0",
     "vercel": "^50.1.3"
   },

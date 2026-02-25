@@ -1,61 +1,36 @@
+import 'server-only'; // Ensures this only runs on the server
 import { cookies } from 'next/headers'; 
 
-import fs from 'fs';
-import path from 'path';
-
-type LanguageTranslations = {
-  [key: string]: string;
+// Map your locales to dynamic imports so Webpack caches them
+const dictionaries = {
+  en: () => import('../../public/locales/en.json').then((module) => module.default),
+  id: () => import('../../public/locales/id.json').then((module) => module.default),
+  zh: () => import('../../public/locales/zh.json').then((module) => module.default),
+  jp: () => import('../../public/locales/jp.json').then((module) => module.default),
+  ru: () => import('../../public/locales/ru.json').then((module) => module.default),
+  fr: () => import('../../public/locales/fr.json').then((module) => module.default),
+  ar: () => import('../../public/locales/ar.json').then((module) => module.default),
 };
-// Define the main type for all your locales
-type AllLocales = {
-  [lang: string]: LanguageTranslations;
+
+// Fetch the entire dictionary once based on the locale
+export const getDictionary = async (locale: string): Promise<any> => {
+  if (locale in dictionaries) {
+    return dictionaries[locale as keyof typeof dictionaries]();
+  }
+  // Fallback to 'id' if the locale isn't found
+  return dictionaries.id();
 };
 
-function getAllLocales(): AllLocales {
-  const localesDir = path.join(process.cwd(), 'public', 'locales');
-  
-  const filenames = fs.readdirSync(localesDir);
-
-  const allLocales : AllLocales = {};
-
-  filenames.forEach((filename) => {
-    if (path.extname(filename) === '.json') {
-      const lang = path.basename(filename, '.json');
-
-      const filePath = path.join(localesDir, filename);
-
-      const fileContents = fs.readFileSync(filePath, 'utf8');
-      const jsonContent = JSON.parse(fileContents);
-
-      allLocales[lang] = jsonContent;
-    }
-  });
-
-  return allLocales;
+// For pages like not-found.tsx that don't receive URL params
+export async function getDictionaryFromCookie() {
+  const cookieStore = await cookies();
+  const language = cookieStore.get('language')?.value || 'id';
+  return getDictionary(language);
 }
 
+// Keep this available if absolutely needed, though relying on URL params is better
 export async function currentLanguage(): Promise<string> {
   const cookieStore = await cookies();
-  const language = cookieStore.get('language') || {'name': 'language', 'value': 'id'};
-  return language.value;
+  const language = cookieStore.get('language')?.value || 'id';
+  return language;
 }
-
-export async function Translate(s: string): Promise<string> {
-  const cookieStore = await cookies();
-  const language = cookieStore.get('language') || {'name': 'language', 'value': 'id'};
-  if (!(s in locales[language.value])) 
-    return '';
-  return locales[language.value][s]; 
-}
-
-export async function from_to(from_m: string, to_m: string): Promise<string> {
-  const from_translated = await Translate(from_m);
-  const to_translated = await Translate(to_m);
-
-  return from_translated + " — " + to_translated;
-}
-
-export const t = Translate;
-
-export const locales = getAllLocales();
-
