@@ -1,7 +1,7 @@
 "use client";
 
 import Link from 'next/link';
-import { usePathname, useRouter, redirect } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { setCookies } from '@/app/actions';
 import { useState, useEffect } from 'react';
@@ -95,10 +95,10 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
         };
     }, [isMobileMenuOpen]);
 
-    // Close mobile menu on window resize (fixes desktop unresponsive issue after resizing)
+    // Close mobile menu on window resize
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth >= 768) { // md breakpoint
+            if (window.innerWidth >= 768) {
                 setMobileMenuOpen(false);
             }
         };
@@ -176,9 +176,25 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
         </div>
     );
 
+    // Normalize Pathname by removing language prefix for internal matching
+    let normalizedPathname = pathname;
+    if (pathname === `/${current_lang}`) {
+        normalizedPathname = '/';
+    } else if (pathname.startsWith(`/${current_lang}/`)) {
+        normalizedPathname = pathname.slice(current_lang.length + 1);
+    }
+
+    // Safely append the correct language prefix to avoid server redirects
+    const getLocalizedHref = (href: string) => {
+        if (href === '#' || href.startsWith('http')) return href;
+        if (href === '/') return `/${current_lang}`;
+        return `/${current_lang}${href}`;
+    };
+
     const findActiveLink = (links: NavLink[]): NavLink | undefined => {
         for (const link of links) {
-            if (link.href === pathname) return link;
+            // Match using normalized pathname
+            if (link.href === normalizedPathname) return link;
             if (link.subLinks) {
                 const found = findActiveLink(link.subLinks);
                 if (found) return found;
@@ -208,7 +224,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                     {/* Left section (Logo) */}
                     <div className="block md:hidden lg:block flex-1 flex items-center gap-4">
                         <Image
-                            onClick={() => redirect('/')}
+                            onClick={() => router.push(getLocalizedHref('/'))}
                             src='/icon.ico'
                             alt={"logo"}
                             width={32}
@@ -235,7 +251,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                 const hasSubLinks = link.subLinks && link.subLinks.length > 0;
 
                                 if (hasSubLinks) {
-                                    const isChildActive = link.subLinks?.some(sub => pathname === sub.href);
+                                    const isChildActive = link.subLinks?.some(sub => normalizedPathname === sub.href);
 
                                     return (
                                         <li key={link.name} className="relative group">
@@ -256,11 +272,11 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                             <div className="absolute top-full left-1/2 transform -translate-x-1/2 pt-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-in-out">
                                                 <ul className={`${dropdownBg} rounded-xl shadow-xl py-3 min-w-[200px] ring-1 ring-black/5`}>
                                                     {link.subLinks!.map((subLink) => {
-                                                        const isSubActive = pathname === subLink.href;
+                                                        const isSubActive = normalizedPathname === subLink.href;
                                                         return (
                                                             <li key={subLink.href}>
                                                                 <Link
-                                                                    href={subLink.href}
+                                                                    href={getLocalizedHref(subLink.href)}
                                                                     className={`flex items-center px-5 py-3 text-[14px] hover:${isDark ? 'bg-gray-700/50' : 'bg-gray-50'} transition-all ${isSubActive
                                                                             ? `${activeText} font-bold`
                                                                             : `${textColor} hover:text-cyan-600 font-medium`
@@ -279,11 +295,11 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                 }
 
                                 // Render Standard Link
-                                const isActive = pathname === link.href;
+                                const isActive = normalizedPathname === link.href;
                                 return (
                                     <li key={link.href}>
                                         <Link
-                                            href={link.href}
+                                            href={getLocalizedHref(link.href)}
                                             className={`flex items-center transition-all duration-200 
                                                 text-[15px] tracking-wide
                                                 ${isActive
@@ -354,11 +370,11 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                         </span>
                                         <ul className="flex flex-col space-y-4 pl-4 border-l-2 border-gray-200/50 dark:border-gray-700/50">
                                             {link.subLinks.map(subLink => {
-                                                const isActive = pathname === subLink.href;
+                                                const isActive = normalizedPathname === subLink.href;
                                                 return (
                                                     <li key={subLink.href}>
                                                         <Link
-                                                            href={subLink.href}
+                                                            href={getLocalizedHref(subLink.href)}
                                                             onClick={() => setMobileMenuOpen(false)}
                                                             className={`flex items-center text-[16px] transition-all duration-300 ${isActive
                                                                     ? `${activeText} font-bold`
@@ -376,11 +392,11 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                 );
                             }
 
-                            const isActive = pathname === link.href;
+                            const isActive = normalizedPathname === link.href;
                             return (
                                 <li key={link.href}>
                                     <Link
-                                        href={link.href}
+                                        href={getLocalizedHref(link.href)}
                                         onClick={() => setMobileMenuOpen(false)}
                                         className={`flex items-center text-lg transition-all duration-300 ${isActive
                                                 ? `${activeText} font-bold`

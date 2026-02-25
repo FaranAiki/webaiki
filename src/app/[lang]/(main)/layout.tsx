@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 // Replace React's per-request cache with Next.js's global cross-request cache
 import { unstable_cache } from 'next/cache';
-import dynamic from 'next/dynamic';
 
 // Import Providers
 import { Providers } from "@/components/Providers";
@@ -38,9 +37,7 @@ import {
   Code
 } from 'lucide-react';
 
-// Dynamically import heavy client components so they don't block the initial load
-const AskMePopup = dynamic(() => import("@/components/AskMePopup"), { ssr: false });
-const Background = dynamic(() => import("@/components/Background"), { ssr: false });
+import ClientOnlyWidgets from "@/components/ClientOnlyWidgets";
 
 // Cache the background fetching globally across ALL requests!
 export const getBackgrounds = unstable_cache(
@@ -127,18 +124,6 @@ export default async function RootLayout({
     },
   ];
 
-  // AskMePopup Data
-  const typeOfWaitingAnswer = [
-    dict.gemini_wait1,
-    dict.gemini_wait2,
-    dict.gemini_wait3,
-    dict.gemini_wait4,
-    dict.gemini_wait5,
-    dict.gemini_wait6,
-    dict.gemini_wait7,
-    dict.gemini_wait8
-  ];
-
   return (
     <html lang={lang} suppressHydrationWarning={true} nonce={nonce}>
       <CookieInitializer />
@@ -162,17 +147,7 @@ export default async function RootLayout({
             select_lang={dict.Select_Language}
           />
           {children}
-          <AskMePopup 
-            typeOfWaitingAnswer={typeOfWaitingAnswer} 
-            ask_title={dict.Ask_About} 
-            question_title={dict.Question_Title} 
-            question_answer={dict.Question_Answer} 
-            submit={dict.Submit} 
-            waiting={dict.Waiting} 
-            provide_question={dict.Provide_Question}
-          />
-          {/* Use the dynamically fetched backgrounds */}
-          <Background carousel={backgrounds}/>
+          <ClientOnlyWidgets dict={dict} backgrounds={backgrounds} />
         </Providers>
         <Script
           strategy="lazyOnload"
