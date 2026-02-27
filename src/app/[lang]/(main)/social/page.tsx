@@ -65,7 +65,7 @@ export default function SocialDisplay({ pageTitle }: SocialDisplayProps) {
       name: "Link Tree",
       username: "Faran Aiki",
       url: "https://linktr.ee/FaranAiki", // Fixed: Added protocol
-      icon: <Image alt="LinkTree icon" width="48" height="48" src="https://upload.wikimedia.org/wikipedia/en/thumb/b/bf/Linktree_logo.svg/768px-Linktree_logo.svg.png?20230519151448" priority />,
+      icon: <Image alt="LinkTree icon" width="48" height="48" src="https://upload.wikimedia.org/wikipedia/en/thumb/b/bf/Linktree_logo.svg/768px-Linktree_logo.svg.png?20230519151448" priority unoptimized />,
       color: "hover:border-green-200"
     },
     {
@@ -79,7 +79,7 @@ export default function SocialDisplay({ pageTitle }: SocialDisplayProps) {
       name: "TikTok",
       username: "@faranaiki07",
       url: "https://www.tiktok.com/@faranaiki07",
-      icon: <Image alt="Tiktok icon" width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Tiktok_icon.svg" priority />,
+      icon: <Image alt="Tiktok icon" width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Tiktok_icon.svg" unoptimized />,
       color: "hover:border-black"
     },
     {

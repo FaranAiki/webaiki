@@ -26,7 +26,7 @@ type ProjectPageProps = {
 
 export default async function ProjectPage({ params, searchParams }: ProjectPageProps) {
   const { lang } = await params;
-  const dict = await getDictionary(lang);
+  const dict = getDictionary(lang);
   const resolvedParams = await searchParams;
 
   const serializedParams = {

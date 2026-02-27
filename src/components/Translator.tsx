@@ -1,24 +1,32 @@
 import 'server-only'; // Ensures this only runs on the server
 import { cookies } from 'next/headers'; 
 
-// Map your locales to dynamic imports so Webpack caches them
+// Statically importing locales so they are available synchronously (like comptime/build-time)
+import en from '../../public/locales/en.json';
+import id from '../../public/locales/id.json';
+import zh from '../../public/locales/zh.json';
+import jp from '../../public/locales/jp.json';
+import ru from '../../public/locales/ru.json';
+import fr from '../../public/locales/fr.json';
+import ar from '../../public/locales/ar.json';
+
 const dictionaries = {
-  en: () => import('../../public/locales/en.json').then((module) => module.default),
-  id: () => import('../../public/locales/id.json').then((module) => module.default),
-  zh: () => import('../../public/locales/zh.json').then((module) => module.default),
-  jp: () => import('../../public/locales/jp.json').then((module) => module.default),
-  ru: () => import('../../public/locales/ru.json').then((module) => module.default),
-  fr: () => import('../../public/locales/fr.json').then((module) => module.default),
-  ar: () => import('../../public/locales/ar.json').then((module) => module.default),
+  en,
+  id,
+  zh,
+  jp,
+  ru,
+  fr,
+  ar,
 };
 
-// Fetch the entire dictionary once based on the locale
-export const getDictionary = async (locale: string): Promise<Record<string, string>> => {
+// Now a synchronous function! No more await needed.
+export const getDictionary = (locale: string): Record<string, string> => {
   if (locale in dictionaries) {
-    return dictionaries[locale as keyof typeof dictionaries]();
+    return dictionaries[locale as keyof typeof dictionaries];
   }
   // Fallback to 'id' if the locale isn't found
-  return dictionaries.id();
+  return dictionaries.id;
 };
 
 // For pages like not-found.tsx that don't receive URL params

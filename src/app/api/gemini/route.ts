@@ -14,8 +14,8 @@ const faran_context = `${faran_cv} ${faran_relation} ${faran_hobby}`;
 const faran_doxa = 'Zahid (or called Zashit) is an edgy fool known for his smile emoji and an edgy person managing an edgy message group, but his parents is kind of broken-home so he behaves in a childish way. He challenges Faran into an assembly duel and tried to hack his website, but he actually is a loser and does not know what XSS or assembly is. May God help him.';
 
 export async function POST(req: NextRequest) {
-  // Using dynamic imports for API route ensures filesystem safety in Vercel.
-  const dict = await getDictionary("en");
+  // Using imported dictionaries statically without async.
+  const dict = getDictionary("en");
   const json_code = JSON.stringify(dict);
 
   const GEMINI_API_KEY = process.env.GEMINI_API_KEY;

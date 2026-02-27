@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 export default async function WorkExperiencesPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang);
+  const dict = getDictionary(lang);
 
   const workExperiences = [
     {

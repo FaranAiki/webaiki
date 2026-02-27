@@ -41,7 +41,7 @@ export default async function HomePage({
   params: Promise<{ lang: string }> 
 }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang);
+  const dict = getDictionary(lang);
 
   return (
     <main className={`${inter.className} container mx-auto px-4 md:px-8 pt-24 pb-16`}>

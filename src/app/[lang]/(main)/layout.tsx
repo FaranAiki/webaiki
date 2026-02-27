@@ -70,9 +70,9 @@ export default async function RootLayout({
   // Nonce shit 
   const nonce = (await headers()).get('x-nonce') || undefined;
 
-  // Use the url parameter directly and load dictionary
+  // Use the url parameter directly and load dictionary synchronously
   const { lang } = await params;
-  const dict = await getDictionary(lang);
+  const dict = getDictionary(lang);
   
   // Await our globally cached backgrounds list
   const backgrounds = await getBackgrounds();

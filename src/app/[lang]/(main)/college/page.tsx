@@ -9,9 +9,9 @@ import { getDictionary } from '@/components/Translator';
 import fs from 'fs';
 import path from 'path';
 
-// Wrap in cache and pass `lang` instead of `dict` object
-export const getCollectionsData = cache(async (lang: string) => {
-  const dict = await getDictionary(lang);
+// Wrap in cache and make purely synchronous!
+export const getCollectionsData = cache((lang: string) => {
+  const dict = getDictionary(lang);
   const certificatesDir = path.join(process.cwd(), 'public', 'documents', 'college');
   
   // Return empty if directory doesn't exist to prevent crashes
@@ -65,9 +65,9 @@ export const metadata: Metadata = {
 
 export default async function CollegePage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang);
-  // Pass lang to our cached function
-  const college_data = await getCollectionsData(lang);
+  const dict = getDictionary(lang);
+  // Synchronous resolution now
+  const college_data = getCollectionsData(lang);
 
   return (
     <main className="container mx-auto pt-8 pb-16 pt-24">

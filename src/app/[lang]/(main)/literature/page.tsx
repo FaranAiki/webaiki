@@ -15,9 +15,9 @@ export const metadata: Metadata = {
   description: "Faran Aiki's short stories or poems",
 };
 
-// Wrap in cache and pass `lang`
-export const getCollectionsData = cache(async (lang: string) => {
-  const dict = await getDictionary(lang);
+// Now completely synchronous utilizing purely fs.*Sync
+export const getCollectionsData = cache((lang: string) => {
+  const dict = getDictionary(lang);
   const literatureDir = path.join(process.cwd(), 'public', 'documents', 'literature');
   
   if (!fs.existsSync(literatureDir)) return {};
@@ -61,7 +61,7 @@ export const getCollectionsData = cache(async (lang: string) => {
 
 export default async function LiteraturePage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const literature_data = await getCollectionsData(lang);
+  const literature_data = getCollectionsData(lang);
 
   return (
     <main className="container mx-auto px-6 pb-16 pt-24">

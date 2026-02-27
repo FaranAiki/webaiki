@@ -14,7 +14,7 @@ import path from 'path';
 
 // Wrap in cache and pass `lang`
 export const getCertificatesData = cache(async (lang: string) => {
-  const dict = await getDictionary(lang);
+  const dict = getDictionary(lang);
   const certificatesDir = path.join(process.cwd(), 'public', 'documents', 'certificate');
   
   if (!existsSync(certificatesDir)) return {};
@@ -69,9 +69,9 @@ export const metadata: Metadata = {
 
 export default async function CertificatePage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang);
+  const dict = getDictionary(lang);
   
-  // Call cached function
+  // getCertificatesData relies on asynchronous file reading logic and remains async, but dictionaries load synchronously now.
   const certificates = await getCertificatesData(lang);
 
   return (
