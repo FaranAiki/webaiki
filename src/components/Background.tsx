@@ -102,7 +102,10 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
         canvas.style.height = `${rect.height}px`;
 
         particles = [];
-        for (let i = 0; i < PARTICLE_COUNT; i++) {
+        // Reduce particle count on smaller screens for better performance (TBT optimization)
+        const particleCount = rect.width < 768 ? 30 : PARTICLE_COUNT;
+        
+        for (let i = 0; i < particleCount; i++) {
           particles.push(new Particle(rect.width, rect.height));
         }
     };
@@ -197,6 +200,8 @@ export type BackgroundProps = {
 export default function Background({ carousel }: BackgroundProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [mounted, setMounted] = useState(false);
+  // Keep track of loaded images to stagger network requests (LCP/Payload optimization)
+  const [loadedIndices, setLoadedIndices] = useState<Set<number>>(new Set([0]));
   const { resolvedTheme } = useTheme();
 
   useEffect(() => {
@@ -207,7 +212,19 @@ export default function Background({ carousel }: BackgroundProps) {
     if (!carousel || carousel.length === 0) return;
 
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % carousel.length);
+      setCurrentIndex((prevIndex) => {
+        const nextIndex = (prevIndex + 1) % carousel.length;
+        
+        // Add the new index to our loaded set so it gets rendered and fetched
+        setLoadedIndices((prev) => {
+          if (prev.has(nextIndex)) return prev;
+          const newSet = new Set(prev);
+          newSet.add(nextIndex);
+          return newSet;
+        });
+
+        return nextIndex;
+      });
     }, SLIDE_DURATION);
 
     return () => clearInterval(interval);
@@ -225,15 +242,21 @@ export default function Background({ carousel }: BackgroundProps) {
             <div
                 key={index}
                 className={`blur-md absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
-                    index === currentIndex ? 'opacity-60' : 'opacity-0'
+                    index === currentIndex ? 'opacity-60 z-0' : 'opacity-0 -z-10'
                 }`}
             >
-                <Image
-                    fill={true}
-                    src={`/images/background/${src}`}
-                    alt={`Background image ${index + 1}`}
-                    className="w-full h-full object-cover"
-                />
+                {/* Only render the Image if it's in our loadedIndices set */}
+                {loadedIndices.has(index) && (
+                  <Image
+                      fill={true}
+                      src={`/images/background/${src}`}
+                      alt={`Background image ${index + 1}`}
+                      className="w-full h-full object-cover"
+                      sizes="100vw"
+                      quality={75}
+                      priority={index === 0}
+                  />
+                )}
             </div>
         ))}
         

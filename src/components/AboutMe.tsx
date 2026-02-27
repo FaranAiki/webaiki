@@ -117,6 +117,8 @@ export default function AboutMe({
                   hover:scale-[1.02] hover:shadow-cyan-500/40
                   ${isFading ? 'opacity-80 scale-95 blur-sm' : 'opacity-100 scale-100 blur-0'}
                 `}
+                sizes="(max-width: 768px) 256px, 320px"
+                quality={85}
                 priority
               />
               )}
@@ -150,8 +152,9 @@ export default function AboutMe({
                 src={`/images/move_forward.png`}
                 alt="Move Forward Philosophy"
                 fill
+                sizes="(max-width: 768px) 224px, 288px"
+                quality={85}
                 className="object-contain animate-float transition-all duration-500 ease-in-out opacity-90 hover:opacity-100 hover:-rotate-3 drop-shadow-xl hover:drop-shadow-[0_0_20px_rgba(6,182,212,0.6)]"
-                priority
               />
             </div>
           </div>
@@ -198,8 +201,9 @@ export default function AboutMe({
                 src={`/images/tree.png`}
                 alt="Guiding Principles Tree"
                 fill
+                sizes="(max-width: 768px) 224px, 288px"
+                quality={85}
                 className="object-contain transition-all duration-500 ease-in-out opacity-90 hover:opacity-100 hover:scale-105 hover:rotate-2 drop-shadow-xl hover:drop-shadow-[0_0_20px_rgba(16,185,129,0.5)]"
-                priority
               />
             </div>
           </div>
@@ -246,8 +250,9 @@ export default function AboutMe({
                 src={`/images/vission_mission.png`}
                 alt="Vision and Mission"
                 fill
+                sizes="(max-width: 768px) 224px, 288px"
+                quality={85}
                 className="object-contain animate-float transition-all duration-500 ease-in-out opacity-90 hover:opacity-100 hover:scale-110 hover:brightness-110 drop-shadow-xl hover:drop-shadow-[0_0_20px_rgba(168,85,247,0.5)]"
-                priority
               />
             </div>
           </div>
