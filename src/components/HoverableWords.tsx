@@ -29,7 +29,7 @@ export default function HoverableWords({ children, className, prophover }: Hover
     return <p className={finalClassName}></p>;
   }
 
-  const finalPropHover = prophover || 'transition-all inline-block duration-200 ease-in-out hover:text-xl hover:font-semibold cursor-pointer';
+  const finalPropHover = prophover || 'transition-transform inline-block duration-200 ease-in-out hover:text-xl hover:font-semibold cursor-pointer';
 
   const separatorRegex = /[\"\'\[\]\(\)\s]+/;
   

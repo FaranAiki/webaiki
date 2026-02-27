@@ -73,7 +73,7 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
                             <div key={experience.year} className="mb-12 text-center md:text-justify cursor-pointer">
                                 {/* Year */}
                                 <FadeInSection>
-                                    <h2 className={`transition-all hover:scale-105 text-2xl font-bold ${mainText} mb-6 top-0 py-2 xs:text-center`}>
+                                    <h2 className={`transition-[transform] hover:scale-105 text-2xl font-bold ${mainText} mb-6 top-0 py-2 xs:text-center`}>
                                         {experience.year}
                                     </h2>
                                 </FadeInSection>

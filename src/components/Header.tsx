@@ -165,7 +165,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                         <li key={lang.code}>
                             <button
                                 onClick={() => handleLanguageChange(lang.code)}
-                                className={`w-full text-left px-5 py-2.5 text-sm hover:${isDark? 'bg-gray-700' : 'bg-gray-100'} hover:${isDark? 'text-cyan-400' : 'text-cyan-600'} transition-all duration-200 ${isCurrent ? `${activeText} font-bold bg-gray-50/5` : textColor}`}
+                                className={`w-full text-left px-5 py-2.5 text-sm hover:${isDark? 'bg-gray-700' : 'bg-gray-100'} hover:${isDark? 'text-cyan-400' : 'text-cyan-600'} transition-[colors,transform] duration-200 ${isCurrent ? `${activeText} font-bold bg-gray-50/5` : textColor}`}
                             >
                                 {lang.name}
                             </button>
@@ -229,7 +229,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                             alt={"logo"}
                             width={32}
                             height={32}
-                            className={`transition-all shadow-md border ${isDark ? "border-cyan-800" : "border-gray-200"} opacity-100 hover:opacity-80 scale-100 hover:scale-110 cursor-pointer rounded-full`}
+                            className={`transition-[colors,transform] shadow-md border ${isDark ? "border-cyan-800" : "border-gray-200"} opacity-100 hover:opacity-80 scale-100 hover:scale-110 cursor-pointer rounded-full`}
                             priority
                         />
                     </div>
@@ -237,7 +237,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                     {/* --- Mobile Title (Center) --- */}
                     <div className={`md:hidden ${inter.className}`} >
                         {activeLink && (
-                            <h1 className={`flex items-center justify-center transition-all duration-200 text-lg font-bold hover:text-cyan-600 ${isDark ? 'text-white' : 'text-slate-800'} whitespace-nowrap cursor-pointer opacity-95`}>
+                            <h1 className={`flex items-center justify-center transition-[colors,transform] duration-200 text-lg font-bold hover:text-cyan-600 ${isDark ? 'text-white' : 'text-slate-800'} whitespace-nowrap cursor-pointer opacity-95`}>
                                 {activeLink.icon && <span className="mr-2 flex items-center scale-90">{activeLink.icon}</span>}
                                 {activeLink.name}
                             </h1>

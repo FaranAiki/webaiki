@@ -59,7 +59,7 @@ export default function InteractiveCollections( { data, force_click }: Interacti
                     } else {
                         setActiveHeadingOne(headingOne);
                     }}}
-                    className={`w-full flex justify-between items-center text-left p-4 rounded-lg transition-all duration-300 border-transparent ${
+                    className={`w-full flex justify-between items-center text-left p-4 rounded-lg transition-[colors,transform] duration-300 border-transparent ${
                     activeHeadingOne === headingOne
                     ? activeButtonBg 
                     : `${buttonBg} ${buttonText}`

@@ -58,7 +58,7 @@ export default function MusicDisplay({ youtubeItems = [], error }: MusicDisplayP
     <div className={`container mx-auto px-8 pt-24 pb-16 ${containerText}`}>
       <div className="flex flex-col md:flex-row gap-4 md:gap-4 max-w-4xl mx-auto">    
         <div className="text-center md:text-justify w-full">
-          <Link className={`transition-all hover:text-green-500 duration-300 md:text-center text-5xl pt-4 font-bold ${containerText}`} href="https://open.spotify.com/artist/1PPAtm7YfRKghHpCqR3QZZ">
+          <Link className={`transition-[transform] hover:text-green-500 duration-300 md:text-center text-5xl pt-4 font-bold ${containerText}`} href="https://open.spotify.com/artist/1PPAtm7YfRKghHpCqR3QZZ">
             Spotify
           </Link>
           <br /><br />
@@ -78,7 +78,7 @@ export default function MusicDisplay({ youtubeItems = [], error }: MusicDisplayP
           <br /><br />
           
           <FadeInSection>
-            <Link className={`transition-all hover:text-orange-400 duration-300 md:text-center text-5xl pt-4 font-bold ${containerText}`} href="https://soundcloud.com/muhammadfaranaiki">
+            <Link className={`transition-[colors,transform] hover:text-orange-400 duration-300 md:text-center text-5xl pt-4 font-bold ${containerText}`} href="https://soundcloud.com/muhammadfaranaiki">
               SoundCloud
             </Link>
             <br /><br />
@@ -96,7 +96,7 @@ export default function MusicDisplay({ youtubeItems = [], error }: MusicDisplayP
           </FadeInSection>
           
           <FadeInSection>
-            <Link className={`transition-all hover:text-red-500 duration-300 md:text-center text-5xl pt-4 font-bold ${containerText}`} href="https://www.youtube.com/playlist?list=PLh4mbEw6q2QncQrgz5uaLYAcTA0MolCTe">
+            <Link className={`transition-[colors,transform] hover:text-red-500 duration-300 md:text-center text-5xl pt-4 font-bold ${containerText}`} href="https://www.youtube.com/playlist?list=PLh4mbEw6q2QncQrgz5uaLYAcTA0MolCTe">
               YouTube
             </Link>
             <br /><br />
@@ -107,7 +107,7 @@ export default function MusicDisplay({ youtubeItems = [], error }: MusicDisplayP
               <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 animate-fade-in">
                 {items.map((item) => (
                   <PopRotateSection key={item.id}> 
-                    <li className={`${cardBg} rounded-lg overflow-visible ${cardShadow} transform hover:scale-105 transition-all ${linkHover} duration-300`}>
+                    <li className={`${cardBg} rounded-lg overflow-visible ${cardShadow} transform hover:scale-105 transition-[transorm,colors] ${linkHover} duration-300`}>
                       <a href={`https://www.youtube.com/watch?v=${item.snippet.resourceId.videoId}`} target="_blank" rel="noopener noreferrer">
                         <Image 
                           width={item.snippet.thumbnails.medium.width} 

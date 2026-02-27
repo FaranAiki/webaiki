@@ -112,7 +112,7 @@ export default function AboutMe({
                 fill
                 className={`
                   object-cover rounded-2xl
-                  transition-all duration-700 ease-out
+                  transition-[colors,transform] duration-700 ease-out
                   shadow-2xl border ${borderClass}
                   hover:scale-[1.02] hover:shadow-cyan-500/40
                   ${isFading ? 'opacity-80 scale-95 blur-sm' : 'opacity-100 scale-100 blur-0'}

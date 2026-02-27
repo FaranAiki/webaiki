@@ -238,7 +238,7 @@ export default function Background({ carousel }: BackgroundProps) {
         ))}
         
         {/* Adjusted Gradient to improve text readability on all backgrounds with SLOW transition for epilepsy prevention */}
-        <div className={`absolute inset-0 transition-all duration-[1500ms] ease-in-out bg-gradient-to-b ${
+        <div className={`absolute inset-0 transition-[colors,opacity] duration-[1500ms] ease-in-out bg-gradient-to-b ${
             isDark 
             ? 'from-black/70 via-black/40 to-black/80' 
             : 'from-white/70 via-white/50 to-white/90' 

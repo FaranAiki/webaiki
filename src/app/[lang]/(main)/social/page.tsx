@@ -150,7 +150,7 @@ export default function SocialDisplay({ pageTitle }: SocialDisplayProps) {
   return (
     <div className={`container mx-auto max-w-5xl pt-12 ${containerText}`}>
       <FadeInSection>
-        <h1 className="text-4xl font-bold text-center mb-10 hover:scale-105 opacity-80 hover:opacity-90 transition-all">
+        <h1 className="text-4xl font-bold text-center mb-10 hover:scale-105 opacity-80 hover:opacity-90 transition-transform">
             {pageTitle}
         </h1>
       </FadeInSection>
@@ -164,7 +164,7 @@ export default function SocialDisplay({ pageTitle }: SocialDisplayProps) {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`group ${cardBg} backdrop-blur-sm border rounded-lg p-6 flex flex-col items-center justify-center text-center transition-all duration-300 transform hover:-translate-y-2 ${link.color} h-full`}
+                className={`group ${cardBg} backdrop-blur-sm border rounded-lg p-6 flex flex-col items-center justify-center text-center transition-[transform] duration-300 transform hover:-translate-y-2 ${link.color} h-full`}
             >
                 <div className={`text-sm ${usernameText} mb-4 transition-colors`}>
                 {link.username}

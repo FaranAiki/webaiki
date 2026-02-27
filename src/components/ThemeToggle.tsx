@@ -46,7 +46,7 @@ export default function ThemeToggle() {
       {/* Visible up to lg breakpoint (so that it is visible on md) */}
       <button
         onClick={cycleTheme}
-        className={`hidden md:block lg:hidden p-2 rounded-full transition-all duration-300 border ${
+        className={`hidden md:block lg:hidden p-2 rounded-full transition-[transform,colors] duration-300 border ${
           isDark 
             ? "bg-gray-800 border-gray-700 text-yellow-400 hover:bg-gray-700" 
             : "bg-white border-gray-300 text-orange-500 hover:bg-gray-100 shadow-sm"
@@ -61,7 +61,7 @@ export default function ThemeToggle() {
         <button
           type="button"
           onClick={() => handleThemeChange("system")}
-          className={`p-1.5 rounded-full transition-all duration-200 ${
+          className={`p-1.5 rounded-full transition-[colors,transform] duration-200 ${
             theme === "system"
               ? "bg-gray-100 text-blue-500 shadow-sm ring-1 ring-gray-200"
               : "text-gray-400 hover:text-gray-600"
@@ -73,7 +73,7 @@ export default function ThemeToggle() {
         <button
           type="button"
           onClick={() => handleThemeChange("light")}
-          className={`p-1.5 rounded-full transition-all duration-200 ${
+          className={`p-1.5 rounded-full transition-[colors,transform] duration-200 ${
             theme === "light"
               ? "bg-gray-100 text-orange-500 shadow-sm ring-1 ring-gray-200"
               : "text-gray-400 hover:text-gray-600"
@@ -85,7 +85,7 @@ export default function ThemeToggle() {
         <button
           type="button"
           onClick={() => handleThemeChange("dark")}
-          className={`p-1.5 rounded-full transition-all duration-200 ${
+          className={`p-1.5 rounded-full transition-[colors,transform] duration-200 ${
             theme === "dark"
               ? "bg-gray-700 text-yellow-400 shadow-sm ring-1 ring-gray-600"
               : "text-gray-400 hover:text-gray-600"
