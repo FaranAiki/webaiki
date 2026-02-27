@@ -29,16 +29,16 @@ export const metadata: Metadata = {
 const YOUTUBE_PLAYLIST_ITEMS_API = "https://www.googleapis.com/youtube/v3/playlistItems";
 
 export default async function MusicPage() {
-  // CRITICAL FIX: Initialize as empty array
   let youtubeItems = [];
   let errorString = undefined;
 
   try {
-    const res = await fetch(`${YOUTUBE_PLAYLIST_ITEMS_API}?part=snippet&playlistId=PLh4mbEw6q2QncQrgz5uaLYAcTA0MolCTe&key=${process.env.YOUTUBE_API_KEY}&maxResults=50`, { cache: 'no-store' });
+    // GTMetrix Optimization: Switched from `cache: 'no-store'` to ISR `revalidate: 3600`.
+    // This allows the server to cache the API response for 1 hour, cutting down TTFB immensely.
+    const res = await fetch(`${YOUTUBE_PLAYLIST_ITEMS_API}?part=snippet&playlistId=PLh4mbEw6q2QncQrgz5uaLYAcTA0MolCTe&key=${process.env.YOUTUBE_API_KEY}&maxResults=50`, { next: { revalidate: 3600 } });
     
     if (res.ok) {
         const youtubeData = await res.json();
-        // Safe access with fallback
         youtubeItems = youtubeData.items || [];
     } else {
         errorString = "Cannot load playlist (API Error or Account status).";
@@ -47,7 +47,7 @@ export default async function MusicPage() {
   } catch (error) {
     console.error("Failed to fetch YouTube data:", error);
     errorString = "Cannot load playlist (Network Error).";
-    youtubeItems = []; // Ensure it remains an array on error
+    youtubeItems = []; 
   }
 
   return (

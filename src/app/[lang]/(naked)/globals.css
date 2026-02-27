@@ -1,4 +1,10 @@
 @import "tailwindcss";
+
+/* Configure Tailwind v4 to use class-based dark mode (for next-themes) */
+@theme {
+  --variant-dark: (&:where(.dark, .dark *));
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -16,7 +22,6 @@
 }
 
 /* Dark Mode Variables (Applied when 'dark' class is present) */
-/* I don't think this is used because I use typescript */
 .dark {
   --background: #0a0a0a;
   --foreground: #ededed;

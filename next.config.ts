@@ -74,7 +74,7 @@ const nextConfig: NextConfig = {
 
   images: {
     // Configure allowed image sources for next/image
-    qualities: [75, 80, 90, 100],
+    qualities: [75, 80, 85, 90, 100],
     remotePatterns: [
       { protocol: 'https', hostname: 'static.wikia.nocookie.net' },
       { protocol: 'https', hostname: 'i.ytimg.com', pathname: '/vi/**' },
