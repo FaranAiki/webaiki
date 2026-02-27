@@ -229,7 +229,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                             alt={"logo"}
                             width={32}
                             height={32}
-                            className={`transition-[colors,transform] shadow-md border ${isDark ? "border-cyan-800" : "border-gray-200"} opacity-100 hover:opacity-80 scale-100 hover:scale-110 cursor-pointer rounded-full`}
+                            className={`transition-[colors,transform,opacity] shadow-md border ${isDark ? "border-cyan-800" : "border-gray-200"} opacity-100 hover:opacity-80 scale-100 hover:scale-110 cursor-pointer rounded-full`}
                             priority
                         />
                     </div>
@@ -256,7 +256,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                     return (
                                         <li key={link.name} className="relative group">
                                             <button
-                                                className={`flex items-center transition-all duration-200 
+                                                className={`flex items-center transition-[colors,transform] duration-200 
                                                     text-[15px] tracking-wide
                                                     ${isChildActive
                                                         ? `${activeText} font-bold`
@@ -269,7 +269,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                             </button>
 
                                             {/* Dropdown Menu */}
-                                            <div className="absolute top-full left-1/2 transform -translate-x-1/2 pt-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-in-out">
+                                            <div className="absolute top-full left-1/2 transform -translate-x-1/2 pt-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-[colors,transform,opacity] duration-200 ease-in-out">
                                                 <ul className={`${dropdownBg} rounded-xl shadow-xl py-3 min-w-[200px] ring-1 ring-black/5`}>
                                                     {link.subLinks!.map((subLink) => {
                                                         const isSubActive = normalizedPathname === subLink.href;
@@ -277,7 +277,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                                             <li key={subLink.href}>
                                                                 <Link
                                                                     href={getLocalizedHref(subLink.href)}
-                                                                    className={`flex items-center px-5 py-3 text-[14px] hover:${isDark ? 'bg-gray-700/50' : 'bg-gray-50'} transition-all ${isSubActive
+                                                                    className={`flex items-center px-5 py-3 text-[14px] hover:${isDark ? 'bg-gray-700/50' : 'bg-gray-50'} transition-[colors,transform] ${isSubActive
                                                                             ? `${activeText} font-bold`
                                                                             : `${textColor} hover:text-cyan-600 font-medium`
                                                                         }`}
@@ -300,7 +300,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                     <li key={link.href}>
                                         <Link
                                             href={getLocalizedHref(link.href)}
-                                            className={`flex items-center transition-all duration-200 
+                                            className={`flex items-center transition-colors duration-200 
                                                 text-[15px] tracking-wide
                                                 ${isActive
                                                     ? `${activeText} font-bold`
@@ -376,7 +376,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                                         <Link
                                                             href={getLocalizedHref(subLink.href)}
                                                             onClick={() => setMobileMenuOpen(false)}
-                                                            className={`flex items-center text-[16px] transition-all duration-300 ${isActive
+                                                            className={`flex items-center text-[16px] transition-[colors,transform] duration-300 ${isActive
                                                                     ? `${activeText} font-bold`
                                                                     : `${textColor} font-medium hover:text-cyan-600 hover:translate-x-1`
                                                                 }`}
@@ -398,7 +398,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                     <Link
                                         href={getLocalizedHref(link.href)}
                                         onClick={() => setMobileMenuOpen(false)}
-                                        className={`flex items-center text-lg transition-all duration-300 ${isActive
+                                        className={`flex items-center text-lg transition-[colors,transform] duration-300 ${isActive
                                                 ? `${activeText} font-bold`
                                                 : `${textColor} font-semibold hover:text-cyan-600`
                                             }`}

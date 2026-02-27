@@ -138,7 +138,7 @@ export default function AboutMe({
             </h2>
             <HoverableWords 
               className={`text-lg md:text-xl leading-relaxed ${textClass} text-justify font-medium`} 
-              prophover={`transition-all inline-block duration-200 ease-in-out hover:text-cyan-600 ${isDark ? 'dark:hover:text-cyan-300' : ''} hover:scale-105 cursor-pointer`}
+              prophover={`transition-[colors,transform] inline-block duration-200 ease-in-out hover:text-cyan-600 ${isDark ? 'dark:hover:text-cyan-300' : ''} hover:scale-105 cursor-pointer`}
             >
               {about_philosophy}
             </HoverableWords>

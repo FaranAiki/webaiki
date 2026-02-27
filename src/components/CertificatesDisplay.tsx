@@ -87,14 +87,14 @@ export default function CertificatesDisplay({ certificates, allTranslation }: Ce
             <FadeInSection delay={50}>
                 <button
                 onClick={() => handleCategoryClick(category)}
-                className={`w-full text-left text-2xl font-bold ${titleColor} hover:text-cyan-500 hover:scale-102 transition-all`}
+                className={`w-full text-left text-2xl font-bold ${titleColor} hover:text-cyan-500 hover:scale-102 transition-[transform,colors]`}
                 >
                 {category}
                 </button>
             </FadeInSection>
 
             <div
-            className={`transition-all duration-250 animate-fade-in ease-in-out overflow-hidden ${
+            className={`transition-[transform] duration-250 animate-fade-in ease-in-out overflow-hidden ${
                 isOpen ? 'max-h-[10000px] mt-4' : 'max-h-0'
             }`}
             >
@@ -105,7 +105,7 @@ export default function CertificatesDisplay({ certificates, allTranslation }: Ce
                     onClick={() => handleYearClick(category, 'All')}
                     className={`px-3 py-1 text-sm rounded-full ${
                         activeYear === 'All'
-                        ? 'bg-cyan-500 text-white transition-all hover:scale-105'
+                        ? 'bg-cyan-500 text-white transition-[colors,transform] hover:scale-105'
                         : `${buttonInactiveBg} ${buttonInactiveText}`
                     }`}
                     >
@@ -118,7 +118,7 @@ export default function CertificatesDisplay({ certificates, allTranslation }: Ce
                         className={`px-3 py-1 text-sm rounded-full ${
                         activeYear === year
                             ? 'bg-cyan-500 text-white'
-                            : `${buttonInactiveBg} ${buttonInactiveText} transition-all hover:scale-105`
+                            : `${buttonInactiveBg} ${buttonInactiveText} transition-[transform,colors] hover:scale-105`
                         }`}
                     >
                         {year}
@@ -131,7 +131,7 @@ export default function CertificatesDisplay({ certificates, allTranslation }: Ce
                 {Object.entries(filteredFiles).map(([fileName, filePath]) => (
                 <PopRotateSection delay={50} key={fileName} className="h-full">
                     <div
-                        className={`${cardBg} rounded-lg overflow-visible shadow-lg transition-all hover:scale-105 hover:opacity-100 opacity-90 border ${cardBorder} h-full flex flex-col`}
+                        className={`${cardBg} rounded-lg overflow-visible shadow-lg transition-[colors,transform,opacity] hover:scale-105 hover:opacity-100 opacity-90 border ${cardBorder} h-full flex flex-col`}
                     >
                         <a
                         href={filePath as string}
