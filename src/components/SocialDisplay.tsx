@@ -165,12 +165,6 @@ export default function SocialDisplay({ pageTitle }: SocialDisplayProps) {
 
   return (
     <div className={`container mx-auto max-w-5xl pt-12 ${containerText}`}>
-      <FadeInSection>
-        <h1 className="text-4xl font-bold text-center mb-10 hover:scale-105 opacity-80 hover:opacity-90 transition-transform">
-            {pageTitle}
-        </h1>
-      </FadeInSection>
-
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
         {socialLinks.map((link, index) => (
           // Adjusted logic: Cap the delay to avoid excessive waiting for items at the bottom of the list.
