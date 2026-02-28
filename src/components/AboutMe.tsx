@@ -154,7 +154,7 @@ export default function AboutMe({
                 fill
                 sizes="(max-width: 768px) 224px, 288px"
                 quality={85}
-                className="object-contain animate-float transition-all duration-500 ease-in-out opacity-90 hover:opacity-100 hover:-rotate-3 drop-shadow-xl hover:drop-shadow-[0_0_20px_rgba(6,182,212,0.6)]"
+                className="object-contain animate-float transition-[colors,transform,opacity] duration-500 ease-in-out opacity-90 hover:opacity-100 hover:-rotate-3 drop-shadow-xl hover:drop-shadow-[0_0_20px_rgba(6,182,212,0.6)]"
               />
             </div>
           </div>
@@ -175,20 +175,20 @@ export default function AboutMe({
             <div className="space-y-4">
               <HoverableWords 
                   className={`text-lg md:text-xl leading-relaxed ${textClass} text-justify`} 
-                  prophover='transition-all inline-block duration-200 ease-in-out hover:translate-x-1 hover:text-cyan-600 cursor-pointer'
+                  prophover='transition-[colors,opacity,transform] inline-block duration-200 ease-in-out hover:translate-x-1 hover:text-cyan-600 cursor-pointer'
               >
                   {about_principle_1}
               </HoverableWords>
               <HoverableWords 
                   className={`text-lg md:text-xl leading-relaxed ${textClass} text-justify`} 
-                  prophover='transition-all inline-block duration-200 ease-in-out hover:translate-x-1 hover:text-cyan-600 cursor-pointer'
+                  prophover='transition-[colors,opacity,transform] inline-block duration-200 ease-in-out hover:translate-x-1 hover:text-cyan-600 cursor-pointer'
               >
                   {about_principle_2}
               </HoverableWords>
               {/* Added Principle 3 */}
               <HoverableWords 
                   className={`text-lg md:text-xl leading-relaxed ${textClass} text-justify`} 
-                  prophover='transition-all inline-block duration-200 ease-in-out hover:translate-x-1 hover:text-cyan-600 cursor-pointer'
+                  prophover='transition-[colors,opacity,transform] inline-block duration-200 ease-in-out hover:translate-x-1 hover:text-cyan-600 cursor-pointer'
               >
                   {about_principle_3}
               </HoverableWords>
@@ -203,7 +203,7 @@ export default function AboutMe({
                 fill
                 sizes="(max-width: 768px) 224px, 288px"
                 quality={85}
-                className="object-contain transition-all duration-500 ease-in-out opacity-90 hover:opacity-100 hover:scale-105 hover:rotate-2 drop-shadow-xl hover:drop-shadow-[0_0_20px_rgba(16,185,129,0.5)]"
+                className="object-contain transition-[colors,opacity,transform] duration-500 ease-in-out opacity-90 hover:opacity-100 hover:scale-105 hover:rotate-2 drop-shadow-xl hover:drop-shadow-[0_0_20px_rgba(16,185,129,0.5)]"
               />
             </div>
           </div>
@@ -224,20 +224,20 @@ export default function AboutMe({
             <div className="space-y-4">
               <HoverableWords 
                   className={`text-lg md:text-xl leading-relaxed ${textClass} text-justify`} 
-                  prophover={`transition-all inline-block duration-200 ease-in-out hover:scale-105 hover:text-cyan-600 ${isDark ? 'dark:hover:text-cyan-300' : ''} cursor-pointer`}
+                  prophover={`transition-[colors,opacity,transform] inline-block duration-200 ease-in-out hover:scale-105 hover:text-cyan-600 ${isDark ? 'dark:hover:text-cyan-300' : ''} cursor-pointer`}
               >
                   {about_vision_mission_1}
               </HoverableWords>
               <HoverableWords 
                   className={`text-lg md:text-xl leading-relaxed ${textClass} text-justify`} 
-                  prophover={`transition-all inline-block duration-200 ease-in-out hover:scale-105 hover:text-cyan-600 ${isDark ? 'dark:hover:text-cyan-300' : ''} cursor-pointer`}
+                  prophover={`transition-[colors,transform,opacity] inline-block duration-200 ease-in-out hover:scale-105 hover:text-cyan-600 ${isDark ? 'dark:hover:text-cyan-300' : ''} cursor-pointer`}
               >
                   {about_vision_mission_2}
               </HoverableWords>
               {/* Added Vision Mission 3 */}
               <HoverableWords 
                   className={`text-lg md:text-xl leading-relaxed ${textClass} text-justify`} 
-                  prophover={`transition-all inline-block duration-200 ease-in-out hover:scale-105 hover:text-cyan-600 ${isDark ? 'dark:hover:text-cyan-300' : ''} cursor-pointer`}
+                  prophover={`transition-[colors,transform,opacity] inline-block duration-200 ease-in-out hover:scale-105 hover:text-cyan-600 ${isDark ? 'dark:hover:text-cyan-300' : ''} cursor-pointer`}
               >
                   {about_vision_mission_3}
               </HoverableWords>
@@ -252,7 +252,7 @@ export default function AboutMe({
                 fill
                 sizes="(max-width: 768px) 224px, 288px"
                 quality={85}
-                className="object-contain animate-float transition-all duration-500 ease-in-out opacity-90 hover:opacity-100 hover:scale-110 hover:brightness-110 drop-shadow-xl hover:drop-shadow-[0_0_20px_rgba(168,85,247,0.5)]"
+                className="object-contain animate-float transition-[colors,transform,opacity] duration-500 ease-in-out opacity-90 hover:opacity-100 hover:scale-110 hover:brightness-110 drop-shadow-xl hover:drop-shadow-[0_0_20px_rgba(168,85,247,0.5)]"
               />
             </div>
           </div>

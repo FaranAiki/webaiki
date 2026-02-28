@@ -146,7 +146,7 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
 
                     {/* Right Column: Image Display (Carousel) [on desktop] */}
                     <div className="hidden md:block w-1/2">
-                         <div className="sticky top-24 transition-all duration-200 hover:scale-105">
+                         <div className="sticky top-24 transition-[opacity,transform] duration-200 hover:scale-105">
                             {hasValidImage ? (
                                 <>
                                     <div className="aspect-w-16 aspect-h-9">
