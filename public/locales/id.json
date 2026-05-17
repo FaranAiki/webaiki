@@ -125,6 +125,8 @@
   "Make_Website_Description": "Membuat situs utama personal dengan memakai NextJS, TailwindCSS, dan Vercel (sebagai testing) sebagai identitas yang mencakup perkembangan dari diri saya sendiri.",
   "Make_Nihwm": "NihWM Window Manager",
   "Make_Nihwm_Description": "Membuat sebuah window manager yang merupakan turunan (hasil fork) dari dynamic window manager (dwm) dalam bahasa C menggunakan library XOrg untuk penggunaan Arch Linux dan sampai sekarang masih dipakai karena sudah dipersonalisasi.",
+  "Lidia_Project": "Analisis Data Integrasi Sosio-Ekonomi Indonesia Emas 2045",
+  "Lidia_Project_Description": "Proyek integrasi data (LIDIA) tingkat provinsi menggunakan proses ETL dan analisis statistik (deskriptif, diagnostik, prediktif, dan preskriptif). Menganalisis hubungan antara APM, IPM, Pengeluaran Per Kapita, Stunting, dan Rata-rata Lama Sekolah untuk menghasilkan rekomendasi kebijakan berbasis data.",
   "Alkyl_Compiler": "Bahasa Pemrograman dan Kompiler Alkyl",
   "Alkyl_Compiler_Description": "Bahasa pemrograman Alkyl adalah bahasa pemrograman yang pertama kali ditulis dalam C menggunakan LLVM-IR. Proyek ini bertujuan untuk membuat bahasa pemrograman yang lebih mudah dihasilkan oleh kecerdasan buatan, tetapi juga dapat dibaca oleh manusia. Sintaksnya mirip dengan C, tetapi tanpa verbositas/lebih mudah.",
   "Impact_Module_Author": "Penulis Modul Matematika IMPACT 6.0",

@@ -143,6 +143,8 @@
   "Make_Website_Description": "Creating a main personal website using NextJS, TailwindCSS, and Vercel (for testing) as an identity \"displayer\" that encompasses my personal development.",
   "Make_Nihwm": "NihWM Window Manager",
   "Make_Nihwm_Description": "Creating a window manager that is a derivative (fork) of dynamic window manager (dwm) in C language using the XOrg library for Arch Linux usage and is still used today as it has been personalized.",
+  "Lidia_Project": "Socio-Economic Integration Data Analysis for Indonesia Emas 2045",
+  "Lidia_Project_Description": "Data integration project (LIDIA) at the provincial level using ETL processes and advanced statistical analysis (descriptive, diagnostic, predictive, and prescriptive). Analyzes the relationship between Net Enrollment Rate, HDI, Per Capita Expenditure, Stunting, and Mean Years of Schooling to generate data-driven policy recommendations.",
   "Alkyl_Compiler": "Alkyl Programming Language and Compiler",
   "Alkyl_Compiler_Description": "Alkyl programming language is a programming language first written in C using LLVM-IR. The project aims to make a programming language that is easier for artificial intelligence to generate, but also readable for human. Its syntax is similar to C, but with no verbose/easier.",
 

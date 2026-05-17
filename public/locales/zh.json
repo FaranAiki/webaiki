@@ -125,6 +125,8 @@
   "Make_Website_Description": "使用 NextJS、TailwindCSS 和 Vercel（用于测试）创建一个主个人网站，作为涵盖我个人发展的身份“展示器”。",
   "Make_Nihwm": "NihWM 窗口管理器",
   "Make_Nihwm_Description": "使用 C 语言和 XOrg 库创建了一个窗口管理器，它是动态窗口管理器 (dwm) 的衍生版本 (fork)，用于 Arch Linux 并在经过个性化定制后沿用至今。",
+  "Lidia_Project": "2045年金色印尼社会经济整合数据分析",
+  "Lidia_Project_Description": "省级数据整合项目（LIDIA），采用ETL流程和高级统计分析（描述性、诊断性、预测性和规范性）。分析净入学率、人类发展指数（HDI）、人均支出、发育迟缓和平均受教育年限之间的关系，以产生数据驱动的政策建议。",
   "Alkyl_Compiler": "Alkyl 编程语言与编译器",
   "Alkyl_Compiler_Description": "Alkyl 编程语言是第一种使用 LLVM-IR 用 C 语言编写的编程语言。该项目旨在制造一种更容易被人工智能生成，但对人类也易读的编程语言。其语法类似于 C，但没有冗长的部分，更加简单。",
   "Impact_Module_Author": "IMPACT 6.0 数学模块作者",

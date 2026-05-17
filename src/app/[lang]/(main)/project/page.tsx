@@ -28,6 +28,20 @@ export default async function ProjectPage({ params }: { params: Promise<{ lang: 
       year: '2026',
       jobs: [
         {
+          date: `${dict.May}`,
+          title: dict.Lidia_Project,
+          company: 'Python, Pandas, Gemini-CLI, Jupyter Notebook, ETL',
+          description: dict.Lidia_Project_Description,
+          url: 'https://github.com/FaranAiki/lidia',
+          image: [
+            '/documents/project/Lidia_0.png',
+            '/documents/project/Lidia_1.png',
+            '/documents/project/Lidia_2.png',
+            '/documents/project/Lidia_3.png',
+            '/documents/project/Lidia_4.png',
+          ]
+        },
+        {
           date: `${dict.February} — ${dict.Present}`,
           title: dict.Alkyl_Compiler,
           company: 'LLVM, C',

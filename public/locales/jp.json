@@ -125,6 +125,8 @@
   "Make_Website_Description": "NextJS、TailwindCSS、Vercel（テスト用）を使用し、個人の成長を網羅するアイデンティティ「表示器」としてメインの個人ウェブサイトを作成。",
   "Make_Nihwm": "NihWM ウィンドウマネージャー",
   "Make_Nihwm_Description": "C言語とXOrgライブラリを使用し、Arch Linux向けにdynamic window manager (dwm)のフォークであるウィンドウマネージャーを作成。パーソナライズされているため、現在も使用されています。",
+  "Lidia_Project": "インドネシア・エマス2045のための社会経済統合データ分析",
+  "Lidia_Project_Description": "ETLプロセスと高度な統計分析（記述的、診断的、予測的、および処方的）を使用した州レベルでのデータ統合プロジェクト（LIDIA）。純就学率、人間開発指数（HDI）、一人当たり支出、発育阻害、および平均就学年数の関係を分析し、データに基づいた政策提言を生成します。",
   "Alkyl_Compiler": "Alkylプログラミング言語とコンパイラ",
   "Alkyl_Compiler_Description": "Alkylは、LLVM-IRを使用してC言語で最初に書かれたプログラミング言語です。このプロジェクトは、人工知能による生成が容易でありながら、人間にとっても読みやすい言語を作ることを目的としています。構文はC言語に似ていますが、冗長さがなく、より簡単です。",
   "Impact_Module_Author": "IMPACT 6.0 数学モジュール著者",
