@@ -51,11 +51,6 @@ const nextConfig: NextConfig = {
             value: 'nosniff',
           },
           {
-            // Security: Standard cache control for sensitive data
-            key: 'Cache-Control',
-            value: 'private, no-cache, no-store, must-revalidate',
-          },
-          {
             // Security: Isolate the browsing context to prevent cross-origin data leaks
             key: 'Cross-Origin-Opener-Policy',
             value: 'same-origin',

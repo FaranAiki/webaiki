@@ -27,11 +27,14 @@ export default async function WorkExperiencesPage({ params }: { params: Promise<
       year: '2026',
       jobs: [
         {
-          date: `${dict.February} — ${dict.Present}`,
-          title: dict.Education_Freelance,
-          company: 'Analitica',
-          description: dict.Education_Freelance_Description,
-          image: []
+          date: `${dict.April} — ${dict.May}`,
+          title: dict.Impact_Module_Author,
+          company: 'STEI-K 2025',
+          description: dict.Impact_Module_Author_Description,
+          image: [
+            '/documents/organization/Impact_Module_0.png',
+            '/documents/organization/Impact_Module_1.png',
+          ]
         },
         {
           date: `${dict.February} — ${dict.Present}`,
@@ -40,6 +43,7 @@ export default async function WorkExperiencesPage({ params }: { params: Promise<
           description: dict.SAT_Tutor_Description,
           image: [
             '/documents/work/SAT_Tutor_0.jpg',
+            '/documents/work/SAT_Tutor_1.jpg',
           ]
         },
         {

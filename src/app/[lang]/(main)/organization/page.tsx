@@ -24,6 +24,21 @@ export default async function OrganizationExperiencesPage({ params }: { params: 
 
   const organizationExperiences = [
     {
+      year: '2026',
+      jobs: [
+        {
+          date: `${dict.March} — ${dict.Present}`,
+          title: dict.Impact_Web_Lead,
+          company: dict.STEI_K || 'STEI-K',
+          description: dict.Impact_Web_Lead_Description,
+          image: [
+            '/documents/organization/Impact_0.png',
+            '/documents/organization/Impact_1.png',
+          ]
+        },
+      ],
+    },
+    {
       year: '2025',
       jobs: [
         {

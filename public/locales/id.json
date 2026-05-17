@@ -8,7 +8,6 @@
   "2022": "2022",
   "2021": "2021",
   "2020": "2020",
-
   "January": "Januari",
   "February": "Februari",
   "March": "Maret",
@@ -22,11 +21,9 @@
   "November": "November",
   "December": "Desember",
   "Present": "Sekarang",
-
   "Not_Found": "Halaman ini tidak ditemukan.",
-
   "Faran_About_1": "Halo! <b>Muhammad Faran Aiki</b> (8 April 2007), mahasiswa STEI-K ITB (<i>Sekolah Teknik Elektro dan Informatika - Komputasi</i>) di sini.",
-  "Faran_About_2": "Saat ini, saya sedang magang dan bekerja sebagai Software Engineer di <b>Analitica</b>. Saya memulai perjalanan di sana dengan menjadi Tim Edukasi (Mei 2025) dan kini fokus menangani Front-End Development, terutama dalam Flutter, di Tim Teknologi (sejak Oktober 2025). Selain coding, saya juga bersyukur menjadi salah satu penerima beasiswa <b>PSP Excellence 2025</b>.",
+  "Faran_About_2": "Saat ini, saya sedang menjadi tutor SAT (Verbal dan Matematika) di <b>Kobi Education</b>. Saya dulu juga pernah magang dan bekerja sebagai Software Engineer di <b>Analitica</b>. Selain itu, saya juga merupakan penerima beasiswa <b>PSP Excellence 2025</b>.",
   "Faran_Photo": "Koleksi foto Faran Aiki",
   "Faran_Philosophy_Title": "Filosofi Kehidupan",
   "Faran_Philosophy": "Nama Faran Aiki berasal dari kata Faran \"advance\" yang berarti 'maju', sementara nama Aiki berasal dari kata \"ai\" (愛) dan \"ki\" (気) yang berarti energi (dari) cinta. Dengan demikian, \"Faran Aiki\" memiliki arti (orang yang) mencintai kemajuan dan progres.",
@@ -38,16 +35,7 @@
   "Faran_Vision_Mission_1": "Menjadi pribadi yang terus bertumbuh dan berkembang serta mampu mendorong kemajuan, baik dalam hal fisik, mental, maupun pengetahuan, secara kolektif dan holistik yang berlandaskan <b>cinta dan kasih sayang yang didorong oleh rasionalitas dan empati</b>.",
   "Faran_Vision_Mission_2": "Dengan visi-visi tersebut, saya berusaha untuk senantiasa belajar, misal mempelajari sains, teknologi, dan sosial-humaniora, serta merefleksikan diri melalui pengalaman individu ataupun orang lain guna menciptakan suatu solusi inovatif untuk permasalahan yang ada.",
   "Faran_Vision_Mission_3": "Selain itu, saya juga mengutamakan nilai-nilai kebaikan yang berterima secara luas, global, dan rasional. Hal ini saya lakukan demi membuktikan kelayakan arti namanya, yaitu <i>maju dan progres</i>, baik secara individual maupun kelompok.",
-
   "All": "Semua",
-
-  "02Olympiad and Contest": "Kontes dan Olimpiade",
-  "06Other": "Lainnya",
-  "03Skill": "Keterampilan",
-  "05Course": "Kursus",
-  "01Profession": "Profesi",
-  "04Writing": "Tulisan",
-
   "Profile": "Profil",
   "Experience": "Pengalaman",
   "Artwork": "Karya Seni",
@@ -55,31 +43,32 @@
   "Social": "Sosial",
   "Work": "Pekerjaan",
   "Certificate": "Sertifikat",
-  "Award": "Penghargaan",
   "Music": "Musik",
   "Project": "Projek",
+  "Award": "Penghargaan",
   "College": "Kuliah",
   "Literature": "Sastra",
   "Latest": "Mutakhir",
   "Organization": "Organisasi",
-
+  "02Olympiad and Contest": "Kontes dan Olimpiade",
+  "06Other": "Lainnya",
+  "03Skill": "Keterampilan",
+  "05Course": "Kursus",
+  "01Profession": "Profesi",
+  "04Writing": "Tulisan",
   "Ask_About": "Tanya tentang Faran Aiki",
   "Question_Answer": "Jawaban",
   "Question_Title": "Pertanyaan",
   "Submit": "Kirim",
   "Provide_Question": "Tulis pertanyaan terlebih dahulu.",
   "Waiting": "Sebentar....",
-
   "About_Me": "Tentang Saya",
   "Connect_Me": "Ayo Mutualan!",
-
   "Loading_Certificate": "Mengunduh data sertifikat....",
   "Loading_College": "Mengunduh data perkuliahan....",
   "Loading_Literature": "Mengunduh data sastra....",
-  
   "Loading_Python": "Mengunduh Python dan Kode Sumbernya....",
   "Python_Web_Title": "Antarmuka Interaktif Python",
-
   "Poem_Indonesia": "Puisi (Indonesia)",
   "Short_Story_Indonesia": "Cerita Pendek (Indonesia)",
   "Poem_English": "Puisi (Inggris)",
@@ -87,7 +76,6 @@
   "Essay_Indonesia": "Esai (Indonesia)",
   "Essay_English": "Esai (Inggris)",
   "Competition": "Kompetisi",
-
   "1st Semester": "Semester ke-1",
   "2nd Semester": "Semester ke-2",
   "3rd Semester": "Semester ke-3",
@@ -96,7 +84,6 @@
   "6th Semester": "Semester ke-6",
   "7th Semester": "Semester ke-7",
   "8th Semester": "Semester ke-8",
-
   "gemini_wait1": "Pertanyaan yang menarik!",
   "gemini_wait2": "Sedang berpikir....",
   "gemini_wait3": "Sedang menyiapkan jawaban terbaik untukmu....",
@@ -105,7 +92,6 @@
   "gemini_wait6": "Sebentar, aku akan memanggil dia....",
   "gemini_wait7": "Biarkan aku mengirim pesan untuknya....",
   "gemini_wait8": "Sebentar....",
-
   "FI1101": "Fisika I (FI1101)",
   "WI2005": "Bahasa Indonesia (WI2005)",
   "WI1116": "Laboratorium Interaksi Komputer (W1116)",
@@ -114,7 +100,6 @@
   "MA1101": "Matematika I (MA1101)",
   "WI1102_Practicum": "Praktikum Berpikir Komputasional (WI1111)",
   "Others": "Lainnya",
-
   "IF1210": "Algoritma dan Pemrograman 1 (IF1210)",
   "II1200": "Pengantar Sistem dan Teknologi Informasi (II1200)",
   "WI1101": "Pancasila (WI1101)",
@@ -123,11 +108,9 @@
   "WI2003": "Olah Raga (WI2003)",
   "WI2006": "Kewarganegaraan (WI2006)",
   "WI2011": "Agama Islam (WI2011)",
-
   "Personal": "Pribadi",
   "Committee": "Kepanitiaan",
   "UKM": "Unit Kegiatan Mahasiswa",
-
   "Select_Language": "Pilih bahasa",
   "Indonesian": "Indonesia",
   "English": "Inggris",
@@ -136,7 +119,6 @@
   "French": "Prancis",
   "Arabic": "Arab",
   "Mandarin": "Mandarin",
-
   "Make_Interactive_UAS": "Pembelajaran Interaktif untuk UAS MA1101 ITB",
   "Make_Interactive_UAS_Description": "Membuat aplikasi berbasis Flutter/Dart yang dapat membantu mahasiswa dalam persiapan ujian akhir semester mata kuliah Matematika Dasar I Institut Teknologi Bandung dengan menggunakan widget-widget interaktif dan juga kecerdasan buatan Gemini untuk membantu pemahaman yang lebih dalam dengan visualisasi konsep yang rumit.",
   "Make_Website": "Situs Personal faranaiki.id",
@@ -145,11 +127,10 @@
   "Make_Nihwm_Description": "Membuat sebuah window manager yang merupakan turunan (hasil fork) dari dynamic window manager (dwm) dalam bahasa C menggunakan library XOrg untuk penggunaan Arch Linux dan sampai sekarang masih dipakai karena sudah dipersonalisasi.",
   "Alkyl_Compiler": "Bahasa Pemrograman dan Kompiler Alkyl",
   "Alkyl_Compiler_Description": "Bahasa pemrograman Alkyl adalah bahasa pemrograman yang pertama kali ditulis dalam C menggunakan LLVM-IR. Proyek ini bertujuan untuk membuat bahasa pemrograman yang lebih mudah dihasilkan oleh kecerdasan buatan, tetapi juga dapat dibaca oleh manusia. Sintaksnya mirip dengan C, tetapi tanpa verbositas/lebih mudah.",
-
-  "Education_Freelance": "Freelance Tim Edukasi di Analitica",
-  "Education_Freelance_Analitica": "Kembali menjadi tim edukasi dengan kemampuan untuk membuat widget-widget (coding dan programming).",
+  "Impact_Module_Author": "Penulis Modul Matematika IMPACT 6.0",
+  "Impact_Module_Author_Description": "Menulis materi pembelajaran untuk Matematika, termasuk sistem persamaan linear dan pertidaksamaan linear, grafik linear, fungsi, dan polinomial dengan masing-masing 4 soal: 2 bahasa Indonesia untuk SSU, 2 bahasa Inggris untuk IUP. Selain itu, membuat 20 soal untuk Try Out IUP.",
   "SAT_Tutor": "Tutor SAT Math & Verbal (Kontrak)",
-  "SAT_Tutor_Description": "Mengajar siswa secara (grup|privat) yang dibantu oleh Kobi Education.",
+  "SAT_Tutor_Description": "Mengajar SAT Verbal dan Mathematics secara rutin setiap minggu kepada kelompok berisi enam siswa SMA dan juga mengevaluasi hasil pretest dan posttest yang difasilitasi oleh Kobi Education.",
   "Compile_Module_Author": "Pembuat Modul COMPILE STEI-K UTBK",
   "Compile_Module_Author_Description": "Membuat dua modul dengan tema Kuantitatif dan Induktif dalam subtes Penalaran Umum untuk menjalankan program COMPILE 2026 yang diselenggarakan oleh STEI-K 2025.",
   "Software_Engineer": "Insinyur Perangkat Lunak (Front End Flutter)",
@@ -158,10 +139,11 @@
   "Mathematics_Private_Tutor_Description": "Memberikan bimbingan belajar satu-satu kepada siswa dalam olimpiade matematika untuk kompetisi sekolah menengah. Mengembangkan rencana pelajaran yang dipersonalisasi untuk membantu siswa mencapai tujuan akademik mereka dan meningkatkan pemahaman mereka tentang konsep-konsep yang kompleks.",
   "Education_Team": "Tim Edukasi",
   "Education_Team_Description": "Membantu dalam pembuatan materi konten pendidikan, seperti Matematika Wajib, dan membuat 600 soal fisika, kimia, dan matematika untuk Tes Kemampuan Akademik (TKA) sekolah menengah atas. Mendukung perencanaan dan pelaksanaan program pembelajaran untuk siswa dan para profesional, dan membantu dalam penggunaan kecerdasan buatan.",
-
   "ITB": "Institut Teknologi Bandung",
   "Sponsorship_Wisokto_ITB": "Sponsorship Wisokto ITB 2025, Panitia WisNight, dan Promosi Nipis Madu",
   "Sponsorship_Wisokto_ITB_Description": "Menghubungi dan mengontak beberapa perusahaan untuk bekerja sama dalam acara Wisuda Oktober 2025 Institut Teknologi Bandung, seperti Mamikos. Selain itu, menjadi panitia yang membantu dalam proses acara WisNight, seperti mengangkut tujuh kardus Nipis Madu. Kemudian, membuat empat video promosi Nipis Madu yang dibantu oleh panitia lainnya.",
+  "Impact_Web_Lead": "Ketua Tim Pengembangan Web Impact 6.0",
+  "Impact_Web_Lead_Description": "Mengelola situs web untuk olimpiade IMPACT 6.0 oleh Sekolah Teknik Elektro Informatika - Komputasi, yang dibuat untuk kompetisi bagi siswa SMA, termasuk mengelola front end, back end, Moodle, dan Judgel.",
   "Treasurer_SYNC": "Bendahara Acara Gathering STEI-K",
   "STEI-K": "Sekolah Teknik Elektro dan Informatika - Komputasi",
   "Treasurer_SYNC_Description": "Mendapatkan sponsorship senilai satu juta untuk acara perkumpulan fakultas SYNC: Say Yes to New Connections dan membantu dalam mengurus keuangan.",
@@ -179,10 +161,8 @@
   "PARAS_Description": "Mendesain logo utama dari acara PARAS (Paket Ramadan Spesial) Glorigion 2024 melalui kerja sama dengan desainer lainnya dan menyunting dan mengedit tata letak naskah untuk Master of Ceremony.",
   "Concerto": "Penanggung Jawab Tingkat Final Lomba Concerto",
   "Concerto_Description": "Membuat, mengoreksi, mengoordinasi, dan mengawasi soal-soal perlombaan, seperti Matematika, IPA, dan IPS, yang dibuat untuk tingkat final perlombaan.",
-
   "Paragon_Scholarship_Title": "Paragon Scholarship Program Excellence Grantee Angkatan 2025",
   "Paragon_Scholarship_Desc": "Penerima beasiswa Paragon (Paragon Scholarship Program Excellence) angkatan 2025.",
   "PT Paragon": "PT Paragon",
-
   "": ""
 }
