@@ -113,5 +113,5 @@ export default async function ProjectPage({ params }: { params: Promise<{ lang: 
     },
   ];
 
-  return <ExperiencesClient experiences={projectExperiences} />;
+  return <ExperiencesClient experiences={projectExperiences} lang={lang} />;
 }

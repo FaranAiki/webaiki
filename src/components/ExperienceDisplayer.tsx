@@ -23,13 +23,17 @@ type Experience = {
 
 interface ExperiencesClientProps {
     experiences: Experience[];
+    lang?: string;
 }
 
-export default function ExperiencesClient({ experiences }: ExperiencesClientProps) {
+export default function ExperiencesClient({ experiences, lang }: ExperiencesClientProps) {
     const [activeJob, setActiveJob] = useState(experiences[0].jobs[0]);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const { resolvedTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
+
+    const isJustified = lang !== 'jp' && lang !== 'zh';
+    const justifyClass = isJustified ? 'text-justify' : 'text-left';
 
     const safeImageIndex = (activeJob?.image && currentImageIndex < activeJob.image.length) ? currentImageIndex : 0;
     const activeImageSrc = activeJob?.image?.[safeImageIndex];
@@ -70,7 +74,7 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
                     {/* Left Column: Job List (Interactive) */}
                     <div className="w-full md:w-1/2 hover:translateY(-5px)">
                         {experiences.map((experience) => (
-                            <div key={experience.year} className="mb-12 text-center md:text-justify cursor-pointer">
+                            <div key={experience.year} className={`mb-12 text-center md:${justifyClass} cursor-pointer`}>
                                 {/* Year */}
                                 <FadeInSection>
                                     <h2 className={`transition-[transform] hover:scale-105 text-2xl font-bold ${mainText} mb-6 top-0 py-2 xs:text-center`}>
@@ -102,7 +106,7 @@ export default function ExperiencesClient({ experiences }: ExperiencesClientProp
 
                                                 <p className="text-cyan-600 font-medium mb-3 transition-[colors,opacity] hover:font-bold hover:scale-105 duration-200">{job.company}</p>
                                                 <HoverableWords 
-                                                    className={`leading-relaxed text-justify lg:text-lg md:text-md ${descText}`}
+                                                    className={`leading-relaxed ${justifyClass} lg:text-lg md:text-md ${descText}`}
                                                     prophover='transition-[transform,color,opacity] inline-block duration-100 ease-in-out hover:scale-95 hover:text-cyan-600 hover:underline hover:font-semibold hover:opacity-85'
                                                 >
                                                 {job.description} 

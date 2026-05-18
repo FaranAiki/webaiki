@@ -27,11 +27,15 @@ interface PlaylistItem {
 interface MusicDisplayProps {
   youtubeItems?: PlaylistItem[]; 
   error?: string;
+  lang?: string;
 }
 
-export default function MusicDisplay({ youtubeItems = [], error }: MusicDisplayProps) {
+export default function MusicDisplay({ youtubeItems = [], error, lang }: MusicDisplayProps) {
   // GTMetrix Optimization: Delay loading of heavy iframes to significantly improve Time to Interactive (TTI) and Speed Index.
   const [iframesLoaded, setIframesLoaded] = useState(false);
+
+  const isJustified = lang !== 'jp' && lang !== 'zh';
+  const justifyClass = isJustified ? 'text-justify' : 'text-left';
 
   useEffect(() => {
     // Load iframes after 1.5 seconds, or immediately upon user scroll
@@ -63,7 +67,7 @@ export default function MusicDisplay({ youtubeItems = [], error }: MusicDisplayP
   return (
     <div className={`container mx-auto px-8 pt-24 pb-16 text-gray-900 dark:text-white`}>
       <div className="flex flex-col md:flex-row gap-4 md:gap-4 max-w-4xl mx-auto">    
-        <div className="text-center md:text-justify w-full">
+        <div className={`text-center md:${justifyClass} w-full`}>
           
           <Link className={`transition-[transform] hover:text-green-500 duration-300 md:text-center text-5xl pt-4 font-bold text-gray-900 dark:text-white`} href="https://open.spotify.com/artist/1PPAtm7YfRKghHpCqR3QZZ">
             Spotify

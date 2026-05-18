@@ -38,5 +38,5 @@ export default async function AwardsPage({ params }: { params: Promise<{ lang: s
     },
   ];
 
-  return <ExperiencesClient experiences={awards} />;
+  return <ExperiencesClient experiences={awards} lang={lang} />;
 }

@@ -61,6 +61,7 @@ export default async function HomePage({
         about_title={dict.About_Me} 
         about_text_1={dict.Faran_About_1} 
         about_text_2={dict.Faran_About_2} 
+        lang={lang}
       />
     </main>
   );

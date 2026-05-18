@@ -22,6 +22,7 @@ export type AboutMeProps = {
   about_title: string;
   about_text_1: string;
   about_text_2: string;
+  lang?: string;
 };
 
 const SectionSeparator = ({ isDark }: { isDark: boolean }) => (
@@ -45,13 +46,17 @@ export default function AboutMe({
   about_vision_mission_1,
   about_vision_mission_2,
   about_vision_mission_3,
-  faran_photo
+  faran_photo,
+  lang
 }: AboutMeProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFading, setIsFading] = useState(false);
   
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+
+  const isJustified = lang !== 'jp' && lang !== 'zh';
+  const justifyClass = isJustified ? 'text-justify' : 'text-left';
 
   useEffect(() => {
     setMounted(true);
@@ -88,15 +93,15 @@ export default function AboutMe({
       {/* About Me Section */}
       <FadeInSection>
         <div className="flex flex-col-reverse md:flex-row justify-center items-center gap-8 lg:gap-16 max-w-6xl mx-auto">
-          <div className="flex-1 text-center md:text-justify max-w-prose">
+          <div className="flex-1 text-center md:${justifyClass} max-w-prose">
             <h1 className={`text-4xl md:text-5xl font-extrabold ${titleClass} mb-6 hover:opacity-85 transition-opacity tracking-tight`}>
               {about_title}
             </h1>
             <div className="space-y-4">
-              <HoverableWords className={`text-lg md:text-xl leading-relaxed ${textClass} text-justify`}>
+              <HoverableWords className={`text-lg md:text-xl leading-relaxed ${textClass} ${justifyClass}`}>
                 {about_text_1}
               </HoverableWords>
-              <HoverableWords className={`text-lg md:text-xl leading-relaxed ${textClass} text-justify`}>
+              <HoverableWords className={`text-lg md:text-xl leading-relaxed ${textClass} ${justifyClass}`}>
                 {about_text_2}
               </HoverableWords>
             </div>
@@ -134,12 +139,12 @@ export default function AboutMe({
       {/* Philosophy Section */}
       <FadeInSection>
         <div className="flex flex-col-reverse md:flex-row-reverse justify-center items-center gap-8 lg:gap-16 max-w-6xl mx-auto">
-          <div className="flex-1 text-center md:text-justify max-w-prose">
+          <div className="flex-1 text-center md:${justifyClass} max-w-prose">
             <h2 className={`text-3xl md:text-4xl font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
               {about_philosophy_title}
             </h2>
             <HoverableWords 
-              className={`text-lg md:text-xl leading-relaxed ${textClass} text-justify font-medium`} 
+              className={`text-lg md:text-xl leading-relaxed ${textClass} ${justifyClass} font-medium`} 
               prophover={`transition-[colors,transform] inline-block duration-200 ease-in-out hover:text-cyan-600 ${isDark ? 'dark:hover:text-cyan-300' : ''} hover:scale-105 cursor-pointer`}
             >
               {about_philosophy}
@@ -168,26 +173,26 @@ export default function AboutMe({
       {/* Principles Section */}
       <FadeInSection>
         <div className="flex flex-col-reverse md:flex-row justify-center items-center gap-8 lg:gap-16 max-w-6xl mx-auto">
-          <div className="flex-1 text-center md:text-justify max-w-prose">
+          <div className="flex-1 text-center md:${justifyClass} max-w-prose">
             <h2 className={`text-3xl md:text-4xl font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
               {about_principle_title}
             </h2>
             <div className="space-y-4">
               <HoverableWords 
-                  className={`text-lg md:text-xl leading-relaxed ${textClass} text-justify`} 
+                  className={`text-lg md:text-xl leading-relaxed ${textClass} ${justifyClass}`} 
                   prophover='transition-[colors,opacity,transform] inline-block duration-200 ease-in-out hover:translate-x-1 hover:text-cyan-600 cursor-pointer'
               >
                   {about_principle_1}
               </HoverableWords>
               <HoverableWords 
-                  className={`text-lg md:text-xl leading-relaxed ${textClass} text-justify`} 
+                  className={`text-lg md:text-xl leading-relaxed ${textClass} ${justifyClass}`} 
                   prophover='transition-[colors,opacity,transform] inline-block duration-200 ease-in-out hover:translate-x-1 hover:text-cyan-600 cursor-pointer'
               >
                   {about_principle_2}
               </HoverableWords>
               {/* Added Principle 3 */}
               <HoverableWords 
-                  className={`text-lg md:text-xl leading-relaxed ${textClass} text-justify`} 
+                  className={`text-lg md:text-xl leading-relaxed ${textClass} ${justifyClass}`} 
                   prophover='transition-[colors,opacity,transform] inline-block duration-200 ease-in-out hover:translate-x-1 hover:text-cyan-600 cursor-pointer'
               >
                   {about_principle_3}
@@ -217,26 +222,26 @@ export default function AboutMe({
       {/* Vision & Mission Section */}
       <FadeInSection>
         <div className="flex flex-col-reverse md:flex-row-reverse justify-center items-center gap-8 lg:gap-16 max-w-6xl mx-auto">
-          <div className="flex-1 text-center md:text-justify max-w-prose">
+          <div className="flex-1 text-center md:${justifyClass} max-w-prose">
             <h2 className={`text-3xl md:text-4xl font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
               {about_vision_mission_title}
             </h2>
             <div className="space-y-4">
               <HoverableWords 
-                  className={`text-lg md:text-xl leading-relaxed ${textClass} text-justify`} 
+                  className={`text-lg md:text-xl leading-relaxed ${textClass} ${justifyClass}`} 
                   prophover={`transition-[colors,opacity,transform] inline-block duration-200 ease-in-out hover:scale-105 hover:text-cyan-600 ${isDark ? 'dark:hover:text-cyan-300' : ''} cursor-pointer`}
               >
                   {about_vision_mission_1}
               </HoverableWords>
               <HoverableWords 
-                  className={`text-lg md:text-xl leading-relaxed ${textClass} text-justify`} 
+                  className={`text-lg md:text-xl leading-relaxed ${textClass} ${justifyClass}`} 
                   prophover={`transition-[colors,transform,opacity] inline-block duration-200 ease-in-out hover:scale-105 hover:text-cyan-600 ${isDark ? 'dark:hover:text-cyan-300' : ''} cursor-pointer`}
               >
                   {about_vision_mission_2}
               </HoverableWords>
               {/* Added Vision Mission 3 */}
               <HoverableWords 
-                  className={`text-lg md:text-xl leading-relaxed ${textClass} text-justify`} 
+                  className={`text-lg md:text-xl leading-relaxed ${textClass} ${justifyClass}`} 
                   prophover={`transition-[colors,transform,opacity] inline-block duration-200 ease-in-out hover:scale-105 hover:text-cyan-600 ${isDark ? 'dark:hover:text-cyan-300' : ''} cursor-pointer`}
               >
                   {about_vision_mission_3}

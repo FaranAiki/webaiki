@@ -151,5 +151,5 @@ export default async function OrganizationExperiencesPage({ params }: { params: 
     },
   ];
 
-  return <ExperiencesClient experiences={organizationExperiences} />;
+  return <ExperiencesClient experiences={organizationExperiences} lang={lang} />;
 }

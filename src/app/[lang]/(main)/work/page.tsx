@@ -98,5 +98,5 @@ export default async function WorkExperiencesPage({ params }: { params: Promise<
     }
   ];
 
-  return <ExperiencesClient experiences={workExperiences} />;
+  return <ExperiencesClient experiences={workExperiences} lang={lang} />;
 }

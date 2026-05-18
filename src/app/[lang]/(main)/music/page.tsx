@@ -28,7 +28,8 @@ export const metadata: Metadata = {
 
 const YOUTUBE_PLAYLIST_ITEMS_API = "https://www.googleapis.com/youtube/v3/playlistItems";
 
-export default async function MusicPage() {
+export default async function MusicPage({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
   let youtubeItems = [];
   let errorString = undefined;
 
@@ -52,7 +53,7 @@ export default async function MusicPage() {
 
   return (
     <main className={`${inter.className} min-h-screen`}>
-      <MusicDisplay youtubeItems={youtubeItems} error={errorString} />
+      <MusicDisplay youtubeItems={youtubeItems} error={errorString} lang={lang} />
     </main>
   );
 }
