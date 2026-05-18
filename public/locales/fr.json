@@ -166,5 +166,7 @@
   "Paragon_Scholarship_Title": "Boursier du programme d'excellence Paragon, promotion 2025",
   "Paragon_Scholarship_Desc": "Bénéficiaire de la bourse Paragon (Paragon Scholarship Program Excellence), promotion 2025.",
   "PT Paragon": "PT Paragon",
+  "ALTH_Project": "ALTH : J'ai oublié de marquer ma présence",
+  "ALTH_Project_Description": "ALTH (Aku Lupa Tandai Hadir) est une application innovante spécialement conçue pour les étudiants de l'ITB afin de résoudre le problème fréquent de l'oubli de marquage de présence. Développée avec Flutter en exploitant l'intégration de Burp Suite, l'application envoie automatiquement des signaux GET au portail SIX et traite les données via des cookies obtenus par authentification Microsoft SSO. Bien qu'elle possède la capacité technique d'envoyer des signaux POST, ALTH a été conçue avec une grande intégrité comme un outil de rappel intelligent, et non pour la manipulation des présences.",
   "": ""
 }

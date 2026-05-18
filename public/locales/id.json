@@ -166,5 +166,7 @@
   "Paragon_Scholarship_Title": "Paragon Scholarship Program Excellence Grantee Angkatan 2025",
   "Paragon_Scholarship_Desc": "Penerima beasiswa Paragon (Paragon Scholarship Program Excellence) angkatan 2025.",
   "PT Paragon": "PT Paragon",
+  "ALTH_Project": "ALTH: Aku Lupa Tandai Hadir",
+  "ALTH_Project_Description": "ALTH (Aku Lupa Tandai Hadir) adalah aplikasi inovatif yang dirancang khusus bagi mahasiswa ITB untuk mengatasi masalah kelalaian dalam melakukan presensi. Dikembangkan menggunakan Flutter dan memanfaatkan integrasi Burp Suite, aplikasi ini secara otomatis mengirimkan sinyal GET ke portal SIX dan memproses data melalui cookie hasil autentikasi Microsoft SSO. Walaupun memiliki kapabilitas teknis untuk mengirimkan sinyal POST, ALTH dikembangkan dengan integritas tinggi sebagai alat pengingat cerdas, bukan untuk manipulasi kehadiran (titip absen).",
   "": ""
 }

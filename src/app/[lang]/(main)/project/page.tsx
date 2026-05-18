@@ -42,6 +42,18 @@ export default async function ProjectPage({ params }: { params: Promise<{ lang: 
           ]
         },
         {
+          date: `${dict.March}`,
+          title: dict.ALTH_Project,
+          company: 'Flutter, Dart, Burp Suite, Microsoft SSO',
+          description: dict.ALTH_Project_Description,
+          image: [
+            '/documents/project/ALTH_0.jpg',
+            '/documents/project/ALTH_1.jpg',
+            '/documents/project/ALTH_2.png',
+            '/documents/project/ALTH_3.png',
+          ],
+        },
+        {
           date: `${dict.February} — ${dict.Present}`,
           title: dict.Alkyl_Compiler,
           company: 'LLVM, C',

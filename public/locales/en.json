@@ -187,6 +187,7 @@
   "Paragon_Scholarship_Title": "Paragon Scholarship Program Excellence Grantee Class of 2025",
   "Paragon_Scholarship_Desc": "Recipient of the Paragon Scholarship (Paragon Scholarship Program Excellence) Class of 2025.",
   "PT Paragon": "PT Paragon",
-
+  "ALTH_Project": "ALTH: Aku Lupa Tandai Hadir",
+  "ALTH_Project_Description": "ALTH (Aku Lupa Tandai Hadir) is an innovative application specifically designed for ITB students to address the frequent issue of forgetting to mark attendance. Developed using Flutter and leveraging Burp Suite integration, the app automatically sends GET signals to the SIX portal and processes data through cookies obtained via Microsoft SSO authentication. Although it possesses the technical capability to send POST signals, ALTH is built with high integrity as a smart reminder tool, not for attendance manipulation.",
   "": ""
 }
