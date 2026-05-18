@@ -1,134 +1,90 @@
-# Web Aiki
+# faranaiki.id | Technical Portfolio & Personal Ecosystem
 
-## Introduction
-This is the source code of Muhammad Faran Aiki's personal website.
-His social media:
-1. X/Twitter: https://x.com/FaranAiki
-2. LinkedIn: https://www.linkedin.com/in/muhammad-faran-aiki-8a6305343/
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.x-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
 
-### The Usage of This Project
-I made this page so that I can share my LIFE. Most people do not care, but I do not care about the uncareness of them.
-However, there are some real benefits of creating this page, such as 
-* College: this is where I share most of my college assignments so people can learn
-* Portfolio: to flex things
-* Hobby: I love creating things!
-* See the BACCM
+## 🚀 Overview
+This is the high-performance personal ecosystem and technical portfolio of **Muhammad Faran Aiki**. Beyond a simple static site, it serves as a living demonstration of **AI-native engineering**, **system architecture**, and **comprehensive business analysis**.
 
-### Motivation
-One of my friends in the same faculty as mine (School of Electrical Engineering and Informatics - Computation) inspired me to make a personal website. So, I said, why not? Because of that single motivation, I learned a bunch of things. Thank you, the leader of SEEI-C 2025.
+### 🌟 Key Highlights
+- **AI-Integrated UX:** Custom Gemini-powered chat agent for interactive user inquiries.
+- **i18n Mastery:** Full support for 7+ languages (ID, EN, ZH, JA, RU, FR, AR) including RTL support.
+- **High Performance:** Optimized for Core Web Vitals with advanced image handling, shimmer effects, and ISR.
+- **Academic Hub:** Centralized repository for ITB (Bandung Institute of Technology) assignments and resources.
 
-### What I have learned
-I learned
-1. How to use ReactJS + NextJS + Tailwind 
-2. How to use AI at its maximum potential
-3. How to do debug properly
-4. How to use API, such as YouTube (using Google APIS in backend)
-5. How to use Gemini API
-6. The real difference between client-side (POST method) and server-side ("use server")
-7. Error handling
-8. Integrating BABOK and others into this project
+---
 
-## Implementation System
+## 🛠 Tech Stack & Architecture
 
-These are the techniques and framework involved to standardize the process of creating this website 
+### Frontend
+- **Framework:** Next.js 15 (App Router)
+- **Language:** TypeScript (Strict Mode)
+- **Styling:** Tailwind CSS (Custom dynamic theme system)
+- **Animations:** Framer Motion & Custom CSS Glitch Effects
+- **Icons:** Lucide React
 
-### Business Analysis Core Concept Model (BACCM) 
-Context-Need-Stakeholder-Solution-Change-Value
-This framework defines the value proposition of faranaiki.id in the context of the current professional landscape.
+### Backend & API
+- **AI Engine:** Google Gemini Pro API
+- **Data Fetching:** ISR (Incremental Static Regeneration) for YouTube & Spotify integration.
+- **Internationalization:** Synchronous dictionary loading system with cookie-based persistence.
 
+### Performance Optimizations
+- **Image Handling:** Next/Image with custom base64 shimmer placeholders and LCP priority loading.
+- **Speed Index:** Delayed heavy iframe loading (Spotify/SoundCloud) to prioritize Time to Interactive (TTI).
+- **SEO:** Dynamic Metadata generation via `generateMetadata` for per-language OpenGraph/Twitter card support.
+
+---
+
+## 📊 Business Analysis Frameworks
+
+This project implements professional BA standards to ensure maximum stakeholder value.
+
+### Business Analysis Core Concept Model (BACCM)
 | Core Concept | Description | Project Application |
 | :--- | :--- | :--- |
-| **Context** | The circumstances that influence the change. | The 2025 tech landscape where "raw coding" is commoditized, making "AI implementation and analytical rigour" the primary differentiators. |
-| **Need** | A problem or opportunity to be addressed. | The urgent requirement to bypass automated recruiter filters by providing high-signal proof of AI-native engineering and system thinking. |
-| **Stakeholder** | A group or individual with a relationship to the change. | **Recruiters:** Seeking proof of skill; **Tech Leads:** Seeking architectural depth; **Me:** Seeking career growth and brand ownership; **Users:** General people who access the website |
-| **Solution** | A specific way of satisfying one or more needs in a context. | A high-performance Next.js platform featuring Gemini-integrated UI, multi-language support, and documented BA frameworks (Kano, BACCM). |
-| **Change** | The act of transformation in response to a need. | Transitioning from a "standard applicant" with a static CV to a "technical architect" with a dynamic, living ecosystem. |
-| **Value** | The worth, importance, or usefulness to a stakeholder. | **Recruiters:** Reduced time-to-hire; **Me:** Increased interview conversion rates and a centralized hub for all professional/creative IP; **Users:** Access general information and knowledge (through College link) in faranaiki.id |
+| **Context** | Tech landscape in 2025/2026. | Differentiating AI implementation and analytical rigour from "raw coding". |
+| **Need** | High-signal proof of skill. | Bypassing automated filters with direct proof of system thinking. |
+| **Stakeholder** | Recruiters, Tech Leads, Users. | Providing reduced time-to-hire and high-utility educational content. |
+| **Solution** | Next.js Platform. | Features Gemini-integrated UI and documented BA frameworks (Kano, BACCM). |
+| **Value** | Increased conversion. | Hub for all professional/creative IP and brand ownership. |
 
-### Kano Method Analysis (MPAIR)
-This is the final revision of each features that exists. 
-| Kano Matrix | Must Have | Performance | Attractive | Indifferent | Reverse |
-| -------- | -------- | -------- | -------- | -------- | -------- |
-| Done | Basic Portfolio | SEO Searching  | Dark Mode, Chat Bot | Perfect Pixel Adjustment |  |
-| In Review |  |  | Fixing Chat Bot's Gemini Feature |  |  |
-| In Progress |  |  |  | Documentation for Code |  |
-| To Do |  | Speed for Components | Animations |  |  |
-| Backlog |  |  | Integration with OS for Qemu Project | Epilepsy Prevetion Dark Mode to Light Mode  |  |
+### Kano Method Analysis
+- **Must-Have:** Basic Portfolio, SEO Searching.
+- **Performance:** Speed Optimization, Core Web Vitals.
+- **Attractive:** Gemini Chatbot, Multi-language support, Glitch UI, Interactive CLI.
 
-### Example Flowchart Modelling for Basic Interaction
-Example flowchart model to understand how UI are implemented
-```mermaid
-flowchart LR
-    %% Terminal Start (Use Oval for standardized thing)
-    Start([Start User Access Website]) --> Show[Show Main Content]
+---
 
-    %% Main Interaction Node
-    Show --> UserInput{User Interaction}
+## 🏗 Key Projects Featured
 
-    %% Feature: Chat Interface Q&A
-    UserInput -->|Chat Bot| ChatBubble[/Chat Bubble Icon/]
-    ChatBubble --> ChatWindow[Open Chat Window]
-    ChatWindow --> AskInput[/Input Question/]
-    AskInput --> ClickSend[Click Send Button]
-    ClickSend --> Answer[Display Answer]
-    Answer --> Show
+### [ALTH: Aku Lupa Tandai Hadir](https://faranaiki.id/project)
+An innovative attendance reminder for ITB students.
+- **Stack:** Flutter, Dart, Burp Suite (Reverse Engineering).
+- **Function:** Automates SIX portal signal processing via Microsoft SSO authentication.
 
-    %% Navigation Feature
-    UserInput -->|Navigation| NavBar[/Navigation Bar/]
-   
-    %% Connect Navigation bar to show
-    NavBar -->|Beranda| Show
-   
-    %% Profile
-    NavBar -->|Profile| SubProfile{Branch Profile}
-    SubProfile -->|Social| Social[Social Page]
-    SubProfile -->|Certificate| Cert[Certificate Page]
-   
-    %% Experience
-    NavBar -->|Experience| SubExp{Branch Experience}
-    SubExp -->|Work| Work[Job Page]
-    SubExp -->|Projects| Proj[Projects Page]
-    SubExp -->|Organization| Org[Organization Page]
-    SubExp -->|Awards| Award[Awards Page]
-    
-    %% Art 
-    NavBar -->|Art Works| SubArt{Branch Art Works}
-    SubArt -->|Music| Music[Music Page]
-    SubArt -->|Literature| Literature[Literature Page]
-   
-    %% College
-    NavBar -->|College| College[College Page]
+### [Alkyl Compiler](https://github.com/FaranAiki/alkyl)
+A custom programming language and compiler.
+- **Stack:** LLVM-IR, C.
+- **Goal:** Creating a language optimized for both AI generation and human readability.
 
-    %% Personalization Features and System Display
-    UserInput -->|Language| LangBar[/Language Bar/]
-    LangBar --> LangList[ID EN ZH JA RU FR AR]
-    
-    UserInput -->|Theme| ThemeBar[/Theme Bar/]
-    ThemeBar --> ThemeOptions[System Light Dark]
+---
 
-    %% Universal Back Loop
-    Social & Cert & Work & Proj & Org & Award & Music & Literature & College & LangList & ThemeOptions --> Show
-```
+## 🔗 Connect with Me
+- **X/Twitter:** [@FaranAiki](https://x.com/FaranAiki)
+- **LinkedIn:** [Muhammad Faran Aiki](https://www.linkedin.com/in/muhammad-faran-aiki-8a6305343/)
+- **Website:** [faranaiki.id](https://faranaiki.id)
 
-## Coding
+---
 
-### Language and Framework
+## 📝 The Usage of This Project
+I made this page to share my **LIFE**. While most might not care, I value the documentation of progress.
+- **College:** Sharing assignments so others can learn.
+- **Portfolio:** Showcasing technical milestones.
+- **Hobby:** Exploring the intersection of design and logic.
 
-Implemented using TypeScript, NextJS, and TailwindCSS.
+### 💡 Motivation
+Inspired by the leadership of SEEI-C 2025, ITB. This project taught me the depth of Next.js, the potential of AI integration, and the importance of rigorous system standards.
 
-### Template 
-The first version (scratch and template) is generated using Gemini with the prompt of 
->buatlah website untuk personal dengan menu:
->
->About Me
->Music
->Technology
->College Collections
->Publishing and Literature
->dan dengan satu menu popup yang berjudul "Ask me about anything" dengan textbox dan tombol submit di bawah kiri
->Menggunakan next.js dan tailwind dengan fail yang terpisah untuk github
-
-# Closing
-Other than that, the website is made by me for a simple project.
-(And AI tools assitant because I can code, so I don't vibe code lol)
-(I just hate reading documentation, that's it.)
+---
+*Created with passion (and AI assistance) by Faran Aiki.*

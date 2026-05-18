@@ -3,20 +3,41 @@ import "../globals.css";
 import { getDictionary } from '@/components/Translator';
 import ExperiencesClient from '@/components/ExperienceDisplayer';
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://faranaiki.id/work'),
-  title: "Faran Aiki's Work History",
-  description: "Faran Aiki's Work History and Internships",
-  openGraph: {
-    title: "Faran Aiki's Work History",
-    description: "Faran Aiki's Work History and Internships",
-    url: 'https://faranaiki.id/work',
-    siteName: 'Faran Aiki\'s Work History', 
-    type: 'website',
-  },
-  icons: { icon: '/icon.ico', shortcut: '/icon.ico', apple: '/icon.ico' },
-  alternates: { canonical: '/' },
-};
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const dict = getDictionary(lang);
+
+  return {
+    metadataBase: new URL('https://faranaiki.id'),
+    title: `${dict.Work} | Faran Aiki`,
+    description: dict.Software_Engineer_Description || "Faran Aiki's Work History and Internships",
+    openGraph: {
+      title: `${dict.Work} | Faran Aiki`,
+      description: dict.Software_Engineer_Description || "Faran Aiki's Work History and Internships",
+      url: `https://faranaiki.id/${lang}/work`,
+      siteName: "faranaiki.id",
+      type: "website",
+      images: [
+        {
+          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.jpg',
+          width: 1200,
+          height: 630,
+          alt: 'Faran Aiki',
+        },
+      ],
+    },
+    icons: { icon: '/icon.ico', shortcut: '/icon.ico', apple: '/icon.ico' },
+    alternates: { 
+      canonical: `/${lang}/work`,
+      languages: {
+        'id': '/id/work',
+        'en': '/en/work',
+        'zh': '/zh/work',
+        'jp': '/jp/work',
+      }
+    },
+  };
+}
 
 export default async function WorkExperiencesPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;

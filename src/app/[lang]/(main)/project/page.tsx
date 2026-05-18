@@ -4,20 +4,41 @@ import "../globals.css";
 
 import { getDictionary } from '@/components/Translator';
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://faranaiki.id/project"),
-  title: "Faran Aiki's Project",
-  description: "Faran Aiki's project history and others",
-  openGraph: {
-    title: "Faran Aiki's Project",
-    description: "Faran Aiki's project history and others",
-    url: "https://faranaiki.id/project",
-    siteName: "Faran Aiki's Project",
-    type: "website",
-  },
-  icons: { icon: "/icon.ico", shortcut: "/icon.ico", apple: "/icon.ico" },
-  alternates: { canonical: "/" },
-};
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const dict = getDictionary(lang);
+
+  return {
+    metadataBase: new URL("https://faranaiki.id"),
+    title: `${dict.Project} | Faran Aiki`,
+    description: dict.Make_Website_Description || "Faran Aiki's project history and others",
+    openGraph: {
+      title: `${dict.Project} | Faran Aiki`,
+      description: dict.Make_Website_Description || "Faran Aiki's project history and others",
+      url: `https://faranaiki.id/${lang}/project`,
+      siteName: "faranaiki.id",
+      type: "website",
+      images: [
+        {
+          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.jpg',
+          width: 1200,
+          height: 630,
+          alt: 'Faran Aiki',
+        },
+      ],
+    },
+    icons: { icon: "/icon.ico", shortcut: "/icon.ico", apple: "/icon.ico" },
+    alternates: { 
+      canonical: `/${lang}/project`,
+      languages: {
+        'id': '/id/project',
+        'en': '/en/project',
+        'zh': '/zh/project',
+        'jp': '/jp/project',
+      }
+    },
+  };
+}
 
 export default async function ProjectPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;

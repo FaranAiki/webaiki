@@ -66,7 +66,7 @@ export default function ThemeToggle() {
               ? "bg-gray-100 text-blue-500 shadow-sm ring-1 ring-gray-200"
               : "text-gray-400 hover:text-gray-600"
           }`}
-          aria-label="System Mode"
+          aria-label="Switch to system theme"
         >
           <Monitor size={16} />
         </button>
@@ -78,7 +78,7 @@ export default function ThemeToggle() {
               ? "bg-gray-100 text-orange-500 shadow-sm ring-1 ring-gray-200"
               : "text-gray-400 hover:text-gray-600"
           }`}
-          aria-label="Light Mode"
+          aria-label="Switch to light theme"
         >
           <Sun size={16} />
         </button>
@@ -90,7 +90,7 @@ export default function ThemeToggle() {
               ? "bg-gray-700 text-yellow-400 shadow-sm ring-1 ring-gray-600"
               : "text-gray-400 hover:text-gray-600"
           }`}
-          aria-label="Dark Mode"
+          aria-label="Switch to dark theme"
         >
           <Moon size={16} />
         </button>

@@ -165,6 +165,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                         <li key={lang.code}>
                             <button
                                 onClick={() => handleLanguageChange(lang.code)}
+                                aria-label={`Change language to ${lang.name}`}
                                 className={`w-full text-left px-5 py-2.5 text-sm hover:${isDark? 'bg-gray-700' : 'bg-gray-100'} hover:${isDark? 'text-cyan-400' : 'text-cyan-600'} transition-[colors,transform] duration-200 ${isCurrent ? `${activeText} font-bold bg-gray-50/5` : textColor}`}
                             >
                                 {lang.name}
@@ -328,7 +329,12 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                             className="hidden md:flex relative cursor-pointer"
                             onMouseEnter={() => setLangMenuVisible(true)}
                         >
-                            <button className={`group p-2.5 rounded-full hover:${isDark ? 'bg-white/10' : 'bg-gray-100'} transition-colors`}>
+                            <button 
+                                className={`group p-2.5 rounded-full hover:${isDark ? 'bg-white/10' : 'bg-gray-100'} transition-colors`}
+                                aria-label="Select language"
+                                aria-haspopup="true"
+                                aria-expanded={isLangMenuVisible}
+                            >
                                 <GlobeIcon isDark={isDark} />
                             </button>
                             {isLangMenuVisible && (

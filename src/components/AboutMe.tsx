@@ -6,6 +6,25 @@ import FadeInSection from '@/components/FadeInSection';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 
+const shimmer = (w: number, h: number) => `
+<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <linearGradient id="g">
+      <stop stop-color="#333" offset="20%" />
+      <stop stop-color="#222" offset="50%" />
+      <stop stop-color="#333" offset="70%" />
+    </linearGradient>
+  </defs>
+  <rect width="${w}" height="${h}" fill="#333" />
+  <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
+  <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
+</svg>`;
+
+const toBase64 = (str: string) =>
+  typeof window === 'undefined'
+    ? Buffer.from(str).toString('base64')
+    : window.btoa(str);
+
 export type AboutMeProps = {
   carouselPhotos: string[];
   faran_photo: string;
@@ -115,6 +134,8 @@ export default function AboutMe({
                 src={`/images/photo_faran_aiki/${carouselPhotos[currentIndex]}`}
                 alt={faran_photo}
                 fill
+                placeholder="blur"
+                blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(320, 320))}`}
                 className={`
                   object-cover rounded-2xl
                   transition-[colors,transform] duration-700 ease-out
@@ -124,7 +145,7 @@ export default function AboutMe({
                 `}
                 sizes="(max-width: 768px) 256px, 320px"
                 quality={85}
-                priority
+                priority={true}
               />
               )}
             </div>
@@ -157,6 +178,8 @@ export default function AboutMe({
                 src={`/images/move_forward.png`}
                 alt="Move Forward Philosophy"
                 fill
+                placeholder="blur"
+                blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(288, 288))}`}
                 sizes="(max-width: 768px) 224px, 288px"
                 quality={85}
                 className="object-contain animate-float transition-[colors,transform,opacity] duration-500 ease-in-out opacity-90 hover:opacity-100 hover:-rotate-3 drop-shadow-xl hover:drop-shadow-[0_0_20px_rgba(6,182,212,0.6)]"
@@ -206,6 +229,8 @@ export default function AboutMe({
                 src={`/images/tree.png`}
                 alt="Guiding Principles Tree"
                 fill
+                placeholder="blur"
+                blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(288, 288))}`}
                 sizes="(max-width: 768px) 224px, 288px"
                 quality={85}
                 className="object-contain transition-[colors,opacity,transform] duration-500 ease-in-out opacity-90 hover:opacity-100 hover:scale-105 hover:rotate-2 drop-shadow-xl hover:drop-shadow-[0_0_20px_rgba(16,185,129,0.5)]"
@@ -255,6 +280,8 @@ export default function AboutMe({
                 src={`/images/vission_mission.png`}
                 alt="Vision and Mission"
                 fill
+                placeholder="blur"
+                blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(288, 288))}`}
                 sizes="(max-width: 768px) 224px, 288px"
                 quality={85}
                 className="object-contain animate-float transition-[colors,transform,opacity] duration-500 ease-in-out opacity-90 hover:opacity-100 hover:scale-110 hover:brightness-110 drop-shadow-xl hover:drop-shadow-[0_0_20px_rgba(168,85,247,0.5)]"
