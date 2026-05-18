@@ -164,7 +164,7 @@ export default function SocialDisplay({ pageTitle }: SocialDisplayProps) {
   ];
 
   return (
-    <div className={`container mx-auto max-w-5xl pt-12 ${containerText}`}>
+    <div className={`container mx-auto max-w-5xl pt-24 ${containerText}`}>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
         {socialLinks.map((link, index) => (
           // Adjusted logic: Cap the delay to avoid excessive waiting for items at the bottom of the list.
