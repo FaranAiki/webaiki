@@ -55,17 +55,41 @@ export const getCertificatesData = cache(async (lang: string) => {
   return allCertificatesData;
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://faranaiki.id/certificate'),
-  title: "Faran Aiki's Certificate",
-  description: "Faran Aiki's personal certificates",
-  openGraph: {
-    title: "Faran Aiki's Certificate",
-    url: 'https://faranaiki.id/certificate',
-    siteName: 'Faran Aiki\'s Certificate', 
-    type: 'website',
-  },
-};
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const dict = getDictionary(lang);
+
+  return {
+    metadataBase: new URL('https://faranaiki.id'),
+    title: `${dict.Certificate} | Faran Aiki`,
+    description: "Faran Aiki's personal certificates",
+    openGraph: {
+      title: `${dict.Certificate} | Faran Aiki`,
+      description: "Faran Aiki's personal certificates",
+      url: `https://faranaiki.id/${lang}/certificate`,
+      siteName: "faranaiki.id",
+      type: "website",
+      images: [
+        {
+          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.jpg',
+          width: 1200,
+          height: 630,
+          alt: 'Faran Aiki',
+        },
+      ],
+    },
+    icons: { icon: '/icon.ico', shortcut: '/icon.ico', apple: '/icon.ico' },
+    alternates: { 
+      canonical: `/${lang}/certificate`,
+      languages: {
+        'id': '/id/certificate',
+        'en': '/en/certificate',
+        'zh': '/zh/certificate',
+        'jp': '/jp/certificate',
+      }
+    },
+  };
+}
 
 export default async function CertificatePage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;

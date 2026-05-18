@@ -6,14 +6,41 @@ import LiteratureLoader from './literature-loader'
 import { getDictionary } from '@/components/Translator';
 import { cache } from 'react';
 
-import fs from 'fs';
-import path from 'path';
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const dict = getDictionary(lang);
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://faranaiki.id/literature'),
-  title: "Faran Aiki in Literature",
-  description: "Faran Aiki's short stories or poems",
-};
+  return {
+    metadataBase: new URL('https://faranaiki.id'),
+    title: `${dict.Literature} | Faran Aiki`,
+    description: "Faran Aiki's short stories, poems, and other literary works",
+    openGraph: {
+      title: `${dict.Literature} | Faran Aiki`,
+      description: "Faran Aiki's short stories, poems, and other literary works",
+      url: `https://faranaiki.id/${lang}/literature`,
+      siteName: "faranaiki.id",
+      type: "website",
+      images: [
+        {
+          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.jpg',
+          width: 1200,
+          height: 630,
+          alt: 'Faran Aiki',
+        },
+      ],
+    },
+    icons: { icon: '/icon.ico', shortcut: '/icon.ico', apple: '/icon.ico' },
+    alternates: { 
+      canonical: `/${lang}/literature`,
+      languages: {
+        'id': '/id/literature',
+        'en': '/en/literature',
+        'zh': '/zh/literature',
+        'jp': '/jp/literature',
+      }
+    },
+  };
+}
 
 // Now completely synchronous utilizing purely fs.*Sync
 export const getCollectionsData = cache((lang: string) => {

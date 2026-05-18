@@ -14,28 +14,48 @@ export const getFaranAikiPhoto = cache(() => {
   return fs.readdirSync(photosDir);
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://faranaiki.id'),
-  title: 'About Faran Aiki',
-  description: 'Muhammad Faran Aiki\'s personal files, portfolio, and others',
-  openGraph: {
-    title: 'About Faran Aiki',
-    description: 'Muhammad Faran Aiki\'s personal files, portfolio, and others',
-    url: 'https://faranaiki.id',
-    siteName: 'About Faran Aiki', 
-    type: 'website',
-  },
-  icons: {
-    icon: '/icon.ico',
-    shortcut: '/icon.ico',
-    apple: '/icon.ico',
-  },
-  alternates: {
-    canonical: '/',
-  },
-};
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const dict = getDictionary(lang);
+
+  return {
+    metadataBase: new URL('https://faranaiki.id'),
+    title: `${dict.About_Me} | Faran Aiki`,
+    description: dict.Faran_About_1?.replace(/<[^>]*>/g, '') || "Muhammad Faran Aiki's personal files, portfolio, and others",
+    openGraph: {
+      title: `${dict.About_Me} | Faran Aiki`,
+      description: dict.Faran_About_1?.replace(/<[^>]*>/g, '') || "Muhammad Faran Aiki's personal files, portfolio, and others",
+      url: `https://faranaiki.id/${lang}`,
+      siteName: "faranaiki.id",
+      type: "website",
+      images: [
+        {
+          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.jpg',
+          width: 1200,
+          height: 630,
+          alt: 'Faran Aiki',
+        },
+      ],
+    },
+    icons: {
+      icon: '/icon.ico',
+      shortcut: '/icon.ico',
+      apple: '/icon.ico',
+    },
+    alternates: {
+      canonical: `/${lang}`,
+      languages: {
+        'id': '/id',
+        'en': '/en',
+        'zh': '/zh',
+        'jp': '/jp',
+      }
+    },
+  };
+}
 
 export default async function HomePage({ 
+ 
   params 
 }: { 
   params: Promise<{ lang: string }> 

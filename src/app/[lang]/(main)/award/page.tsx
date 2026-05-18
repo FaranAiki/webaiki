@@ -3,20 +3,41 @@ import "../globals.css";
 import { getDictionary } from '@/components/Translator';
 import ExperiencesClient from '@/components/ExperienceDisplayer';
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://faranaiki.id/award'),
-  title: "Faran Aiki's Award",
-  description: "Faran Aiki's award, like scholarships and others",
-  openGraph: {
-    title: "Faran Aiki's Award",
-    description: "Faran Aiki's award, like scholarships and others",
-    url: 'https://faranaiki.id/award',
-    siteName: 'Faran Aiki\'s Award', 
-    type: 'website',
-  },
-  icons: { icon: '/icon.ico', shortcut: '/icon.ico', apple: '/icon.ico' },
-  alternates: { canonical: '/' },
-};
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const dict = getDictionary(lang);
+
+  return {
+    metadataBase: new URL('https://faranaiki.id'),
+    title: `${dict.Award} | Faran Aiki`,
+    description: dict.Paragon_Scholarship_Desc || "Faran Aiki's award, like scholarships and others",
+    openGraph: {
+      title: `${dict.Award} | Faran Aiki`,
+      description: dict.Paragon_Scholarship_Desc || "Faran Aiki's award, like scholarships and others",
+      url: `https://faranaiki.id/${lang}/award`,
+      siteName: "faranaiki.id",
+      type: "website",
+      images: [
+        {
+          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.jpg',
+          width: 1200,
+          height: 630,
+          alt: 'Faran Aiki',
+        },
+      ],
+    },
+    icons: { icon: '/icon.ico', shortcut: '/icon.ico', apple: '/icon.ico' },
+    alternates: { 
+      canonical: `/${lang}/award`,
+      languages: {
+        'id': '/id/award',
+        'en': '/en/award',
+        'zh': '/zh/award',
+        'jp': '/jp/award',
+      }
+    },
+  };
+}
 
 export default async function AwardsPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;

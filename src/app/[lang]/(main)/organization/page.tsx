@@ -3,20 +3,41 @@ import "../globals.css";
 import { getDictionary } from '@/components/Translator';
 import ExperiencesClient from '@/components/ExperienceDisplayer';
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://faranaiki.id/organization'),
-  title: "Faran Aiki's Organization",
-  description: "Faran Aiki's organization and activities",
-  openGraph: {
-    title: "Faran Aiki's Organization",
-    description: "Faran Aiki's Organization and Activities",
-    url: 'https://faranaiki.id/organization',
-    siteName: 'Faran Aiki\'s Organization', 
-    type: 'website',
-  },
-  icons: { icon: '/icon.ico', shortcut: '/icon.ico', apple: '/icon.ico' },
-  alternates: { canonical: '/' },
-};
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const dict = getDictionary(lang);
+
+  return {
+    metadataBase: new URL('https://faranaiki.id'),
+    title: `${dict.Organization} | Faran Aiki`,
+    description: dict.Impact_Web_Lead_Description || "Faran Aiki's organization and activities",
+    openGraph: {
+      title: `${dict.Organization} | Faran Aiki`,
+      description: dict.Impact_Web_Lead_Description || "Faran Aiki's organization and activities",
+      url: `https://faranaiki.id/${lang}/organization`,
+      siteName: "faranaiki.id",
+      type: "website",
+      images: [
+        {
+          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.jpg',
+          width: 1200,
+          height: 630,
+          alt: 'Faran Aiki',
+        },
+      ],
+    },
+    icons: { icon: '/icon.ico', shortcut: '/icon.ico', apple: '/icon.ico' },
+    alternates: { 
+      canonical: `/${lang}/organization`,
+      languages: {
+        'id': '/id/organization',
+        'en': '/en/organization',
+        'zh': '/zh/organization',
+        'jp': '/jp/organization',
+      }
+    },
+  };
+}
 
 export default async function OrganizationExperiencesPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;

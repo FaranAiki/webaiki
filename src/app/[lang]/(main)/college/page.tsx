@@ -57,11 +57,41 @@ export const getCollectionsData = cache((lang: string) => {
   return allCollectionsData;
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://faranaiki.id/college'),
-  title: "Faran Aiki's Personal College Collection",
-  description: "Faran Aiki's personal college collection",
-};
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const dict = getDictionary(lang);
+
+  return {
+    metadataBase: new URL('https://faranaiki.id'),
+    title: `${dict.College} | Faran Aiki`,
+    description: "Faran Aiki's personal college collection and resources",
+    openGraph: {
+      title: `${dict.College} | Faran Aiki`,
+      description: "Faran Aiki's personal college collection and resources",
+      url: `https://faranaiki.id/${lang}/college`,
+      siteName: "faranaiki.id",
+      type: "website",
+      images: [
+        {
+          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.jpg',
+          width: 1200,
+          height: 630,
+          alt: 'Faran Aiki',
+        },
+      ],
+    },
+    icons: { icon: '/icon.ico', shortcut: '/icon.ico', apple: '/icon.ico' },
+    alternates: { 
+      canonical: `/${lang}/college`,
+      languages: {
+        'id': '/id/college',
+        'en': '/en/college',
+        'zh': '/zh/college',
+        'jp': '/jp/college',
+      }
+    },
+  };
+}
 
 export default async function CollegePage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
