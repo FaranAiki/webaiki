@@ -5,6 +5,8 @@ import { CollectionsData } from '@/components/InteractiveCollections';
 import LiteratureLoader from './literature-loader'
 import { getDictionary } from '@/components/Translator';
 import { cache } from 'react';
+import fs from 'fs';
+import path from 'path';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;

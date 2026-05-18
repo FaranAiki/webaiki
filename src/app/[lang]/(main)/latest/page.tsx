@@ -1,32 +1,40 @@
-import type { Metadata } from "next";
-import "../globals.css";
+import { getDictionary } from '@/components/Translator';
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://faranaiki.id/latest'),
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const dict = getDictionary(lang);
 
-  title: "Faran Aiki's Latest Information",
-  description: "Faran Aiki's Latest Information",
-  
-  openGraph: {
-    title: "Faran Aiki's Latest Information",
+  return {
+    metadataBase: new URL('https://faranaiki.id'),
+    title: `${dict.Latest} | Faran Aiki`,
     description: "Faran Aiki's Latest Information",
-    url: 'https://faranaiki.id/latest',
-    siteName: 'Faran Aiki\'s Latest Information', 
-    type: 'website',
-  },
+    openGraph: {
+      title: `${dict.Latest} | Faran Aiki`,
+      description: "Faran Aiki's Latest Information",
+      url: `https://faranaiki.id/${lang}/latest`,
+      siteName: "faranaiki.id",
+      type: "website",
+      images: [
+        {
+          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.jpg',
+          width: 1200,
+          height: 630,
+          alt: 'Faran Aiki',
+        },
+      ],
+    },
+    icons: {
+      icon: '/icon.ico',
+      shortcut: '/icon.ico',
+      apple: '/icon.ico',
+    },
+    alternates: {
+      canonical: `/${lang}/latest`,
+    },
+  };
+}
 
-  icons: {
-    icon: '/icon.ico',
-    shortcut: '/icon.ico',
-    apple: '/icon.ico',
-  },
-  
-  alternates: {
-    canonical: '/',
-  },
-};
-
-export default function RootLayout({
+export default async function LatestPage({
   children,
 }: Readonly<{
   children: React.ReactNode;

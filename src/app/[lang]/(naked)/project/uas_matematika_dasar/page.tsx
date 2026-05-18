@@ -1,33 +1,37 @@
 // This is the Flutter project
 
-import type { Metadata } from "next";
-import "../../globals.css";
+import { getDictionary } from '@/components/Translator';
 import UasHeader from "./UasHeader";
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://faranaiki.id/project/uas_matematika_dasar'),
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const dict = getDictionary(lang);
 
-  title: "Faran Aiki's Analitica and Math Project",
-  description: "Faran Aiki's project to develop interactive widgets and AI explanations",
-  
-  openGraph: {
-    title: "Faran Aiki's Analitica and Math Project",
-    description: "Faran Aiki's project to develop interactive widgets and AI explanations",
-    url: 'https://faranaiki.id/project/uas_matematika_dasar',
-    siteName: 'Faran Aiki\'s Analitica and Math Project', 
-    type: 'website',
-  },
-
-  icons: {
-    icon: '/icon.ico',
-    shortcut: '/icon.ico',
-    apple: '/icon.ico',
-  },
-  
-  alternates: {
-    canonical: '/',
-  },
-};
+  return {
+    metadataBase: new URL('https://faranaiki.id'),
+    title: `${dict.Make_Interactive_UAS} | Faran Aiki`,
+    description: dict.Make_Interactive_UAS_Description || "Faran Aiki's project to develop interactive widgets and AI explanations",
+    openGraph: {
+      title: `${dict.Make_Interactive_UAS} | Faran Aiki`,
+      description: dict.Make_Interactive_UAS_Description || "Faran Aiki's project to develop interactive widgets and AI explanations",
+      url: `https://faranaiki.id/${lang}/project/uas_matematika_dasar`,
+      siteName: "faranaiki.id",
+      type: "website",
+      images: [
+        {
+          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.jpg',
+          width: 1200,
+          height: 630,
+          alt: 'Faran Aiki',
+        },
+      ],
+    },
+    icons: { icon: '/icon.ico', shortcut: '/icon.ico', apple: '/icon.ico' },
+    alternates: { 
+      canonical: `/${lang}/project/uas_matematika_dasar`,
+    },
+  };
+}
 
 export default function UasMTK() {
   return (
