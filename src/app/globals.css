@@ -266,6 +266,14 @@ body.presentation-mode .presentation-section h2 {
     flex-wrap: wrap !important;
   }
 
+  /* Target main and its immediate children to remove forehead padding */
+  main, 
+  body.presentation-mode main > div,
+  body.presentation-mode .presentation-section > div {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+
   /* Each slide becomes a page */
   body.presentation-mode .presentation-section,
   body.presentation-mode .presentation-container > * {
