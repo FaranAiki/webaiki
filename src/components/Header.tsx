@@ -269,7 +269,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                     }
                                 `}
                             >
-                                {isPresentationMode ? <MonitorPlay size={24} strokeWidth={2.5} /> : <Monitor size={24} strokeWidth={2} />}
+                                {isPresentationMode ? <MonitorPlay size={24} strokeWidth={2} /> : <Monitor size={24} strokeWidth={2} />}
                             </button>
                         </div>
                     </div>

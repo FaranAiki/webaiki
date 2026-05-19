@@ -186,8 +186,8 @@ export default function ExperiencesClient({ experiences, lang }: ExperiencesClie
                             </div>
 
                             {/* Right Column: Image Display (Carousel) [on desktop] */}
-                            <div className="hidden md:block w-1/2 self-center h-fit">
-                                 <div className="sticky top-24 transition-[opacity,transform] duration-200 hover:scale-105 flex justify-center">
+                            <div className="hidden md:block w-1/2">
+                                 <div className="sticky top-32 transition-[opacity,transform] duration-200 hover:scale-105 flex justify-center">
                                     {hasValidImage ? (
                                         <div className="w-full">
                                             <div className="relative w-fit h-fit mx-auto shadow-2xl p-0">

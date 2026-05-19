@@ -67,12 +67,12 @@ export default function FadeInSection({
       {children}
       {isPresentationMode && slideIndex && totalSlides && (
         <div className="absolute bottom-8 right-8 pointer-events-none z-50">
-          <div className="flex items-center gap-2 px-3 py-1 border border-cyan-500/20 rounded text-sm bg-white/5">
-            <span className="text-white font-medium tracking-tight">
+          <div className="flex items-center gap-2 px-3 py-1 border border-cyan-500/20 rounded text-sm bg-white/5 font-mono">
+            <span className="text-white font-medium tabular-nums">
               {toBinary(slideIndex, totalSlides)}
             </span>
             <span className="text-gray-500">/</span>
-            <span className="text-cyan-500/80 font-medium">
+            <span className="text-cyan-500/80 font-medium tabular-nums">
               {toBinary(totalSlides, totalSlides)}
             </span>
           </div>

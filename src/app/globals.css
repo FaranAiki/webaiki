@@ -227,51 +227,69 @@ body.presentation-mode .presentation-section h2 {
   html, body {
     margin: 0 !important;
     padding: 0 !important;
-    height: auto !important;
-    min-height: 100% !important;
     width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    display: block !important;
     overflow: visible !important;
+    background: transparent !important;
   }
 
   body {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
+    position: relative !important;
   }
 
-  body.presentation-mode {
-    overflow: visible !important;
-    height: auto !important;
-  }
-
+  /* Completely remove non-essential elements from layout */
   .no-print,
   header,
   nav,
+  footer,
   .cookie-initializer,
   .presentation-mode\:hidden,
-  .body-presentation-mode\:hidden {
+  .body-presentation-mode\:hidden,
+  [data-radix-portal],
+  .SectionSeparator,
+  #ask-me-popup-container {
     display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: absolute !important;
+    top: -9999px !important;
+    left: -9999px !important;
   }
 
-  /* Presentation layout for printing: stack slides vertically */
-  body.presentation-mode main,
+  /* Presentation layout for printing */
+  body.presentation-mode main {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    overflow: visible !important;
+  }
+
   body.presentation-mode .presentation-container {
     display: block !important;
-    overflow: visible !important;
-    height: auto !important;
-    width: 100vw !important;
-    max-width: none !important;
-    padding: 0 !important;
+    width: 100% !important;
     margin: 0 !important;
-    flex-direction: column !important;
-    flex-wrap: wrap !important;
+    padding: 0 !important;
+    overflow: visible !important;
   }
 
-  /* Target main and its immediate children to remove forehead padding */
+  /* Remove all vertical spacing and ensure content starts at the very top */
   main, 
-  body.presentation-mode main > div,
-  body.presentation-mode .presentation-section > div {
-    padding-top: 0 !important;
+  main *,
+  body.presentation-mode .presentation-section,
+  body.presentation-mode .presentation-container > * {
     margin-top: 0 !important;
+    padding-top: 0 !important;
   }
 
   /* Each slide becomes a page */
@@ -279,31 +297,54 @@ body.presentation-mode .presentation-section h2 {
   body.presentation-mode .presentation-container > * {
     page-break-after: always !important;
     break-after: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
     height: 100vh !important;
-    width: 100vw !important;
+    width: 100% !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
     align-items: center !important;
     position: relative !important;
-    padding: 0 !important;
-    margin: 0 !important;
     overflow: hidden !important;
-    /* Ensure slides are visible even if they were hidden by JS intersection observer */
     opacity: 1 !important;
     visibility: visible !important;
     transform: none !important;
     filter: none !important;
   }
 
-  /* Prevent extra white page at the end */
-  body.presentation-mode .presentation-section:last-child,
+  /* Force page counter to be consistently at the bottom-right of every printed page */
+  body.presentation-mode .presentation-section .pointer-events-none.z-50 {
+    position: fixed !important;
+    bottom: 20mm !important; /* Standard print margin */
+    right: 20mm !important;
+    z-index: 9999 !important;
+  }
+
+  /* Target Chrome specifically to ensure the first page isn't skipped */
+  @-moz-document url-prefix() {
+    body.presentation-mode .presentation-section:first-of-type {
+      break-before: auto !important;
+    }
+  }
+
+  /* Force the first slide to the first page */
+  body.presentation-mode .presentation-section:first-of-type,
+  body.presentation-mode .presentation-container > *:first-child,
+  body.presentation-mode main > *:first-child {
+    page-break-before: avoid !important;
+    break-before: avoid !important;
+    top: 0 !important;
+  }
+
+  /* Avoid empty page at the end */
+  body.presentation-mode .presentation-section:last-of-type,
   body.presentation-mode .presentation-container > *:last-child {
     page-break-after: avoid !important;
     break-after: avoid !important;
   }
 
-  /* Ensure background covers every page */
+  /* Background styling for print */
   body.presentation-mode .fixed.inset-0 {
     position: fixed !important;
     top: 0 !important;
