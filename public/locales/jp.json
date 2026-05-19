@@ -168,5 +168,6 @@
   "PT Paragon": "PT Paragon",
   "ALTH_Project": "ALTH：出席登録を忘れました",
   "ALTH_Project_Description": "ALTH (Aku Lupa Tandai Hadir) は、出席登録を忘れがちな ITB 生のために特別に設計された革新的なアプリケーションです。Flutter を使用して開発され、Burp Suite の統合を活用することで、SIX ポータルに GET 信号を自動的に送信し、Microsoft SSO 認証を通じて取得した Cookie を使用してデータを処理します。技術的には POST 信号を送信する能力を備えていますが、ALTH は出席操作のためではなく、スマートなリマインダーツールとして高い誠実さを持って構築されています。",
-  "": ""
+  "": "",
+  "Presentation_Mode": "プレゼンテーション モード"
 }

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "../globals.css";
+import "../../../globals.css";
 import { getDictionary } from '@/components/Translator';
 import ExperiencesClient from '@/components/ExperienceDisplayer';
 
@@ -172,5 +172,9 @@ export default async function OrganizationExperiencesPage({ params }: { params: 
     },
   ];
 
-  return <ExperiencesClient experiences={organizationExperiences} lang={lang} />;
+  return (
+    <main className="w-full">
+      <ExperiencesClient experiences={organizationExperiences} lang={lang} />
+    </main>
+  );
 }

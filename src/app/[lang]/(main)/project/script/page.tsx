@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import PythonCLI from "@/components/PythonCLI"; 
-import "../../globals.css"; 
+import "../../../../globals.css"; 
 
 import { getDictionary } from '@/components/Translator';
 

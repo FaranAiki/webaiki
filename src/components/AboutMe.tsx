@@ -45,7 +45,7 @@ export type AboutMeProps = {
 };
 
 const SectionSeparator = ({ isDark }: { isDark: boolean }) => (
-  <div className="w-full max-w-4xl mx-auto my-16 md:my-24">
+  <div className="SectionSeparator w-full max-w-4xl mx-auto my-16 md:my-24">
     <div className={`h-px bg-gradient-to-r from-transparent ${isDark ? 'via-gray-500/50' : 'via-black/20'} to-transparent`} />
   </div>
 );
@@ -107,11 +107,11 @@ export default function AboutMe({
   const borderClass = isDark ? 'border-white/10' : 'border-gray-200';
 
   return (
-    <div className="w-full py-8 md:px-5">
+    <div className="w-full py-8 md:px-5 presentation-mode:contents">
        
       {/* About Me Section */}
       <FadeInSection>
-        <div className="flex flex-col-reverse md:flex-row justify-center items-center gap-8 lg:gap-16 max-w-6xl mx-auto">
+        <div className="flex flex-col-reverse md:flex-row justify-center items-center gap-8 lg:gap-16 max-w-6xl mx-auto w-full">
           <div className="flex-1 text-center md:${justifyClass} max-w-prose">
             <h1 className={`text-4xl md:text-5xl font-extrabold ${titleClass} mb-6 hover:opacity-85 transition-opacity tracking-tight`}>
               {about_title}
@@ -153,13 +153,13 @@ export default function AboutMe({
         </div>
       </FadeInSection>
 
-      <FadeInSection delay={100}>
+      <div className="block presentation-mode:hidden">
         <SectionSeparator isDark={isDark} />
-      </FadeInSection>
+      </div>
 
       {/* Philosophy Section */}
       <FadeInSection>
-        <div className="flex flex-col-reverse md:flex-row-reverse justify-center items-center gap-8 lg:gap-16 max-w-6xl mx-auto">
+        <div className="flex flex-col-reverse md:flex-row-reverse justify-center items-center gap-8 lg:gap-16 max-w-6xl mx-auto w-full">
           <div className="flex-1 text-center md:${justifyClass} max-w-prose">
             <h2 className={`text-3xl md:text-4xl font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
               {about_philosophy_title}
@@ -189,13 +189,13 @@ export default function AboutMe({
         </div>
       </FadeInSection>
 
-      <FadeInSection delay={100}>
+      <div className="block presentation-mode:hidden">
         <SectionSeparator isDark={isDark} />
-      </FadeInSection>
+      </div>
 
       {/* Principles Section */}
       <FadeInSection>
-        <div className="flex flex-col-reverse md:flex-row justify-center items-center gap-8 lg:gap-16 max-w-6xl mx-auto">
+        <div className="flex flex-col-reverse md:flex-row justify-center items-center gap-8 lg:gap-16 max-w-6xl mx-auto w-full">
           <div className="flex-1 text-center md:${justifyClass} max-w-prose">
             <h2 className={`text-3xl md:text-4xl font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
               {about_principle_title}
@@ -240,13 +240,13 @@ export default function AboutMe({
         </div>
       </FadeInSection>
 
-      <FadeInSection delay={100}>
+      <div className="block presentation-mode:hidden">
         <SectionSeparator isDark={isDark} />
-      </FadeInSection>
+      </div>
 
       {/* Vision & Mission Section */}
       <FadeInSection>
-        <div className="flex flex-col-reverse md:flex-row-reverse justify-center items-center gap-8 lg:gap-16 max-w-6xl mx-auto">
+        <div className="flex flex-col-reverse md:flex-row-reverse justify-center items-center gap-8 lg:gap-16 max-w-6xl mx-auto w-full">
           <div className="flex-1 text-center md:${justifyClass} max-w-prose">
             <h2 className={`text-3xl md:text-4xl font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
               {about_vision_mission_title}

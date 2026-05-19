@@ -168,5 +168,6 @@
   "PT Paragon": "PT Paragon 公司",
   "ALTH_Project": "ALTH: 我忘了签到",
   "ALTH_Project_Description": "ALTH (Aku Lupa Tandai Hadir) 是一款专为 ITB 学生设计的创新应用程序，旨在解决经常忘记签到的问题。该应用使用 Flutter 开发，并利用 Burp Suite 集成，自动向 SIX 门户发送 GET 信号，并通过 Microsoft SSO 身份验证获取的 Cookie 处理数据。尽管它具备发送 POST 信号的技术能力，但 ALTH 是作为一个智能提醒工具以高度诚信构建的，而非用于考勤操纵。",
-  "": ""
+  "": "",
+  "Presentation_Mode": "演示模式"
 }

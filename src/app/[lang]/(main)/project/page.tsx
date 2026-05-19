@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import ExperiencesClient from '@/components/ExperienceDisplayer';
-import "../globals.css"; 
+import "../../../globals.css"; 
 
 import { getDictionary } from '@/components/Translator';
 
@@ -134,5 +134,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ lang: 
     },
   ];
 
-  return <ExperiencesClient experiences={projectExperiences} lang={lang} />;
+  return (
+    <main className="w-full">
+      <ExperiencesClient experiences={projectExperiences} lang={lang} />
+    </main>
+  );
 }

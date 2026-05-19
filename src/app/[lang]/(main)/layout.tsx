@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import "../../globals.css";
 // Replace React's per-request cache with Next.js's global cross-request cache
 import { unstable_cache } from 'next/cache';
 
@@ -125,36 +125,22 @@ export default async function RootLayout({
   ];
 
   return (
-    <html lang={lang} suppressHydrationWarning={true} nonce={nonce}>
-      <CookieInitializer />
-      <head>
-        <meta name="google-site-verification" content="xZMulZsvn0xj7TrxhEN8O9KLWSmNIfx6tqFtOpbgOV4" />
-      </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Providers>
-          <Header 
-            navLinks={navLinks} 
-            current_lang={lang} 
-            en_lang={dict.English} 
-            zh_lang={dict.Mandarin} 
-            id_lang={dict.Indonesian} 
-            jp_lang={dict.Japanese} 
-            ru_lang={dict.Russian} 
-            fr_lang={dict.French} 
-            ar_lang={dict.Arabic} 
-            select_lang={dict.Select_Language}
-          />
-          {children}
-          <ClientOnlyWidgets dict={dict} backgrounds={backgrounds} />
-        </Providers>
-        <Script
-          strategy="lazyOnload"
-          src="https://cloud.umami.is/script.js" 
-          data-website-id="a418298f-fdca-4df0-a3bf-be453b48eeaf"
-        />
-      </body>
-    </html>
+    <>
+      <Header 
+        navLinks={navLinks} 
+        current_lang={lang} 
+        en_lang={dict.English} 
+        zh_lang={dict.Mandarin} 
+        id_lang={dict.Indonesian} 
+        jp_lang={dict.Japanese} 
+        ru_lang={dict.Russian} 
+        fr_lang={dict.French} 
+        ar_lang={dict.Arabic} 
+        select_lang={dict.Select_Language}
+        presentation_mode={dict.Presentation_Mode}
+      />
+      {children}
+      <ClientOnlyWidgets dict={dict} backgrounds={backgrounds} />
+    </>
   );
 }

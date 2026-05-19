@@ -2,6 +2,7 @@
 
 import { ThemeProvider } from "next-themes";
 import { useEffect, useState } from "react";
+import { PresentationProvider } from "./PresentationContext";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false);
@@ -14,12 +15,14 @@ export function Providers({ children }: { children: React.ReactNode }) {
   if (!mounted) {
     // Return children as-is (or a loading state) during server-render/initial client render
     // to avoid markup mismatches.
-    return <>{children}</>;
+    return <PresentationProvider>{children}</PresentationProvider>;
   }
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      {children}
-    </ThemeProvider>
+    <PresentationProvider>
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        {children}
+      </ThemeProvider>
+    </PresentationProvider>
   );
 }

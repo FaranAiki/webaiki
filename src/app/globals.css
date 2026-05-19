@@ -36,6 +36,46 @@
 }
 
 @layer utilities {
+  .presentation-mode\:hidden {
+    display: inherit;
+  }
+  
+  body.presentation-mode .presentation-mode\:hidden {
+    display: none !important;
+  }
+
+  .presentation-mode\:contents {
+    display: inherit;
+  }
+
+  body.presentation-mode .presentation-mode\:contents {
+    display: contents !important;
+  }
+
+  .body-presentation-mode\:hidden {
+    display: inherit;
+  }
+
+  body.presentation-mode .body-presentation-mode\:hidden {
+    display: none !important;
+  }
+
+  .body-presentation-mode\:block {
+    display: none;
+  }
+
+  body.presentation-mode .body-presentation-mode\:block {
+    display: block !important;
+  }
+
+  .body-presentation-mode\:flex {
+    display: none;
+  }
+
+  body.presentation-mode .body-presentation-mode\:flex {
+    display: flex !important;
+  }
+  
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
@@ -84,4 +124,85 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.presentation-mode {
+  overflow: hidden !important;
+}
+
+body.presentation-mode {
+  overflow: hidden !important;
+}
+
+/* Base Main fix - Don't force flex on main itself to avoid breaking sub-components */
+body.presentation-mode main {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  height: 100vh !important;
+  width: 100vw !important;
+  scroll-snap-type: x mandatory;
+  display: flex !important; /* Force flex to align components as slides if needed */
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  max-width: none !important;
+}
+
+/* Ensure presentation containers (like Experience) also act as horizontal flows */
+body.presentation-mode .presentation-container {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  height: 100vh !important;
+  width: auto !important;
+}
+
+/* Individual Slides */
+body.presentation-mode .presentation-section {
+  min-width: 100vw !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  flex-shrink: 0 !important;
+  scroll-snap-align: start;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important; 
+  align-items: center !important;
+  padding: 4rem !important;
+  overflow: hidden !important;
+  transform: none !important;
+  opacity: 1 !important;
+  filter: none !important;
+  position: relative;
+}
+
+/* Prevent intermediate divs from breaking the flow */
+body.presentation-mode main > div:not(.presentation-container) {
+  display: contents; /* Allow nested children to be flex items of main */
+}
+
+/* Hide UI elements that shouldn't be in presentation */
+body.presentation-mode .SectionSeparator,
+body.presentation-mode hr,
+body.presentation-mode .cookie-initializer {
+  display: none !important;
+}
+
+/* Hide separators and elements that don't fit the presentation flow */
+body.presentation-mode .SectionSeparator, 
+body.presentation-mode hr {
+  display: none !important;
+}
+
+/* Ensure images and text inside slides are appropriately sized */
+body.presentation-mode .presentation-section img {
+  max-height: 40vh !important;
+  width: auto !important;
+}
+
+body.presentation-mode .presentation-section h1,
+body.presentation-mode .presentation-section h2 {
+  font-size: 3rem !important;
+  margin-bottom: 2rem !important;
 }

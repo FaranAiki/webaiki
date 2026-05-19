@@ -9,6 +9,26 @@ import { Inter } from "next/font/google";
 import ThemeToggle from '@/components/ThemeToggle'; 
 import { useTheme } from 'next-themes';
 
+import { 
+  Home, 
+  User, 
+  Share2, 
+  FileCheck, 
+  Briefcase, 
+  Users, 
+  Trophy, 
+  Palette, 
+  Music, 
+  BookOpen, 
+  GraduationCap,
+  Compass,
+  Code,
+  Monitor,
+  MonitorPlay
+} from 'lucide-react';
+
+import { usePresentation } from '@/components/PresentationContext';
+
 const inter = Inter({ subsets: ["latin"] });
 
 export interface NavLink {
@@ -29,6 +49,7 @@ interface HeaderProps {
     fr_lang: string;
     ar_lang: string;
     select_lang: string;
+    presentation_mode: string;
 }
 
 function GlobeIcon({ isDark }: { isDark: boolean }) {
@@ -68,7 +89,7 @@ function ChevronDown() {
     );
 }
 
-export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_lang, jp_lang, ru_lang, fr_lang, ar_lang, select_lang }: HeaderProps) {
+export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_lang, jp_lang, ru_lang, fr_lang, ar_lang, select_lang, presentation_mode }: HeaderProps) {
     const pathname = usePathname();
     const router = useRouter();
     const [isLangMenuVisible, setLangMenuVisible] = useState(false);
@@ -78,6 +99,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
 
     const { resolvedTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
+    const { isPresentationMode, togglePresentationMode } = usePresentation();
 
     useEffect(() => {
         setMounted(true);
@@ -222,8 +244,8 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
             >
                 <div className="container flex items-center justify-between mx-auto px-4 sm:px-8 py-4">
 
-                    {/* Left section (Logo) */}
-                    <div className="block md:hidden lg:block flex-1 flex items-center gap-4">
+                    {/* Left section (Logo + Presentation Toggle) */}
+                    <div className="flex-1 flex items-center gap-4">
                         <Image
                             onClick={() => router.push(getLocalizedHref('/'))}
                             src='/icon.ico'
@@ -233,6 +255,23 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                             className={`transition-[colors,transform,opacity] shadow-md border ${isDark ? "border-cyan-800" : "border-gray-200"} opacity-100 hover:opacity-80 scale-100 hover:scale-110 cursor-pointer rounded-full`}
                             priority
                         />
+
+                        {/* Presentation Mode Toggle */}
+                        <div className="hidden md:flex items-center justify-center ml-4 self-center">
+                            <button
+                                onClick={togglePresentationMode}
+                                title={presentation_mode}
+                                className={`
+                                    flex items-center justify-center transition-all duration-300 p-2 rounded-full
+                                    ${isPresentationMode 
+                                        ? 'text-cyan-500 bg-cyan-500/10 scale-110 drop-shadow-[0_0_8px_rgba(6,182,212,0.4)]' 
+                                        : 'text-gray-500 hover:text-cyan-500 hover:bg-gray-100 dark:hover:bg-gray-800'
+                                    }
+                                `}
+                            >
+                                {isPresentationMode ? <MonitorPlay size={24} strokeWidth={2.5} /> : <Monitor size={24} strokeWidth={2} />}
+                            </button>
+                        </div>
                     </div>
 
                     {/* --- Mobile Title (Center) --- */}

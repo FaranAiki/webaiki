@@ -164,34 +164,36 @@ export default function SocialDisplay({ pageTitle }: SocialDisplayProps) {
   ];
 
   return (
-    <div className={`container mx-auto max-w-5xl pt-24 ${containerText}`}>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
-        {socialLinks.map((link, index) => (
-          // Adjusted logic: Cap the delay to avoid excessive waiting for items at the bottom of the list.
-          // Using (index % 4) ensures the staggering effect resets every row (approx), keeping animations snappy.
-          <PopRotateSection key={link.name} delay={(index % 6) * 50} className="h-full">
-            <a
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`group ${cardBg} backdrop-blur-sm border rounded-lg p-6 flex flex-col items-center justify-center text-center transition-[transform] duration-300 transform hover:-translate-y-2 ${link.color} h-full`}
-            >
-                <div className={`text-sm ${usernameText} mb-4 transition-colors`}>
-                {link.username}
-                </div>
+    <FadeInSection className="w-full h-full flex items-center justify-center">
+      <div className={`container mx-auto max-w-5xl ${containerText}`}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
+          {socialLinks.map((link, index) => (
+            // Adjusted logic: Cap the delay to avoid excessive waiting for items at the bottom of the list.
+            // Using (index % 4) ensures the staggering effect resets every row (approx), keeping animations snappy.
+            <PopRotateSection key={link.name} delay={(index % 6) * 50} className="h-full">
+              <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`group ${cardBg} backdrop-blur-sm border rounded-lg p-6 flex flex-col items-center justify-center text-center transition-[transform] duration-300 transform hover:-translate-y-2 ${link.color} h-full`}
+              >
+                  <div className={`text-sm ${usernameText} mb-4 transition-colors`}>
+                  {link.username}
+                  </div>
 
-                <div className="mb-4">
-                {link.icon}
-                </div>
+                  <div className="mb-4">
+                  {link.icon}
+                  </div>
 
-                <div className={`text-lg font-semibold ${nameText}`}>
-                {link.name}
-                </div>
-            </a>
-          </PopRotateSection>
-        ))}
+                  <div className={`text-lg font-semibold ${nameText}`}>
+                  {link.name}
+                  </div>
+              </a>
+            </PopRotateSection>
+          ))}
+        </div>
       </div>
-    </div>
+    </FadeInSection>
   );
 }
 

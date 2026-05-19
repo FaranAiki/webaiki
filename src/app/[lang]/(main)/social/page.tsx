@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { getDictionary } from '@/components/Translator';
 import SocialDisplay from '@/components/SocialDisplay';
-import "../globals.css";
+import "../../../globals.css";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;

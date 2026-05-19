@@ -8,7 +8,6 @@
   "2022": "2022",
   "2021": "2021",
   "2020": "2020",
-
   "January": "January",
   "February": "February",
   "March": "March",
@@ -22,9 +21,7 @@
   "November": "November",
   "December": "December",
   "Present": "Present",
-
   "Not_Found": "This page was not found.",
-
   "Faran_About_1": "Hi! <b>Muhammad Faran Aiki</b> (April 8th, 2007), a student at the <i>School of Electrical Engineering and Informatics - Computation (SEEI-C)</i>, <b>Bandung Institute of Technology</b>, is here!",
   "Faran_About_2": "Currently, I am an SAT Tutor (Verbal and Mathematics) at <b>Kobi Education</b>. I also previously interned and worked as a Software Engineer at <b>Analitica</b>. Additionally, I am a recipient of the <b>PSP Excellence 2025</b> scholarship.",
   "Faran_Photo": "Faran Aiki's photo collections",
@@ -38,9 +35,7 @@
   "Faran_Vision_Mission_1": "To be a person who continuously grows and develops, and is able to encourage progress—be it physical, mental, or intellectual—collectively and holistically, based on <b>love and affection driven by rationality and empathy</b>.",
   "Faran_Vision_Mission_2": "With this vision, I strive to learn relentlessly, such as studying science, technology, and social-humanities, as well as reflecting through his own experiences or those of others to create innovative solutions for existing problems.",
   "Faran_Vision_Mission_3": "Furthermore, I also prioritize the values of goodness that are widely, globally, and rationally accepted. I do this to prove the worthiness of his name's meaning, which is to <i>advance and progress</i>, both individually and as a group.",
-
   "All": "All",
-
   "Profile": "Profile",
   "Experience": "Experience",
   "Artwork": "Artwork",
@@ -55,31 +50,25 @@
   "Literature": "Literature",
   "Latest": "Latest",
   "Organization": "Organization",
-
   "02Olympiad and Contest": "Olympiad and Contest",
   "06Other": "Other",
   "03Skill": "Skill",
   "05Course": "Course",
   "01Profession": "Profession",
   "04Writing": "Writing",
-
   "Ask_About": "Ask About Faran Aiki",
   "Question_Answer": "Answer",
   "Question_Title": "Question",
   "Submit": "Submit",
   "Provide_Question": "Provide a question first.",
   "Waiting": "Wait ....",
-  
   "About_Me": "About Me",
   "Connect_Me": "Connect with Me!",
-
   "Loading_Certificate": "Loading certificates data ....",
   "Loading_College": "Loading college data ....",
   "Loading_Literature": "Loading literature data ....",
-
   "Loading_Python": "Downloading Python and Source Code....",
   "Python_Web_Title": "Python Interactive Interface",
-
   "Poem_Indonesia": "Poem (Indonesian)",
   "Short_Story_Indonesia": "Short Story (Indonesian)",
   "Poem_English": "Poem (English)",
@@ -87,7 +76,6 @@
   "Essay_Indonesia": "Essay (Indonesian)",
   "Essay_English": "Essay (English)",
   "Competition": "Competition",
-
   "1st Semester": "1st Semester",
   "2nd Semester": "2nd Semester",
   "3rd Semester": "3rd Semester",
@@ -96,7 +84,6 @@
   "6th Semester": "6th Semester",
   "7th Semester": "7th Semester",
   "8th Semester": "8th Semester",
-
   "gemini_wait1": "That's a nice question...",
   "gemini_wait2": "Thinking...",
   "gemini_wait3": "I am preparing the best answer for you...",
@@ -105,7 +92,6 @@
   "gemini_wait6": "Wait, let me call him...",
   "gemini_wait7": "Wait, let me message him...",
   "gemini_wait8": "Wait a minute...",
-
   "FI1101": "Physics I (FI1101)",
   "WI2005": "Indonesian Language (WI2005)",
   "WI1116": "Interaction Computer Laboratory (W1116)",
@@ -114,7 +100,6 @@
   "MA1101": "Mathematics I (MA1101)",
   "WI1102_Practicum": "Computational Thinking Practicum (WI1111)",
   "Others": "Others",
-
   "IF1210": "Algorithms and Programming 1 (IF1210)",
   "II1200": "Introduction to Information Systems and Technology (II1200)",
   "WI1101": "Pancasila (WI1101)",
@@ -123,11 +108,9 @@
   "WI2003": "Sports / Physical Education (WI2003)",
   "WI2006": "Civics / Citizenship Education (WI2006)",
   "WI2011": "Islamic Religion (WI2011)",
-
   "Personal": "Personal",
   "Committee": "Committee",
   "UKM": "Student Activity Unit",
-
   "Select_Language": "Select language",
   "Indonesian": "Indonesian",
   "English": "English",
@@ -136,7 +119,6 @@
   "French": "French",
   "Arabic": "Arabic",
   "Mandarin": "Mandarin",
-
   "Make_Interactive_UAS": "Interactive Learning for UAS MA1101 ITB",
   "Make_Interactive_UAS_Description": "Developing a Flutter/Dart-based application to assist students in preparing for the Calculus I final exam at Bandung Institute of Technology, using interactive widgets and Gemini artificial intelligence to deepen understanding through visualization of complex concepts.",
   "Make_Website": "Personal Website faranaiki.id",
@@ -147,7 +129,6 @@
   "Lidia_Project_Description": "Data integration project (LIDIA) at the provincial level using ETL processes and advanced statistical analysis (descriptive, diagnostic, predictive, and prescriptive). Analyzes the relationship between Net Enrollment Rate, HDI, Per Capita Expenditure, Stunting, and Mean Years of Schooling to generate data-driven policy recommendations.",
   "Alkyl_Compiler": "Alkyl Programming Language and Compiler",
   "Alkyl_Compiler_Description": "Alkyl programming language is a programming language first written in C using LLVM-IR. The project aims to make a programming language that is easier for artificial intelligence to generate, but also readable for human. Its syntax is similar to C, but with no verbose/easier.",
-
   "Impact_Module_Author": "IMPACT 6.0 Mathematics Module Author",
   "Impact_Module_Author_Description": "Wrote a study material for Mathematics, including system of linear equations and linear inequalities, linear graph, functions, and polynomials with 4 problems each: 2 Indonesian for SSU, 2 English for IUP. In addition, made 20 problems for Try Out IUP.",
   "SAT_Tutor": "SAT Math & Verbal Tutor (Contract)",
@@ -160,7 +141,6 @@
   "Mathematics_Private_Tutor_Description": "Providing one-on-one tutoring to students in mathematics olympiad for middle school competitions. Developing personalized lesson plans to help students achieve their academic goals and improve their understanding of complex concepts.",
   "Education_Team": "Education Team",
   "Education_Team_Description": "Assisted in creating educational content materials, such as General Mathematics, and made 600 problems of physics, chemistry, and mathematics for high school Tes Kemampuan Akademik (TKA). Supported the planning and execution of learning programs for students and professionals, and assisting in the use of artificial intelligence.",
-
   "ITB": "Bandung Institute of Technology",
   "Sponsorship_Wisokto_ITB": "ITB October Graduation 2025 Sponsorship, WisNight Committee, and Nipis Madu Promotion",
   "Sponsorship_Wisokto_ITB_Description": "Contacting several companies for collaboration in the October 2025 Graduation ceremony of the Bandung Institute of Technology, such as Mamikos. Additionally, serving as a committee member assisting in the WisNight event process, such as transporting seven boxes of Nipis Madu. Then, creating four Nipis Madu promotional videos assisted by other committee members.",
@@ -183,11 +163,11 @@
   "PARAS_Description": "Designed the main logo for the PARAS (Paket Ramadan Spesial) Glorigion 2024 event in collaboration with other designers, and proofread and edited the layout of the script for the Master of Ceremony.",
   "Concerto": "Coordinator for the Final Stage of the Concerto Competition",
   "Concerto_Description": "Created, proofread, coordinated, and supervised competition questions, such as Mathematics, Natural Science (IPA), and Social Studies (IPS), prepared for the final stage of the competition.",
-
   "Paragon_Scholarship_Title": "Paragon Scholarship Program Excellence Grantee Class of 2025",
   "Paragon_Scholarship_Desc": "Recipient of the Paragon Scholarship (Paragon Scholarship Program Excellence) Class of 2025.",
   "PT Paragon": "PT Paragon",
   "ALTH_Project": "ALTH: Aku Lupa Tandai Hadir",
   "ALTH_Project_Description": "ALTH (Aku Lupa Tandai Hadir) is an innovative application specifically designed for ITB students to address the frequent issue of forgetting to mark attendance. Developed using Flutter and leveraging Burp Suite integration, the app automatically sends GET signals to the SIX portal and processes data through cookies obtained via Microsoft SSO authentication. Although it possesses the technical capability to send POST signals, ALTH is built with high integrity as a smart reminder tool, not for attendance manipulation.",
-  "": ""
+  "": "",
+  "Presentation_Mode": "Presentation Mode"
 }
