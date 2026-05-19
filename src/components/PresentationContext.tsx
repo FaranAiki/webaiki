@@ -16,7 +16,9 @@ export function PresentationProvider({ children }: { children: React.ReactNode }
   // Load state from localStorage on mount and handle resizing
   useEffect(() => {
     const saved = localStorage.getItem("presentation_mode");
-    const initialMode = saved === "true";
+    if (saved === "true") {
+      setIsPresentationMode(true);
+    }
     
     const checkScreenSize = () => {
       const large = window.innerWidth >= 768; // md breakpoint
@@ -49,11 +51,8 @@ export function PresentationProvider({ children }: { children: React.ReactNode }
       document.body.classList.add('presentation-mode');
       
       const handleWheel = (e: WheelEvent) => {
-        // Find the main element which has the horizontal scroll
         const main = document.querySelector('main');
         if (main) {
-          // If the user scrolls vertically (deltaY), we scroll the main element horizontally (scrollLeft)
-          // We use a multiplier for smoother/faster scrolling
           if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
             main.scrollLeft += e.deltaY;
             e.preventDefault();
@@ -64,6 +63,19 @@ export function PresentationProvider({ children }: { children: React.ReactNode }
       const handleKeyDown = (e: KeyboardEvent) => {
         const main = document.querySelector('main');
         if (!main) return;
+
+        // Modern approach: Using the native browser print functionality.
+        // This is much more robust than library snapshots because it uses the 
+        // browser's native PDF rendering engine, preserving true text and layout.
+        if (e.ctrlKey && e.altKey && e.key.toLowerCase() === 'p') {
+          e.preventDefault();
+          
+          // Trigger the browser's native print dialog.
+          // In presentation mode, @media print CSS rules (in globals.css) will
+          // handle background rendering, page breaks, and hiding UI elements.
+          window.print();
+          return;
+        }
 
         if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
           main.scrollBy({ left: window.innerWidth, behavior: 'smooth' });

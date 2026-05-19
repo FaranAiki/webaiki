@@ -45,7 +45,7 @@ export default async function SocialPage({ params }: { params: Promise<{ lang: s
 
   return (
     <main className="min-h-screen">
-      <SocialDisplay pageTitle={dict.Social || "Social Media"} />
+      <SocialDisplay />
     </main>
   );
 }
