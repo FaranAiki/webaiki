@@ -35,10 +35,55 @@ function AskMePopup({typeOfWaitingAnswer, ask_title, question_answer, question_t
   useEffect(() => {
     setMounted(true);
   }, []);
-  
-  // ... rest of logic
 
-  if (!mounted || isPresentationMode) return null;
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!question.trim()) return;
+
+    setIsLoading(true);
+    setError('');
+    setAnswer(typeOfWaitingAnswer[Math.floor(Math.random() * typeOfWaitingAnswer.length)]);
+
+    try {
+      const response = await fetch('/api/gemini', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ question }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "An unknown error occurred");
+      }
+      
+      const data = await response.json();
+      setAnswer(data.answer); 
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("unknown");
+      }
+      setAnswer(''); 
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleOpenPopup = () => {
+    setIsOpen(!isOpen);
+    setQuestion('');
+    setAnswer('');
+    setError('');
+    setIsLoading(false);
+  }
+
+  if (!mounted) return null;
+
+  // Use CSS to hide in presentation mode to preserve state and avoid mounting issues
+  const displayClass = isPresentationMode ? 'hidden' : 'block';
 
   const isDark = resolvedTheme === 'dark';
 
@@ -52,7 +97,7 @@ function AskMePopup({typeOfWaitingAnswer, ask_title, question_answer, question_t
   const answerBg = isDark ? 'bg-gray-900/85 text-gray-200 border-gray-600' : 'bg-gray-50 text-gray-900 border-gray-300';
 
   return (
-  <>
+  <div className={displayClass}>
     <button
       onClick={handleOpenPopup}
       className={`fixed bottom-6 left-6 z-20 ${isDark? 'bg-cyan-600' : 'bg-white'} ${isDark? 'text-white' : 'text-black'} p-4 rounded-full shadow-lg hover:${isDark? 'bg-cyan-500' : 'bg-cyan-200'} transition-[colors,transform,opacity] transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-opacity-75`}
@@ -109,7 +154,7 @@ function AskMePopup({typeOfWaitingAnswer, ask_title, question_answer, question_t
         </div>
       </Draggable>
     )}
-  </>
+  </div>
 );}
 
 export default memo(AskMePopup);

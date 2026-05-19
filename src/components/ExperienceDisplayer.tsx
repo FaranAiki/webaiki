@@ -102,27 +102,29 @@ export default function ExperiencesClient({ experiences, lang }: ExperiencesClie
                             slideIndex={idx + 1}
                             totalSlides={allJobs.length}
                         >
-                            <div className={`${isDark ? 'text-white' : 'text-gray-900'} w-full h-full px-8 flex flex-col md:flex-row gap-8 items-center justify-center`}>
-                                <div className="flex-1 space-y-4 max-w-2xl">
-                                    <h2 className="text-cyan-500 font-bold text-2xl">{job.year}</h2>
-                                    <h3 className="text-4xl md:text-5xl font-extrabold tracking-tight">{job.title}</h3>
-                                    <h4 className="text-2xl text-cyan-600 font-medium">{job.company}</h4>
-                                    <p className={`${subText} text-lg`}>{job.date}</p>
-                                    <HoverableWords className={`text-xl leading-relaxed ${justifyClass} ${descText}`}>
+                            <div className={`${isDark ? 'text-white' : 'text-gray-900'} w-full h-full px-8 md:px-20 flex flex-col md:flex-row gap-12 items-center justify-center mx-auto pt-32 pb-12`}>
+                                <div className="flex-1 flex flex-col justify-center space-y-6 max-w-2xl">
+                                    <div className="space-y-2">
+                                        <h2 className="text-cyan-500 font-bold text-xl md:text-2xl tracking-tight">{job.year}</h2>
+                                        <h3 className="text-3xl md:text-5xl font-black leading-tight tracking-tighter">{job.title}</h3>
+                                        <h4 className="text-xl md:text-2xl text-cyan-600 font-bold opacity-90">{job.company}</h4>
+                                        <p className={`${subText} text-base md:text-lg font-medium italic`}>{job.date}</p>
+                                    </div>
+                                    <HoverableWords className={`text-base md:text-lg leading-relaxed ${justifyClass} ${descText} font-medium`}>
                                         {job.description}
                                     </HoverableWords>
                                 </div>
                                 {jobHasImage && (
-                                    <div className="flex-1 w-full max-w-xl flex items-center justify-center">
-                                        <div className="relative w-full h-full max-h-[60vh] flex items-center justify-center">
-                                            <Image
-                                                width={800}
-                                                height={600}
-                                                src={job.image[0]}
-                                                alt={job.company}
-                                                className="rounded-xl shadow-2xl border border-white/10 object-contain max-h-[60vh] w-auto transition-transform duration-500 hover:scale-105"
-                                            />
-                                        </div>
+                                    <div className="flex-1 relative w-full h-[50vh] md:h-[70vh] min-w-[300px]">
+                                        <Image
+                                            fill
+                                            src={job.image[0]}
+                                            alt={job.company}
+                                            className="rounded-3xl shadow-2xl border-2 border-white/10 object-cover transition-transform duration-700 hover:scale-[1.02]"
+                                            sizes="50vw"
+                                            priority={idx < 2}
+                                        />
+                                        <div className="absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/20 pointer-events-none"></div>
                                     </div>
                                 )}
                             </div>
