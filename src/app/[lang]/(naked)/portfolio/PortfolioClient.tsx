@@ -19,15 +19,44 @@ import {
 import Link from 'next/link';
 import Image from 'next/image';
 
+interface WorkHighlight {
+  title: string;
+  company: string;
+  period: string;
+  description: string;
+  category: string;
+}
+
+interface ProjectHighlight {
+  title: string;
+  tech: string;
+  description: string;
+  link?: string;
+  image?: string;
+  category: string;
+}
+
+interface Skill {
+  category: string;
+  items: string[];
+  type: string;
+}
+
+interface Education {
+  degree: string;
+  school: string;
+  period: string;
+  description: string;
+}
+
 interface PortfolioClientProps {
   lang: string;
   type?: string;
   dict: Record<string, string>;
-  workHighlights: any[];
-  projectHighlights: any[];
-  skills: any[];
-  education: any[];
-  title: string;
+  workHighlights: WorkHighlight[];
+  projectHighlights: ProjectHighlight[];
+  skills: Skill[];
+  education: Education[];
 }
 
 export default function PortfolioClient({ 
@@ -37,8 +66,7 @@ export default function PortfolioClient({
   workHighlights, 
   projectHighlights, 
   skills, 
-  education,
-  title
+  education
 }: PortfolioClientProps) {
   const contactInfo = [
     { icon: <Mail size={16} />, text: 'faran.aiki.business@gmail.com', href: 'mailto:faran.aiki.business@gmail.com' },

@@ -115,16 +115,18 @@ export default function ExperiencesClient({ experiences, lang }: ExperiencesClie
                                     </HoverableWords>
                                 </div>
                                 {jobHasImage && (
-                                    <div className="flex-1 relative w-full h-[50vh] md:h-[70vh] min-w-[300px]">
-                                        <Image
-                                            fill
-                                            src={job.image[0]}
-                                            alt={job.company}
-                                            className="rounded-3xl shadow-2xl border-2 border-white/10 object-cover transition-transform duration-700 hover:scale-[1.02]"
-                                            sizes="50vw"
-                                            priority={idx < 2}
-                                        />
-                                        <div className="absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/20 pointer-events-none"></div>
+                                    <div className="flex-1 flex justify-center items-center w-full mt-4 md:mt-0 self-center">
+                                        <div className="relative w-fit h-fit shadow-2xl overflow-visible p-0">
+                                            <Image
+                                                src={job.image[0]}
+                                                alt={job.company}
+                                                width={800}
+                                                height={450}
+                                                className="block w-full h-auto max-h-[60vh] object-cover transition-transform duration-700 hover:scale-[1.02] border-2 border-white/10 rounded-3xl"
+                                                sizes="(max-width: 768px) 100vw, 50vw"
+                                                priority={idx < 2}
+                                            />
+                                        </div>
                                     </div>
                                 )}
                             </div>
@@ -184,11 +186,11 @@ export default function ExperiencesClient({ experiences, lang }: ExperiencesClie
                             </div>
 
                             {/* Right Column: Image Display (Carousel) [on desktop] */}
-                            <div className="hidden md:block w-1/2">
-                                 <div className="sticky top-24 transition-[opacity,transform] duration-200 hover:scale-105">
+                            <div className="hidden md:block w-1/2 self-center h-fit">
+                                 <div className="sticky top-24 transition-[opacity,transform] duration-200 hover:scale-105 flex justify-center">
                                     {hasValidImage ? (
-                                        <>
-                                            <div className="aspect-w-16 aspect-h-9">
+                                        <div className="w-full">
+                                            <div className="relative w-fit h-fit mx-auto shadow-2xl p-0">
                                                 {activeJob.url ? (
                                                     <a href={activeJob.url} target="_blank" rel="noopener noreferrer">
                                                         <Image
@@ -198,7 +200,7 @@ export default function ExperiencesClient({ experiences, lang }: ExperiencesClie
                                                             placeholder="blur"
                                                             blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(600, 400))}`}
                                                             alt={`${activeJob.company} placeholder image`}
-                                                            className={`w-full h-full object-cover rounded-lg shadow-2xl transition-opacity duration-300 border-2 ${cardBorder} hover:opacity-85 hover:border-cyan-500`}
+                                                            className="block w-full h-auto object-cover transition-opacity duration-300 hover:opacity-85 border-2 border-gray-200 dark:border-white/10 rounded-lg"
                                                         />
                                                     </a>
                                                 ) : (
@@ -209,7 +211,7 @@ export default function ExperiencesClient({ experiences, lang }: ExperiencesClie
                                                         placeholder="blur"
                                                         blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(600, 400))}`}
                                                         alt={`${activeJob.company} placeholder image`}
-                                                        className={`w-full h-full object-cover rounded-lg shadow-2xl transition-opacity duration-300 border-2 ${cardBorder}`}
+                                                        className="block w-full h-auto object-cover border-2 border-gray-200 dark:border-white/10 rounded-lg"
                                                     />
                                                 )}
                                             </div>
@@ -223,7 +225,7 @@ export default function ExperiencesClient({ experiences, lang }: ExperiencesClie
                                                 )}
                                                 <p className="text-cyan-600 text-lg">{activeJob.company}</p>
                                             </div>
-                                        </>
+                                        </div>
                                     ) : (
                                         <div className="flex items-center justify-center h-64 border-2 border-dashed border-gray-700/30 rounded-lg">
                                         </div>

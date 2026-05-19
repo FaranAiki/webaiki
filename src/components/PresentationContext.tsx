@@ -11,16 +11,32 @@ const PresentationContext = createContext<PresentationContextType | undefined>(u
 
 export function PresentationProvider({ children }: { children: React.ReactNode }) {
   const [isPresentationMode, setIsPresentationMode] = useState(false);
+  const [isLargeScreen, setIsLargeScreen] = useState(true);
 
-  // Load state from localStorage on mount
+  // Load state from localStorage on mount and handle resizing
   useEffect(() => {
     const saved = localStorage.getItem("presentation_mode");
-    if (saved === "true") {
-      setIsPresentationMode(true);
-    }
+    const initialMode = saved === "true";
+    
+    const checkScreenSize = () => {
+      const large = window.innerWidth >= 768; // md breakpoint
+      setIsLargeScreen(large);
+      
+      if (!large) {
+        setIsPresentationMode(false);
+      } else if (saved === "true") {
+        setIsPresentationMode(true);
+      }
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
 
   const togglePresentationMode = () => {
+    if (!isLargeScreen) return; // Disable toggling on small screens
+
     setIsPresentationMode((prev) => {
       const next = !prev;
       localStorage.setItem("presentation_mode", String(next));
@@ -31,6 +47,40 @@ export function PresentationProvider({ children }: { children: React.ReactNode }
   useEffect(() => {
     if (isPresentationMode) {
       document.body.classList.add('presentation-mode');
+      
+      const handleWheel = (e: WheelEvent) => {
+        // Find the main element which has the horizontal scroll
+        const main = document.querySelector('main');
+        if (main) {
+          // If the user scrolls vertically (deltaY), we scroll the main element horizontally (scrollLeft)
+          // We use a multiplier for smoother/faster scrolling
+          if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+            main.scrollLeft += e.deltaY;
+            e.preventDefault();
+          }
+        }
+      };
+
+      const handleKeyDown = (e: KeyboardEvent) => {
+        const main = document.querySelector('main');
+        if (!main) return;
+
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+          main.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
+          e.preventDefault();
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+          main.scrollBy({ left: -window.innerWidth, behavior: 'smooth' });
+          e.preventDefault();
+        }
+      };
+
+      window.addEventListener('wheel', handleWheel, { passive: false });
+      window.addEventListener('keydown', handleKeyDown);
+
+      return () => {
+        window.removeEventListener('wheel', handleWheel);
+        window.removeEventListener('keydown', handleKeyDown);
+      };
     } else {
       document.body.classList.remove('presentation-mode');
     }

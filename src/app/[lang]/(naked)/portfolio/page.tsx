@@ -123,10 +123,6 @@ export default async function PortfolioPage({
     { category: 'Education', items: ['SAT (Math & Verbal)', 'Data Analysis', 'Educational Content'], type: 'tutor' }
   ].filter(item => (!type) || (type === item.type));
 
-  const title = type === 'it' ? dict.Portfolio_IT : 
-                type === 'tutor' ? dict.Portfolio_Tutor : 
-                dict.Portfolio_Summary;
-
   return (
     <PortfolioClient 
       lang={lang}
@@ -136,7 +132,6 @@ export default async function PortfolioPage({
       projectHighlights={projectHighlights}
       skills={skills}
       education={education}
-      title={title}
     />
   );
 }

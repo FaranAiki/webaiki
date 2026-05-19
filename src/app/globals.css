@@ -172,8 +172,9 @@ body.presentation-mode .presentation-container > * {
   flex-direction: column !important;
   justify-content: center !important; 
   align-items: center !important;
-  padding: 4rem !important;
-  overflow: hidden !important;
+  padding: 2rem !important; /* Reduced padding to give more space */
+  overflow-y: auto !important; /* Allow internal vertical scroll if content is too tall */
+  overflow-x: hidden !important;
   transform: none !important;
   opacity: 1 !important;
   filter: none !important;
@@ -200,12 +201,15 @@ body.presentation-mode hr {
 
 /* Ensure images and text inside slides are appropriately sized */
 body.presentation-mode .presentation-section img {
-  max-height: 40vh !important;
+  max-height: 60vh !important; /* Increased from 40vh */
+  max-width: 90% !important;
   width: auto !important;
+  height: auto !important;
+  object-contain: contain !important;
 }
 
 body.presentation-mode .presentation-section h1,
 body.presentation-mode .presentation-section h2 {
-  font-size: 3rem !important;
-  margin-bottom: 2rem !important;
+  font-size: 2.5rem !important; /* Slightly smaller to fit better */
+  margin-bottom: 1rem !important;
 }
