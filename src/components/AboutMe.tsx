@@ -110,7 +110,7 @@ export default function AboutMe({
     <div className="w-full py-8 md:px-5 presentation-mode:contents">
        
       {/* About Me Section */}
-      <FadeInSection>
+      <FadeInSection slideIndex={1} totalSlides={4}>
         <div className="flex flex-col-reverse md:flex-row justify-center items-center gap-8 lg:gap-16 max-w-6xl mx-auto w-full">
           <div className="flex-1 text-center md:${justifyClass} max-w-prose">
             <h1 className={`text-4xl md:text-5xl font-extrabold ${titleClass} mb-6 hover:opacity-85 transition-opacity tracking-tight`}>
@@ -158,7 +158,7 @@ export default function AboutMe({
       </div>
 
       {/* Philosophy Section */}
-      <FadeInSection>
+      <FadeInSection slideIndex={2} totalSlides={4}>
         <div className="flex flex-col-reverse md:flex-row-reverse justify-center items-center gap-8 lg:gap-16 max-w-6xl mx-auto w-full">
           <div className="flex-1 text-center md:${justifyClass} max-w-prose">
             <h2 className={`text-3xl md:text-4xl font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
@@ -194,7 +194,7 @@ export default function AboutMe({
       </div>
 
       {/* Principles Section */}
-      <FadeInSection>
+      <FadeInSection slideIndex={3} totalSlides={4}>
         <div className="flex flex-col-reverse md:flex-row justify-center items-center gap-8 lg:gap-16 max-w-6xl mx-auto w-full">
           <div className="flex-1 text-center md:${justifyClass} max-w-prose">
             <h2 className={`text-3xl md:text-4xl font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
@@ -245,7 +245,7 @@ export default function AboutMe({
       </div>
 
       {/* Vision & Mission Section */}
-      <FadeInSection>
+      <FadeInSection slideIndex={4} totalSlides={4}>
         <div className="flex flex-col-reverse md:flex-row-reverse justify-center items-center gap-8 lg:gap-16 max-w-6xl mx-auto w-full">
           <div className="flex-1 text-center md:${justifyClass} max-w-prose">
             <h2 className={`text-3xl md:text-4xl font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>

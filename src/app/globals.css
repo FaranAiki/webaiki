@@ -159,10 +159,13 @@ body.presentation-mode .presentation-container {
 }
 
 /* Individual Slides */
-body.presentation-mode .presentation-section {
+body.presentation-mode .presentation-section,
+body.presentation-mode .presentation-container > * {
   min-width: 100vw !important;
   width: 100vw !important;
+  max-width: 100vw !important;
   height: 100vh !important;
+  max-height: 100vh !important;
   flex-shrink: 0 !important;
   scroll-snap-align: start;
   display: flex !important;

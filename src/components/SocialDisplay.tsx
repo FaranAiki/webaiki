@@ -164,7 +164,7 @@ export default function SocialDisplay({ pageTitle }: SocialDisplayProps) {
   ];
 
   return (
-    <FadeInSection className="w-full h-full flex items-center justify-center">
+    <FadeInSection slideIndex={1} totalSlides={1} className="w-full h-full flex items-center justify-center">
       <div className={`container mx-auto max-w-5xl ${containerText}`}>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
           {socialLinks.map((link, index) => (

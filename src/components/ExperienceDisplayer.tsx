@@ -96,7 +96,12 @@ export default function ExperiencesClient({ experiences, lang }: ExperiencesClie
                 {allJobs.map((job, idx) => {
                     const jobHasImage = job.image && job.image.length > 0;
                     return (
-                        <FadeInSection key={`pres-${idx}`} className="w-full h-full flex-shrink-0">
+                        <FadeInSection 
+                            key={`pres-${idx}`} 
+                            className="w-full h-full flex-shrink-0"
+                            slideIndex={idx + 1}
+                            totalSlides={allJobs.length}
+                        >
                             <div className={`${isDark ? 'text-white' : 'text-gray-900'} w-full h-full px-8 flex flex-col md:flex-row gap-8 items-center justify-center`}>
                                 <div className="flex-1 space-y-4 max-w-2xl">
                                     <h2 className="text-cyan-500 font-bold text-2xl">{job.year}</h2>
@@ -108,13 +113,14 @@ export default function ExperiencesClient({ experiences, lang }: ExperiencesClie
                                     </HoverableWords>
                                 </div>
                                 {jobHasImage && (
-                                    <div className="flex-1 w-full max-w-xl">
-                                        <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10 group">
+                                    <div className="flex-1 w-full max-w-xl flex items-center justify-center">
+                                        <div className="relative w-full h-full max-h-[60vh] flex items-center justify-center">
                                             <Image
-                                                fill
+                                                width={800}
+                                                height={600}
                                                 src={job.image[0]}
                                                 alt={job.company}
-                                                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                                className="rounded-xl shadow-2xl border border-white/10 object-contain max-h-[60vh] w-auto transition-transform duration-500 hover:scale-105"
                                             />
                                         </div>
                                     </div>

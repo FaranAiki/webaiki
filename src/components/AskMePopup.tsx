@@ -6,6 +6,8 @@ import { useRef } from 'react';
 import { useTheme } from 'next-themes';
 import dynamic from 'next/dynamic';
 
+import { usePresentation } from './PresentationContext';
+
 const Draggable = dynamic(() => import('react-draggable'), { ssr: false });
 
 interface AskMePopupProps {
@@ -26,58 +28,17 @@ function AskMePopup({typeOfWaitingAnswer, ask_title, question_answer, question_t
   const [error, setError] = useState('');
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const { isPresentationMode } = usePresentation();
 
   const nodeRef = useRef(null);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+  
+  // ... rest of logic
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!question.trim()) return;
-
-    setIsLoading(true);
-    setError('');
-    setAnswer(typeOfWaitingAnswer[Math.floor(Math.random() * typeOfWaitingAnswer.length)]);
-
-    try {
-      const response = await fetch('/api/gemini', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ question }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "An unknown error occurred");
-      }
-      
-      const data = await response.json();
-      setAnswer(data.answer); 
-    } catch (err) {
-      if (err instanceof Error) {
-        setError(err.message);
-      } else {
-        setError("unknown");
-      }
-      setAnswer(''); 
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleOpenPopup = () => {
-    setIsOpen(!isOpen);
-    setQuestion('');
-    setAnswer('');
-    setError('');
-    setIsLoading(false);
-  }
-
-  if (!mounted) return null;
+  if (!mounted || isPresentationMode) return null;
 
   const isDark = resolvedTheme === 'dark';
 
