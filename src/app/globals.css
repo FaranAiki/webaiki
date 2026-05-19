@@ -3,91 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@media print {
-  @page {
-    margin: 0;
-    size: landscape;
-  }
-
-  html, body {
-    margin: 0 !important;
-    padding: 0 !important;
-    height: 100% !important;
-    width: 100% !important;
-    overflow: visible !important;
-  }
-
-  body {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
-
-  body.presentation-mode {
-    overflow: visible !important;
-    height: auto !important;
-  }
-
-  .no-print,
-  header,
-  nav,
-  .cookie-initializer,
-  .presentation-mode\:hidden,
-  .body-presentation-mode\:hidden {
-    display: none !important;
-  }
-
-  /* Presentation layout for printing: stack slides vertically */
-  body.presentation-mode main {
-    display: block !important;
-    overflow: visible !important;
-    height: auto !important;
-    width: 100vw !important;
-    max-width: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-
-  /* Each slide becomes a page */
-  body.presentation-mode .presentation-section,
-  body.presentation-mode .presentation-container > * {
-    page-break-after: always !important;
-    break-after: page !important;
-    height: 100vh !important;
-    width: 100vw !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    position: relative !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    overflow: hidden !important;
-    /* Ensure slides are visible even if they were hidden by JS intersection observer */
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: none !important;
-    filter: none !important;
-  }
-
-  /* Prevent extra white page at the end */
-  body.presentation-mode .presentation-section:last-child,
-  body.presentation-mode .presentation-container > *:last-child {
-    page-break-after: avoid !important;
-    break-after: avoid !important;
-  }
-
-  /* Ensure background covers every page */
-  body.presentation-mode .fixed.inset-0 {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    z-index: -1 !important;
-    display: block !important;
-  }
-}
-
 :root {
   /* Light Mode Variables (Default) */
   --background: #ffffff;
@@ -301,4 +216,93 @@ body.presentation-mode .presentation-section h1,
 body.presentation-mode .presentation-section h2 {
   font-size: 2.5rem !important; /* Slightly smaller to fit better */
   margin-bottom: 1rem !important;
+}
+
+@media print {
+  @page {
+    margin: 0;
+    size: landscape;
+  }
+
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    height: auto !important;
+    min-height: 100% !important;
+    width: 100% !important;
+    overflow: visible !important;
+  }
+
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body.presentation-mode {
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  .no-print,
+  header,
+  nav,
+  .cookie-initializer,
+  .presentation-mode\:hidden,
+  .body-presentation-mode\:hidden {
+    display: none !important;
+  }
+
+  /* Presentation layout for printing: stack slides vertically */
+  body.presentation-mode main,
+  body.presentation-mode .presentation-container {
+    display: block !important;
+    overflow: visible !important;
+    height: auto !important;
+    width: 100vw !important;
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    flex-direction: column !important;
+    flex-wrap: wrap !important;
+  }
+
+  /* Each slide becomes a page */
+  body.presentation-mode .presentation-section,
+  body.presentation-mode .presentation-container > * {
+    page-break-after: always !important;
+    break-after: page !important;
+    height: 100vh !important;
+    width: 100vw !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    position: relative !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    /* Ensure slides are visible even if they were hidden by JS intersection observer */
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  /* Prevent extra white page at the end */
+  body.presentation-mode .presentation-section:last-child,
+  body.presentation-mode .presentation-container > *:last-child {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  /* Ensure background covers every page */
+  body.presentation-mode .fixed.inset-0 {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: -1 !important;
+    display: block !important;
+  }
 }

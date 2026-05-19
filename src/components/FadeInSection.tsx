@@ -47,10 +47,12 @@ export default function FadeInSection({
     };
   }, []);
 
-  // Calculate horizontal position for the counter (0% to 100%)
-  const counterPosition = slideIndex && totalSlides && totalSlides > 1
-    ? ((slideIndex - 1) / (totalSlides - 1)) * 100
-    : 50;
+  // Helper to convert number to binary string with optional padding
+  const toBinary = (num: number, total: number) => {
+    const binary = num.toString(2);
+    const maxBinaryLen = total.toString(2).length;
+    return binary.padStart(maxBinaryLen, '0');
+  };
 
   return (
     <div
@@ -64,24 +66,14 @@ export default function FadeInSection({
     >
       {children}
       {isPresentationMode && slideIndex && totalSlides && (
-        <div 
-          className="absolute bottom-12 left-0 w-full px-12 pointer-events-none"
-          style={{ 
-            display: 'flex', 
-            justifyContent: 'center'
-          }}
-        >
-          <div 
-            className="transition-all duration-500 ease-out"
-            style={{ 
-              width: '100%',
-              display: 'flex',
-              justifyContent: counterPosition === 0 ? 'flex-start' : counterPosition === 100 ? 'flex-end' : 'center',
-              transform: counterPosition > 0 && counterPosition < 100 ? `translateX(${counterPosition - 50}%)` : 'none'
-            }}
-          >
-            <span className="text-cyan-500 font-mono text-sm font-black bg-cyan-500/10 px-3 py-1 rounded-full border border-cyan-500/20 backdrop-blur-sm shadow-sm">
-              {slideIndex} / {totalSlides}
+        <div className="absolute bottom-8 right-8 pointer-events-none z-50">
+          <div className="flex items-center gap-2 px-3 py-1 border border-cyan-500/20 rounded text-sm bg-white/5">
+            <span className="text-white font-medium tracking-tight">
+              {toBinary(slideIndex, totalSlides)}
+            </span>
+            <span className="text-gray-500">/</span>
+            <span className="text-cyan-500/80 font-medium">
+              {toBinary(totalSlides, totalSlides)}
             </span>
           </div>
         </div>
