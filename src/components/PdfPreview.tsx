@@ -9,9 +9,10 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/b
 
 type PdfPreviewProps = {
   fileUrl: string;
+  width?: number;
 };
 
-export default function PdfPreview({ fileUrl }: PdfPreviewProps) {
+export default function PdfPreview({ fileUrl, width = 300 }: PdfPreviewProps) {
   /*
   const [numPages, setNumPages] = useState<number | null>(null);
 
@@ -28,7 +29,7 @@ export default function PdfPreview({ fileUrl }: PdfPreviewProps) {
         className="flex justify-center"
       >
         {/* We only show the first page as a preview */}
-        <Page pageNumber={1} width={300} renderTextLayer={false} renderAnnotationLayer={false} />
+        <Page pageNumber={1} width={width} renderTextLayer={false} renderAnnotationLayer={false} />
       </Document>
     </div>
   );
