@@ -6,25 +6,7 @@ import HoverableWords from '@/components/HoverableWords';
 import { useTheme } from 'next-themes';
 import FadeInSection from '@/components/FadeInSection';
 import PopRotateSection from '@/components/PopRotateSection';
-
-const shimmer = (w: number, h: number) => `
-<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <defs>
-    <linearGradient id="g">
-      <stop stop-color="#333" offset="20%" />
-      <stop stop-color="#222" offset="50%" />
-      <stop stop-color="#333" offset="70%" />
-    </linearGradient>
-  </defs>
-  <rect width="${w}" height="${h}" fill="#333" />
-  <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
-  <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
-</svg>`;
-
-const toBase64 = (str: string) =>
-  typeof window === 'undefined'
-    ? Buffer.from(str).toString('base64')
-    : window.btoa(str);
+import { shimmer, toBase64, formatCJK } from '@/lib/utils';
 
 type Job = {
     date: string;
@@ -154,7 +136,16 @@ export default function ExperiencesClient({ experiences, lang }: ExperiencesClie
                                                 <div
                                                     key={`${experience.year}-${index}`}
                                                     onMouseEnter={() => setActiveJob(job)}
-                                                    className={`p-6 rounded-lg transition-transform duration-300 cursor-pointer border-2 shadow-sm 
+                                                    onFocus={() => setActiveJob(job)}
+                                                    tabIndex={0}
+                                                    onKeyDown={(e) => {
+                                                        if (e.key === 'Enter' || e.key === ' ') {
+                                                            e.preventDefault();
+                                                            setActiveJob(job);
+                                                            if (job.url) window.open(job.url, '_blank', 'noopener,noreferrer');
+                                                        }
+                                                    }}
+                                                    className={`p-6 rounded-lg transition-transform duration-300 cursor-pointer border-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-cyan-500
                                                         ${activeJob.title === job.title && activeJob.company === job.company 
                                                             ? `${activeCardBg}` 
                                                             : `${inactiveCardBg} ${cardBorder} hover:border-cyan-500/50`
@@ -176,7 +167,7 @@ export default function ExperiencesClient({ experiences, lang }: ExperiencesClie
                                                         className={`leading-relaxed ${justifyClass} lg:text-lg md:text-md ${descText}`}
                                                         prophover='transition-[transform,color,opacity] inline-block duration-100 ease-in-out hover:scale-95 hover:text-cyan-600 hover:underline hover:font-semibold hover:opacity-85'
                                                     >
-                                                    {job.description} 
+                                                    {formatCJK(job.description, lang)} 
                                                     </HoverableWords>
                                                 </div>
                                             ))}

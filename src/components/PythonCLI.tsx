@@ -12,6 +12,8 @@ import React, {
   KeyboardEvent,
 } from "react";
 
+import { formatCJK } from "@/lib/utils";
+
 type HistoryType = 'output' | 'error' | 'system' | 'input';
 
 interface HistoryItem {
@@ -27,6 +29,7 @@ interface WorkerMessageData {
 interface PythonCLIProps {
   loadingText: string, 
   terminalTitle: string,
+  lang?: string,
   searchParams: {
     type?: string;
     source?: string;
@@ -115,6 +118,7 @@ export default function PythonCLI({
   searchParams,
   terminalTitle,
   loadingText,
+  lang,
 }: PythonCLIProps) {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isFetchingScript, setIsFetchingScript] = useState<boolean>(false);
@@ -346,7 +350,7 @@ export default function PythonCLI({
         <div className="flex items-center justify-between p-3 bg-gray-800 border-b border-gray-700 shrink-0 select-none bg-opacity-90">
           <div className="w-24"></div> {/* Spacer to balance the layout */}
           <span className="font-mono text-sm font-bold opacity-80 text-center">
-             {terminalTitle}
+             {formatCJK(terminalTitle, lang)}
           </span>
           <div className="w-24"></div> {/* Empty spacer for symmetry */}
         </div>
@@ -361,7 +365,7 @@ export default function PythonCLI({
             {/* Loading Text: Appears inside terminal, deleted when done */}
             {(isLoading || isFetchingScript) && (
                 <div className="text-blue-300 animate-pulse mb-2">
-                    {loadingText}
+                    {formatCJK(loadingText, lang)}
                 </div>
             )}
 

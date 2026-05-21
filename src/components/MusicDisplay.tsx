@@ -7,6 +7,7 @@ import Image from 'next/image';
 import FadeInSection from '@/components/FadeInSection';
 import PopRotateSection from '@/components/PopRotateSection';
 import { usePresentation } from './PresentationContext';
+import { formatCJK } from '@/lib/utils';
 
 interface PlaylistItem {
   id: string;
@@ -161,7 +162,7 @@ export default function MusicDisplay({ youtubeItems = [], error, lang }: MusicDi
                             </a>
                         </div>
                         <p className="text-center font-bold text-xs md:text-sm text-gray-300 line-clamp-2 px-1">
-                            {item.snippet.title}
+                            {formatCJK(item.snippet.title, lang)}
                         </p>
                     </div>
                     ))}
@@ -258,7 +259,7 @@ export default function MusicDisplay({ youtubeItems = [], error, lang }: MusicDi
                             loading="lazy"
                           />
                           <div className="p-3">
-                            <h3 className={`text-center font-semibold text-base h-16 overflow-auto no-scrollbar text-gray-900 dark:text-white`}>{item.snippet.title}</h3>
+                            <h3 className={`text-center font-semibold text-base h-16 overflow-auto no-scrollbar text-gray-900 dark:text-white`}>{formatCJK(item.snippet.title, lang)}</h3>
                           </div>
                         </a>
                       </li>

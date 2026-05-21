@@ -15,6 +15,7 @@ type CollegeData = {
 export type CollegeLoaderProps = {
   data: CollegeData;
   force_click: boolean; // Use 'boolean', not 'bool'
+  lang?: string;
 };
 
 // Use dynamic import for the component that needs browser APIs
@@ -26,6 +27,6 @@ const CollegeDisplay = dynamic(
 );
 
 // This component receives the server-fetched data as props
-export default function CollegeLoader({ data, force_click }: CollegeLoaderProps) {
-  return <CollegeDisplay data={data} force_click={force_click} />;
+export default function CollegeLoader({ data, force_click, lang }: CollegeLoaderProps) {
+  return <CollegeDisplay data={data} force_click={force_click} lang={lang} />;
 }

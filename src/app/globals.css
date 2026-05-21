@@ -3,6 +3,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :target {
+    scroll-margin-top: 5rem;
+  }
+}
+
 :root {
   /* Light Mode Variables (Default) */
   --background: #ffffff;

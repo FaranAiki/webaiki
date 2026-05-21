@@ -6,6 +6,7 @@ import { useTheme } from 'next-themes';
 import FadeInSection from '@/components/FadeInSection';
 import PopRotateSection from '@/components/PopRotateSection';
 import { usePresentation } from './PresentationContext';
+import { formatCJK } from '@/lib/utils';
 
 // Define typescript data
 export type CollectionsData = Record<string, Record<string, Record<string, string>>>;
@@ -13,9 +14,10 @@ export type CollectionsData = Record<string, Record<string, Record<string, strin
 export type InteractiveCollectionsProps = {
   data: CollectionsData;
   force_click: boolean; // Use 'boolean', not 'bool'
+  lang?: string;
 };
 
-export default function InteractiveCollections( { data, force_click }: InteractiveCollectionsProps ) {
+export default function InteractiveCollections( { data, force_click, lang }: InteractiveCollectionsProps ) {
   const [activeHeadingOne, setActiveHeadingOne] = useState<string | null>(null);
   const [activeHeadingTwo, setActiveHeadingTwo] = useState<string | null>(null);
   const [leaveMouse, setLeaveMouse] = useState<boolean>(false);
@@ -88,9 +90,9 @@ export default function InteractiveCollections( { data, force_click }: Interacti
           >
             <div className="flex flex-col items-center justify-center w-full max-w-4xl mx-auto p-4 pt-20 pb-10">
               <h2 className="text-2xl md:text-4xl font-black mb-8 text-center flex flex-wrap justify-center items-center gap-x-4">
-                <span className="text-cyan-500">{slide.headingOne}</span>
+                <span className="text-cyan-500">{formatCJK(slide.headingOne, lang)}</span>
                 <span className="text-gray-500">|</span>
-                <span className={titleColor}>{slide.headingTwo}</span>
+                <span className={titleColor}>{formatCJK(slide.headingTwo, lang)}</span>
                 {slide.totalParts > 1 && (
                    <span className="text-lg md:text-xl text-gray-400 font-mono">
                      [{slide.part}/{slide.totalParts}]
@@ -107,7 +109,7 @@ export default function InteractiveCollections( { data, force_click }: Interacti
                       ) : (
                         <XCircle size={20} className="text-gray-500" />
                       )}
-                      <span className={`text-base md:text-lg font-bold ${titleColor} truncate max-w-[250px] md:max-w-md`}>{docName}</span>
+                      <span className={`text-base md:text-lg font-bold ${titleColor} truncate max-w-[250px] md:max-w-md`}>{formatCJK(docName, lang)}</span>
                     </div>
                     {url && (
                       <a 
@@ -157,7 +159,7 @@ export default function InteractiveCollections( { data, force_click }: Interacti
                       : `${buttonBg} ${buttonText}`
                       }`}
                   >
-                      <span className="font-semibold text-lg">{headingOne}</span>
+                      <span className="font-semibold text-lg">{formatCJK(headingOne, lang)}</span>
                       <ChevronRight className={`transition-transform duration-300 ${
                       activeHeadingOne === headingOne ? 'transform rotate-90' : ''
                       }`} />
@@ -175,7 +177,7 @@ export default function InteractiveCollections( { data, force_click }: Interacti
                                   onClick={() => activeHeadingTwo == headingTwo? setActiveHeadingTwo(null) : setActiveHeadingTwo(headingTwo)}
                               >
                                   
-                                  {Object.entries(documents).length > 0 && (<h3 className={`font-bold ${headingTwoText} cursor-pointer hover:text-cyan-600 transition-colors`}>{headingTwo}</h3>)}
+                                  {Object.entries(documents).length > 0 && (<h3 className={`font-bold ${headingTwoText} cursor-pointer hover:text-cyan-600 transition-colors`}>{formatCJK(headingTwo, lang)}</h3>)}
                                   
                                   {activeHeadingTwo === headingTwo && (
                                   Object.keys(documents).length > 0 ? (
@@ -188,12 +190,12 @@ export default function InteractiveCollections( { data, force_click }: Interacti
                                               {url ? (
                                                   <a href={url} target="_blank" rel="noopener noreferrer" className="flex items-center hover:text-cyan-600 transition-colors">
                                                   <LinkIcon size={16} className="mr-2 flex-shrink-0" />
-                                                  <span>{docName}</span>
+                                                  <span>{formatCJK(docName, lang)}</span>
                                                   </a>
                                               ) : (
                                                   <span className="flex items-center text-gray-400 cursor-not-allowed">
                                                   <XCircle size={16} className="mr-2 flex-shrink-0" />
-                                                  <span>{docName} (Not available)</span>
+                                                  <span>{formatCJK(docName, lang)} (Not available)</span>
                                                   </span>
                                               )}
                                           </FadeInSection>

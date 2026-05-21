@@ -22,8 +22,7 @@ const base_cspHeader = `
     ${process.env.NODE_ENV === 'production' ? 'upgrade-insecure-requests;' : ''}
   `.replace(/\s{2,}/g, ' ').trim()
 
-// This is for security shits
-// I understand, but too lazy to implement it myself
+// Security implementation for Content Security Policy and Nonce
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
@@ -45,13 +44,13 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(request.nextUrl);
   }
 
-  // randomized shit and make base64 so that it looks cool lol
+  // Generate a random nonce and encode it as base64
   const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
 
   const cspHeader = base_cspHeader.replace("nonce-placeholder", `nonce-${nonce}`)
 
   const requestHeaders = new Headers(request.headers);
-  // send to header
+  // Pass the nonce and CSP to the request headers
   requestHeaders.set('x-nonce', nonce);
   requestHeaders.set('Content-Security-Policy', cspHeader);
 

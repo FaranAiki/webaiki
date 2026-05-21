@@ -67,7 +67,7 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: Promise<{ lang: string }>;
 }>) {
-  // Nonce shit 
+  // Retrieve the security nonce from headers
   const nonce = (await headers()).get('x-nonce') || undefined;
 
   // Use the url parameter directly and load dictionary synchronously

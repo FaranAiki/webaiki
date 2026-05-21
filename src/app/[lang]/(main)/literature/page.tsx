@@ -94,7 +94,7 @@ export default async function LiteraturePage({ params }: { params: Promise<{ lan
 
   return (
     <main className="container mx-auto px-6 pb-16 pt-24">
-      <LiteratureLoader data={literature_data} force_click={true} />
+      <LiteratureLoader data={literature_data} force_click={true} lang={lang} />
     </main>
   );
 }

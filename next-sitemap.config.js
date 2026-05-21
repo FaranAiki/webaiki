@@ -1,5 +1,5 @@
 module.exports = {
-  siteUrl: 'https:/faranaiki.id',
+  siteUrl: 'https://faranaiki.id',
 
   generateRobotsTxt: true,
 

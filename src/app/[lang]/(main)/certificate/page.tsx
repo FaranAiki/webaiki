@@ -102,7 +102,7 @@ export default async function CertificatePage({ params }: { params: Promise<{ la
     <main className="min-h-screen py-12">
       <div className="text-center mb-12"></div>
       <React.Suspense fallback={<h2 className="text-center">{dict.Loading_Certificate}</h2>}>
-        <CertificateLoader certificates={certificates} allTranslation={dict.All} />
+        <CertificateLoader certificates={certificates} allTranslation={dict.All} lang={lang} />
       </React.Suspense>
     </main>
   );

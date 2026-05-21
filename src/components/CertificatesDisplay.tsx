@@ -8,6 +8,7 @@ import GlitchSection from '@/components/GlitchSection';
 import PopRotateSection from '@/components/PopRotateSection';
 import FadeInSection from '@/components/FadeInSection';
 import { usePresentation } from './PresentationContext';
+import { formatCJK } from '@/lib/utils';
 
 export type CertificateData = {
   [category: string]: {
@@ -20,9 +21,10 @@ export type CertificateData = {
 export type CertificatesDisplayProps = {
   certificates: CertificateData;
   allTranslation: string;
+  lang?: string;
 };
 
-export default function CertificatesDisplay({ certificates, allTranslation }: CertificatesDisplayProps) {
+export default function CertificatesDisplay({ certificates, allTranslation, lang }: CertificatesDisplayProps) {
   const [openCategories, setOpenCategories] = useState<string[]>([]);
   const [selectedYears, setSelectedYears] = useState<{ [key: string]: string }>({});
   const { resolvedTheme } = useTheme();
@@ -115,7 +117,7 @@ export default function CertificatesDisplay({ certificates, allTranslation }: Ce
           >
             <div className="flex flex-col items-center justify-center w-full max-w-6xl mx-auto p-4 pt-16 pb-8">
               <h2 className="text-xl md:text-3xl font-black mb-6 text-center flex flex-wrap justify-center items-center gap-x-4">
-                <span className="text-cyan-500">{slide.category}</span>
+                <span className="text-cyan-500">{formatCJK(slide.category, lang)}</span>
                 <span className="text-gray-500">|</span>
                 <span className={titleColor}>{slide.year}</span>
                 {slide.totalParts && slide.totalParts > 1 && (
@@ -152,7 +154,7 @@ export default function CertificatesDisplay({ certificates, allTranslation }: Ce
                       )}
                     </div>
                     <p className={`text-center font-bold text-xs md:text-sm ${isDark ? 'text-gray-300' : 'text-gray-700'} line-clamp-2 px-1`}>
-                      {fileName}
+                      {formatCJK(fileName, lang)}
                     </p>
                   </div>
                 ))}
@@ -186,7 +188,7 @@ export default function CertificatesDisplay({ certificates, allTranslation }: Ce
                   onClick={() => handleCategoryClick(category)}
                   className={`w-full text-left text-2xl font-bold ${titleColor} hover:text-cyan-500 hover:scale-102 transition-[transform,colors]`}
                   >
-                  {category}
+                  {formatCJK(category, lang)}
                   </button>
               </FadeInSection>
 
@@ -252,7 +254,7 @@ export default function CertificatesDisplay({ certificates, allTranslation }: Ce
                           </a>
                           <div className="p-4 flex-grow">
                           <h3 className={`font-semibold ${titleColor} truncate`}>
-                              {fileName}
+                              {formatCJK(fileName, lang)}
                           </h3>
                           </div>
                       </div>

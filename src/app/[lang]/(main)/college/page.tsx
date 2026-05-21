@@ -102,7 +102,7 @@ export default async function CollegePage({ params }: { params: Promise<{ lang: 
   return (
     <main className="container mx-auto pt-8 pb-16 pt-24">
       <React.Suspense fallback={<h2 className="text-center">{dict.Loading_College}</h2>}>
-        <CollegeLoader data={college_data} force_click={false} />
+        <CollegeLoader data={college_data} force_click={false} lang={lang} />
      </React.Suspense>
     </main>
   );

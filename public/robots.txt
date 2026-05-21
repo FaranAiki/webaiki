@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https:/faranaiki.id
+Host: https://faranaiki.id
 
 # Sitemaps
-Sitemap: https:/faranaiki.id/sitemap.xml
+Sitemap: https://faranaiki.id/sitemap.xml

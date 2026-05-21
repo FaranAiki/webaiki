@@ -34,5 +34,5 @@ export default async function ProjectPage({ params, searchParams }: ProjectPageP
     source: typeof resolvedParams?.source === 'string' ? resolvedParams.source : undefined,
   };
 
-  return <PythonCLI searchParams={serializedParams} terminalTitle={dict.Python_Web_Title} loadingText={dict.Loading_Python}/>;
+  return <PythonCLI searchParams={serializedParams} terminalTitle={dict.Python_Web_Title} loadingText={dict.Loading_Python} lang={lang}/>;
 }

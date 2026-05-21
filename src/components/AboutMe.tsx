@@ -1,29 +1,11 @@
 "use client";
 
+import { useState, useEffect } from 'react';
+import { useTheme } from 'next-themes';
+import { shimmer, toBase64, formatCJK } from '@/lib/utils';
 import Image from 'next/image';
 import HoverableWords from '@/components/HoverableWords';
 import FadeInSection from '@/components/FadeInSection';
-import { useState, useEffect } from 'react';
-import { useTheme } from 'next-themes';
-
-const shimmer = (w: number, h: number) => `
-<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <defs>
-    <linearGradient id="g">
-      <stop stop-color="#333" offset="20%" />
-      <stop stop-color="#222" offset="50%" />
-      <stop stop-color="#333" offset="70%" />
-    </linearGradient>
-  </defs>
-  <rect width="${w}" height="${h}" fill="#333" />
-  <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
-  <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
-</svg>`;
-
-const toBase64 = (str: string) =>
-  typeof window === 'undefined'
-    ? Buffer.from(str).toString('base64')
-    : window.btoa(str);
 
 export type AboutMeProps = {
   carouselPhotos: string[];
@@ -118,10 +100,10 @@ export default function AboutMe({
             </h1>
             <div className="space-y-4">
               <HoverableWords className={`text-lg md:text-xl leading-relaxed ${textClass} ${justifyClass}`}>
-                {about_text_1}
+                {formatCJK(about_text_1, lang)}
               </HoverableWords>
               <HoverableWords className={`text-lg md:text-xl leading-relaxed ${textClass} ${justifyClass}`}>
-                {about_text_2}
+                {formatCJK(about_text_2, lang)}
               </HoverableWords>
             </div>
           </div>
@@ -168,7 +150,7 @@ export default function AboutMe({
               className={`text-lg md:text-xl leading-relaxed ${textClass} ${justifyClass} font-medium`} 
               prophover={`transition-[colors,transform] inline-block duration-200 ease-in-out hover:text-cyan-600 ${isDark ? 'dark:hover:text-cyan-300' : ''} hover:scale-105 cursor-pointer`}
             >
-              {about_philosophy}
+              {formatCJK(about_philosophy, lang)}
             </HoverableWords>
           </div>
 
@@ -205,20 +187,20 @@ export default function AboutMe({
                   className={`text-lg md:text-xl leading-relaxed ${textClass} ${justifyClass}`} 
                   prophover='transition-[colors,opacity,transform] inline-block duration-200 ease-in-out hover:translate-x-1 hover:text-cyan-600 cursor-pointer'
               >
-                  {about_principle_1}
+                  {formatCJK(about_principle_1, lang)}
               </HoverableWords>
               <HoverableWords 
                   className={`text-lg md:text-xl leading-relaxed ${textClass} ${justifyClass}`} 
                   prophover='transition-[colors,opacity,transform] inline-block duration-200 ease-in-out hover:translate-x-1 hover:text-cyan-600 cursor-pointer'
               >
-                  {about_principle_2}
+                  {formatCJK(about_principle_2, lang)}
               </HoverableWords>
               {/* Added Principle 3 */}
               <HoverableWords 
                   className={`text-lg md:text-xl leading-relaxed ${textClass} ${justifyClass}`} 
                   prophover='transition-[colors,opacity,transform] inline-block duration-200 ease-in-out hover:translate-x-1 hover:text-cyan-600 cursor-pointer'
               >
-                  {about_principle_3}
+                  {formatCJK(about_principle_3, lang)}
               </HoverableWords>
             </div>
           </div>
@@ -256,20 +238,20 @@ export default function AboutMe({
                   className={`text-lg md:text-xl leading-relaxed ${textClass} ${justifyClass}`} 
                   prophover={`transition-[colors,opacity,transform] inline-block duration-200 ease-in-out hover:scale-105 hover:text-cyan-600 ${isDark ? 'dark:hover:text-cyan-300' : ''} cursor-pointer`}
               >
-                  {about_vision_mission_1}
+                  {formatCJK(about_vision_mission_1, lang)}
               </HoverableWords>
               <HoverableWords 
                   className={`text-lg md:text-xl leading-relaxed ${textClass} ${justifyClass}`} 
                   prophover={`transition-[colors,transform,opacity] inline-block duration-200 ease-in-out hover:scale-105 hover:text-cyan-600 ${isDark ? 'dark:hover:text-cyan-300' : ''} cursor-pointer`}
               >
-                  {about_vision_mission_2}
+                  {formatCJK(about_vision_mission_2, lang)}
               </HoverableWords>
               {/* Added Vision Mission 3 */}
               <HoverableWords 
                   className={`text-lg md:text-xl leading-relaxed ${textClass} ${justifyClass}`} 
                   prophover={`transition-[colors,transform,opacity] inline-block duration-200 ease-in-out hover:scale-105 hover:text-cyan-600 ${isDark ? 'dark:hover:text-cyan-300' : ''} cursor-pointer`}
               >
-                  {about_vision_mission_3}
+                  {formatCJK(about_vision_mission_3, lang)}
               </HoverableWords>
             </div>
           </div>

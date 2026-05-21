@@ -28,6 +28,7 @@ import {
 } from 'lucide-react';
 
 import { usePresentation } from '@/components/PresentationContext';
+import { formatCJK } from '@/lib/utils';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -55,9 +56,9 @@ interface HeaderProps {
 function GlobeIcon({ isDark }: { isDark: boolean }) {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`${isDark ? 'text-gray-300' : 'text-slate-700'} group-hover:text-cyan-600 transition-colors duration-300`}>
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="2" y1="12" x2="22" y2="12"></line>
-            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            <circle cx="12" cy="12" r="10" aria-hidden="true"></circle>
+            <line x1="2" y1="12" x2="22" y2="12" aria-hidden="true"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" aria-hidden="true"></path>
         </svg>
     );
 }
@@ -279,9 +280,8 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                         {activeLink && (
                             <h1 className={`flex items-center justify-center transition-[colors,transform] duration-200 text-lg font-bold hover:text-cyan-600 ${isDark ? 'text-white' : 'text-slate-800'} whitespace-nowrap cursor-pointer opacity-95`}>
                                 {activeLink.icon && <span className="mr-2 flex items-center scale-90">{activeLink.icon}</span>}
-                                {activeLink.name}
-                            </h1>
-                        )}
+                                {formatCJK(activeLink.name, current_lang)}
+                            </h1>                        )}
                     </div>
 
                     {/* --- Desktop Navigation (Center) --- */}
@@ -304,7 +304,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                                     }`}
                                             >
                                                 {link.icon && <span className="mr-2 hidden lg:inline-block opacity-80 group-hover:opacity-100">{link.icon}</span>}
-                                                {link.name}
+                                                {formatCJK(link.name, current_lang)}
                                                 <ChevronDown />
                                             </button>
 
@@ -323,7 +323,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                                                         }`}
                                                                 >
                                                                     {subLink.icon && <span className="mr-3 opacity-70 group-hover:opacity-100 hidden lg:inline-block scale-90">{subLink.icon}</span>}
-                                                                    {subLink.name}
+                                                                    {formatCJK(subLink.name, current_lang)}
                                                                 </Link>
                                                             </li>
                                                         );
@@ -348,7 +348,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                                 }`}
                                         >
                                             {link.icon && <span className="mr-2 hidden lg:inline-block opacity-80 group-hover:opacity-100">{link.icon}</span>}
-                                            {link.name}
+                                            {formatCJK(link.name, current_lang)}
                                         </Link>
                                     </li>
                                 );
@@ -411,7 +411,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                     <li key={link.name}>
                                         <span className={`flex items-center text-xs font-bold uppercase tracking-widest ${isDark ? 'text-gray-500' : 'text-gray-400'} mb-4`}>
                                             {link.icon && <span className="mr-2 inline-block flex-shrink-0 opacity-70">{link.icon}</span>}
-                                            {link.name}
+                                            {formatCJK(link.name, current_lang)}
                                         </span>
                                         <ul className="flex flex-col space-y-4 pl-4 border-l-2 border-gray-200/50 dark:border-gray-700/50">
                                             {link.subLinks.map(subLink => {
@@ -427,7 +427,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                                                 }`}
                                                         >
                                                             {subLink.icon && <span className="mr-3 scale-90 inline-block flex-shrink-0 opacity-70">{subLink.icon}</span>}
-                                                            {subLink.name}
+                                                            {formatCJK(subLink.name, current_lang)}
                                                         </Link>
                                                     </li>
                                                 )
@@ -449,7 +449,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                             }`}
                                     >
                                         {link.icon && <span className="mr-3 inline-block flex-shrink-0 opacity-80">{link.icon}</span>}
-                                        {link.name}
+                                        {formatCJK(link.name, current_lang)}
                                     </Link>
                                 </li>
                             );

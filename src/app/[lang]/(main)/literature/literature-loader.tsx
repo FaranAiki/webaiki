@@ -15,6 +15,7 @@ type LiteratureData = {
 export type LiteratureLoaderProps = {
   data: LiteratureData;
   force_click: boolean; // Use 'boolean', not 'bool'
+  lang?: string;
 };
 
 // Use dynamic import for the component that needs browser APIs
@@ -26,6 +27,6 @@ const LiteratureDisplay = dynamic(
 );
 
 // This component receives the server-fetched data as props
-export default function LiteratureLoader({ data, force_click }: LiteratureLoaderProps) {
-  return <LiteratureDisplay data={data} force_click={force_click} />;
+export default function LiteratureLoader({ data, force_click, lang }: LiteratureLoaderProps) {
+  return <LiteratureDisplay data={data} force_click={force_click} lang={lang} />;
 }
