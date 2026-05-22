@@ -23,7 +23,7 @@ export default function InteractiveCollections( { data, force_click, lang }: Int
   const [leaveMouse, setLeaveMouse] = useState<boolean>(false);
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const { isPresentationMode } = usePresentation();
+  const { } = usePresentation();
 
   useEffect(() => {
     setMounted(true);

@@ -6,7 +6,7 @@ import { getDictionary } from '@/components/Translator';
 
 const inter = Inter({ subsets: ["latin"] });
 
-export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = getDictionary(lang);
 
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         'id': '/id/music',
         'en': '/en/music',
         'zh': '/zh/music',
-        'jp': '/jp/music',
+        'ja': '/jp/music',
       }
     },
   };

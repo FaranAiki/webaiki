@@ -4,7 +4,7 @@ import "../../../globals.css";
 
 import { getDictionary } from '@/components/Translator';
 
-export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = getDictionary(lang);
 
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         'id': '/id/project',
         'en': '/en/project',
         'zh': '/zh/project',
-        'jp': '/jp/project',
+        'ja': '/jp/project',
       }
     },
   };

@@ -29,7 +29,7 @@ export default function CertificatesDisplay({ certificates, allTranslation, lang
   const [selectedYears, setSelectedYears] = useState<{ [key: string]: string }>({});
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const { isPresentationMode } = usePresentation();
+  const { } = usePresentation();
 
   useEffect(() => {
     setMounted(true);

@@ -3,7 +3,7 @@ import "../../../globals.css";
 import { getDictionary } from '@/components/Translator';
 import ExperiencesClient from '@/components/ExperienceDisplayer';
 
-export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = getDictionary(lang);
 
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         'id': '/id/award',
         'en': '/en/award',
         'zh': '/zh/award',
-        'jp': '/jp/award',
+        'ja': '/jp/award',
       }
     },
   };

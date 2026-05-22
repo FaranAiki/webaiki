@@ -8,7 +8,7 @@ import { cache } from 'react';
 import fs from 'fs';
 import path from 'path';
 
-export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = getDictionary(lang);
 
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         'id': '/id/literature',
         'en': '/en/literature',
         'zh': '/zh/literature',
-        'jp': '/jp/literature',
+        'ja': '/jp/literature',
       }
     },
   };

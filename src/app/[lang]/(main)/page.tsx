@@ -14,7 +14,7 @@ export const getFaranAikiPhoto = cache(() => {
   return fs.readdirSync(photosDir);
 });
 
-export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = getDictionary(lang);
 
@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         'id': '/id',
         'en': '/en',
         'zh': '/zh',
-        'jp': '/jp',
+        'ja': '/jp',
         'ru': '/ru',
         'fr': '/fr',
         'ar': '/ar',

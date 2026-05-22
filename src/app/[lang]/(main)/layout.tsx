@@ -1,16 +1,7 @@
 import Header from "@/components/Header";
-import { Geist, Geist_Mono } from "next/font/google";
 import "../../globals.css";
 // Replace React's per-request cache with Next.js's global cross-request cache
 import { unstable_cache } from 'next/cache';
-
-// Import Providers
-import { Providers } from "@/components/Providers";
-import { CookieInitializer } from '@/components/CookieInitialize';
-import { headers } from 'next/headers';
-
-// For Umami (GA-like provider) using Script instead of <script>
-import Script from 'next/script'
 
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
@@ -50,16 +41,6 @@ export const getBackgrounds = unstable_cache(
   { revalidate: false } // cache indefinitely until the next build or server restart
 );
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export default async function RootLayout({
   children,
   params,
@@ -67,9 +48,6 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: Promise<{ lang: string }>;
 }>) {
-  // Retrieve the security nonce from headers
-  const nonce = (await headers()).get('x-nonce') || undefined;
-
   // Use the url parameter directly and load dictionary synchronously
   const { lang } = await params;
   const dict = getDictionary(lang);

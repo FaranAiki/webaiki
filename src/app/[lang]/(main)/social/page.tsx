@@ -3,7 +3,7 @@ import { getDictionary } from '@/components/Translator';
 import SocialDisplay from '@/components/SocialDisplay';
 import "../../../globals.css";
 
-export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = getDictionary(lang);
 
@@ -33,15 +33,14 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         'id': '/id/social',
         'en': '/en/social',
         'zh': '/zh/social',
-        'jp': '/jp/social',
+        'ja': '/jp/social',
       }
     },
   };
 }
 
 export default async function SocialPage({ params }: { params: Promise<{ lang: string }> }) {
-  const { lang } = await params;
-  const dict = getDictionary(lang);
+  await params;
 
   return (
     <main className="min-h-screen">

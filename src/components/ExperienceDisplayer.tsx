@@ -5,7 +5,6 @@ import Image from 'next/image';
 import HoverableWords from '@/components/HoverableWords';
 import { useTheme } from 'next-themes';
 import FadeInSection from '@/components/FadeInSection';
-import PopRotateSection from '@/components/PopRotateSection';
 import { shimmer, toBase64, formatCJK } from '@/lib/utils';
 
 type Job = {

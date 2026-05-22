@@ -57,7 +57,7 @@ export const getCollectionsData = cache((lang: string) => {
   return allCollectionsData;
 });
 
-export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = getDictionary(lang);
 
@@ -87,7 +87,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         'id': '/id/college',
         'en': '/en/college',
         'zh': '/zh/college',
-        'jp': '/jp/college',
+        'ja': '/jp/college',
       }
     },
   };

@@ -1,7 +1,13 @@
 import type { NextConfig } from "next";
 import type { Configuration as WebpackConfiguration } from 'webpack';
+import path from 'path';
 
 const nextConfig: NextConfig = {
+  // Turbopack configuration to resolve root directory issues
+  turbopack: {
+    root: path.resolve('.'),
+  },
+
   // Set output to standalone for optimized production builds
   output: "standalone",
   

@@ -55,7 +55,7 @@ export const getCertificatesData = cache(async (lang: string) => {
   return allCertificatesData;
 });
 
-export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = getDictionary(lang);
 
@@ -85,7 +85,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         'id': '/id/certificate',
         'en': '/en/certificate',
         'zh': '/zh/certificate',
-        'jp': '/jp/certificate',
+        'ja': '/jp/certificate',
       }
     },
   };

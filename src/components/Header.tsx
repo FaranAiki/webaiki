@@ -10,19 +10,6 @@ import ThemeToggle from '@/components/ThemeToggle';
 import { useTheme } from 'next-themes';
 
 import { 
-  Home, 
-  User, 
-  Share2, 
-  FileCheck, 
-  Briefcase, 
-  Users, 
-  Trophy, 
-  Palette, 
-  Music, 
-  BookOpen, 
-  GraduationCap,
-  Compass,
-  Code,
   Monitor,
   MonitorPlay
 } from 'lucide-react';

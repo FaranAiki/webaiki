@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { Github, Linkedin, Instagram, Twitter, Mail, Youtube } from 'lucide-react';
 import Image from 'next/image';
-import FadeInSection from '@/components/FadeInSection';
 import PopRotateSection from '@/components/PopRotateSection';
 import type { Metadata } from "next";
 
@@ -23,11 +22,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
 };
 
-interface SocialDisplayProps {
-  pageTitle: string;
-}
-
-export default function SocialDisplay({ pageTitle }: SocialDisplayProps) {
+export default function SocialDisplay() {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
