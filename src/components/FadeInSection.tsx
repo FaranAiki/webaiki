@@ -58,7 +58,7 @@ export default function FadeInSection({
     <div
       ref={domRef}
       style={{ transitionDelay: `${delay}ms` }}
-      className={`presentation-section relative transition-[opacity,transform,filter] duration-500 ease-out transform will-change-[opacity,transform,filter] ${className} ${
+      className={`presentation-section relative transition-[opacity,transform,filter] duration-500 ease-out transform ${className} ${
         isVisible
           ? 'opacity-100 translate-y-0 blur-0'
           : 'opacity-0 translate-y-8 blur-sm' 

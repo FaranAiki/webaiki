@@ -35,10 +35,11 @@ export const getBackgrounds = unstable_cache(
   async () => {
     const photosDir = path.join(process.cwd(), 'public', 'images', 'background');
     if (!fs.existsSync(photosDir)) return [];
-    return fs.readdirSync(photosDir);
+    // Only return .webp files to avoid loading orphaned or old files
+    return fs.readdirSync(photosDir).filter(file => file.toLowerCase().endsWith('.webp'));
   },
-  ['background-images-cache'], // unique key for this cache
-  { revalidate: false } // cache indefinitely until the next build or server restart
+  ['background-images-cache-webp-v1'], // Updated key to invalidate old cache
+  { revalidate: false } 
 );
 
 export default async function RootLayout({

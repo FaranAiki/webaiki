@@ -17,7 +17,7 @@ import {
 const getBackgrounds = cache( () => {
   const photosDir = path.join(process.cwd(), 'public', 'images', 'background');
   if (!fs.existsSync(photosDir)) return [];
-  return fs.readdirSync(photosDir);
+  return fs.readdirSync(photosDir).filter(file => file.toLowerCase().endsWith('.webp'));
 });
 
 export default async function NotFound() {
