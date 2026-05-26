@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       type: "website",
       images: [
         {
-          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.jpg',
+          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.webp',
           width: 1200,
           height: 630,
           alt: 'Faran Aiki',
@@ -75,7 +75,7 @@ return (
           "@type": "Person",
           "name": "Muhammad Faran Aiki",
           "url": "https://faranaiki.id",
-          "image": "https://faranaiki.id/images/photo_faran_aiki/1_fa_photo_linkedin.jpg",
+          "image": "https://faranaiki.id/images/photo_faran_aiki/1_fa_photo_linkedin.webp",
           "sameAs": [
             "https://github.com/faranaiki",
             "https://linkedin.com/in/faranaiki"

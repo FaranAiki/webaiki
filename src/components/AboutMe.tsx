@@ -6,6 +6,7 @@ import { shimmer, toBase64, formatCJK } from '@/lib/utils';
 import Image from 'next/image';
 import HoverableWords from '@/components/HoverableWords';
 import FadeInSection from '@/components/FadeInSection';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export type AboutMeProps = {
   carouselPhotos: string[];
@@ -51,7 +52,6 @@ export default function AboutMe({
   lang
 }: AboutMeProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isFading, setIsFading] = useState(false);
   
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -65,13 +65,7 @@ export default function AboutMe({
     if (!carouselPhotos || carouselPhotos.length <= 1) return;
     
     const interval = setInterval(() => {
-      setIsFading(true);
-
-      setTimeout(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % carouselPhotos.length);
-        setIsFading(false); 
-      }, 300); 
-
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % carouselPhotos.length);
     }, 4000); 
 
     return () => clearInterval(interval);
@@ -109,27 +103,36 @@ export default function AboutMe({
           </div>
 
           <div className="flex-shrink-0 relative group">
-            <div className="relative w-64 h-64 md:w-80 md:h-80">
+            <div className={`relative w-64 h-64 md:w-80 md:h-80 overflow-hidden rounded-2xl shadow-2xl border ${borderClass}`}>
               <div className="absolute inset-0 bg-cyan-500/30 blur-3xl rounded-full transform scale-90 group-hover:scale-100 transition-transform duration-700"></div>
-              {carouselPhotos && carouselPhotos.length > 0 && (
-              <Image
-                src={`/images/photo_faran_aiki/${carouselPhotos[currentIndex]}`}
-                alt={faran_photo}
-                fill
-                placeholder="blur"
-                blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(320, 320))}`}
-                className={`
-                  object-cover rounded-2xl
-                  transition-[colors,transform] duration-700 ease-out
-                  shadow-2xl border ${borderClass}
-                  hover:scale-[1.02] hover:shadow-cyan-500/40
-                  ${isFading ? 'opacity-80 scale-95 blur-sm' : 'opacity-100 scale-100 blur-0'}
-                `}
-                sizes="(max-width: 768px) 256px, 320px"
-                quality={85}
-                priority={true}
-              />
-              )}
+              <AnimatePresence mode="wait">
+                {carouselPhotos && carouselPhotos.length > 0 && (
+                <motion.div
+                  key={currentIndex}
+                  initial={{ opacity: 0, scale: 1.1 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.8, ease: "easeInOut" }}
+                  className="relative w-full h-full"
+                >
+                  <Image
+                    src={`/images/photo_faran_aiki/${carouselPhotos[currentIndex]}`}
+                    alt={faran_photo}
+                    fill
+                    placeholder="blur"
+                    blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(320, 320))}`}
+                    className={`
+                      object-cover 
+                      transition-transform duration-700 ease-out
+                      hover:scale-[1.05]
+                    `}
+                    sizes="(max-width: 768px) 256px, 320px"
+                    quality={85}
+                    priority={true}
+                  />
+                </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
         </div>
@@ -157,7 +160,7 @@ export default function AboutMe({
           <div className="flex-shrink-0">
             <div className="relative w-56 h-56 md:w-72 md:h-72">
               <Image
-                src={`/images/move_forward.png`}
+                src={`/images/move_forward.webp`}
                 alt="Move Forward Philosophy"
                 fill
                 placeholder="blur"
@@ -208,7 +211,7 @@ export default function AboutMe({
           <div className="flex-shrink-0">
             <div className="relative w-56 h-56 md:w-72 md:h-72">
               <Image
-                src={`/images/tree.png`}
+                src={`/images/tree.webp`}
                 alt="Guiding Principles Tree"
                 fill
                 placeholder="blur"
@@ -259,7 +262,7 @@ export default function AboutMe({
           <div className="flex-shrink-0">
             <div className="relative w-56 h-56 md:w-72 md:h-72">
               <Image
-                src={`/images/vission_mission.png`}
+                src={`/images/vission_mission.webp`}
                 alt="Vision and Mission"
                 fill
                 placeholder="blur"

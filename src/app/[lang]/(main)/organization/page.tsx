@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       type: "website",
       images: [
         {
-          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.jpg',
+          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.webp',
           width: 1200,
           height: 630,
           alt: 'Faran Aiki',
@@ -53,8 +53,8 @@ export default async function OrganizationExperiencesPage({ params }: { params: 
           company: dict.STEI_K || 'STEI-K',
           description: dict.Impact_Web_Lead_Description,
           image: [
-            '/documents/organization/Impact_0.png',
-            '/documents/organization/Impact_1.png',
+            '/documents/organization/Impact_0.webp',
+            '/documents/organization/Impact_1.webp',
           ]
         },
       ],
@@ -68,10 +68,10 @@ export default async function OrganizationExperiencesPage({ params }: { params: 
           company: dict.ITB,
           description: dict.Sponsorship_Wisokto_ITB_Description,
           image: [
-            '/documents/organization/Wisokto_0.jpg',
-            '/documents/organization/Wisokto_1.jpg',
-            '/documents/organization/Wisokto_2.jpg',
-            '/documents/organization/Wisokto_3.jpg',
+            '/documents/organization/Wisokto_0.webp',
+            '/documents/organization/Wisokto_1.webp',
+            '/documents/organization/Wisokto_2.webp',
+            '/documents/organization/Wisokto_3.webp',
           ]
         },
         {
@@ -80,8 +80,8 @@ export default async function OrganizationExperiencesPage({ params }: { params: 
           company: dict.STEI_K || 'STEI-K',
           description: dict.Treasurer_SYNC_Description,
           image: [
-            '/documents/organization/SYNC_0.jpg',
-            '/documents/organization/SYNC_1.JPG',
+            '/documents/organization/SYNC_0.webp',
+            '/documents/organization/SYNC_1.webp',
           ]
         },
         {
@@ -90,7 +90,7 @@ export default async function OrganizationExperiencesPage({ params }: { params: 
           company: 'IT Club SMAN 1 Kota Depok',
           description: dict.IT_Club_Vice_Renpy_Description,
           image: [
-            '/documents/organization/Renpy_0.png',
+            '/documents/organization/Renpy_0.webp',
           ] 
         }
       ]
@@ -104,8 +104,8 @@ export default async function OrganizationExperiencesPage({ params }: { params: 
           company: 'IT Club SMAN 1 Kota Depok',
           description: dict.IT_Club_Tutor_Description,
           image: [
-            '/documents/organization/IT_Tutor_0.jpg',
-            '/documents/organization/IT_Tutor_1.jpg',
+            '/documents/organization/IT_Tutor_0.webp',
+            '/documents/organization/IT_Tutor_1.webp',
 
           ]
         },
@@ -115,8 +115,8 @@ export default async function OrganizationExperiencesPage({ params }: { params: 
           company: 'SMA Negeri 1 Kota Depok',
           description: dict.PARAS_Description,
           image: [
-            '/documents/organization/Paras_0.png',
-            '/documents/organization/Paras_1.png',
+            '/documents/organization/Paras_0.webp',
+            '/documents/organization/Paras_1.webp',
           ]
         },
       ]
@@ -130,8 +130,8 @@ export default async function OrganizationExperiencesPage({ params }: { params: 
           company: 'Student Club 1 Depok',
           description: dict.Concerto_Description,
           image: [
-            '/documents/organization/Concerto_0.png',
-            '/documents/organization/Concerto_1.png',
+            '/documents/organization/Concerto_0.webp',
+            '/documents/organization/Concerto_1.webp',
           ]
         },
         {
@@ -152,9 +152,9 @@ export default async function OrganizationExperiencesPage({ params }: { params: 
           company: 'English Club 1 Depok',
           description: dict.English_Club_Member_Description,
           image: [
-            '/documents/organization/EC_0.png',
-            '/documents/organization/EC_1.png',
-            '/documents/organization/EC_2.png',
+            '/documents/organization/EC_0.webp',
+            '/documents/organization/EC_1.webp',
+            '/documents/organization/EC_2.webp',
           ]
         },
         {
@@ -163,9 +163,9 @@ export default async function OrganizationExperiencesPage({ params }: { params: 
           company: 'Nihongo Benkyoukai 1 Depok',
           description: dict.NBK_Member_Description,
           image: [
-            '/documents/organization/NBK_0.JPG',
-            '/documents/organization/NBK_1.JPG',
-            '/documents/organization/NBK_2.JPG',
+            '/documents/organization/NBK_0.webp',
+            '/documents/organization/NBK_1.webp',
+            '/documents/organization/NBK_2.webp',
           ]
         }
       ]

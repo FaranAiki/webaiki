@@ -19,22 +19,22 @@ const nextConfig: NextConfig = {
     removeConsole: process.env.NODE_ENV === 'production',
   },
 
-  webpack: (
-    config: WebpackConfiguration,
-    { dev, isServer }: { dev: boolean; isServer: boolean }
-  ) => {
-    // Optimization: Remove comments from the minified output in production
-    if (!dev && !isServer && config.optimization?.minimizer) {
-      const minimizer = config.optimization.minimizer[0] as any;
-      if (minimizer.options.terserOptions) {
-        minimizer.options.terserOptions.format = {
-          ...minimizer.options.terserOptions.format,
-          comments: false,
-        };
+    webpack: (
+      config: WebpackConfiguration,
+      { dev, isServer }: { dev: boolean; isServer: boolean }
+    ) => {
+      // Optimization: Remove comments from the minified output in production
+      if (!dev && !isServer && config.optimization?.minimizer) {
+        const minimizer = config.optimization.minimizer[0];
+        if (minimizer && typeof minimizer === 'object' && 'options' in minimizer) {
+          const options = minimizer.options as { terserOptions?: { format?: { comments?: boolean } } };
+          if (options.terserOptions?.format) {
+            options.terserOptions.format.comments = false;
+          }
+        }
       }
-    }
-    return config;
-  },
+      return config;
+    },
 
   async headers() {
     return [

@@ -103,7 +103,7 @@ export default function PortfolioClient({
         <header className="flex flex-col md:flex-row gap-8 items-center md:items-start border-b border-slate-800 pb-12 print:border-slate-200">
           <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-2xl overflow-hidden border-2 border-cyan-500 shadow-[0_0_20px_rgba(6,182,212,0.3)]">
             <Image 
-              src="/images/photo_faran_aiki/1_fa_photo_linkedin.jpg"
+              src="/images/photo_faran_aiki/1_fa_photo_linkedin.webp"
               alt="Muhammad Faran Aiki"
               fill
               className="object-cover"

@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       type: "website",
       images: [
         {
-          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.jpg',
+          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.webp',
           width: 1200,
           height: 630,
           alt: 'Faran Aiki',
@@ -55,11 +55,11 @@ export default async function ProjectPage({ params }: { params: Promise<{ lang: 
           description: dict.Lidia_Project_Description,
           url: 'https://github.com/FaranAiki/lidia',
           image: [
-            '/documents/project/Lidia_0.png',
-            '/documents/project/Lidia_1.png',
-            '/documents/project/Lidia_2.png',
-            '/documents/project/Lidia_3.png',
-            '/documents/project/Lidia_4.png',
+            '/documents/project/Lidia_0.webp',
+            '/documents/project/Lidia_1.webp',
+            '/documents/project/Lidia_2.webp',
+            '/documents/project/Lidia_3.webp',
+            '/documents/project/Lidia_4.webp',
           ]
         },
         {
@@ -68,10 +68,10 @@ export default async function ProjectPage({ params }: { params: Promise<{ lang: 
           company: 'Flutter, Dart, Burp Suite, Microsoft SSO',
           description: dict.ALTH_Project_Description,
           image: [
-            '/documents/project/ALTH_0.jpg',
-            '/documents/project/ALTH_1.jpg',
-            '/documents/project/ALTH_2.png',
-            '/documents/project/ALTH_3.png',
+            '/documents/project/ALTH_0.webp',
+            '/documents/project/ALTH_1.webp',
+            '/documents/project/ALTH_2.webp',
+            '/documents/project/ALTH_3.webp',
           ],
         },
         {
@@ -80,9 +80,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ lang: 
           company: 'LLVM, C',
           description: dict.Alkyl_Compiler_Description,
           image: [
-            '/documents/project/Alkyl_0.png',
-            '/documents/project/Alkyl_1.png',
-            '/documents/project/Alkyl_2.png',
+            '/documents/project/Alkyl_0.webp',
+            '/documents/project/Alkyl_1.webp',
+            '/documents/project/Alkyl_2.webp',
           ],
           url: 'https://github.com/FaranAiki/alkyl',
         },
@@ -97,9 +97,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ lang: 
           company: 'Analitica',
           description: dict.Make_Interactive_UAS_Description,
           image: [
-            '/documents/project/UAS_0.png',
-            '/documents/project/UAS_1.png',
-            '/documents/project/UAS_2.png',
+            '/documents/project/UAS_0.webp',
+            '/documents/project/UAS_1.webp',
+            '/documents/project/UAS_2.webp',
           ],
           url: 'https://faranaiki.id/project/uas_matematika_dasar',
         },
@@ -109,9 +109,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ lang: 
           company: 'faranaiki.id',
           description: dict.Make_Website_Description,
           image: [
-            '/documents/project/Web_0.png',
-            '/documents/project/Web_1.png',
-            '/documents/project/Web_2.png',
+            '/documents/project/Web_0.webp',
+            '/documents/project/Web_1.webp',
+            '/documents/project/Web_2.webp',
           ],
           url: 'https://faranaiki.id'
         }
@@ -126,7 +126,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ lang: 
           company: 'Linux',
           description: dict.Make_Nihwm_Description,
           image: [
-            '/documents/project/Nihwm_0.png',
+            '/documents/project/Nihwm_0.webp',
           ],
           url: 'https://www.github.com/FaranAiki/nihwm',
         },

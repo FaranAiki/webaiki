@@ -36,7 +36,7 @@ export default async function BaseLayout({
       <head>
         <meta name="google-site-verification" content="xZMulZsvn0xj7TrxhEN8O9KLWSmNIfx6tqFtOpbgOV4" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${geistSans.className} ${geistMono.variable} antialiased`}>
         <Providers>
           <CookieInitializer />
           {children}

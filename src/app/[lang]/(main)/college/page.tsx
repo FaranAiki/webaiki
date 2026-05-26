@@ -73,7 +73,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       type: "website",
       images: [
         {
-          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.jpg',
+          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.webp',
           width: 1200,
           height: 630,
           alt: 'Faran Aiki',

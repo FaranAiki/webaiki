@@ -29,7 +29,7 @@ export async function generateMetadata({
       type: "website",
       images: [
         {
-          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.jpg',
+          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.webp',
           width: 1200,
           height: 630,
           alt: 'Faran Aiki Portfolio',
@@ -89,7 +89,7 @@ export default async function PortfolioPage({
       tech: 'Python, Pandas, ETL, Data Analysis',
       description: dict.Lidia_Project_Description,
       link: 'https://github.com/FaranAiki/lidia',
-      image: '/documents/project/Lidia_0.png',
+      image: '/documents/project/Lidia_0.webp',
       category: 'it'
     },
     {
@@ -97,14 +97,14 @@ export default async function PortfolioPage({
       tech: 'C, LLVM-IR, Compiler Design',
       description: dict.Alkyl_Compiler_Description,
       link: 'https://github.com/FaranAiki/alkyl',
-      image: '/documents/project/Alkyl_0.png',
+      image: '/documents/project/Alkyl_0.webp',
       category: 'it'
     },
     {
       title: dict.ALTH_Project,
       tech: 'Flutter, Dart, Microsoft SSO',
       description: dict.ALTH_Project_Description,
-      image: '/documents/project/ALTH_0.jpg',
+      image: '/documents/project/ALTH_0.webp',
       category: 'it'
     },
     {
@@ -112,7 +112,7 @@ export default async function PortfolioPage({
       tech: 'Next.js, TypeScript, TailwindCSS',
       description: dict.Make_Website_Description,
       link: 'https://faranaiki.id',
-      image: '/documents/project/Web_0.png',
+      image: '/documents/project/Web_0.webp',
       category: 'it'
     }
   ].filter(item => (!type) || (type === item.category));

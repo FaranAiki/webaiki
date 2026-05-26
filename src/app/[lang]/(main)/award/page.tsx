@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       type: "website",
       images: [
         {
-          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.jpg',
+          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.webp',
           width: 1200,
           height: 630,
           alt: 'Faran Aiki',
@@ -52,7 +52,7 @@ export default async function AwardsPage({ params }: { params: Promise<{ lang: s
           company: dict.PT_Paragon || 'PT Paragon',
           description: dict.Paragon_Scholarship_Desc,
           image: [
-            '/documents/award/paragon_scholarship.png',
+            '/documents/award/paragon_scholarship.webp',
           ]
         },
       ],

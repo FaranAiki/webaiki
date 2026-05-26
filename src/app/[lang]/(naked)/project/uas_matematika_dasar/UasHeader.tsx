@@ -43,7 +43,7 @@ export default function UasHeader() {
               {/* Replace the src below with your actual QRIS or donation image path */}
               <div className="text-center p-4">
                 <Image 
-                  src="/images/donation.jpg" 
+                  src="/images/donation.webp" 
                   alt="Donasi QRIS" 
                   fill 
                   className="object-contain" 

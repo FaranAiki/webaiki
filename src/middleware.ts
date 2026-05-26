@@ -6,7 +6,7 @@ const defaultLocale = 'id';
 
 const base_cspHeader = `
     default-src 'self';
-    script-src 'self' 'nonce-placeholder' 'strict-dynamic' https: 'unsafe-inline' 'wasm-unsafe-eval' ${
+    script-src 'nonce-placeholder' 'strict-dynamic' 'wasm-unsafe-eval' ${
       process.env.NODE_ENV === 'development' ? "'unsafe-eval'" : ''
     };
     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;

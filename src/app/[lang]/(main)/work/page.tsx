@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       type: "website",
       images: [
         {
-          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.jpg',
+          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.webp',
           width: 1200,
           height: 630,
           alt: 'Faran Aiki',
@@ -53,8 +53,8 @@ export default async function WorkExperiencesPage({ params }: { params: Promise<
           company: 'STEI-K 2025',
           description: dict.Impact_Module_Author_Description,
           image: [
-            '/documents/organization/Impact_Module_0.png',
-            '/documents/organization/Impact_Module_1.png',
+            '/documents/organization/Impact_Module_0.webp',
+            '/documents/organization/Impact_Module_1.webp',
           ]
         },
         {
@@ -63,8 +63,8 @@ export default async function WorkExperiencesPage({ params }: { params: Promise<
           company: 'Kobi Education',
           description: dict.SAT_Tutor_Description,
           image: [
-            '/documents/work/SAT_Tutor_0.jpg',
-            '/documents/work/SAT_Tutor_1.jpg',
+            '/documents/work/SAT_Tutor_0.webp',
+            '/documents/work/SAT_Tutor_1.webp',
           ]
         },
         {
@@ -73,8 +73,8 @@ export default async function WorkExperiencesPage({ params }: { params: Promise<
           company: 'STEI-K 2025',
           description: dict.Compile_Module_Author_Description,
           image: [
-            '/documents/work/COMPILE_UTBK_0.png',
-            '/documents/work/COMPILE_UTBK_1.png',
+            '/documents/work/COMPILE_UTBK_0.webp',
+            '/documents/work/COMPILE_UTBK_1.webp',
           ]
         },
       ],
@@ -88,9 +88,9 @@ export default async function WorkExperiencesPage({ params }: { params: Promise<
           company: 'Analitica',
           description: dict.Software_Engineer_Description,
           image: [
-            '/documents/work/Analitica Software Engineer_0.png',
-            '/documents/work/Analitica Software Engineer_1.png',
-            '/documents/work/Analitica Software Engineer_2.png',
+            '/documents/work/Analitica Software Engineer_0.webp',
+            '/documents/work/Analitica Software Engineer_1.webp',
+            '/documents/work/Analitica Software Engineer_2.webp',
           ]
         },
         {
@@ -99,9 +99,9 @@ export default async function WorkExperiencesPage({ params }: { params: Promise<
           company: 'KPM-Nol Persen',
           description: dict.Mathematics_Private_Tutor_Description,
           image: [
-            '/documents/work/KPM-Nol Persen_0.png',
-            '/documents/work/KPM-Nol Persen_1.jpg',
-            '/documents/work/KPM-Nol Persen_2.jpg',
+            '/documents/work/KPM-Nol Persen_0.webp',
+            '/documents/work/KPM-Nol Persen_1.webp',
+            '/documents/work/KPM-Nol Persen_2.webp',
           ]
         },
         {
@@ -110,9 +110,9 @@ export default async function WorkExperiencesPage({ params }: { params: Promise<
           company: 'Analitica',
           description: dict.Education_Team_Description,
           image: [
-            '/documents/work/Analitica Education Team_0.png',
-            '/documents/work/Analitica Education Team_1.png',
-            '/documents/work/Analitica Education Team_2.jpg',
+            '/documents/work/Analitica Education Team_0.webp',
+            '/documents/work/Analitica Education Team_1.webp',
+            '/documents/work/Analitica Education Team_2.webp',
           ]
         }
       ]

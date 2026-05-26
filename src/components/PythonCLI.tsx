@@ -29,18 +29,16 @@ interface WorkerMessageData {
 interface PythonCLIProps {
   loadingText: string, 
   terminalTitle: string,
+  terminalError: string,
+  terminalFinished: string,
+  terminalWelcome: string,
+  terminalInputTooLong: string,
   lang?: string,
   searchParams: {
     type?: string;
     source?: string;
   };
 }
-
-const DEMO_SCRIPT = `
-print("Welcome to the Python Web Terminal!")
-while True:
-    eval(input(">>> "))
-`;
 
 const WORKER_CODE = `
 importScripts("https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js");
@@ -118,6 +116,10 @@ export default function PythonCLI({
   searchParams,
   terminalTitle,
   loadingText,
+  terminalError,
+  terminalFinished,
+  terminalWelcome,
+  terminalInputTooLong,
   lang,
 }: PythonCLIProps) {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -133,6 +135,12 @@ export default function PythonCLI({
    
   const terminalContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const demoScript = `
+print("${terminalWelcome}")
+while True:
+    eval(input(">>> "))
+`;
 
   const addToHistory = useCallback((item: HistoryItem) => {
     setHistory((prev) => {
@@ -158,7 +166,7 @@ export default function PythonCLI({
     if (typeof SharedArrayBuffer === "undefined") {
       addToHistory({ 
         type: "error", 
-        text: "CRITICAL ERROR: SharedArrayBuffer is not defined.\nEnsure Cross-Origin-Opener-Policy (COOP) and Cross-Origin-Embedder-Policy (COEP) headers are set on the server." 
+        text: terminalError
       });
       setIsLoading(false);
       return;
@@ -207,7 +215,7 @@ export default function PythonCLI({
           setIsWaitingForInput(true);
           break;
         case 'finished':
-          addToHistory({ type: "system", text: "\n--- Program Finished ---\n" });
+          addToHistory({ type: "system", text: `\n${terminalFinished}\n` });
           break;
       }
     };
@@ -217,7 +225,7 @@ export default function PythonCLI({
     return () => {
       worker.terminate();
     };
-  }, [addToHistory]);
+  }, [addToHistory, terminalError, terminalFinished]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -241,21 +249,18 @@ export default function PythonCLI({
           
           if (isSubscribed) {
             setScript(text);
-            // addToHistory({ type: "system", text: "Script loaded.\n" });
           }
         } catch (e: unknown) {
           if (e instanceof Error && e.name === 'AbortError') return;
           
           if (isSubscribed) {
-            // const errorMessage = e instanceof Error ? e.message : String(e);
-            // addToHistory({ type: "error", text: `Fetch Error: ${errorMessage}\n` });
-            setScript(DEMO_SCRIPT); 
+            setScript(demoScript); 
           }
         } finally {
           if (isSubscribed) setIsFetchingScript(false);
         }
       } else {
-        if (isSubscribed) setScript(DEMO_SCRIPT);
+        if (isSubscribed) setScript(demoScript);
       }
     }
 
@@ -265,7 +270,7 @@ export default function PythonCLI({
       isSubscribed = false;
       controller.abort();
     };
-  }, [searchParams, addToHistory]);
+  }, [searchParams, demoScript]);
 
   // --- Auto Run ---
   useEffect(() => {
@@ -279,7 +284,7 @@ export default function PythonCLI({
       workerRef.current.postMessage({ type: 'run', data: { script } });
       ranScriptRef.current = script; 
     }
-  }, [isLoading, isFetchingScript, script, addToHistory]);
+  }, [isLoading, isFetchingScript, script]);
 
   useEffect(() => {
     if (terminalContainerRef.current) {
@@ -305,7 +310,7 @@ export default function PythonCLI({
     const bytes = encoder.encode(currentInput);
 
     if (bytes.length > 1024 * 8) {
-      addToHistory({ type: "error", text: "Input too long!\n" });
+      addToHistory({ type: "error", text: `${terminalInputTooLong}\n` });
       return;
     }
 
@@ -346,13 +351,12 @@ export default function PythonCLI({
     <div className="font-sans flex items-center justify-center min-h-screen p-4 no-scrollbar">
       <div className="w-full max-w-3xl bg-gray-900 text-gray-100 rounded-lg shadow-2xl overflow-hidden flex flex-col h-[80vh] border border-gray-800">
         
-        {/* Updated Header: Centered and Bold Title */}
         <div className="flex items-center justify-between p-3 bg-gray-800 border-b border-gray-700 shrink-0 select-none bg-opacity-90">
-          <div className="w-24"></div> {/* Spacer to balance the layout */}
+          <div className="w-24"></div> 
           <span className="font-mono text-sm font-bold opacity-80 text-center">
              {formatCJK(terminalTitle, lang)}
           </span>
-          <div className="w-24"></div> {/* Empty spacer for symmetry */}
+          <div className="w-24"></div>
         </div>
 
         <div 
@@ -362,7 +366,6 @@ export default function PythonCLI({
         >
           <div className="whitespace-pre-wrap break-words font-mono no-scrollbar">
             
-            {/* Loading Text: Appears inside terminal, deleted when done */}
             {(isLoading || isFetchingScript) && (
                 <div className="text-blue-300 animate-pulse mb-2">
                     {formatCJK(loadingText, lang)}
@@ -374,7 +377,6 @@ export default function PythonCLI({
                 key={index} 
                 className={
                   item.type === "system" ? "text-gray-500 italic" : 
-                  // item.type === "error" ? "text-red-400" :
                   item.type === "input" ? "text-white font-bold" :
                   "text-gray-100"
                 }
