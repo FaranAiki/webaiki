@@ -52,16 +52,6 @@ const nextConfig: NextConfig = {
             value: 'nosniff',
           },
           {
-            // Security: Standard policy for most of the site; middleware will upgrade to same-origin for isolated routes
-            key: 'Cross-Origin-Opener-Policy',
-            value: 'unsafe-none',
-          },
-          {
-            // Security: Required for certain shared buffer features used by Pyodide
-            key: 'Cross-Origin-Embedder-Policy',
-            value: 'credentialless',
-          },
-          {
             // Security: Control which origins can read the resource
             key: 'Cross-Origin-Resource-Policy',
             value: 'cross-origin',

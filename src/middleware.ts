@@ -46,11 +46,12 @@ export function middleware(request: NextRequest) {
 
     if (isPythonRedirect) {
       redirectResponse.headers.set('Cross-Origin-Opener-Policy', 'same-origin');
+      redirectResponse.headers.set('Cross-Origin-Embedder-Policy', 'credentialless');
     } else {
       redirectResponse.headers.set('Cross-Origin-Opener-Policy', 'unsafe-none');
+      redirectResponse.headers.set('Cross-Origin-Embedder-Policy', 'unsafe-none');
     }
     
-    redirectResponse.headers.set('Cross-Origin-Embedder-Policy', 'credentialless');
     redirectResponse.headers.set('Cross-Origin-Resource-Policy', 'cross-origin');
     return redirectResponse;
   }
@@ -85,15 +86,14 @@ export function middleware(request: NextRequest) {
   if (isPythonProject) {
     // Strict isolation ONLY for the route that needs SharedArrayBuffer (Python CLI)
     response.headers.set('Cross-Origin-Opener-Policy', 'same-origin');
+    response.headers.set('Cross-Origin-Embedder-Policy', 'credentialless');
   } else {
     // Use unsafe-none for the rest of the site to avoid "security configuration mismatch" errors in Firefox
-    // and to allow the UAS project to be iframed.
+    // and to allow the UAS project to load its cross-origin iframe (which doesn't have COEP/CORP).
     response.headers.set('Cross-Origin-Opener-Policy', 'unsafe-none');
+    response.headers.set('Cross-Origin-Embedder-Policy', 'unsafe-none');
   }
 
-  // Keep credentialless globally as it is the most compatible way to enable isolation when COOP is present,
-  // and doesn't interfere when COOP is unsafe-none.
-  response.headers.set('Cross-Origin-Embedder-Policy', 'credentialless');
   response.headers.set('Cross-Origin-Resource-Policy', 'cross-origin');
 
   return response;
