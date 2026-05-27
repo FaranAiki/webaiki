@@ -101,7 +101,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ lang: 
             '/documents/project/UAS_1.webp',
             '/documents/project/UAS_2.webp',
           ],
-          url: 'https://faranaiki.id/project/uas_matematika_dasar',
+          url: '/project/uas_matematika_dasar',
         },
         {
           date: `${dict.October} — ${dict.Present}`,
@@ -113,7 +113,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ lang: 
             '/documents/project/Web_1.webp',
             '/documents/project/Web_2.webp',
           ],
-          url: 'https://faranaiki.id'
+          url: '/'
         }
       ]
     },

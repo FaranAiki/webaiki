@@ -230,7 +230,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                 `}
                 onMouseLeave={() => setLangMenuVisible(false)}
             >
-                <div className="container flex items-center justify-between mx-auto px-4 sm:px-8 py-4">
+                <div className="w-full flex items-center justify-between mx-auto px-4 sm:px-8 py-4">
 
                     {/* Left section (Logo + Presentation Toggle) */}
                     <div className="flex-1 flex items-center gap-4">

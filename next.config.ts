@@ -39,13 +39,8 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        source: '/(.*)',
+        source: '/:path*',
         headers: [
-          {
-            // Security: Prevent clickjacking by denying framing from other origins
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
           {
             // Security: Enforce HTTPS for a year, including subdomains
             key: 'Strict-Transport-Security',
@@ -57,14 +52,19 @@ const nextConfig: NextConfig = {
             value: 'nosniff',
           },
           {
-            // Security: Isolate the browsing context to prevent cross-origin data leaks
+            // Security: Standard policy for most of the site; middleware will upgrade to same-origin for isolated routes
             key: 'Cross-Origin-Opener-Policy',
-            value: 'same-origin',
+            value: 'unsafe-none',
           },
           {
             // Security: Required for certain shared buffer features used by Pyodide
             key: 'Cross-Origin-Embedder-Policy',
             value: 'credentialless',
+          },
+          {
+            // Security: Control which origins can read the resource
+            key: 'Cross-Origin-Resource-Policy',
+            value: 'cross-origin',
           }
           // Note: Content-Security-Policy is omitted here because it is 
           // generated dynamically with a Nonce in middleware.ts
