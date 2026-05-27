@@ -13,13 +13,13 @@ import {
 } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
-const roboto = Roboto({ weight: ['400', '700'], subsets: ['latin'], variable: '--font-roboto' });
-const openSans = Open_Sans({ subsets: ['latin'], variable: '--font-open-sans' });
-const lato = Lato({ weight: ['400', '700'], subsets: ['latin'], variable: '--font-lato' });
-const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-montserrat' });
-const merriweather = Merriweather({ weight: ['400', '700'], subsets: ['latin'], variable: '--font-merriweather' });
-const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' });
-const sourceSans = Source_Sans_3({ subsets: ['latin'], variable: '--font-source-sans' });
+const roboto = Roboto({ weight: ['400', '700'], subsets: ['latin'], variable: '--font-roboto', preload: false });
+const openSans = Open_Sans({ subsets: ['latin'], variable: '--font-open-sans', preload: false });
+const lato = Lato({ weight: ['400', '700'], subsets: ['latin'], variable: '--font-lato', preload: false });
+const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-montserrat', preload: false });
+const merriweather = Merriweather({ weight: ['400', '700'], subsets: ['latin'], variable: '--font-merriweather', preload: false });
+const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', preload: false });
+const sourceSans = Source_Sans_3({ subsets: ['latin'], variable: '--font-source-sans', preload: false });
 
 export const fonts = [
   { name: 'Default', variable: '', class: '' },

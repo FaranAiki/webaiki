@@ -9,6 +9,7 @@ interface FadeInSectionProps {
   className?: string;
   slideIndex?: number;
   totalSlides?: number;
+  initialVisible?: boolean;
 }
 
 // idk gemini generated this shit
@@ -17,9 +18,10 @@ export default function FadeInSection({
   delay = 0, 
   className = "", 
   slideIndex, 
-  totalSlides 
+  totalSlides,
+  initialVisible = false
 }: FadeInSectionProps) {
-  const [isVisible, setVisible] = useState(false);
+  const [isVisible, setVisible] = useState(initialVisible);
   const domRef = useRef<HTMLDivElement>(null);
   const { isPresentationMode, slideNumberFormat, cycleSlideNumberFormat } = usePresentation();
 

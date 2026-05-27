@@ -1,10 +1,10 @@
 "use client";
 
 import dynamic from 'next/dynamic';
+import Background from '@/components/Background';
 
 // Safe to use ssr: false here because we are inside a "use client" file
 const AskMePopup = dynamic(() => import("@/components/AskMePopup"), { ssr: false });
-const Background = dynamic(() => import("@/components/Background"), { ssr: false });
 
 interface ClientOnlyWidgetsProps {
   dict: Record<string, string>;

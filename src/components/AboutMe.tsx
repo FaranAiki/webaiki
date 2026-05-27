@@ -75,22 +75,19 @@ export default function AboutMe({
     return () => clearInterval(interval);
   }, [carouselPhotos]);
 
-  if (!mounted) {
-    return <div className="w-full px-10 py-10 min-h-screen opacity-0"></div>;
-  }
-
   const isDark = resolvedTheme === 'dark';
 
   // Enhanced Contrast & Typography Classes
-  const titleClass = isDark ? 'text-white' : 'text-gray-900';
-  const textClass = isDark ? 'text-gray-200' : 'text-gray-800'; 
-  const borderClass = isDark ? 'border-white/10' : 'border-gray-200';
+  // We use Tailwind's dark: classes where possible to avoid hydration mismatch and allow SSR
+  const titleClass = "text-gray-900 dark:text-white";
+  const textClass = "text-gray-800 dark:text-gray-200"; 
+  const borderClass = "border-gray-200 dark:border-white/10";
 
   return (
     <div className="w-full py-8 md:px-5 presentation-mode:contents">
        
       {/* About Me Section */}
-      <FadeInSection slideIndex={1} totalSlides={4}>
+      <FadeInSection slideIndex={1} totalSlides={4} initialVisible={true}>
         <div className="flex flex-col-reverse md:flex-row justify-center items-center gap-8 lg:gap-16 max-w-6xl mx-auto w-full">
           <div className={`flex-1 ${responsiveJustifyClass} max-w-prose`}>
             <h1 className={`text-4xl md:text-5xl font-extrabold ${titleClass} mb-6 hover:opacity-85 transition-opacity tracking-tight`}>

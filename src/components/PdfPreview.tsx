@@ -7,6 +7,8 @@ import { Document, Page, pdfjs } from 'react-pdf';
 // This prevents 404 errors, stops the "fake worker", and restores website speed.
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
+const CMAP_URL = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/cmaps/`;
+
 type PdfPreviewProps = {
   fileUrl: string;
   width?: number;
@@ -27,6 +29,10 @@ export default function PdfPreview({ fileUrl, width = 300 }: PdfPreviewProps) {
       <Document
         file={fileUrl}
         className="flex justify-center"
+        options={{
+          cMapUrl: CMAP_URL,
+          cMapPacked: true,
+        }}
       >
         {/* We only show the first page as a preview */}
         <Page pageNumber={1} width={width} renderTextLayer={false} renderAnnotationLayer={false} />

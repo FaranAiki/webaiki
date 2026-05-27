@@ -230,14 +230,12 @@ export default function Background({ carousel }: BackgroundProps) {
     return () => clearInterval(interval);
   }, [carousel]);
 
-  if (!mounted) return null;
-
   const isDark = resolvedTheme === 'dark';
 
   return (
-    <div className={`fixed inset-0 w-full h-full z-[-1] transition-colors duration-[1500ms] ease-in-out ${isDark ? 'bg-black' : 'bg-white'}`}>
+    <div className={`fixed inset-0 w-full h-full z-[-1] transition-colors duration-[1500ms] ease-in-out bg-white dark:bg-black`}>
       
-      <div className={`transition-opacity duration-[1500ms] ease-in-out w-full h-full absolute inset-0 ${isDark ? 'opacity-100' : 'opacity-20'}`}>
+      <div className={`transition-opacity duration-[1500ms] ease-in-out w-full h-full absolute inset-0 ${isDark || !mounted ? 'opacity-100' : 'opacity-20'}`}>
         {carousel.map((src, index) => (
             <div
                 key={index}
@@ -261,13 +259,9 @@ export default function Background({ carousel }: BackgroundProps) {
         ))}
         
         {/* Adjusted Gradient to improve text readability on all backgrounds with SLOW transition for epilepsy prevention */}
-        <div className={`absolute inset-0 transition-[colors,opacity] duration-[1500ms] ease-in-out bg-gradient-to-b ${
-            isDark 
-            ? 'from-black/70 via-black/40 to-black/80' 
-            : 'from-white/70 via-white/50 to-white/90' 
-        }`} />
+        <div className={`absolute inset-0 transition-[colors,opacity] duration-[1500ms] ease-in-out bg-gradient-to-b from-white/70 via-white/50 to-white/90 dark:from-black/70 dark:via-black/40 dark:to-black/80`} />
         
-        <GeometricPattern isDark={isDark}/>
+        {mounted && <GeometricPattern isDark={isDark}/>}
       </div>
     </div>
   );

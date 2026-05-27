@@ -65,6 +65,7 @@ const nextConfig: NextConfig = {
 
   images: {
     // Configure allowed image sources for next/image
+    formats: ['image/avif', 'image/webp'],
     qualities: [75, 80, 85, 90, 100],
     remotePatterns: [
       { protocol: 'https', hostname: 'static.wikia.nocookie.net' },
