@@ -173,5 +173,12 @@
   "ALTH_Project": "ALTH: Aku Lupa Tandai Hadir",
   "ALTH_Project_Description": "ALTH (Aku Lupa Tandai Hadir) is an innovative application specifically designed for ITB students to address the frequent issue of forgetting to mark attendance. Developed using Flutter and leveraging Burp Suite integration, the app automatically sends GET signals to the SIX portal and processes data through cookies obtained via Microsoft SSO authentication. Although it possesses the technical capability to send POST signals, ALTH is built with high integrity as a smart reminder tool, not for attendance manipulation.",
   "": "",
-  "Presentation_Mode": "Presentation Mode"
+  "Presentation_Mode": "Presentation Mode",
+  "Settings": "Settings",
+  "Typography": "Typography",
+  "Alignment": "Alignment",
+  "Text_Scaling": "Text Scaling",
+  "Letter_Spacing": "Letter Spacing",
+  "Line_Height": "Line Height",
+  "Font_Default": "Default"
 }

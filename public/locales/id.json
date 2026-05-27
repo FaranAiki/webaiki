@@ -173,5 +173,12 @@
   "ALTH_Project": "ALTH: Aku Lupa Tandai Hadir",
   "ALTH_Project_Description": "ALTH (Aku Lupa Tandai Hadir) adalah aplikasi inovatif yang dirancang khusus bagi mahasiswa ITB untuk mengatasi masalah kelalaian dalam melakukan presensi. Dikembangkan menggunakan Flutter dan memanfaatkan integrasi Burp Suite, aplikasi ini secara otomatis mengirimkan sinyal GET ke portal SIX dan memproses data melalui cookie hasil autentikasi Microsoft SSO. Walaupun memiliki kapabilitas teknis untuk mengirimkan sinyal POST, ALTH dikembangkan dengan integritas tinggi sebagai alat pengingat cerdas, bukan untuk manipulasi kehadiran (titip absen).",
   "": "",
-  "Presentation_Mode": "Mode Presentasi"
+  "Presentation_Mode": "Mode Presentasi",
+  "Settings": "Pengaturan",
+  "Typography": "Tipografi",
+  "Alignment": "Perataan",
+  "Text_Scaling": "Skala Teks",
+  "Letter_Spacing": "Jarak Antarhuruf",
+  "Line_Height": "Tinggi Baris",
+  "Font_Default": "Bawaan"
 }

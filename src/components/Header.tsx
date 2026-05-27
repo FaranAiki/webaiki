@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 import { Inter } from "next/font/google";
 import ThemeToggle from '@/components/ThemeToggle'; 
 import { useTheme } from 'next-themes';
+import SettingsPopup from '@/components/SettingsPopup';
 
 import { 
   Monitor,
@@ -38,6 +39,15 @@ interface HeaderProps {
     ar_lang: string;
     select_lang: string;
     presentation_mode: string;
+    settings_labels: {
+        Settings: string;
+        Typography: string;
+        Alignment: string;
+        Text_Scaling: string;
+        Letter_Spacing: string;
+        Line_Height: string;
+        Font_Default: string;
+    };
 }
 
 function GlobeIcon({ isDark }: { isDark: boolean }) {
@@ -77,7 +87,7 @@ function ChevronDown() {
     );
 }
 
-export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_lang, jp_lang, ru_lang, fr_lang, ar_lang, select_lang, presentation_mode }: HeaderProps) {
+export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_lang, jp_lang, ru_lang, fr_lang, ar_lang, select_lang, presentation_mode, settings_labels }: HeaderProps) {
     const pathname = usePathname();
     const router = useRouter();
     const [isLangMenuVisible, setLangMenuVisible] = useState(false);
@@ -344,10 +354,14 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                     </nav>
 
                     {/* Right section */}
-                    <div className="flex-1 flex justify-end items-center space-x-4">
+                    <div className="flex-1 flex justify-end items-center space-x-2 md:space-x-4">
                         
                         <div className="hidden md:block">
                             <ThemeToggle />
+                        </div>
+
+                        <div className="hidden md:block">
+                            <SettingsPopup labels={settings_labels} />
                         </div>
 
                         {/* --- Desktop Language Selector --- */}
@@ -389,6 +403,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                 <nav className="mt-24 px-8 pb-12">
                     <div className={`flex justify-between items-center mb-8 border-b ${isDark ? 'border-gray-700' : 'border-gray-200'} pb-6`}>
                         <ThemeToggle />
+                        <SettingsPopup labels={settings_labels} />
                     </div>
 
                     <ul className="flex flex-col space-y-6">

@@ -2,8 +2,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import { headers } from 'next/headers';
 import Script from 'next/script'
-import { CookieInitializer } from '@/components/CookieInitialize';
-import { Providers } from "@/components/Providers";
 
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
@@ -37,10 +35,7 @@ export default async function BaseLayout({
         <meta name="google-site-verification" content="xZMulZsvn0xj7TrxhEN8O9KLWSmNIfx6tqFtOpbgOV4" />
       </head>
       <body className={`${geistSans.className} ${geistMono.variable} antialiased`}>
-        <Providers>
-          <CookieInitializer />
-          {children}
-        </Providers>
+        {children}
         <Script
           strategy="lazyOnload"
           src="https://cloud.umami.is/script.js" 

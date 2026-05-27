@@ -29,6 +29,8 @@ import {
 } from 'lucide-react';
 
 import ClientOnlyWidgets from "@/components/ClientOnlyWidgets";
+import { Providers } from "@/components/Providers";
+import { CookieInitializer } from "@/components/CookieInitialize";
 
 // Cache the background fetching globally across ALL requests!
 export const getBackgrounds = unstable_cache(
@@ -104,7 +106,8 @@ export default async function RootLayout({
   ];
 
   return (
-    <>
+    <Providers>
+      <CookieInitializer />
       <Header 
         navLinks={navLinks} 
         current_lang={lang} 
@@ -117,9 +120,20 @@ export default async function RootLayout({
         ar_lang={dict.Arabic} 
         select_lang={dict.Select_Language}
         presentation_mode={dict.Presentation_Mode}
+        settings_labels={{
+          Settings: dict.Settings,
+          Typography: dict.Typography,
+          Alignment: dict.Alignment,
+          Text_Scaling: dict.Text_Scaling,
+          Letter_Spacing: dict.Letter_Spacing,
+          Line_Height: dict.Line_Height,
+          Font_Default: dict.Font_Default
+        }}
       />
-      {children}
+      <div id="main-content">
+        {children}
+      </div>
       <ClientOnlyWidgets dict={dict} backgrounds={backgrounds} />
-    </>
+    </Providers>
   );
 }
