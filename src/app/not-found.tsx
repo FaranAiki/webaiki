@@ -28,23 +28,25 @@ export default async function NotFound() {
   const dict = await getDictionaryFromCookie();
 
   return (
-    <>
-    <CookieInitializer />
-    <Providers>
-      <main className="container mx-auto px-8 pt-24 pb-16 min-h-screen flex items-center justify-center">
-        <div className='flex text-center text-lg justify-center cursor-pointer'>
-            <h1 className="text-4xl transition-opacity duration-200 hover:opacity-75 cursor-pointer">
-            {dict.Not_Found}
-            </h1>
-        </div>
-          <Link href="/" className="flex items-center space-x-2 text-xl font-semibold hover:text-cyan-500 hover:scale-105 transition-[opacity,transform] duration-200 ml-6">
-             <Home size={24} />
-             <span>{dict.Home}</span>
-          </Link>
-      </main>
+    <html lang="en">
+      <body>
+        <CookieInitializer />
+        <Providers>
+          <main className="container mx-auto px-8 pt-24 pb-16 min-h-screen flex items-center justify-center">
+            <div className='flex text-center text-lg justify-center cursor-pointer'>
+                <h1 className="text-4xl transition-opacity duration-200 hover:opacity-75 cursor-pointer">
+                {dict.Not_Found}
+                </h1>
+            </div>
+              <Link href="/" className="flex items-center space-x-2 text-xl font-semibold hover:text-cyan-500 hover:scale-105 transition-[opacity,transform] duration-200 ml-6">
+                 <Home size={24} />
+                 <span>{dict.Home}</span>
+              </Link>
+          </main>
 
-      <Background carousel={getBackgrounds()}/>
-    </Providers>
-    </>
+          <Background carousel={getBackgrounds()}/>
+        </Providers>
+      </body>
+    </html>
   );
 }

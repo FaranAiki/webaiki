@@ -1,8 +1,6 @@
-// force use server
 "use server";
 
 import { cookies, headers } from 'next/headers';
-import "./globals.css";
 import fs from 'fs';
 import path from 'path';
 

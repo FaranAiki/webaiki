@@ -103,7 +103,15 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     {
-      source: '/((?!api|_next/static|_next/image|favicon.ico|icon.ico|images|documents).*)',
+      /*
+       * Match all request paths except for the ones starting with:
+       * - api (API routes)
+       * - _next (internal Next.js paths)
+       * - any path with a dot (e.g. favicon.ico, pdf.worker.min.mjs, etc.)
+       * - images (public images)
+       * - documents (public documents)
+       */
+      source: '/((?!api|_next|.*\\..*|images|documents).*)',
       missing: [
         { type: 'header', key: 'next-router-prefetch' },
         { type: 'header', key: 'purpose', value: 'prefetch' },
