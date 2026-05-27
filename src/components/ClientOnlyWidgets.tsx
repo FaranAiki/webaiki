@@ -26,7 +26,7 @@ export default function ClientOnlyWidgets({ dict, backgrounds }: ClientOnlyWidge
 
   return (
     <>
-      <AskMePopup 
+      {/* <AskMePopup 
         typeOfWaitingAnswer={typeOfWaitingAnswer} 
         ask_title={dict.Ask_About} 
         question_title={dict.Question_Title} 
@@ -34,7 +34,7 @@ export default function ClientOnlyWidgets({ dict, backgrounds }: ClientOnlyWidge
         submit={dict.Submit} 
         waiting={dict.Waiting} 
         provide_question={dict.Provide_Question}
-      />
+      /> */}
       <Background carousel={backgrounds} />
     </>
   );
