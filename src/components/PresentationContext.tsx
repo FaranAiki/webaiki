@@ -2,22 +2,33 @@
 
 import React, { createContext, useContext, useState, useEffect } from "react";
 
+export type SlideNumberFormat = 'decimal' | 'hex' | 'binary';
+
 interface PresentationContextType {
   isPresentationMode: boolean;
   togglePresentationMode: () => void;
+  slideNumberFormat: SlideNumberFormat;
+  cycleSlideNumberFormat: () => void;
 }
 
 const PresentationContext = createContext<PresentationContextType | undefined>(undefined);
 
 export function PresentationProvider({ children }: { children: React.ReactNode }) {
   const [isPresentationMode, setIsPresentationMode] = useState(false);
+  const [slideNumberFormat, setSlideNumberFormat] = useState<SlideNumberFormat>('binary');
   const [isLargeScreen, setIsLargeScreen] = useState(true);
 
   // Load state from localStorage on mount and handle resizing
   useEffect(() => {
     const saved = localStorage.getItem("presentation_mode");
+    const savedFormat = localStorage.getItem("presentation_slide_format") as SlideNumberFormat;
+    
     if (saved === "true") {
       setIsPresentationMode(true);
+    }
+    
+    if (savedFormat && ['decimal', 'hex', 'binary'].includes(savedFormat)) {
+      setSlideNumberFormat(savedFormat);
     }
     
     const checkScreenSize = () => {
@@ -42,6 +53,18 @@ export function PresentationProvider({ children }: { children: React.ReactNode }
     setIsPresentationMode((prev) => {
       const next = !prev;
       localStorage.setItem("presentation_mode", String(next));
+      return next;
+    });
+  };
+
+  const cycleSlideNumberFormat = () => {
+    setSlideNumberFormat((prev) => {
+      let next: SlideNumberFormat;
+      if (prev === 'decimal') next = 'hex';
+      else if (prev === 'hex') next = 'binary';
+      else next = 'decimal';
+      
+      localStorage.setItem("presentation_slide_format", next);
       return next;
     });
   };
@@ -121,7 +144,12 @@ export function PresentationProvider({ children }: { children: React.ReactNode }
   }, [isPresentationMode]);
 
   return (
-    <PresentationContext.Provider value={{ isPresentationMode, togglePresentationMode }}>
+    <PresentationContext.Provider value={{ 
+      isPresentationMode, 
+      togglePresentationMode, 
+      slideNumberFormat, 
+      cycleSlideNumberFormat 
+    }}>
       {children}
     </PresentationContext.Provider>
   );
