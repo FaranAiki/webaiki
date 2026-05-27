@@ -66,7 +66,7 @@ export default async function HomePage({
   const { lang } = await params;
   const dict = getDictionary(lang);
 return (
-  <main className={`${inter.className} container mx-auto px-4 md:px-8 pt-24 pb-16`}>
+  <main className="container mx-auto px-4 md:px-8 pt-24 pb-16">
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{

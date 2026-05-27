@@ -16,6 +16,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+import { Providers } from "@/components/Providers";
+
 export default async function BaseLayout({
   children,
   params,
@@ -25,7 +27,7 @@ export default async function BaseLayout({
 }>) {
   const nonce = (await headers()).get('x-nonce') || undefined;
   const { lang } = await params;
-  
+
   // We can fetch dictionary here if needed, but sub-layouts also do it.
   // For now, let's just provide the basic structure.
 
@@ -35,10 +37,12 @@ export default async function BaseLayout({
         <meta name="google-site-verification" content="xZMulZsvn0xj7TrxhEN8O9KLWSmNIfx6tqFtOpbgOV4" />
       </head>
       <body className={`${geistSans.className} ${geistMono.variable} antialiased`}>
-        {children}
+        <Providers>
+          {children}
+        </Providers>
         <Script
           strategy="lazyOnload"
-          src="https://cloud.umami.is/script.js" 
+          src="https://cloud.umami.is/script.js"
           data-website-id="a418298f-fdca-4df0-a3bf-be453b48eeaf"
         />
       </body>

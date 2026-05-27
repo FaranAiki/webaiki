@@ -72,7 +72,7 @@ export default async function MusicPage({ params }: { params: Promise<{ lang: st
   }
 
   return (
-    <main className={`${inter.className} min-h-screen`}>
+    <main className="min-h-screen">
       <MusicDisplay youtubeItems={youtubeItems} error={errorString} lang={lang} />
     </main>
   );

@@ -29,7 +29,6 @@ import {
 } from 'lucide-react';
 
 import ClientOnlyWidgets from "@/components/ClientOnlyWidgets";
-import { Providers } from "@/components/Providers";
 import { CookieInitializer } from "@/components/CookieInitialize";
 
 // Cache the background fetching globally across ALL requests!
@@ -106,7 +105,7 @@ export default async function RootLayout({
   ];
 
   return (
-    <Providers>
+    <>
       <CookieInitializer />
       <Header 
         navLinks={navLinks} 
@@ -134,6 +133,6 @@ export default async function RootLayout({
         {children}
       </div>
       <ClientOnlyWidgets dict={dict} backgrounds={backgrounds} />
-    </Providers>
+    </>
   );
 }

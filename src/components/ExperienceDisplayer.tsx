@@ -6,6 +6,7 @@ import HoverableWords from '@/components/HoverableWords';
 import { useTheme } from 'next-themes';
 import FadeInSection from '@/components/FadeInSection';
 import { shimmer, toBase64, formatCJK } from '@/lib/utils';
+import { useSettings } from './SettingsContext';
 
 type Job = {
     date: string;
@@ -30,10 +31,13 @@ export default function ExperiencesClient({ experiences, lang }: ExperiencesClie
     const [activeJob, setActiveJob] = useState(experiences[0].jobs[0]);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const { resolvedTheme } = useTheme();
+    const { textAlign } = useSettings();
     const [mounted, setMounted] = useState(false);
 
     const isJustified = lang !== 'jp' && lang !== 'zh';
-    const justifyClass = isJustified ? 'text-justify' : 'text-left';
+    const defaultJustifyClass = isJustified ? 'text-justify' : 'text-left';
+    const justifyClass = textAlign === 'default' ? defaultJustifyClass : `text-${textAlign}`;
+    const responsiveJustifyClass = textAlign === 'default' ? `text-center md:${justifyClass}` : justifyClass;
 
     const safeImageIndex = (activeJob?.image && currentImageIndex < activeJob.image.length) ? currentImageIndex : 0;
     const activeImageSrc = activeJob?.image?.[safeImageIndex];
@@ -91,7 +95,7 @@ export default function ExperiencesClient({ experiences, lang }: ExperiencesClie
                                         <h4 className="text-xl md:text-2xl text-cyan-600 font-bold opacity-90">{job.company}</h4>
                                         <p className={`${subText} text-base md:text-lg font-medium italic`}>{job.date}</p>
                                     </div>
-                                    <HoverableWords className={`text-base md:text-lg leading-relaxed ${justifyClass} ${descText} font-medium`}>
+                                    <HoverableWords className={`text-base md:text-lg ${justifyClass} ${descText} font-medium`}>
                                         {job.description}
                                     </HoverableWords>
                                 </div>
@@ -124,9 +128,9 @@ export default function ExperiencesClient({ experiences, lang }: ExperiencesClie
                             {/* Left Column: Job List (Interactive) */}
                             <div className="w-full md:w-1/2">
                                 {experiences.map((experience) => (
-                                    <div key={experience.year} className={`mb-12 text-center md:${justifyClass} cursor-pointer`}>
+                                    <div key={experience.year} className={`mb-12 ${responsiveJustifyClass} cursor-pointer`}>
                                         {/* Year */}
-                                        <h2 className={`transition-[transform] hover:scale-105 text-2xl font-bold ${mainText} mb-6 top-0 py-2 xs:text-center`}>
+                                        <h2 className={`transition-[transform] hover:scale-105 text-2xl font-bold ${mainText} mb-6 top-0 py-2 ${textAlign === 'default' ? 'xs:text-center' : ''}`}>
                                             {experience.year}
                                         </h2>
                                         
@@ -163,7 +167,7 @@ export default function ExperiencesClient({ experiences, lang }: ExperiencesClie
 
                                                     <p className="text-cyan-600 font-medium mb-3 transition-[colors,opacity] hover:font-bold hover:scale-105 duration-200">{job.company}</p>
                                                     <HoverableWords 
-                                                        className={`leading-relaxed ${justifyClass} lg:text-lg md:text-md ${descText}`}
+                                                        className={`${justifyClass} lg:text-lg md:text-md ${descText}`}
                                                         prophover='transition-[transform,color,opacity] inline-block duration-100 ease-in-out hover:scale-95 hover:text-cyan-600 hover:underline hover:font-semibold hover:opacity-85'
                                                     >
                                                     {formatCJK(job.description, lang)} 

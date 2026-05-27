@@ -51,12 +51,34 @@ export function PresentationProvider({ children }: { children: React.ReactNode }
       document.body.classList.add('presentation-mode');
       
       const handleWheel = (e: WheelEvent) => {
+        const target = e.target as HTMLElement;
         const main = document.querySelector('main');
-        if (main) {
-          if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-            main.scrollLeft += e.deltaY;
-            e.preventDefault();
+        if (!main) return;
+
+        // If the wheel event is outside the main content area (e.g., navbar, header),
+        // let it behave normally so vertical scrolling works if needed.
+        if (!main.contains(target)) return;
+
+        // If we are over a vertically scrollable element inside main, 
+        // prioritize its internal scroll unless it's already at the boundaries.
+        let current: HTMLElement | null = target;
+        while (current && current !== main) {
+          if (current.scrollHeight > current.clientHeight) {
+            const style = window.getComputedStyle(current);
+            if (style.overflowY === 'auto' || style.overflowY === 'scroll') {
+              const isAtTop = current.scrollTop <= 0;
+              const isAtBottom = Math.abs(current.scrollHeight - current.clientHeight - current.scrollTop) < 1;
+              
+              if (e.deltaY < 0 && !isAtTop) return; // Scrolling up and not at top
+              if (e.deltaY > 0 && !isAtBottom) return; // Scrolling down and not at bottom
+            }
           }
+          current = current.parentElement;
+        }
+
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+          main.scrollLeft += e.deltaY;
+          e.preventDefault();
         }
       };
 

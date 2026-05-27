@@ -40,8 +40,20 @@
   --font-mono: var(--font-geist-mono);
 }
 
-/* Typography Scaling Magic for #main-content */
-#main-content {
+/* Universal Typography & Line Height Inheritance */
+body, body p, body div, body span, body li, body h1, body h2, body h3, body h4, body h5, body h6,
+body a, body label, body section, body article, body blockquote {
+  line-height: var(--app-line-height) !important;
+  letter-spacing: var(--app-letter-spacing) !important;
+}
+
+/* Force specific elements to inherit font-size if they have classes that might override */
+body p, body span, body div, body li, body h1, body h2, body h3, body h4, body h5, body h6 {
+  font-size: inherit;
+}
+
+/* Base Body Style */
+body {
   --text-scale-factor: 1;
   --app-line-height: 1.5;
   --app-letter-spacing: 0px;
@@ -51,32 +63,26 @@
   letter-spacing: var(--app-letter-spacing) !important;
 }
 
-/* Force children to scale relative to #main-content font-size using em */
-#main-content p, 
-#main-content span:not([class*="text-"]), 
-#main-content div:not([class*="text-"]),
-#main-content li,
-#main-content h1, #main-content h2, #main-content h3, #main-content h4, #main-content h5, #main-content h6 {
-  font-size: inherit;
-  line-height: inherit;
-  letter-spacing: inherit;
-}
-
-/* Override Tailwind font-size classes to use em so they scale with #main-content */
-#main-content .text-xs { font-size: 0.75em !important; }
-#main-content .text-sm { font-size: 0.875em !important; }
-#main-content .text-base { font-size: 1em !important; }
-#main-content .text-lg { font-size: 1.125em !important; }
-#main-content .text-xl { font-size: 1.25em !important; }
-#main-content .text-2xl { font-size: 1.5em !important; }
-#main-content .text-3xl { font-size: 1.875em !important; }
-#main-content .text-4xl { font-size: 2.25em !important; }
-#main-content .text-5xl { font-size: 3em !important; }
-#main-content .text-6xl { font-size: 3.75em !important; }
+/* Override Tailwind font-size classes to use em so they scale with body */
+body .text-xs { font-size: 0.75em !important; }
+body .text-sm { font-size: 0.875em !important; }
+body .text-base { font-size: 1em !important; }
+body .text-lg { font-size: 1.125em !important; }
+body .text-xl { font-size: 1.25em !important; }
+body .text-2xl { font-size: 1.5em !important; }
+body .text-3xl { font-size: 1.875em !important; }
+body .text-4xl { font-size: 2.25em !important; }
+body .text-5xl { font-size: 3em !important; }
+body .text-6xl { font-size: 3.75em !important; }
 
 /* Force line-height overrides */
-#main-content [class*="leading-"] {
+body [class*="leading-"] {
   line-height: var(--app-line-height) !important;
+}
+
+/* Exceptions for UI elements that need natural line-height for alignment */
+body svg *, body .lucide, body .lucide * {
+  line-height: normal !important;
 }
 
 @layer utilities {

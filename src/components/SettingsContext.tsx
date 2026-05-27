@@ -94,18 +94,16 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       body.classList.add(activeFont.class);
     }
 
-    // 2. Body-Only Settings (via #main-content)
-    if (mainContent) {
-      // Scale via CSS variable on the wrapper
-      mainContent.style.setProperty('--text-scale-factor', (textScale / 100).toString());
-      
-      // Alignment
-      mainContent.style.textAlign = textAlign === 'default' ? '' : textAlign;
-      
-      // Spacing & Height
-      mainContent.style.setProperty('--app-letter-spacing', `${letterSpacing}px`);
-      mainContent.style.setProperty('--app-line-height', lineHeight.toString());
-    }
+    // 2. Body Settings (Global)
+    // Scale via CSS variable on body
+    body.style.setProperty('--text-scale-factor', (textScale / 100).toString());
+    
+    // Alignment (applied to body, but might need to be careful with UI elements)
+    body.style.textAlign = textAlign === 'default' ? '' : textAlign;
+    
+    // Spacing & Height
+    body.style.setProperty('--app-letter-spacing', `${letterSpacing}px`);
+    body.style.setProperty('--app-line-height', lineHeight.toString());
   }, [font, textAlign, textScale, letterSpacing, lineHeight, mounted]);
 
   return (
