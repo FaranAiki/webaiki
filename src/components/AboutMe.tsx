@@ -79,8 +79,8 @@ export default function AboutMe({
 
   // Enhanced Contrast & Typography Classes
   // We use Tailwind's dark: classes where possible to avoid hydration mismatch and allow SSR
-  const titleClass = "text-gray-900 dark:text-white";
-  const textClass = "text-gray-800 dark:text-gray-200"; 
+  const titleClass = "text-black dark:text-white";
+  const textClass = "text-black dark:text-gray-200"; 
   const borderClass = "border-gray-200 dark:border-white/10";
 
   return (
@@ -152,7 +152,7 @@ export default function AboutMe({
             </h2>
             <HoverableWords 
               className={`text-lg md:text-xl ${textClass} ${justifyClass} font-medium`} 
-              prophover={`transition-[colors,transform] inline-block duration-200 ease-in-out hover:text-cyan-600 ${isDark ? 'dark:hover:text-cyan-300' : ''} hover:scale-105 cursor-pointer`}
+              prophover={`transition-[colors,transform] inline-block duration-200 ease-in-out hover:text-cyan-600 dark:hover:text-cyan-300 hover:scale-105 cursor-pointer`}
             >
               {formatCJK(about_philosophy, lang)}
             </HoverableWords>
@@ -240,20 +240,20 @@ export default function AboutMe({
             <div className="space-y-4">
               <HoverableWords 
                   className={`text-lg md:text-xl ${textClass} ${justifyClass}`} 
-                  prophover={`transition-[colors,opacity,transform] inline-block duration-200 ease-in-out hover:scale-105 hover:text-cyan-600 ${isDark ? 'dark:hover:text-cyan-300' : ''} cursor-pointer`}
+                  prophover={`transition-[colors,opacity,transform] inline-block duration-200 ease-in-out hover:scale-105 hover:text-cyan-600 dark:hover:text-cyan-300 cursor-pointer`}
               >
                   {formatCJK(about_vision_mission_1, lang)}
               </HoverableWords>
               <HoverableWords 
                   className={`text-lg md:text-xl ${textClass} ${justifyClass}`} 
-                  prophover={`transition-[colors,transform,opacity] inline-block duration-200 ease-in-out hover:scale-105 hover:text-cyan-600 ${isDark ? 'dark:hover:text-cyan-300' : ''} cursor-pointer`}
+                  prophover={`transition-[colors,transform,opacity] inline-block duration-200 ease-in-out hover:scale-105 hover:text-cyan-600 dark:hover:text-cyan-300 cursor-pointer`}
               >
                   {formatCJK(about_vision_mission_2, lang)}
               </HoverableWords>
               {/* Added Vision Mission 3 */}
               <HoverableWords 
                   className={`text-lg md:text-xl ${textClass} ${justifyClass}`} 
-                  prophover={`transition-[colors,transform,opacity] inline-block duration-200 ease-in-out hover:scale-105 hover:text-cyan-600 ${isDark ? 'dark:hover:text-cyan-300' : ''} cursor-pointer`}
+                  prophover={`transition-[colors,transform,opacity] inline-block duration-200 ease-in-out hover:scale-105 hover:text-cyan-600 dark:hover:text-cyan-300 cursor-pointer`}
               >
                   {formatCJK(about_vision_mission_3, lang)}
               </HoverableWords>

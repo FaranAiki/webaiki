@@ -47,6 +47,7 @@ interface HeaderProps {
         Letter_Spacing: string;
         Line_Height: string;
         Font_Default: string;
+        Reset_Settings: string;
     };
 }
 

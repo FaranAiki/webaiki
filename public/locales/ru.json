@@ -180,5 +180,6 @@
   "Text_Scaling": "Масштабирование текста",
   "Letter_Spacing": "Межсимвольный интервал",
   "Line_Height": "Высота строки",
-  "Font_Default": "По умолчанию"
+  "Font_Default": "По умолчанию",
+  "Reset_Settings": "Сбросить настройки"
 }

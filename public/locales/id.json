@@ -180,5 +180,6 @@
   "Text_Scaling": "Skala Teks",
   "Letter_Spacing": "Jarak Antarhuruf",
   "Line_Height": "Tinggi Baris",
-  "Font_Default": "Bawaan"
+  "Font_Default": "Bawaan",
+  "Reset_Settings": "Atur Ulang"
 }

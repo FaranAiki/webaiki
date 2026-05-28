@@ -11,14 +11,14 @@
 
 :root {
   /* Light Mode Variables (Default) */
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f9fafb; /* Softened from #ffffff */
+  --foreground: #000000; /* Strictly black for maximum contrast in light mode */
   
   /* Semantic Colors */
-  --card-bg: #f3f4f6; /* gray-100 */
-  --card-border: #e5e7eb; /* gray-200 */
-  --text-muted: #4b5563; /* gray-600 */
-  --primary: #0891b2; /* cyan-600 */
+  --card-bg: rgba(255, 255, 255, 0.7); 
+  --card-border: #e5e7eb; 
+  --text-muted: #374151; 
+  --primary: #0891b2; 
 }
 
 /* Dark Mode Variables (Applied when 'dark' class is present) */
@@ -136,7 +136,21 @@ code, pre, kbd, samp {
 body {
   background-color: var(--background);
   color: var(--foreground);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 1.5s ease-in-out, color 1.5s ease-in-out;
+}
+
+/* Ensure all standard text elements inherit the foreground color correctly */
+p, span, li, h1, h2, h3, h4, h5, h6 {
+  color: inherit;
+}
+
+/* Use the variables we already defined, they will change based on the .dark class on html */
+html:not(.dark) body {
+  color: var(--foreground);
+}
+
+html.dark body {
+  color: var(--foreground);
 }
 
 body.presentation-mode {

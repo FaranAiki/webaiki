@@ -180,5 +180,6 @@
   "Text_Scaling": "テキストのスケーリング",
   "Letter_Spacing": "文字の間隔",
   "Line_Height": "行の高さ",
-  "Font_Default": "デフォルト"
-  }
+  "Font_Default": "デフォルト",
+  "Reset_Settings": "設定をリセット"
+}

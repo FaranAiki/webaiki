@@ -235,7 +235,7 @@ export default function Background({ carousel }: BackgroundProps) {
   return (
     <div className={`fixed inset-0 w-full h-full z-[-1] transition-colors duration-[1500ms] ease-in-out bg-white dark:bg-black`}>
       
-      <div className={`transition-opacity duration-[1500ms] ease-in-out w-full h-full absolute inset-0 ${isDark || !mounted ? 'opacity-100' : 'opacity-20'}`}>
+      <div className={`transition-opacity duration-[1500ms] ease-in-out w-full h-full absolute inset-0 opacity-100`}>
         {carousel.map((src, index) => (
             <div
                 key={index}
@@ -259,7 +259,7 @@ export default function Background({ carousel }: BackgroundProps) {
         ))}
         
         {/* Adjusted Gradient to improve text readability on all backgrounds with SLOW transition for epilepsy prevention */}
-        <div className={`absolute inset-0 transition-[colors,opacity] duration-[1500ms] ease-in-out bg-gradient-to-b from-white/70 via-white/50 to-white/90 dark:from-black/70 dark:via-black/40 dark:to-black/80`} />
+        <div className={`absolute inset-0 transition-[colors,opacity] duration-[1500ms] ease-in-out ${isDark ? 'bg-gradient-to-b from-black/70 via-black/40 to-black/80' : 'bg-gradient-to-b from-white/95 via-white/90 to-white'}`} />
         
         {mounted && <GeometricPattern isDark={isDark}/>}
       </div>

@@ -180,5 +180,6 @@
   "Text_Scaling": "تغيير حجم النص",
   "Letter_Spacing": "تباعد الأحرف",
   "Line_Height": "ارتفاع السطر",
-  "Font_Default": "افتراضي"
+  "Font_Default": "افتراضي",
+  "Reset_Settings": "إعادة ضبط الإعدادات"
 }

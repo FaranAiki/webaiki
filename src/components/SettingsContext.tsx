@@ -46,6 +46,7 @@ interface SettingsContextType {
   setLetterSpacing: (spacing: number) => void;
   lineHeight: number;
   setLineHeight: (height: number) => void;
+  resetSettings: () => void;
 }
 
 const SettingsContext = createContext<SettingsContextType | undefined>(undefined);
@@ -57,6 +58,14 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [letterSpacing, setLetterSpacing] = useState(0); 
   const [lineHeight, setLineHeight] = useState(1.5);
   const [mounted, setMounted] = useState(false);
+
+  const resetSettings = () => {
+    setFont('Default');
+    setTextAlign('default');
+    setTextScale(100);
+    setLetterSpacing(0);
+    setLineHeight(1.5);
+  };
 
   useEffect(() => {
     const savedFont = localStorage.getItem('settings-font');
@@ -112,7 +121,8 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       textAlign, setTextAlign, 
       textScale, setTextScale,
       letterSpacing, setLetterSpacing,
-      lineHeight, setLineHeight
+      lineHeight, setLineHeight,
+      resetSettings
     }}>
       {children}
     </SettingsContext.Provider>

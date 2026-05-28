@@ -180,5 +180,6 @@
   "Text_Scaling": "文字缩放",
   "Letter_Spacing": "字符间距",
   "Line_Height": "行高",
-  "Font_Default": "默认"
+  "Font_Default": "默认",
+  "Reset_Settings": "重置设置"
 }

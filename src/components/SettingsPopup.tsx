@@ -28,6 +28,7 @@ interface SettingsPopupProps {
     Letter_Spacing: string;
     Line_Height: string;
     Font_Default: string;
+    Reset_Settings: string;
   };
 }
 
@@ -38,7 +39,8 @@ export default function SettingsPopup({ labels }: SettingsPopupProps) {
     textAlign, setTextAlign, 
     textScale, setTextScale,
     letterSpacing, setLetterSpacing,
-    lineHeight, setLineHeight
+    lineHeight, setLineHeight,
+    resetSettings
   } = useSettings();
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === 'dark';
@@ -63,6 +65,10 @@ export default function SettingsPopup({ labels }: SettingsPopupProps) {
   }, [isOpen]);
 
   const toggleOpen = () => setIsOpen(!isOpen);
+
+  const handleReset = () => {
+    resetSettings();
+  };
 
   const adjustScale = (delta: number) => {
     setTextScale(Math.min(Math.max(textScale + delta, 50), 150));
@@ -101,9 +107,23 @@ export default function SettingsPopup({ labels }: SettingsPopupProps) {
         <div className={`absolute top-full right-0 mt-3 w-80 md:w-96 ${isDark ? 'bg-gray-900/95 border-gray-700' : 'bg-white/95 border-gray-200'} backdrop-blur-md border rounded-2xl shadow-2xl z-50 p-6 animate-fade-in ring-1 ring-black/5 max-h-[85vh] overflow-y-auto no-scrollbar`}>
           <div className="flex items-center justify-between mb-6 sticky top-0 bg-inherit pb-2 z-10">
             <h3 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-800'}`}>{labels.Settings}</h3>
-            <button onClick={() => setIsOpen(false)} className={`p-1 rounded-full hover:${isDark ? 'bg-gray-800' : 'bg-gray-100'} transition-colors`}>
-              <X size={18} className={isDark ? 'text-gray-400' : 'text-gray-500'} />
-            </button>
+            <div className="flex items-center gap-2">
+              <button 
+                onClick={handleReset}
+                title={labels.Reset_Settings}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all duration-300 ${
+                  isDark 
+                    ? 'bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500/20 border border-cyan-500/20' 
+                    : 'bg-cyan-50 text-cyan-600 hover:bg-cyan-100 border border-cyan-100'
+                }`}
+              >
+                <RotateCcw size={14} />
+                <span>{labels.Reset_Settings}</span>
+              </button>
+              <button onClick={() => setIsOpen(false)} className={`p-1 rounded-full hover:${isDark ? 'bg-gray-800' : 'bg-gray-100'} transition-colors`}>
+                <X size={18} className={isDark ? 'text-gray-400' : 'text-gray-500'} />
+              </button>
+            </div>
           </div>
 
           <div className="space-y-8">
@@ -134,7 +154,7 @@ export default function SettingsPopup({ labels }: SettingsPopupProps) {
             {/* Alignment Icons Only */}
             <div>
               <label className={`block text-sm font-semibold mb-4 ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>{labels.Alignment}</label>
-              <div className={`flex p-1 rounded-xl ${isDark ? 'bg-gray-800' : 'bg-gray-100 shadow-inner'}`}>
+              <div className={`flex p-1 rounded-xl ${isDark ? 'bg-gray-800' : 'bg-gray-200/50 border border-gray-200 shadow-inner'}`}>
                 {alignments.map((item) => (
                   <button
                     key={item.value}
@@ -142,7 +162,7 @@ export default function SettingsPopup({ labels }: SettingsPopupProps) {
                     onClick={() => setTextAlign(item.value)}
                     className={`flex-1 flex justify-center items-center py-2.5 rounded-lg transition-all ${
                       textAlign === item.value
-                        ? 'bg-white dark:bg-gray-700 shadow-md text-cyan-500 scale-105'
+                        ? `${isDark ? 'bg-gray-700' : 'bg-white shadow-sm'} text-cyan-500 scale-105 font-bold`
                         : 'text-gray-500 hover:text-cyan-400'
                     }`}
                   >
@@ -161,7 +181,16 @@ export default function SettingsPopup({ labels }: SettingsPopupProps) {
                     <Type size={16} className="text-cyan-500" />
                     <span className={`text-sm font-semibold ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>{labels.Text_Scaling}</span>
                   </div>
-                  <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-cyan-500/10 text-cyan-500 border border-cyan-500/20">{textScale}%</span>
+                  <div className="flex items-center gap-2">
+                    <button 
+                      onClick={() => setTextScale(100)}
+                      title={labels.Reset_Settings}
+                      className={`p-1 rounded-full transition-colors ${isDark ? 'hover:bg-gray-800 text-gray-500 hover:text-cyan-400' : 'hover:bg-gray-100 text-gray-400 hover:text-cyan-600'}`}
+                    >
+                      <RotateCcw size={12} />
+                    </button>
+                    <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-cyan-500/10 text-cyan-500 border border-cyan-500/20">{textScale}%</span>
+                  </div>
                 </div>
                 <div className="flex items-center gap-4">
                   <button onClick={() => adjustScale(-5)} className="text-gray-400 hover:text-cyan-500 transition-colors"><Minus size={16} /></button>
@@ -181,7 +210,16 @@ export default function SettingsPopup({ labels }: SettingsPopupProps) {
                     <Baseline size={16} className="text-cyan-500" />
                     <span className={`text-sm font-semibold ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>{labels.Letter_Spacing}</span>
                   </div>
-                  <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-cyan-500/10 text-cyan-500 border border-cyan-500/20">{letterSpacing}px</span>
+                  <div className="flex items-center gap-2">
+                    <button 
+                      onClick={() => setLetterSpacing(0)}
+                      title={labels.Reset_Settings}
+                      className={`p-1 rounded-full transition-colors ${isDark ? 'hover:bg-gray-800 text-gray-500 hover:text-cyan-400' : 'hover:bg-gray-100 text-gray-400 hover:text-cyan-600'}`}
+                    >
+                      <RotateCcw size={12} />
+                    </button>
+                    <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-cyan-500/10 text-cyan-500 border border-cyan-500/20">{letterSpacing}px</span>
+                  </div>
                 </div>
                 <div className="flex items-center gap-4">
                   <button onClick={() => adjustSpacing(-0.1)} className="text-gray-400 hover:text-cyan-500 transition-colors"><Minus size={16} /></button>
@@ -201,7 +239,16 @@ export default function SettingsPopup({ labels }: SettingsPopupProps) {
                     <ArrowUpDown size={16} className="text-cyan-500" />
                     <span className={`text-sm font-semibold ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>{labels.Line_Height}</span>
                   </div>
-                  <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-cyan-500/10 text-cyan-500 border border-cyan-500/20">{lineHeight}</span>
+                  <div className="flex items-center gap-2">
+                    <button 
+                      onClick={() => setLineHeight(1.5)}
+                      title={labels.Reset_Settings}
+                      className={`p-1 rounded-full transition-colors ${isDark ? 'hover:bg-gray-800 text-gray-500 hover:text-cyan-400' : 'hover:bg-gray-100 text-gray-400 hover:text-cyan-600'}`}
+                    >
+                      <RotateCcw size={12} />
+                    </button>
+                    <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-cyan-500/10 text-cyan-500 border border-cyan-500/20">{lineHeight}</span>
+                  </div>
                 </div>
                 <div className="flex items-center gap-4">
                   <button onClick={() => adjustLineHeight(-0.1)} className="text-gray-400 hover:text-cyan-500 transition-colors"><Minus size={16} /></button>

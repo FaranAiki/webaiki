@@ -180,5 +180,6 @@
   "Text_Scaling": "Mise à l'échelle du texte",
   "Letter_Spacing": "Espacement des lettres",
   "Line_Height": "Hauteur de ligne",
-  "Font_Default": "Par défaut"
+  "Font_Default": "Par défaut",
+  "Reset_Settings": "Réinitialiser"
   }

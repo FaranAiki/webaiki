@@ -126,7 +126,8 @@ export default async function RootLayout({
           Text_Scaling: dict.Text_Scaling,
           Letter_Spacing: dict.Letter_Spacing,
           Line_Height: dict.Line_Height,
-          Font_Default: dict.Font_Default
+          Font_Default: dict.Font_Default,
+          Reset_Settings: dict.Reset_Settings
         }}
       />
       <div id="main-content">
