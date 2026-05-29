@@ -80,12 +80,10 @@ function AskMePopup({typeOfWaitingAnswer, ask_title, question_answer, question_t
     setIsLoading(false);
   }
 
-  if (!mounted) return null;
-
   // Use CSS to hide in presentation mode to preserve state and avoid mounting issues
   const displayClass = isPresentationMode ? 'hidden' : 'block';
 
-  const isDark = resolvedTheme === 'dark';
+  const isDark = mounted && resolvedTheme === 'dark';
 
   // Dynamic Styles
   const popupBg = isDark ? 'bg-gray-800/95 border-gray-700' : 'bg-white/95 border-gray-300';

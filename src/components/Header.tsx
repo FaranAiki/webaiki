@@ -227,8 +227,6 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
 
     const activeLink = findActiveLink(navLinks);
 
-    if (!mounted) return <div className="h-16 w-full fixed top-0 z-30 bg-white/90" />;
-
     return (
         <>
             <header

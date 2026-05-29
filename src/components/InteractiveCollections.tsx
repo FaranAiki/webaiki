@@ -66,9 +66,7 @@ export default function InteractiveCollections( { data, force_click, lang }: Int
     return slides;
   }, [data]);
 
-  if (!mounted) return null;
-
-  const isDark = resolvedTheme === 'dark';
+  const isDark = mounted && resolvedTheme === 'dark';
   const buttonBg = isDark ? 'bg-gray-800/70 hover:bg-gray-700' : 'bg-white hover:bg-gray-100 shadow-sm border border-gray-200';
   const activeButtonBg = isDark ? 'bg-cyan-600/90 text-white shadow-lg' : 'bg-cyan-600/90 text-white shadow-lg';
   const buttonText = isDark ? 'text-white' : 'text-black';

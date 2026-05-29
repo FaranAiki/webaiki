@@ -92,9 +92,7 @@ export default function CertificatesDisplay({ certificates, allTranslation, lang
     return slides;
   }, [certificates]);
 
-  if (!mounted) return null;
-
-  const isDark = resolvedTheme === 'dark';
+  const isDark = mounted && resolvedTheme === 'dark';
   
   // Dynamic Classes
   const titleColor = isDark ? 'text-white' : 'text-black';

@@ -23,9 +23,7 @@ export default function SocialDisplay() {
     setMounted(true);
   }, []);
 
-  if (!mounted) return <div className="min-h-screen"></div>;
-
-  const isDark = resolvedTheme === 'dark';
+  const isDark = mounted && resolvedTheme === 'dark';
 
   // Dynamic Styles
   const containerText = isDark ? 'text-gray-100' : 'text-gray-900';

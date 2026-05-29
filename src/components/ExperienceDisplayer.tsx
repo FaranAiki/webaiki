@@ -60,10 +60,8 @@ export default function ExperiencesClient({ experiences, lang }: ExperiencesClie
         return () => clearInterval(timer);
 
     }, [activeJob]); 
-
-    if (!mounted) return null;
     
-    const isDark = resolvedTheme === 'dark';
+    const isDark = mounted && resolvedTheme === 'dark';
     const mainText = isDark ? 'text-white' : 'text-black';
     
     // Using objects for inline styles to bypass global !important CSS
@@ -199,6 +197,7 @@ export default function ExperiencesClient({ experiences, lang }: ExperiencesClie
                                                             blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(600, 400))}`}
                                                             alt={`${activeJob.company} placeholder image`}
                                                             className="block w-full h-auto object-cover transition-opacity duration-300 hover:opacity-85 border-2 border-gray-200 dark:border-white/10 rounded-lg"
+                                                            priority
                                                         />
                                                     </a>
                                                 ) : (
@@ -210,6 +209,7 @@ export default function ExperiencesClient({ experiences, lang }: ExperiencesClie
                                                         blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(600, 400))}`}
                                                         alt={`${activeJob.company} placeholder image`}
                                                         className="block w-full h-auto object-cover border-2 border-gray-200 dark:border-white/10 rounded-lg"
+                                                        priority
                                                     />
                                                 )}
                                             </div>
