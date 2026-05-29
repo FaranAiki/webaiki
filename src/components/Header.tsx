@@ -243,15 +243,17 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
 
                     {/* Left section (Logo + Presentation Toggle) */}
                     <div className="flex-1 flex items-center gap-4">
+                    <div className={`transition-[colors,transform,opacity] shadow-md border ${isDark ? "border-cyan-800" : "border-gray-200"} opacity-100 hover:opacity-80 scale-100 hover:scale-110 cursor-pointer rounded-full overflow-hidden transform-gpu`}>
                         <Image
                             onClick={() => router.push(getLocalizedHref('/'))}
                             src='/icon.ico'
                             alt={"logo"}
                             width={32}
                             height={32}
-                            className={`transition-[colors,transform,opacity] shadow-md border ${isDark ? "border-cyan-800" : "border-gray-200"} opacity-100 hover:opacity-80 scale-100 hover:scale-110 cursor-pointer rounded-full`}
+                            className="scale-[1.01]"
                             priority
                         />
+                    </div>
 
                         {/* Presentation Mode Toggle */}
                         <div className="hidden md:flex items-center justify-center ml-4 self-center">

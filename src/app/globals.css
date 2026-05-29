@@ -192,11 +192,11 @@ body.presentation-mode .presentation-container > * {
   flex-shrink: 0 !important;
   scroll-snap-align: start;
   display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important; 
-  align-items: center !important;
-  padding: 2rem !important; /* Reduced padding to give more space */
-  overflow-y: auto !important; /* Allow internal vertical scroll if content is too tall */
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+  padding: 1.5rem; 
+  overflow-y: auto !important; 
   overflow-x: hidden !important;
   transform: none !important;
   opacity: 1 !important;
@@ -206,35 +206,16 @@ body.presentation-mode .presentation-container > * {
 
 /* Prevent intermediate divs from breaking the flow */
 body.presentation-mode main > div:not(.presentation-container) {
-  display: contents; /* Allow nested children to be flex items of main */
+  display: contents; 
 }
 
-/* Hide UI elements that shouldn't be in presentation */
-body.presentation-mode .SectionSeparator,
-body.presentation-mode hr,
-body.presentation-mode .cookie-initializer {
-  display: none !important;
-}
-
-/* Hide separators and elements that don't fit the presentation flow */
-body.presentation-mode .SectionSeparator, 
-body.presentation-mode hr {
-  display: none !important;
-}
-
-/* Ensure images and text inside slides are appropriately sized */
+/* Ensure images inside slides don't exceed viewport */
 body.presentation-mode .presentation-section img {
-  max-height: 60vh !important; /* Increased from 40vh */
-  max-width: 90% !important;
-  width: auto !important;
-  height: auto !important;
-  object-fit: contain !important;
-}
-
-body.presentation-mode .presentation-section h1,
-body.presentation-mode .presentation-section h2 {
-  font-size: 2.5rem !important; /* Slightly smaller to fit better */
-  margin-bottom: 1rem !important;
+  max-height: 75vh; 
+  max-width: 95%;
+  height: auto;
+  width: auto;
+  object-fit: contain;
 }
 
 @media print {
@@ -243,134 +224,84 @@ body.presentation-mode .presentation-section h2 {
     size: landscape;
   }
 
+  /* Reset layout for print */
   html, body {
     margin: 0 !important;
     padding: 0 !important;
     width: 100% !important;
     height: auto !important;
-    min-height: 0 !important;
-    display: block !important;
     overflow: visible !important;
-    background: transparent !important;
-  }
-
-  body {
+    display: block !important;
+    scroll-snap-type: none !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
-    position: relative !important;
   }
 
-  /* Completely remove non-essential elements from layout */
-  .no-print,
-  header,
-  nav,
-  footer,
-  .cookie-initializer,
-  .presentation-mode\:hidden,
-  .body-presentation-mode\:hidden,
-  [data-radix-portal],
-  .SectionSeparator,
-  #ask-me-popup-container {
-    display: none !important;
-    visibility: hidden !important;
-    height: 0 !important;
-    width: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    position: absolute !important;
-    top: -9999px !important;
-    left: -9999px !important;
+  /* Force dark mode colors for print if dark class is present */
+  .dark, .dark body {
+    background-color: #0a0a0a !important;
+    color: #ededed !important;
+  }
+
+  /* Light mode colors for print */
+  body:not(.dark) {
+    background-color: #f9fafb !important;
+    color: #000000 !important;
   }
 
   /* Presentation layout for printing */
   body.presentation-mode main {
     display: block !important;
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    position: relative !important;
-    top: 0 !important;
-    left: 0 !important;
     overflow: visible !important;
+    width: 100% !important;
+    height: auto !important;
+    position: relative !important;
+    scroll-snap-type: none !important;
+    background: transparent !important;
   }
 
   body.presentation-mode .presentation-container {
     display: block !important;
     width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow: visible !important;
+    height: auto !important;
+    background: transparent !important;
   }
 
-  /* Remove all vertical spacing and ensure content starts at the very top */
-  main, 
-  main *,
+  /* Force each slide to be a separate page */
   body.presentation-mode .presentation-section,
   body.presentation-mode .presentation-container > * {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-  }
-
-  /* Each slide becomes a page */
-  body.presentation-mode .presentation-section,
-  body.presentation-mode .presentation-container > * {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 100vh !important; 
+    width: 100% !important;
     page-break-after: always !important;
     break-after: page !important;
     page-break-inside: avoid !important;
     break-inside: avoid !important;
-    height: 100vh !important;
-    width: 100% !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    position: relative !important;
-    overflow: hidden !important;
     opacity: 1 !important;
     visibility: visible !important;
-    transform: none !important;
-    filter: none !important;
+    position: relative !important;
+    overflow: hidden !important;
+    background: transparent !important;
   }
 
-  /* Force page counter to be consistently at the bottom-right of every printed page */
-  body.presentation-mode .presentation-section .pointer-events-none.z-50 {
-    position: fixed !important;
-    bottom: 20mm !important; /* Standard print margin */
-    right: 20mm !important;
-    z-index: 9999 !important;
-  }
-
-  /* Target Chrome specifically to ensure the first page isn't skipped */
-  @-moz-document url-prefix() {
-    body.presentation-mode .presentation-section:first-of-type {
-      break-before: auto !important;
-    }
-  }
-
-  /* Force the first slide to the first page */
-  body.presentation-mode .presentation-section:first-of-type,
-  body.presentation-mode .presentation-container > *:first-child,
-  body.presentation-mode main > *:first-child {
-    page-break-before: avoid !important;
-    break-before: avoid !important;
-    top: 0 !important;
-  }
-
-  /* Avoid empty page at the end */
+  /* Prevent blank pages */
   body.presentation-mode .presentation-section:last-of-type,
   body.presentation-mode .presentation-container > *:last-child {
-    page-break-after: avoid !important;
-    break-after: avoid !important;
+    page-break-after: auto !important;
+    break-after: auto !important;
   }
 
-  /* Background styling for print */
-  body.presentation-mode .fixed.inset-0 {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    z-index: -1 !important;
-    display: block !important;
+  /* Hide background elements that cause issues in print preview */
+  .presentation-background, [class*="Background_"], canvas,
+  header, nav, footer, .no-print, .cookie-initializer, #ask-me-popup-container {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* Ensure text is visible in dark mode print */
+  .dark .presentation-section * {
+    color: #ededed !important;
   }
 }

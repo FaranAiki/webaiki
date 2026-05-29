@@ -115,10 +115,11 @@ export function PresentationProvider({ children }: { children: React.ReactNode }
         if (e.ctrlKey && e.altKey && e.key.toLowerCase() === 'p') {
           e.preventDefault();
           
-          // Trigger the browser's native print dialog.
-          // In presentation mode, @media print CSS rules (in globals.css) will
-          // handle background rendering, page breaks, and hiding UI elements.
-          window.print();
+          // Trigger the browser's native print dialog with a small delay
+          // to ensure the layout has settled, which helps Chromium load the preview.
+          setTimeout(() => {
+            window.print();
+          }, 100);
           return;
         }
 

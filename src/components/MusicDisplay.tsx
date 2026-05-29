@@ -82,7 +82,8 @@ export default function MusicDisplay({ youtubeItems = [], error, lang }: MusicDi
   return (
     <div className="w-full h-full presentation-mode:contents">
       {/* Presentation Mode */}
-      <div className="hidden body-presentation-mode:contents presentation-container">
+      {isPresentationMode && (
+        <div className="presentation-container contents">
         {/* Slide 1: Spotify */}
         <FadeInSection slideIndex={1} totalSlides={totalSlides} className="w-full h-full flex-shrink-0">
           <div className="flex flex-col items-center justify-center w-full max-w-4xl mx-auto p-4 pt-20 pb-10">
@@ -150,14 +151,17 @@ export default function MusicDisplay({ youtubeItems = [], error, lang }: MusicDi
                 }`}>
                     {slideItems.map((item) => (
                     <div key={item.id} className="flex flex-col items-center group w-full max-w-[250px] md:max-w-[300px]">
-                        <div className="bg-gray-800 w-full aspect-video relative mb-3 rounded-xl overflow-hidden shadow-xl transition-transform group-hover:scale-105 border border-white/10">
+                        <div 
+                            className="bg-gray-800 w-full aspect-video relative mb-3 rounded-xl overflow-hidden shadow-xl transition-transform group-hover:scale-105 transform-gpu"
+                            style={{ boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.1)' }}
+                        >
                             <a href={`https://www.youtube.com/watch?v=${item.snippet.resourceId.videoId}`} target="_blank" rel="noopener noreferrer">
                                 <Image 
                                 width={item.snippet.thumbnails.medium.width} 
                                 height={item.snippet.thumbnails.medium.height} 
                                 src={item.snippet.thumbnails.medium.url} 
                                 alt={item.snippet.title}
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-cover scale-[1.01]"
                                 />
                             </a>
                         </div>
@@ -178,9 +182,11 @@ export default function MusicDisplay({ youtubeItems = [], error, lang }: MusicDi
             </FadeInSection>
         )}
       </div>
+      )}
 
       {/* Normal Mode */}
-      <div className={`block body-presentation-mode:hidden container mx-auto px-8 pt-24 pb-16 text-gray-900 dark:text-white`}>
+      {!isPresentationMode && (
+        <div className={`block container mx-auto px-8 pt-24 pb-16 text-gray-900 dark:text-white`}>
         <div className="flex flex-col md:flex-row gap-4 md:gap-4 max-w-4xl mx-auto">    
           <div className={`text-center md:${justifyClass} w-full`}>
             
@@ -248,14 +254,17 @@ export default function MusicDisplay({ youtubeItems = [], error, lang }: MusicDi
                 <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 animate-fade-in">
                   {items.map((item) => (
                     <PopRotateSection key={item.id}> 
-                      <li className={`bg-gray-100 dark:bg-gray-800 rounded-lg overflow-visible shadow-md dark:shadow-lg transform hover:scale-105 transition-[transform,colors] hover:text-cyan-600 dark:hover:text-cyan-300 duration-300`}>
+                      <li 
+                        className={`bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md dark:shadow-lg transform hover:scale-105 transition-[transform,colors] hover:text-cyan-600 dark:hover:text-cyan-300 duration-300 transform-gpu`}
+                        style={{ boxShadow: isDark ? 'inset 0 0 0 1px rgba(255,255,255,0.1)' : 'inset 0 0 0 1px rgba(0,0,0,0.1)' }}
+                      >
                         <a href={`https://www.youtube.com/watch?v=${item.snippet.resourceId.videoId}`} target="_blank" rel="noopener noreferrer">
                           <Image 
                             width={item.snippet.thumbnails.medium.width} 
                             height={item.snippet.thumbnails.medium.height} 
                             src={item.snippet.thumbnails.medium.url} 
                             alt={item.snippet.title}
-                            className="w-full h-auto object-cover rounded-t-lg"
+                            className="w-full h-auto object-cover scale-[1.01]"
                             loading="lazy"
                           />
                           <div className="p-3">
@@ -273,6 +282,7 @@ export default function MusicDisplay({ youtubeItems = [], error, lang }: MusicDi
           </div>
         </div>
       </div>
+      )}
     </div>
   );
 }

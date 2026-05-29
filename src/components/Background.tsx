@@ -233,13 +233,13 @@ export default function Background({ carousel }: BackgroundProps) {
   const isDark = resolvedTheme === 'dark';
 
   return (
-    <div className={`fixed inset-0 w-full h-full z-[-1] transition-colors duration-[1500ms] ease-in-out bg-white dark:bg-black`}>
+    <div className={`presentation-background fixed inset-0 w-full h-full z-[-1] transition-colors duration-[1500ms] ease-in-out bg-white dark:bg-black`}>
       
       <div className={`transition-opacity duration-[1500ms] ease-in-out w-full h-full absolute inset-0 opacity-100`}>
         {carousel.map((src, index) => (
             <div
                 key={index}
-                className={`blur-md absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
+                className={`blur-md absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out scale-110 transform-gpu ${
                     index === currentIndex ? 'opacity-60 z-0' : 'opacity-0 -z-10'
                 }`}
             >

@@ -8,6 +8,7 @@ import HoverableWords from '@/components/HoverableWords';
 import FadeInSection from '@/components/FadeInSection';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSettings } from './SettingsContext';
+import { usePresentation } from './PresentationContext';
 
 export type AboutMeProps = {
   carouselPhotos: string[];
@@ -53,7 +54,7 @@ export default function AboutMe({
   lang
 }: AboutMeProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  
+
   const { resolvedTheme } = useTheme();
   const { textAlign } = useSettings();
 
@@ -64,29 +65,31 @@ export default function AboutMe({
 
   useEffect(() => {
     if (!carouselPhotos || carouselPhotos.length <= 1) return;
-    
+
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % carouselPhotos.length);
-    }, 4000); 
+    }, 4000);
 
     return () => clearInterval(interval);
   }, [carouselPhotos]);
+
+  const { isPresentationMode } = usePresentation();
 
   const isDark = resolvedTheme === 'dark';
 
   // Enhanced Contrast & Typography Classes
   // We use Tailwind's dark: classes where possible to avoid hydration mismatch and allow SSR
   const titleClass = "text-black dark:text-white";
-  const textClass = "text-black dark:text-gray-200"; 
+  const textClass = "text-black dark:text-gray-200";
   const borderClass = "border-gray-200 dark:border-white/10";
 
   return (
     <div className="w-full py-8 md:px-5 presentation-mode:contents">
-       
+
       {/* About Me Section */}
       <FadeInSection slideIndex={1} totalSlides={4} initialVisible={true}>
-        <div className="flex flex-col-reverse md:flex-row justify-center items-center gap-8 lg:gap-16 max-w-6xl mx-auto w-full">
-          <div className={`flex-1 ${responsiveJustifyClass} max-w-prose`}>
+        <div className="flex flex-col-reverse md:flex-row print:flex-row justify-center items-center gap-8 lg:gap-16 max-w-6xl mx-auto w-full">
+          <div className={`flex-1 ${responsiveJustifyClass} max-w-prose print:max-w-none`}>
             <h1 className={`text-4xl md:text-5xl font-extrabold ${titleClass} mb-6 hover:opacity-85 transition-opacity tracking-tight`}>
               {about_title}
             </h1>
@@ -101,30 +104,32 @@ export default function AboutMe({
           </div>
 
           <div className="flex-shrink-0 relative group">
-            <div className={`relative w-64 h-64 md:w-80 md:h-80 overflow-hidden rounded-2xl shadow-2xl border ${borderClass}`}>
-              <div className="absolute inset-0 bg-cyan-500/30 blur-3xl rounded-full transform scale-90 group-hover:scale-100 transition-transform duration-700"></div>
+            <div
+              className={`relative w-64 h-64 md:w-80 md:h-80 lg:w-[400px] lg:h-[400px] flex justify-center items-center overflow-hidden transform-gpu`}
+            >
               <AnimatePresence mode="wait">
                 {carouselPhotos && carouselPhotos.length > 0 && (
                 <motion.div
                   key={currentIndex}
                   initial={{ opacity: 0, scale: 1.1 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                  animate={{ opacity: 1, scale: 1.01 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.8, ease: "easeInOut" }}
-                  className="relative w-full h-full"
+                  className="relative w-full h-full flex justify-center items-center"
                 >
                   <Image
                     src={`/images/photo_faran_aiki/${carouselPhotos[currentIndex]}`}
                     alt={faran_photo}
                     fill
                     placeholder="blur"
-                    blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(320, 320))}`}
+                    blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(400, 400))}`}
                     className={`
-                      object-cover 
+                      object-contain
                       transition-transform duration-700 ease-out
-                      hover:scale-[1.05]
+                      hover:scale-[1.06]
+                      scale-[1.01]
                     `}
-                    sizes="(max-width: 768px) 256px, 320px"
+                    sizes="(max-width: 768px) 256px, 400px"
                     quality={85}
                     priority={true}
                   />
@@ -136,19 +141,17 @@ export default function AboutMe({
         </div>
       </FadeInSection>
 
-      <div className="block presentation-mode:hidden">
-        <SectionSeparator isDark={isDark} />
-      </div>
+      {!isPresentationMode && <SectionSeparator isDark={isDark} />}
 
       {/* Philosophy Section */}
       <FadeInSection slideIndex={2} totalSlides={4}>
-        <div className="flex flex-col-reverse md:flex-row-reverse justify-center items-center gap-8 lg:gap-16 max-w-6xl mx-auto w-full">
-          <div className={`flex-1 ${responsiveJustifyClass} max-w-prose`}>
+        <div className="flex flex-col-reverse md:flex-row-reverse print:flex-row-reverse justify-center items-center gap-8 lg:gap-16 max-w-6xl mx-auto w-full">
+          <div className={`flex-1 ${responsiveJustifyClass} max-w-prose print:max-w-none`}>
             <h2 className={`text-3xl md:text-4xl font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
               {about_philosophy_title}
             </h2>
-            <HoverableWords 
-              className={`text-lg md:text-xl ${textClass} ${justifyClass} font-medium`} 
+            <HoverableWords
+              className={`text-lg md:text-xl ${textClass} ${justifyClass} font-medium`}
               prophover={`transition-[colors,transform] inline-block duration-200 ease-in-out hover:text-cyan-600 dark:hover:text-cyan-300 hover:scale-105 cursor-pointer`}
             >
               {formatCJK(about_philosophy, lang)}
@@ -172,33 +175,31 @@ export default function AboutMe({
         </div>
       </FadeInSection>
 
-      <div className="block presentation-mode:hidden">
-        <SectionSeparator isDark={isDark} />
-      </div>
+      {!isPresentationMode && <SectionSeparator isDark={isDark} />}
 
       {/* Principles Section */}
       <FadeInSection slideIndex={3} totalSlides={4}>
-        <div className="flex flex-col-reverse md:flex-row justify-center items-center gap-8 lg:gap-16 max-w-6xl mx-auto w-full">
-          <div className={`flex-1 ${responsiveJustifyClass} max-w-prose`}>
+        <div className="flex flex-col-reverse md:flex-row print:flex-row justify-center items-center gap-8 lg:gap-16 max-w-6xl mx-auto w-full">
+          <div className={`flex-1 ${responsiveJustifyClass} max-w-prose print:max-w-none`}>
             <h2 className={`text-3xl md:text-4xl font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
               {about_principle_title}
             </h2>
             <div className="space-y-4">
-              <HoverableWords 
-                  className={`text-lg md:text-xl ${textClass} ${justifyClass}`} 
+              <HoverableWords
+                  className={`text-lg md:text-xl ${textClass} ${justifyClass}`}
                   prophover='transition-[colors,opacity,transform] inline-block duration-200 ease-in-out hover:translate-x-1 hover:text-cyan-600 cursor-pointer'
               >
                   {formatCJK(about_principle_1, lang)}
               </HoverableWords>
-              <HoverableWords 
-                  className={`text-lg md:text-xl ${textClass} ${justifyClass}`} 
+              <HoverableWords
+                  className={`text-lg md:text-xl ${textClass} ${justifyClass}`}
                   prophover='transition-[colors,opacity,transform] inline-block duration-200 ease-in-out hover:translate-x-1 hover:text-cyan-600 cursor-pointer'
               >
                   {formatCJK(about_principle_2, lang)}
               </HoverableWords>
               {/* Added Principle 3 */}
-              <HoverableWords 
-                  className={`text-lg md:text-xl ${textClass} ${justifyClass}`} 
+              <HoverableWords
+                  className={`text-lg md:text-xl ${textClass} ${justifyClass}`}
                   prophover='transition-[colors,opacity,transform] inline-block duration-200 ease-in-out hover:translate-x-1 hover:text-cyan-600 cursor-pointer'
               >
                   {formatCJK(about_principle_3, lang)}
@@ -223,33 +224,31 @@ export default function AboutMe({
         </div>
       </FadeInSection>
 
-      <div className="block presentation-mode:hidden">
-        <SectionSeparator isDark={isDark} />
-      </div>
+      {!isPresentationMode && <SectionSeparator isDark={isDark} />}
 
       {/* Vision & Mission Section */}
       <FadeInSection slideIndex={4} totalSlides={4}>
-        <div className="flex flex-col-reverse md:flex-row-reverse justify-center items-center gap-8 lg:gap-16 max-w-6xl mx-auto w-full">
-          <div className={`flex-1 ${responsiveJustifyClass} max-w-prose`}>
+        <div className="flex flex-col-reverse md:flex-row-reverse print:flex-row-reverse justify-center items-center gap-8 lg:gap-16 max-w-6xl mx-auto w-full">
+          <div className={`flex-1 ${responsiveJustifyClass} max-w-prose print:max-w-none`}>
             <h2 className={`text-3xl md:text-4xl font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
               {about_vision_mission_title}
             </h2>
             <div className="space-y-4">
-              <HoverableWords 
-                  className={`text-lg md:text-xl ${textClass} ${justifyClass}`} 
+              <HoverableWords
+                  className={`text-lg md:text-xl ${textClass} ${justifyClass}`}
                   prophover={`transition-[colors,opacity,transform] inline-block duration-200 ease-in-out hover:scale-105 hover:text-cyan-600 dark:hover:text-cyan-300 cursor-pointer`}
               >
                   {formatCJK(about_vision_mission_1, lang)}
               </HoverableWords>
-              <HoverableWords 
-                  className={`text-lg md:text-xl ${textClass} ${justifyClass}`} 
+              <HoverableWords
+                  className={`text-lg md:text-xl ${textClass} ${justifyClass}`}
                   prophover={`transition-[colors,transform,opacity] inline-block duration-200 ease-in-out hover:scale-105 hover:text-cyan-600 dark:hover:text-cyan-300 cursor-pointer`}
               >
                   {formatCJK(about_vision_mission_2, lang)}
               </HoverableWords>
               {/* Added Vision Mission 3 */}
-              <HoverableWords 
-                  className={`text-lg md:text-xl ${textClass} ${justifyClass}`} 
+              <HoverableWords
+                  className={`text-lg md:text-xl ${textClass} ${justifyClass}`}
                   prophover={`transition-[colors,transform,opacity] inline-block duration-200 ease-in-out hover:scale-105 hover:text-cyan-600 dark:hover:text-cyan-300 cursor-pointer`}
               >
                   {formatCJK(about_vision_mission_3, lang)}

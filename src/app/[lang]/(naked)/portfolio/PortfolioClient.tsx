@@ -101,12 +101,15 @@ export default function PortfolioClient({
       <main className="container mx-auto max-w-4xl p-8 md:p-12 space-y-12 print:p-0 print:max-w-none">
         {/* Header Section */}
         <header className="flex flex-col md:flex-row gap-8 items-center md:items-start border-b border-slate-800 pb-12 print:border-slate-200">
-          <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-2xl overflow-hidden border-2 border-cyan-500 shadow-[0_0_20px_rgba(6,182,212,0.3)]">
+          <div 
+            className="relative w-32 h-32 md:w-40 md:h-40 rounded-2xl overflow-hidden shadow-[0_0_20px_rgba(6,182,212,0.3)] transform-gpu"
+            style={{ boxShadow: 'inset 0 0 0 2px rgba(6,182,212,0.5)' }}
+          >
             <Image 
               src="/images/photo_faran_aiki/1_fa_photo_linkedin.webp"
               alt="Muhammad Faran Aiki"
               fill
-              className="object-cover"
+              className="object-cover scale-[1.01]"
             />
           </div>
           <div className="flex-1 text-center md:text-left space-y-4">
@@ -210,12 +213,15 @@ export default function PortfolioClient({
                     <p className="text-xs font-mono text-cyan-500/80 uppercase tracking-wider">{project.tech}</p>
                     <p className="text-slate-400 text-sm leading-relaxed print:text-slate-600">{project.description}</p>
                     {project.image && (
-                      <div className="relative w-full h-32 mt-3 rounded-lg overflow-hidden border border-slate-800 print:border-slate-200">
+                      <div 
+                        className="relative w-full h-32 mt-3 rounded-lg overflow-hidden transform-gpu"
+                        style={{ boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.1)' }}
+                      >
                         <Image 
                           src={project.image}
                           alt={project.title}
                           fill
-                          className="object-cover hover:scale-105 transition-transform duration-500"
+                          className="object-cover hover:scale-[1.06] transition-transform duration-500 scale-[1.01]"
                         />
                       </div>
                     )}
