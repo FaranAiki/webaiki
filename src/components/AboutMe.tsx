@@ -81,7 +81,6 @@ export default function AboutMe({
   // We use Tailwind's dark: classes where possible to avoid hydration mismatch and allow SSR
   const titleClass = "text-black dark:text-white";
   const textClass = "text-black dark:text-gray-200";
-  const borderClass = "border-gray-200 dark:border-white/10";
 
   return (
     <div className="w-full py-8 md:px-5 presentation-mode:contents">

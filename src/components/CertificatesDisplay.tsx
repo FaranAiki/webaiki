@@ -95,10 +95,9 @@ export default function CertificatesDisplay({ certificates, allTranslation, lang
   const isDark = mounted && resolvedTheme === 'dark';
   
   // Dynamic Classes
-  const titleColor = isDark ? 'text-white' : 'text-black';
-  const borderColor = isDark ? 'border-gray-700' : 'border-gray-300';
+  const titleColor = isDark ? 'text-white' : 'text-gray-900';
+  const borderColor = isDark ? 'border-gray-800' : 'border-gray-200';
   const cardBg = isDark ? 'bg-gray-800' : 'bg-white';
-  const cardBorder = isDark ? 'border-transparent' : 'border-gray-200';
   const buttonInactiveBg = isDark ? 'bg-gray-800' : 'bg-gray-200';
   const buttonInactiveText = isDark ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-300';
 
