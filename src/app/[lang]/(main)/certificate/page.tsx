@@ -55,6 +55,8 @@ export const getCertificatesData = cache(async (lang: string) => {
   return allCertificatesData;
 });
 
+import { getLanguageAlternates } from '@/lib/seo';
+
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = getDictionary(lang);
@@ -81,12 +83,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     icons: { icon: '/icon.ico', shortcut: '/icon.ico', apple: '/icon.ico' },
     alternates: { 
       canonical: `/${lang}/certificate`,
-      languages: {
-        'id': '/id/certificate',
-        'en': '/en/certificate',
-        'zh': '/zh/certificate',
-        'ja': '/jp/certificate',
-      }
+      languages: getLanguageAlternates('/certificate'),
     },
   };
 }

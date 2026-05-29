@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import "../../../globals.css";
-import { Inter } from "next/font/google";
 import MusicDisplay from '@/components/MusicDisplay';
 import { getDictionary } from '@/components/Translator';
-
-const inter = Inter({ subsets: ["latin"] });
+import { getLanguageAlternates } from '@/lib/seo';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -36,12 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     },
     alternates: {
       canonical: `/${lang}/music`,
-      languages: {
-        'id': '/id/music',
-        'en': '/en/music',
-        'zh': '/zh/music',
-        'ja': '/jp/music',
-      }
+      languages: getLanguageAlternates('/music'),
     },
   };
 }

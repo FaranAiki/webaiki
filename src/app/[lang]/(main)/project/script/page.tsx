@@ -3,21 +3,28 @@ import PythonCLI from "@/components/PythonCLI";
 import "../../../../globals.css"; 
 
 import { getDictionary } from '@/components/Translator';
+import { getLanguageAlternates } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://faranaiki.id/project"),
-  title: "Faran Aiki's Project",
-  description: "Faran Aiki's project history and others",
-  openGraph: {
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const { lang } = await params;
+  return {
+    metadataBase: new URL("https://faranaiki.id"),
     title: "Faran Aiki's Project",
     description: "Faran Aiki's project history and others",
-    url: "https://faranaiki.id/project",
-    siteName: "Faran Aiki's Project",
-    type: "website",
-  },
-  icons: { icon: "/icon.ico", shortcut: "/icon.ico", apple: "/icon.ico" },
-  alternates: { canonical: "/" },
-};
+    openGraph: {
+      title: "Faran Aiki's Project",
+      description: "Faran Aiki's project history and others",
+      url: `https://faranaiki.id/${lang}/project/script`,
+      siteName: "Faran Aiki's Project",
+      type: "website",
+    },
+    icons: { icon: "/icon.ico", shortcut: "/icon.ico", apple: "/icon.ico" },
+    alternates: { 
+      canonical: `/${lang}/project/script`,
+      languages: getLanguageAlternates('/project/script'),
+    },
+  };
+}
 
 type ProjectPageProps = {
   params: Promise<{ lang: string }>;

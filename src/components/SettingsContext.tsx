@@ -92,7 +92,6 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     localStorage.setItem('settings-lineheight', lineHeight.toString());
 
     const body = document.body;
-    const mainContent = document.getElementById('main-content');
     
     // 1. Font Class on BODY (Global)
     fonts.forEach(f => {

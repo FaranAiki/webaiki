@@ -3,6 +3,8 @@ import "../../../globals.css";
 import { getDictionary } from '@/components/Translator';
 import ExperiencesClient from '@/components/ExperienceDisplayer';
 
+import { getLanguageAlternates } from '@/lib/seo';
+
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = getDictionary(lang);
@@ -29,12 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     icons: { icon: '/icon.ico', shortcut: '/icon.ico', apple: '/icon.ico' },
     alternates: { 
       canonical: `/${lang}/work`,
-      languages: {
-        'id': '/id/work',
-        'en': '/en/work',
-        'zh': '/zh/work',
-        'ja': '/jp/work',
-      }
+      languages: getLanguageAlternates('/work'),
     },
   };
 }

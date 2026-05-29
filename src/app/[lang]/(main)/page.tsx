@@ -1,18 +1,17 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import AboutMe from '@/components/AboutMe';
 import { getDictionary } from '@/components/Translator';
 import { cache } from 'react';
 import fs from 'fs';
 import path from 'path';
 
-const inter = Inter({ subsets: ["latin"] });
-
 export const getFaranAikiPhoto = cache(() => {
   const photosDir = path.join(process.cwd(), 'public', 'images', 'photo_faran_aiki');
   if (!fs.existsSync(photosDir)) return [];
   return fs.readdirSync(photosDir);
 });
+
+import { getLanguageAlternates } from '@/lib/seo';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -44,15 +43,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     },
     alternates: {
       canonical: `/${lang}`,
-      languages: {
-        'id': '/id',
-        'en': '/en',
-        'zh': '/zh',
-        'ja': '/jp',
-        'ru': '/ru',
-        'fr': '/fr',
-        'ar': '/ar',
-      }
+      languages: getLanguageAlternates(''),
     },
   };
 }

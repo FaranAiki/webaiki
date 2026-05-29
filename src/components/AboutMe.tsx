@@ -56,7 +56,6 @@ export default function AboutMe({
   
   const { resolvedTheme } = useTheme();
   const { textAlign } = useSettings();
-  const [mounted, setMounted] = useState(false);
 
   const isJustified = lang !== 'jp' && lang !== 'zh';
   const defaultJustifyClass = isJustified ? 'text-justify' : 'text-left';
@@ -64,8 +63,6 @@ export default function AboutMe({
   const responsiveJustifyClass = textAlign === 'default' ? `text-center md:${justifyClass}` : justifyClass;
 
   useEffect(() => {
-    setMounted(true);
-
     if (!carouselPhotos || carouselPhotos.length <= 1) return;
     
     const interval = setInterval(() => {

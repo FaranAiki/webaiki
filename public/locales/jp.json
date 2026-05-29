@@ -149,7 +149,7 @@
   "Sponsorship_Wisokto_ITB": "ITB 2025年10月卒業式スポンサーシップ、WisNight委員会、およびNipis Maduプロモーション",
   "Sponsorship_Wisokto_ITB_Description": "バンドン工科大学の2025年10月の卒業式に向け、Mamikosなどの数社とコラボレーションの交渉を実施。また、WisNightイベントの運営メンバーとして、Nipis Madu 7箱の運搬などを担当。さらに、他のメンバーと協力して4本のNipis Maduプロモーションビデオを作成。",
   "Impact_Web_Lead": "Web開発チームリーダー Web Impact 6.0",
-  "Impact_Web_Lead_Description": "STEI-K（電気工学・情報学部 - コンピューテーション）主催の高校生向けコンテスト、IMPACT 6.0オリンピックのウェブサイトを管理。フロントエンド、バックエンド、Moodle、およびJudgelの管理を含む。",
+  "Impact_Web_Lead_Description": "STEI-K（電気工学・情報学部 - コンピューテーション）主催の高校生向けコンテスト、IMPACT 6.0オリンピックのウェブサイトを管理。フロントエンド、バックエンド、Moodle、およびJudgelの管理を含む。さらに、フロントエンドフレームワークにはNextJS、TailwindCSS、TypeScriptを使用し、バックエンドにはPrismaオブジェクトリレーショナルマッピング（ORM）を備えたSupabase SQLデータベースを使用しています。",
   "Treasurer_SYNC": "STEI-K交流イベント会計",
   "STEI-K": "電気工学・情報学部 - コンピューテーション",
   "Treasurer_SYNC_Description": "学部の交流イベント「SYNC: Say Yes to New Connections」のために100万ルピアの協賛金を確保し、財務管理を支援。",

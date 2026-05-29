@@ -133,7 +133,7 @@ export default async function RootLayout({
       <div id="main-content">
         {children}
       </div>
-      <ClientOnlyWidgets dict={dict} backgrounds={backgrounds} />
+      <ClientOnlyWidgets backgrounds={backgrounds} />
     </>
   );
 }

@@ -57,6 +57,8 @@ export const getCollectionsData = cache((lang: string) => {
   return allCollectionsData;
 });
 
+import { getLanguageAlternates } from '@/lib/seo';
+
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = getDictionary(lang);
@@ -83,12 +85,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     icons: { icon: '/icon.ico', shortcut: '/icon.ico', apple: '/icon.ico' },
     alternates: { 
       canonical: `/${lang}/college`,
-      languages: {
-        'id': '/id/college',
-        'en': '/en/college',
-        'zh': '/zh/college',
-        'ja': '/jp/college',
-      }
+      languages: getLanguageAlternates('/college'),
     },
   };
 }

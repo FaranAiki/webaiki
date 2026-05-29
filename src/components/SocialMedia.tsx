@@ -5,22 +5,6 @@ import { useTheme } from 'next-themes';
 import { Github, Linkedin, Instagram, Twitter, Mail, Youtube } from 'lucide-react';
 import Image from 'next/image';
 import PopRotateSection from '@/components/PopRotateSection';
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  metadataBase: new URL('https://faranaiki.id/social'),
-  title: "Faran Aiki's Social Media",
-  description: "Faran Aiki's social media",
-  openGraph: {
-    title: "Faran Aiki's Social Media",
-    description: "Faran Aiki's Social Media",
-    url: 'https://faranaiki.id/social',
-    siteName: 'Faran Aiki\'s Social Media', 
-    type: 'website',
-  },
-  icons: { icon: '/icon.ico', shortcut: '/icon.ico', apple: '/icon.ico' },
-  alternates: { canonical: '/' },
-};
 
 export default function SocialDisplay() {
   const { resolvedTheme } = useTheme();

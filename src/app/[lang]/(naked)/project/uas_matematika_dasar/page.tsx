@@ -3,6 +3,8 @@
 import { getDictionary } from '@/components/Translator';
 import UasHeader from "./UasHeader";
 
+import { getLanguageAlternates } from '@/lib/seo';
+
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const dict = getDictionary(lang);
@@ -29,6 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     icons: { icon: '/icon.ico', shortcut: '/icon.ico', apple: '/icon.ico' },
     alternates: { 
       canonical: `/${lang}/project/uas_matematika_dasar`,
+      languages: getLanguageAlternates('/project/uas_matematika_dasar'),
     },
   };
 }

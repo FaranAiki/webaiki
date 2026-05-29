@@ -8,6 +8,8 @@ import { cache } from 'react';
 import fs from 'fs';
 import path from 'path';
 
+import { getLanguageAlternates } from '@/lib/seo';
+
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = getDictionary(lang);
@@ -34,12 +36,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     icons: { icon: '/icon.ico', shortcut: '/icon.ico', apple: '/icon.ico' },
     alternates: { 
       canonical: `/${lang}/literature`,
-      languages: {
-        'id': '/id/literature',
-        'en': '/en/literature',
-        'zh': '/zh/literature',
-        'ja': '/jp/literature',
-      }
+      languages: getLanguageAlternates('/literature'),
     },
   };
 }

@@ -1,42 +1,52 @@
 'use client';
 
-// import { useState } from 'react';
+import { memo, useMemo } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 
-// Fix: Use the Unpkg CDN that exactly matches your installed pdfjs version.
-// This prevents 404 errors, stops the "fake worker", and restores website speed.
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+// Use the local worker for better stability and to avoid external dependency issues.
+// NOTE: Ensure this version matches the worker in /public
+const PDFJS_VERSION = '5.3.93';
+pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
 
-const CMAP_URL = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/cmaps/`;
+const CMAP_URL = `https://unpkg.com/pdfjs-dist@${PDFJS_VERSION}/cmaps/`;
+const STANDARD_FONTS_URL = `https://unpkg.com/pdfjs-dist@${PDFJS_VERSION}/standard_fonts/`;
 
 type PdfPreviewProps = {
   fileUrl: string;
   width?: number;
 };
 
-export default function PdfPreview({ fileUrl, width = 300 }: PdfPreviewProps) {
-  /*
-  const [numPages, setNumPages] = useState<number | null>(null);
-
-  function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
-    setNumPages(numPages);
-  }*/
+function PdfPreview({ fileUrl, width = 300 }: PdfPreviewProps) {
+  // Memoize options to ensure a stable reference.
+  const options = useMemo(() => ({
+    cMapUrl: CMAP_URL,
+    cMapPacked: true,
+    standardFontDataUrl: STANDARD_FONTS_URL,
+  }), []);
 
   return (
     <div className="w-full h-full overflow-hidden flex justify-center items-center bg-gray-700">
-      {/* if needed, add this line */}
-      {/* onLoadSuccess={onDocumentLoadSuccess} */}
+      {/* 
+        The key={fileUrl} forces a complete re-mount of the Document when the source changes.
+        This is a known fix for the "Node.removeChild" error in react-pdf/Next.js 
+        where the DOM and React internal tree get out of sync during fast transitions.
+      */}
       <Document
+        key={fileUrl}
         file={fileUrl}
         className="flex justify-center"
-        options={{
-          cMapUrl: CMAP_URL,
-          cMapPacked: true,
-        }}
+        options={options}
+        loading={<div className="text-white text-xs">Loading...</div>}
       >
-        {/* We only show the first page as a preview */}
-        <Page pageNumber={1} width={width} renderTextLayer={false} renderAnnotationLayer={false} />
+        <Page 
+          pageNumber={1} 
+          width={width} 
+          renderTextLayer={false} 
+          renderAnnotationLayer={false}
+        />
       </Document>
     </div>
   );
 }
+
+export default memo(PdfPreview);

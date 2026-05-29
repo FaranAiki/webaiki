@@ -1,5 +1,7 @@
 import { getDictionary } from '@/components/Translator';
 
+import { getLanguageAlternates } from '@/lib/seo';
+
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const dict = getDictionary(lang);
@@ -30,6 +32,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     },
     alternates: {
       canonical: `/${lang}/latest`,
+      languages: getLanguageAlternates('/latest'),
     },
   };
 }

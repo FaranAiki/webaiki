@@ -65,7 +65,11 @@ export default function ExperiencesClient({ experiences, lang }: ExperiencesClie
     
     const isDark = resolvedTheme === 'dark';
     const mainText = isDark ? 'text-white' : 'text-black';
-    const subText = isDark ? 'text-gray-400' : 'text-gray-600';
+    
+    // Using objects for inline styles to bypass global !important CSS
+    const dateStyle = { color: isDark ? '#9ca3af' : '#6b7280', opacity: 0.8 };
+    const companyStyle = { color: isDark ? '#22d3ee' : '#0284c7' }; // Cyan-400 and Blue-600
+    
     const descText = isDark ? 'text-gray-300' : 'text-gray-700';
     const activeCardBg = isDark ? 'bg-gray-800' : 'bg-gray-100 border-cyan-500';
     const inactiveCardBg = isDark ? 'bg-gray-800/50 hover:bg-gray-800' : 'bg-white hover:bg-gray-50';
@@ -92,8 +96,8 @@ export default function ExperiencesClient({ experiences, lang }: ExperiencesClie
                                     <div className="space-y-2">
                                         <h2 className="text-cyan-500 font-bold text-xl md:text-2xl tracking-tight">{job.year}</h2>
                                         <h3 className="text-3xl md:text-5xl font-black leading-tight tracking-tighter">{job.title}</h3>
-                                        <h4 className="text-xl md:text-2xl text-cyan-600 font-bold opacity-90">{job.company}</h4>
-                                        <p className={`${subText} text-base md:text-lg font-medium italic`}>{job.date}</p>
+                                        <h4 style={companyStyle} className="text-xl md:text-2xl italic opacity-90">{job.company}</h4>
+                                        <p style={dateStyle} className="text-base md:text-lg font-medium italic">{job.date}</p>
                                     </div>
                                     <HoverableWords className={`text-base md:text-lg ${justifyClass} ${descText} font-medium`}>
                                         {job.description}
@@ -154,18 +158,18 @@ export default function ExperiencesClient({ experiences, lang }: ExperiencesClie
                                                             : `${inactiveCardBg} ${cardBorder} hover:border-cyan-500/50`
                                                         }`}
                                                 >
-                                                    <p className={`${subText} text-sm mb-1 duration-100 hover:text-gray-700 hover:italic transition-[colors,opacity]`}>{job.date}</p>
+                                                    <p style={dateStyle} className="text-sm mb-1 duration-100 hover:text-gray-700 hover:italic transition-[colors,opacity]">{job.date}</p>
                                                     
                                                     {/* Clickable Title IF URL exists, otherwise skip w. border */}
                                                     {job.url ? (
                                                         <a href={job.url} target="_blank" rel="noopener noreferrer" className="block w-fit">
-                                                            <h3 className={`text-xl font-semibold ${mainText} hover:font-bold hover:text-cyan-500 transition-[colors,opacity] duration-200 hover:scale-101 underline decoration-dotted decoration-cyan-500/50`}>{job.title}</h3>
+                                                            <h3 className={`text-xl font-bold ${mainText} hover:text-cyan-500 transition-[colors,opacity] duration-200 hover:scale-101 underline decoration-dotted decoration-cyan-500/50`}>{job.title}</h3>
                                                         </a>
                                                     ) : (
-                                                        <h3 className={`text-xl font-semibold ${mainText} hover:font-bold transition-[colors,opacity] duration-200 hover:scale-101`}>{job.title}</h3>
+                                                        <h3 className={`text-xl font-bold ${mainText} transition-[colors,opacity] duration-200 hover:scale-101`}>{job.title}</h3>
                                                     )}
 
-                                                    <p className="text-cyan-600 font-medium mb-3 transition-[colors,opacity] hover:font-bold hover:scale-105 duration-200">{job.company}</p>
+                                                    <p style={companyStyle} className="italic mb-3 transition-[colors,opacity] hover:scale-105 duration-200">{job.company}</p>
                                                     <HoverableWords 
                                                         className={`${justifyClass} lg:text-lg md:text-md ${descText}`}
                                                         prophover='transition-[transform,color,opacity] inline-block duration-100 ease-in-out hover:scale-95 hover:text-cyan-600 hover:underline hover:font-semibold hover:opacity-85'
@@ -212,12 +216,12 @@ export default function ExperiencesClient({ experiences, lang }: ExperiencesClie
                                             <div className="mt-4 text-center">
                                                 {activeJob.url ? (
                                                     <a href={activeJob.url} target="_blank" rel="noopener noreferrer" className="hover:text-cyan-500 transition-colors">
-                                                        <h3 className={`text-2xl font-bold ${mainText}`}>{activeJob.title}</h3>
+                                                        <h3 className={`text-2xl font-black ${mainText}`}>{activeJob.title}</h3>
                                                     </a>
                                                 ) : (
-                                                    <h3 className={`text-2xl font-bold ${mainText}`}>{activeJob.title}</h3>
+                                                    <h3 className={`text-2xl font-black ${mainText}`}>{activeJob.title}</h3>
                                                 )}
-                                                <p className="text-cyan-600 text-lg">{activeJob.company}</p>
+                                                <p style={companyStyle} className="text-lg italic">{activeJob.company}</p>
                                             </div>
                                         </div>
                                     ) : (

@@ -4,6 +4,8 @@ import "../../../globals.css";
 
 import { getDictionary } from '@/components/Translator';
 
+import { getLanguageAlternates } from '@/lib/seo';
+
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = getDictionary(lang);
@@ -30,12 +32,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     icons: { icon: "/icon.ico", shortcut: "/icon.ico", apple: "/icon.ico" },
     alternates: { 
       canonical: `/${lang}/project`,
-      languages: {
-        'id': '/id/project',
-        'en': '/en/project',
-        'zh': '/zh/project',
-        'ja': '/jp/project',
-      }
+      languages: getLanguageAlternates('/project'),
     },
   };
 }

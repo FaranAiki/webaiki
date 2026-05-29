@@ -127,21 +127,21 @@ export default function CertificatesDisplay({ certificates, allTranslation, lang
                 )}
               </h2>
               
-              <div className={`grid gap-4 md:gap-6 w-full max-h-[70vh] p-2 overflow-visible no-scrollbar justify-items-center ${
+              <div className={`grid gap-4 md:gap-8 w-full max-h-[75vh] p-2 overflow-visible no-scrollbar justify-items-center ${
                 slide.files.length === 4 
-                  ? 'grid-cols-1 sm:grid-cols-2 max-w-3xl' 
+                  ? 'grid-cols-1 sm:grid-cols-2 max-w-4xl' 
                   : slide.files.length === 1
                   ? 'grid-cols-1'
                   : slide.files.length === 2
-                  ? 'grid-cols-1 sm:grid-cols-2 max-w-3xl'
+                  ? 'grid-cols-1 sm:grid-cols-2 max-w-4xl'
                   : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
               }`}>
                 {slide.files.map(([fileName, filePath]) => (
-                  <div key={fileName} className="flex flex-col items-center group w-full max-w-[250px] md:max-w-[280px]">
-                    <div className={`${cardBg} w-full aspect-[4/3] relative mb-2 rounded-xl overflow-hidden shadow-lg transition-transform group-hover:scale-105 border ${cardBorder}`}>
+                  <div key={fileName} className="flex flex-col items-center group w-full max-w-[300px] md:max-w-[350px]">
+                    <div className={`${cardBg} w-full aspect-[4/3] relative mb-4 rounded-xl overflow-hidden shadow-xl transition-transform group-hover:scale-105 border-2 ${cardBorder}`}>
                       {(filePath as string).endsWith('.pdf') ? (
                         <div className="w-full h-full flex justify-center items-center overflow-hidden">
-                          <PdfPreview fileUrl={filePath as string} width={280} />
+                          <PdfPreview fileUrl={filePath as string} width={350} />
                         </div>
                       ) : (
                         <Image
@@ -153,7 +153,7 @@ export default function CertificatesDisplay({ certificates, allTranslation, lang
                         />
                       )}
                     </div>
-                    <p className={`text-center font-bold text-xs md:text-sm ${isDark ? 'text-gray-300' : 'text-gray-700'} line-clamp-2 px-1`}>
+                    <p className={`text-center font-bold text-sm md:text-xl lg:text-2xl ${isDark ? 'text-gray-200' : 'text-gray-800'} line-clamp-2 px-2 leading-tight`}>
                       {formatCJK(fileName, lang)}
                     </p>
                   </div>

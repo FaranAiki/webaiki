@@ -2,6 +2,8 @@ import React from 'react';
 import { getDictionary } from '@/components/Translator';
 import PortfolioClient from './PortfolioClient';
 
+import { getLanguageAlternates } from '@/lib/seo';
+
 export async function generateMetadata({ 
   params,
   searchParams 
@@ -17,6 +19,8 @@ export async function generateMetadata({
                 type === 'tutor' ? dict.Portfolio_Tutor : 
                 dict.Portfolio_Summary;
 
+  const query = type ? `?type=${type}` : '';
+
   return {
     metadataBase: new URL('https://faranaiki.id'),
     title: `${title} | Faran Aiki`,
@@ -24,7 +28,7 @@ export async function generateMetadata({
     openGraph: {
       title: `${title} | Faran Aiki`,
       description: `Professional Portfolio of Muhammad Faran Aiki - ${dict.Software_Engineer} & ${dict.SAT_Tutor}`,
-      url: `https://faranaiki.id/${lang}/portfolio${type ? `?type=${type}` : ''}`,
+      url: `https://faranaiki.id/${lang}/portfolio${query}`,
       siteName: "faranaiki.id",
       type: "website",
       images: [
@@ -36,6 +40,10 @@ export async function generateMetadata({
         },
       ],
     },
+    alternates: {
+      canonical: `/${lang}/portfolio${query}`,
+      languages: getLanguageAlternates(`/portfolio${query}`),
+    }
   };
 }
 
