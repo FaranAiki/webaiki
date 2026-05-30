@@ -9,7 +9,13 @@ import {
   Montserrat, 
   Merriweather, 
   Playfair_Display,
-  Source_Sans_3
+  Source_Sans_3,
+  JetBrains_Mono,
+  Roboto_Mono,
+  Fira_Code,
+  Dancing_Script,
+  Great_Vibes,
+  Caveat
 } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
@@ -20,6 +26,12 @@ const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-montserrat
 const merriweather = Merriweather({ weight: ['400', '700'], subsets: ['latin'], variable: '--font-merriweather', preload: false });
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', preload: false });
 const sourceSans = Source_Sans_3({ subsets: ['latin'], variable: '--font-source-sans', preload: false });
+const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrains-mono', preload: false });
+const robotoMono = Roboto_Mono({ subsets: ['latin'], variable: '--font-roboto-mono', preload: false });
+const firaCode = Fira_Code({ subsets: ['latin'], variable: '--font-fira-code', preload: false });
+const dancingScript = Dancing_Script({ subsets: ['latin'], variable: '--font-dancing-script', preload: false });
+const greatVibes = Great_Vibes({ weight: ['400'], subsets: ['latin'], variable: '--font-great-vibes', preload: false });
+const caveat = Caveat({ subsets: ['latin'], variable: '--font-caveat', preload: false });
 
 export const fonts = [
   { name: 'Default', variable: '', class: '' },
@@ -31,6 +43,12 @@ export const fonts = [
   { name: 'Merriweather', variable: merriweather.variable, class: merriweather.className },
   { name: 'Playfair Display', variable: playfair.variable, class: playfair.className },
   { name: 'Source Sans 3', variable: sourceSans.variable, class: sourceSans.className },
+  { name: 'JetBrains Mono', variable: jetbrainsMono.variable, class: jetbrainsMono.className },
+  { name: 'Roboto Mono', variable: robotoMono.variable, class: robotoMono.className },
+  { name: 'Fira Code', variable: firaCode.variable, class: firaCode.className },
+  { name: 'Dancing Script', variable: dancingScript.variable, class: dancingScript.className },
+  { name: 'Great Vibes', variable: greatVibes.variable, class: greatVibes.className },
+  { name: 'Caveat', variable: caveat.variable, class: caveat.className },
 ];
 
 export type TextAlign = 'default' | 'left' | 'center' | 'right' | 'justify';
