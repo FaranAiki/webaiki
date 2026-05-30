@@ -4,7 +4,6 @@ import { useState, useMemo, useEffect } from 'react';
 import PdfPreview from '@/components/PdfPreview';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
-import GlitchSection from '@/components/GlitchSection';
 import PopRotateSection from '@/components/PopRotateSection';
 import FadeInSection from '@/components/FadeInSection';
 import { usePresentation } from './PresentationContext';
@@ -197,7 +196,7 @@ export default function CertificatesDisplay({ certificates, allTranslation, lang
               }`}
               >
               {/* Year Selection FadeIn */}
-              <GlitchSection delay={50}>
+              <FadeInSection delay={50}>
                   <div className="flex flex-wrap gap-2 mb-6">
                       <button
                       onClick={() => handleYearClick(category, 'All')}
@@ -223,7 +222,7 @@ export default function CertificatesDisplay({ certificates, allTranslation, lang
                       </button>
                       ))}
                   </div>
-              </GlitchSection>
+              </FadeInSection>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                   {Object.entries(filteredFiles).map(([fileName, filePath]) => (

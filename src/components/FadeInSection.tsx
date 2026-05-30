@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 import { usePresentation } from './PresentationContext';
 
 interface FadeInSectionProps {
@@ -12,7 +12,6 @@ interface FadeInSectionProps {
   initialVisible?: boolean;
 }
 
-// idk gemini generated this shit
 export default function FadeInSection({ 
   children, 
   delay = 0, 
@@ -21,33 +20,7 @@ export default function FadeInSection({
   totalSlides,
   initialVisible = false
 }: FadeInSectionProps) {
-  const [isVisible, setVisible] = useState(initialVisible);
-  const domRef = useRef<HTMLDivElement>(null);
   const { isPresentationMode, slideNumberFormat, cycleSlideNumberFormat } = usePresentation();
-
-  useEffect(() => {
-    const element = domRef.current;
-    if (!element) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          // Update state based on intersection
-          setVisible(entry.isIntersecting);
-        });
-      },
-      {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px" 
-      }
-    );
-
-    observer.observe(element);
-
-    return () => {
-      observer.unobserve(element);
-    };
-  }, []);
 
   // Helper to format number based on current format
   const formatNumber = (num: number, total: number) => {
@@ -62,14 +35,16 @@ export default function FadeInSection({
   };
 
   return (
-    <div
-      ref={domRef}
-      style={{ transitionDelay: `${delay}ms` }}
-      className={`presentation-section relative transition-[opacity,transform,filter] duration-500 ease-out transform ${className} ${
-        isVisible
-          ? 'opacity-100 translate-y-0 blur-0'
-          : 'opacity-0 translate-y-8 blur-sm' 
-      }`}
+    <motion.div
+      initial={initialVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "0px 0px -50px 0px" }}
+      transition={{ 
+        duration: 0.6, 
+        delay: delay / 1000,
+        ease: [0.215, 0.61, 0.355, 1] // easeOutCubic
+      }}
+      className={`presentation-section relative ${className}`}
     >
       {children}
       {isPresentationMode && slideIndex && totalSlides && (
@@ -92,6 +67,6 @@ export default function FadeInSection({
           </div>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }

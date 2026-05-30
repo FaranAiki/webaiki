@@ -104,7 +104,17 @@ export default function SettingsPopup({ labels }: SettingsPopupProps) {
       </button>
 
       {isOpen && (
-        <div className={`absolute top-full right-0 mt-3 w-80 md:w-96 ${isDark ? 'bg-gray-900/95 border-gray-700' : 'bg-white/95 border-gray-200'} backdrop-blur-md border rounded-2xl shadow-2xl z-50 p-6 animate-fade-in ring-1 ring-black/5 max-h-[85vh] overflow-y-auto no-scrollbar`}>
+        <div className={`
+          fixed md:absolute 
+          top-1/2 md:top-full 
+          left-1/2 md:left-auto md:right-0 
+          -translate-x-1/2 md:translate-x-0 -translate-y-1/2 md:translate-y-2
+          w-[90vw] md:w-96 max-w-[400px]
+          ${isDark ? 'bg-gray-900/95 border-gray-700' : 'bg-white/95 border-gray-200'} 
+          backdrop-blur-md border rounded-2xl shadow-2xl z-[100] p-6 
+          animate-fade-in ring-1 ring-black/5 
+          max-h-[85vh] md:max-h-[80vh] overflow-y-auto no-scrollbar transform-gpu
+        `}>
           <div className="flex items-center justify-between mb-6 sticky top-0 bg-inherit pb-2 z-10">
             <h3 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-800'}`}>{labels.Settings}</h3>
             <div className="flex items-center gap-2">

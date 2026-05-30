@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { setCookies } from '@/app/actions';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Inter } from "next/font/google";
 import ThemeToggle from '@/components/ThemeToggle'; 
 import { useTheme } from 'next-themes';
@@ -39,6 +39,7 @@ interface HeaderProps {
     ar_lang: string;
     select_lang: string;
     presentation_mode: string;
+    navigation_label: string;
     settings_labels: {
         Settings: string;
         Typography: string;
@@ -88,13 +89,28 @@ function ChevronDown() {
     );
 }
 
-export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_lang, jp_lang, ru_lang, fr_lang, ar_lang, select_lang, presentation_mode, settings_labels }: HeaderProps) {
+export default function Header(props: HeaderProps) {
+    const { 
+        navLinks, 
+        current_lang, 
+        en_lang, 
+        zh_lang, 
+        id_lang, 
+        jp_lang, 
+        ru_lang, 
+        fr_lang, 
+        ar_lang, 
+        select_lang, 
+        presentation_mode, 
+        navigation_label, 
+        settings_labels 
+    } = props;
     const pathname = usePathname();
     const router = useRouter();
     const [isLangMenuVisible, setLangMenuVisible] = useState(false);
     const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [shouldShowHeader, setShouldShowHeader] = useState(true);
-    const [lastYPos, setLastYPos] = useState(0);
+    const lastYPosRef = useRef(0);
 
     const { resolvedTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
@@ -131,16 +147,21 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
     useEffect(() => {
         function handleScroll() {
             const currentYPos = window.scrollY;
-            const isScrollingUp = currentYPos < lastYPos;
+            // Add a small threshold (e.g. 5px) to avoid micro-scroll triggers
+            if (Math.abs(currentYPos - lastYPosRef.current) < 5) return;
 
-            setShouldShowHeader(isScrollingUp || currentYPos < 10);
-            setLastYPos(currentYPos);
+            const isScrollingUp = currentYPos < lastYPosRef.current;
+            const nextShouldShow = isScrollingUp || currentYPos < 10;
+            
+            if (nextShouldShow !== shouldShowHeader) {
+                setShouldShowHeader(nextShouldShow);
+            }
+            lastYPosRef.current = currentYPos;
         }
 
         window.addEventListener('scroll', handleScroll, { passive: true });
-
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [lastYPos]);
+    }, [shouldShowHeader]);
 
     const isDark = mounted && resolvedTheme === 'dark';
 
@@ -242,7 +263,10 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                 <div className="w-full flex items-center justify-between mx-auto px-4 sm:px-8 py-4">
 
                     {/* Left section (Logo + Presentation Toggle) */}
-                    <div className="flex-1 flex items-center gap-4">
+                    <div 
+                        className="flex-1 flex items-center gap-4"
+                        onMouseEnter={() => setLangMenuVisible(false)}
+                    >
                     <div className={`transition-[colors,transform,opacity] shadow-md border ${isDark ? "border-cyan-800" : "border-gray-200"} opacity-100 hover:opacity-80 scale-100 hover:scale-110 cursor-pointer rounded-full overflow-hidden transform-gpu`}>
                         <Image
                             onClick={() => router.push(getLocalizedHref('/all'))}
@@ -265,7 +289,9 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                         flex items-center justify-center transition-all duration-300 p-2 rounded-full
                                         ${(mounted && isPresentationMode) 
                                             ? 'text-cyan-500 bg-cyan-500/10 scale-110 drop-shadow-[0_0_8px_rgba(6,182,212,0.4)]' 
-                                            : 'text-gray-500 hover:text-cyan-500 hover:bg-gray-100 dark:hover:bg-gray-800'
+                                            : isDark
+                                                ? 'text-gray-400 hover:text-cyan-400 hover:bg-gray-800'
+                                                : 'text-gray-500 hover:text-cyan-600 hover:bg-gray-100'
                                         }
                                     `}
                                 >
@@ -285,7 +311,10 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                     </div>
 
                     {/* --- Desktop Navigation (Center) --- */}
-                    <nav className="hidden md:flex flex-shrink-0">
+                    <nav 
+                        className="hidden md:flex flex-shrink-0"
+                        onMouseEnter={() => setLangMenuVisible(false)}
+                    >
                         <ul className="flex items-center space-x-8">
                             {navLinks.map((link) => {
                                 const hasSubLinks = link.subLinks && link.subLinks.length > 0;
@@ -359,11 +388,17 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                     {/* Right section */}
                     <div className="flex-1 flex justify-end items-center space-x-2 md:space-x-4">
                         
-                        <div className="hidden md:block">
+                        <div 
+                            className="hidden md:block"
+                            onMouseEnter={() => setLangMenuVisible(false)}
+                        >
                             <ThemeToggle />
                         </div>
 
-                        <div className="hidden md:block">
+                        <div 
+                            className="hidden md:block"
+                            onMouseEnter={() => setLangMenuVisible(false)}
+                        >
                             <SettingsPopup labels={settings_labels} />
                         </div>
 
@@ -402,9 +437,24 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
             </header>
 
             {/* --- Mobile Sidebar Navigation --- */}
-            <div className={`no-scrollbar fixed top-0 right-0 h-full w-[80%] max-w-sm ${mobileMenuBg} backdrop-blur-xl shadow-2xl z-30 transform transition-transform duration-300 ease-out ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} md:hidden overflow-y-auto`}>
-                <nav className="mt-24 px-8 pb-12">
-                    <div className={`flex justify-between items-center mb-8 border-b ${isDark ? 'border-gray-700' : 'border-gray-200'} pb-6`}>
+            <div className={`no-scrollbar fixed top-0 right-0 h-full w-[80%] max-w-sm ${mobileMenuBg} backdrop-blur-xl shadow-2xl z-[60] transform transition-transform duration-300 ease-out ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} md:hidden overflow-y-auto`}>
+                <div className="absolute top-4 right-4 z-[70]">
+                    <button
+                        onClick={() => setMobileMenuOpen(false)}
+                        className={`${textColor} p-2 rounded-lg hover:bg-gray-100/10 transition-colors`}
+                        aria-label="Close menu"
+                    >
+                        <CloseIcon isDark={isDark} />
+                    </button>
+                </div>
+                <nav className="mt-20 px-8 pb-12">
+                    <div className="mb-8 border-b dark:border-gray-700 border-gray-200 pb-4">
+                        <span className={`text-xl font-black tracking-tight ${isDark ? 'text-cyan-400' : 'text-cyan-600'}`}>
+                            {formatCJK(navigation_label, current_lang)}
+                        </span>
+                    </div>
+
+                    <div className={`flex justify-between items-center mb-8 border-b ${isDark ? 'border-gray-700' : 'border-gray-200'} pb-6 pt-0`}>
                         <ThemeToggle />
                         <SettingsPopup labels={settings_labels} />
                     </div>
@@ -414,7 +464,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                             if (link.subLinks && link.subLinks.length > 0) {
                                 return (
                                     <li key={link.name}>
-                                        <span className={`flex items-center text-xs font-bold uppercase tracking-widest ${isDark ? 'text-gray-500' : 'text-gray-400'} mb-4`}>
+                                        <span className={`flex items-center text-sm font-bold ${isDark ? 'text-gray-400' : 'text-gray-500'} mb-4`}>
                                             {link.icon && <span className="mr-2 inline-block flex-shrink-0 opacity-70">{link.icon}</span>}
                                             {formatCJK(link.name, current_lang)}
                                         </span>
@@ -461,7 +511,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                         })}
                     </ul>
                     <div className={`mt-10 border-t ${isDark ? 'border-gray-700' : 'border-gray-200'} pt-8`}>
-                        <p className={`px-0 text-xs font-bold uppercase tracking-widest ${isDark ? 'text-gray-500' : 'text-gray-400'} mb-4`}>{select_lang}</p>
+                        <p className={`px-0 text-sm font-bold ${isDark ? 'text-gray-400' : 'text-gray-500'} mb-4`}>{select_lang}</p>
                         <LanguageMenu />
                     </div>
                 </nav>
@@ -469,7 +519,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
 
             {isMobileMenuOpen && (
                 <div
-                    className="md:hidden fixed inset-0 bg-black/40 z-20 backdrop-blur-sm transition-opacity duration-300"
+                    className="md:hidden fixed inset-0 bg-black/40 z-[50] backdrop-blur-sm transition-opacity duration-300"
                     onClick={() => setMobileMenuOpen(false)}
                 ></div>
             )}

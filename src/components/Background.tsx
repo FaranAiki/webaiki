@@ -90,7 +90,7 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
     }
 
     const init = () => {
-        const dpr = window.devicePixelRatio || 1;
+        const dpr = Math.min(window.devicePixelRatio || 1, 2); // Cap DPR for performance
         const rect = container.getBoundingClientRect();
         
         canvas.width = rect.width * dpr;
@@ -102,8 +102,10 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
         canvas.style.height = `${rect.height}px`;
 
         particles = [];
-        // Reduce particle count on smaller screens for better performance (TBT optimization)
-        const particleCount = rect.width < 768 ? 30 : PARTICLE_COUNT;
+        // Further reduce particle count on smaller screens
+        let particleCount = PARTICLE_COUNT;
+        if (rect.width < 480) particleCount = 20;
+        else if (rect.width < 768) particleCount = 40;
         
         for (let i = 0; i < particleCount; i++) {
           particles.push(new Particle(rect.width, rect.height));
@@ -200,8 +202,8 @@ export type BackgroundProps = {
 export default function Background({ carousel }: BackgroundProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [mounted, setMounted] = useState(false);
-  // Keep track of loaded images to stagger network requests (LCP/Payload optimization)
-  const [loadedIndices, setLoadedIndices] = useState<Set<number>>(new Set([0]));
+  // Preload first few images for smoother initial experience
+  const [loadedIndices, setLoadedIndices] = useState<Set<number>>(new Set([0, 1]));
   const { resolvedTheme } = useTheme();
 
   useEffect(() => {
@@ -239,7 +241,7 @@ export default function Background({ carousel }: BackgroundProps) {
         {carousel.map((src, index) => (
             <div
                 key={index}
-                className={`blur-md absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out scale-110 transform-gpu ${
+                className={`blur-sm md:blur-md absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out scale-110 transform-gpu will-change-[opacity,transform] ${
                     index === currentIndex ? 'opacity-60 z-0' : 'opacity-0 -z-10'
                 }`}
             >

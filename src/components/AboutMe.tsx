@@ -31,7 +31,7 @@ export type AboutMeProps = {
 };
 
 export const SectionSeparator = ({ isDark, isCompact }: { isDark: boolean, isCompact?: boolean }) => (
-  <div className={`SectionSeparator w-full max-w-4xl mx-auto ${isCompact ? 'my-8 md:my-12' : 'my-16 md:my-24'}`}>
+  <div className={`SectionSeparator w-full max-w-4xl mx-auto ${isCompact ? 'my-8 md:my-12' : 'my-16 md:my-24'} transform-gpu`}>
     <div className={`h-px bg-gradient-to-r from-transparent ${isDark ? 'via-gray-500/50' : 'via-black/20'} to-transparent`} />
   </div>
 );
@@ -99,7 +99,7 @@ export function AboutSection(props: AboutSubSectionProps) {
             </div>
           </div>
 
-          <div className="flex-shrink-0 relative group">
+          <div className="flex-shrink-0 relative group transform-gpu">
             <div
               className={`relative ${props.isCompact ? 'w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56' : 'w-64 h-64 md:w-80 md:h-80 lg:w-[400px] lg:h-[400px]'} flex justify-center items-center overflow-hidden transform-gpu`}
             >
@@ -156,8 +156,8 @@ export function PhilosophySection(props: AboutSubSectionProps) {
             </HoverableWords>
           </div>
 
-          <div className="flex-shrink-0">
-            <div className={`relative ${props.isCompact ? 'w-32 h-32 md:w-40 md:h-40' : 'w-56 h-56 md:w-72 md:h-72'}`}>
+          <div className="flex-shrink-0 transform-gpu">
+            <div className={`relative ${props.isCompact ? 'w-32 h-32 md:w-40 md:h-40' : 'w-56 h-56 md:w-72 md:h-72'} transform-gpu`}>
               <Image
                 src={`/images/move_forward.webp`}
                 alt="Move Forward Philosophy"
@@ -207,8 +207,8 @@ export function PrinciplesSection(props: AboutSubSectionProps) {
             </div>
           </div>
 
-          <div className="flex-shrink-0">
-            <div className={`relative ${props.isCompact ? 'w-32 h-32 md:w-40 md:h-40' : 'w-56 h-56 md:w-72 md:h-72'}`}>
+          <div className="flex-shrink-0 transform-gpu">
+            <div className={`relative ${props.isCompact ? 'w-32 h-32 md:w-40 md:h-40' : 'w-56 h-56 md:w-72 md:h-72'} transform-gpu`}>
               <Image
                 src={`/images/tree.webp`}
                 alt="Guiding Principles Tree"
@@ -258,8 +258,8 @@ export function VisionMissionSection(props: AboutSubSectionProps) {
             </div>
           </div>
 
-          <div className="flex-shrink-0">
-            <div className={`relative ${props.isCompact ? 'w-32 h-32 md:w-40 md:h-40' : 'w-56 h-56 md:w-72 md:h-72'}`}>
+          <div className="flex-shrink-0 transform-gpu">
+            <div className={`relative ${props.isCompact ? 'w-32 h-32 md:w-40 md:h-40' : 'w-56 h-56 md:w-72 md:h-72'} transform-gpu`}>
               <Image
                 src={`/images/vission_mission.webp`}
                 alt="Vision and Mission"

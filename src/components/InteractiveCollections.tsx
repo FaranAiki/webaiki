@@ -20,7 +20,6 @@ export type InteractiveCollectionsProps = {
 export default function InteractiveCollections( { data, force_click, lang }: InteractiveCollectionsProps ) {
   const [activeHeadingOne, setActiveHeadingOne] = useState<string | null>(null);
   const [activeHeadingTwo, setActiveHeadingTwo] = useState<string | null>(null);
-  const [leaveMouse, setLeaveMouse] = useState<boolean>(false);
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const { } = usePresentation();
@@ -130,26 +129,21 @@ export default function InteractiveCollections( { data, force_click, lang }: Int
       {/* Normal Mode */}
       <main className={`block body-presentation-mode:hidden min-h-screen ${isDark ? 'text-white' : 'text-gray-900'} p-4 sm:p-8`}>
         <div className="container mx-auto max-w-xl w-auto">
-          <div className="flex flex-col items-center gap-6 w-auto"
-          onMouseLeave = {() => !force_click && (activeHeadingTwo === null) && setActiveHeadingOne(null) || setLeaveMouse(false)}>
+          <div className="flex flex-col items-center gap-6 w-auto">
             {Object.entries(data).map(([headingOne, courses]) => (
               (Object.entries(courses).length > 0) &&
               <FadeInSection key={headingOne} className="w-full max-w-2xl">
                   <div 
                   className="w-full"
-                  onMouseEnter={() => !force_click && !leaveMouse && (activeHeadingTwo === null) && setActiveHeadingOne(headingOne)}
-                  onMouseLeave={() => false && !force_click && (activeHeadingTwo === null) && setActiveHeadingOne(null) || setLeaveMouse(false)}
+                  onMouseEnter={() => !force_click && (activeHeadingTwo === null) && setActiveHeadingOne(headingOne)}
                   >
                   <button
                       onClick={() => {
                       if (force_click) {
-                          setActiveHeadingOne(headingOne);
-                      } else if (activeHeadingTwo !== null) {
-                          setActiveHeadingOne(null);
-                          setActiveHeadingTwo(null);
-                          setLeaveMouse(true);
+                          setActiveHeadingOne(activeHeadingOne === headingOne ? null : headingOne);
                       } else {
-                          setActiveHeadingOne(headingOne);
+                          setActiveHeadingOne(activeHeadingOne === headingOne ? null : headingOne);
+                          setActiveHeadingTwo(null);
                       }}}
                       className={`w-full flex justify-between items-center text-left p-4 rounded-lg transition-[colors,transform] duration-300 border-transparent ${
                       activeHeadingOne === headingOne

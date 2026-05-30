@@ -190,6 +190,15 @@ export const getOrganizationExperiences = (dict: Dictionary) => [
     year: '2026',
     jobs: [
       {
+        date: `${dict.May} — ${dict.Present}`,
+        title: dict.GDG_ITB_Title,
+        company: 'GDG Campus ITB',
+        description: dict.GDG_ITB_Description,
+        image: [
+          '/documents/organization/GDGoC_ITB_0.png',
+        ]
+      },
+      {
         date: `${dict.March} — ${dict.Present}`,
         title: dict.Impact_Web_Lead,
         company: dict.STEI_K || 'STEI-K',

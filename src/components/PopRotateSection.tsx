@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 
 interface PopRotateSectionProps {
   children: React.ReactNode;
@@ -8,40 +8,20 @@ interface PopRotateSectionProps {
   className?: string;
 }
 
-// gemini generated this shit
 export default function PopRotateSection({ children, delay = 0, className = "" }: PopRotateSectionProps) {
-  const [isVisible, setVisible] = useState(false);
-  const domRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const element = domRef.current;
-    if (!element) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          setVisible(entry.isIntersecting);
-        });
-      },
-      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
-    );
-
-    observer.observe(element);
-    return () => observer.unobserve(element);
-  }, []);
-
   return (
-    <div
-      ref={domRef}
-      style={{ transitionDelay: `${delay}ms` }}
-      // Uses a bouncy cubic-bezier for the 'Pop' effect
-      className={`transition-[opacity,transform,filter] duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] transform ${className} ${
-        isVisible
-          ? 'opacity-100 scale-100 rotate-0 translate-y-0 blur-0'
-          : 'opacity-0 scale-75 rotate-6 translate-y-12 blur-sm' 
-      }`}
+    <motion.div
+      initial={{ opacity: 0, scale: 0.75, rotate: 6, y: 48, filter: 'blur(4px)' }}
+      whileInView={{ opacity: 1, scale: 1, rotate: 0, y: 0, filter: 'blur(0px)' }}
+      viewport={{ once: true, margin: "0px 0px -50px 0px" }}
+      transition={{ 
+        duration: 0.7, 
+        delay: delay / 1000,
+        ease: [0.34, 1.56, 0.64, 1] // bouncy ease
+      }}
+      className={`relative transform-gpu ${className}`}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }
