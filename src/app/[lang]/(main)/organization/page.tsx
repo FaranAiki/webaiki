@@ -171,7 +171,14 @@ export default async function OrganizationExperiencesPage({ params }: { params: 
 
   return (
     <main className="w-full">
-      <ExperiencesClient experiences={organizationExperiences} lang={lang} canChange={true} />
+      <ExperiencesClient 
+        experiences={organizationExperiences} 
+        lang={lang} 
+        canChange={true} 
+        original_text={dict.Original}
+        timeline_text={dict.Timeline}
+        grid_text={dict.Grid}
+      />
     </main>
   );
 }

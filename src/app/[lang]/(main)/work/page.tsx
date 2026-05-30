@@ -118,7 +118,14 @@ export default async function WorkExperiencesPage({ params }: { params: Promise<
 
   return (
     <main className="w-full">
-      <ExperiencesClient experiences={workExperiences} lang={lang} canChange={true} />
+      <ExperiencesClient 
+        experiences={workExperiences} 
+        lang={lang} 
+        canChange={true} 
+        original_text={dict.Original}
+        timeline_text={dict.Timeline}
+        grid_text={dict.Grid}
+      />
     </main>
   );
 }

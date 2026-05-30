@@ -119,6 +119,14 @@ export default async function AllPage({ params }: { params: Promise<{ lang: stri
     textClass: "text-black dark:text-gray-200",
   };
 
+  const commonExpProps = {
+    lang,
+    canChange: false,
+    original_text: dict.Original,
+    timeline_text: dict.Timeline,
+    grid_text: dict.Grid
+  };
+
   return (
     <main className="w-full flex flex-col items-center pb-32 bg-gray-50/30 dark:bg-black/20">
       
@@ -147,12 +155,12 @@ export default async function AllPage({ params }: { params: Promise<{ lang: stri
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-12 lg:gap-x-20 items-start border-t border-gray-100 dark:border-gray-900 pt-8">
           <section id="work" className="w-full">
             <SectionTitle title={dict.Work} />
-            <ExperiencesClient experiences={work} lang={lang} layout="original" canChange={false} />
+            <ExperiencesClient experiences={work} layout="original" {...commonExpProps} />
           </section>
 
           <section id="project" className="w-full">
             <SectionTitle title={dict.Project} />
-            <ExperiencesClient experiences={projects} lang={lang} layout="timeline" canChange={false} />
+            <ExperiencesClient experiences={projects} layout="timeline" {...commonExpProps} />
           </section>
         </div>
 
@@ -160,12 +168,14 @@ export default async function AllPage({ params }: { params: Promise<{ lang: stri
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-12 lg:gap-x-20 items-start border-t border-gray-100 dark:border-gray-900 pt-8">
           <section id="organization" className="w-full">
             <SectionTitle title={dict.Organization} />
-            <ExperiencesClient experiences={orgs} lang={lang} layout="original" canChange={false} />
+            <ExperiencesClient experiences={orgs} layout="original" {...commonExpProps} />
           </section>
 
           <section id="award" className="w-full">
             <SectionTitle title={dict.Award} />
-            <ExperiencesClient experiences={awards} lang={lang} layout="grid" canChange={false} />
+            <div className="px-4 md:px-12">
+              <ExperiencesClient experiences={awards} layout="grid" {...commonExpProps} />
+            </div>
           </section>
         </div>
 

@@ -35,9 +35,20 @@ interface ExperiencesClientProps {
     lang?: string;
     layout?: LayoutType;
     canChange?: boolean;
+    original_text?: string;
+    timeline_text?: string;
+    grid_text?: string;
 }
 
-export default function ExperiencesClient({ experiences, lang, layout = 'original', canChange = false }: ExperiencesClientProps) {
+export default function ExperiencesClient({ 
+    experiences, 
+    lang, 
+    layout = 'original', 
+    canChange = false,
+    original_text = 'Original',
+    timeline_text = 'Timeline',
+    grid_text = 'Grid'
+}: ExperiencesClientProps) {
     const [currentLayout, setCurrentLayout] = useState<LayoutType>(layout);
     const [activeJob, setActiveJob] = useState(experiences[0].jobs[0]);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -72,7 +83,16 @@ export default function ExperiencesClient({ experiences, lang, layout = 'origina
 
     }, [activeJob]);
 
+    // PREVENT HYDRATION BLINK: 
+    // Always render with a "neutral" or "default" state first (e.g. Light Mode colors) 
+    // and only switch to dark mode styles AFTER mounting.
     const isDark = mounted && resolvedTheme === 'dark';
+    
+    // Fallback classes during SSR/initial hydration to avoid mismatch/blink
+    const containerThemeClass = mounted 
+        ? (isDark ? 'text-white' : 'text-gray-900') 
+        : 'text-gray-900'; // Default to light-ish text to match common background
+
     const mainText = isDark ? 'text-white' : 'text-black';
 
     // Using objects for inline styles to bypass global !important CSS
@@ -95,14 +115,14 @@ export default function ExperiencesClient({ experiences, lang, layout = 'origina
             <div className="fixed bottom-8 right-8 z-50 flex items-center bg-white/90 dark:bg-gray-900/90 p-1.5 rounded-xl border border-gray-200 dark:border-gray-800 backdrop-blur-md shadow-lg">
                 <div className="flex gap-1">
                     {[
-                        { id: 'original', icon: <LayoutPanelLeft size={18} /> },
-                        { id: 'timeline', icon: <Milestone size={18} /> },
-                        { id: 'grid', icon: <LayoutGrid size={18} /> }
+                        { id: 'original', icon: <LayoutPanelLeft size={18} />, label: original_text },
+                        { id: 'timeline', icon: <Milestone size={18} />, label: timeline_text },
+                        { id: 'grid', icon: <LayoutGrid size={18} />, label: grid_text }
                     ].map((l) => (
                         <button
                             key={l.id}
                             onClick={() => setCurrentLayout(l.id as LayoutType)}
-                            title={l.id.charAt(0).toUpperCase() + l.id.slice(1)}
+                            title={l.label}
                             className={`p-2 rounded-lg transition-colors ${
                                 currentLayout === l.id
                                     ? 'bg-cyan-500 text-white'
@@ -246,6 +266,8 @@ export default function ExperiencesClient({ experiences, lang, layout = 'origina
                                                     alt={job.company}
                                                     fill
                                                     className="object-cover"
+                                                    placeholder="blur"
+                                                    blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(400, 225))}`}
                                                 />
                                             </div>
                                         </div>
@@ -288,6 +310,8 @@ export default function ExperiencesClient({ experiences, lang, layout = 'origina
                                 alt={job.company}
                                 fill
                                 className="object-cover transition-transform duration-500 group-hover:scale-110"
+                                placeholder="blur"
+                                blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(400, 225))}`}
                             />
                         ) : (
                             <div className="w-full h-full flex items-center justify-center text-gray-400">No Image</div>
@@ -325,7 +349,7 @@ export default function ExperiencesClient({ experiences, lang, layout = 'origina
                         slideIndex={idx + 1}
                         totalSlides={allJobs.length}
                     >
-                        <div className={`${isDark ? 'text-white' : 'text-gray-900'} w-full h-full px-4 md:px-8 flex flex-col md:flex-row print:flex-row gap-4 md:gap-12 items-center justify-center mx-auto pt-16 pb-8`}>
+                        <div className={`${mounted && isDark ? 'text-white' : 'text-gray-900'} w-full h-full px-4 md:px-8 flex flex-col md:flex-row print:flex-row gap-4 md:gap-12 items-center justify-center mx-auto pt-16 pb-8`}>
                             <div className="flex-[1.2] flex flex-col justify-center space-y-6 max-w-2xl print:max-w-none">
                                 <div className="space-y-2">
                                     <h2 className="text-cyan-500 font-bold text-xl md:text-2xl tracking-tight">{job.year}</h2>
@@ -360,7 +384,7 @@ export default function ExperiencesClient({ experiences, lang, layout = 'origina
             {/* Normal Mode */}
             {!isPresentationMode && (
                 <div className="block">
-                <div className={`${isDark ? 'text-white' : 'text-gray-900'} min-h-screen p-4 sm:p-8 md:p-12 w-full`}>
+                <div className={`${containerThemeClass} min-h-screen p-4 sm:p-8 md:p-12 w-full transition-colors duration-300`}>
                     <div className="container mx-auto max-w-6xl pt-16">
                         {currentLayout === 'original' && <OriginalLayout />}
                         {currentLayout === 'timeline' && <TimelineLayout />}

@@ -57,5 +57,13 @@ export default async function AwardPage({ params }: { params: Promise<{ lang: st
     },
   ];
 
-  return <ExperiencesClient experiences={awards} lang={lang} layout="grid" canChange={true} />;
+  return <ExperiencesClient 
+    experiences={awards} 
+    lang={lang} 
+    layout="grid" 
+    canChange={true} 
+    original_text={dict.Original}
+    timeline_text={dict.Timeline}
+    grid_text={dict.Grid}
+  />;
 }
