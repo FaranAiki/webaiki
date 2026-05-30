@@ -17,10 +17,10 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   return {
     metadataBase: new URL('https://faranaiki.id'),
     title: `${dict.Literature} | Faran Aiki`,
-    description: "Faran Aiki's short stories, poems, and other literary works",
+    description: dict.SEO_Literature_Description || "Faran Aiki's short stories, poems, and other literary works",
     openGraph: {
       title: `${dict.Literature} | Faran Aiki`,
-      description: "Faran Aiki's short stories, poems, and other literary works",
+      description: dict.SEO_Literature_Description || "Faran Aiki's short stories, poems, and other literary works",
       url: `https://faranaiki.id/${lang}/literature`,
       siteName: "faranaiki.id",
       type: "website",

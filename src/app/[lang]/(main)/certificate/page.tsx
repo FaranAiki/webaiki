@@ -64,10 +64,10 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   return {
     metadataBase: new URL('https://faranaiki.id'),
     title: `${dict.Certificate} | Faran Aiki`,
-    description: "Faran Aiki's personal certificates",
+    description: dict.SEO_Certificate_Description || "Faran Aiki's personal certificates",
     openGraph: {
       title: `${dict.Certificate} | Faran Aiki`,
-      description: "Faran Aiki's personal certificates",
+      description: dict.SEO_Certificate_Description || "Faran Aiki's personal certificates",
       url: `https://faranaiki.id/${lang}/certificate`,
       siteName: "faranaiki.id",
       type: "website",

@@ -20,10 +20,10 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   return {
     metadataBase: new URL('https://faranaiki.id'),
     title: `${dict.About_Me} | Faran Aiki`,
-    description: dict.Faran_About_1?.replace(/<[^>]*>/g, '') || "Muhammad Faran Aiki's personal files, portfolio, and others",
+    description: dict.SEO_Home_Description || "Muhammad Faran Aiki's personal files, portfolio, and others",
     openGraph: {
       title: `${dict.About_Me} | Faran Aiki`,
-      description: dict.Faran_About_1?.replace(/<[^>]*>/g, '') || "Muhammad Faran Aiki's personal files, portfolio, and others",
+      description: dict.SEO_Home_Description || "Muhammad Faran Aiki's personal files, portfolio, and others",
       url: `https://faranaiki.id/${lang}`,
       siteName: "faranaiki.id",
       type: "website",

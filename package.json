@@ -4,11 +4,13 @@
   "private": false,
   "scripts": {
     "next-sitemap": "next-sitemap",
-    "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "dev": "NODE_OPTIONS='--no-deprecation' next dev --turbopack",
+    "build": "NODE_OPTIONS='--no-deprecation' next build --turbopack",
     "postbuild": "npm run next-sitemap",
-    "start": "next start",
-    "lint": "eslint"
+    "start": "NODE_OPTIONS='--no-deprecation' next start",
+    "lint": "eslint",
+    "test": "cypress run",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
@@ -41,6 +43,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/webpack": "^5.28.5",
+    "cypress": "^15.16.0",
     "eslint": "^9",
     "eslint-config-next": "15.5.3",
     "tailwindcss": "^4",

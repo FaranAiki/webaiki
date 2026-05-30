@@ -14,10 +14,10 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   return {
     metadataBase: new URL('https://faranaiki.id'),
     title: `${dict.Work} | Faran Aiki`,
-    description: dict.Software_Engineer_Description || "Faran Aiki's Work History and Internships",
+    description: dict.SEO_Work_Description || "Faran Aiki's Work History and Internships",
     openGraph: {
       title: `${dict.Work} | Faran Aiki`,
-      description: dict.Software_Engineer_Description || "Faran Aiki's Work History and Internships",
+      description: dict.SEO_Work_Description || "Faran Aiki's Work History and Internships",
       url: `https://faranaiki.id/${lang}/work`,
       siteName: "faranaiki.id",
       type: "website",
