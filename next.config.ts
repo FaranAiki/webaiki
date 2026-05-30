@@ -3,6 +3,9 @@ import type { Configuration as WebpackConfiguration } from 'webpack';
 import path from 'path';
 
 const nextConfig: NextConfig = {
+  // Opt-out of bundling for packages that don't play well with it (like Puppeteer)
+  serverExternalPackages: ["puppeteer-core", "@sparticuz/chromium"],
+
   // Turbopack configuration to resolve root directory issues
   turbopack: {
     root: path.resolve('.'),

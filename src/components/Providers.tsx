@@ -4,6 +4,7 @@ import { ThemeProvider } from "next-themes";
 import { useEffect, useState } from "react";
 import { PresentationProvider } from "./PresentationContext";
 import { SettingsProvider } from "./SettingsContext";
+import SultanPrint from "./SultanPrint";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false);
@@ -28,6 +29,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <PresentationProvider>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
+          <SultanPrint />
         </ThemeProvider>
       </PresentationProvider>
     </SettingsProvider>

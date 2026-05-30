@@ -109,17 +109,18 @@ export function PresentationProvider({ children }: { children: React.ReactNode }
         const main = document.querySelector('main');
         if (!main) return;
 
-        // Modern approach: Using the native browser print functionality.
-        // This is much more robust than library snapshots because it uses the 
-        // browser's native PDF rendering engine, preserving true text and layout.
+        // Ctrl + P: Browser Print
+        if (e.ctrlKey && !e.altKey && e.key.toLowerCase() === 'p') {
+          e.preventDefault();
+          window.print();
+          return;
+        }
+
+        // Ctrl + Alt + P: High Quality "Sultan" Print
         if (e.ctrlKey && e.altKey && e.key.toLowerCase() === 'p') {
           e.preventDefault();
-          
-          // Trigger the browser's native print dialog with a small delay
-          // to ensure the layout has settled, which helps Chromium load the preview.
-          setTimeout(() => {
-            window.print();
-          }, 100);
+          // Dispatch a custom event that components can listen to
+          window.dispatchEvent(new CustomEvent('sultan-print'));
           return;
         }
 
