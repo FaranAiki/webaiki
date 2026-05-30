@@ -6,7 +6,21 @@ import { PresentationProvider } from "./PresentationContext";
 import { SettingsProvider } from "./SettingsContext";
 import SultanPrint from "./SultanPrint";
 
-export function Providers({ children }: { children: React.ReactNode }) {
+interface ProvidersProps {
+  children: React.ReactNode;
+  sultanLabels?: {
+    Creating: string;
+    Ready: string;
+    Failed: string;
+    Description: string;
+    Download: string;
+    Estimating: string;
+    Dismiss: string;
+    Cancel: string;
+  };
+}
+
+export function Providers({ children, sultanLabels }: ProvidersProps) {
   const [mounted, setMounted] = useState(false);
 
   // Only render the provider after mounting to prevent hydration mismatches
@@ -29,7 +43,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <PresentationProvider>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
-          <SultanPrint />
+          <SultanPrint labels={sultanLabels} />
         </ThemeProvider>
       </PresentationProvider>
     </SettingsProvider>

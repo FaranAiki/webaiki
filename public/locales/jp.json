@@ -181,5 +181,13 @@
   "Letter_Spacing": "文字の間隔",
   "Line_Height": "行の高さ",
   "Font_Default": "デフォルト",
-  "Reset_Settings": "設定をリセット"
+  "Reset_Settings": "設定をリセット",
+  "Sultan_PDF_Creating": "Sultan PDF を作成中...",
+  "Sultan_PDF_Ready": "Sultan PDF の準備が完了しました！",
+  "Sultan_PDF_Failed": "印刷に失敗しました",
+  "Sultan_PDF_Description": "高忠実度ベクトル PDF をレンダリング中",
+  "Sultan_PDF_Download": "ダウンロードは自動的に開始されます",
+  "Estimating": "推定中...",
+  "Dismiss": "閉じる",
+  "Cancel": "キャンセル"
 }

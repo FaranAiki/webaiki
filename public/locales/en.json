@@ -149,7 +149,8 @@
   "Sponsorship_Wisokto_ITB": "ITB October Graduation 2025 Sponsorship, WisNight Committee, and Nipis Madu Promotion",
   "Sponsorship_Wisokto_ITB_Description": "Contacting several companies for collaboration in the October 2025 Graduation ceremony of the Bandung Institute of Technology, such as Mamikos. Additionally, serving as a committee member assisting in the WisNight event process, such as transporting seven boxes of Nipis Madu. Then, creating four Nipis Madu promotional videos assisted by other committee members.",
   "Impact_Web_Lead": "Web Development Team Lead Web Impact 6.0",
-  "Impact_Web_Lead_Description": "Managing a website for the olympiad IMPACT 6.0 by Sekolah Teknik Elektro Informatika - Komputasi, made for competitions for high schooler, including managing front end, back end, Moodles and Judgels. Additionally, the frontend framework utilizes NextJS, TailwindCSS, and TypeScript, while the backend uses a Supabase SQL database with Prisma Object-Relational Mapping.",  "Treasurer_SYNC": "Treasurer for the STEI-K Gathering Event",
+  "Impact_Web_Lead_Description": "Managing a website for the olympiad IMPACT 6.0 by Sekolah Teknik Elektro Informatika - Komputasi, made for competitions for high schooler, including managing front end, back end, Moodles and Judgels. Additionally, the frontend framework utilizes NextJS, TailwindCSS, and TypeScript, while the backend uses a Supabase SQL database with Prisma Object-Relational Mapping.",
+  "Treasurer_SYNC": "Treasurer for the STEI-K Gathering Event",
   "STEI-K": "School of Electrical Engineering and Informatics - Computation",
   "Treasurer_SYNC_Description": "Secured one million rupiah in sponsorship for the faculty gathering event SYNC: Say Yes to New Connections and assisted in managing the finances.",
   "IT_Club_Vice_Renpy": "Vice Project Manager for the 2024 IT Club Final Project",
@@ -180,5 +181,13 @@
   "Letter_Spacing": "Letter Spacing",
   "Line_Height": "Line Height",
   "Font_Default": "Default",
-  "Reset_Settings": "Reset Settings"
+  "Reset_Settings": "Reset Settings",
+  "Sultan_PDF_Creating": "Sultan PDF is being created...",
+  "Sultan_PDF_Ready": "Sultan PDF Ready!",
+  "Sultan_PDF_Failed": "Print Failed",
+  "Sultan_PDF_Description": "Rendering high-fidelity vector PDF",
+  "Sultan_PDF_Download": "Download should start automatically",
+  "Estimating": "Estimating...",
+  "Dismiss": "Dismiss",
+  "Cancel": "Cancel"
 }

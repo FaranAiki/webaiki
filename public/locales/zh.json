@@ -149,7 +149,8 @@
   "Sponsorship_Wisokto_ITB": "ITB 2025年10月毕业典礼赞助、WisNight 委员会及 Nipis Madu 推广",
   "Sponsorship_Wisokto_ITB_Description": "联系多家公司进行万隆理工学院 2025 年 10 月毕业典礼的合作，例如 Mamikos。此外，担任委员会成员协助 WisNight 活动进程，如搬运七箱 Nipis Madu。随后在其他委员会成员的协助下制作了四个 Nipis Madu 推广视频。",
   "Impact_Web_Lead": "Web 开发团队负责人 Web Impact 6.0",
-  "Impact_Web_Lead_Description": "管理由电气工程与信息学院 - 计算专业主办的 IMPACT 6.0 奥林匹克竞赛网站，该网站专为高中生竞赛而设计，包括管理前端、后端、Moodle 和 Judgel。此外，前端框架使用 NextJS、TailwindCSS 和 TypeScript，后端使用带有 Prisma 对象关系映射 (ORM) 的 Supabase SQL 数据库。",  "Treasurer_SYNC": "STEI-K 聚会活动财务",
+  "Impact_Web_Lead_Description": "管理由电气工程与信息学院 - 计算专业主办的 IMPACT 6.0 奥林匹克竞赛网站，该网站专为高中生竞赛而设计，包括管理前端、后端、Moodle 和 Judgel。此外，前端框架使用 NextJS、TailwindCSS 和 TypeScript，后端使用带有 Prisma 对象关系映射 (ORM) 的 Supabase SQL 数据库。",
+  "Treasurer_SYNC": "STEI-K 聚会活动财务",
   "STEI-K": "电气工程与信息学院 - 计算专业",
   "Treasurer_SYNC_Description": "为学院聚会活动 SYNC: Say Yes to New Connections 筹集了 100 万印尼盾的赞助资金，并协助管理财务。",
   "IT_Club_Vice_Renpy": "2024年 IT 俱乐部最终项目副项目经理",
@@ -180,5 +181,13 @@
   "Letter_Spacing": "字符间距",
   "Line_Height": "行高",
   "Font_Default": "默认",
-  "Reset_Settings": "重置设置"
+  "Reset_Settings": "重置设置",
+  "Sultan_PDF_Creating": "Sultan PDF 正在创建中...",
+  "Sultan_PDF_Ready": "Sultan PDF 已准备就绪！",
+  "Sultan_PDF_Failed": "打印失败",
+  "Sultan_PDF_Description": "正在渲染高保真矢量 PDF",
+  "Sultan_PDF_Download": "下载应自动开始",
+  "Estimating": "正在评估...",
+  "Dismiss": "关闭",
+  "Cancel": "取消"
 }

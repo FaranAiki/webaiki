@@ -437,9 +437,9 @@ body.presentation-mode .presentation-section img {
   }
 
   /* Anti-oklab Compatibility Layer - Mandatory for html2canvas / Sultan Print */
+  /* We only apply to root to provide variables, but NOT force on all elements with '*' */
   html.is-printing-sultan, 
-  html.is-printing-sultan *,
-  .is-printing-sultan :root {
+  html.is-printing-sultan :root {
     --background: #f9fafb !important;
     --foreground: #000000 !important;
     --primary: #0891b2 !important;
@@ -473,7 +473,7 @@ body.presentation-mode .presentation-section img {
   }
 
   html.dark.is-printing-sultan,
-  html.dark.is-printing-sultan * {
+  html.dark.is-printing-sultan :root {
     --background: #0a0a0a !important;
     --foreground: #ededed !important;
     --primary: #22d3ee !important;

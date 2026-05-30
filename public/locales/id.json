@@ -149,7 +149,8 @@
   "Sponsorship_Wisokto_ITB": "Sponsorship Wisokto ITB 2025, Panitia WisNight, dan Promosi Nipis Madu",
   "Sponsorship_Wisokto_ITB_Description": "Menghubungi dan mengontak beberapa perusahaan untuk bekerja sama dalam acara Wisuda Oktober 2025 Institut Teknologi Bandung, seperti Mamikos. Selain itu, menjadi panitia yang membantu dalam proses acara WisNight, seperti mengangkut tujuh kardus Nipis Madu. Kemudian, membuat empat video promosi Nipis Madu yang dibantu oleh panitia lainnya.",
   "Impact_Web_Lead": "Ketua Tim Pengembangan Web Impact 6.0",
-  "Impact_Web_Lead_Description": "Mengelola situs web untuk olimpiade IMPACT 6.0 oleh Sekolah Teknik Elektro Informatika - Komputasi, yang dibuat untuk kompetisi bagi siswa SMA, termasuk mengelola front end, back end, Moodle, dan Judgel. Selain itu, framework untuk frontend menggunakan NextJS, TailwindCSS, dan TypeScript, serta untuk backend menggunakan database SQL Supabase dengan Object-Relational Mapping Prisma.",  "Treasurer_SYNC": "Bendahara Acara Gathering STEI-K",
+  "Impact_Web_Lead_Description": "Mengelola situs web untuk olimpiade IMPACT 6.0 oleh Sekolah Teknik Elektro Informatika - Komputasi, yang dibuat untuk kompetisi bagi siswa SMA, termasuk mengelola front end, back end, Moodle, dan Judgel. Selain itu, framework untuk frontend menggunakan NextJS, TailwindCSS, dan TypeScript, serta untuk backend menggunakan database SQL Supabase dengan Object-Relational Mapping Prisma.",
+  "Treasurer_SYNC": "Bendahara Acara Gathering STEI-K",
   "STEI-K": "Sekolah Teknik Elektro dan Informatika - Komputasi",
   "Treasurer_SYNC_Description": "Mendapatkan sponsorship senilai satu juta untuk acara perkumpulan fakultas SYNC: Say Yes to New Connections dan membantu dalam mengurus keuangan.",
   "IT_Club_Vice_Renpy": "Wakil Ketua Pelaksana Projek Akhir IT Club 2024",
@@ -180,5 +181,13 @@
   "Letter_Spacing": "Jarak Antarhuruf",
   "Line_Height": "Tinggi Baris",
   "Font_Default": "Bawaan",
-  "Reset_Settings": "Atur Ulang"
+  "Reset_Settings": "Atur Ulang",
+  "Sultan_PDF_Creating": "Sultan PDF sedang dibuat...",
+  "Sultan_PDF_Ready": "Sultan PDF Siap!",
+  "Sultan_PDF_Failed": "Cetak Gagal",
+  "Sultan_PDF_Description": "Merender PDF vektor kesetiaan tinggi",
+  "Sultan_PDF_Download": "Unduhan akan dimulai secara otomatis",
+  "Estimating": "Mengestimasi...",
+  "Dismiss": "Tutup",
+  "Cancel": "Batal"
 }

@@ -17,6 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 import { Providers } from "@/components/Providers";
+import { getDictionary } from "@/components/Translator";
 
 export default async function BaseLayout({
   children,
@@ -27,17 +28,26 @@ export default async function BaseLayout({
 }>) {
   const nonce = (await headers()).get('x-nonce') || undefined;
   const { lang } = await params;
+  const dict = getDictionary(lang);
 
-  // We can fetch dictionary here if needed, but sub-layouts also do it.
-  // For now, let's just provide the basic structure.
+  const sultanLabels = {
+    Creating: dict.Sultan_PDF_Creating,
+    Ready: dict.Sultan_PDF_Ready,
+    Failed: dict.Sultan_PDF_Failed,
+    Description: dict.Sultan_PDF_Description,
+    Download: dict.Sultan_PDF_Download,
+    Estimating: dict.Estimating,
+    Dismiss: dict.Dismiss,
+    Cancel: dict.Cancel
+  };
 
   return (
     <html lang={lang} suppressHydrationWarning={true} nonce={nonce}>
       <head>
         <meta name="google-site-verification" content="xZMulZsvn0xj7TrxhEN8O9KLWSmNIfx6tqFtOpbgOV4" />
       </head>
-      <body className={`${geistSans.className} ${geistMono.variable} antialiased`}>
-        <Providers>
+      <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
+        <Providers sultanLabels={sultanLabels}>
           {children}
         </Providers>
         <Script

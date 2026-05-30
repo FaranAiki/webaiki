@@ -109,7 +109,6 @@ export async function POST(req: NextRequest) {
         requestUrl.includes('google-analytics') ||
         requestUrl.includes('facebook') ||
         requestUrl.includes('twitter') ||
-        (resourceType === 'font' && !requestUrl.includes('geist')) ||
         resourceType === 'media' ||
         resourceType === 'websocket' ||
         resourceType === 'other'
@@ -244,6 +243,7 @@ export async function POST(req: NextRequest) {
 
     // 5. Minimal wait for fonts
     await page.evaluateHandle('document.fonts.ready');
+    await new Promise(r => setTimeout(r, 500)); // Safety buffer for glyph rendering
 
     const pdfBuffer = await page.pdf({
       format: 'A4',

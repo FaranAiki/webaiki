@@ -149,7 +149,8 @@
   "Sponsorship_Wisokto_ITB": "Sponsorisation de la remise des diplômes d'octobre 2025 de l'ITB, comité WisNight et promotion de Nipis Madu",
   "Sponsorship_Wisokto_ITB_Description": "Contact de plusieurs entreprises pour une collaboration lors de la cérémonie de remise des diplômes d'octobre 2025 de l'Institut de Technologie de Bandung, comme Mamikos. De plus, service en tant que membre du comité aidant au processus de l'événement WisNight, comme le transport de sept boîtes de Nipis Madu. Ensuite, création de quatre vidéos promotionnelles pour Nipis Madu avec l'aide d'autres membres du comité.",
   "Impact_Web_Lead": "Chef d'équipe du développement Web Web Impact 6.0",
-  "Impact_Web_Lead_Description": "Gestion d'un site Web pour l'olympiade IMPACT 6.0 par l'École d'Électrotechnique et d'Informatique - Calcul, conçu pour les compétitions pour lycéens, incluant la gestion du front-end, du back-end, de Moodles et de Judgels. De plus, le framework front-end utilise NextJS, TailwindCSS et TypeScript, tandis que le back-end utilise une base de données SQL Supabase avec le mapping objet-relationnel Prisma.",  "Treasurer_SYNC": "Trésorier pour l'événement de rassemblement STEI-K",
+  "Impact_Web_Lead_Description": "Gestion d'un site Web pour l'olympiade IMPACT 6.0 par l'École d'Électrotechnique et d'Informatique - Calcul, conçu pour les compétitions pour lycéens, incluant la gestion du front-end, du back-end, de Moodles et de Judgels. De plus, le framework front-end utilise NextJS, TailwindCSS et TypeScript, tandis que le back-end utilise une base de données SQL Supabase avec le mapping objet-relationnel Prisma.",
+  "Treasurer_SYNC": "Trésorier pour l'événement de rassemblement STEI-K",
   "STEI-K": "École d'Électrotechnique et d'Informatique - Calcul",
   "Treasurer_SYNC_Description": "Obtention d'un parrainage d'un million de roupies pour l'événement de rassemblement de la faculté SYNC : Say Yes to New Connections et aide à la gestion des finances.",
   "IT_Club_Vice_Renpy": "Directeur de projet adjoint pour le projet final de l'IT Club 2024",
@@ -180,5 +181,13 @@
   "Letter_Spacing": "Espacement des lettres",
   "Line_Height": "Hauteur de ligne",
   "Font_Default": "Par défaut",
-  "Reset_Settings": "Réinitialiser"
-  }
+  "Reset_Settings": "Réinitialiser",
+  "Sultan_PDF_Creating": "Le PDF Sultan est en cours de création...",
+  "Sultan_PDF_Ready": "Sultan PDF prêt !",
+  "Sultan_PDF_Failed": "Échec de l'impression",
+  "Sultan_PDF_Description": "Rendu d'un PDF vectoriel haute fidélité",
+  "Sultan_PDF_Download": "Le téléchargement devrait démarrer automatiquement",
+  "Estimating": "Estimation...",
+  "Dismiss": "Fermer",
+  "Cancel": "Annuler"
+}
