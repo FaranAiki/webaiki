@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import React from 'react';
-import AboutMe from '@/components/AboutMe';
+import { 
+  AboutSection, 
+  PhilosophySection, 
+  PrinciplesSection, 
+  VisionMissionSection 
+} from '@/components/AboutMe';
 import ExperiencesClient from '@/components/ExperienceDisplayer';
 import MusicDisplay from '@/components/MusicDisplay';
 import SocialDisplay from '@/components/SocialDisplay';
@@ -68,13 +73,13 @@ async function getMusicData() {
 }
 
 const SectionTitle = ({ title, icon }: { title: string, icon?: React.ReactNode }) => (
-  <div className="flex items-center justify-center gap-4 mb-12 pt-24">
-    <div className="h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent flex-1" />
-    <h2 className="text-3xl md:text-5xl font-black tracking-tighter uppercase flex items-center gap-3">
+  <div className="flex items-center gap-4 mb-8 pt-12">
+    <div className="h-8 w-1 bg-cyan-500 rounded-full" />
+    <h2 className="text-xl md:text-2xl font-black tracking-tighter uppercase flex items-center gap-3">
       {icon}
       {title}
     </h2>
-    <div className="h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent flex-1" />
+    <div className="h-px bg-gray-200 dark:bg-gray-800 flex-1 ml-2" />
   </div>
 );
 
@@ -82,7 +87,6 @@ export default async function AllPage({ params }: { params: Promise<{ lang: stri
   const { lang } = await params;
   const dict = getDictionary(lang);
   
-  // Data gathering
   const photos = getFaranAikiPhoto();
   const work = getWorkExperiences(dict);
   const projects = getProjectExperiences(dict);
@@ -93,87 +97,115 @@ export default async function AllPage({ params }: { params: Promise<{ lang: stri
   const college = getCollectionsDataSync(lang, 'college');
   const certificates = getCertificatesDataSync(lang);
 
+  const commonProps = {
+    carouselPhotos: photos,
+    faran_photo: dict.Faran_Photo,
+    about_philosophy_title: dict.Faran_Philosophy_Title,
+    about_philosophy: dict.Faran_Philosophy,
+    about_principle_title: dict.Faran_Principle_Title,
+    about_principle_1: dict.Faran_Principle_1,
+    about_principle_2: dict.Faran_Principle_2,
+    about_principle_3: dict.Faran_Principle_3,
+    about_vision_mission_title: dict.Faran_Vision_Mission_Title,
+    about_vision_mission_1: dict.Faran_Vision_Mission_1,
+    about_vision_mission_2: dict.Faran_Vision_Mission_2,
+    about_vision_mission_3: dict.Faran_Vision_Mission_3,
+    about_title: dict.About_Me,
+    about_text_1: dict.Faran_About_1,
+    about_text_2: dict.Faran_About_2,
+    lang,
+    isCompact: true,
+    titleClass: "text-black dark:text-white",
+    textClass: "text-black dark:text-gray-200",
+  };
+
   return (
-    <main className="w-full pb-32">
-      {/* 1. About Me */}
-      <section id="about" className="container mx-auto px-4 md:px-8 pt-24">
-        <AboutMe 
-          carouselPhotos={photos} 
-          faran_photo={dict.Faran_Photo}
-          about_philosophy_title={dict.Faran_Philosophy_Title} 
-          about_philosophy={dict.Faran_Philosophy}
-          about_principle_title={dict.Faran_Principle_Title} 
-          about_principle_1={dict.Faran_Principle_1}
-          about_principle_2={dict.Faran_Principle_2}
-          about_principle_3={dict.Faran_Principle_3} 
-          about_vision_mission_title={dict.Faran_Vision_Mission_Title} 
-          about_vision_mission_1={dict.Faran_Vision_Mission_1}
-          about_vision_mission_2={dict.Faran_Vision_Mission_2}
-          about_vision_mission_3={dict.Faran_Vision_Mission_3}
-          about_title={dict.About_Me} 
-          about_text_1={dict.Faran_About_1} 
-          about_text_2={dict.Faran_About_2} 
-          lang={lang}
-        />
-      </section>
+    <main className="w-full flex flex-col items-center pb-32 bg-gray-50/30 dark:bg-black/20">
+      
+      <div className="w-full max-w-[1600px] px-4 md:px-8 xl:px-12 flex flex-col gap-16 pt-24">
+        
+        {/* --- PERSONAL BRANDING GROUP --- */}
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 lg:gap-20">
+          <section id="about">
+            <AboutSection {...commonProps} />
+          </section>
+          <section id="philosophy">
+            <PhilosophySection {...commonProps} />
+          </section>
+        </div>
 
-      {/* 2. Work - Original Layout */}
-      <section id="work">
-        <SectionTitle title={dict.Work} />
-        <ExperiencesClient experiences={work} lang={lang} layout="original" canChange={true} />
-      </section>
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 lg:gap-20 border-t border-gray-100 dark:border-gray-900 pt-16">
+          <section id="principles">
+            <PrinciplesSection {...commonProps} />
+          </section>
+          <section id="vision">
+            <VisionMissionSection {...commonProps} />
+          </section>
+        </div>
 
-      {/* 3. Projects - Modern Layout */}
-      <section id="project">
-        <SectionTitle title={dict.Project} />
-        <ExperiencesClient experiences={projects} lang={lang} layout="modern" canChange={true} />
-      </section>
+        {/* --- PROFESSIONAL CORE GROUP --- */}
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-12 lg:gap-x-20 items-start border-t border-gray-100 dark:border-gray-900 pt-8">
+          <section id="work" className="w-full">
+            <SectionTitle title={dict.Work} />
+            <ExperiencesClient experiences={work} lang={lang} layout="original" canChange={false} />
+          </section>
 
-      {/* 4. Organization - Original Layout */}
-      <section id="organization">
-        <SectionTitle title={dict.Organization} />
-        <ExperiencesClient experiences={orgs} lang={lang} layout="original" canChange={true} />
-      </section>
+          <section id="project" className="w-full">
+            <SectionTitle title={dict.Project} />
+            <ExperiencesClient experiences={projects} lang={lang} layout="timeline" canChange={false} />
+          </section>
+        </div>
 
-      {/* 5. Awards - Compact Layout */}
-      <section id="award">
-        <SectionTitle title={dict.Award} />
-        <ExperiencesClient experiences={awards} lang={lang} layout="compact" canChange={true} />
-      </section>
+        {/* --- ENGAGEMENT GROUP --- */}
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-12 lg:gap-x-20 items-start border-t border-gray-100 dark:border-gray-900 pt-8">
+          <section id="organization" className="w-full">
+            <SectionTitle title={dict.Organization} />
+            <ExperiencesClient experiences={orgs} lang={lang} layout="original" canChange={false} />
+          </section>
 
-      {/* 6. Social */}
-      <section id="social" className="min-h-screen">
-        <SectionTitle title={dict.Social} />
-        <SocialDisplay />
-      </section>
+          <section id="award" className="w-full">
+            <SectionTitle title={dict.Award} />
+            <ExperiencesClient experiences={awards} lang={lang} layout="grid" canChange={false} />
+          </section>
+        </div>
 
-      {/* 7. Certificates */}
-      <section id="certificate" className="min-h-screen">
-        <SectionTitle title={dict.Certificate} />
-        <React.Suspense fallback={<h2 className="text-center">{dict.Loading_Certificate}</h2>}>
-          <CertificateLoader certificates={certificates} allTranslation={dict.All} lang={lang} />
-        </React.Suspense>
-      </section>
+        {/* --- SKILLS & OUTPUT GROUP --- */}
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 lg:gap-20 items-start border-t border-gray-100 dark:border-gray-900 pt-8">
+          <section id="certificate" className="w-full min-h-[40vh]">
+            <SectionTitle title={dict.Certificate} />
+            <React.Suspense fallback={<h2 className="text-center">{dict.Loading_Certificate}</h2>}>
+              <CertificateLoader certificates={certificates} allTranslation={dict.All} lang={lang} />
+            </React.Suspense>
+          </section>
 
-      {/* 8. Music */}
-      <section id="music" className="min-h-screen">
-        <SectionTitle title={dict.Music} />
-        <MusicDisplay youtubeItems={music.items} error={music.error} lang={lang} />
-      </section>
+          <section id="literature" className="w-full">
+            <SectionTitle title={dict.Literature} />
+            <LiteratureLoader data={literature} force_click={true} lang={lang} />
+          </section>
+        </div>
 
-      {/* 9. Literature */}
-      <section id="literature" className="container mx-auto px-6">
-        <SectionTitle title={dict.Literature} />
-        <LiteratureLoader data={literature} force_click={true} lang={lang} />
-      </section>
+        {/* --- PRESENCE & AUDIO GROUP --- */}
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 lg:gap-20 items-start border-t border-gray-100 dark:border-gray-900 pt-8">
+          <section id="social" className="w-full">
+            <SectionTitle title={dict.Social} />
+            <SocialDisplay />
+          </section>
 
-      {/* 10. College */}
-      <section id="college" className="container mx-auto px-6">
-        <SectionTitle title={dict.College} />
-        <React.Suspense fallback={<h2 className="text-center">{dict.Loading_College}</h2>}>
-          <CollegeLoader data={college} force_click={false} lang={lang} />
-        </React.Suspense>
-      </section>
+          <section id="music" className="w-full min-h-[40vh]">
+            <SectionTitle title={dict.Music} />
+            <MusicDisplay youtubeItems={music.items} error={music.error} lang={lang} />
+          </section>
+        </div>
+
+        {/* --- ACADEMIC FOUNDATION --- */}
+        <section id="college" className="w-full border-t border-gray-100 dark:border-gray-900 pt-8 pb-16">
+          <SectionTitle title={dict.College} />
+          <React.Suspense fallback={<h2 className="text-center">{dict.Loading_College}</h2>}>
+            <CollegeLoader data={college} force_click={false} lang={lang} />
+          </React.Suspense>
+        </section>
+
+      </div>
     </main>
   );
 }

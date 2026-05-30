@@ -171,7 +171,7 @@ export default async function OrganizationExperiencesPage({ params }: { params: 
 
   return (
     <main className="w-full">
-      <ExperiencesClient experiences={organizationExperiences} lang={lang} />
+      <ExperiencesClient experiences={organizationExperiences} lang={lang} canChange={true} />
     </main>
   );
 }

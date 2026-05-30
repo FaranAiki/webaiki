@@ -245,7 +245,7 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                     <div className="flex-1 flex items-center gap-4">
                     <div className={`transition-[colors,transform,opacity] shadow-md border ${isDark ? "border-cyan-800" : "border-gray-200"} opacity-100 hover:opacity-80 scale-100 hover:scale-110 cursor-pointer rounded-full overflow-hidden transform-gpu`}>
                         <Image
-                            onClick={() => router.push(getLocalizedHref('/'))}
+                            onClick={() => router.push(getLocalizedHref('/all'))}
                             src='/icon.ico'
                             alt={"logo"}
                             width={32}

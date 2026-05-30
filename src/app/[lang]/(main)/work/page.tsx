@@ -118,7 +118,7 @@ export default async function WorkExperiencesPage({ params }: { params: Promise<
 
   return (
     <main className="w-full">
-      <ExperiencesClient experiences={workExperiences} lang={lang} />
+      <ExperiencesClient experiences={workExperiences} lang={lang} canChange={true} />
     </main>
   );
 }

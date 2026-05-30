@@ -133,7 +133,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ lang: 
 
   return (
     <main className="w-full">
-      <ExperiencesClient experiences={projectExperiences} lang={lang} />
+      <ExperiencesClient experiences={projectExperiences} lang={lang} canChange={true} />
     </main>
   );
 }

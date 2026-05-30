@@ -12,10 +12,10 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   return {
     metadataBase: new URL('https://faranaiki.id'),
     title: `${dict.Award} | Faran Aiki`,
-    description: dict.Paragon_Scholarship_Desc || "Faran Aiki's award, like scholarships and others",
+    description: dict.Paragon_Scholarship_Desc || "Faran Aiki's Awards and Scholarships",
     openGraph: {
       title: `${dict.Award} | Faran Aiki`,
-      description: dict.Paragon_Scholarship_Desc || "Faran Aiki's award, like scholarships and others",
+      description: dict.Paragon_Scholarship_Desc || "Faran Aiki's Awards and Scholarships",
       url: `https://faranaiki.id/${lang}/award`,
       siteName: "faranaiki.id",
       type: "website",
@@ -36,17 +36,18 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
-export default async function AwardsPage({ params }: { params: Promise<{ lang: string }> }) {
+export default async function AwardPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const dict = getDictionary(lang);
 
-  const awards = [{
-      year: '2025',
+  const awards = [
+    {
+      year: '2024',
       jobs: [
         {
-          date: `${dict.November} — ${dict.Present}`,
-          title: dict.Paragon_Scholarship_Title,
-          company: dict.PT_Paragon || 'PT Paragon',
+          date: `2024 — ${dict.Present}`,
+          title: dict.Paragon_Scholarship,
+          company: 'Paragon Corp',
           description: dict.Paragon_Scholarship_Desc,
           image: [
             '/documents/award/paragon_scholarship.webp',
@@ -56,5 +57,5 @@ export default async function AwardsPage({ params }: { params: Promise<{ lang: s
     },
   ];
 
-  return <ExperiencesClient experiences={awards} lang={lang} />;
+  return <ExperiencesClient experiences={awards} lang={lang} layout="grid" canChange={true} />;
 }
