@@ -251,7 +251,7 @@ export default function ExperiencesClient({ experiences, lang, layout = 'origina
                                         </div>
                                     )}
                                     <div className="flex-1">
-                                        <p style={dateStyle} className="text-sm font-mono mb-1">{job.date}</p>
+                                        <p style={dateStyle} className="text-sm mb-1">{job.date}</p>
                                         <h3 className={`text-2xl font-bold ${mainText} mb-1`}>{job.title}</h3>
                                         <p style={companyStyle} className="text-lg font-semibold italic mb-4">{job.company}</p>
                                         <HoverableWords className={`${justifyClass} ${descText}`}>
@@ -305,7 +305,7 @@ export default function ExperiencesClient({ experiences, lang, layout = 'origina
                                 Explore
                             </a>
                         )}
-                        <span className="text-[10px] text-gray-400 font-mono uppercase">{job.year}</span>
+                        <span className="text-[10px] text-gray-400 uppercase">{job.year}</span>
                     </div>
                 </div>
             ))}
@@ -360,7 +360,7 @@ export default function ExperiencesClient({ experiences, lang, layout = 'origina
             {/* Normal Mode */}
             {!isPresentationMode && (
                 <div className="block">
-                <div className={`${isDark ? 'text-white' : 'text-gray-900'} min-h-screen font-sans p-4 sm:p-8 md:p-12 w-full`}>
+                <div className={`${isDark ? 'text-white' : 'text-gray-900'} min-h-screen p-4 sm:p-8 md:p-12 w-full`}>
                     <div className="container mx-auto max-w-6xl pt-16">
                         {currentLayout === 'original' && <OriginalLayout />}
                         {currentLayout === 'timeline' && <TimelineLayout />}
