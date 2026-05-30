@@ -13,6 +13,7 @@
   /* Light Mode Variables (Default) */
   --background: #f9fafb; /* Softened from #ffffff */
   --foreground: #000000; /* Strictly black for maximum contrast in light mode */
+  color-scheme: light;
   
   /* Semantic Colors */
   --card-bg: rgba(255, 255, 255, 0.7); 
@@ -25,6 +26,7 @@
 .dark {
   --background: #0a0a0a;
   --foreground: #ededed;
+  color-scheme: dark;
 
   /* Semantic Colors Dark */
   --card-bg: rgba(31, 41, 55, 0.6); /* gray-800 with opacity */
@@ -224,29 +226,70 @@ body.presentation-mode .presentation-section img {
     size: landscape;
   }
 
+  /* Force background graphics in all browsers */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
   /* Reset layout for print */
   html, body {
     margin: 0 !important;
     padding: 0 !important;
     width: 100% !important;
     height: auto !important;
+    min-height: 100% !important;
     overflow: visible !important;
     display: block !important;
     scroll-snap-type: none !important;
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
+    background-image: none !important;
   }
 
-  /* Force dark mode colors for print if dark class is present */
-  .dark, .dark body {
+  /* Force adaptive theme backgrounds */
+  html:not(.dark) {
+    background-color: #f9fafb !important;
+    color: #000000 !important;
+  }
+  
+  html.dark {
+    background-color: #0a0a0a !important;
+    color: #ededed !important;
+    color-scheme: dark !important;
+  }
+
+  html:not(.dark) body {
+    background-color: #f9fafb !important;
+    color: #000000 !important;
+  }
+
+  html.dark body {
     background-color: #0a0a0a !important;
     color: #ededed !important;
   }
 
-  /* Light mode colors for print */
-  body:not(.dark) {
-    background-color: #f9fafb !important;
-    color: #000000 !important;
+  /* Force visibility for all elements - Kills all fade-out bugs */
+  body * {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+
+  /* Hide specific UI elements */
+  header, nav, footer, .no-print, .cookie-initializer, #ask-me-popup-container, .print\:hidden,
+  .presentation-background, [class*="Background_"], canvas {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* Restore portfolio footer */
+  footer.print\:block {
+    display: block !important;
+    visibility: visible !important;
+    position: relative !important;
   }
 
   /* Presentation layout for printing */
@@ -255,9 +298,12 @@ body.presentation-mode .presentation-section img {
     overflow: visible !important;
     width: 100% !important;
     height: auto !important;
+    min-height: 100% !important;
     position: relative !important;
     scroll-snap-type: none !important;
     background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
 
   body.presentation-mode .presentation-container {
@@ -275,15 +321,14 @@ body.presentation-mode .presentation-section img {
     align-items: center !important;
     height: 100vh !important; 
     width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
     page-break-after: always !important;
     break-after: page !important;
     page-break-inside: avoid !important;
     break-inside: avoid !important;
-    opacity: 1 !important;
-    visibility: visible !important;
+    background-color: transparent !important;
     position: relative !important;
-    overflow: hidden !important;
-    background: transparent !important;
   }
 
   /* Prevent blank pages */
@@ -293,15 +338,16 @@ body.presentation-mode .presentation-section img {
     break-after: auto !important;
   }
 
-  /* Hide background elements that cause issues in print preview */
-  .presentation-background, [class*="Background_"], canvas,
-  header, nav, footer, .no-print, .cookie-initializer, #ask-me-popup-container {
-    display: none !important;
-    visibility: hidden !important;
+  /* Fix text colors for dark mode print */
+  html.dark body,
+  html.dark main,
+  html.dark .presentation-section,
+  html.dark .presentation-section * {
+    color: #ededed !important;
   }
 
-  /* Ensure text is visible in dark mode print */
-  .dark .presentation-section * {
-    color: #ededed !important;
+  /* Highlight colors preservation */
+  html.dark .text-cyan-400, html.dark .text-cyan-500, html.dark [style*="color: #22d3ee"] {
+    color: #22d3ee !important;
   }
 }
