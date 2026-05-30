@@ -17,7 +17,9 @@ export const getFaranAikiPhoto = cache(() => {
   return fs.readdirSync(photosDir);
 });
 
-export const getWorkExperiences = (dict: any) => [
+type Dictionary = Record<string, string>;
+
+export const getWorkExperiences = (dict: Dictionary) => [
   {
     year: '2026',
     jobs: [
@@ -93,7 +95,7 @@ export const getWorkExperiences = (dict: any) => [
   }
 ];
 
-export const getProjectExperiences = (dict: any) => [
+export const getProjectExperiences = (dict: Dictionary) => [
   {
     year: '2026',
     jobs: [
@@ -183,7 +185,7 @@ export const getProjectExperiences = (dict: any) => [
   },
 ];
 
-export const getOrganizationExperiences = (dict: any) => [
+export const getOrganizationExperiences = (dict: Dictionary) => [
   {
     year: '2026',
     jobs: [
@@ -312,7 +314,7 @@ export const getOrganizationExperiences = (dict: any) => [
   },
 ];
 
-export const getAwardExperiences = (dict: any) => [{
+export const getAwardExperiences = (dict: Dictionary) => [{
   year: '2025',
   jobs: [
     {

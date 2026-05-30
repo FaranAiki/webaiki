@@ -67,7 +67,7 @@ async function getMusicData() {
         return { items: youtubeData.items || [], error: undefined };
     }
     return { items: [], error: "Cannot load playlist (API Error)." };
-  } catch (error) {
+  } catch {
     return { items: [], error: "Cannot load playlist (Network Error)." };
   }
 }

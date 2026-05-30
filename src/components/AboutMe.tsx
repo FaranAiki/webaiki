@@ -36,40 +36,75 @@ export const SectionSeparator = ({ isDark, isCompact }: { isDark: boolean, isCom
   </div>
 );
 
-export function AboutSection({ about_title, about_text_1, about_text_2, carouselPhotos, faran_photo, lang, isCompact, responsiveJustifyClass, justifyClass, textClass, titleClass }: any) {
+interface AboutSubSectionProps extends AboutMeProps {
+  responsiveJustifyClass?: string;
+  justifyClass?: string;
+  textClass?: string;
+  titleClass?: string;
+  isPresentationMode?: boolean;
+}
+
+function useAboutLayout(props: AboutSubSectionProps) {
+  const { textAlign } = useSettings();
+  const { isPresentationMode: presMode } = usePresentation();
+  const { resolvedTheme } = useTheme();
+
+  const lang = props.lang;
+  const isJustified = lang !== 'jp' && lang !== 'zh';
+  const defaultJustifyClass = isJustified ? 'text-justify' : 'text-left';
+  
+  const justifyClass = props.justifyClass ?? (textAlign === 'default' ? defaultJustifyClass : `text-${textAlign}`);
+  const responsiveJustifyClass = props.responsiveJustifyClass ?? (textAlign === 'default' ? `text-center md:${justifyClass}` : justifyClass);
+  const isPresentationMode = props.isPresentationMode ?? presMode;
+  const titleClass = props.titleClass ?? "text-black dark:text-white";
+  const textClass = props.textClass ?? "text-black dark:text-gray-200";
+  const isDark = resolvedTheme === 'dark';
+
+  return {
+    justifyClass,
+    responsiveJustifyClass,
+    isPresentationMode,
+    titleClass,
+    textClass,
+    isDark
+  };
+}
+
+export function AboutSection(props: AboutSubSectionProps) {
+  const { responsiveJustifyClass, justifyClass, titleClass, textClass } = useAboutLayout(props);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    if (!carouselPhotos || carouselPhotos.length <= 1) return;
+    if (!props.carouselPhotos || props.carouselPhotos.length <= 1) return;
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % carouselPhotos.length);
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % props.carouselPhotos.length);
     }, 4000);
     return () => clearInterval(interval);
-  }, [carouselPhotos]);
+  }, [props.carouselPhotos]);
 
   return (
     <FadeInSection slideIndex={1} totalSlides={4} initialVisible={true}>
-        <div className={`flex flex-col-reverse xl:flex-row print:flex-row justify-center items-center gap-8 ${isCompact ? 'lg:gap-8' : 'lg:gap-16'} max-w-6xl mx-auto w-full`}>
+        <div className={`flex flex-col-reverse xl:flex-row print:flex-row justify-center items-center gap-8 ${props.isCompact ? 'lg:gap-8' : 'lg:gap-16'} max-w-6xl mx-auto w-full`}>
           <div className={`flex-1 ${responsiveJustifyClass} max-w-prose print:max-w-none`}>
-            <h1 className={`${isCompact ? 'text-2xl md:text-3xl' : 'text-4xl md:text-5xl'} font-extrabold ${titleClass} mb-6 hover:opacity-85 transition-opacity tracking-tight`}>
-              {about_title}
+            <h1 className={`${props.isCompact ? 'text-2xl md:text-3xl' : 'text-4xl md:text-5xl'} font-extrabold ${titleClass} mb-6 hover:opacity-85 transition-opacity tracking-tight`}>
+              {props.about_title}
             </h1>
             <div className="space-y-4">
-              <HoverableWords className={`${isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}>
-                {formatCJK(about_text_1, lang)}
+              <HoverableWords className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}>
+                {formatCJK(props.about_text_1, props.lang)}
               </HoverableWords>
-              <HoverableWords className={`${isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}>
-                {formatCJK(about_text_2, lang)}
+              <HoverableWords className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}>
+                {formatCJK(props.about_text_2, props.lang)}
               </HoverableWords>
             </div>
           </div>
 
           <div className="flex-shrink-0 relative group">
             <div
-              className={`relative ${isCompact ? 'w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56' : 'w-64 h-64 md:w-80 md:h-80 lg:w-[400px] lg:h-[400px]'} flex justify-center items-center overflow-hidden transform-gpu`}
+              className={`relative ${props.isCompact ? 'w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56' : 'w-64 h-64 md:w-80 md:h-80 lg:w-[400px] lg:h-[400px]'} flex justify-center items-center overflow-hidden transform-gpu`}
             >
               <AnimatePresence mode="wait">
-                {carouselPhotos && carouselPhotos.length > 0 && (
+                {props.carouselPhotos && props.carouselPhotos.length > 0 && (
                 <motion.div
                   key={currentIndex}
                   initial={{ opacity: 0, scale: 1.1 }}
@@ -79,8 +114,8 @@ export function AboutSection({ about_title, about_text_1, about_text_2, carousel
                   className="relative w-full h-full flex justify-center items-center"
                 >
                   <Image
-                    src={`/images/photo_faran_aiki/${carouselPhotos[currentIndex]}`}
-                    alt={faran_photo}
+                    src={`/images/photo_faran_aiki/${props.carouselPhotos[currentIndex]}`}
+                    alt={props.faran_photo}
                     fill
                     placeholder="blur"
                     blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(400, 400))}`}
@@ -104,24 +139,25 @@ export function AboutSection({ about_title, about_text_1, about_text_2, carousel
   );
 }
 
-export function PhilosophySection({ about_philosophy_title, about_philosophy, lang, isCompact, responsiveJustifyClass, justifyClass, textClass, titleClass, isPresentationMode }: any) {
+export function PhilosophySection(props: AboutSubSectionProps) {
+    const { responsiveJustifyClass, justifyClass, titleClass, textClass, isPresentationMode } = useAboutLayout(props);
     return (
         <FadeInSection slideIndex={2} totalSlides={4}>
-        <div className={`flex flex-col-reverse xl:flex-row-reverse print:flex-row-reverse justify-center items-center gap-8 ${isCompact ? 'lg:gap-8' : 'lg:gap-16'} max-w-6xl mx-auto w-full`}>
+        <div className={`flex flex-col-reverse xl:flex-row-reverse print:flex-row-reverse justify-center items-center gap-8 ${props.isCompact ? 'lg:gap-8' : 'lg:gap-16'} max-w-6xl mx-auto w-full`}>
           <div className={`flex-1 ${responsiveJustifyClass} max-w-prose print:max-w-none`}>
-            <h2 className={`${isCompact ? 'text-xl md:text-2xl' : 'text-3xl md:text-4xl'} font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
-              {about_philosophy_title}
+            <h2 className={`${props.isCompact ? 'text-xl md:text-2xl' : 'text-3xl md:text-4xl'} font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
+              {props.about_philosophy_title}
             </h2>
             <HoverableWords
-              className={`${isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass} font-medium`}
+              className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass} font-medium`}
               prophover={`transition-[colors,transform] inline-block duration-200 ease-in-out hover:text-cyan-600 dark:hover:text-cyan-300 hover:scale-105 cursor-pointer`}
             >
-              {formatCJK(about_philosophy, lang)}
+              {formatCJK(props.about_philosophy, props.lang)}
             </HoverableWords>
           </div>
 
           <div className="flex-shrink-0">
-            <div className={`relative ${isCompact ? 'w-32 h-32 md:w-40 md:h-40' : 'w-56 h-56 md:w-72 md:h-72'}`}>
+            <div className={`relative ${props.isCompact ? 'w-32 h-32 md:w-40 md:h-40' : 'w-56 h-56 md:w-72 md:h-72'}`}>
               <Image
                 src={`/images/move_forward.webp`}
                 alt="Move Forward Philosophy"
@@ -140,38 +176,39 @@ export function PhilosophySection({ about_philosophy_title, about_philosophy, la
     );
 }
 
-export function PrinciplesSection({ about_principle_title, about_principle_1, about_principle_2, about_principle_3, lang, isCompact, responsiveJustifyClass, justifyClass, textClass, titleClass, isPresentationMode }: any) {
+export function PrinciplesSection(props: AboutSubSectionProps) {
+    const { responsiveJustifyClass, justifyClass, titleClass, textClass, isPresentationMode } = useAboutLayout(props);
     return (
         <FadeInSection slideIndex={3} totalSlides={4}>
-        <div className={`flex flex-col-reverse xl:flex-row print:flex-row justify-center items-center gap-8 ${isCompact ? 'lg:gap-8' : 'lg:gap-16'} max-w-6xl mx-auto w-full`}>
+        <div className={`flex flex-col-reverse xl:flex-row print:flex-row justify-center items-center gap-8 ${props.isCompact ? 'lg:gap-8' : 'lg:gap-16'} max-w-6xl mx-auto w-full`}>
           <div className={`flex-1 ${responsiveJustifyClass} max-w-prose print:max-w-none`}>
-            <h2 className={`${isCompact ? 'text-xl md:text-2xl' : 'text-3xl md:text-4xl'} font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
-              {about_principle_title}
+            <h2 className={`${props.isCompact ? 'text-xl md:text-2xl' : 'text-3xl md:text-4xl'} font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
+              {props.about_principle_title}
             </h2>
             <div className="space-y-4">
               <HoverableWords
-                  className={`${isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}
+                  className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}
                   prophover='transition-[colors,opacity,transform] inline-block duration-200 ease-in-out hover:translate-x-1 hover:text-cyan-600 cursor-pointer'
               >
-                  {formatCJK(about_principle_1, lang)}
+                  {formatCJK(props.about_principle_1, props.lang)}
               </HoverableWords>
               <HoverableWords
-                  className={`${isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}
+                  className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}
                   prophover='transition-[colors,opacity,transform] inline-block duration-200 ease-in-out hover:translate-x-1 hover:text-cyan-600 cursor-pointer'
               >
-                  {formatCJK(about_principle_2, lang)}
+                  {formatCJK(props.about_principle_2, props.lang)}
               </HoverableWords>
               <HoverableWords
-                  className={`${isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}
+                  className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}
                   prophover='transition-[colors,opacity,transform] inline-block duration-200 ease-in-out hover:translate-x-1 hover:text-cyan-600 cursor-pointer'
               >
-                  {formatCJK(about_principle_3, lang)}
+                  {formatCJK(props.about_principle_3, props.lang)}
               </HoverableWords>
             </div>
           </div>
 
           <div className="flex-shrink-0">
-            <div className={`relative ${isCompact ? 'w-32 h-32 md:w-40 md:h-40' : 'w-56 h-56 md:w-72 md:h-72'}`}>
+            <div className={`relative ${props.isCompact ? 'w-32 h-32 md:w-40 md:h-40' : 'w-56 h-56 md:w-72 md:h-72'}`}>
               <Image
                 src={`/images/tree.webp`}
                 alt="Guiding Principles Tree"
@@ -190,38 +227,39 @@ export function PrinciplesSection({ about_principle_title, about_principle_1, ab
     );
 }
 
-export function VisionMissionSection({ about_vision_mission_title, about_vision_mission_1, about_vision_mission_2, about_vision_mission_3, lang, isCompact, responsiveJustifyClass, justifyClass, textClass, titleClass, isPresentationMode }: any) {
+export function VisionMissionSection(props: AboutSubSectionProps) {
+    const { responsiveJustifyClass, justifyClass, titleClass, textClass, isPresentationMode } = useAboutLayout(props);
     return (
         <FadeInSection slideIndex={4} totalSlides={4}>
-        <div className={`flex flex-col-reverse xl:flex-row-reverse print:flex-row-reverse justify-center items-center gap-8 ${isCompact ? 'lg:gap-8' : 'lg:gap-16'} max-w-6xl mx-auto w-full`}>
+        <div className={`flex flex-col-reverse xl:flex-row-reverse print:flex-row-reverse justify-center items-center gap-8 ${props.isCompact ? 'lg:gap-8' : 'lg:gap-16'} max-w-6xl mx-auto w-full`}>
           <div className={`flex-1 ${responsiveJustifyClass} max-w-prose print:max-w-none`}>
-            <h2 className={`${isCompact ? 'text-xl md:text-2xl' : 'text-3xl md:text-4xl'} font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
-              {about_vision_mission_title}
+            <h2 className={`${props.isCompact ? 'text-xl md:text-2xl' : 'text-3xl md:text-4xl'} font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
+              {props.about_vision_mission_title}
             </h2>
             <div className="space-y-4">
               <HoverableWords
-                  className={`${isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}
+                  className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}
                   prophover={`transition-[colors,opacity,transform] inline-block duration-200 ease-in-out hover:scale-105 hover:text-cyan-600 dark:hover:text-cyan-300 cursor-pointer`}
               >
-                  {formatCJK(about_vision_mission_1, lang)}
+                  {formatCJK(props.about_vision_mission_1, props.lang)}
               </HoverableWords>
               <HoverableWords
-                  className={`${isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}
+                  className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}
                   prophover={`transition-[colors,transform,opacity] inline-block duration-200 ease-in-out hover:scale-105 hover:text-cyan-600 dark:hover:text-cyan-300 cursor-pointer`}
               >
-                  {formatCJK(about_vision_mission_2, lang)}
+                  {formatCJK(props.about_vision_mission_2, props.lang)}
               </HoverableWords>
               <HoverableWords
-                  className={`${isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}
+                  className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}
                   prophover={`transition-[colors,transform,opacity] inline-block duration-200 ease-in-out hover:scale-105 hover:text-cyan-600 dark:hover:text-cyan-300 cursor-pointer`}
               >
-                  {formatCJK(about_vision_mission_3, lang)}
+                  {formatCJK(props.about_vision_mission_3, props.lang)}
               </HoverableWords>
             </div>
           </div>
 
           <div className="flex-shrink-0">
-            <div className={`relative ${isCompact ? 'w-32 h-32 md:w-40 md:h-40' : 'w-56 h-56 md:w-72 md:h-72'}`}>
+            <div className={`relative ${props.isCompact ? 'w-32 h-32 md:w-40 md:h-40' : 'w-56 h-56 md:w-72 md:h-72'}`}>
               <Image
                 src={`/images/vission_mission.webp`}
                 alt="Vision and Mission"
@@ -241,34 +279,17 @@ export function VisionMissionSection({ about_vision_mission_title, about_vision_
 }
 
 export default function AboutMe(props: AboutMeProps) {
-  const { resolvedTheme } = useTheme();
-  const { textAlign } = useSettings();
-  const { isPresentationMode } = usePresentation();
-
-  const isJustified = props.lang !== 'jp' && props.lang !== 'zh';
-  const defaultJustifyClass = isJustified ? 'text-justify' : 'text-left';
-  const justifyClass = textAlign === 'default' ? defaultJustifyClass : `text-${textAlign}`;
-  const responsiveJustifyClass = textAlign === 'default' ? `text-center md:${justifyClass}` : justifyClass;
-  const isDark = resolvedTheme === 'dark';
-
-  const commonProps = {
-    ...props,
-    responsiveJustifyClass,
-    justifyClass,
-    isPresentationMode,
-    titleClass: "text-black dark:text-white",
-    textClass: "text-black dark:text-gray-200"
-  };
+  const { isDark } = useAboutLayout(props);
 
   return (
     <div className={`w-full ${props.isCompact ? 'py-4' : 'py-8'} md:px-5`}>
-      <AboutSection {...commonProps} />
-      {!isPresentationMode && <SectionSeparator isDark={isDark} isCompact={props.isCompact} />}
-      <PhilosophySection {...commonProps} />
-      {!isPresentationMode && <SectionSeparator isDark={isDark} isCompact={props.isCompact} />}
-      <PrinciplesSection {...commonProps} />
-      {!isPresentationMode && <SectionSeparator isDark={isDark} isCompact={props.isCompact} />}
-      <VisionMissionSection {...commonProps} />
+      <AboutSection {...props} />
+      <SectionSeparator isDark={isDark} isCompact={props.isCompact} />
+      <PhilosophySection {...props} />
+      <SectionSeparator isDark={isDark} isCompact={props.isCompact} />
+      <PrinciplesSection {...props} />
+      <SectionSeparator isDark={isDark} isCompact={props.isCompact} />
+      <VisionMissionSection {...props} />
     </div>
   );
 }
