@@ -39,6 +39,8 @@ interface HeaderProps {
     ar_lang: string;
     es_lang: string;
     ko_lang: string;
+    de_lang: string;
+    nl_lang: string;
     select_lang: string;
     presentation_mode: string;
     navigation_label: string;
@@ -104,6 +106,8 @@ export default function Header(props: HeaderProps) {
         ar_lang, 
         es_lang,
         ko_lang,
+        de_lang,
+        nl_lang,
         select_lang, 
         presentation_mode, 
         navigation_label, 
@@ -177,15 +181,17 @@ export default function Header(props: HeaderProps) {
     const dropdownBg = isDark ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200';
 
     const languages = [
-        { code: 'id', name: id_lang },
-        { code: 'en', name: en_lang },
-        { code: 'zh', name: zh_lang },
-        { code: 'jp', name: jp_lang },
-        { code: 'ru', name: ru_lang },
-        { code: 'fr', name: fr_lang },
-        { code: 'es', name: es_lang },
-        { code: 'ko', name: ko_lang },
-        { code: 'ar', name: ar_lang },
+        { code: 'id', name: id_lang, flag: '🇮🇩' },
+        { code: 'en', name: en_lang, flag: '🇺🇸' },
+        { code: 'zh', name: zh_lang, flag: '🇨🇳' },
+        { code: 'jp', name: jp_lang, flag: '🇯🇵' },
+        { code: 'ru', name: ru_lang, flag: '🇷🇺' },
+        { code: 'fr', name: fr_lang, flag: '🇫🇷' },
+        { code: 'es', name: es_lang, flag: '🇪🇸' },
+        { code: 'ko', name: ko_lang, flag: '🇰🇷' },
+        { code: 'de', name: de_lang, flag: '🇩🇪' },
+        { code: 'nl', name: nl_lang, flag: '🇳🇱' },
+        { code: 'ar', name: ar_lang, flag: '🇸🇦' },
     ];
 
     const handleLanguageChange = async (langCode: string) => {
@@ -205,7 +211,7 @@ export default function Header(props: HeaderProps) {
     };
 
     const LanguageMenu = () => (
-        <div className={`w-full md:w-48 ${dropdownBg} backdrop-blur-md md:border rounded-xl shadow-xl py-2 animate-fade-in ring-1 ring-black/5`}>
+        <div className={`w-full md:w-56 ${dropdownBg} backdrop-blur-md md:border rounded-xl shadow-xl py-2 animate-fade-in ring-1 ring-black/5`}>
             <ul>
                 {languages.map((lang) => {
                     const isCurrent = lang.code === current_lang;
@@ -214,9 +220,10 @@ export default function Header(props: HeaderProps) {
                             <button
                                 onClick={() => handleLanguageChange(lang.code)}
                                 aria-label={`Change language to ${lang.name}`}
-                                className={`w-full text-left px-5 py-2.5 text-sm hover:${isDark? 'bg-gray-700' : 'bg-gray-100'} hover:${isDark? 'text-cyan-400' : 'text-cyan-600'} transition-[colors,transform] duration-200 ${isCurrent ? `${activeText} font-bold bg-gray-50/5` : textColor}`}
+                                className={`w-full text-left px-5 py-2.5 text-sm hover:${isDark? 'bg-gray-700' : 'bg-gray-100'} hover:${isDark? 'text-cyan-400' : 'text-cyan-600'} transition-[colors,transform] duration-200 ${isCurrent ? `${activeText} font-bold bg-gray-50/5` : textColor} flex items-center gap-3`}
                             >
-                                {lang.name}
+                                <span className="text-base grayscale-[0.2] group-hover:grayscale-0">{lang.flag}</span>
+                                <span>{lang.name}</span>
                             </button>
                         </li>
                     );
@@ -414,12 +421,15 @@ export default function Header(props: HeaderProps) {
                             onMouseEnter={() => setLangMenuVisible(true)}
                         >
                             <button 
-                                className={`group p-2.5 rounded-full hover:${isDark ? 'bg-white/10' : 'bg-gray-100'} transition-colors`}
+                                className={`group flex items-center gap-1.5 p-2 rounded-full hover:${isDark ? 'bg-white/10' : 'bg-gray-100'} transition-colors`}
                                 aria-label="Select language"
                                 aria-haspopup="true"
                                 aria-expanded={isLangMenuVisible}
                             >
                                 <GlobeIcon isDark={isDark} />
+                                <span className="text-base grayscale-[0.2] group-hover:grayscale-0">
+                                    {languages.find(l => l.code === current_lang)?.flag}
+                                </span>
                             </button>
                             {isLangMenuVisible && (
                                 <div className="absolute top-full right-0 mt-2">

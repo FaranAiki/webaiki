@@ -125,6 +125,8 @@
   "Mandarin": "Chino",
   "Spanish": "Español",
   "Korean": "Coreano",
+  "German": "Alemán",
+  "Dutch": "Neerlandés",
   "Make_Interactive_UAS": "Aprendizaje Interactivo para UAS MA1101 ITB",
   "Make_Interactive_UAS_Description": "Desarrollo de una aplicación basada en Flutter/Dart para ayudar a los estudiantes en la preparación del examen final de Cálculo I en el Instituto de Tecnología de Bandung, utilizando widgets interactivos e inteligencia artificial Gemini untuk profundizar el entendimiento mediante la visualización de conceptos complejos.",
   "Make_Website": "Sitio Web Personal faranaiki.id",

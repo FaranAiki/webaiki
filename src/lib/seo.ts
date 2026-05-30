@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-export const LOCALES = ['en', 'id', 'zh', 'jp', 'ru', 'fr', 'ar', 'es', 'ko'];
+export const LOCALES = ['en', 'id', 'zh', 'jp', 'ru', 'fr', 'ar', 'es', 'ko', 'de', 'nl'];
 
 // Map locale codes to hreflang codes (Next.js Metadata alternates.languages keys)
 // 'ja' is the standard code for Japanese, but our URL path uses 'jp'
@@ -14,6 +14,8 @@ export const HREFLANG_MAP: Record<string, string> = {
   ar: 'ar',
   es: 'es',
   ko: 'ko',
+  de: 'de',
+  nl: 'nl',
 };
 
 export function getLanguageAlternates(path: string) {
