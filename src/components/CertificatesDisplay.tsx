@@ -102,69 +102,65 @@ export default function CertificatesDisplay({ certificates, allTranslation, lang
   const buttonInactiveText = isDark ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-300';
 
   return (
-    <div className="w-full h-full presentation-mode:contents">
+    <div className={`w-full h-full ${isPresentationMode ? 'presentation-container flex flex-row flex-nowrap w-full h-screen' : ''}`}>
       {/* Presentation Mode: Max 6 items per slide */}
-      {isPresentationMode && (
-        <div className="presentation-container contents">
-          {allSlides.map((slide, idx) => (
-            <FadeInSection
-              key={`${slide.category}-${slide.year}-p${slide.part}`}
-              className="w-full h-full flex-shrink-0"
-              slideIndex={idx + 1}
-              totalSlides={allSlides.length}
-            >
-              <div className="flex flex-col items-center justify-center w-full max-w-6xl mx-auto p-4 pt-16 pb-8">
-                <h2 className="text-xl md:text-3xl font-black mb-6 text-center flex flex-wrap justify-center items-center gap-x-4">
-                  <span className="text-cyan-500">{formatCJK(slide.category, lang)}</span>
-                  <span className="text-gray-500">|</span>
-                  <span className={titleColor}>{slide.year}</span>
-                  {slide.totalParts && slide.totalParts > 1 && (
-                    <span className="text-base md:text-lg text-gray-400 font-mono">
-                      [{slide.part}/{slide.totalParts}]
-                    </span>
-                  )}
-                </h2>
-                
-                <div className={`grid gap-4 md:gap-8 w-full max-h-[75vh] p-2 overflow-visible no-scrollbar justify-items-center ${
-                  slide.files.length === 4 
-                    ? 'grid-cols-1 sm:grid-cols-2 max-w-4xl' 
-                    : slide.files.length === 1
-                    ? 'grid-cols-1'
-                    : slide.files.length === 2
-                    ? 'grid-cols-1 sm:grid-cols-2 max-w-4xl'
-                    : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
-                }`}>
-                  {slide.files.map(([fileName, filePath]) => (
-                    <div key={fileName} className="flex flex-col items-center group w-full max-w-[300px] md:max-w-[350px]">
-                      <div 
-                        className={`${cardBg} w-full aspect-[4/3] relative mb-4 rounded-xl overflow-hidden shadow-xl transition-transform group-hover:scale-105 transform-gpu`}
-                        style={{ boxShadow: isDark ? 'inset 0 0 0 2px rgba(255,255,255,0.1)' : 'inset 0 0 0 2px rgba(0,0,0,0.1)' }}
-                      >
-                        {(filePath as string).endsWith('.pdf') ? (
-                          <div className="w-full h-full flex justify-center items-center overflow-hidden">
-                            <PdfPreview fileUrl={filePath as string} width={350} />
-                          </div>
-                        ) : (
-                          <Image
-                            src={filePath as string}
-                            alt={fileName}
-                            fill
-                            className="object-contain scale-[1.01]"
-                            sizes="(max-width: 768px) 100vw, 33vw"
-                          />
-                        )}
+      {isPresentationMode && allSlides.map((slide, idx) => (
+        <FadeInSection
+          key={`${slide.category}-${slide.year}-p${slide.part}`}
+          className="w-full h-full flex-shrink-0"
+          slideIndex={idx + 1}
+          totalSlides={allSlides.length}
+        >
+          <div className="flex flex-col items-center justify-center w-full max-w-6xl mx-auto p-4 pt-16 pb-8">
+            <h2 className="text-xl md:text-3xl font-black mb-6 text-center flex flex-wrap justify-center items-center gap-x-4">
+              <span className="text-cyan-500">{formatCJK(slide.category, lang)}</span>
+              <span className="text-gray-500">|</span>
+              <span className={titleColor}>{slide.year}</span>
+              {slide.totalParts && slide.totalParts > 1 && (
+                <span className="text-base md:text-lg text-gray-400 font-mono">
+                  [{slide.part}/{slide.totalParts}]
+                </span>
+              )}
+            </h2>
+            
+            <div className={`grid gap-4 md:gap-8 w-full max-h-[75vh] p-2 overflow-visible no-scrollbar justify-items-center ${
+              slide.files.length === 4 
+                ? 'grid-cols-1 sm:grid-cols-2 max-w-4xl' 
+                : slide.files.length === 1
+                ? 'grid-cols-1'
+                : slide.files.length === 2
+                ? 'grid-cols-1 sm:grid-cols-2 max-w-4xl'
+                : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+            }`}>
+              {slide.files.map(([fileName, filePath]) => (
+                <div key={fileName} className="flex flex-col items-center group w-full max-w-[300px] md:max-w-[350px]">
+                  <div 
+                    className={`${cardBg} w-full aspect-[4/3] relative mb-4 rounded-xl overflow-hidden shadow-xl transition-transform group-hover:scale-105 transform-gpu`}
+                    style={{ boxShadow: isDark ? 'inset 0 0 0 2px rgba(255,255,255,0.1)' : 'inset 0 0 0 2px rgba(0,0,0,0.1)' }}
+                  >
+                    {(filePath as string).endsWith('.pdf') ? (
+                      <div className="w-full h-full flex justify-center items-center overflow-hidden">
+                        <PdfPreview fileUrl={filePath as string} width={350} />
                       </div>
-                      <p className={`text-center font-bold text-sm md:text-xl lg:text-2xl ${isDark ? 'text-gray-200' : 'text-gray-800'} line-clamp-2 px-2 leading-tight`}>
-                        {formatCJK(fileName, lang)}
-                      </p>
-                    </div>
-                  ))}
+                    ) : (
+                      <Image
+                        src={filePath as string}
+                        alt={fileName}
+                        fill
+                        className="object-contain scale-[1.01]"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
+                    )}
+                  </div>
+                  <p className={`text-center font-bold text-sm md:text-xl lg:text-2xl ${isDark ? 'text-gray-200' : 'text-gray-800'} line-clamp-2 px-2 leading-tight`}>
+                    {formatCJK(fileName, lang)}
+                  </p>
                 </div>
-              </div>
-            </FadeInSection>
-          ))}
-        </div>
-      )}
+              ))}
+            </div>
+          </div>
+        </FadeInSection>
+      ))}
 
       {/* Normal Mode */}
       {!isPresentationMode && (

@@ -83,7 +83,7 @@ export default function AboutMe({
   const textClass = "text-black dark:text-gray-200";
 
   return (
-    <div className="w-full py-8 md:px-5 presentation-mode:contents">
+    <div className="w-full py-8 md:px-5">
 
       {/* About Me Section */}
       <FadeInSection slideIndex={1} totalSlides={4} initialVisible={true}>
@@ -167,6 +167,7 @@ export default function AboutMe({
                 blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(288, 288))}`}
                 sizes="(max-width: 768px) 224px, 288px"
                 quality={85}
+                priority={isPresentationMode}
                 className="object-contain animate-float transition-[colors,transform,opacity] duration-500 ease-in-out opacity-90 hover:opacity-100 hover:-rotate-3 drop-shadow-xl hover:drop-shadow-[0_0_20px_rgba(6,182,212,0.6)]"
               />
             </div>
@@ -216,6 +217,7 @@ export default function AboutMe({
                 blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(288, 288))}`}
                 sizes="(max-width: 768px) 224px, 288px"
                 quality={85}
+                priority={isPresentationMode}
                 className="object-contain transition-[colors,opacity,transform] duration-500 ease-in-out opacity-90 hover:opacity-100 hover:scale-105 hover:rotate-2 drop-shadow-xl hover:drop-shadow-[0_0_20px_rgba(16,185,129,0.5)]"
               />
             </div>
@@ -265,6 +267,7 @@ export default function AboutMe({
                 blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(288, 288))}`}
                 sizes="(max-width: 768px) 224px, 288px"
                 quality={85}
+                priority={isPresentationMode}
                 className="object-contain animate-float transition-[colors,transform,opacity] duration-500 ease-in-out opacity-90 hover:opacity-100 hover:scale-110 hover:brightness-110 drop-shadow-xl hover:drop-shadow-[0_0_20px_rgba(168,85,247,0.5)]"
               />
             </div>

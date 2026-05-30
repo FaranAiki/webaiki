@@ -20,12 +20,11 @@ export function PresentationProvider({ children }: { children: React.ReactNode }
 
   // Load state from localStorage on mount and handle resizing
   useEffect(() => {
-    const saved = localStorage.getItem("presentation_mode");
     const savedFormat = localStorage.getItem("presentation_slide_format") as SlideNumberFormat;
-    
-    if (saved === "true") {
-      setIsPresentationMode(true);
-    }
+    const savedMode = localStorage.getItem("presentation_mode");
+
+    // Check if body already has the class (e.g., from Sultan Print injection)
+    const hasBodyClass = document.body.classList.contains('presentation-mode');
     
     if (savedFormat && ['decimal', 'hex', 'binary'].includes(savedFormat)) {
       setSlideNumberFormat(savedFormat);
@@ -37,7 +36,7 @@ export function PresentationProvider({ children }: { children: React.ReactNode }
       
       if (!large) {
         setIsPresentationMode(false);
-      } else if (saved === "true") {
+      } else if (savedMode === "true" || hasBodyClass) {
         setIsPresentationMode(true);
       }
     };

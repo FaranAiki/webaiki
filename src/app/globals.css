@@ -226,7 +226,14 @@ body.presentation-mode .presentation-section img {
     size: landscape;
   }
 
-  /* Force background graphics in all browsers */
+  /* Force presentation mode visuals during print */
+  body.presentation-mode .presentation-container {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  /* Force each slide to be a separate page */
   * {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
@@ -246,24 +253,32 @@ body.presentation-mode .presentation-section img {
     background-image: none !important;
   }
 
+  body.presentation-mode {
+    background-color: transparent !important;
+  }
+
+  html:has(body.presentation-mode) {
+    background-color: transparent !important;
+  }
+
   /* Force adaptive theme backgrounds */
-  html:not(.dark) {
+  html:not(.dark):not(:has(body.presentation-mode)) {
     background-color: #f9fafb !important;
     color: #000000 !important;
   }
   
-  html.dark {
+  html.dark:not(:has(body.presentation-mode)) {
     background-color: #0a0a0a !important;
     color: #ededed !important;
     color-scheme: dark !important;
   }
 
-  html:not(.dark) body {
+  html:not(.dark) body:not(.presentation-mode) {
     background-color: #f9fafb !important;
     color: #000000 !important;
   }
 
-  html.dark body {
+  html.dark body:not(.presentation-mode) {
     background-color: #0a0a0a !important;
     color: #ededed !important;
   }
@@ -280,7 +295,7 @@ body.presentation-mode .presentation-section img {
 
   /* Hide specific UI elements */
   header, nav, footer, .no-print, .cookie-initializer, #ask-me-popup-container, .print\:hidden,
-  [class*="Background_"], canvas {
+  [class*="Background_"], canvas:not(.presentation-background canvas) {
     display: none !important;
     visibility: hidden !important;
   }
@@ -291,6 +306,39 @@ body.presentation-mode .presentation-section img {
     visibility: visible !important;
     position: fixed !important;
     z-index: -10 !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    filter: blur(8px) !important;
+    transform: scale(1.1) !important;
+  }
+
+  /* Add gradient overlay to match main webpage */
+  .presentation-background::after {
+    content: "" !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: -5 !important;
+    pointer-events: none !important;
+    display: block !important;
+  }
+
+  html:not(.dark) .presentation-background::after {
+    background: linear-gradient(to bottom, rgba(255,255,255,0.98), rgba(255,255,255,0.96), rgba(255,255,255,1)) !important;
+  }
+
+  html.dark .presentation-background::after {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.92), rgba(0,0,0,0.85), rgba(0,0,0,0.95)) !important;
+  }
+
+  .presentation-background * {
+    visibility: visible !important;
+    display: block !important;
+  }
+
+  .presentation-background canvas {
+    display: block !important;
+    visibility: visible !important;
   }
 
   /* Restore portfolio footer */
@@ -306,7 +354,7 @@ body.presentation-mode .presentation-section img {
   body.presentation-mode .presentation-section,
   body.presentation-mode .presentation-container > * {
     display: block !important;
-    background-color: #f9fafb !important; /* Default light background */
+    background-color: transparent !important; 
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
     color-adjust: exact !important;
@@ -316,8 +364,8 @@ body.presentation-mode .presentation-section img {
   html.dark body.presentation-mode .presentation-container,
   html.dark body.presentation-mode .presentation-section,
   html.dark body.presentation-mode .presentation-container > * {
-    background-color: #0a0a0a !important; /* Force dark background */
-    box-shadow: inset 0 0 0 10000px #0a0a0a !important; /* Hack for Firefox to force background color */
+    background-color: transparent !important; 
+    box-shadow: none !important;
     color: #ededed !important;
   }
 
@@ -330,8 +378,8 @@ body.presentation-mode .presentation-section img {
     left: 0 !important;
     right: 0 !important;
     bottom: 0 !important;
-    background-color: #0a0a0a !important;
-    box-shadow: inset 0 0 0 10000px #0a0a0a !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
     z-index: -1 !important;
   }
 
@@ -419,6 +467,11 @@ body.presentation-mode .presentation-section img {
     --color-gray-400: #9ca3af !important;
   }
 
+  /* Ensure background transparency takes precedence even with compatibility layer */
+  html.is-printing-sultan body.presentation-mode {
+    background-color: transparent !important;
+  }
+
   html.dark.is-printing-sultan,
   html.dark.is-printing-sultan * {
     --background: #0a0a0a !important;
@@ -427,5 +480,10 @@ body.presentation-mode .presentation-section img {
     --card-bg: #1f2937 !important;
     --card-border: #374151 !important;
     --text-muted: #9ca3af !important;
+  }
+
+  /* Ensure background transparency takes precedence even with compatibility layer (Dark Mode) */
+  html.dark.is-printing-sultan body.presentation-mode {
+    background-color: transparent !important;
   }
 }

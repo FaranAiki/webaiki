@@ -34,6 +34,10 @@ const config: Config = {
     },
   },
 
-  plugins: [],
+  plugins: [
+    ({ addVariant }: { addVariant: (name: string, definition: string) => void }) => {
+      addVariant('presentation-mode', 'body.presentation-mode &')
+    }
+  ],
 }
 export default config

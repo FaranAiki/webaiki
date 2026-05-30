@@ -80,51 +80,48 @@ export default function ExperiencesClient({ experiences, lang }: ExperiencesClie
     const allJobs = experiences.flatMap(exp => exp.jobs.map(job => ({ ...job, year: exp.year })));
 
     return (
-        <div className="w-full h-full presentation-mode:contents">
+        <div className={`w-full h-full ${isPresentationMode ? 'presentation-container flex flex-row flex-nowrap w-full h-screen' : ''}`}>
             {/* Presentation Mode: Each Job is a Slide */}
-            {isPresentationMode && (
-                <div className="presentation-container contents">
-                    {allJobs.map((job, idx) => {
-                        const jobHasImage = job.image && job.image.length > 0;
-                        return (
-                            <FadeInSection
-                                key={`pres-${idx}`}
-                                className="w-full h-full flex-shrink-0"
-                                slideIndex={idx + 1}
-                                totalSlides={allJobs.length}
-                            >
-                                <div className={`${isDark ? 'text-white' : 'text-gray-900'} w-full h-full px-4 md:px-8 flex flex-col md:flex-row print:flex-row gap-4 md:gap-12 items-center justify-center mx-auto pt-16 pb-8`}>
-                                    <div className="flex-[1.2] flex flex-col justify-center space-y-6 max-w-2xl print:max-w-none">
-                                        <div className="space-y-2">
-                                            <h2 className="text-cyan-500 font-bold text-xl md:text-2xl tracking-tight">{job.year}</h2>
-                                            <h3 className="text-3xl md:text-5xl font-black leading-tight tracking-tighter">{job.title}</h3>
-                                            <h4 style={companyStyle} className="text-xl md:text-2xl italic opacity-90">{job.company}</h4>
-                                            <p style={dateStyle} className="text-base md:text-lg font-medium italic">{job.date}</p>
-                                        </div>
-                                        <HoverableWords className={`text-base md:text-lg ${justifyClass} ${descText} font-medium`}>
-                                            {job.description}
-                                        </HoverableWords>
-                                    </div>
-                                    {jobHasImage && (
-                                        <div className="flex-[0.8] flex justify-center items-center w-full h-full">
-                                            <div className="relative w-full h-full max-w-[400px] max-h-[400px] flex justify-center items-center overflow-hidden transform-gpu">
-                                                <Image
-                                                    src={job.image[0]}
-                                                    alt={job.company}
-                                                    fill
-                                                    className="object-contain transition-transform duration-700 hover:scale-[1.03] scale-[1.01]"
-                                                    sizes="(max-width: 768px) 100vw, 400px"
-                                                    priority={idx < 2}
-                                                />
-                                            </div>
-                                        </div>
-                                    )}
+            {isPresentationMode && allJobs.map((job, idx) => {
+                const jobHasImage = job.image && job.image.length > 0;
+                return (
+                    <FadeInSection
+                        key={`pres-${idx}`}
+                        className="w-full h-full flex-shrink-0"
+                        slideIndex={idx + 1}
+                        totalSlides={allJobs.length}
+                    >
+                        <div className={`${isDark ? 'text-white' : 'text-gray-900'} w-full h-full px-4 md:px-8 flex flex-col md:flex-row print:flex-row gap-4 md:gap-12 items-center justify-center mx-auto pt-16 pb-8`}>
+                            <div className="flex-[1.2] flex flex-col justify-center space-y-6 max-w-2xl print:max-w-none">
+                                <div className="space-y-2">
+                                    <h2 className="text-cyan-500 font-bold text-xl md:text-2xl tracking-tight">{job.year}</h2>
+                                    <h3 className="text-3xl md:text-5xl font-black leading-tight tracking-tighter">{job.title}</h3>
+                                    <h4 style={companyStyle} className="text-xl md:text-2xl italic opacity-90">{job.company}</h4>
+                                    <p style={dateStyle} className="text-base md:text-lg font-medium italic">{job.date}</p>
                                 </div>
-                            </FadeInSection>
-                        );
-                    })}
-                </div>
-            )}
+                                <HoverableWords className={`text-base md:text-lg ${justifyClass} ${descText} font-medium`}>
+                                    {job.description}
+                                </HoverableWords>
+                            </div>
+                            {jobHasImage && (
+                                <div className="flex-[0.8] flex justify-center items-center w-full h-full">
+                                    <div className="relative w-full h-full max-w-[400px] max-h-[400px] flex justify-center items-center overflow-hidden transform-gpu">
+                                        <Image
+                                            src={job.image[0]}
+                                            alt={job.company}
+                                            fill
+                                            className="object-contain transition-transform duration-700 hover:scale-[1.03] scale-[1.01]"
+                                            sizes="(max-width: 768px) 100vw, 400px"
+                                            priority={isPresentationMode || idx < 2}
+                                            loading={isPresentationMode ? "eager" : "lazy"}
+                                        />
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </FadeInSection>
+                );
+            })}
 
             {/* Normal Mode */}
             {!isPresentationMode && (

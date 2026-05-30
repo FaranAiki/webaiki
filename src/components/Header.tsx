@@ -262,13 +262,13 @@ export default function Header({ navLinks, current_lang, en_lang, zh_lang, id_la
                                 title={presentation_mode}
                                 className={`
                                     flex items-center justify-center transition-all duration-300 p-2 rounded-full
-                                    ${isPresentationMode 
+                                    ${(mounted && isPresentationMode) 
                                         ? 'text-cyan-500 bg-cyan-500/10 scale-110 drop-shadow-[0_0_8px_rgba(6,182,212,0.4)]' 
                                         : 'text-gray-500 hover:text-cyan-500 hover:bg-gray-100 dark:hover:bg-gray-800'
                                     }
                                 `}
                             >
-                                {isPresentationMode ? <MonitorPlay size={24} strokeWidth={2} /> : <Monitor size={24} strokeWidth={2} />}
+                                {(mounted && isPresentationMode) ? <MonitorPlay size={24} strokeWidth={2} /> : <Monitor size={24} strokeWidth={2} />}
                             </button>
                         </div>
                     </div>

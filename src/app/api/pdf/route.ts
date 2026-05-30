@@ -8,6 +8,13 @@ interface SultanRequest {
   url: string;
   theme: 'light' | 'dark';
   slideFormat: string;
+  settings?: {
+    font: string;
+    textAlign: string;
+    textScale: number;
+    letterSpacing: number;
+    lineHeight: number;
+  };
 }
 
 // Interface to satisfy TypeScript for @sparticuz/chromium
@@ -61,7 +68,7 @@ interface PuppeteerRequest {
 
 export async function POST(req: NextRequest) {
   try {
-    const { url, theme, slideFormat } = (await req.json()) as SultanRequest;
+    const { url, theme, slideFormat, settings } = (await req.json()) as SultanRequest;
 
     if (!url) {
       return NextResponse.json({ error: 'URL is required' }, { status: 400 });
@@ -72,7 +79,17 @@ export async function POST(req: NextRequest) {
     const puppeteer = ((await import('puppeteer-core')).default as unknown) as PuppeteerProvider;
 
     const browser = await puppeteer.launch({
-      args: [...chromium.args, '--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+      args: [
+        ...chromium.args, 
+        '--no-sandbox', 
+        '--disable-setuid-sandbox', 
+        '--disable-dev-shm-usage',
+        '--disable-gpu',
+        '--no-first-run',
+        '--no-zygote',
+        '--single-process',
+        '--disable-extensions'
+      ],
       defaultViewport: { width: 1920, height: 1080, deviceScaleFactor: 1.5 },
       executablePath: await chromium.executablePath(),
       headless: chromium.headless,
@@ -84,11 +101,18 @@ export async function POST(req: NextRequest) {
     await page.setRequestInterception(true);
     page.on('request', (request) => {
       const requestUrl = request.url();
+      const resourceType = request.resourceType();
       if (
         requestUrl.includes('umami.is') || 
         requestUrl.includes('analytics') || 
         requestUrl.includes('doubleclick') ||
-        (request.resourceType() === 'font' && !requestUrl.includes('geist'))
+        requestUrl.includes('google-analytics') ||
+        requestUrl.includes('facebook') ||
+        requestUrl.includes('twitter') ||
+        (resourceType === 'font' && !requestUrl.includes('geist')) ||
+        resourceType === 'media' ||
+        resourceType === 'websocket' ||
+        resourceType === 'other'
       ) {
         request.abort();
       } else {
@@ -97,48 +121,129 @@ export async function POST(req: NextRequest) {
     });
 
     // 1. Pre-inject state
-    await page.evaluateOnNewDocument((t: unknown, f: unknown) => {
+    await page.evaluateOnNewDocument((t: unknown, f: unknown, s: unknown) => {
       localStorage.setItem('presentation_mode', 'true');
       localStorage.setItem('presentation_slide_format', (f as string) || 'binary');
       localStorage.setItem('theme', (t as string));
-    }, theme, slideFormat);
+      if (s) {
+        const settings = s as SultanRequest['settings'];
+        if (settings) {
+          localStorage.setItem('settings-font', settings.font);
+          localStorage.setItem('settings-align', settings.textAlign);
+          localStorage.setItem('settings-scale', settings.textScale.toString());
+          localStorage.setItem('settings-spacing', settings.letterSpacing.toString());
+          localStorage.setItem('settings-lineheight', settings.lineHeight.toString());
+        }
+      }
+      // KILL Animations and transitions at the source
+      const style = document.createElement('style');
+      style.textContent = `
+        *, *::before, *::after {
+          transition: none !important;
+          animation: none !important;
+          transition-duration: 0s !important;
+          animation-duration: 0s !important;
+          scroll-behavior: auto !important;
+        }
+      `;
+      document.head.appendChild(style);
+    }, theme, slideFormat, settings);
 
-    // 2. Faster Navigation
-    await page.goto(url, { waitUntil: 'load', timeout: 30000 });
+    // 2. Faster Navigation - Try 'domcontentloaded' first
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
     
     // 3. Forced Layout (Immediate)
-    await page.evaluate((t: unknown) => {
+    await page.evaluate((t: unknown, s: unknown) => {
       const themeName = t as string;
+      const userSettings = s as SultanRequest['settings'];
       const isDark = themeName === 'dark';
-      const bgColor = isDark ? '#0a0a0a' : '#f9fafb';
       const textColor = isDark ? '#ededed' : '#000000';
 
-      document.documentElement.className = themeName;
+      document.documentElement.classList.add(themeName);
+      document.documentElement.classList.add('is-printing-sultan');
       document.body.classList.add('presentation-mode');
+
+      // Apply Typography Settings manually to body to ensure immediate effect
+      if (userSettings) {
+        const body = document.body;
+        body.style.setProperty('--text-scale-factor', (userSettings.textScale / 100).toString());
+        body.style.setProperty('--app-letter-spacing', `${userSettings.letterSpacing}px`);
+        body.style.setProperty('--app-line-height', userSettings.lineHeight.toString());
+        if (userSettings.textAlign && userSettings.textAlign !== 'default') {
+          body.style.textAlign = userSettings.textAlign;
+        }
+      }
       
       const style = document.createElement('style');
       style.textContent = `
         * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
         nav, header, footer, .no-print, #ask-me-popup-container, .cookie-initializer { display: none !important; }
-        body.presentation-mode main { display: block !important; height: auto !important; background-color: ${bgColor} !important; }
-        .presentation-section { display: flex !important; height: 100vh !important; page-break-after: always !important; color: ${textColor} !important; }
+        body.presentation-mode main { display: block !important; height: auto !important; background-color: transparent !important; }
+        
+        /* FORCE VISIBILITY for all slides and images */
+        .presentation-section { 
+          display: flex !important; 
+          height: 100vh !important; 
+          page-break-after: always !important; 
+          color: ${textColor} !important; 
+          background-color: transparent !important;
+          opacity: 1 !important;
+          visibility: visible !important;
+          transform: none !important;
+          filter: none !important;
+        }
+
+        img {
+          opacity: 1 !important;
+          visibility: visible !important;
+          display: block !important;
+        }
+        
+        /* Match main webpage background effects */
+        .presentation-background { filter: blur(8px) !important; transform: scale(1.1) !important; }
+        .presentation-background::after {
+          content: "";
+          position: fixed;
+          inset: 0;
+          z-index: -5;
+          background: ${isDark 
+            ? 'linear-gradient(to bottom, rgba(0,0,0,0.92), rgba(0,0,0,0.85), rgba(0,0,0,0.95))' 
+            : 'linear-gradient(to bottom, rgba(255,255,255,0.98), rgba(255,255,255,0.96), rgba(255,255,255,1))'
+          } !important;
+          pointer-events: none;
+        }
       `;
       document.head.appendChild(style);
-    }, theme);
+    }, theme, settings);
 
-    // 4. TURBO SCROLL (Parallelized image trigger)
+    // 4. ENSURE IMAGES ARE LOADED (Critical Fix for missing images)
     await page.evaluate(async () => {
+      const selectors = ['img', '.presentation-section img'];
+      const images = Array.from(document.querySelectorAll(selectors.join(',')));
+      
+      // Trigger lazy loading by scrolling
       const sections = document.querySelectorAll('.presentation-section');
-      for (let i = 0; i < sections.length; i++) {
-        (sections[i] as HTMLElement).scrollIntoView();
-        if (i % 3 === 0) await new Promise(r => setTimeout(r, 50));
+      for (const section of Array.from(sections)) {
+        section.scrollIntoView();
+        await new Promise(r => setTimeout(r, 40)); // Slightly more reliable delay
       }
       window.scrollTo(0, 0);
+
+      // Wait for all images to decode/load
+      await Promise.all(images.map(img => {
+        if ((img as HTMLImageElement).complete) return Promise.resolve();
+        return new Promise(resolve => {
+          img.addEventListener('load', resolve);
+          img.addEventListener('error', resolve);
+        });
+      }));
+
+      // Final wait for any late renders
+      await new Promise(r => setTimeout(r, 100));
     });
 
     // 5. Minimal wait for fonts
     await page.evaluateHandle('document.fonts.ready');
-    await new Promise(resolve => setTimeout(resolve, 300));
 
     const pdfBuffer = await page.pdf({
       format: 'A4',

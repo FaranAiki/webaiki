@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { usePresentation } from './PresentationContext';
+import { useSettings } from './SettingsContext';
 
 /**
  * SULTAN PRINT COORDINATOR
@@ -13,6 +14,7 @@ import { usePresentation } from './PresentationContext';
 export default function SultanPrint() {
   const { resolvedTheme } = useTheme();
   const { slideNumberFormat } = usePresentation();
+  const { font, textAlign, textScale, letterSpacing, lineHeight } = useSettings();
 
   useEffect(() => {
     const handleSultanPrint = async () => {
@@ -25,7 +27,14 @@ export default function SultanPrint() {
           body: JSON.stringify({ 
             url: window.location.href,
             theme: resolvedTheme,
-            slideFormat: slideNumberFormat
+            slideFormat: slideNumberFormat,
+            settings: {
+              font,
+              textAlign,
+              textScale,
+              letterSpacing,
+              lineHeight
+            }
           })
         });
 
@@ -59,7 +68,7 @@ export default function SultanPrint() {
 
     window.addEventListener('sultan-print', handleSultanPrint);
     return () => window.removeEventListener('sultan-print', handleSultanPrint);
-  }, [resolvedTheme, slideNumberFormat]);
+  }, [resolvedTheme, slideNumberFormat, font, textAlign, textScale, letterSpacing, lineHeight]);
 
   return null;
 }
