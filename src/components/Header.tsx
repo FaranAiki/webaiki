@@ -37,6 +37,8 @@ interface HeaderProps {
     ru_lang: string;
     fr_lang: string;
     ar_lang: string;
+    es_lang: string;
+    ko_lang: string;
     select_lang: string;
     presentation_mode: string;
     navigation_label: string;
@@ -100,6 +102,8 @@ export default function Header(props: HeaderProps) {
         ru_lang, 
         fr_lang, 
         ar_lang, 
+        es_lang,
+        ko_lang,
         select_lang, 
         presentation_mode, 
         navigation_label, 
@@ -179,6 +183,8 @@ export default function Header(props: HeaderProps) {
         { code: 'jp', name: jp_lang },
         { code: 'ru', name: ru_lang },
         { code: 'fr', name: fr_lang },
+        { code: 'es', name: es_lang },
+        { code: 'ko', name: ko_lang },
         { code: 'ar', name: ar_lang },
     ];
 

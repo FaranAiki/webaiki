@@ -117,6 +117,8 @@ export default async function RootLayout({
         ru_lang={dict.Russian} 
         fr_lang={dict.French} 
         ar_lang={dict.Arabic} 
+        es_lang={dict.Spanish}
+        ko_lang={dict.Korean}
         select_lang={dict.Select_Language}
         presentation_mode={dict.Presentation_Mode}
         navigation_label={dict.Navigation}

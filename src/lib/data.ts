@@ -195,7 +195,7 @@ export const getOrganizationExperiences = (dict: Dictionary) => [
         company: 'GDG Campus ITB',
         description: dict.GDG_ITB_Description,
         image: [
-          '/documents/organization/GDGoC_ITB_0.png',
+          '/documents/organization/GDGoC_ITB_0.webp',
         ]
       },
       {
