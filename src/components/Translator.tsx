@@ -9,6 +9,8 @@ import jp from '../../public/locales/jp.json';
 import ru from '../../public/locales/ru.json';
 import fr from '../../public/locales/fr.json';
 import ar from '../../public/locales/ar.json';
+import es from '../../public/locales/es.json';
+import ko from '../../public/locales/ko.json';
 
 const dictionaries = {
   en,
@@ -18,6 +20,8 @@ const dictionaries = {
   ru,
   fr,
   ar,
+  es,
+  ko,
 };
 
 // Now a synchronous function! No more await needed.

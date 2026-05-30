@@ -18,6 +18,11 @@ const geistMono = Geist_Mono({
 
 import { Providers } from "@/components/Providers";
 import { getDictionary } from "@/components/Translator";
+import { LOCALES } from "@/lib/seo";
+
+export function generateStaticParams() {
+  return LOCALES.map((lang) => ({ lang }));
+}
 
 export default async function BaseLayout({
   children,

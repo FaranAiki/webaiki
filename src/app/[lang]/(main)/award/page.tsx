@@ -5,6 +5,8 @@ import ExperiencesClient from '@/components/ExperienceDisplayer';
 
 import { getLanguageAlternates } from '@/lib/seo';
 
+import { getAwardExperiences } from '@/lib/data';
+
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = getDictionary(lang);
@@ -40,22 +42,7 @@ export default async function AwardPage({ params }: { params: Promise<{ lang: st
   const { lang } = await params;
   const dict = getDictionary(lang);
 
-  const awards = [
-    {
-      year: '2024',
-      jobs: [
-        {
-          date: `2024 — ${dict.Present}`,
-          title: dict.Paragon_Scholarship,
-          company: 'Paragon Corp',
-          description: dict.Paragon_Scholarship_Desc,
-          image: [
-            '/documents/award/paragon_scholarship.webp',
-          ]
-        },
-      ],
-    },
-  ];
+  const awards = getAwardExperiences(dict);
 
   return <ExperiencesClient 
     experiences={awards} 
