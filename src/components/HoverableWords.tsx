@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 export type HoverableWordsProps = {
   children?: string; // Make children optional to handle undefined gracefully
@@ -7,7 +7,11 @@ export type HoverableWordsProps = {
 };
 
 // Helper function to process the word splitting logic
-const processWords = (text: string, separatorRegex: RegExp, hoverClass: string) => {
+const processWords = (text: string, separatorRegex: RegExp, hoverClass: string, isMobile: boolean) => {
+  if (isMobile) {
+    return <React.Fragment>{text}</React.Fragment>;
+  }
+
   const parts = text.split(new RegExp(`(${separatorRegex.source})`)).filter(Boolean);
   
   return parts.map((part, index) =>
@@ -22,8 +26,18 @@ const processWords = (text: string, separatorRegex: RegExp, hoverClass: string) 
 };
 
 export default function HoverableWords({ children, className, prophover }: HoverableWordsProps) {
+  const [isMobile, setIsMobile] = useState(false);
   const finalClassName = className || '';
   
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   // Return early if no children are provided to prevent crash
   if (!children) {
     return <p className={finalClassName}></p>;
@@ -34,7 +48,6 @@ export default function HoverableWords({ children, className, prophover }: Hover
   const separatorRegex = /[\"\'\[\]\(\)\s]+/;
   
   // Regex to split by <b>...</b> or <i>...</i> tags
-  // Note: This does not support nested tags for simplicity
   const tagRegex = /(<b>.*?<\/b>|<i>.*?<\/i>)/g;
 
   // Ensure children is treated as a string before splitting
@@ -47,7 +60,7 @@ export default function HoverableWords({ children, className, prophover }: Hover
           const content = segment.slice(3, -4); // Remove tags
           return (
             <span key={i} className="font-bold">
-              {processWords(content, separatorRegex, finalPropHover)}
+              {processWords(content, separatorRegex, finalPropHover, isMobile)}
             </span>
           );
         }
@@ -55,12 +68,12 @@ export default function HoverableWords({ children, className, prophover }: Hover
           const content = segment.slice(3, -4); // Remove tags
           return (
             <span key={i} className="italic">
-              {processWords(content, separatorRegex, finalPropHover)}
+              {processWords(content, separatorRegex, finalPropHover, isMobile)}
             </span>
           );
         }
         // Plain text segment
-        return <React.Fragment key={i}>{processWords(segment, separatorRegex, finalPropHover)}</React.Fragment>;
+        return <React.Fragment key={i}>{processWords(segment, separatorRegex, finalPropHover, isMobile)}</React.Fragment>;
       })}
     </p>
   );

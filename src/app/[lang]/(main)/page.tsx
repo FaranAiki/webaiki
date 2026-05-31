@@ -37,10 +37,15 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       ],
     },
     icons: {
-      icon: '/icon.ico',
-      shortcut: '/icon.ico',
-      apple: '/icon.ico',
+      icon: [
+        { url: '/icon.ico', sizes: 'any' },
+        { url: '/icon.ico', type: 'image/x-icon' },
+      ],
+      apple: [
+        { url: '/icon.ico', sizes: 'any', type: 'image/x-icon' },
+      ],
     },
+    manifest: '/manifest.json',
     alternates: {
       canonical: `/${lang}`,
       languages: getLanguageAlternates(''),

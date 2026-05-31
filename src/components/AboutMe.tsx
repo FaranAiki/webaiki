@@ -158,19 +158,18 @@ export function PhilosophySection(props: AboutSubSectionProps) {
 
           <div className="flex-shrink-0 transform-gpu">
             <div className={`relative ${props.isCompact ? 'w-32 h-32 md:w-40 md:h-40' : 'w-56 h-56 md:w-72 md:h-72'} transform-gpu`}>
-              <Image
-                src={`/images/move_forward.webp`}
-                alt="Move Forward Philosophy"
-                fill
-                placeholder="blur"
-                blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(288, 288))}`}
-                sizes="(max-width: 768px) 128px, 288px"
-                quality={85}
-                priority={isPresentationMode}
-                className="object-contain animate-float transition-[colors,transform,opacity] duration-500 ease-in-out opacity-90 hover:opacity-100 hover:-rotate-3 drop-shadow-xl hover:drop-shadow-[0_0_20px_rgba(6,182,212,0.6)]"
-              />
-            </div>
-          </div>
+            <Image
+            src={`/images/move_forward.webp`}
+            alt="Move Forward Philosophy"
+            fill
+            placeholder="blur"
+            blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(288, 288))}`}
+            sizes="(max-width: 768px) 128px, 288px"
+            quality={85}
+            priority={isPresentationMode}
+            className="object-contain md:animate-float transition-[colors,transform,opacity] duration-500 ease-in-out opacity-90 hover:opacity-100 md:hover:-rotate-3 drop-shadow-xl md:hover:drop-shadow-[0_0_20px_rgba(6,182,212,0.6)]"
+            />
+            </div>          </div>
         </div>
       </FadeInSection>
     );
@@ -269,7 +268,7 @@ export function VisionMissionSection(props: AboutSubSectionProps) {
                 sizes="(max-width: 768px) 128px, 288px"
                 quality={85}
                 priority={isPresentationMode}
-                className="object-contain animate-float transition-[colors,transform,opacity] duration-500 ease-in-out opacity-90 hover:opacity-100 hover:scale-110 hover:brightness-110 drop-shadow-xl hover:drop-shadow-[0_0_20px_rgba(168,85,247,0.5)]"
+                className="object-contain md:animate-float transition-[colors,transform,opacity] duration-500 ease-in-out opacity-90 hover:opacity-100 hover:scale-110 hover:brightness-110 drop-shadow-xl hover:drop-shadow-[0_0_20px_rgba(168,85,247,0.5)]"
               />
             </div>
           </div>

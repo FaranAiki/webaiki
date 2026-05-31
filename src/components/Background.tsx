@@ -55,14 +55,14 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
         this.baseY = this.y;
       }
 
-      update(w: number, h: number) {
+      update(w: number, h: number, isMobile: boolean = false) {
         this.x += this.vx;
         this.y += this.vy;
 
         if (this.x < 0 || this.x > w) this.vx *= -1;
         if (this.y < 0 || this.y > h) this.vy *= -1;
 
-        if (mouseRef.current.isActive) {
+        if (!isMobile && mouseRef.current.isActive) {
           const dx = mouseRef.current.x - this.x;
           const dy = mouseRef.current.y - this.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
@@ -102,10 +102,10 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
         canvas.style.height = `${rect.height}px`;
 
         particles = [];
-        // Further reduce particle count on smaller screens
+        // Significant reduction for mobile performance
         let particleCount = PARTICLE_COUNT;
-        if (rect.width < 480) particleCount = 20;
-        else if (rect.width < 768) particleCount = 40;
+        if (rect.width < 480) particleCount = 12; // Lowered from 20
+        else if (rect.width < 768) particleCount = 25; // Lowered from 40
         
         for (let i = 0; i < particleCount; i++) {
           particles.push(new Particle(rect.width, rect.height));
@@ -126,8 +126,11 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
 
         ctx.clearRect(0, 0, width, height);
         
+        const isMobile = width < 768;
+        
         particles.forEach((particle) => {
-          particle.update(width, height);
+          // Disable mouse interaction on mobile to save CPU
+          particle.update(width, height, isMobile);
           particle.draw(BASE_COLOR);
         });
 
@@ -139,16 +142,19 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
     };
 
     const connectParticles = (w: number, h: number, color: {r: number, g: number, b: number}) => {
+      // Reduce connection distance on mobile to further reduce drawing overhead
+      const maxDistance = w < 768 ? CONNECTION_DISTANCE * 0.8 : CONNECTION_DISTANCE;
+      
       for (let a = 0; a < particles.length; a++) {
-        for (let b = a; b < particles.length; b++) {
+        for (let b = a + 1; b < particles.length; b++) {
           const dx = particles[a].x - particles[b].x;
           const dy = particles[a].y - particles[b].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < CONNECTION_DISTANCE) {
-            const opacity = 1 - distance / CONNECTION_DISTANCE;
+          if (distance < maxDistance) {
+            const opacity = 1 - distance / maxDistance;
             ctx.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity * 0.3})`;
-            ctx.lineWidth = 2;
+            ctx.lineWidth = 1.5;
             ctx.beginPath();
             ctx.moveTo(particles[a].x, particles[a].y);
             ctx.lineTo(particles[b].x, particles[b].y);
@@ -172,7 +178,7 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
     };
 
     window.addEventListener('resize', handleResize);
-    window.addEventListener('mousemove', handleMouseMove); 
+    window.addEventListener('mousemove', handleMouseMove, { passive: true }); 
     
     init();
     animate();
@@ -235,13 +241,13 @@ export default function Background({ carousel }: BackgroundProps) {
   const isDark = resolvedTheme === 'dark';
 
   return (
-    <div className={`presentation-background fixed inset-0 w-full h-full z-[-1] transition-colors duration-[1500ms] ease-in-out bg-white dark:bg-black`}>
+    <div className={`presentation-background fixed inset-0 w-full h-full z-[-1] pointer-events-none transition-colors duration-[1500ms] ease-in-out bg-white dark:bg-black`}>
       
       <div className={`transition-opacity duration-[1500ms] ease-in-out w-full h-full absolute inset-0 opacity-100`}>
         {carousel.map((src, index) => (
             <div
                 key={index}
-                className={`blur-sm md:blur-md absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out scale-110 transform-gpu will-change-[opacity,transform] ${
+                className={`blur-sm md:blur-md absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out scale-110 transform-gpu will-change-opacity ${
                     index === currentIndex ? 'opacity-60 z-0' : 'opacity-0 -z-10'
                 }`}
             >

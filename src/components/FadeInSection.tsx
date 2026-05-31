@@ -1,5 +1,6 @@
 "use client";
 
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { usePresentation } from './PresentationContext';
 
@@ -21,6 +22,14 @@ export default function FadeInSection({
   initialVisible = false
 }: FadeInSectionProps) {
   const { isPresentationMode, slideNumberFormat, cycleSlideNumberFormat } = usePresentation();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Helper to format number based on current format
   const formatNumber = (num: number, total: number) => {
@@ -34,9 +43,11 @@ export default function FadeInSection({
     return num.toString(10);
   };
 
+  const yOffset = isMobile ? 12 : 32;
+
   return (
     <motion.div
-      initial={initialVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
+      initial={initialVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: yOffset }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "0px 0px -50px 0px" }}
       transition={{ 
