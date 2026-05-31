@@ -53,6 +53,9 @@ export default async function WorkExperiencesPage({ params }: { params: Promise<
         original_text={dict.Original}
         timeline_text={dict.Timeline}
         grid_text={dict.Grid}
+        bento_text={dict.Bento}
+        smooth_text={dict.Smooth}
+        click_to_close_text={dict.Click_To_Close}
       />
     </main>
   );

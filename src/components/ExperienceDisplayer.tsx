@@ -11,7 +11,9 @@ import { usePresentation } from './PresentationContext';
 import { 
     LayoutPanelLeft, 
     Milestone, 
-    LayoutGrid 
+    LayoutGrid,
+    Grid2X2,
+    Rows
 } from 'lucide-react';
 
 import { motion } from 'framer-motion';
@@ -31,7 +33,7 @@ type Experience = {
     jobs: Job[];
 };
 
-export type LayoutType = 'original' | 'timeline' | 'grid';
+export type LayoutType = 'original' | 'timeline' | 'grid' | 'bento' | 'smooth';
 
 interface ExperiencesClientProps {
     experiences: Experience[];
@@ -41,6 +43,9 @@ interface ExperiencesClientProps {
     original_text?: string;
     timeline_text?: string;
     grid_text?: string;
+    bento_text?: string;
+    smooth_text?: string;
+    click_to_close_text?: string;
 }
 
 // --- Sub-components for stability ---
@@ -54,6 +59,8 @@ interface LayoutSwitcherProps {
         original: string;
         timeline: string;
         grid: string;
+        bento: string;
+        smooth: string;
     };
 }
 
@@ -65,7 +72,9 @@ const LayoutSwitcher = React.memo(({ currentLayout, setCurrentLayout, isDark, ca
                 {[
                     { id: 'original', icon: <LayoutPanelLeft size={18} />, label: labels.original },
                     { id: 'timeline', icon: <Milestone size={18} />, label: labels.timeline },
-                    { id: 'grid', icon: <LayoutGrid size={18} />, label: labels.grid }
+                    { id: 'grid', icon: <LayoutGrid size={18} />, label: labels.grid },
+                    { id: 'bento', icon: <Grid2X2 size={18} />, label: labels.bento },
+                    { id: 'smooth', icon: <Rows size={18} />, label: labels.smooth }
                 ].map((l) => (
                     <button
                         key={l.id}
@@ -88,6 +97,83 @@ const LayoutSwitcher = React.memo(({ currentLayout, setCurrentLayout, isDark, ca
 });
 LayoutSwitcher.displayName = 'LayoutSwitcher';
 
+interface BentoCardProps {
+    job: Job;
+    spanClass: string;
+    cardBorder: string;
+    inactiveCardBg: string;
+    isDark: boolean;
+    lang: string;
+    justifyClass: string;
+    click_to_close_text: string;
+}
+
+const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, justifyClass, click_to_close_text }: BentoCardProps) => {
+    const [isExpanded, setIsExpanded] = useState(false);
+    const hasImage = job.image && job.image.length > 0;
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            onClick={() => setIsExpanded(!isExpanded)}
+            className={`${spanClass} relative rounded-3xl overflow-hidden group border ${cardBorder} ${inactiveCardBg} shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer`}
+        >
+            {hasImage && (
+                <Image 
+                    src={job.image[0]} 
+                    alt={job.company} 
+                    fill 
+                    className={`object-cover transition-all duration-700 
+                        ${isExpanded 
+                            ? (isDark ? 'scale-110 blur-sm brightness-[0.2]' : 'scale-110 blur-md opacity-20') 
+                            : 'group-hover:scale-110 opacity-60 group-hover:opacity-100'}`} 
+                />
+            )}
+            
+            {/* Base Content */}
+            <div className={`absolute inset-0 p-6 flex flex-col justify-end transition-opacity duration-500 
+                ${hasImage ? (isDark ? 'bg-gradient-to-t from-black/80 via-black/20 to-transparent' : 'bg-gradient-to-t from-white/90 via-white/20 to-transparent') : ''}
+                ${isExpanded ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+                <p className="text-cyan-500 text-xs font-bold mb-1">{job.year}</p>
+                <h3 className={`text-xl font-black leading-tight mb-1 ${isDark || (hasImage && !isExpanded) ? 'text-white' : 'text-gray-900'} ${!isDark && hasImage ? 'text-gray-900' : ''}`}>
+                    <span className={!isDark && hasImage ? 'text-black' : ''}>{job.title}</span>
+                </h3>
+                <p className={`text-sm italic ${isDark || (hasImage && !isExpanded) ? 'text-gray-300' : 'text-gray-600'} ${!isDark && hasImage ? 'text-gray-800' : ''}`}>
+                    {job.company}
+                </p>
+            </div>
+
+            {/* Expanded Content (Overlay) */}
+            <motion.div 
+                initial={false}
+                animate={{ opacity: isExpanded ? 1 : 0, y: isExpanded ? 0 : 20 }}
+                transition={{ duration: 0.4, ease: "circOut" }}
+                className={`absolute inset-0 z-10 p-6 flex flex-col justify-center backdrop-blur-md 
+                    ${isDark ? 'bg-black/60' : 'bg-white/80'} 
+                    ${isExpanded ? 'pointer-events-auto' : 'pointer-events-none'}`}
+            >
+                <div className="overflow-y-auto max-h-full pr-2 custom-scrollbar">
+                    <p className="text-cyan-500 text-xs font-bold mb-2 uppercase tracking-widest">{job.date}</p>
+                    <h3 className={`text-xl font-black mb-1 ${isDark ? 'text-white' : 'text-gray-900'}`}>{job.title}</h3>
+                    <p className={`text-sm italic mb-4 ${isDark ? 'text-cyan-300' : 'text-cyan-600'}`}>{job.company}</p>
+                    <div className={`text-sm leading-relaxed ${isDark ? 'text-gray-200' : 'text-gray-700'} ${justifyClass}`}>
+                        {formatCJK(job.description, lang)}
+                    </div>
+                </div>
+                
+                {/* Close hint */}
+                <div className={`absolute top-4 right-4 text-xs font-medium px-2 py-1 rounded-full 
+                    ${isDark ? 'text-white/50 bg-white/10' : 'text-gray-500 bg-gray-200/50'}`}>
+                    {click_to_close_text}
+                </div>
+            </motion.div>
+        </motion.div>
+    );
+};
+BentoCard.displayName = 'BentoCard';
+
 export default function ExperiencesClient({ 
     experiences, 
     lang = 'en', 
@@ -95,7 +181,10 @@ export default function ExperiencesClient({
     canChange = false,
     original_text = 'Original',
     timeline_text = 'Timeline',
-    grid_text = 'Grid'
+    grid_text = 'Grid',
+    bento_text = 'Bento',
+    smooth_text = 'Smooth',
+    click_to_close_text = 'Click to close'
 }: ExperiencesClientProps) {
     const [currentLayout, setCurrentLayout] = useState<LayoutType>(layout);
     const [activeJob, setActiveJob] = useState(experiences[0].jobs[0]);
@@ -160,7 +249,13 @@ export default function ExperiencesClient({
                     setCurrentLayout={setCurrentLayout} 
                     isDark={isDark} 
                     canChange={canChange}
-                    labels={{ original: original_text, timeline: timeline_text, grid: grid_text }}
+                    labels={{ 
+                        original: original_text, 
+                        timeline: timeline_text, 
+                        grid: grid_text,
+                        bento: bento_text || 'Bento',
+                        smooth: smooth_text || 'Smooth'
+                    }}
                 />
             )}
 
@@ -334,6 +429,74 @@ export default function ExperiencesClient({
                                         <p style={dateStyle} className="text-xs font-medium mb-1">{job.date}</p>
                                         <h3 className={`text-xl font-black ${mainText} mb-1 line-clamp-1`}>{job.title}</h3>
                                         <p style={companyStyle} className="text-sm italic mb-4">{job.company}</p>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        )}
+
+                        {currentLayout === 'bento' && (
+                            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[300px]">
+                                {allJobs.map((job, idx) => {
+                                    const spans = [
+                                        "md:col-span-2 md:row-span-2", // Big square
+                                        "md:col-span-2 md:row-span-1", // Wide
+                                        "md:col-span-1 md:row-span-1", // Small
+                                        "md:col-span-1 md:row-span-1", // Small
+                                        "md:col-span-1 md:row-span-1", // Small
+                                        "md:col-span-3 md:row-span-1", // Very Wide
+                                        "md:col-span-2 md:row-span-1", // Wide
+                                        "md:col-span-2 md:row-span-2", // Big square
+                                    ];
+                                    const spanClass = spans[idx % spans.length];
+                                    
+                                    return (
+                                        <BentoCard 
+                                            key={`${job.year}-${idx}`}
+                                            job={job}
+                                            spanClass={spanClass}
+                                            cardBorder={cardBorder}
+                                            inactiveCardBg={inactiveCardBg}
+                                            isDark={isDark}
+                                            lang={lang}
+                                            justifyClass={justifyClass}
+                                            click_to_close_text={click_to_close_text}
+                                        />
+                                    );
+                                })}
+                            </div>
+                        )}
+
+                        {currentLayout === 'smooth' && (
+                            <div className="space-y-24 max-w-4xl mx-auto">
+                                {allJobs.map((job, idx) => (
+                                    <motion.div
+                                        key={`${job.year}-${idx}`}
+                                        initial={{ opacity: 0, y: 50 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true, margin: "-100px" }}
+                                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                                        className="group"
+                                    >
+                                        <div className="flex flex-col md:flex-row gap-8 items-center">
+                                            <div className="w-full md:w-1/2 space-y-4">
+                                                <div className="flex items-center gap-4">
+                                                    <span className="h-px w-12 bg-cyan-500"></span>
+                                                    <p style={dateStyle} className="text-sm font-bold tracking-widest uppercase">{job.date}</p>
+                                                </div>
+                                                <h3 className={`text-4xl md:text-5xl font-black ${mainText} leading-tight`}>{job.title}</h3>
+                                                <p style={companyStyle} className="text-xl font-medium italic opacity-80">{job.company}</p>
+                                                <HoverableWords className={`${justifyClass} ${descText} text-lg leading-relaxed`}>
+                                                    {formatCJK(job.description, lang)}
+                                                </HoverableWords>
+                                            </div>
+                                            {job.image && job.image.length > 0 && (
+                                                <div className="w-full md:w-1/2">
+                                                    <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl transition-transform duration-700 group-hover:scale-[1.02]">
+                                                        <Image src={job.image[0]} alt={job.company} fill className="object-cover" />
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
                                     </motion.div>
                                 ))}
                             </div>

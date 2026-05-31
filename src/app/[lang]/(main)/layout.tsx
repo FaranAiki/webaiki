@@ -124,6 +124,7 @@ export default async function RootLayout({
         select_lang={dict.Select_Language}
         presentation_mode={dict.Presentation_Mode}
         navigation_label={dict.Navigation}
+        logo_alt={dict.Logo_Alt}
         settings_labels={{
           Settings: dict.Settings,
           Typography: dict.Typography,

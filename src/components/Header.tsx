@@ -44,6 +44,7 @@ interface HeaderProps {
     select_lang: string;
     presentation_mode: string;
     navigation_label: string;
+    logo_alt: string;
     settings_labels: {
         Settings: string;
         Typography: string;
@@ -104,14 +105,15 @@ export default function Header(props: HeaderProps) {
         ru_lang, 
         fr_lang, 
         ar_lang, 
-        es_lang,
-        ko_lang,
-        de_lang,
-        nl_lang,
+        es_lang, 
+        ko_lang, 
+        de_lang, 
+        nl_lang, 
         select_lang, 
-        presentation_mode, 
-        navigation_label, 
-        settings_labels 
+        presentation_mode,
+        navigation_label,
+        logo_alt,
+        settings_labels
     } = props;
     const pathname = usePathname();
     const router = useRouter();
@@ -284,7 +286,8 @@ export default function Header(props: HeaderProps) {
                         <Image
                             onClick={() => router.push(getLocalizedHref('/all'))}
                             src='/icon.ico'
-                            alt={"logo"}
+                            alt={logo_alt}
+                            title={logo_alt}
                             width={32}
                             height={32}
                             className="scale-[1.01]"
