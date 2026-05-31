@@ -1,13 +1,14 @@
 {
-  "2028": "2028",
-  "2027": "2027",
-  "2026": "2026",
-  "2025": "2025",
-  "2024": "2024",
-  "2023": "2023",
-  "2022": "2022",
-  "2021": "2021",
+  "2019": "2019",
   "2020": "2020",
+  "2021": "2021",
+  "2022": "2022",
+  "2023": "2023",
+  "2024": "2024",
+  "2025": "2025",
+  "2026": "2026",
+  "2027": "2027",
+  "2028": "2028",
   "January": "Januari",
   "February": "Februari",
   "March": "Maret",
@@ -207,5 +208,7 @@
   "SEO_Literature_Description": "Karya sastra berupa puisi, cerpen, dan esai yang ditulis oleh Muhammad Faran Aiki dalam bahasa Indonesia dan Inggris.",
   "Original": "Asli",
   "Timeline": "Linimasa",
-  "Grid": "Kisi"
+  "Grid": "Kisi",
+  "Jump_Game_Project": "Game Jump!",
+  "Jump_Game_Description": "Game platformer sederhana mirip Geometry Dash yang kubuat pakai C# dan Visual Studio. Orang tuaku dulu pernah mainin game ini juga. Dari sini, aku juga belajar penggunaan FPS/Time.deltaTime yang baik dan benar."
 }

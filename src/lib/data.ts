@@ -183,6 +183,19 @@ export const getProjectExperiences = (dict: Dictionary) => [
       },
     ]
   },
+  {
+    year: '2019',
+    jobs: [
+      {
+        date: `${dict.January} — ${dict.February}`,
+        title: dict.Jump_Game_Project,
+        company: 'C#, Visual Studio',
+        description: dict.Jump_Game_Description,
+        image: [],
+        url: 'https://www.mediafire.com/file/mbveomadf4xgov9/Jump%2521.zip/file',
+      },
+    ]
+  },
 ];
 
 export const getOrganizationExperiences = (dict: Dictionary) => [
