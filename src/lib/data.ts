@@ -169,6 +169,23 @@ export const getProjectExperiences = (dict: Dictionary) => [
     ]
   },
   {
+    year: '2024',
+    jobs: [
+      {
+        date: `${dict.January} — ${dict.April}`,
+        title: dict.Below_Below_Project,
+        company: 'Godot 4.2, GDScript',
+        description: dict.Below_Below_Description,
+        url: 'https://drive.google.com/file/d/1l39-R45zt-6lcOTUM0hHeKR8m_7o4fqd/view?usp=sharing',
+        image: [
+          '/documents/project/Godot_Below_Below_0.png',
+          '/documents/project/Godot_Below_Below_1.png',
+          '/documents/project/Godot_Below_Below_2.png',
+        ]
+      },
+    ]
+  },
+  {
     year: '2023',
     jobs: [
       {

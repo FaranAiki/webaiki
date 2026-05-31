@@ -202,5 +202,7 @@
   "Timeline": "타임라인",
   "Grid": "그리드",
   "Jump_Game_Project": "Jump! Game",
-  "Jump_Game_Description": "A simple platformer like Geometry Dash I made with C# and Visual Studio. My parents actually played this game too! From this project, I also learned how to use FPS and Time.deltaTime properly."
+  "Jump_Game_Description": "A simple platformer like Geometry Dash I made with C# and Visual Studio. My parents actually played this game too! From this project, I also learned how to use FPS and Time.deltaTime properly.",
+  "Below_Below_Project": "Below Below",
+  "Below_Below_Description": "A narrative-driven mining exploration game where you are reincarnated as a mining slave. It features a hybrid of 2D exploration and 3D mining mechanics, dynamic world generation, and complex survival systems like crafting and NPC interactions. Built with Godot 4.2 and GDScript."
 }
