@@ -20,6 +20,27 @@ const CertificatesDisplay = dynamic(
 );
 
 // This component receives the server-fetched data as props
-export default function CertificateLoader({ certificates, allTranslation, lang }: { certificates: CertificateData, allTranslation: string, lang: string }) {
-  return <CertificatesDisplay certificates={certificates} allTranslation={allTranslation} lang={lang} />;
+export default function CertificateLoader({ 
+  certificates, 
+  allTranslation, 
+  lang,
+  original_text,
+  timeline_text,
+  grid_text 
+}: { 
+  certificates: CertificateData, 
+  allTranslation: string, 
+  lang: string,
+  original_text?: string,
+  timeline_text?: string,
+  grid_text?: string 
+}) {
+  return <CertificatesDisplay 
+    certificates={certificates} 
+    allTranslation={allTranslation} 
+    lang={lang} 
+    original_text={original_text}
+    timeline_text={timeline_text}
+    grid_text={grid_text}
+  />;
 }

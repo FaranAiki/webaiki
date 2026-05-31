@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 
 import { motion } from 'framer-motion';
+import { LayoutSwitcher, LayoutOption } from './LayoutSwitcher';
 
 type Job = {
     date: string;
@@ -49,53 +50,6 @@ interface ExperiencesClientProps {
 }
 
 // --- Sub-components for stability ---
-
-interface LayoutSwitcherProps {
-    currentLayout: LayoutType;
-    setCurrentLayout: (layout: LayoutType) => void;
-    isDark: boolean;
-    canChange: boolean;
-    labels: {
-        original: string;
-        timeline: string;
-        grid: string;
-        bento: string;
-        smooth: string;
-    };
-}
-
-const LayoutSwitcher = React.memo(({ currentLayout, setCurrentLayout, isDark, canChange, labels }: LayoutSwitcherProps) => {
-    if (!canChange) return null;
-    return (
-        <div className={`fixed bottom-8 right-8 z-50 flex items-center p-1.5 rounded-xl border backdrop-blur-md shadow-lg transition-colors duration-300 ${isDark ? 'bg-gray-900/90 border-gray-800' : 'bg-white/90 border-gray-200'}`}>
-            <div className="flex gap-1">
-                {[
-                    { id: 'original', icon: <LayoutPanelLeft size={18} />, label: labels.original },
-                    { id: 'timeline', icon: <Milestone size={18} />, label: labels.timeline },
-                    { id: 'grid', icon: <LayoutGrid size={18} />, label: labels.grid },
-                    { id: 'bento', icon: <Grid2X2 size={18} />, label: labels.bento },
-                    { id: 'smooth', icon: <Rows size={18} />, label: labels.smooth }
-                ].map((l) => (
-                    <button
-                        key={l.id}
-                        onClick={() => setCurrentLayout(l.id as LayoutType)}
-                        title={l.label}
-                        className={`p-2 rounded-lg transition-colors duration-200 ${
-                            currentLayout === l.id
-                                ? 'bg-cyan-500 text-white shadow-sm'
-                                : isDark
-                                    ? 'text-gray-400 hover:text-gray-200 hover:bg-gray-800'
-                                    : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
-                        }`}
-                    >
-                        {l.icon}
-                    </button>
-                ))}
-            </div>
-        </div>
-    );
-});
-LayoutSwitcher.displayName = 'LayoutSwitcher';
 
 interface BentoCardProps {
     job: Job;
@@ -243,19 +197,19 @@ export default function ExperiencesClient({
 
     return (
         <div className={`w-full h-full ${isPresentationMode ? 'presentation-container flex flex-row flex-nowrap w-full h-screen' : ''}`}>
-            {!isPresentationMode && (
+            {!isPresentationMode && allJobs.length > 0 && (
                 <LayoutSwitcher 
                     currentLayout={currentLayout} 
                     setCurrentLayout={setCurrentLayout} 
                     isDark={isDark} 
                     canChange={canChange}
-                    labels={{ 
-                        original: original_text, 
-                        timeline: timeline_text, 
-                        grid: grid_text,
-                        bento: bento_text || 'Bento',
-                        smooth: smooth_text || 'Smooth'
-                    }}
+                    options={[
+                        { id: 'original', icon: <LayoutPanelLeft size={18} />, label: original_text },
+                        { id: 'timeline', icon: <Milestone size={18} />, label: timeline_text },
+                        { id: 'grid', icon: <LayoutGrid size={18} />, label: grid_text },
+                        { id: 'bento', icon: <Grid2X2 size={18} />, label: bento_text || 'Bento' },
+                        { id: 'smooth', icon: <Rows size={18} />, label: smooth_text || 'Smooth' }
+                    ]}
                 />
             )}
 

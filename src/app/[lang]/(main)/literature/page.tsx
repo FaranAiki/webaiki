@@ -87,11 +87,19 @@ export const getCollectionsData = cache((lang: string) => {
 
 export default async function LiteraturePage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
+  const dict = getDictionary(lang);
   const literature_data = getCollectionsData(lang);
 
   return (
     <main className="container mx-auto px-6 pb-16 pt-24">
-      <LiteratureLoader data={literature_data} force_click={true} lang={lang} />
+      <LiteratureLoader 
+        data={literature_data} 
+        force_click={true} 
+        lang={lang} 
+        original_text={dict.Original}
+        timeline_text={dict.Timeline}
+        grid_text={dict.Grid}
+      />
     </main>
   );
 }

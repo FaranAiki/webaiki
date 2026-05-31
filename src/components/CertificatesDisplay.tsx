@@ -8,6 +8,9 @@ import PopRotateSection from '@/components/PopRotateSection';
 import FadeInSection from '@/components/FadeInSection';
 import { usePresentation } from './PresentationContext';
 import { formatCJK } from '@/lib/utils';
+import { LayoutSwitcher } from './LayoutSwitcher';
+import { LayoutPanelLeft, Milestone, LayoutGrid } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export type CertificateData = {
   [category: string]: {
@@ -21,9 +24,20 @@ export type CertificatesDisplayProps = {
   certificates: CertificateData;
   allTranslation: string;
   lang?: string;
+  original_text?: string;
+  timeline_text?: string;
+  grid_text?: string;
 };
 
-export default function CertificatesDisplay({ certificates, allTranslation, lang }: CertificatesDisplayProps) {
+export default function CertificatesDisplay({ 
+  certificates, 
+  allTranslation, 
+  lang = 'en',
+  original_text = 'Original',
+  timeline_text = 'Timeline',
+  grid_text = 'Grid'
+}: CertificatesDisplayProps) {
+  const [currentLayout, setCurrentLayout] = useState<'original' | 'timeline' | 'grid'>('original');
   const [openCategories, setOpenCategories] = useState<string[]>([]);
   const [selectedYears, setSelectedYears] = useState<{ [key: string]: string }>({});
   const { resolvedTheme } = useTheme();
@@ -92,6 +106,11 @@ export default function CertificatesDisplay({ certificates, allTranslation, lang
   }, [certificates]);
 
   const isDark = mounted && resolvedTheme === 'dark';
+  const hasCertificates = useMemo(() => {
+    return Object.values(certificates).some(yearsData => 
+      Object.values(yearsData).some(files => Object.keys(files).length > 0)
+    );
+  }, [certificates]);
   
   // Dynamic Classes
   const titleColor = isDark ? 'text-white' : 'text-gray-900';
@@ -163,108 +182,202 @@ export default function CertificatesDisplay({ certificates, allTranslation, lang
 
       {/* Normal Mode */}
       {!isPresentationMode && (
-        <div className="block w-full max-w-5xl mx-auto p-4 space-y-6">
-        {Object.entries(certificates).map(([category, yearsData]) => {
-          const isOpen = openCategories.includes(category);
-          const activeYear = selectedYears[category] || (categoryYears[category][0] || 'All');
+        <div className="block w-full max-w-5xl mx-auto p-4 space-y-6 pt-8">
+          {hasCertificates && (
+            <LayoutSwitcher
+                currentLayout={currentLayout}
+                setCurrentLayout={setCurrentLayout}
+                isDark={isDark}
+                canChange={true}
+                options={[
+                    { id: 'original', icon: <LayoutPanelLeft size={18} />, label: original_text },
+                    { id: 'timeline', icon: <Milestone size={18} />, label: timeline_text },
+                    { id: 'grid', icon: <LayoutGrid size={18} />, label: grid_text }
+                ]}
+            />
+          )}
 
-          const filteredFiles = (() => {
-            if (activeYear === 'All') {
-              return Object.values(yearsData).reduce(
-                (acc, files) => ({ ...acc, ...files }),
-                {}
-              );
-            }
-            return yearsData[activeYear] || {};
-          })();
+          {currentLayout === 'original' && (
+              <div className="space-y-6">
+                {Object.entries(certificates).map(([category, yearsData]) => {
+                  const isOpen = openCategories.includes(category);
+                  const activeYear = selectedYears[category] || (categoryYears[category][0] || 'All');
 
-          return (
-            <div key={category} className={`border-b ${borderColor} pb-4`}>
-              {/* Category Title FadeIn */}
-              <FadeInSection delay={50}>
-                  <button
-                  onClick={() => handleCategoryClick(category)}
-                  className={`w-full text-left text-2xl font-bold ${titleColor} hover:text-cyan-500 hover:scale-102 transition-[transform,colors]`}
-                  >
-                  {formatCJK(category, lang)}
-                  </button>
-              </FadeInSection>
+                  const filteredFiles = (() => {
+                    if (activeYear === 'All') {
+                      return Object.values(yearsData).reduce(
+                        (acc, files) => ({ ...acc, ...files }),
+                        {}
+                      );
+                    }
+                    return yearsData[activeYear] || {};
+                  })();
 
-              <div
-              className={`transition-[transform] duration-250 animate-fade-in ease-in-out overflow-hidden ${
-                  isOpen ? 'max-h-[10000px] mt-4' : 'max-h-0'
-              }`}
-              >
-              {/* Year Selection FadeIn */}
-              <FadeInSection delay={50}>
-                  <div className="flex flex-wrap gap-2 mb-6">
-                      <button
-                      onClick={() => handleYearClick(category, 'All')}
-                      className={`px-3 py-1 text-sm rounded-full ${
-                          activeYear === 'All'
-                          ? 'bg-cyan-500 text-white transition-[colors,transform] hover:scale-105'
-                          : `${buttonInactiveBg} ${buttonInactiveText}`
+                  return (
+                    <div key={category} className={`border-b ${borderColor} pb-4`}>
+                      {/* Category Title FadeIn */}
+                      <FadeInSection delay={50}>
+                          <button
+                          onClick={() => handleCategoryClick(category)}
+                          className={`w-full text-left text-2xl font-bold ${titleColor} hover:text-cyan-500 hover:scale-102 transition-[transform,colors]`}
+                          >
+                          {formatCJK(category, lang)}
+                          </button>
+                      </FadeInSection>
+
+                      <div
+                      className={`transition-[transform] duration-250 animate-fade-in ease-in-out overflow-hidden ${
+                          isOpen ? 'max-h-[10000px] mt-4' : 'max-h-0'
                       }`}
                       >
-                      {allTranslation}
-                      </button>
-                      {categoryYears[category].map((year) => (
-                      <button
-                          key={year}
-                          onClick={() => handleYearClick(category, year)}
-                          className={`px-3 py-1 text-sm rounded-full ${
-                          activeYear === year
-                              ? 'bg-cyan-500 text-white'
-                              : `${buttonInactiveBg} ${buttonInactiveText} transition-[transform,colors] hover:scale-105`
-                          }`}
-                      >
-                          {year}
-                      </button>
-                      ))}
-                  </div>
-              </FadeInSection>
+                      {/* Year Selection FadeIn */}
+                      <FadeInSection delay={50}>
+                          <div className="flex flex-wrap gap-2 mb-6">
+                              <button
+                              onClick={() => handleYearClick(category, 'All')}
+                              className={`px-3 py-1 text-sm rounded-full ${
+                                  activeYear === 'All'
+                                  ? 'bg-cyan-500 text-white transition-[colors,transform] hover:scale-105'
+                                  : `${buttonInactiveBg} ${buttonInactiveText}`
+                              }`}
+                              >
+                              {allTranslation}
+                              </button>
+                              {categoryYears[category].map((year) => (
+                              <button
+                                  key={year}
+                                  onClick={() => handleYearClick(category, year)}
+                                  className={`px-3 py-1 text-sm rounded-full ${
+                                  activeYear === year
+                                      ? 'bg-cyan-500 text-white'
+                                      : `${buttonInactiveBg} ${buttonInactiveText} transition-[transform,colors] hover:scale-105`
+                                  }`}
+                              >
+                                  {year}
+                              </button>
+                              ))}
+                          </div>
+                      </FadeInSection>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                  {Object.entries(filteredFiles).map(([fileName, filePath]) => (
-                  <PopRotateSection delay={50} key={fileName} className="h-full">
-                      <div
-                          className={`${cardBg} rounded-lg overflow-hidden shadow-lg transition-[colors,transform,opacity] hover:scale-105 hover:opacity-100 opacity-90 h-full flex flex-col transform-gpu`}
-                          style={{ boxShadow: isDark ? 'inset 0 0 0 1px rgba(255,255,255,0.1)' : 'inset 0 0 0 1px rgba(0,0,0,0.1)' }}
-                      >
-                          <a
-                          href={filePath as string}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="block h-48 w-full relative"
-                          >
-                          {(filePath as string).endsWith('.pdf') ? (
-                              <div className="w-full h-full overflow-hidden">
-                                  <PdfPreview fileUrl={filePath as string} />
+                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                          {Object.entries(filteredFiles).map(([fileName, filePath]) => (
+                          <PopRotateSection delay={50} key={fileName} className="h-full">
+                              <div
+                                  className={`${cardBg} rounded-lg overflow-hidden shadow-lg transition-[colors,transform,opacity] hover:scale-105 hover:opacity-100 opacity-90 h-full flex flex-col transform-gpu`}
+                                  style={{ boxShadow: isDark ? 'inset 0 0 0 1px rgba(255,255,255,0.1)' : 'inset 0 0 0 1px rgba(0,0,0,0.1)' }}
+                              >
+                                  <a
+                                  href={filePath as string}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="block h-48 w-full relative"
+                                  >
+                                  {(filePath as string).endsWith('.pdf') ? (
+                                      <div className="w-full h-full overflow-hidden">
+                                          <PdfPreview fileUrl={filePath as string} />
+                                      </div>
+                                  ) : (
+                                      <Image
+                                      src={filePath as string}
+                                      alt={fileName}
+                                      fill
+                                      className="object-cover scale-[1.01]"
+                                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                      />
+                                  )}
+                                  </a>
+                                  <div className="p-4 flex-grow">
+                                  <h3 className={`font-semibold ${titleColor} truncate`}>
+                                      {formatCJK(fileName, lang)}
+                                  </h3>
+                                  </div>
                               </div>
-                          ) : (
-                              <Image
-                              src={filePath as string}
-                              alt={fileName}
-                              fill
-                              className="object-cover scale-[1.01]"
-                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                              />
-                          )}
-                          </a>
-                          <div className="p-4 flex-grow">
-                          <h3 className={`font-semibold ${titleColor} truncate`}>
-                              {formatCJK(fileName, lang)}
-                          </h3>
+                          </PopRotateSection>
+                          ))}
+                      </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+          )}
+
+          {currentLayout === 'timeline' && (
+              <div className="relative border-l-2 border-cyan-500/30 ml-4 md:ml-8 space-y-12">
+                  {Object.entries(certificates).flatMap(([category, yearsData]) => 
+                    Object.entries(yearsData).map(([year, files]) => ({ category, year, files }))
+                  ).sort((a, b) => b.year.localeCompare(a.year)).map((item, idx) => (
+                      <div key={`${item.category}-${item.year}`} className="relative pl-8">
+                          <div className="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-cyan-500 border-4 border-white dark:border-gray-900 shadow-sm" />
+                          <div className="flex flex-wrap items-baseline gap-x-4 mb-6">
+                              <h2 className={`text-3xl font-black text-cyan-500`}>{item.year}</h2>
+                              <h3 className={`text-xl font-bold ${titleColor} opacity-70`}>{formatCJK(item.category, lang)}</h3>
+                          </div>
+                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                              {Object.entries(item.files).map(([fileName, filePath]) => (
+                                  <motion.div
+                                      key={fileName}
+                                      initial={{ opacity: 0, x: 20 }}
+                                      whileInView={{ opacity: 1, x: 0 }}
+                                      viewport={{ once: true }}
+                                      className={`${cardBg} overflow-hidden rounded-xl border ${borderColor} flex flex-col shadow-md group transform-gpu`}
+                                  >
+                                      <a href={filePath} target="_blank" rel="noopener noreferrer" className="relative aspect-video w-full overflow-hidden">
+                                          {(filePath as string).endsWith('.pdf') ? (
+                                              <div className="w-full h-full">
+                                                  <PdfPreview fileUrl={filePath as string} />
+                                              </div>
+                                          ) : (
+                                              <Image src={filePath} alt={fileName} fill className="object-cover transition-transform group-hover:scale-105" />
+                                          )}
+                                      </a>
+                                      <div className="p-3">
+                                          <h4 className={`font-bold ${titleColor} line-clamp-1 text-sm`}>{formatCJK(fileName, lang)}</h4>
+                                      </div>
+                                  </motion.div>
+                              ))}
                           </div>
                       </div>
-                  </PopRotateSection>
                   ))}
               </div>
+          )}
+
+          {currentLayout === 'grid' && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                  {Object.entries(certificates).flatMap(([category, yearsData]) => 
+                    Object.entries(yearsData).flatMap(([year, files]) => 
+                        Object.entries(files).map(([fileName, filePath]) => ({ category, year, fileName, filePath }))
+                    )
+                  ).map((item, idx) => (
+                      <motion.div
+                          key={`${item.category}-${item.year}-${item.fileName}`}
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          whileHover={{ y: -5 }}
+                          className={`${cardBg} rounded-2xl overflow-hidden border ${borderColor} shadow-md group transform-gpu`}
+                      >
+                          <a href={item.filePath} target="_blank" rel="noopener noreferrer" className="block relative aspect-video">
+                            {(item.filePath as string).endsWith('.pdf') ? (
+                                <div className="w-full h-full overflow-hidden">
+                                    <PdfPreview fileUrl={item.filePath as string} />
+                                </div>
+                            ) : (
+                                <Image src={item.filePath} alt={item.fileName} fill className="object-cover" />
+                            )}
+                          </a>
+                          <div className="p-4">
+                              <div className="flex justify-between items-start mb-1">
+                                  <span className="text-[10px] font-bold text-cyan-500 uppercase tracking-tighter">{formatCJK(item.category, lang)}</span>
+                                  <span className={`text-[10px] font-mono ${titleColor} opacity-50`}>{item.year}</span>
+                              </div>
+                              <h3 className={`text-sm font-bold ${titleColor} line-clamp-1`}>{formatCJK(item.fileName, lang)}</h3>
+                          </div>
+                      </motion.div>
+                  ))}
               </div>
-            </div>
-          );
-        })}
-      </div>
+          )}
+        </div>
       )}
     </div>
   );
