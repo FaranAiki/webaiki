@@ -183,17 +183,17 @@ export default function Header(props: HeaderProps) {
     const dropdownBg = isDark ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200';
 
     const languages = [
-        { code: 'id', name: id_lang, flag: '🇮🇩' },
-        { code: 'en', name: en_lang, flag: '🇺🇸' },
-        { code: 'zh', name: zh_lang, flag: '🇨🇳' },
-        { code: 'jp', name: jp_lang, flag: '🇯🇵' },
-        { code: 'ru', name: ru_lang, flag: '🇷🇺' },
-        { code: 'fr', name: fr_lang, flag: '🇫🇷' },
-        { code: 'es', name: es_lang, flag: '🇪🇸' },
-        { code: 'ko', name: ko_lang, flag: '🇰🇷' },
-        { code: 'de', name: de_lang, flag: '🇩🇪' },
-        { code: 'nl', name: nl_lang, flag: '🇳🇱' },
-        { code: 'ar', name: ar_lang, flag: '🇸🇦' },
+        { code: 'id', name: id_lang, flag: '/flags/id.webp' },
+        { code: 'en', name: en_lang, flag: '/flags/en.webp' },
+        { code: 'zh', name: zh_lang, flag: '/flags/zh.webp' },
+        { code: 'jp', name: jp_lang, flag: '/flags/jp.webp' },
+        { code: 'ru', name: ru_lang, flag: '/flags/ru.webp' },
+        { code: 'fr', name: fr_lang, flag: '/flags/fr.webp' },
+        { code: 'es', name: es_lang, flag: '/flags/es.webp' },
+        { code: 'ko', name: ko_lang, flag: '/flags/ko.webp' },
+        { code: 'de', name: de_lang, flag: '/flags/de.webp' },
+        { code: 'nl', name: nl_lang, flag: '/flags/nl.webp' },
+        { code: 'ar', name: ar_lang, flag: '/flags/ar.webp' },
     ];
 
     const handleLanguageChange = async (langCode: string) => {
@@ -222,9 +222,17 @@ export default function Header(props: HeaderProps) {
                             <button
                                 onClick={() => handleLanguageChange(lang.code)}
                                 aria-label={`Change language to ${lang.name}`}
-                                className={`w-full text-left px-5 py-2.5 text-sm hover:${isDark? 'bg-gray-700' : 'bg-gray-100'} hover:${isDark? 'text-cyan-400' : 'text-cyan-600'} transition-[colors,transform] duration-200 ${isCurrent ? `${activeText} font-bold bg-gray-50/5` : textColor} flex items-center gap-3`}
+                                className={`w-full text-left px-5 py-2.5 text-sm hover:${isDark? 'bg-gray-700' : 'bg-gray-100'} hover:${isDark? 'text-cyan-400' : 'text-cyan-600'} transition-[colors,transform] duration-200 ${isCurrent ? `${activeText} font-bold bg-gray-50/5` : textColor} flex items-center gap-3 group`}
                             >
-                                <span className="text-base grayscale-[0.2] group-hover:grayscale-0">{lang.flag}</span>
+                                <div className="w-5 h-3.5 relative shrink-0">
+                                    <Image 
+                                        src={lang.flag} 
+                                        alt={lang.name} 
+                                        fill 
+                                        className="object-cover rounded-sm grayscale-[0.2] group-hover:grayscale-0"
+                                        sizes="20px"
+                                    />
+                                </div>
                                 <span>{lang.name}</span>
                             </button>
                         </li>
@@ -430,9 +438,15 @@ export default function Header(props: HeaderProps) {
                                 aria-expanded={isLangMenuVisible}
                             >
                                 <GlobeIcon isDark={isDark} />
-                                <span className="text-base grayscale-[0.2] group-hover:grayscale-0">
-                                    {languages.find(l => l.code === current_lang)?.flag}
-                                </span>
+                                <div className="w-5 h-3.5 relative shrink-0">
+                                    <Image 
+                                        src={languages.find(l => l.code === current_lang)?.flag || ''} 
+                                        alt={current_lang} 
+                                        fill 
+                                        className="object-cover rounded-sm grayscale-[0.2] group-hover:grayscale-0"
+                                        sizes="20px"
+                                    />
+                                </div>
                             </button>
                             {isLangMenuVisible && (
                                 <div className="absolute top-full right-0 mt-2">

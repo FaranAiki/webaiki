@@ -36,6 +36,12 @@ const nextConfig: NextConfig = {
           }
         }
       }
+
+      // Explicitly externalize chromium to prevent bundling its binaries
+      if (isServer) {
+        config.externals = [...(config.externals as any[] || []), '@sparticuz/chromium'];
+      }
+
       return config;
     },
 
