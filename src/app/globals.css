@@ -216,6 +216,14 @@ html.dark body {
   color: var(--foreground);
 }
 
+.presentation-background {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  contain: strict;
+}
+
 body.presentation-mode {
   overflow: hidden !important;
 }

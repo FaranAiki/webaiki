@@ -143,18 +143,21 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
 
     const connectParticles = (w: number, h: number, color: {r: number, g: number, b: number}) => {
       // Reduce connection distance on mobile to further reduce drawing overhead
-      const maxDistance = w < 768 ? CONNECTION_DISTANCE * 0.8 : CONNECTION_DISTANCE;
+      const isMobile = w < 768;
+      const maxDistance = isMobile ? CONNECTION_DISTANCE * 0.8 : CONNECTION_DISTANCE;
+      const maxDistanceSq = maxDistance * maxDistance;
       
+      ctx.lineWidth = 1.5;
       for (let a = 0; a < particles.length; a++) {
         for (let b = a + 1; b < particles.length; b++) {
           const dx = particles[a].x - particles[b].x;
           const dy = particles[a].y - particles[b].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
+          const distSq = dx * dx + dy * dy;
 
-          if (distance < maxDistance) {
+          if (distSq < maxDistanceSq) {
+            const distance = Math.sqrt(distSq);
             const opacity = 1 - distance / maxDistance;
             ctx.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity * 0.3})`;
-            ctx.lineWidth = 1.5;
             ctx.beginPath();
             ctx.moveTo(particles[a].x, particles[a].y);
             ctx.lineTo(particles[b].x, particles[b].y);
@@ -191,11 +194,12 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
   }, []); // Run once, but use Ref for isDark updates
 
   return (
-    <div ref={containerRef} className="fixed top-0 left-0 w-full h-full z-[-1] pointer-events-none">
+    <div ref={containerRef} className="fixed top-0 left-0 w-full h-full z-[-1] pointer-events-none overflow-hidden contain-strict">
       {/* Added transition for canvas opacity to help smooth theme switches */}
       <canvas
         ref={canvasRef}
-        className="block w-full h-full opacity-65 transition-opacity duration-1000"
+        className="block w-full h-full opacity-65 transition-opacity duration-1000 transform-gpu"
+        style={{ backfaceVisibility: 'hidden' }}
       />
     </div>
   );
@@ -241,15 +245,16 @@ export default function Background({ carousel }: BackgroundProps) {
   const isDark = resolvedTheme === 'dark';
 
   return (
-    <div className={`presentation-background fixed inset-0 w-full h-full z-[-1] pointer-events-none transition-colors duration-[1500ms] ease-in-out bg-white dark:bg-black`}>
+    <div className={`presentation-background fixed inset-0 w-full h-full z-[-1] pointer-events-none transition-colors duration-[1500ms] ease-in-out bg-white dark:bg-black transform-gpu contain-strict`}>
       
-      <div className={`transition-opacity duration-[1500ms] ease-in-out w-full h-full absolute inset-0 opacity-100`}>
+      <div className={`transition-opacity duration-[1500ms] ease-in-out w-full h-full absolute inset-0 opacity-100 transform-gpu`} style={{ backfaceVisibility: 'hidden' }}>
         {carousel.map((src, index) => (
             <div
                 key={index}
-                className={`blur-sm md:blur-md absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out scale-110 transform-gpu will-change-opacity ${
+                className={`blur-sm md:blur-md absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out scale-110 transform-gpu will-change-[opacity,transform] ${
                     index === currentIndex ? 'opacity-60 z-0' : 'opacity-0 -z-10'
                 }`}
+                style={{ backfaceVisibility: 'hidden' }}
             >
                 {/* Only render the Image if it's in our loadedIndices set */}
                 {loadedIndices.has(index) && (
@@ -267,7 +272,10 @@ export default function Background({ carousel }: BackgroundProps) {
         ))}
         
         {/* Adjusted Gradient to improve text readability on all backgrounds with SLOW transition for epilepsy prevention */}
-        <div className={`absolute inset-0 transition-[colors,opacity] duration-[1500ms] ease-in-out ${isDark ? 'bg-gradient-to-b from-black/70 via-black/40 to-black/80' : 'bg-gradient-to-b from-white/95 via-white/90 to-white'}`} />
+        <div 
+          className={`absolute inset-0 transition-[colors,opacity] duration-[1500ms] ease-in-out transform-gpu ${isDark ? 'bg-gradient-to-b from-black/70 via-black/40 to-black/80' : 'bg-gradient-to-b from-white/95 via-white/90 to-white'}`} 
+          style={{ backfaceVisibility: 'hidden' }}
+        />
         
         {mounted && <GeometricPattern isDark={isDark}/>}
       </div>
