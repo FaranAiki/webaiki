@@ -15,7 +15,7 @@ import { motion } from 'framer-motion';
 export type CertificateData = {
   [category: string]: {
     [year: string]: {
-      [fileName: string]: string;
+      [fileName: string]: { path: string; point: number };
     };
   };
 };
@@ -33,6 +33,11 @@ interface BentoCertificateCardProps {
     click_to_close_text: string;
     spanClass: string;
 }
+
+const getPath = (data: string | { path: string; point: number }): string => {
+  if (typeof data === 'string') return data;
+  return data?.path || '';
+};
 
 const BentoCertificateCard = ({ 
     fileName, filePath, category, year, borderColor, cardBg, isDark, lang, titleColor, click_to_close_text, spanClass 
@@ -160,7 +165,7 @@ export default function CertificatesDisplay({
     const slides: { 
       category: string; 
       year: string; 
-      files: [string, string][]; 
+      files: [string, { path: string; point: number }][]; 
       part?: number; 
       totalParts?: number 
     }[] = [];
@@ -180,7 +185,7 @@ export default function CertificatesDisplay({
           slides.push({
             category,
             year,
-            files: fileEntries.slice(i, i + chunkSize),
+            files: fileEntries.slice(i, i + chunkSize) as [string, { path: string, point: number }][],
             part: Math.floor(i / chunkSize) + 1,
             totalParts: totalParts
           });
@@ -235,31 +240,34 @@ export default function CertificatesDisplay({
                 ? 'grid-cols-1 sm:grid-cols-2 max-w-4xl'
                 : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
             }`}>
-              {slide.files.map(([fileName, filePath]) => (
-                <div key={fileName} className="flex flex-col items-center group w-full max-w-[300px] md:max-w-[350px]">
-                  <div 
-                    className={`${cardBg} w-full aspect-[4/3] relative mb-4 rounded-xl overflow-hidden shadow-xl transition-transform group-hover:scale-105 transform-gpu`}
-                    style={{ boxShadow: isDark ? 'inset 0 0 0 2px rgba(255,255,255,0.1)' : 'inset 0 0 0 2px rgba(0,0,0,0.1)' }}
-                  >
-                    {(filePath as string).endsWith('.pdf') ? (
-                      <div className="w-full h-full flex justify-center items-center overflow-hidden">
-                        <PdfPreview fileUrl={filePath as string} width={350} />
-                      </div>
-                    ) : (
-                      <Image
-                        src={filePath as string}
-                        alt={fileName}
-                        fill
-                        className="object-contain scale-[1.01]"
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                      />
-                    )}
+              {slide.files.map(([fileName, fileData]) => {
+                const filePath = getPath(fileData);
+                return (
+                  <div key={fileName} className="flex flex-col items-center group w-full max-w-[300px] md:max-w-[350px]">
+                    <div 
+                      className={`${cardBg} w-full aspect-[4/3] relative mb-4 rounded-xl overflow-hidden shadow-xl transition-transform group-hover:scale-105 transform-gpu`}
+                      style={{ boxShadow: isDark ? 'inset 0 0 0 2px rgba(255,255,255,0.1)' : 'inset 0 0 0 2px rgba(0,0,0,0.1)' }}
+                    >
+                      {filePath.endsWith('.pdf') ? (
+                        <div className="w-full h-full flex justify-center items-center overflow-hidden">
+                          <PdfPreview fileUrl={filePath} width={350} />
+                        </div>
+                      ) : (
+                        <Image
+                          src={filePath}
+                          alt={fileName}
+                          fill
+                          className="object-contain scale-[1.01]"
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                        />
+                      )}
+                    </div>
+                    <p className={`text-center font-bold text-sm md:text-xl lg:text-2xl ${isDark ? 'text-gray-200' : 'text-gray-800'} line-clamp-2 px-2 leading-tight`}>
+                      {formatCJK(fileName, lang)}
+                    </p>
                   </div>
-                  <p className={`text-center font-bold text-sm md:text-xl lg:text-2xl ${isDark ? 'text-gray-200' : 'text-gray-800'} line-clamp-2 px-2 leading-tight`}>
-                    {formatCJK(fileName, lang)}
-                  </p>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </FadeInSection>
@@ -346,25 +354,27 @@ export default function CertificatesDisplay({
                       </FadeInSection>
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                          {Object.entries(filteredFiles).map(([fileName, filePath]) => (
+                          {Object.entries(filteredFiles).map(([fileName, fileData]) => {
+                          const filePath = getPath(fileData);
+                          return (
                           <PopRotateSection delay={50} key={fileName} className="h-full">
                               <div
                                   className={`${cardBg} rounded-lg overflow-hidden shadow-lg transition-[colors,transform,opacity] hover:scale-105 hover:opacity-100 opacity-90 h-full flex flex-col transform-gpu`}
                                   style={{ boxShadow: isDark ? 'inset 0 0 0 1px rgba(255,255,255,0.1)' : 'inset 0 0 0 1px rgba(0,0,0,0.1)' }}
                               >
                                   <a
-                                  href={filePath as string}
+                                  href={filePath}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="block h-48 w-full relative"
                                   >
-                                  {(filePath as string).endsWith('.pdf') ? (
+                                  {filePath.endsWith('.pdf') ? (
                                       <div className="w-full h-full overflow-hidden">
-                                          <PdfPreview fileUrl={filePath as string} />
+                                          <PdfPreview fileUrl={filePath} />
                                       </div>
                                   ) : (
                                       <Image
-                                      src={filePath as string}
+                                      src={filePath}
                                       alt={fileName}
                                       fill
                                       className="object-cover scale-[1.01]"
@@ -379,7 +389,7 @@ export default function CertificatesDisplay({
                                   </div>
                               </div>
                           </PopRotateSection>
-                          ))}
+                          );})}
                       </div>
                       </div>
                     </div>
@@ -400,7 +410,9 @@ export default function CertificatesDisplay({
                               <h3 className={`text-xl font-bold text-gacor-smooth opacity-70`}>{formatCJK(item.category, lang)}</h3>
                           </div>
                           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                              {Object.entries(item.files).map(([fileName, filePath]) => (
+                              {Object.entries(item.files).map(([fileName, fileData]) => {
+                                  const filePath = getPath(fileData);
+                                  return (
                                   <motion.div
                                       key={fileName}
                                       initial={{ opacity: 0, x: 20 }}
@@ -409,9 +421,9 @@ export default function CertificatesDisplay({
                                       className={`${cardBg} overflow-hidden rounded-xl border ${borderColor} flex flex-col shadow-md group transform-gpu`}
                                   >
                                       <a href={filePath} target="_blank" rel="noopener noreferrer" className="relative aspect-video w-full overflow-hidden">
-                                          {(filePath as string).endsWith('.pdf') ? (
+                                          {filePath.endsWith('.pdf') ? (
                                               <div className="w-full h-full">
-                                                  <PdfPreview fileUrl={filePath as string} />
+                                                  <PdfPreview fileUrl={filePath} />
                                               </div>
                                           ) : (
                                               <Image src={filePath} alt={fileName} fill className="object-cover transition-transform group-hover:scale-105" />
@@ -421,7 +433,7 @@ export default function CertificatesDisplay({
                                           <h4 className={`font-bold ${titleColor} hover-gacor line-clamp-1 text-sm`}>{formatCJK(fileName, lang)}</h4>
                                       </div>
                                   </motion.div>
-                              ))}
+                              );})}
                           </div>
                       </div>
                   ))}
@@ -432,9 +444,11 @@ export default function CertificatesDisplay({
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                   {Object.entries(certificates).flatMap(([category, yearsData]) => 
                     Object.entries(yearsData).flatMap(([year, files]) => 
-                        Object.entries(files).map(([fileName, filePath]) => ({ category, year, fileName, filePath }))
+                        Object.entries(files).map(([fileName, fileData]) => ({ category, year, fileName, fileData }))
                     )
-                  ).map((item) => (
+                  ).map((item) => {
+                      const filePath = getPath(item.fileData);
+                      return (
                       <motion.div
                           key={`${item.category}-${item.year}-${item.fileName}`}
                           initial={{ opacity: 0, scale: 0.9 }}
@@ -443,13 +457,13 @@ export default function CertificatesDisplay({
                           whileHover={{ y: -5 }}
                           className={`${cardBg} rounded-2xl overflow-hidden border ${borderColor} shadow-md group transform-gpu`}
                       >
-                          <a href={item.filePath} target="_blank" rel="noopener noreferrer" className="block relative aspect-video">
-                            {(item.filePath as string).endsWith('.pdf') ? (
+                          <a href={filePath} target="_blank" rel="noopener noreferrer" className="block relative aspect-video">
+                            {filePath.endsWith('.pdf') ? (
                                 <div className="w-full h-full overflow-hidden">
-                                    <PdfPreview fileUrl={item.filePath as string} />
+                                    <PdfPreview fileUrl={filePath} />
                                 </div>
                             ) : (
-                                <Image src={item.filePath} alt={item.fileName} fill className="object-cover" />
+                                <Image src={filePath} alt={item.fileName} fill className="object-cover" />
                             )}
                           </a>
                           <div className="p-4">
@@ -460,7 +474,7 @@ export default function CertificatesDisplay({
                               <h3 className={`text-sm font-bold ${titleColor} hover-gacor line-clamp-1`}>{formatCJK(item.fileName, lang)}</h3>
                           </div>
                       </motion.div>
-                  ))}
+                  );})}
               </div>
           )}
 
@@ -468,7 +482,7 @@ export default function CertificatesDisplay({
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[250px]">
                   {Object.entries(certificates).flatMap(([category, yearsData]) => 
                     Object.entries(yearsData).flatMap(([year, files]) => 
-                        Object.entries(files).map(([fileName, filePath]) => ({ category, year, fileName, filePath }))
+                        Object.entries(files).map(([fileName, fileData]) => ({ category, year, fileName, fileData }))
                     )
                   ).map((item, idx) => {
                       const spans = [
@@ -482,11 +496,12 @@ export default function CertificatesDisplay({
                           "md:col-span-2 md:row-span-2",
                       ];
                       const spanClass = spans[idx % spans.length];
+                      const filePath = getPath(item.fileData);
                       return (
                           <BentoCertificateCard 
                               key={`${item.category}-${item.year}-${item.fileName}`}
                               fileName={item.fileName}
-                              filePath={item.filePath}
+                              filePath={filePath}
                               category={item.category}
                               year={item.year}
                               borderColor={borderColor}

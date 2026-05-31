@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 type CertificateData = {
   [category: string]: {
     [year: string]: {
-      [fileName: string]: string;
+      [fileName: string]: { path: string; point: number };
     };
   };
 };

@@ -48,7 +48,7 @@ export const getCollectionsData = cache((lang: string) => {
               openPath = `/documents/college/${semester}/${subject}/${file}`;
             }
 
-            allCollectionsData[semesterName][subject_name][fileName] = openPath;
+            allCollectionsData[semesterName][subject_name][fileName] = { path: openPath, point: 50 };
           }
         }
       }

@@ -11,7 +11,7 @@ import { motion } from 'framer-motion';
 import { LayoutSwitcher } from './LayoutSwitcher';
 
 // Define typescript data
-export type CollectionsData = Record<string, Record<string, Record<string, string>>>;
+export type CollectionsData = Record<string, Record<string, Record<string, { path: string; point: number }>>>;
 
 export type CollectionLayoutType = 'original' | 'timeline' | 'grid';
 
@@ -22,6 +22,11 @@ export type InteractiveCollectionsProps = {
   original_text?: string;
   timeline_text?: string;
   grid_text?: string;
+};
+
+const getPath = (data: string | { path: string; point: number }): string => {
+  if (typeof data === 'string') return data;
+  return data?.path || '';
 };
 
 export default function InteractiveCollections( { 
@@ -48,7 +53,7 @@ export default function InteractiveCollections( {
     const slides: { 
       headingOne: string; 
       headingTwo: string; 
-      documents: [string, string][];
+      documents: [string, { path: string; point: number }][];
       part: number;
       totalParts: number;
     }[] = [];
@@ -69,7 +74,7 @@ export default function InteractiveCollections( {
             slides.push({
               headingOne: h1,
               headingTwo: h2,
-              documents: docEntries.slice(i, i + chunkSize),
+              documents: docEntries.slice(i, i + chunkSize) as [string, { path: string, point: number }][],
               part: Math.floor(i / chunkSize) + 1,
               totalParts
             });
@@ -119,19 +124,21 @@ export default function InteractiveCollections( {
               </h2>
               
               <div className="w-full space-y-3 overflow-visible p-2 flex flex-col items-center no-scrollbar">
-                {slide.documents.map(([docName, url]) => (
+                {slide.documents.map(([docName, docData]) => {
+                  const filePath = getPath(docData);
+                  return (
                   <div key={docName} className={`${dropdownBg} p-3 md:p-4 rounded-xl border flex items-center justify-between group hover:scale-102 transition-transform w-full max-w-2xl shadow-md`}>
                     <div className="flex items-center gap-3">
-                      {url ? (
+                      {filePath ? (
                         <LinkIcon size={20} className="text-cyan-500" />
                       ) : (
                         <XCircle size={20} className="text-gray-500" />
                       )}
                       <span className={`text-base md:text-lg font-bold ${titleColor} truncate max-w-[250px] md:max-w-md`}>{formatCJK(docName, lang)}</span>
                     </div>
-                    {url && (
+                    {filePath && (
                       <a 
-                        href={url} 
+                        href={filePath} 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="bg-cyan-500 text-white px-4 py-1.5 rounded-full font-bold text-sm hover:bg-cyan-600 transition-colors shadow-md shrink-0"
@@ -140,7 +147,7 @@ export default function InteractiveCollections( {
                       </a>
                     )}
                   </div>
-                ))}
+                );})}
               </div>
             </div>
           </FadeInSection>
@@ -210,13 +217,15 @@ export default function InteractiveCollections( {
                                         {activeHeadingTwo === headingTwo && (
                                         Object.keys(documents).length > 0 ? (
                                             <div className={`pl-6 mt-2 space-y-2 ${linkText} animate-fade-in`}>
-                                            {Object.entries(documents).map(([docName, url], docIndex) => (
+                                            {Object.entries(documents).map(([docName, docData], docIndex) => {
+                                                const filePath = getPath(docData);
+                                                return (
                                                 <FadeInSection 
                                                     key={docName} 
                                                     delay={docIndex * 30} // Staggered delay for each document
                                                 >
-                                                    {url ? (
-                                                        <a href={url} target="_blank" rel="noopener noreferrer" className="flex items-center hover-gacor hover:text-cyan-600 transition-colors">
+                                                    {filePath ? (
+                                                        <a href={filePath} target="_blank" rel="noopener noreferrer" className="flex items-center hover-gacor hover:text-cyan-600 transition-colors">
                                                         <LinkIcon size={16} className="mr-2 flex-shrink-0" />
                                                         <span>{formatCJK(docName, lang)}</span>
                                                         </a>
@@ -227,7 +236,7 @@ export default function InteractiveCollections( {
                                                         </span>
                                                     )}
                                                 </FadeInSection>
-                                            ))}
+                                            );})}
                                             </div>
                                         ) : (
                                             <p className="pl-6 mt-1 text-sm text-gray-500 italic animate-fade-in">No documents available.</p>
@@ -257,18 +266,20 @@ export default function InteractiveCollections( {
                                         <div key={headingTwo} className="space-y-4">
                                             <h3 className={`text-xl font-bold text-gacor-smooth italic`}>{formatCJK(headingTwo, lang)}</h3>
                                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                                {Object.entries(documents).map(([docName, url]) => (
+                                                {Object.entries(documents).map(([docName, docData]) => {
+                                                    const filePath = getPath(docData);
+                                                    return (
                                                     <div key={docName} className={`p-4 rounded-xl border ${dropdownBg} flex items-center justify-between group`}>
                                                         <span className={`font-medium ${titleColor} hover-gacor`}>{formatCJK(docName, lang)}</span>
-                                                        {url ? (
-                                                            <a href={url} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-600 transition-colors">
+                                                        {filePath ? (
+                                                            <a href={filePath} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-600 transition-colors">
                                                                 <LinkIcon size={18} />
                                                             </a>
                                                         ) : (
                                                             <XCircle size={18} className="text-gray-400" />
                                                         )}
                                                     </div>
-                                                ))}
+                                                );})}
                                             </div>
                                         </div>
                                     ))}
@@ -283,9 +294,11 @@ export default function InteractiveCollections( {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {Object.entries(data).flatMap(([h1, courses]) => 
                         Object.entries(courses).flatMap(([h2, documents]) => 
-                            Object.entries(documents).map(([docName, url]) => ({ h1, h2, docName, url }))
+                            Object.entries(documents).map(([docName, docData]) => ({ h1, h2, docName, docData }))
                         )
-                    ).map((item) => (
+                    ).map((item) => {
+                        const filePath = getPath(item.docData);
+                        return (
                         <motion.div
                             key={`${item.h1}-${item.h2}-${item.docName}`}
                             initial={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -299,9 +312,9 @@ export default function InteractiveCollections( {
                                 <h3 className={`text-lg font-black ${titleColor} hover-gacor line-clamp-1`}>{formatCJK(item.docName, lang)}</h3>
                                 <p className={`text-sm italic text-gacor-smooth`}>{formatCJK(item.h2, lang)}</p>
                             </div>
-                            {item.url ? (
+                            {filePath ? (
                                 <a 
-                                    href={item.url} 
+                                    href={filePath} 
                                     target="_blank" 
                                     rel="noopener noreferrer" 
                                     className="inline-flex items-center gap-2 text-cyan-500 font-bold hover:underline"
@@ -312,7 +325,7 @@ export default function InteractiveCollections( {
                                 <span className="text-gray-400 text-sm italic">Not available</span>
                             )}
                         </motion.div>
-                    ))}
+                    );})}
                 </div>
             )}
         </div>

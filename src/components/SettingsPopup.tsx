@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useSettings, fonts, TextAlign } from './SettingsContext';
 import { 
   Settings, 
@@ -8,13 +8,9 @@ import {
   AlignLeft, 
   AlignCenter, 
   AlignRight, 
-  AlignJustify,
-  Minus,
-  Plus,
-  X,
-  Baseline,
-  ArrowUpDown,
-  Check,
+  AlignJustify, 
+  Plus, 
+  Minus, 
   RotateCcw
 } from 'lucide-react';
 import { useTheme } from 'next-themes';
@@ -38,13 +34,13 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
   const [internalIsOpen, setInternalIsOpen] = useState(false);
   
   const isOpen = externalIsOpen !== undefined ? externalIsOpen : internalIsOpen;
-  const setIsOpen = (value: boolean) => {
+  const setIsOpen = useCallback((value: boolean) => {
     if (onOpenChange) {
       onOpenChange(value);
     } else {
       setInternalIsOpen(value);
     }
-  };
+  }, [onOpenChange]);
   const { 
     font, setFont, 
     textAlign, setTextAlign, 
@@ -67,14 +63,12 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
 
     if (isOpen) {
       document.addEventListener('mousedown', handleClickOutside);
-    } else {
-      document.removeEventListener('mousedown', handleClickOutside);
     }
-
+    
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isOpen]);
+  }, [isOpen, setIsOpen]);
 
   const toggleOpen = () => setIsOpen(!isOpen);
 
@@ -117,177 +111,147 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
 
       {isOpen && (
         <div className={`
-          fixed md:absolute 
-          top-1/2 md:top-full 
-          left-1/2 md:left-auto md:right-0 
-          -translate-x-1/2 md:translate-x-0 -translate-y-1/2 md:translate-y-2
-          w-[90vw] md:w-96 max-w-[400px]
+          absolute right-0 top-full mt-3 w-80 
           ${isDark ? 'bg-gray-900/95 border-gray-700' : 'bg-white/95 border-gray-200'} 
-          backdrop-blur-md border rounded-2xl shadow-2xl z-[100] p-6 
-          animate-fade-in ring-1 ring-black/5 
-          max-h-[85vh] md:max-h-[80vh] overflow-y-auto no-scrollbar transform-gpu
+          backdrop-blur-xl border rounded-2xl shadow-2xl z-50 p-6
+          animate-in fade-in zoom-in-95 duration-200 origin-top-right
         `}>
-          <div className="flex items-center justify-between mb-6 sticky top-0 bg-inherit pb-2 z-10">
-            <h3 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-800'}`}>{labels.Settings}</h3>
-            <div className="flex items-center gap-2">
+          <div className="space-y-8">
+            {/* Header */}
+            <div className="flex items-center justify-between border-b pb-4 border-gray-700/50">
+              <h3 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-gray-900'} flex items-center gap-2`}>
+                <Settings size={20} className="text-cyan-500" />
+                {labels.Settings}
+              </h3>
               <button 
                 onClick={handleReset}
-                title={labels.Reset_Settings}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all duration-300 ${
-                  isDark 
-                    ? 'bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500/20 border border-cyan-500/20' 
-                    : 'bg-cyan-50 text-cyan-600 hover:bg-cyan-100 border border-cyan-100'
-                }`}
+                className="text-xs font-medium text-cyan-500 hover:text-cyan-400 transition-colors flex items-center gap-1"
               >
-                <RotateCcw size={14} />
-                <span>{labels.Reset_Settings}</span>
-              </button>
-              <button onClick={() => setIsOpen(false)} className={`p-1 rounded-full hover:${isDark ? 'bg-gray-800' : 'bg-gray-100'} transition-colors`}>
-                <X size={18} className={isDark ? 'text-gray-400' : 'text-gray-500'} />
+                <RotateCcw size={12} />
+                {labels.Reset_Settings}
               </button>
             </div>
-          </div>
 
-          <div className="space-y-8">
-            {/* Font Selection List */}
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <Type size={16} className="text-cyan-500" />
-                <label className={`text-sm font-semibold ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>{labels.Typography}</label>
+            {/* Typography Section */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-2 text-xs font-black text-gray-500 uppercase tracking-widest">
+                <Type size={14} />
+                {labels.Typography}
               </div>
-              <div className={`flex flex-col gap-1 max-h-60 overflow-y-auto pr-2 custom-scrollbar rounded-xl p-1 border ${isDark ? 'border-gray-800 bg-gray-950/30' : 'border-gray-100 bg-gray-50/50'}`}>
+              <div className="grid grid-cols-2 gap-2">
                 {fonts.map((f) => (
                   <button
                     key={f.name}
                     onClick={() => setFont(f.name)}
-                    className={`flex items-center justify-between px-3 py-2.5 rounded-lg transition-all duration-200 text-left ${
-                      font === f.name
-                        ? 'bg-cyan-500/10 text-cyan-500 font-bold border border-cyan-500/20'
-                        : `${isDark ? 'text-gray-400 hover:bg-gray-800' : 'text-gray-600 hover:bg-white hover:shadow-sm'} border border-transparent`
-                    } ${f.class}`}
+                    className={`
+                      px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200
+                      ${font === f.name 
+                        ? 'bg-cyan-500 text-white shadow-lg shadow-cyan-500/20' 
+                        : isDark ? 'bg-gray-800 text-gray-400 hover:bg-gray-700' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}
+                    `}
+                    style={{ fontFamily: `var(${f.variable})` }}
                   >
-                    <span className="text-sm truncate">{f.name === 'Default' ? labels.Font_Default : f.name}</span>
-                    {font === f.name && <Check size={14} className="flex-shrink-0" />}
+                    {f.name === 'Default' ? labels.Font_Default : f.name}
                   </button>
                 ))}
               </div>
             </div>
 
-            {/* Alignment Icons Only */}
-            <div>
-              <label className={`block text-sm font-semibold mb-4 ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>{labels.Alignment}</label>
-              <div className={`flex p-1 rounded-xl ${isDark ? 'bg-gray-800' : 'bg-gray-200/50 border border-gray-200 shadow-inner'}`}>
-                {alignments.map((item) => (
+            {/* Alignment Section */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-2 text-xs font-black text-gray-500 uppercase tracking-widest">
+                <AlignLeft size={14} />
+                {labels.Alignment}
+              </div>
+              <div className="flex bg-gray-800/50 p-1 rounded-xl border border-gray-700/50">
+                {alignments.map((a) => (
                   <button
-                    key={item.value}
-                    title={item.title}
-                    onClick={() => setTextAlign(item.value)}
-                    className={`flex-1 flex justify-center items-center py-2.5 rounded-lg transition-all ${
-                      textAlign === item.value
-                        ? `${isDark ? 'bg-gray-700' : 'bg-white shadow-sm'} text-cyan-500 scale-105 font-bold`
-                        : 'text-gray-500 hover:text-cyan-400'
-                    }`}
+                    key={a.value}
+                    onClick={() => setTextAlign(a.value)}
+                    title={a.title}
+                    className={`
+                      flex-1 flex items-center justify-center p-2 rounded-lg transition-all duration-200
+                      ${textAlign === a.value 
+                        ? 'bg-cyan-500 text-white shadow-md' 
+                        : 'text-gray-400 hover:text-white'}
+                    `}
                   >
-                    {item.icon}
+                    {a.icon}
                   </button>
                 ))}
               </div>
             </div>
 
-            {/* Scaling Controls Group */}
-            <div className="space-y-6 pt-2 border-t border-gray-100 dark:border-gray-800">
-              {/* Text Scale */}
-              <div>
-                <div className="flex justify-between items-center mb-4">
-                  <div className="flex items-center gap-2">
-                    <Type size={16} className="text-cyan-500" />
-                    <span className={`text-sm font-semibold ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>{labels.Text_Scaling}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <button 
-                      onClick={() => setTextScale(100)}
-                      title={labels.Reset_Settings}
-                      className={`p-1 rounded-full transition-colors ${isDark ? 'hover:bg-gray-800 text-gray-500 hover:text-cyan-400' : 'hover:bg-gray-100 text-gray-400 hover:text-cyan-600'}`}
-                    >
-                      <RotateCcw size={12} />
-                    </button>
-                    <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-cyan-500/10 text-cyan-500 border border-cyan-500/20">{textScale}%</span>
-                  </div>
+            {/* Controls Section */}
+            <div className="space-y-6">
+              {/* Text Scaling */}
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">{labels.Text_Scaling}</span>
+                  <span className="text-xs font-mono text-cyan-500 font-bold">{textScale}%</span>
                 </div>
                 <div className="flex items-center gap-4">
-                  <button onClick={() => adjustScale(-5)} className="text-gray-400 hover:text-cyan-500 transition-colors"><Minus size={16} /></button>
+                  <button onClick={() => adjustScale(-5)} className={`p-2 rounded-lg ${isDark ? 'bg-gray-800 hover:bg-gray-700 text-gray-400' : 'bg-gray-100 hover:bg-gray-200 text-gray-600'}`}>
+                    <Minus size={16} />
+                  </button>
                   <input 
-                    type="range" min="50" max="150" step="5" value={textScale} 
-                    onChange={(e) => setTextScale(Number(e.target.value))}
-                    className="flex-1 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-cyan-500 focus:outline-none"
+                    type="range" min="50" max="150" step="5" value={textScale}
+                    onChange={(e) => setTextScale(parseInt(e.target.value))}
+                    className="flex-1 accent-cyan-500 h-1.5 bg-gray-700 rounded-lg appearance-none cursor-pointer"
                   />
-                  <button onClick={() => adjustScale(5)} className="text-gray-400 hover:text-cyan-500 transition-colors"><Plus size={16} /></button>
+                  <button onClick={() => adjustScale(5)} className={`p-2 rounded-lg ${isDark ? 'bg-gray-800 hover:bg-gray-700 text-gray-400' : 'bg-gray-100 hover:bg-gray-200 text-gray-600'}`}>
+                    <Plus size={16} />
+                  </button>
                 </div>
               </div>
 
               {/* Letter Spacing */}
-              <div>
-                <div className="flex justify-between items-center mb-4">
-                  <div className="flex items-center gap-2">
-                    <Baseline size={16} className="text-cyan-500" />
-                    <span className={`text-sm font-semibold ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>{labels.Letter_Spacing}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <button 
-                      onClick={() => setLetterSpacing(0)}
-                      title={labels.Reset_Settings}
-                      className={`p-1 rounded-full transition-colors ${isDark ? 'hover:bg-gray-800 text-gray-500 hover:text-cyan-400' : 'hover:bg-gray-100 text-gray-400 hover:text-cyan-600'}`}
-                    >
-                      <RotateCcw size={12} />
-                    </button>
-                    <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-cyan-500/10 text-cyan-500 border border-cyan-500/20">{letterSpacing}px</span>
-                  </div>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">{labels.Letter_Spacing}</span>
+                  <span className="text-xs font-mono text-cyan-500 font-bold">{letterSpacing}px</span>
                 </div>
                 <div className="flex items-center gap-4">
-                  <button onClick={() => adjustSpacing(-0.1)} className="text-gray-400 hover:text-cyan-500 transition-colors"><Minus size={16} /></button>
+                  <button onClick={() => adjustSpacing(-0.1)} className={`p-2 rounded-lg ${isDark ? 'bg-gray-800 hover:bg-gray-700 text-gray-400' : 'bg-gray-100 hover:bg-gray-200 text-gray-600'}`}>
+                    <Minus size={16} />
+                  </button>
                   <input 
-                    type="range" min="-1" max="5" step="0.1" value={letterSpacing} 
-                    onChange={(e) => setLetterSpacing(Number(e.target.value))}
-                    className="flex-1 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-cyan-500 focus:outline-none"
+                    type="range" min="-2" max="10" step="0.1" value={letterSpacing}
+                    onChange={(e) => setLetterSpacing(parseFloat(e.target.value))}
+                    className="flex-1 accent-cyan-500 h-1.5 bg-gray-700 rounded-lg appearance-none cursor-pointer"
                   />
-                  <button onClick={() => adjustSpacing(0.1)} className="text-gray-400 hover:text-cyan-500 transition-colors"><Plus size={16} /></button>
+                  <button onClick={() => adjustSpacing(0.1)} className={`p-2 rounded-lg ${isDark ? 'bg-gray-800 hover:bg-gray-700 text-gray-400' : 'bg-gray-100 hover:bg-gray-200 text-gray-600'}`}>
+                    <Plus size={16} />
+                  </button>
                 </div>
               </div>
 
               {/* Line Height */}
-              <div>
-                <div className="flex justify-between items-center mb-4">
-                  <div className="flex items-center gap-2">
-                    <ArrowUpDown size={16} className="text-cyan-500" />
-                    <span className={`text-sm font-semibold ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>{labels.Line_Height}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <button 
-                      onClick={() => setLineHeight(1.5)}
-                      title={labels.Reset_Settings}
-                      className={`p-1 rounded-full transition-colors ${isDark ? 'hover:bg-gray-800 text-gray-500 hover:text-cyan-400' : 'hover:bg-gray-100 text-gray-400 hover:text-cyan-600'}`}
-                    >
-                      <RotateCcw size={12} />
-                    </button>
-                    <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-cyan-500/10 text-cyan-500 border border-cyan-500/20">{lineHeight}</span>
-                  </div>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">{labels.Line_Height}</span>
+                  <span className="text-xs font-mono text-cyan-500 font-bold">{lineHeight}</span>
                 </div>
                 <div className="flex items-center gap-4">
-                  <button onClick={() => adjustLineHeight(-0.1)} className="text-gray-400 hover:text-cyan-500 transition-colors"><Minus size={16} /></button>
+                  <button onClick={() => adjustLineHeight(-0.1)} className={`p-2 rounded-lg ${isDark ? 'bg-gray-800 hover:bg-gray-700 text-gray-400' : 'bg-gray-100 hover:bg-gray-200 text-gray-600'}`}>
+                    <Minus size={16} />
+                  </button>
                   <input 
-                    type="range" min="0.8" max="3" step="0.1" value={lineHeight} 
-                    onChange={(e) => setLineHeight(Number(e.target.value))}
-                    className="flex-1 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-cyan-500 focus:outline-none"
+                    type="range" min="0.8" max="3" step="0.1" value={lineHeight}
+                    onChange={(e) => setLineHeight(parseFloat(e.target.value))}
+                    className="flex-1 accent-cyan-500 h-1.5 bg-gray-700 rounded-lg appearance-none cursor-pointer"
                   />
-                  <button onClick={() => adjustLineHeight(0.1)} className="text-gray-400 hover:text-cyan-500 transition-colors"><Plus size={16} /></button>
+                  <button onClick={() => adjustLineHeight(0.1)} className={`p-2 rounded-lg ${isDark ? 'bg-gray-800 hover:bg-gray-700 text-gray-400' : 'bg-gray-100 hover:bg-gray-200 text-gray-600'}`}>
+                    <Plus size={16} />
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
       )}
-      
-      <style jsx>{`
+
+      <style jsx global>{`
         .custom-scrollbar::-webkit-scrollbar {
           width: 4px;
         }

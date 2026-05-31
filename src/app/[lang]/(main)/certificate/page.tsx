@@ -45,7 +45,7 @@ export const getCertificatesData = cache(async (lang: string) => {
             const fileName = path.parse(file).name;
             const filePath = `/documents/certificate/${category}/${year}/${file}`;
             
-            allCertificatesData[categoryName][year][fileName] = filePath;
+            allCertificatesData[categoryName][year][fileName] = { path: filePath, point: 70 };
           }
         }
       }

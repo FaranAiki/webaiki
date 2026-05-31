@@ -27,11 +27,13 @@ type Job = {
     image: string[];
     url?: string;
     year?: string;
+    point?: number;
 };
 
 type Experience = {
     year: string;
     jobs: Job[];
+    point?: number;
 };
 
 export type LayoutType = 'original' | 'timeline' | 'grid' | 'bento' | 'smooth';

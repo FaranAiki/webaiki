@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 type LiteratureData = {
   [semester: string]: {
     [subject: string]: {
-      [fileName: string]: string; // be aware that the second string can be a link
+      [fileName: string]: { path: string; point: number }; 
     };
   };
 };
