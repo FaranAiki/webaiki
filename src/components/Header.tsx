@@ -352,7 +352,7 @@ export default function Header(props: HeaderProps) {
                                                 className={`flex items-center transition-[colors,transform] duration-200 
                                                     text-[15px] tracking-wide
                                                     ${isChildActive
-                                                        ? `${activeText} font-bold`
+                                                        ? `nav-active-gacor font-bold`
                                                         : `${textColor} font-medium group-hover:text-cyan-600`
                                                     }`}
                                             >
@@ -371,7 +371,7 @@ export default function Header(props: HeaderProps) {
                                                                 <Link
                                                                     href={getLocalizedHref(subLink.href)}
                                                                     className={`flex items-center px-5 py-3 text-[14px] hover:${isDark ? 'bg-gray-700/50' : 'bg-gray-50'} transition-[colors,transform] ${isSubActive
-                                                                            ? `${activeText} font-bold`
+                                                                            ? `nav-active-gacor font-bold`
                                                                             : `${textColor} hover:text-cyan-600 font-medium`
                                                                         }`}
                                                                 >
@@ -396,7 +396,7 @@ export default function Header(props: HeaderProps) {
                                             className={`flex items-center transition-colors duration-200 
                                                 text-[15px] tracking-wide
                                                 ${isActive
-                                                    ? `${activeText} font-bold`
+                                                    ? `nav-active-gacor font-bold`
                                                     : `${textColor} font-medium hover:text-cyan-600`
                                                 }`}
                                         >

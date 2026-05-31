@@ -105,6 +105,8 @@ export default async function CertificatePage({ params }: { params: Promise<{ la
           original_text={dict.Original}
           timeline_text={dict.Timeline}
           grid_text={dict.Grid}
+          bento_text={dict.Bento}
+          click_to_close_text={dict.Click_To_Close}
         />
       </React.Suspense>
     </main>

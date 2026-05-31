@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 
 import { motion } from 'framer-motion';
-import { LayoutSwitcher, LayoutOption } from './LayoutSwitcher';
+import { LayoutSwitcher } from './LayoutSwitcher';
 
 type Job = {
     date: string;
@@ -275,8 +275,8 @@ export default function ExperiencesClient({
                                                     fill
                                                     className="object-contain transition-transform duration-700 hover:scale-[1.03] scale-[1.01]"
                                                     sizes="(max-width: 768px) 100vw, 400px"
-                                                    priority={idx < 2}
-                                                    loading={idx < 2 ? "eager" : "lazy"}
+                                                    priority={true}
+                                                    loading="eager"
                                                 />
                                             </div>
                                         </div>
@@ -294,7 +294,8 @@ export default function ExperiencesClient({
                                                 alt={job.company} 
                                                 fill 
                                                 className={`object-cover transition-all duration-1000 ${isDark ? 'brightness-[0.35]' : 'brightness-[1.1] grayscale-[0.2] opacity-20'}`} 
-                                                priority={idx < 2} 
+                                                priority={true}
+                                                loading="eager"
                                             />
                                             <div className={`absolute inset-0 ${isDark ? 'bg-gradient-to-t from-black via-black/40 to-transparent' : 'bg-gradient-to-t from-white via-white/40 to-transparent'}`} />
                                         </div>

@@ -9,7 +9,7 @@ import FadeInSection from '@/components/FadeInSection';
 import { usePresentation } from './PresentationContext';
 import { formatCJK } from '@/lib/utils';
 import { LayoutSwitcher } from './LayoutSwitcher';
-import { LayoutPanelLeft, Milestone, LayoutGrid } from 'lucide-react';
+import { LayoutPanelLeft, Milestone, LayoutGrid, Grid2X2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export type CertificateData = {
@@ -20,6 +20,87 @@ export type CertificateData = {
   };
 };
 
+interface BentoCertificateCardProps {
+    fileName: string;
+    filePath: string;
+    category: string;
+    year: string;
+    borderColor: string;
+    cardBg: string;
+    isDark: boolean;
+    lang: string;
+    titleColor: string;
+    click_to_close_text: string;
+    spanClass: string;
+}
+
+const BentoCertificateCard = ({ 
+    fileName, filePath, category, year, borderColor, cardBg, isDark, lang, titleColor, click_to_close_text, spanClass 
+}: BentoCertificateCardProps) => {
+    const [isExpanded, setIsExpanded] = useState(false);
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            onClick={() => setIsExpanded(!isExpanded)}
+            className={`${spanClass} relative rounded-3xl overflow-hidden group border ${borderColor} ${cardBg} shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer h-full`}
+        >
+            <div className="absolute inset-0">
+                {filePath.endsWith('.pdf') ? (
+                    <div className={`w-full h-full transition-all duration-700 ${isExpanded ? 'scale-110 blur-sm brightness-[0.3]' : 'opacity-60 group-hover:opacity-100'}`}>
+                        <PdfPreview fileUrl={filePath} />
+                    </div>
+                ) : (
+                    <Image 
+                        src={filePath} 
+                        alt={fileName} 
+                        fill 
+                        className={`object-cover transition-all duration-700 ${isExpanded ? 'scale-110 blur-sm brightness-[0.3]' : 'opacity-60 group-hover:opacity-100'}`} 
+                    />
+                )}
+            </div>
+            
+            {/* Base Content */}
+            <div className={`absolute inset-0 p-6 flex flex-col justify-end transition-opacity duration-500 bg-gradient-to-t ${isDark ? 'from-black/80' : 'from-white/90'} via-transparent to-transparent ${isExpanded ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+                <p className="text-cyan-500 text-[10px] font-bold mb-1 uppercase tracking-widest">{year} • {formatCJK(category, lang)}</p>
+                <h3 className={`text-sm font-black leading-tight ${titleColor}`}>{formatCJK(fileName, lang)}</h3>
+            </div>
+
+            {/* Expanded Content (Overlay) */}
+            <motion.div 
+                initial={false}
+                animate={{ opacity: isExpanded ? 1 : 0, y: isExpanded ? 0 : 20 }}
+                transition={{ duration: 0.4, ease: "circOut" }}
+                className={`absolute inset-0 z-10 p-6 flex flex-col justify-center backdrop-blur-md ${isDark ? 'bg-black/60' : 'bg-white/80'} ${isExpanded ? 'pointer-events-auto' : 'pointer-events-none'}`}
+            >
+                <div className="overflow-y-auto max-h-full flex flex-col items-center justify-center text-center">
+                    <p className="text-cyan-500 text-xs font-bold mb-2 uppercase tracking-widest">{year}</p>
+                    <h3 className={`text-xl font-black mb-2 ${titleColor}`}>{formatCJK(fileName, lang)}</h3>
+                    <p className={`text-sm italic mb-6 ${isDark ? 'text-cyan-300' : 'text-cyan-600'}`}>{formatCJK(category, lang)}</p>
+                    
+                    <a 
+                        href={filePath} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="px-6 py-2 bg-cyan-500 text-white rounded-full font-bold text-sm hover:bg-cyan-600 transition-colors shadow-lg"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        View Full Document
+                    </a>
+                </div>
+                
+                {/* Close hint */}
+                <div className={`absolute top-4 right-4 text-[10px] font-medium px-2 py-1 rounded-full ${isDark ? 'text-white/50 bg-white/10' : 'text-gray-500 bg-gray-200/50'}`}>
+                    {click_to_close_text}
+                </div>
+            </motion.div>
+        </motion.div>
+    );
+};
+BentoCertificateCard.displayName = 'BentoCertificateCard';
+
 export type CertificatesDisplayProps = {
   certificates: CertificateData;
   allTranslation: string;
@@ -27,6 +108,8 @@ export type CertificatesDisplayProps = {
   original_text?: string;
   timeline_text?: string;
   grid_text?: string;
+  bento_text?: string;
+  click_to_close_text?: string;
 };
 
 export default function CertificatesDisplay({ 
@@ -35,9 +118,11 @@ export default function CertificatesDisplay({
   lang = 'en',
   original_text = 'Original',
   timeline_text = 'Timeline',
-  grid_text = 'Grid'
+  grid_text = 'Grid',
+  bento_text = 'Bento',
+  click_to_close_text = 'Click to close'
 }: CertificatesDisplayProps) {
-  const [currentLayout, setCurrentLayout] = useState<'original' | 'timeline' | 'grid'>('original');
+  const [currentLayout, setCurrentLayout] = useState<'original' | 'timeline' | 'grid' | 'bento'>('original');
   const [openCategories, setOpenCategories] = useState<string[]>([]);
   const [selectedYears, setSelectedYears] = useState<{ [key: string]: string }>({});
   const { resolvedTheme } = useTheme();
@@ -192,7 +277,8 @@ export default function CertificatesDisplay({
                 options={[
                     { id: 'original', icon: <LayoutPanelLeft size={18} />, label: original_text },
                     { id: 'timeline', icon: <Milestone size={18} />, label: timeline_text },
-                    { id: 'grid', icon: <LayoutGrid size={18} />, label: grid_text }
+                    { id: 'grid', icon: <LayoutGrid size={18} />, label: grid_text },
+                    { id: 'bento', icon: <Grid2X2 size={18} />, label: bento_text }
                 ]}
             />
           )}
@@ -375,6 +461,44 @@ export default function CertificatesDisplay({
                           </div>
                       </motion.div>
                   ))}
+              </div>
+          )}
+
+          {currentLayout === 'bento' && (
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[250px]">
+                  {Object.entries(certificates).flatMap(([category, yearsData]) => 
+                    Object.entries(yearsData).flatMap(([year, files]) => 
+                        Object.entries(files).map(([fileName, filePath]) => ({ category, year, fileName, filePath }))
+                    )
+                  ).map((item, idx) => {
+                      const spans = [
+                          "md:col-span-2 md:row-span-2",
+                          "md:col-span-2 md:row-span-1",
+                          "md:col-span-1 md:row-span-1",
+                          "md:col-span-1 md:row-span-1",
+                          "md:col-span-1 md:row-span-1",
+                          "md:col-span-3 md:row-span-1",
+                          "md:col-span-2 md:row-span-1",
+                          "md:col-span-2 md:row-span-2",
+                      ];
+                      const spanClass = spans[idx % spans.length];
+                      return (
+                          <BentoCertificateCard 
+                              key={`${item.category}-${item.year}-${item.fileName}`}
+                              fileName={item.fileName}
+                              filePath={item.filePath}
+                              category={item.category}
+                              year={item.year}
+                              borderColor={borderColor}
+                              cardBg={cardBg}
+                              isDark={isDark}
+                              lang={lang}
+                              titleColor={titleColor}
+                              click_to_close_text={click_to_close_text}
+                              spanClass={spanClass}
+                          />
+                      );
+                  })}
               </div>
           )}
         </div>

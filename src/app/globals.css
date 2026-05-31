@@ -3,9 +3,36 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :target {
-    scroll-margin-top: 5rem;
+@layer utilities {
+  .animate-gradient-x {
+    background-size: 200% 200%;
+    animation: gradient-x 3s ease infinite;
+  }
+
+  @keyframes gradient-x {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .nav-active-gacor {
+    background: linear-gradient(
+      90deg, 
+      #06b6d4, /* cyan-500 */
+      #22d3ee, /* cyan-400 */
+      #3b82f6, /* blue-500 */
+      #06b6d4  /* cyan-500 */
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-x 2s linear infinite;
+    font-weight: 900 !important;
+    filter: drop-shadow(0 0 2px rgba(34, 211, 238, 0.3));
   }
 }
 

@@ -26,14 +26,18 @@ export default function CertificateLoader({
   lang,
   original_text,
   timeline_text,
-  grid_text 
+  grid_text,
+  bento_text,
+  click_to_close_text 
 }: { 
   certificates: CertificateData, 
   allTranslation: string, 
   lang: string,
   original_text?: string,
   timeline_text?: string,
-  grid_text?: string 
+  grid_text?: string,
+  bento_text?: string,
+  click_to_close_text?: string
 }) {
   return <CertificatesDisplay 
     certificates={certificates} 
@@ -42,5 +46,7 @@ export default function CertificateLoader({
     original_text={original_text}
     timeline_text={timeline_text}
     grid_text={grid_text}
+    bento_text={bento_text}
+    click_to_close_text={click_to_close_text}
   />;
 }
