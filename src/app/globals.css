@@ -10,29 +10,59 @@
   }
 
   @keyframes gradient-x {
-    0%, 100% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 
-  .nav-active-gacor {
+  /* Smooth Gacor Utility */
+  .text-gacor-smooth {
     background: linear-gradient(
       90deg, 
-      #06b6d4, /* cyan-500 */
+      #0891b2, /* cyan-600 */
       #22d3ee, /* cyan-400 */
-      #3b82f6, /* blue-500 */
-      #06b6d4  /* cyan-500 */
+      #0ea5e9, /* sky-500 */
+      #0891b2  /* cyan-600 */
     );
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: gradient-x 2s linear infinite;
+    animation: gradient-x 4s linear infinite;
+  }
+
+  /* Hover Gacor Utility */
+  .hover-gacor:hover {
+    background: linear-gradient(
+      90deg, 
+      #0891b2, 
+      #22d3ee, 
+      #0ea5e9, 
+      #0891b2
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-x 3s linear infinite;
+    transition: all 0.3s ease;
+  }
+
+  .nav-active-gacor {
+    background: linear-gradient(
+      90deg, 
+      #0891b2, 
+      #22d3ee, 
+      #0ea5e9, 
+      #0891b2
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-x 3s linear infinite;
     font-weight: 900 !important;
-    filter: drop-shadow(0 0 2px rgba(34, 211, 238, 0.3));
+    filter: drop-shadow(0 0 1px rgba(6, 182, 212, 0.2));
   }
 }
 

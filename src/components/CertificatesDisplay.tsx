@@ -64,8 +64,8 @@ const BentoCertificateCard = ({
             
             {/* Base Content */}
             <div className={`absolute inset-0 p-6 flex flex-col justify-end transition-opacity duration-500 bg-gradient-to-t ${isDark ? 'from-black/80' : 'from-white/90'} via-transparent to-transparent ${isExpanded ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-                <p className="text-cyan-500 text-[10px] font-bold mb-1 uppercase tracking-widest">{year} • {formatCJK(category, lang)}</p>
-                <h3 className={`text-sm font-black leading-tight ${titleColor}`}>{formatCJK(fileName, lang)}</h3>
+                <p className="text-gacor-smooth text-[10px] font-bold mb-1 uppercase tracking-widest">{year} • {formatCJK(category, lang)}</p>
+                <h3 className={`text-sm font-black leading-tight ${titleColor} hover-gacor`}>{formatCJK(fileName, lang)}</h3>
             </div>
 
             {/* Expanded Content (Overlay) */}
@@ -76,9 +76,9 @@ const BentoCertificateCard = ({
                 className={`absolute inset-0 z-10 p-6 flex flex-col justify-center backdrop-blur-md ${isDark ? 'bg-black/60' : 'bg-white/80'} ${isExpanded ? 'pointer-events-auto' : 'pointer-events-none'}`}
             >
                 <div className="overflow-y-auto max-h-full flex flex-col items-center justify-center text-center">
-                    <p className="text-cyan-500 text-xs font-bold mb-2 uppercase tracking-widest">{year}</p>
-                    <h3 className={`text-xl font-black mb-2 ${titleColor}`}>{formatCJK(fileName, lang)}</h3>
-                    <p className={`text-sm italic mb-6 ${isDark ? 'text-cyan-300' : 'text-cyan-600'}`}>{formatCJK(category, lang)}</p>
+                    <p className="text-gacor-smooth text-xs font-bold mb-2 uppercase tracking-widest">{year}</p>
+                    <h3 className={`text-xl font-black mb-2 ${titleColor} hover-gacor`}>{formatCJK(fileName, lang)}</h3>
+                    <p className={`text-sm italic mb-6 text-gacor-smooth`}>{formatCJK(category, lang)}</p>
                     
                     <a 
                         href={filePath} 
@@ -305,7 +305,7 @@ export default function CertificatesDisplay({
                       <FadeInSection delay={50}>
                           <button
                           onClick={() => handleCategoryClick(category)}
-                          className={`w-full text-left text-2xl font-bold ${titleColor} hover:text-cyan-500 hover:scale-102 transition-[transform,colors]`}
+                          className={`w-full text-left text-2xl font-bold text-gacor-smooth hover:scale-102 transition-[transform,colors]`}
                           >
                           {formatCJK(category, lang)}
                           </button>
@@ -373,7 +373,7 @@ export default function CertificatesDisplay({
                                   )}
                                   </a>
                                   <div className="p-4 flex-grow">
-                                  <h3 className={`font-semibold ${titleColor} truncate`}>
+                                  <h3 className={`font-semibold ${titleColor} truncate hover-gacor`}>
                                       {formatCJK(fileName, lang)}
                                   </h3>
                                   </div>
@@ -396,8 +396,8 @@ export default function CertificatesDisplay({
                       <div key={`${item.category}-${item.year}`} className="relative pl-8">
                           <div className="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-cyan-500 border-4 border-white dark:border-gray-900 shadow-sm" />
                           <div className="flex flex-wrap items-baseline gap-x-4 mb-6">
-                              <h2 className={`text-3xl font-black text-cyan-500`}>{item.year}</h2>
-                              <h3 className={`text-xl font-bold ${titleColor} opacity-70`}>{formatCJK(item.category, lang)}</h3>
+                              <h2 className={`text-3xl font-black text-gacor-smooth`}>{item.year}</h2>
+                              <h3 className={`text-xl font-bold text-gacor-smooth opacity-70`}>{formatCJK(item.category, lang)}</h3>
                           </div>
                           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                               {Object.entries(item.files).map(([fileName, filePath]) => (
@@ -418,7 +418,7 @@ export default function CertificatesDisplay({
                                           )}
                                       </a>
                                       <div className="p-3">
-                                          <h4 className={`font-bold ${titleColor} line-clamp-1 text-sm`}>{formatCJK(fileName, lang)}</h4>
+                                          <h4 className={`font-bold ${titleColor} hover-gacor line-clamp-1 text-sm`}>{formatCJK(fileName, lang)}</h4>
                                       </div>
                                   </motion.div>
                               ))}
@@ -454,10 +454,10 @@ export default function CertificatesDisplay({
                           </a>
                           <div className="p-4">
                               <div className="flex justify-between items-start mb-1">
-                                  <span className="text-[10px] font-bold text-cyan-500 uppercase tracking-tighter">{formatCJK(item.category, lang)}</span>
+                                  <span className="text-[10px] font-bold text-gacor-smooth uppercase tracking-tighter">{formatCJK(item.category, lang)}</span>
                                   <span className={`text-[10px] font-mono ${titleColor} opacity-50`}>{item.year}</span>
                               </div>
-                              <h3 className={`text-sm font-bold ${titleColor} line-clamp-1`}>{formatCJK(item.fileName, lang)}</h3>
+                              <h3 className={`text-sm font-bold ${titleColor} hover-gacor line-clamp-1`}>{formatCJK(item.fileName, lang)}</h3>
                           </div>
                       </motion.div>
                   ))}

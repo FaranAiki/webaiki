@@ -91,8 +91,8 @@ export default function InteractiveCollections( {
   const activeButtonBg = isDark ? 'bg-cyan-600/90 text-white shadow-lg' : 'bg-cyan-600/90 text-white shadow-lg';
   const buttonText = isDark ? 'text-white' : 'text-black';
   const dropdownBg = isDark ? 'bg-gray-800/45 border-gray-700' : 'bg-white border-gray-200 shadow-xl';
-  const headingTwoText = isDark ? 'text-gray-300' : 'text-gray-800';
-  const linkText = isDark ? 'text-gray-300' : 'text-gray-600';
+  const linkText = isDark ? 'text-gray-400' : 'text-gray-600';
+
   const titleColor = isDark ? 'text-white' : 'text-black';
 
   return (
@@ -205,7 +205,7 @@ export default function InteractiveCollections( {
                                         onClick={() => activeHeadingTwo == headingTwo? setActiveHeadingTwo(null) : setActiveHeadingTwo(headingTwo)}
                                     >
                                         
-                                        {Object.entries(documents).length > 0 && (<h3 className={`font-bold ${headingTwoText} cursor-pointer hover:text-cyan-600 transition-colors`}>{formatCJK(headingTwo, lang)}</h3>)}
+                                        {Object.entries(documents).length > 0 && (<h3 className={`font-bold hover-gacor cursor-pointer hover:text-cyan-600 transition-colors`}>{formatCJK(headingTwo, lang)}</h3>)}
                                         
                                         {activeHeadingTwo === headingTwo && (
                                         Object.keys(documents).length > 0 ? (
@@ -216,7 +216,7 @@ export default function InteractiveCollections( {
                                                     delay={docIndex * 30} // Staggered delay for each document
                                                 >
                                                     {url ? (
-                                                        <a href={url} target="_blank" rel="noopener noreferrer" className="flex items-center hover:text-cyan-600 transition-colors">
+                                                        <a href={url} target="_blank" rel="noopener noreferrer" className="flex items-center hover-gacor hover:text-cyan-600 transition-colors">
                                                         <LinkIcon size={16} className="mr-2 flex-shrink-0" />
                                                         <span>{formatCJK(docName, lang)}</span>
                                                         </a>
@@ -251,15 +251,15 @@ export default function InteractiveCollections( {
                         Object.keys(courses).length > 0 && (
                             <div key={headingOne} className="relative pl-8">
                                 <div className="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-cyan-500 border-4 border-white dark:border-gray-900 shadow-sm" />
-                                <h2 className={`text-3xl font-black ${titleColor} mb-8`}>{formatCJK(headingOne, lang)}</h2>
+                                <h2 className={`text-3xl font-black text-gacor-smooth mb-8`}>{formatCJK(headingOne, lang)}</h2>
                                 <div className="space-y-8">
                                     {Object.entries(courses).map(([headingTwo, documents]) => (
                                         <div key={headingTwo} className="space-y-4">
-                                            <h3 className={`text-xl font-bold text-cyan-500 italic`}>{formatCJK(headingTwo, lang)}</h3>
+                                            <h3 className={`text-xl font-bold text-gacor-smooth italic`}>{formatCJK(headingTwo, lang)}</h3>
                                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                                 {Object.entries(documents).map(([docName, url]) => (
                                                     <div key={docName} className={`p-4 rounded-xl border ${dropdownBg} flex items-center justify-between group`}>
-                                                        <span className={`font-medium ${titleColor}`}>{formatCJK(docName, lang)}</span>
+                                                        <span className={`font-medium ${titleColor} hover-gacor`}>{formatCJK(docName, lang)}</span>
                                                         {url ? (
                                                             <a href={url} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-600 transition-colors">
                                                                 <LinkIcon size={18} />
@@ -295,9 +295,9 @@ export default function InteractiveCollections( {
                             className={`p-6 rounded-2xl border ${dropdownBg} group shadow-sm hover:shadow-xl transition-all duration-300`}
                         >
                             <div className="mb-4">
-                                <span className="text-xs font-bold text-cyan-500 uppercase tracking-widest">{formatCJK(item.h1, lang)}</span>
-                                <h3 className={`text-lg font-black ${titleColor} line-clamp-1`}>{formatCJK(item.docName, lang)}</h3>
-                                <p className={`text-sm italic ${headingTwoText}`}>{formatCJK(item.h2, lang)}</p>
+                                <span className="text-xs font-bold text-gacor-smooth uppercase tracking-widest">{formatCJK(item.h1, lang)}</span>
+                                <h3 className={`text-lg font-black ${titleColor} hover-gacor line-clamp-1`}>{formatCJK(item.docName, lang)}</h3>
+                                <p className={`text-sm italic text-gacor-smooth`}>{formatCJK(item.h2, lang)}</p>
                             </div>
                             {item.url ? (
                                 <a 

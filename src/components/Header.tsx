@@ -353,7 +353,7 @@ export default function Header(props: HeaderProps) {
                                                     text-[15px] tracking-wide
                                                     ${isChildActive
                                                         ? `nav-active-gacor font-bold`
-                                                        : `${textColor} font-medium group-hover:text-cyan-600`
+                                                        : `${textColor} font-medium hover-gacor group-hover:text-cyan-600`
                                                     }`}
                                             >
                                                 {link.icon && <span className="mr-2 hidden lg:inline-block opacity-80 group-hover:opacity-100">{link.icon}</span>}
@@ -372,7 +372,7 @@ export default function Header(props: HeaderProps) {
                                                                     href={getLocalizedHref(subLink.href)}
                                                                     className={`flex items-center px-5 py-3 text-[14px] hover:${isDark ? 'bg-gray-700/50' : 'bg-gray-50'} transition-[colors,transform] ${isSubActive
                                                                             ? `nav-active-gacor font-bold`
-                                                                            : `${textColor} hover:text-cyan-600 font-medium`
+                                                                            : `${textColor} hover-gacor font-medium`
                                                                         }`}
                                                                 >
                                                                     {subLink.icon && <span className="mr-3 opacity-70 group-hover:opacity-100 hidden lg:inline-block scale-90">{subLink.icon}</span>}
@@ -397,7 +397,7 @@ export default function Header(props: HeaderProps) {
                                                 text-[15px] tracking-wide
                                                 ${isActive
                                                     ? `nav-active-gacor font-bold`
-                                                    : `${textColor} font-medium hover:text-cyan-600`
+                                                    : `${textColor} font-medium hover-gacor`
                                                 }`}
                                         >
                                             {link.icon && <span className="mr-2 hidden lg:inline-block opacity-80 group-hover:opacity-100">{link.icon}</span>}

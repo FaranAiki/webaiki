@@ -257,9 +257,9 @@ export default function ExperiencesClient({
                                 <div className={`${isDark ? 'text-white' : 'text-gray-900'} w-full h-full px-4 md:px-8 flex flex-col md:flex-row print:flex-row gap-4 md:gap-12 items-center justify-center mx-auto pt-16 pb-8`}>
                                     <div className="flex-[1.2] flex flex-col justify-center space-y-6 max-w-2xl print:max-w-none">
                                         <div className="space-y-2">
-                                            <h2 className="text-cyan-500 font-bold text-xl md:text-2xl tracking-tight">{job.year}</h2>
+                                            <h2 className="text-gacor-smooth font-bold text-xl md:text-2xl tracking-tight">{job.year}</h2>
                                             <h3 className="text-3xl md:text-5xl font-black leading-tight tracking-tighter">{job.title}</h3>
-                                            <h4 style={companyStyle} className="text-xl md:text-2xl italic opacity-90">{job.company}</h4>
+                                            <h4 className="text-gacor-smooth text-xl md:text-2xl italic opacity-90">{job.company}</h4>
                                             <p style={dateStyle} className="text-base md:text-lg font-medium italic">{job.date}</p>
                                         </div>
                                         <HoverableWords className={`text-base md:text-lg ${justifyClass} ${descText} font-medium`}>
@@ -308,44 +308,45 @@ export default function ExperiencesClient({
                                             <div className="flex-1 space-y-6">
                                                 <div className="flex items-center gap-4">
                                                     <span className="w-16 h-1.5 bg-cyan-500 rounded-full" />
-                                                    <h2 className="text-cyan-500 font-black text-2xl uppercase tracking-[0.4em]">{job.year}</h2>
+                                                    <h2 className="text-gacor-smooth font-black text-2xl uppercase tracking-[0.4em]">{job.year}</h2>
                                                 </div>
                                                 <h3 className={`text-6xl md:text-8xl font-black leading-[0.85] tracking-tighter ${isDark ? 'text-white' : 'text-gray-900'}`}>{job.title}</h3>
-                                                <p className="text-2xl md:text-4xl text-cyan-500/90 font-bold italic tracking-tight">{job.company}</p>
-                                            </div>
-                                            <div className="flex-1 max-w-xl">
+                                                <p className="text-2xl md:text-4xl text-gacor-smooth font-bold italic tracking-tight">{job.company}</p>
+                                                </div>
+                                                <div className="flex-1 max-w-xl">
                                                 <div className={`p-1 rounded-sm mb-4 inline-block ${isDark ? 'bg-cyan-500/20 text-cyan-300' : 'bg-cyan-100 text-cyan-700'} text-xs font-black px-2 py-0.5 tracking-widest uppercase`}>
                                                     {job.date}
                                                 </div>
                                                 <HoverableWords className={`text-xl md:text-2xl leading-relaxed font-medium ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
                                                     {job.description}
                                                 </HoverableWords>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
+                                                </div>
+                                                </div>
+                                                </div>
+                                                </div>
+                                                )}
 
-                            {/* 3. Editorial (Bold Typography) */}
-                            {presentationLayout === 'minimal' && (
-                                <div className={`w-full h-full flex items-center justify-center p-8 md:p-16 relative overflow-hidden transition-colors duration-500 ${isDark ? 'bg-black' : 'bg-white'}`}>
-                                    {/* Background Decorative Text */}
-                                    <div className={`absolute top-0 left-0 w-full h-full flex items-center justify-center pointer-events-none opacity-[0.04] overflow-hidden select-none transition-opacity duration-700`}>
-                                        <span className={`text-[45vw] font-black leading-none ${isDark ? 'text-white' : 'text-gray-900'}`}>{job.year}</span>
-                                    </div>
+                                                {/* 3. Editorial (Bold Typography) */}
+                                                {presentationLayout === 'minimal' && (
+                                                <div className={`w-full h-full flex items-center justify-center p-8 md:p-16 relative overflow-hidden transition-colors duration-500 ${isDark ? 'bg-black' : 'bg-white'}`}>
+                                                {/* Background Decorative Text */}
+                                                <div className={`absolute top-0 left-0 w-full h-full flex items-center justify-center pointer-events-none opacity-[0.04] overflow-hidden select-none transition-opacity duration-700`}>
+                                                <span className={`text-[45vw] font-black leading-none text-gacor-smooth`}>{job.year}</span>
+                                                </div>
 
-                                    <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-12 gap-16 items-center relative z-10">
-                                        <div className="md:col-span-7 space-y-10">
-                                            <div className="space-y-4">
+                                                <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-12 gap-16 items-center relative z-10">
+                                                <div className="md:col-span-7 space-y-10">
+                                                <div className="space-y-4">
                                                 <div className="flex items-center gap-3">
-                                                    <p className="text-cyan-500 font-black text-xl tracking-[0.2em] uppercase">{job.date}</p>
+                                                    <p className="text-gacor-smooth font-black text-xl tracking-[0.2em] uppercase">{job.date}</p>
                                                     <span className="flex-grow h-px bg-cyan-500/30" />
                                                 </div>
                                                 <h3 className={`text-7xl md:text-9xl font-black ${isDark ? 'text-white' : 'text-gray-950'} leading-[0.85] tracking-tighter`}>
                                                     {job.title}
                                                 </h3>
-                                                <p className="text-3xl md:text-4xl font-bold text-cyan-600/90 italic tracking-tight">{job.company}</p>
-                                            </div>
+                                                <p className="text-3xl md:text-4xl font-bold text-gacor-smooth italic tracking-tight">{job.company}</p>
+                                                </div>
+
                                             <div className="max-w-2xl">
                                                 <HoverableWords className={`text-2xl md:text-3xl leading-snug font-medium ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
                                                     {job.description}
@@ -376,7 +377,7 @@ export default function ExperiencesClient({
                                 <div className="w-full md:w-1/2">
                                     {experiences.map((experience) => (
                                         <div key={experience.year} className={`mb-12 ${responsiveJustifyClass} cursor-pointer`}>
-                                            <h2 className={`transition-[transform] hover:scale-105 text-2xl font-bold ${mainText} mb-6 top-0 py-2`}>
+                                            <h2 className={`transition-[transform] hover:scale-105 text-2xl font-bold text-gacor-smooth mb-6 top-0 py-2`}>
                                                 {experience.year}
                                             </h2>
                                             <div className="space-y-4">
@@ -399,12 +400,12 @@ export default function ExperiencesClient({
                                                         <p style={dateStyle} className="text-sm mb-1">{job.date}</p>
                                                         {job.url ? (
                                                             <a href={job.url} target="_blank" rel="noopener noreferrer" className="block w-fit">
-                                                                <h3 className={`text-xl font-bold ${mainText} hover:text-cyan-500 underline decoration-dotted decoration-cyan-500/50`}>{job.title}</h3>
+                                                                <h3 className={`text-xl font-bold ${mainText} hover-gacor underline decoration-dotted decoration-cyan-500/50`}>{job.title}</h3>
                                                             </a>
                                                         ) : (
-                                                            <h3 className={`text-xl font-bold ${mainText}`}>{job.title}</h3>
+                                                            <h3 className={`text-xl font-bold ${mainText} hover-gacor`}>{job.title}</h3>
                                                         )}
-                                                        <p style={companyStyle} className="italic mb-3">{job.company}</p>
+                                                        <p className="text-gacor-smooth italic mb-3">{job.company}</p>
                                                         <HoverableWords className={`${justifyClass} ${descText}`}>
                                                             {formatCJK(job.description, lang)}
                                                         </HoverableWords>
@@ -445,7 +446,7 @@ export default function ExperiencesClient({
                                 {experiences.map((experience) => (
                                     <div key={experience.year} className="relative pl-8">
                                         <div className="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-cyan-500 border-4 border-white dark:border-gray-900 shadow-sm" />
-                                        <h2 className={`text-3xl font-black ${mainText} mb-8`}>{experience.year}</h2>
+                                        <h2 className="text-3xl font-black text-gacor-smooth mb-8">{experience.year}</h2>
                                         <div className="space-y-12">
                                             {experience.jobs.map((job, index) => (
                                                 <motion.div 
@@ -454,7 +455,7 @@ export default function ExperiencesClient({
                                                     whileInView={{ opacity: 1, x: 0 }}
                                                     viewport={{ once: true }}
                                                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                                                    className="flex flex-col md:flex-row gap-6"
+                                                    className="flex flex-col md:flex-row gap-6 group"
                                                 >
                                                     {job.image && job.image.length > 0 && (
                                                         <div className="w-full md:w-1/3 shrink-0">
@@ -465,8 +466,8 @@ export default function ExperiencesClient({
                                                     )}
                                                     <div className="flex-1">
                                                         <p style={dateStyle} className="text-sm mb-1">{job.date}</p>
-                                                        <h3 className={`text-2xl font-bold ${mainText} mb-1`}>{job.title}</h3>
-                                                        <p style={companyStyle} className="text-lg font-semibold italic mb-4">{job.company}</p>
+                                                        <h3 className={`text-2xl font-bold ${mainText} hover-gacor mb-1`}>{job.title}</h3>
+                                                        <p className="text-lg font-semibold italic text-gacor-smooth mb-4">{job.company}</p>
                                                         <HoverableWords className={`${justifyClass} ${descText}`}>
                                                             {formatCJK(job.description, lang)}
                                                         </HoverableWords>
@@ -498,8 +499,8 @@ export default function ExperiencesClient({
                                             )}
                                         </div>
                                         <p style={dateStyle} className="text-xs font-medium mb-1">{job.date}</p>
-                                        <h3 className={`text-xl font-black ${mainText} mb-1 line-clamp-1`}>{job.title}</h3>
-                                        <p style={companyStyle} className="text-sm italic mb-4">{job.company}</p>
+                                        <h3 className={`text-xl font-black ${mainText} hover-gacor mb-1 line-clamp-1`}>{job.title}</h3>
+                                        <p className="text-sm italic text-gacor-smooth mb-4">{job.company}</p>
                                     </motion.div>
                                 ))}
                             </div>
