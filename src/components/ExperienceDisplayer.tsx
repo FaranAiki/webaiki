@@ -35,6 +35,7 @@ type Experience = {
 };
 
 export type LayoutType = 'original' | 'timeline' | 'grid' | 'bento' | 'smooth';
+export type PresentationLayoutType = 'modern' | 'split' | 'minimal';
 
 interface ExperiencesClientProps {
     experiences: Experience[];
@@ -141,6 +142,7 @@ export default function ExperiencesClient({
     click_to_close_text = 'Click to close'
 }: ExperiencesClientProps) {
     const [currentLayout, setCurrentLayout] = useState<LayoutType>(layout);
+    const [presentationLayout, setPresentationLayout] = useState<PresentationLayoutType>('modern');
     const [activeJob, setActiveJob] = useState(experiences[0].jobs[0]);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const { resolvedTheme } = useTheme();
@@ -196,7 +198,8 @@ export default function ExperiencesClient({
     const shimmer400x225 = useMemo(() => `data:image/svg+xml;base64,${toBase64(shimmer(400, 225))}`, []);
 
     return (
-        <div className={`w-full h-full ${isPresentationMode ? 'presentation-container flex flex-row flex-nowrap w-full h-screen' : ''}`}>
+        <div className="w-full h-full relative">
+            {/* Flying Widgets - Hoisted to window level for true stickiness */}
             {!isPresentationMode && allJobs.length > 0 && (
                 <LayoutSwitcher 
                     currentLayout={currentLayout} 
@@ -213,48 +216,161 @@ export default function ExperiencesClient({
                 />
             )}
 
-            {isPresentationMode ? (
-                allJobs.map((job, idx) => (
-                    <FadeInSection
-                        key={`pres-${idx}`}
-                        className="w-full h-full flex-shrink-0"
-                        slideIndex={idx + 1}
-                        totalSlides={allJobs.length}
-                    >
-                        <div className={`${isDark ? 'text-white' : 'text-gray-900'} w-full h-full px-4 md:px-8 flex flex-col md:flex-row print:flex-row gap-4 md:gap-12 items-center justify-center mx-auto pt-16 pb-8`}>
-                            <div className="flex-[1.2] flex flex-col justify-center space-y-6 max-w-2xl print:max-w-none">
-                                <div className="space-y-2">
-                                    <h2 className="text-cyan-500 font-bold text-xl md:text-2xl tracking-tight">{job.year}</h2>
-                                    <h3 className="text-3xl md:text-5xl font-black leading-tight tracking-tighter">{job.title}</h3>
-                                    <h4 style={companyStyle} className="text-xl md:text-2xl italic opacity-90">{job.company}</h4>
-                                    <p style={dateStyle} className="text-base md:text-lg font-medium italic">{job.date}</p>
+            {isPresentationMode && (
+                <div className={`fixed bottom-8 left-8 z-[100] flex items-center p-1.5 rounded-xl border backdrop-blur-md shadow-2xl transition-all duration-300 ${isDark ? 'bg-gray-900/90 border-gray-700 ring-1 ring-white/10' : 'bg-white/90 border-gray-200 ring-1 ring-black/5'}`}>
+                    <div className="flex gap-1">
+                        {[
+                            { id: 'modern', icon: <LayoutPanelLeft size={18} />, label: 'Modern' },
+                            { id: 'split', icon: <Rows size={18} />, label: 'Cinematic' },
+                            { id: 'minimal', icon: <div className="w-[18px] h-[18px] border-2 border-current rounded-sm flex items-center justify-center font-bold text-[10px] leading-none">E</div>, label: 'Editorial' }
+                        ].map((l) => (
+                            <button
+                                key={l.id}
+                                onClick={() => setPresentationLayout(l.id as PresentationLayoutType)}
+                                title={l.label}
+                                className={`p-2 rounded-lg transition-all duration-200 ${
+                                    presentationLayout === l.id
+                                        ? 'bg-cyan-500 text-white shadow-md scale-105'
+                                        : isDark 
+                                            ? 'text-gray-400 hover:text-gray-200 hover:bg-gray-800' 
+                                            : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+                                }`}
+                            >
+                                {l.icon}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            )}
+
+            <div className={`w-full h-full ${isPresentationMode ? 'presentation-container' : ''}`}>
+                {isPresentationMode ? (
+                    allJobs.map((job, idx) => (
+                        <FadeInSection
+                            key={`pres-${idx}`}
+                            className="w-full h-full flex-shrink-0"
+                            slideIndex={idx + 1}
+                            totalSlides={allJobs.length}
+                        >
+                            {/* 1. Modern (Original Side-by-Side) */}
+                            {presentationLayout === 'modern' && (
+                                <div className={`${isDark ? 'text-white' : 'text-gray-900'} w-full h-full px-4 md:px-8 flex flex-col md:flex-row print:flex-row gap-4 md:gap-12 items-center justify-center mx-auto pt-16 pb-8`}>
+                                    <div className="flex-[1.2] flex flex-col justify-center space-y-6 max-w-2xl print:max-w-none">
+                                        <div className="space-y-2">
+                                            <h2 className="text-cyan-500 font-bold text-xl md:text-2xl tracking-tight">{job.year}</h2>
+                                            <h3 className="text-3xl md:text-5xl font-black leading-tight tracking-tighter">{job.title}</h3>
+                                            <h4 style={companyStyle} className="text-xl md:text-2xl italic opacity-90">{job.company}</h4>
+                                            <p style={dateStyle} className="text-base md:text-lg font-medium italic">{job.date}</p>
+                                        </div>
+                                        <HoverableWords className={`text-base md:text-lg ${justifyClass} ${descText} font-medium`}>
+                                            {job.description}
+                                        </HoverableWords>
+                                    </div>
+                                    {job.image && job.image.length > 0 && (
+                                        <div className="flex-[0.8] flex justify-center items-center w-full h-full transform-gpu">
+                                            <div className="relative w-full h-full max-w-[400px] max-h-[400px] flex justify-center items-center overflow-hidden transform-gpu">
+                                                <Image
+                                                    src={job.image[0]}
+                                                    alt={job.company}
+                                                    fill
+                                                    className="object-contain transition-transform duration-700 hover:scale-[1.03] scale-[1.01]"
+                                                    sizes="(max-width: 768px) 100vw, 400px"
+                                                    priority={idx < 2}
+                                                    loading={idx < 2 ? "eager" : "lazy"}
+                                                />
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
-                                <HoverableWords className={`text-base md:text-lg ${justifyClass} ${descText} font-medium`}>
-                                    {job.description}
-                                </HoverableWords>
-                            </div>
-                            {job.image && job.image.length > 0 && (
-                                <div className="flex-[0.8] flex justify-center items-center w-full h-full transform-gpu">
-                                    <div className="relative w-full h-full max-w-[400px] max-h-[400px] flex justify-center items-center overflow-hidden transform-gpu">
-                                        <Image
-                                            src={job.image[0]}
-                                            alt={job.company}
-                                            fill
-                                            className="object-contain transition-transform duration-700 hover:scale-[1.03] scale-[1.01]"
-                                            sizes="(max-width: 768px) 100vw, 400px"
-                                            priority={idx < 2}
-                                            loading={idx < 2 ? "eager" : "lazy"}
-                                        />
+                            )}
+
+                            {/* 2. Cinematic (Full-bleed Background) */}
+                            {presentationLayout === 'split' && (
+                                <div className="w-full h-full relative overflow-hidden flex items-end">
+                                    {job.image && job.image.length > 0 ? (
+                                        <div className="absolute inset-0 z-0">
+                                            <Image 
+                                                src={job.image[0]} 
+                                                alt={job.company} 
+                                                fill 
+                                                className={`object-cover transition-all duration-1000 ${isDark ? 'brightness-[0.35]' : 'brightness-[1.1] grayscale-[0.2] opacity-20'}`} 
+                                                priority={idx < 2} 
+                                            />
+                                            <div className={`absolute inset-0 ${isDark ? 'bg-gradient-to-t from-black via-black/40 to-transparent' : 'bg-gradient-to-t from-white via-white/40 to-transparent'}`} />
+                                        </div>
+                                    ) : (
+                                        <div className={`absolute inset-0 z-0 ${isDark ? 'bg-gray-950' : 'bg-gray-50'}`} />
+                                    )}
+                                    
+                                    <div className="relative z-10 w-full max-w-6xl mx-auto p-8 md:p-16 mb-16">
+                                        <div className="flex flex-col md:flex-row items-end justify-between gap-12">
+                                            <div className="flex-1 space-y-6">
+                                                <div className="flex items-center gap-4">
+                                                    <span className="w-16 h-1.5 bg-cyan-500 rounded-full" />
+                                                    <h2 className="text-cyan-500 font-black text-2xl uppercase tracking-[0.4em]">{job.year}</h2>
+                                                </div>
+                                                <h3 className={`text-6xl md:text-8xl font-black leading-[0.85] tracking-tighter ${isDark ? 'text-white' : 'text-gray-900'}`}>{job.title}</h3>
+                                                <p className="text-2xl md:text-4xl text-cyan-500/90 font-bold italic tracking-tight">{job.company}</p>
+                                            </div>
+                                            <div className="flex-1 max-w-xl">
+                                                <div className={`p-1 rounded-sm mb-4 inline-block ${isDark ? 'bg-cyan-500/20 text-cyan-300' : 'bg-cyan-100 text-cyan-700'} text-xs font-black px-2 py-0.5 tracking-widest uppercase`}>
+                                                    {job.date}
+                                                </div>
+                                                <HoverableWords className={`text-xl md:text-2xl leading-relaxed font-medium ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
+                                                    {job.description}
+                                                </HoverableWords>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             )}
-                        </div>
-                    </FadeInSection>
-                ))
-            ) : (
-                <div className={`${mounted ? (isDark ? 'text-white' : 'text-gray-900') : 'text-gray-900'} min-h-screen p-4 sm:p-8 md:p-12 w-full transition-colors duration-300`}>
-                    <div className="container mx-auto max-w-6xl pt-16">
-                        {currentLayout === 'original' && (
+
+                            {/* 3. Editorial (Bold Typography) */}
+                            {presentationLayout === 'minimal' && (
+                                <div className={`w-full h-full flex items-center justify-center p-8 md:p-16 relative overflow-hidden transition-colors duration-500 ${isDark ? 'bg-black' : 'bg-white'}`}>
+                                    {/* Background Decorative Text */}
+                                    <div className={`absolute top-0 left-0 w-full h-full flex items-center justify-center pointer-events-none opacity-[0.04] overflow-hidden select-none transition-opacity duration-700`}>
+                                        <span className={`text-[45vw] font-black leading-none ${isDark ? 'text-white' : 'text-gray-900'}`}>{job.year}</span>
+                                    </div>
+
+                                    <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-12 gap-16 items-center relative z-10">
+                                        <div className="md:col-span-7 space-y-10">
+                                            <div className="space-y-4">
+                                                <div className="flex items-center gap-3">
+                                                    <p className="text-cyan-500 font-black text-xl tracking-[0.2em] uppercase">{job.date}</p>
+                                                    <span className="flex-grow h-px bg-cyan-500/30" />
+                                                </div>
+                                                <h3 className={`text-7xl md:text-9xl font-black ${isDark ? 'text-white' : 'text-gray-950'} leading-[0.85] tracking-tighter`}>
+                                                    {job.title}
+                                                </h3>
+                                                <p className="text-3xl md:text-4xl font-bold text-cyan-600/90 italic tracking-tight">{job.company}</p>
+                                            </div>
+                                            <div className="max-w-2xl">
+                                                <HoverableWords className={`text-2xl md:text-3xl leading-snug font-medium ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+                                                    {job.description}
+                                                </HoverableWords>
+                                            </div>
+                                        </div>
+                                        
+                                        {job.image && job.image.length > 0 && (
+                                            <div className="md:col-span-5 relative group">
+                                                <div className="aspect-[4/5] relative rounded-2xl overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] transition-all duration-700 group-hover:rotate-0 rotate-3 group-hover:scale-105">
+                                                    <Image src={job.image[0]} alt={job.company} fill className="object-cover" />
+                                                </div>
+                                                {/* Decorative Elements */}
+                                                <div className={`absolute -bottom-6 -left-6 w-32 h-32 border-b-[6px] border-l-[6px] border-cyan-500 rounded-bl-4xl -z-10 transition-transform duration-500 group-hover:-translate-x-2 group-hover:translate-y-2`} />
+                                                <div className={`absolute -top-6 -right-6 w-32 h-32 border-t-[6px] border-r-[6px] border-cyan-500 rounded-tr-4xl -z-10 transition-transform duration-500 group-hover:translate-x-2 group-hover:-translate-y-2`} />
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            )}
+                        </FadeInSection>
+                    ))
+                ) : (
+                    <div className={`${mounted ? (isDark ? 'text-white' : 'text-gray-900') : 'text-gray-900'} min-h-screen p-4 sm:p-8 md:p-12 w-full transition-colors duration-300`}>
+                        <div className="container mx-auto max-w-6xl pt-16">
+                            {currentLayout === 'original' && (
                             <div className="flex flex-col md:flex-row gap-8 md:gap-16">
                                 <div className="w-full md:w-1/2">
                                     {experiences.map((experience) => (
@@ -458,6 +574,7 @@ export default function ExperiencesClient({
                     </div>
                 </div>
             )}
+            </div>
         </div>
     );
 }

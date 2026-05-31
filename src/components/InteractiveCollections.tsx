@@ -247,7 +247,7 @@ export default function InteractiveCollections( {
 
             {currentLayout === 'timeline' && (
                 <div className="relative border-l-2 border-cyan-500/30 ml-4 md:ml-8 space-y-12">
-                    {Object.entries(data).map(([headingOne, courses], h1Index) => (
+                    {Object.entries(data).map(([headingOne, courses]) => (
                         Object.keys(courses).length > 0 && (
                             <div key={headingOne} className="relative pl-8">
                                 <div className="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-cyan-500 border-4 border-white dark:border-gray-900 shadow-sm" />
@@ -285,7 +285,7 @@ export default function InteractiveCollections( {
                         Object.entries(courses).flatMap(([h2, documents]) => 
                             Object.entries(documents).map(([docName, url]) => ({ h1, h2, docName, url }))
                         )
-                    ).map((item, idx) => (
+                    ).map((item) => (
                         <motion.div
                             key={`${item.h1}-${item.h2}-${item.docName}`}
                             initial={{ opacity: 0, scale: 0.9, y: 20 }}

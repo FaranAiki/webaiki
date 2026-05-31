@@ -306,7 +306,7 @@ export default function CertificatesDisplay({
               <div className="relative border-l-2 border-cyan-500/30 ml-4 md:ml-8 space-y-12">
                   {Object.entries(certificates).flatMap(([category, yearsData]) => 
                     Object.entries(yearsData).map(([year, files]) => ({ category, year, files }))
-                  ).sort((a, b) => b.year.localeCompare(a.year)).map((item, idx) => (
+                  ).sort((a, b) => b.year.localeCompare(a.year)).map((item) => (
                       <div key={`${item.category}-${item.year}`} className="relative pl-8">
                           <div className="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-cyan-500 border-4 border-white dark:border-gray-900 shadow-sm" />
                           <div className="flex flex-wrap items-baseline gap-x-4 mb-6">
@@ -348,7 +348,7 @@ export default function CertificatesDisplay({
                     Object.entries(yearsData).flatMap(([year, files]) => 
                         Object.entries(files).map(([fileName, filePath]) => ({ category, year, fileName, filePath }))
                     )
-                  ).map((item, idx) => (
+                  ).map((item) => (
                       <motion.div
                           key={`${item.category}-${item.year}-${item.fileName}`}
                           initial={{ opacity: 0, scale: 0.9 }}
