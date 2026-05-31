@@ -143,7 +143,7 @@ export default function SettingsPopup({ labels }: SettingsPopupProps) {
                 <Type size={16} className="text-cyan-500" />
                 <label className={`text-sm font-semibold ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>{labels.Typography}</label>
               </div>
-              <div className={`flex flex-col gap-1 max-h-40 overflow-y-auto pr-2 custom-scrollbar rounded-xl p-1 border ${isDark ? 'border-gray-800 bg-gray-950/30' : 'border-gray-100 bg-gray-50/50'}`}>
+              <div className={`flex flex-col gap-1 max-h-60 overflow-y-auto pr-2 custom-scrollbar rounded-xl p-1 border ${isDark ? 'border-gray-800 bg-gray-950/30' : 'border-gray-100 bg-gray-50/50'}`}>
                 {fonts.map((f) => (
                   <button
                     key={f.name}

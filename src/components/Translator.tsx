@@ -13,6 +13,7 @@ import es from '../../public/locales/es.json';
 import ko from '../../public/locales/ko.json';
 import de from '../../public/locales/de.json';
 import nl from '../../public/locales/nl.json';
+import ha from '../../public/locales/ha.json';
 
 const dictionaries = {
   en,
@@ -26,6 +27,7 @@ const dictionaries = {
   ko,
   de,
   nl,
+  ha,
 };
 
 // Now a synchronous function! No more await needed.

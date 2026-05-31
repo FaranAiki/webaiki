@@ -15,7 +15,10 @@ import {
   Fira_Code,
   Dancing_Script,
   Great_Vibes,
-  Caveat
+  Caveat,
+  Bebas_Neue,
+  Space_Grotesk,
+  Comfortaa
 } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
@@ -32,10 +35,17 @@ const firaCode = Fira_Code({ subsets: ['latin'], variable: '--font-fira-code', p
 const dancingScript = Dancing_Script({ subsets: ['latin'], variable: '--font-dancing-script', preload: false });
 const greatVibes = Great_Vibes({ weight: ['400'], subsets: ['latin'], variable: '--font-great-vibes', preload: false });
 const caveat = Caveat({ subsets: ['latin'], variable: '--font-caveat', preload: false });
+const bebasNeue = Bebas_Neue({ weight: ['400'], subsets: ['latin'], variable: '--font-bebas-neue', preload: false });
+const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-space-grotesk', preload: false });
+const comfortaa = Comfortaa({ subsets: ['latin'], variable: '--font-comfortaa', preload: false });
 
 export const fonts = [
   { name: 'Default', variable: '', class: '' },
+  { name: 'Comic Sans', variable: '--font-comic-sans', class: 'font-comic-sans' },
   { name: 'Inter', variable: inter.variable, class: inter.className },
+  { name: 'Space Grotesk', variable: spaceGrotesk.variable, class: spaceGrotesk.className },
+  { name: 'Bebas Neue', variable: bebasNeue.variable, class: bebasNeue.className },
+  { name: 'Comfortaa', variable: comfortaa.variable, class: comfortaa.className },
   { name: 'Roboto', variable: roboto.variable, class: roboto.className },
   { name: 'Open Sans', variable: openSans.variable, class: openSans.className },
   { name: 'Lato', variable: lato.variable, class: lato.className },

@@ -128,6 +128,7 @@
   "Korean": "한국어",
   "German": "독일어",
   "Dutch": "네덜란드어",
+  "Hausa": "하우사어",
   "Make_Interactive_UAS": "ITB UAS MA1101을 위한 대화형 학습",
   "Make_Interactive_UAS_Description": "반둥 공과대학교 미적분학 I 기말고사 준비를 돕기 위해 Flutter/Dart 기반 애플리케이션을 개발했습니다. 대화형 위젯과 Gemini 인공지능을 사용하여 복잡한 개념의 시각화를 통해 이해를 돕습니다.",
   "Make_Website": "개인 웹사이트 faranaiki.id",

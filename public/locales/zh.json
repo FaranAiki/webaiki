@@ -128,6 +128,7 @@
   "Korean": "韩语",
   "German": "德语",
   "Dutch": "荷兰语",
+  "Hausa": "豪萨语",
   "Make_Interactive_UAS": "ITB UAS MA1101 交互式学习",
   "Make_Interactive_UAS_Description": "开发一个基于 Flutter/Dart 的应用程序，使用交互式小组件和 Gemini 人工智能，通过复杂概念的可视化来深化理解，帮助学生准备万隆理工学院的微积分 I 期末考试。",
   "Make_Website": "个人网站 faranaiki.id",
