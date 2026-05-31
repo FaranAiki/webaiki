@@ -57,8 +57,8 @@ export default function SocialDisplay() {
     {
       name: "Link Tree",
       username: "Faran Aiki",
-      url: "https://linktr.ee/FaranAiki", // Fixed: Added protocol
-      icon: <Image alt="LinkTree icon" width="48" height="48" src="https://upload.wikimedia.org/wikipedia/en/thumb/b/bf/Linktree_logo.svg/768px-Linktree_logo.svg.png?20230519151448" priority unoptimized />,
+      url: "https://linktr.ee/FaranAiki",
+      icon: <Image alt="LinkTree icon" width="48" height="48" src="/images/social/linktree.webp" className="brightness-0 invert-[0.5] sepia-[1] hue-rotate-[70deg] saturate-[3]" />,
       color: "hover:border-green-200"
     },
     {
@@ -72,7 +72,7 @@ export default function SocialDisplay() {
       name: "TikTok",
       username: "@faranaiki07",
       url: "https://www.tiktok.com/@faranaiki07",
-      icon: <Image alt="Tiktok icon" width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Tiktok_icon.svg" unoptimized />,
+      icon: <Image alt="Tiktok icon" width="48" height="48" src="/images/social/tiktok.webp" className={isDark ? "brightness-0 invert" : ""} />,
       color: "hover:border-black"
     },
     {
@@ -86,56 +86,56 @@ export default function SocialDisplay() {
       name: "My Anime List",
       username: "FaranAiki",
       url: "https://myanimelist.net/profile/FaranAiki",
-      icon: <Image alt='My Anime List icon' width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/7/7a/MyAnimeList_Logo.png" priority />,
+      icon: <Image alt='My Anime List icon' width="48" height="48" src="/images/social/myanimelist.webp" className="brightness-0 invert-[0.3] sepia-[1] hue-rotate-[190deg] saturate-[5]" />,
       color: "hover:border-blue-600"
     },
     {
       name: "Lichess",
       username: "FaranAiki",
       url: "https://lichess.org/@/FaranAiki",
-      icon: <Image alt='Lichess icon' width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/d/da/Lichess_Logo_2019.svg" />,
+      icon: <Image alt='Lichess icon' width="48" height="48" src="/images/social/lichess.webp" className={isDark ? "brightness-0 invert" : ""} />,
       color: "hover:border-white"
     },
     {
       name: "Quora",
       username: "Muhammad Faran Aiki",
       url: "https://id.quora.com/profile/Muhammad-Faran-Aiki-4",
-      icon: <Image alt='Quora icon' width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/0/09/Quora_icon.svg" priority />,
+      icon: <Image alt='Quora icon' width="48" height="48" src="/images/social/quora.webp" className="brightness-0 invert-[0.2] sepia-[1] hue-rotate-[330deg] saturate-[10]" />,
       color: "hover:border-red-600"
     },
     {
       name: "Reddit",
       username: "FaranAiki",
       url: "https://www.reddit.com/user/FaranAiki/",
-      icon: <Image alt='Reddit icon' width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Snoo.svg" priority  />,
+      icon: <Image alt='Reddit icon' width="48" height="48" src="/images/social/reddit.webp" className="brightness-0 invert-[0.5] sepia-[1] hue-rotate-[350deg] saturate-[5]" />,
       color: "hover:border-red-300"
     },
     {
       name: "SlideShare",
       username: "Faran Aiki",
       url: "https://www.slideshare.net/MuhammadFaranAiki",
-      icon: <Image alt='Slideshare icon' width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/e/e1/SlideShare_logo.svg" priority  />,
+      icon: <Image alt='Slideshare icon' width="48" height="48" src="/images/social/slideshare.webp" className="brightness-0 invert-[0.5] sepia-[1] hue-rotate-[10deg] saturate-[5]" />,
       color: "hover:border-orange-300"
     },
     {
       name: "Scribd",
       username: "Muhammad Faran Aiki",
       url: "https://id.scribd.com/user/530310522/Muhammad-Faran-Aiki",
-      icon: <Image alt='Slideshare icon' width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/5/52/Scribd_logo_%282%29.svg" priority  />,
+      icon: <Image alt='Scribd icon' width="48" height="48" src="/images/social/scribd.webp" className="brightness-0 invert-[0.4] sepia-[1] hue-rotate-[160deg] saturate-[5]" />,
       color: "hover:border-green-300"
     },
     {
       name: "Line",
       username: "@faranaiki_",
       url: "https://line.me/ti/p/8ZF2kENUEj",
-      icon: <Image alt='Line icon' width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" priority  />,
+      icon: <Image alt='Line icon' width="48" height="48" src="/images/social/line.webp" className="brightness-0 invert-[0.4] sepia-[1] hue-rotate-[80deg] saturate-[5]" />,
       color: "hover:border-green-400"
     },
     {
       name: "Telegram",
       username: "@FaranAiki",
       url: "https://t.me/FaranAiki",
-      icon: <Image alt='Telegram icon' width="48" height="48" src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" priority  />,
+      icon: <Image alt='Telegram icon' width="48" height="48" src="/images/social/telegram.webp" className="brightness-0 invert-[0.5] sepia-[1] hue-rotate-[180deg] saturate-[5]" />,
       color: "hover:border-blue-300"
     },
   ];

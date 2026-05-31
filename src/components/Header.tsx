@@ -183,17 +183,17 @@ export default function Header(props: HeaderProps) {
     const dropdownBg = isDark ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200';
 
     const languages = [
-        { code: 'id', name: id_lang, flag: '/flags/id.webp' },
-        { code: 'en', name: en_lang, flag: '/flags/en.webp' },
-        { code: 'zh', name: zh_lang, flag: '/flags/zh.webp' },
-        { code: 'jp', name: jp_lang, flag: '/flags/jp.webp' },
-        { code: 'ru', name: ru_lang, flag: '/flags/ru.webp' },
-        { code: 'fr', name: fr_lang, flag: '/flags/fr.webp' },
-        { code: 'es', name: es_lang, flag: '/flags/es.webp' },
-        { code: 'ko', name: ko_lang, flag: '/flags/ko.webp' },
-        { code: 'de', name: de_lang, flag: '/flags/de.webp' },
-        { code: 'nl', name: nl_lang, flag: '/flags/nl.webp' },
-        { code: 'ar', name: ar_lang, flag: '/flags/ar.webp' },
+        { code: 'id', name: id_lang, flag: '/images/flags/id.webp' },
+        { code: 'en', name: en_lang, flag: '/images/flags/en.webp' },
+        { code: 'zh', name: zh_lang, flag: '/images/flags/zh.webp' },
+        { code: 'jp', name: jp_lang, flag: '/images/flags/jp.webp' },
+        { code: 'ru', name: ru_lang, flag: '/images/flags/ru.webp' },
+        { code: 'fr', name: fr_lang, flag: '/images/flags/fr.webp' },
+        { code: 'es', name: es_lang, flag: '/images/flags/es.webp' },
+        { code: 'ko', name: ko_lang, flag: '/images/flags/ko.webp' },
+        { code: 'de', name: de_lang, flag: '/images/flags/de.webp' },
+        { code: 'nl', name: nl_lang, flag: '/images/flags/nl.webp' },
+        { code: 'ar', name: ar_lang, flag: '/images/flags/ar.webp' },
     ];
 
     const handleLanguageChange = async (langCode: string) => {
