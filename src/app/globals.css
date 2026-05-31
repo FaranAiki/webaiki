@@ -19,10 +19,10 @@
   .text-gacor-smooth {
     background: linear-gradient(
       90deg, 
-      #0891b2, /* cyan-600 */
-      #22d3ee, /* cyan-400 */
-      #0ea5e9, /* sky-500 */
-      #0891b2  /* cyan-600 */
+      var(--gacor-1), 
+      var(--gacor-2), 
+      var(--gacor-3), 
+      var(--gacor-1)
     );
     background-size: 200% auto;
     -webkit-background-clip: text;
@@ -35,10 +35,10 @@
   .hover-gacor:hover {
     background: linear-gradient(
       90deg, 
-      #0891b2, 
-      #22d3ee, 
-      #0ea5e9, 
-      #0891b2
+      var(--gacor-1), 
+      var(--gacor-2), 
+      var(--gacor-3), 
+      var(--gacor-1)
     );
     background-size: 200% auto;
     -webkit-background-clip: text;
@@ -51,10 +51,10 @@
   .nav-active-gacor {
     background: linear-gradient(
       90deg, 
-      #0891b2, 
-      #22d3ee, 
-      #0ea5e9, 
-      #0891b2
+      var(--gacor-1), 
+      var(--gacor-2), 
+      var(--gacor-3), 
+      var(--gacor-1)
     );
     background-size: 200% auto;
     -webkit-background-clip: text;
@@ -63,6 +63,41 @@
     animation: gradient-x 3s linear infinite;
     font-weight: 900 !important;
     filter: drop-shadow(0 0 1px rgba(6, 182, 212, 0.2));
+  }
+
+  .bg-gacor {
+    background: linear-gradient(
+      90deg, 
+      var(--gacor-1), 
+      var(--gacor-2), 
+      var(--gacor-3), 
+      var(--gacor-1)
+    );
+    background-size: 200% auto;
+    animation: gradient-x 3s linear infinite;
+  }
+
+  .logo-gacor {
+    background: linear-gradient(
+      90deg, 
+      var(--gacor-1), 
+      var(--gacor-2), 
+      var(--gacor-3), 
+      var(--gacor-1)
+    );
+    background-size: 200% auto;
+    animation: gradient-x 3s linear infinite;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+  }
+
+  .nav-active-gacor svg, .hover-gacor:hover svg {
+    color: var(--gacor-svg) !important;
+    filter: drop-shadow(0 0 1px rgba(6, 182, 212, 0.4));
   }
 
   .font-comic-sans {
@@ -81,6 +116,12 @@
   --card-border: #e5e7eb; 
   --text-muted: #374151; 
   --primary: #0891b2; 
+  
+  /* Gacor Gradient Variables (Darker for Light Mode) */
+  --gacor-1: #0e7490; /* cyan-700 */
+  --gacor-2: #0891b2; /* cyan-600 */
+  --gacor-3: #0369a1; /* sky-700 */
+  --gacor-svg: #0891b2; /* cyan-600 */
 }
 
 /* Dark Mode Variables (Applied when 'dark' class is present) */
@@ -94,6 +135,12 @@
   --card-border: #374151; /* gray-700 */
   --text-muted: #9ca3af; /* gray-400 */
   --primary: #22d3ee; /* cyan-400 */
+  
+  /* Gacor Gradient Variables (Bright for Dark Mode) */
+  --gacor-1: #0891b2; /* cyan-600 */
+  --gacor-2: #22d3ee; /* cyan-400 */
+  --gacor-3: #0ea5e9; /* sky-500 */
+  --gacor-svg: #22d3ee; /* cyan-400 */
 }
 
 @theme inline {

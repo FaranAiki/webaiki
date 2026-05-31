@@ -30,10 +30,21 @@ interface SettingsPopupProps {
     Font_Default: string;
     Reset_Settings: string;
   };
+  isOpen?: boolean;
+  onOpenChange?: (isOpen: boolean) => void;
 }
 
-export default function SettingsPopup({ labels }: SettingsPopupProps) {
-  const [isOpen, setIsOpen] = useState(false);
+export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenChange }: SettingsPopupProps) {
+  const [internalIsOpen, setInternalIsOpen] = useState(false);
+  
+  const isOpen = externalIsOpen !== undefined ? externalIsOpen : internalIsOpen;
+  const setIsOpen = (value: boolean) => {
+    if (onOpenChange) {
+      onOpenChange(value);
+    } else {
+      setInternalIsOpen(value);
+    }
+  };
   const { 
     font, setFont, 
     textAlign, setTextAlign, 
@@ -44,6 +55,7 @@ export default function SettingsPopup({ labels }: SettingsPopupProps) {
   } = useSettings();
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === 'dark';
+  const textColor = isDark ? 'text-gray-300' : 'text-slate-700';
   const popupRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -94,12 +106,12 @@ export default function SettingsPopup({ labels }: SettingsPopupProps) {
     <div className="relative" ref={popupRef}>
       <button
         onClick={toggleOpen}
-        className={`group p-2.5 rounded-full hover:${isDark ? 'bg-white/10' : 'bg-gray-100'} transition-colors duration-300`}
+        className={`group p-2.5 rounded-full hover:${isDark ? 'bg-white/10' : 'bg-gray-100'} transition-all duration-300 hover-gacor ${isOpen ? 'nav-active-gacor' : textColor}`}
         aria-label={labels.Settings}
       >
         <Settings 
           size={22} 
-          className={`${isDark ? 'text-gray-300' : 'text-slate-700'} group-hover:text-cyan-600 transition-colors duration-300 ${isOpen ? 'rotate-90' : ''}`} 
+          className={`transition-all duration-300 ${isOpen ? 'rotate-90' : ''}`} 
         />
       </button>
 

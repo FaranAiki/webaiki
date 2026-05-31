@@ -87,7 +87,7 @@ export function AboutSection(props: AboutSubSectionProps) {
         <div className={`flex flex-col-reverse xl:flex-row print:flex-row justify-center items-center gap-8 ${props.isCompact ? 'lg:gap-8' : 'lg:gap-16'} max-w-6xl mx-auto w-full`}>
           <div className={`flex-1 ${responsiveJustifyClass} max-w-prose print:max-w-none`}>
             <h1 className={`${props.isCompact ? 'text-2xl md:text-3xl' : 'text-4xl md:text-5xl'} font-extrabold ${titleClass} mb-6 hover:opacity-85 transition-opacity tracking-tight`}>
-              {props.about_title}
+              <span className="nav-active-gacor">{props.about_title}</span>
             </h1>
             <div className="space-y-4">
               <HoverableWords className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}>
@@ -146,7 +146,7 @@ export function PhilosophySection(props: AboutSubSectionProps) {
         <div className={`flex flex-col-reverse xl:flex-row-reverse print:flex-row-reverse justify-center items-center gap-8 ${props.isCompact ? 'lg:gap-8' : 'lg:gap-16'} max-w-6xl mx-auto w-full`}>
           <div className={`flex-1 ${responsiveJustifyClass} max-w-prose print:max-w-none`}>
             <h2 className={`${props.isCompact ? 'text-xl md:text-2xl' : 'text-3xl md:text-4xl'} font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
-              {props.about_philosophy_title}
+              <span className="nav-active-gacor">{props.about_philosophy_title}</span>
             </h2>
             <HoverableWords
               className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass} font-medium`}
@@ -182,7 +182,7 @@ export function PrinciplesSection(props: AboutSubSectionProps) {
         <div className={`flex flex-col-reverse xl:flex-row print:flex-row justify-center items-center gap-8 ${props.isCompact ? 'lg:gap-8' : 'lg:gap-16'} max-w-6xl mx-auto w-full`}>
           <div className={`flex-1 ${responsiveJustifyClass} max-w-prose print:max-w-none`}>
             <h2 className={`${props.isCompact ? 'text-xl md:text-2xl' : 'text-3xl md:text-4xl'} font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
-              {props.about_principle_title}
+              <span className="nav-active-gacor">{props.about_principle_title}</span>
             </h2>
             <div className="space-y-4">
               <HoverableWords
@@ -233,7 +233,7 @@ export function VisionMissionSection(props: AboutSubSectionProps) {
         <div className={`flex flex-col-reverse xl:flex-row-reverse print:flex-row-reverse justify-center items-center gap-8 ${props.isCompact ? 'lg:gap-8' : 'lg:gap-16'} max-w-6xl mx-auto w-full`}>
           <div className={`flex-1 ${responsiveJustifyClass} max-w-prose print:max-w-none`}>
             <h2 className={`${props.isCompact ? 'text-xl md:text-2xl' : 'text-3xl md:text-4xl'} font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
-              {props.about_vision_mission_title}
+              <span className="nav-active-gacor">{props.about_vision_mission_title}</span>
             </h2>
             <div className="space-y-4">
               <HoverableWords

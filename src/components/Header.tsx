@@ -58,9 +58,9 @@ interface HeaderProps {
     };
 }
 
-function GlobeIcon({ isDark }: { isDark: boolean }) {
+function GlobeIcon() {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`${isDark ? 'text-gray-300' : 'text-slate-700'} group-hover:text-cyan-600 transition-colors duration-300`}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-colors duration-300">
             <circle cx="12" cy="12" r="10" aria-hidden="true"></circle>
             <line x1="2" y1="12" x2="22" y2="12" aria-hidden="true"></line>
             <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" aria-hidden="true"></path>
@@ -68,9 +68,9 @@ function GlobeIcon({ isDark }: { isDark: boolean }) {
     );
 }
 
-function MenuIcon({ isDark }: { isDark: boolean }) {
+function MenuIcon() {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={isDark ? 'text-gray-300' : 'text-slate-700'}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-colors">
             <line x1="9" y1="12" x2="21" y2="12"></line>
             <line x1="9" y1="6" x2="21" y2="6"></line>
             <line x1="9" y1="18" x2="21" y2="18"></line>
@@ -78,9 +78,9 @@ function MenuIcon({ isDark }: { isDark: boolean }) {
     );
 }
 
-function CloseIcon({ isDark }: { isDark: boolean }) {
+function CloseIcon() {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={isDark ? 'text-gray-300' : 'text-slate-700'}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-colors">
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
@@ -120,6 +120,7 @@ export default function Header(props: HeaderProps) {
     const pathname = usePathname();
     const router = useRouter();
     const [isLangMenuVisible, setLangMenuVisible] = useState(false);
+    const [isSettingsOpen, setIsSettingsOpen] = useState(false);
     const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [shouldShowHeader, setShouldShowHeader] = useState(true);
     const lastYPosRef = useRef(0);
@@ -331,7 +332,7 @@ export default function Header(props: HeaderProps) {
                     {/* --- Mobile Title (Center) --- */}
                     <div className={`md:hidden ${inter.className}`} >
                         {activeLink && (
-                            <h1 className={`flex items-center justify-center transition-[colors,transform] duration-200 text-lg font-bold hover:text-cyan-600 ${isDark ? 'text-white' : 'text-slate-800'} whitespace-nowrap cursor-pointer opacity-95`}>
+                            <h1 className={`flex items-center justify-center transition-[colors,transform] duration-200 text-lg font-black nav-active-gacor whitespace-nowrap cursor-pointer opacity-95`}>
                                 {activeLink.icon && <span className="mr-2 flex items-center scale-90">{activeLink.icon}</span>}
                                 {formatCJK(activeLink.name, current_lang)}
                             </h1>                        )}
@@ -426,21 +427,28 @@ export default function Header(props: HeaderProps) {
                             className="hidden md:block"
                             onMouseEnter={() => setLangMenuVisible(false)}
                         >
-                            <SettingsPopup labels={settings_labels} />
+                            <SettingsPopup 
+                                labels={settings_labels} 
+                                isOpen={isSettingsOpen}
+                                onOpenChange={setIsSettingsOpen}
+                            />
                         </div>
 
                         {/* --- Desktop Language Selector --- */}
                         <div
                             className="hidden md:flex relative cursor-pointer"
-                            onMouseEnter={() => setLangMenuVisible(true)}
+                            onMouseEnter={() => {
+                                setLangMenuVisible(true);
+                                setIsSettingsOpen(false);
+                            }}
                         >
                             <button 
-                                className={`group flex items-center gap-1.5 p-2 rounded-full hover:${isDark ? 'bg-white/10' : 'bg-gray-100'} transition-colors`}
+                                className={`group flex items-center gap-1.5 p-2 rounded-full hover:${isDark ? 'bg-white/10' : 'bg-gray-100'} transition-colors hover-gacor ${isLangMenuVisible ? 'nav-active-gacor' : ''}`}
                                 aria-label="Select language"
                                 aria-haspopup="true"
                                 aria-expanded={isLangMenuVisible}
                             >
-                                <GlobeIcon isDark={isDark} />
+                                <GlobeIcon />
                                 <div className="w-5 h-3.5 relative shrink-0">
                                     <Image 
                                         src={languages.find(l => l.code === current_lang)?.flag || ''} 
@@ -462,10 +470,12 @@ export default function Header(props: HeaderProps) {
                         <div className="md:hidden flex items-center cursor-pointer">
                             <button
                                 onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
-                                className={`${textColor} hover:text-cyan-600 transition-colors z-50 p-2 rounded-lg hover:bg-gray-100/10`}
+                                className={`transition-all duration-300 z-50 p-2 rounded-lg hover:bg-gray-100/10 hover-gacor
+                                    ${isMobileMenuOpen ? 'nav-active-gacor' : textColor}
+                                `}
                                 aria-label="Toggle menu"
                             >
-                                {isMobileMenuOpen ? <CloseIcon isDark={isDark} /> : <MenuIcon isDark={isDark} />}
+                                {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
                             </button>
                         </div>
                     </div>
@@ -477,15 +487,15 @@ export default function Header(props: HeaderProps) {
                 <div className="absolute top-4 right-4 z-[70]">
                     <button
                         onClick={() => setMobileMenuOpen(false)}
-                        className={`${textColor} p-2 rounded-lg hover:bg-gray-100/10 transition-colors`}
+                        className={`p-2 rounded-lg hover:bg-gray-100/10 transition-colors hover-gacor ${textColor}`}
                         aria-label="Close menu"
                     >
-                        <CloseIcon isDark={isDark} />
+                        <CloseIcon />
                     </button>
                 </div>
                 <nav className="mt-20 px-8 pb-12">
                     <div className="mb-8 border-b dark:border-gray-700 border-gray-200 pb-4">
-                        <span className={`text-xl font-black tracking-tight ${isDark ? 'text-cyan-400' : 'text-cyan-600'}`}>
+                        <span className={`text-xl font-black tracking-tight nav-active-gacor`}>
                             {formatCJK(navigation_label, current_lang)}
                         </span>
                     </div>
