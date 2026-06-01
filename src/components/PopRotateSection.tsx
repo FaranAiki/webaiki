@@ -1,5 +1,6 @@
 "use client";
 
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 interface PopRotateSectionProps {
@@ -9,17 +10,31 @@ interface PopRotateSectionProps {
 }
 
 export default function PopRotateSection({ children, delay = 0, className = "" }: PopRotateSectionProps) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  if (isMobile) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.75, rotate: 6, y: 48, filter: 'blur(4px)' }}
+      initial={{ opacity: 0, scale: 0.8, rotate: -5, y: 30, filter: 'blur(10px)' }}
       whileInView={{ opacity: 1, scale: 1, rotate: 0, y: 0, filter: 'blur(0px)' }}
-      viewport={{ once: true, margin: "0px 0px -50px 0px" }}
+      viewport={{ once: true, amount: 0.2 }}
       transition={{ 
-        duration: 0.7, 
-        delay: delay / 1000,
-        ease: [0.34, 1.56, 0.64, 1] // bouncy ease
+        type: "spring",
+        damping: 12,
+        stiffness: 100,
+        delay: delay / 1000 
       }}
-      className={`relative transform-gpu ${className}`}
+      className={className}
     >
       {children}
     </motion.div>

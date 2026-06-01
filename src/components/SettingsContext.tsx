@@ -41,24 +41,33 @@ const comfortaa = Comfortaa({ subsets: ['latin'], variable: '--font-comfortaa', 
 
 export const fonts = [
   { name: 'Default', variable: '', class: '' },
-  { name: 'Comic Sans', variable: '--font-comic-sans', class: 'font-comic-sans' },
+  // Modern Sans-Serif (The "Gacor" ones)
   { name: 'Inter', variable: inter.variable, class: inter.className },
   { name: 'Space Grotesk', variable: spaceGrotesk.variable, class: spaceGrotesk.className },
-  { name: 'Bebas Neue', variable: bebasNeue.variable, class: bebasNeue.className },
-  { name: 'Comfortaa', variable: comfortaa.variable, class: comfortaa.className },
-  { name: 'Roboto', variable: roboto.variable, class: roboto.className },
-  { name: 'Open Sans', variable: openSans.variable, class: openSans.className },
-  { name: 'Lato', variable: lato.variable, class: lato.className },
   { name: 'Montserrat', variable: montserrat.variable, class: montserrat.className },
-  { name: 'Merriweather', variable: merriweather.variable, class: merriweather.className },
-  { name: 'Playfair Display', variable: playfair.variable, class: playfair.className },
+  { name: 'Open Sans', variable: openSans.variable, class: openSans.className },
+  { name: 'Roboto', variable: roboto.variable, class: roboto.className },
+  { name: 'Lato', variable: lato.variable, class: lato.className },
   { name: 'Source Sans 3', variable: sourceSans.variable, class: sourceSans.className },
+  { name: 'Comfortaa', variable: comfortaa.variable, class: comfortaa.className },
+  { name: 'Bebas Neue', variable: bebasNeue.variable, class: bebasNeue.className },
+  
+  // High-End Serifs
+  { name: 'Playfair Display', variable: playfair.variable, class: playfair.className },
+  { name: 'Merriweather', variable: merriweather.variable, class: merriweather.className },
+
+  // Gacor Monospace (Coding vibe)
   { name: 'JetBrains Mono', variable: jetbrainsMono.variable, class: jetbrainsMono.className },
-  { name: 'Roboto Mono', variable: robotoMono.variable, class: robotoMono.className },
   { name: 'Fira Code', variable: firaCode.variable, class: firaCode.className },
+  { name: 'Roboto Mono', variable: robotoMono.variable, class: robotoMono.className },
+
+  // Artistic & Decorative
   { name: 'Dancing Script', variable: dancingScript.variable, class: dancingScript.className },
-  { name: 'Great Vibes', variable: greatVibes.variable, class: greatVibes.className },
   { name: 'Caveat', variable: caveat.variable, class: caveat.className },
+  { name: 'Great Vibes', variable: greatVibes.variable, class: greatVibes.className },
+
+  // The Meme / Legend
+  { name: 'Comic Sans', variable: '--font-comic-sans', class: 'font-comic-sans' },
 ];
 
 export type TextAlign = 'default' | 'left' | 'center' | 'right' | 'justify';

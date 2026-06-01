@@ -291,9 +291,9 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
           absolute right-0 top-full mt-3 
           w-[calc(100vw-2rem)] sm:w-80 
           max-w-[320px] sm:max-w-none
-          ${isDark ? 'bg-gray-900/95 border-gray-700' : 'bg-white/95 border-gray-200'} 
+          ${isDark ? 'bg-gray-900/95 border-gray-700 shadow-black/40' : 'bg-white/95 border-gray-200 shadow-gray-200/50'} 
           md:backdrop-blur-xl border rounded-2xl shadow-2xl z-50 p-6
-          animate-in fade-in zoom-in-95 duration-200 origin-top-right
+          animate-fade-in origin-top-right ring-1 ring-black/5
         `}>
           {renderContent()}
         </div>

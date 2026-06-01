@@ -47,8 +47,8 @@ export default function HoverableWords({ children, className, prophover }: Hover
 
   const separatorRegex = /[\"\'\[\]\(\)\s]+/;
   
-  // Regex to split by <b>...</b> or <i>...</i> tags
-  const tagRegex = /(<b>.*?<\/b>|<i>.*?<\/i>)/g;
+  // Regex to split by <b>...</b> or <i>...</i> tags (case-insensitive)
+  const tagRegex = /(<b>.*?<\/b>|<i>.*?<\/i>)/gi;
 
   // Ensure children is treated as a string before splitting
   const segments = String(children).split(tagRegex).filter(Boolean);
@@ -56,7 +56,8 @@ export default function HoverableWords({ children, className, prophover }: Hover
   return (
     <p className={finalClassName}>
       {segments.map((segment, i) => {
-        if (segment.startsWith('<b>') && segment.endsWith('</b>')) {
+        const lowerSegment = segment.toLowerCase();
+        if (lowerSegment.startsWith('<b>') && lowerSegment.endsWith('</b>')) {
           const content = segment.slice(3, -4); // Remove tags
           return (
             <span key={i} className="font-bold">
@@ -64,7 +65,7 @@ export default function HoverableWords({ children, className, prophover }: Hover
             </span>
           );
         }
-        if (segment.startsWith('<i>') && segment.endsWith('</i>')) {
+        if (lowerSegment.startsWith('<i>') && lowerSegment.endsWith('</i>')) {
           const content = segment.slice(3, -4); // Remove tags
           return (
             <span key={i} className="italic">

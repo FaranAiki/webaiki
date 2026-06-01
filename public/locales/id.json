@@ -218,5 +218,12 @@
 
   "Jump_Game_Description": "Game platformer sederhana mirip Geometry Dash yang kubuat pakai C# dan Visual Studio. Orang tuaku dulu pernah mainin game ini juga. Dari sini, aku juga belajar penggunaan FPS/Time.deltaTime yang baik dan benar.",
   "Below_Below_Project": "Below Below",
-  "Below_Below_Description": "Game eksplorasi tambang berbasis narasi di mana pemain bereinkarnasi sebagai budak tambang. Game ini menggabungkan eksplorasi 2D dan mekanik mining 3D, world generation dinamis, serta sistem survival yang kompleks seperti crafting dan interaksi NPC. Dibuat menggunakan Godot 4.2 dan GDScript."
+  "Below_Below_Description": "Game eksplorasi tambang berbasis narasi di mana pemain bereinkarnasi sebagai budak tambang. Game ini menggabungkan eksplorasi 2D dan mekanik mining 3D, world generation dinamis, serta sistem survival yang kompleks seperti crafting dan interaksi NPC. Dibuat menggunakan Godot 4.2 dan GDScript.",
+  "Point_System_Summary": "Ringkasan Sistem Poin",
+  "Total_Points": "Total Poin",
+  "Important_Highlights": "Sorotan Penting",
+  "Point_Explanation": "Poin dihitung berdasarkan dampak, kesulitan, dan relevansi.",
+  "Top_Skills": "Keterampilan Utama",
+  "Technical_Proficiency": "Keahlian Teknis",
+  "Achievement_Level": "Tingkat Pencapaian"
 }

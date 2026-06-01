@@ -201,7 +201,7 @@ export default function InteractiveCollections( {
                         </button>
 
                         {activeHeadingOne === headingOne && (
-                            <div className={`mt-2 ${dropdownBg} p-6 rounded-lg border animate-fade-in backdrop-blur-sm`}>
+                            <div className={`mt-2 ${dropdownBg} p-6 rounded-lg border animate-fade-in md:backdrop-blur-sm`}>
                             <div className="space-y-4">
                                 {Object.entries(courses).map(([headingTwo, documents], index) => (
                                 <PopRotateSection 

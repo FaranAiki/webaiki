@@ -31,8 +31,8 @@ export type AboutMeProps = {
 };
 
 export const SectionSeparator = ({ isDark, isCompact }: { isDark: boolean, isCompact?: boolean }) => (
-  <div className={`SectionSeparator w-full max-w-4xl mx-auto ${isCompact ? 'my-8 md:my-12' : 'my-16 md:my-24'} transform-gpu`}>
-    <div className={`h-px bg-gradient-to-r from-transparent ${isDark ? 'via-gray-500/50' : 'via-black/20'} to-transparent`} />
+  <div className={`SectionSeparator w-full max-w-4xl mx-auto ${isCompact ? 'my-4 md:my-6' : 'my-16 md:my-24'} transform-gpu`}>
+    <div className={`h-px bg-gradient-to-r from-transparent ${isDark ? 'via-gray-500/30' : 'via-black/10'} to-transparent`} />
   </div>
 );
 
@@ -68,6 +68,98 @@ function useAboutLayout(props: AboutSubSectionProps) {
     textClass,
     isDark
   };
+}
+
+export function PortfolioAboutHeader(props: AboutMeProps) {
+  const { textClass, isDark } = useAboutLayout(props);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (!props.carouselPhotos || props.carouselPhotos.length <= 1) return;
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % props.carouselPhotos.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [props.carouselPhotos]);
+
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-6">
+      {/* Visual Identity */}
+      <div className="lg:col-span-4 flex justify-center lg:justify-start">
+        <div className="relative w-48 h-48 md:w-64 md:h-64 lg:w-full lg:aspect-square group transform-gpu">
+          <div className="absolute inset-0 bg-cyan-500/20 blur-[60px] rounded-full opacity-50 group-hover:opacity-80 transition-opacity" />
+          <div className={`relative w-full h-full rounded-3xl overflow-hidden border-2 ${isDark ? 'border-cyan-500/30 bg-gray-900/50' : 'border-cyan-500/20 bg-white/50'} backdrop-blur-sm shadow-2xl`}>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentIndex}
+                initial={{ opacity: 0, scale: 1.1 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.6 }}
+                className="relative w-full h-full"
+              >
+                <Image
+                  src={`/images/photo_faran_aiki/${props.carouselPhotos[currentIndex]}`}
+                  alt={props.faran_photo}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 200px, 400px"
+                  priority
+                />
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+      </div>
+
+      {/* Narrative Identity */}
+      <div className="lg:col-span-8 space-y-6">
+        <div className="space-y-2">
+          <h1 className="text-4xl md:text-6xl font-black tracking-tighter nav-active-gacor leading-none cursor-default hover:opacity-80 transition-opacity">
+            {props.about_title}
+          </h1>
+          <p className="text-cyan-500 font-bold tracking-tight text-xs md:text-sm flex gap-2 flex-wrap">
+            <span className="hover:text-cyan-400 transition-colors cursor-default">{props.about_philosophy_title}</span>
+            <span className="text-gray-500">•</span>
+            <span className="hover:text-cyan-400 transition-colors cursor-default">{props.about_vision_mission_title}</span>
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-4">
+            <HoverableWords className={`text-sm md:text-base leading-relaxed ${textClass}`}>
+              {formatCJK(props.about_text_1, props.lang)}
+            </HoverableWords>
+            <div className={`p-4 rounded-xl ${isDark ? 'bg-white/5' : 'bg-black/5'} border ${isDark ? 'border-white/10' : 'border-black/5'} hover:scale-[1.02] transition-transform duration-300 group`}>
+              <p className={`text-xs font-bold text-cyan-500 mb-2 group-hover:text-cyan-400 transition-colors`}>{props.about_philosophy_title}</p>
+              <HoverableWords className={`text-sm italic ${textClass} opacity-80 group-hover:opacity-100 transition-opacity`}>
+                {formatCJK(props.about_philosophy, props.lang)}
+              </HoverableWords>
+            </div>
+          </div>
+          <div className="space-y-4">
+            <HoverableWords className={`text-sm md:text-base leading-relaxed ${textClass}`}>
+              {formatCJK(props.about_text_2, props.lang)}
+            </HoverableWords>
+            <div className="space-y-3">
+               {[props.about_principle_1, props.about_principle_2, props.about_principle_3].map((p, i) => (
+                 <motion.div 
+                    key={i} 
+                    className="flex gap-3 items-start group cursor-default"
+                    whileHover={{ x: 4 }}
+                 >
+                   <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 mt-1.5 shrink-0 group-hover:bg-cyan-400 group-hover:scale-125 transition-all" />
+                   <HoverableWords className={`text-xs md:text-sm ${textClass} opacity-90 group-hover:opacity-100 group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-all`}>
+                      {formatCJK(p, props.lang)}
+                   </HoverableWords>
+                 </motion.div>
+               ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export function AboutSection(props: AboutSubSectionProps) {

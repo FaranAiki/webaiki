@@ -16,12 +16,12 @@ interface FadeInSectionProps {
 export default function FadeInSection({ 
   children, 
   delay = 0, 
-  className = "", 
-  slideIndex, 
+  className = "",
+  slideIndex,
   totalSlides,
   initialVisible = false
 }: FadeInSectionProps) {
-  const { isPresentationMode, slideNumberFormat, cycleSlideNumberFormat } = usePresentation();
+  const { isPresentationMode } = usePresentation();
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -31,44 +31,35 @@ export default function FadeInSection({
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Helper to format number based on current format
-  const formatNumber = (num: number, total: number) => {
-    if (slideNumberFormat === 'binary') {
-        const binary = num.toString(2);
-        const maxBinaryLen = total.toString(2).length;
-        return binary.padStart(maxBinaryLen, '0');
-    } else if (slideNumberFormat === 'hex') {
-        return `0x${num.toString(16).toUpperCase()}`;
-    }
-    return num.toString(10);
+  const formatNumber = (num: number | undefined, total: number | undefined) => {
+    if (num === undefined || total === undefined) return '';
+    const totalDigits = total.toString().length;
+    return num.toString().padStart(totalDigits, '0');
   };
 
-  const yOffset = isMobile ? 12 : 32;
+  // Skip animations on mobile for better performance
+  if (isMobile && !isPresentationMode) {
+    return (
+      <div className={className}>
+        {children}
+      </div>
+    );
+  }
 
   return (
     <motion.div
-      initial={initialVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: yOffset }}
+      initial={initialVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "0px 0px -50px 0px" }}
-      transition={{ 
-        duration: 0.6, 
-        delay: delay / 1000,
-        ease: [0.215, 0.61, 0.355, 1] // easeOutCubic
-      }}
-      className={`presentation-section relative ${className}`}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.6, delay: delay / 1000, ease: "easeOut" }}
+      className={`relative ${className}`}
     >
       {children}
-      {isPresentationMode && slideIndex && totalSlides && (
-        <div className="absolute bottom-8 right-8 z-50">
-          <div 
-            onClick={(e) => {
-              e.stopPropagation();
-              cycleSlideNumberFormat();
-            }}
-            className="flex items-center gap-2 px-3 py-1 border border-cyan-500/20 rounded text-sm bg-white/5 font-mono cursor-pointer hover:bg-white/10 hover:border-cyan-500/40 transition-all select-none"
-            title="Click to toggle format (Decimal -> Hex -> Binary)"
-          >
-            <span className="text-white font-medium tabular-nums">
+      
+      {isPresentationMode && slideIndex && (
+        <div className="absolute bottom-8 right-8 z-[100] print:hidden">
+          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/20 backdrop-blur-md border border-white/10 shadow-xl">
+            <span className="text-cyan-400 font-black tabular-nums tracking-tighter">
               {formatNumber(slideIndex, totalSlides)}
             </span>
             <span className="text-gray-500">/</span>

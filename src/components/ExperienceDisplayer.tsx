@@ -19,7 +19,7 @@ import {
 import { motion } from 'framer-motion';
 import { LayoutSwitcher } from './LayoutSwitcher';
 
-type Job = {
+export type Job = {
     date: string;
     title: string;
     company: string;
@@ -30,7 +30,7 @@ type Job = {
     point?: number;
 };
 
-type Experience = {
+export type Experience = {
     year: string;
     jobs: Job[];
     point?: number;
@@ -112,7 +112,7 @@ const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, j
                     ${isExpanded ? 'pointer-events-auto' : 'pointer-events-none'}`}
             >
                 <div className="overflow-y-auto max-h-full pr-2 custom-scrollbar">
-                    <p className="text-cyan-500 text-xs font-bold mb-2 uppercase tracking-widest">{job.date}</p>
+                    <p className="text-cyan-500 text-xs font-bold mb-2">{job.date}</p>
                     <h3 className="text-xl font-black mb-1 nav-active-gacor">{job.title}</h3>
                     <p className={`text-sm italic mb-4 ${isDark ? 'text-cyan-300' : 'text-cyan-600'}`}>{job.company}</p>
                     <div className={`text-sm leading-relaxed ${isDark ? 'text-gray-200' : 'text-gray-700'} ${justifyClass}`}>
@@ -310,13 +310,13 @@ export default function ExperiencesClient({
                                             <div className="flex-1 space-y-6">
                                                 <div className="flex items-center gap-4">
                                                     <span className="w-16 h-1.5 bg-cyan-500 rounded-full" />
-                                                    <h2 className="text-gacor-smooth font-black text-2xl uppercase tracking-[0.4em]">{job.year}</h2>
+                                                    <h2 className="text-gacor-smooth font-black text-2xl tracking-tight">{job.year}</h2>
                                                 </div>
                                                 <h3 className={`text-6xl md:text-8xl font-black leading-[0.85] tracking-tighter ${isDark ? 'text-white' : 'text-gray-900'}`}>{job.title}</h3>
                                                 <p className="text-2xl md:text-4xl text-gacor-smooth font-bold italic tracking-tight">{job.company}</p>
                                                 </div>
                                                 <div className="flex-1 max-w-xl">
-                                                <div className={`p-1 rounded-sm mb-4 inline-block ${isDark ? 'bg-cyan-500/20 text-cyan-300' : 'bg-cyan-100 text-cyan-700'} text-xs font-black px-2 py-0.5 tracking-widest uppercase`}>
+                                                <div className={`p-1 rounded-sm mb-4 inline-block ${isDark ? 'bg-cyan-500/20 text-cyan-300' : 'bg-cyan-100 text-cyan-700'} text-xs font-black px-2 py-0.5`}>
                                                     {job.date}
                                                 </div>
                                                 <HoverableWords className={`text-xl md:text-2xl leading-relaxed font-medium ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
@@ -340,7 +340,7 @@ export default function ExperiencesClient({
                                                 <div className="md:col-span-7 space-y-10">
                                                 <div className="space-y-4">
                                                 <div className="flex items-center gap-3">
-                                                    <p className="text-gacor-smooth font-black text-xl tracking-[0.2em] uppercase">{job.date}</p>
+                                                    <p className="text-gacor-smooth font-black text-xl tracking-tight">{job.date}</p>
                                                     <span className="flex-grow h-px bg-cyan-500/30" />
                                                 </div>
                                                 <h3 className={`text-7xl md:text-9xl font-black ${isDark ? 'text-white' : 'text-gray-950'} leading-[0.85] tracking-tighter`}>
@@ -555,7 +555,7 @@ export default function ExperiencesClient({
                                             <div className="w-full md:w-1/2 space-y-4">
                                                 <div className="flex items-center gap-4">
                                                     <span className="h-px w-12 bg-cyan-500"></span>
-                                                    <p style={dateStyle} className="text-sm font-bold tracking-widest uppercase">{job.date}</p>
+                                                    <p style={dateStyle} className="text-sm font-bold">{job.date}</p>
                                                 </div>
                                                 <h3 className={`text-4xl md:text-5xl font-black ${mainText} leading-tight`}>{job.title}</h3>
                                                 <p style={companyStyle} className="text-xl font-medium italic opacity-80">{job.company}</p>
