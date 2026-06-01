@@ -3,20 +3,20 @@ import { getDictionary } from '@/components/Translator';
 import SocialDisplay from '@/components/SocialDisplay';
 import "../../../globals.css";
 
-import { getLanguageAlternates } from '@/lib/seo';
+import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema } from '@/lib/seo';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang);
 
   return {
-    metadataBase: new URL('https://faranaiki.id'),
+    ...getBaseMetadata(),
     title: `${dict.Social} | Faran Aiki`,
     description: "Faran Aiki's social media links and profiles",
     openGraph: {
       title: `${dict.Social} | Faran Aiki`,
       description: "Faran Aiki's social media links and profiles",
-      url: `https://faranaiki.id/${lang}/social`,
+      url: `${SITE_URL}/${lang}/social`,
       siteName: "faranaiki.id",
       type: "website",
       images: [
@@ -28,7 +28,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         },
       ],
     },
-    icons: { icon: '/icon.ico', shortcut: '/icon.ico', apple: '/icon.ico' },
     alternates: { 
       canonical: `/${lang}/social`,
       languages: getLanguageAlternates('/social'),
@@ -37,10 +36,20 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 }
 
 export default async function SocialPage({ params }: { params: Promise<{ lang: string }> }) {
-  await params;
+  const { lang } = await params;
+  const dict = await getDictionary(lang);
+
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: dict.Home, item: `/${lang}` },
+    { name: dict.Social, item: `/${lang}/social` },
+  ]);
 
   return (
     <main className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <SocialDisplay />
     </main>
   );

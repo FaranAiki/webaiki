@@ -125,7 +125,7 @@ export const getProjectExperiences = (dict: Dictionary) => [
         title: dict.ALTH_Project,
         company: 'Flutter, Dart, Burp Suite, Microsoft SSO',
         description: dict.ALTH_Project_Description,
-        link: 'https://github.com/FaranAiki/alth_lupa',
+        url: 'https://github.com/FaranAiki/alth_lupa',
         point: 80,
         image: [
           '/documents/project/ALTH_0.webp',
@@ -292,7 +292,7 @@ export const getOrganizationExperiences = (dict: Dictionary) => [
         point: 70,
         image: [
           '/documents/organization/Renpy_0.webp',
-        ] 
+        ]
       }
     ]
   },
@@ -398,7 +398,7 @@ export const getAwardExperiences = (dict: Dictionary) => [{
 export const getCollectionsData = cache(async (lang: string, type: 'literature' | 'college') => {
   const dict = await getDictionary(lang);
   const baseDir = path.join(process.cwd(), 'public', 'documents', type);
-  
+
   if (!fs.existsSync(baseDir)) return {};
 
   const folders = fs.readdirSync(baseDir);
@@ -424,7 +424,7 @@ export const getCollectionsData = cache(async (lang: string, type: 'literature' 
             const fileName = path.parse(file).name;
             let openPath: string = '';
 
-            if (file.endsWith('.link') || file.endsWith('.lnk')) { 
+            if (file.endsWith('.link') || file.endsWith('.lnk')) {
               openPath = fs.readFileSync(path.join(baseDir, folder, sub, file), 'utf-8');
             } else if (file.endsWith('py') || file.endsWith('python')) {
               openPath= `https://faranaiki.id/project/script?type=python&source=/documents/${type}/${folder}/${sub}/${file}`;
@@ -444,7 +444,7 @@ export const getCollectionsData = cache(async (lang: string, type: 'literature' 
 export const getCertificatesData = cache(async (lang: string) => {
   const dict = await getDictionary(lang);
   const baseDir = path.join(process.cwd(), 'public', 'documents', 'certificate');
-  
+
   if (!fs.existsSync(baseDir)) return {};
 
   const folders = fs.readdirSync(baseDir);
@@ -456,7 +456,7 @@ export const getCertificatesData = cache(async (lang: string) => {
     if (fs.statSync(folderPath).isDirectory()) {
       const folderName = dict[folder] || folder;
       allCertificatesData[folderName] = {};
-      
+
       const yearFolders = fs.readdirSync(folderPath);
 
       for (const year of yearFolders) {
@@ -464,13 +464,13 @@ export const getCertificatesData = cache(async (lang: string) => {
 
         if (fs.statSync(yearPath).isDirectory()) {
           allCertificatesData[folderName][year] = {};
-          
+
           const files = fs.readdirSync(yearPath);
 
           for (const file of files) {
             const fileName = path.parse(file).name;
             const filePath = `/documents/certificate/${folder}/${year}/${file}`;
-            
+
             allCertificatesData[folderName][year][fileName] = { path: filePath, point: 70 };
           }
         }

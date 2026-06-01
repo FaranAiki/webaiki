@@ -18,22 +18,107 @@ export const HREFLANG_MAP: Record<string, string> = {
   nl: 'nl',
 };
 
+export const SITE_URL = 'https://faranaiki.id';
+
 export function getLanguageAlternates(path: string) {
   const languages: Record<string, string> = {};
   
   LOCALES.forEach((loc) => {
     const hreflang = HREFLANG_MAP[loc] || loc;
-    languages[hreflang] = `/${loc}${path}`;
+    languages[hreflang] = `${SITE_URL}/${loc}${path}`;
   });
 
   // Add x-default pointing to the default language (Indonesian in this case)
-  languages['x-default'] = `/id${path}`;
+  languages['x-default'] = `${SITE_URL}/id${path}`;
 
   return languages;
 }
 
-export function getBaseMetadata(): Partial<Metadata> {
+export function getBaseMetadata(): Metadata {
   return {
-    metadataBase: new URL('https://faranaiki.id'),
+    metadataBase: new URL(SITE_URL),
+    alternates: {
+      canonical: '/',
+      languages: getLanguageAlternates(''),
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
+    verification: {
+      google: 'xZMulZsvn0xj7TrxhEN8O9KLWSmNIfx6tqFtOpbgOV4',
+    },
   };
+}
+
+export function getPersonSchema(lang: string, description?: string) {
+  return {
+    "@type": "Person",
+    "@id": `${SITE_URL}/#person`,
+    "name": "Muhammad Faran Aiki",
+    "url": SITE_URL,
+    "image": `${SITE_URL}/images/photo_faran_aiki/1_fa_photo_linkedin.webp`,
+    "sameAs": [
+      "https://github.com/faranaiki",
+      "https://linkedin.com/in/faranaiki"
+    ],
+    "jobTitle": "Software Engineer",
+    "description": description || "Software Engineer and Computer Science Student at ITB",
+  };
+}
+
+export function getWebsiteSchema(lang: string) {
+  return {
+    "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
+    "url": SITE_URL,
+    "name": "Faran Aiki",
+    "publisher": { "@id": `${SITE_URL}/#person` },
+    "inLanguage": lang,
+  };
+}
+
+export function getBreadcrumbSchema(items: { name: string; item: string }[]) {
+  return {
+    "@type": "BreadcrumbList",
+    "itemListElement": items.map((item, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": item.name,
+      "item": item.item.startsWith('http') ? item.item : `${SITE_URL}${item.item}`,
+    })),
+  };
+}
+
+export function getWorkSchema(experiences: { jobs: { title: string; company: string; description: string }[] }[]) {
+  return experiences.flatMap(yearGroup => 
+    yearGroup.jobs.map((job) => ({
+      "@type": "OrganizationRole",
+      "roleName": job.title,
+      "memberOf": {
+        "@type": "Organization",
+        "name": job.company,
+      },
+      "description": job.description,
+    }))
+  );
+}
+
+export function getProjectSchema(experiences: { jobs: { title: string; link?: string; url?: string; description: string; company: string }[] }[]) {
+  return experiences.flatMap(yearGroup =>
+    yearGroup.jobs.map((proj) => ({
+      "@type": "CreativeWork",
+      "name": proj.title,
+      "description": proj.description,
+      "url": proj.link || proj.url,
+      "keywords": proj.company,
+    }))
+  );
 }

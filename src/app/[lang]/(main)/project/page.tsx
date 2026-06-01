@@ -4,7 +4,7 @@ import "../../../globals.css";
 
 import { getDictionary } from '@/components/Translator';
 
-import { getLanguageAlternates } from '@/lib/seo';
+import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema, getProjectSchema, getPersonSchema } from '@/lib/seo';
 
 import { getProjectExperiences } from '@/lib/data';
 
@@ -13,13 +13,13 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const dict = await getDictionary(lang);
 
   return {
-    metadataBase: new URL("https://faranaiki.id"),
+    ...getBaseMetadata(),
     title: `${dict.Project} | Faran Aiki`,
     description: dict.SEO_Project_Description || "Faran Aiki's project history and others",
     openGraph: {
       title: `${dict.Project} | Faran Aiki`,
       description: dict.SEO_Project_Description || "Faran Aiki's project history and others",
-      url: `https://faranaiki.id/${lang}/project`,
+      url: `${SITE_URL}/${lang}/project`,
       siteName: "faranaiki.id",
       type: "website",
       images: [
@@ -31,7 +31,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         },
       ],
     },
-    icons: { icon: "/icon.ico", shortcut: "/icon.ico", apple: "/icon.ico" },
     alternates: { 
       canonical: `/${lang}/project`,
       languages: getLanguageAlternates('/project'),
@@ -45,8 +44,28 @@ export default async function ProjectPage({ params }: { params: Promise<{ lang: 
 
   const projectExperiences = getProjectExperiences(dict);
 
+  const personSchema = getPersonSchema(lang);
+  const projectsSchema = getProjectSchema(projectExperiences);
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: dict.Home, item: `/${lang}` },
+    { name: dict.Project, item: `/${lang}/project` },
+  ]);
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      personSchema,
+      ...projectsSchema,
+      breadcrumbSchema,
+    ],
+  };
+
   return (
     <main className="w-full pt-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <ExperiencesClient 
         experiences={projectExperiences} 
         lang={lang} 

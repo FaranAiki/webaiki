@@ -4,20 +4,20 @@ import "../../../globals.css";
 import LiteratureLoader from './literature-loader'
 import { getDictionary } from '@/components/Translator';
 import { getCollectionsData } from '@/lib/data';
-import { getLanguageAlternates } from '@/lib/seo';
+import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema } from '@/lib/seo';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang);
 
   return {
-    metadataBase: new URL('https://faranaiki.id'),
+    ...getBaseMetadata(),
     title: `${dict.Literature} | Faran Aiki`,
     description: dict.SEO_Literature_Description || "Faran Aiki's short stories, poems, and other literary works",
     openGraph: {
       title: `${dict.Literature} | Faran Aiki`,
       description: dict.SEO_Literature_Description || "Faran Aiki's short stories, poems, and other literary works",
-      url: `https://faranaiki.id/${lang}/literature`,
+      url: `${SITE_URL}/${lang}/literature`,
       siteName: "faranaiki.id",
       type: "website",
       images: [
@@ -29,7 +29,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         },
       ],
     },
-    icons: { icon: '/icon.ico', shortcut: '/icon.ico', apple: '/icon.ico' },
     alternates: { 
       canonical: `/${lang}/literature`,
       languages: getLanguageAlternates('/literature'),
@@ -42,8 +41,17 @@ export default async function LiteraturePage({ params }: { params: Promise<{ lan
   const dict = await getDictionary(lang);
   const literature_data = await getCollectionsData(lang, 'literature');
 
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: dict.Home, item: `/${lang}` },
+    { name: dict.Literature, item: `/${lang}/literature` },
+  ]);
+
   return (
     <main className="container mx-auto px-6 pb-16 pt-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <LiteratureLoader 
         data={literature_data} 
         force_click={true} 

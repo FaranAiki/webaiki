@@ -81,7 +81,7 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: 'i.ytimg.com', pathname: '/vi/**' },
       { protocol: 'https', hostname: 'placehold.co' },
       { protocol: 'https', hostname: 'upload.wikimedia.org' },
-      { protocol: 'https', hostname: 'webaiki.vercel.app' },
+      { protocol: 'https', hostname: 'faranaiki.id' },
     ],
   },
 };

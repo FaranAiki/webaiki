@@ -133,22 +133,47 @@ export default function Header(props: HeaderProps) {
     const [mounted, setMounted] = useState(false);
     const { isPresentationMode, togglePresentationMode } = usePresentation();
     const setScrollLocked = useAppStore((state) => state.setScrollLocked);
+    const langMenuRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         setMounted(true);
     }, []);
 
-    // Handle body overflow when mobile menu is open
+    // Handle clicks outside of language menu
     useEffect(() => {
-        if (isMobileMenuOpen) {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (langMenuRef.current && !langMenuRef.current.contains(event.target as Node)) {
+                if (isLangMenuVisible) {
+                    setLangMenuVisible(false);
+                    setScrollLocked(false);
+                }
+            }
+        };
+
+        if (isLangMenuVisible) {
+            document.addEventListener('mousedown', handleClickOutside);
+        }
+        
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [isLangMenuVisible, setScrollLocked]);
+
+    // Handle body overflow and scroll locking when any menu is open
+    useEffect(() => {
+        const anyMenuOpen = isMobileMenuOpen || isLangMenuVisible || isSettingsOpen;
+        if (anyMenuOpen) {
             document.body.style.overflow = 'hidden';
+            setScrollLocked(true);
         } else {
             document.body.style.overflow = '';
+            setScrollLocked(false);
         }
         return () => {
             document.body.style.overflow = '';
+            setScrollLocked(false);
         };
-    }, [isMobileMenuOpen]);
+    }, [isMobileMenuOpen, isLangMenuVisible, isSettingsOpen, setScrollLocked]);
 
     // Close mobile menu on window resize
     useEffect(() => {
@@ -300,14 +325,12 @@ export default function Header(props: HeaderProps) {
                     transition-transform duration-300 ease-in-out
                     ${shouldShowHeader ? 'translate-y-0' : '-translate-y-full'}
                 `}
-                onMouseLeave={() => setLangMenuVisible(false)}
             >
                 <div className="w-full flex items-center justify-between mx-auto px-4 sm:px-8 py-4">
 
                     {/* Left section (Logo + Presentation Toggle) */}
                     <div 
                         className="flex-1 flex items-center gap-4"
-                        onMouseEnter={() => setLangMenuVisible(false)}
                     >
                     <div className={`transition-[colors,transform,opacity] shadow-md border ${isDark ? "border-cyan-800" : "border-gray-200"} opacity-100 hover:opacity-80 scale-100 hover:scale-110 cursor-pointer rounded-full overflow-hidden transform-gpu`}>
                         <Image
@@ -361,7 +384,6 @@ export default function Header(props: HeaderProps) {
                     {/* --- Desktop Navigation (Center) --- */}
                     <nav 
                         className="hidden md:flex flex-shrink-0"
-                        onMouseEnter={() => setLangMenuVisible(false)}
                     >
                         <ul className="flex items-center space-x-8">
                             {navLinks.map((link) => {
@@ -438,20 +460,12 @@ export default function Header(props: HeaderProps) {
                         
                         <div 
                             className="hidden md:block"
-                            onMouseEnter={() => setLangMenuVisible(false)}
                         >
                             <ThemeToggle />
                         </div>
 
                         <div 
                             className="hidden md:block"
-                            onMouseEnter={() => {
-                                setLangMenuVisible(false);
-                                setScrollLocked(true);
-                            }}
-                            onMouseLeave={() => {
-                                if (!isSettingsOpen) setScrollLocked(false);
-                            }}
                         >
                             <SettingsPopup 
                                 labels={settings_labels} 
@@ -459,6 +473,7 @@ export default function Header(props: HeaderProps) {
                                 onOpenChange={(open) => {
                                     setIsSettingsOpen(open);
                                     setScrollLocked(open);
+                                    if (open) setLangMenuVisible(false);
                                 }}
                             />
                         </div>
@@ -466,18 +481,15 @@ export default function Header(props: HeaderProps) {
                         {/* --- Desktop Language Selector --- */}
                         <div
                             className="hidden md:flex relative cursor-pointer"
-                            onMouseEnter={() => {
-                                setLangMenuVisible(true);
-                                setIsSettingsOpen(false);
-                                setScrollLocked(true);
-                            }}
-                            onMouseLeave={() => {
-                                setLangMenuVisible(false);
-                                setScrollLocked(false);
-                            }}
-                            data-lenis-prevent
+                            ref={langMenuRef}
                         >
                             <button 
+                                onClick={() => {
+                                    const nextState = !isLangMenuVisible;
+                                    setLangMenuVisible(nextState);
+                                    setScrollLocked(nextState);
+                                    if (nextState) setIsSettingsOpen(false);
+                                }}
                                 className={`group flex items-center gap-1.5 p-2 rounded-full hover:${isDark ? 'bg-white/10' : 'bg-gray-100'} transition-colors hover-gacor ${isLangMenuVisible ? 'nav-active-gacor' : ''}`}
                                 aria-label="Select language"
                                 aria-haspopup="true"
@@ -495,7 +507,7 @@ export default function Header(props: HeaderProps) {
                                 </div>
                             </button>
                             {isLangMenuVisible && (
-                                <div className="absolute top-full right-0 mt-2">
+                                <div className="absolute top-full right-0 mt-2" data-lenis-prevent>
                                     <LanguageMenu />
                                 </div>
                             )}

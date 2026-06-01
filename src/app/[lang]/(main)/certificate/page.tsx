@@ -4,20 +4,20 @@ import "../../../globals.css";
 import CertificatesDisplay from '@/components/CertificatesDisplay';
 import { getDictionary } from '@/components/Translator';
 import { getCertificatesData } from '@/lib/data';
-import { getLanguageAlternates } from '@/lib/seo';
+import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema } from '@/lib/seo';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang);
 
   return {
-    metadataBase: new URL('https://faranaiki.id'),
+    ...getBaseMetadata(),
     title: `${dict.Certificate} | Faran Aiki`,
     description: dict.SEO_Certificate_Description || "Faran Aiki's professional certificates and achievements",
     openGraph: {
       title: `${dict.Certificate} | Faran Aiki`,
       description: dict.SEO_Certificate_Description || "Faran Aiki's professional certificates and achievements",
-      url: `https://faranaiki.id/${lang}/certificate`,
+      url: `${SITE_URL}/${lang}/certificate`,
       siteName: "faranaiki.id",
       type: "website",
       images: [
@@ -29,7 +29,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         },
       ],
     },
-    icons: { icon: '/icon.ico', shortcut: '/icon.ico', apple: '/icon.ico' },
     alternates: { 
       canonical: `/${lang}/certificate`,
       languages: getLanguageAlternates('/certificate'),
@@ -42,8 +41,17 @@ export default async function CertificatePage({ params }: { params: Promise<{ la
   const dict = await getDictionary(lang);
   const certificates_data = await getCertificatesData(lang);
 
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: dict.Home, item: `/${lang}` },
+    { name: dict.Certificate, item: `/${lang}/certificate` },
+  ]);
+
   return (
     <main className="container mx-auto px-4 sm:px-8 pb-16 pt-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <CertificatesDisplay 
         certificates={certificates_data} 
         lang={lang} 

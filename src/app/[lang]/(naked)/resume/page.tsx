@@ -4,10 +4,10 @@ import PortfolioClient from './PortfolioClient';
 
 import { getLanguageAlternates } from '@/lib/seo';
 
-export async function generateMetadata({ 
+export async function generateMetadata({
   params,
-  searchParams 
-}: { 
+  searchParams
+}: {
   params: Promise<{ lang: string }>,
   searchParams: Promise<{ type?: string }>
 }) {
@@ -15,8 +15,8 @@ export async function generateMetadata({
   const { type } = await searchParams;
   const dict = await getDictionary(lang);
 
-  const title = type === 'it' ? dict.Portfolio_IT : 
-                type === 'tutor' ? dict.Portfolio_Tutor : 
+  const title = type === 'it' ? dict.Portfolio_IT :
+                type === 'tutor' ? dict.Portfolio_Tutor :
                 dict.Portfolio_Summary;
 
   const query = type ? `?type=${type}` : '';
@@ -47,10 +47,10 @@ export async function generateMetadata({
   };
 }
 
-export default async function PortfolioPage({ 
+export default async function PortfolioPage({
   params,
   searchParams
-}: { 
+}: {
   params: Promise<{ lang: string }>,
   searchParams: Promise<{ type?: string }>
 }) {
@@ -87,7 +87,7 @@ export default async function PortfolioPage({
       company: 'Analitica',
       period: `${dict.May} 2025 — ${dict.September} 2025`,
       description: dict.Education_Team_Description,
-      category: 'it'
+      category: 'tutor'
     }
   ].filter(item => (!type) || (type === item.category));
 
@@ -133,7 +133,7 @@ export default async function PortfolioPage({
   ].filter(item => (!type) || (type === item.type));
 
   return (
-    <PortfolioClient 
+    <PortfolioClient
       lang={lang}
       type={type}
       dict={dict}

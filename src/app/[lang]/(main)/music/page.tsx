@@ -2,20 +2,20 @@ import type { Metadata } from "next";
 import "../../../globals.css";
 import MusicDisplay from '@/components/MusicDisplay';
 import { getDictionary } from '@/components/Translator';
-import { getLanguageAlternates } from '@/lib/seo';
+import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema } from '@/lib/seo';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang);
 
   return {
-    metadataBase: new URL('https://faranaiki.id'),
+    ...getBaseMetadata(),
     title: `${dict.Music} | Faran Aiki`,
     description: "Faran Aiki's music made using either LMMS or other DAW",
     openGraph: {
       title: `${dict.Music} | Faran Aiki`,
       description: "Faran Aiki's music made using either LMMS or other DAW",
-      url: `https://faranaiki.id/${lang}/music`,
+      url: `${SITE_URL}/${lang}/music`,
       siteName: "faranaiki.id",
       type: "website",
       images: [
@@ -26,11 +26,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
           alt: 'Faran Aiki',
         },
       ],
-    },
-    icons: {
-      icon: '/icon.ico',
-      shortcut: '/icon.ico',
-      apple: '/icon.ico',
     },
     alternates: {
       canonical: `/${lang}/music`,
@@ -43,6 +38,7 @@ const YOUTUBE_PLAYLIST_ITEMS_API = "https://www.googleapis.com/youtube/v3/playli
 
 export default async function MusicPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
+  const dict = await getDictionary(lang);
   let youtubeItems = [];
   let errorString = undefined;
 
@@ -64,8 +60,17 @@ export default async function MusicPage({ params }: { params: Promise<{ lang: st
     youtubeItems = []; 
   }
 
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: dict.Home, item: `/${lang}` },
+    { name: dict.Music, item: `/${lang}/music` },
+  ]);
+
   return (
     <main className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <MusicDisplay youtubeItems={youtubeItems} error={errorString} lang={lang} />
     </main>
   );

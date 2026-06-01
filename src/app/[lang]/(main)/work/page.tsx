@@ -3,23 +3,24 @@ import "../../../globals.css";
 import { getDictionary } from '@/components/Translator';
 import ExperiencesClient from '@/components/ExperienceDisplayer';
 
-import { getLanguageAlternates } from '@/lib/seo';
+import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema, getWorkSchema, getPersonSchema } from '@/lib/seo';
 
 import { getWorkExperiences } from '@/lib/data';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang);
+  const baseMetadata = getBaseMetadata();
 
   return {
-    metadataBase: new URL('https://faranaiki.id'),
+    ...baseMetadata,
     title: `${dict.Work} | Faran Aiki`,
     description: dict.SEO_Work_Description || "Faran Aiki's Work History and Internships",
     openGraph: {
       title: `${dict.Work} | Faran Aiki`,
       description: dict.SEO_Work_Description || "Faran Aiki's Work History and Internships",
-      url: `https://faranaiki.id/${lang}/work`,
-      siteName: "faranaiki.id",
+      url: `${SITE_URL}/${lang}/work`,
+      siteName: "Faran Aiki",
       type: "website",
       images: [
         {
@@ -30,7 +31,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         },
       ],
     },
-    icons: { icon: '/icon.ico', shortcut: '/icon.ico', apple: '/icon.ico' },
     alternates: { 
       canonical: `/${lang}/work`,
       languages: getLanguageAlternates('/work'),
@@ -44,8 +44,30 @@ export default async function WorkExperiencesPage({ params }: { params: Promise<
 
   const workExperiences = getWorkExperiences(dict);
 
+  const personSchema = getPersonSchema(lang);
+  const workSchema = getWorkSchema(workExperiences);
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: dict.Home, item: `/${lang}` },
+    { name: dict.Work, item: `/${lang}/work` },
+  ]);
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        ...personSchema,
+        "hasOccupation": workSchema,
+      },
+      breadcrumbSchema,
+    ],
+  };
+
   return (
     <main className="w-full pt-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <ExperiencesClient 
         experiences={workExperiences} 
         lang={lang} 

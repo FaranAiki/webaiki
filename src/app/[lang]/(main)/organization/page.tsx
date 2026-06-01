@@ -3,7 +3,7 @@ import "../../../globals.css";
 import { getDictionary } from '@/components/Translator';
 import ExperiencesClient from '@/components/ExperienceDisplayer';
 
-import { getLanguageAlternates } from '@/lib/seo';
+import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema } from '@/lib/seo';
 
 import { getOrganizationExperiences } from '@/lib/data';
 
@@ -12,13 +12,13 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const dict = await getDictionary(lang);
 
   return {
-    metadataBase: new URL('https://faranaiki.id'),
+    ...getBaseMetadata(),
     title: `${dict.Organization} | Faran Aiki`,
     description: dict.SEO_Organization_Description || "Faran Aiki's organization and activities",
     openGraph: {
       title: `${dict.Organization} | Faran Aiki`,
       description: dict.SEO_Organization_Description || "Faran Aiki's organization and activities",
-      url: `https://faranaiki.id/${lang}/organization`,
+      url: `${SITE_URL}/${lang}/organization`,
       siteName: "faranaiki.id",
       type: "website",
       images: [
@@ -30,7 +30,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         },
       ],
     },
-    icons: { icon: '/icon.ico', shortcut: '/icon.ico', apple: '/icon.ico' },
     alternates: { 
       canonical: `/${lang}/organization`,
       languages: getLanguageAlternates('/organization'),
@@ -44,8 +43,17 @@ export default async function OrganizationExperiencesPage({ params }: { params: 
 
   const organizationExperiences = getOrganizationExperiences(dict);
 
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: dict.Home, item: `/${lang}` },
+    { name: dict.Organization, item: `/${lang}/organization` },
+  ]);
+
   return (
     <main className="w-full pt-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <ExperiencesClient 
         experiences={organizationExperiences} 
         lang={lang} 
