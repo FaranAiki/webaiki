@@ -500,12 +500,7 @@ export default function Header(props: HeaderProps) {
                         </span>
                     </div>
 
-                    <div className={`flex justify-between items-center mb-8 border-b ${isDark ? 'border-gray-700' : 'border-gray-200'} pb-6 pt-0`}>
-                        <ThemeToggle />
-                        <SettingsPopup labels={settings_labels} />
-                    </div>
-
-                    <ul className="flex flex-col space-y-6">
+                    <ul className="flex flex-col space-y-6 mb-10">
                         {navLinks.map((link) => {
                             if (link.subLinks && link.subLinks.length > 0) {
                                 return (
@@ -556,6 +551,14 @@ export default function Header(props: HeaderProps) {
                             );
                         })}
                     </ul>
+
+                    <div className={`mt-10 mb-8 border-t ${isDark ? 'border-gray-700' : 'border-gray-200'} pt-8`}>
+                        <div className="flex justify-between items-center mb-6">
+                            <ThemeToggle />
+                        </div>
+                        <SettingsPopup labels={settings_labels} inline={true} />
+                    </div>
+
                     <div className={`mt-10 border-t ${isDark ? 'border-gray-700' : 'border-gray-200'} pt-8`}>
                         <p className={`px-0 text-sm font-bold ${isDark ? 'text-gray-400' : 'text-gray-500'} mb-4`}>{select_lang}</p>
                         <LanguageMenu />
