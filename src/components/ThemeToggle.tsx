@@ -20,26 +20,26 @@ export default function ThemeToggle() {
   }
 
   const handleThemeChange = (newTheme: string) => {
-    // Add transition class to body for smooth fallback
-    document.documentElement.classList.add('theme-transitioning');
-    
-    const cleanup = () => {
-      setTimeout(() => {
-        document.documentElement.classList.remove('theme-transitioning');
-      }, 500);
-    };
+    if (typeof document === 'undefined') return;
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const doc = document as any;
 
     // Check if View Transitions API is supported
-    if (typeof document !== 'undefined' && (document as any).startViewTransition) {
-      (document as any).startViewTransition(() => {
+    if ('startViewTransition' in doc) {
+      doc.startViewTransition(() => {
         setTheme(newTheme);
         setCookies("theme", newTheme);
       });
-      cleanup();
     } else {
+      // Fallback: use the helper class for smooth transition in non-supporting browsers
+      doc.documentElement.classList.add('theme-transitioning');
       setTheme(newTheme);
       setCookies("theme", newTheme);
-      cleanup();
+      
+      setTimeout(() => {
+        doc.documentElement.classList.remove('theme-transitioning');
+      }, 500);
     }
   };
 

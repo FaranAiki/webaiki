@@ -125,6 +125,7 @@ export const getProjectExperiences = (dict: Dictionary) => [
         title: dict.ALTH_Project,
         company: 'Flutter, Dart, Burp Suite, Microsoft SSO',
         description: dict.ALTH_Project_Description,
+        link: 'https://github.com/FaranAiki/alth_lupa',
         point: 80,
         image: [
           '/documents/project/ALTH_0.webp',

@@ -37,6 +37,7 @@
   "Faran_Vision_Mission_2": "Dengan visi-visi tersebut, saya berusaha untuk senantiasa belajar, misal mempelajari sains, teknologi, dan sosial-humaniora, serta merefleksikan diri melalui pengalaman individu ataupun orang lain guna menciptakan suatu solusi inovatif untuk permasalahan yang ada.",
   "Faran_Vision_Mission_3": "Selain itu, saya juga mengutamakan nilai-nilai kebaikan yang berterima secara luas, global, dan rasional. Hal ini saya lakukan demi membuktikan kelayakan arti namanya, yaitu <i>maju dan progres</i>, baik secara individual maupun kelompok.",
   "All": "Semua",
+  "Portfolio": "Portofolio",
   "Profile": "Profil",
   "Experience": "Pengalaman",
   "Artwork": "Karya Seni",
@@ -218,7 +219,6 @@
   "Click_To_Close": "Klik untuk menutup",
   "Logo_Alt": "Logo Faran Aiki",
   "Jump_Game_Project": "Game Jump!",
-
   "Jump_Game_Description": "Game platformer sederhana mirip Geometry Dash yang kubuat pakai C# dan Visual Studio. Orang tuaku dulu pernah mainin game ini juga. Dari sini, aku juga belajar penggunaan FPS/Time.deltaTime yang baik dan benar.",
   "Below_Below_Project": "Below Below",
   "Below_Below_Description": "Game eksplorasi tambang berbasis narasi di mana pemain bereinkarnasi sebagai budak tambang. Game ini menggabungkan eksplorasi 2D dan mekanik mining 3D, world generation dinamis, serta sistem survival yang kompleks seperti crafting dan interaksi NPC. Dibuat menggunakan Godot 4.2 dan GDScript.",

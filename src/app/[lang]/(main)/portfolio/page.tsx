@@ -26,12 +26,12 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
   return {
     metadataBase: new URL('https://faranaiki.id'),
-    title: `${dict.All} | Faran Aiki`,
+    title: `${dict.Portfolio} | Faran Aiki`,
     description: "Full professional portfolio and highlights of Muhammad Faran Aiki",
     openGraph: {
-      title: `${dict.All} | Faran Aiki`,
+      title: `${dict.Portfolio} | Faran Aiki`,
       description: "Full professional portfolio and highlights of Muhammad Faran Aiki",
-      url: `https://faranaiki.id/${lang}/all`,
+      url: `https://faranaiki.id/${lang}/portfolio`,
       siteName: "faranaiki.id",
       type: "website",
       images: [
@@ -45,13 +45,13 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     },
     icons: { icon: '/icon.ico', shortcut: '/icon.ico', apple: '/icon.ico' },
     alternates: {
-      canonical: `/${lang}/all`,
-      languages: getLanguageAlternates('/all'),
+      canonical: `/${lang}/portfolio`,
+      languages: getLanguageAlternates('/portfolio'),
     },
   };
 }
 
-export default async function AllHighlightsPage({ params }: { params: Promise<{ lang: string }> }) {
+export default async function PortfolioHighlightsPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
   const faranPhotos = await getFaranAikiPhoto();
@@ -219,7 +219,7 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
                   <ExperiencesClient
                     experiences={importantAwards}
                     lang={lang}
-                    layout="grid"
+                    layout="timeline"
                     canChange={false}
                     click_to_close_text={dict.Click_To_Close}
                     modern_text={dict.Presentation_Modern}

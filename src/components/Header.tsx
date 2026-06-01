@@ -31,6 +31,7 @@ export interface NavLink {
 interface HeaderProps {
     navLinks: NavLink[];
     current_lang: string;
+    portfolio_label: string;
     en_lang: string;
     zh_lang: string;
     id_lang: string;
@@ -100,6 +101,7 @@ export default function Header(props: HeaderProps) {
     const { 
         navLinks, 
         current_lang, 
+        portfolio_label,
         en_lang, 
         zh_lang, 
         id_lang, 
@@ -309,7 +311,7 @@ export default function Header(props: HeaderProps) {
                     >
                     <div className={`transition-[colors,transform,opacity] shadow-md border ${isDark ? "border-cyan-800" : "border-gray-200"} opacity-100 hover:opacity-80 scale-100 hover:scale-110 cursor-pointer rounded-full overflow-hidden transform-gpu`}>
                         <Image
-                            onClick={() => router.push(getLocalizedHref('/all'))}
+                            onClick={() => router.push(getLocalizedHref('/portfolio'))}
                             src='/icon.ico'
                             alt={logo_alt}
                             title={logo_alt}
@@ -321,7 +323,7 @@ export default function Header(props: HeaderProps) {
                     </div>
 
                         {/* Presentation Mode Toggle */}
-                        {!pathname.endsWith('/all') && (
+                        {!pathname.endsWith('/portfolio') && (
                             <div className="hidden md:flex items-center justify-center ml-4 self-center">
                                 <button
                                     onClick={togglePresentationMode}
@@ -344,11 +346,16 @@ export default function Header(props: HeaderProps) {
 
                     {/* --- Mobile Title (Center) --- */}
                     <div className={`md:hidden ${inter.className}`} >
-                        {activeLink && (
+                        {normalizedPathname === '/portfolio' ? (
+                            <h1 className={`flex items-center justify-center transition-[colors,transform] duration-200 text-lg font-black nav-active-gacor whitespace-nowrap cursor-pointer opacity-95`}>
+                                {formatCJK(portfolio_label, current_lang)}
+                            </h1>
+                        ) : activeLink && (
                             <h1 className={`flex items-center justify-center transition-[colors,transform] duration-200 text-lg font-black nav-active-gacor whitespace-nowrap cursor-pointer opacity-95`}>
                                 {activeLink.icon && <span className="mr-2 flex items-center scale-90">{activeLink.icon}</span>}
                                 {formatCJK(activeLink.name, current_lang)}
-                            </h1>                        )}
+                            </h1>
+                        )}
                     </div>
 
                     {/* --- Desktop Navigation (Center) --- */}

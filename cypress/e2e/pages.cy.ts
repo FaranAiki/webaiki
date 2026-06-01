@@ -5,7 +5,7 @@ describe('Page Layout and Presentation Mode', () => {
     '/social',
     '/work',
     '/college',
-    '/all',
+    '/portfolio',
     '/latest',
     '/project',
     '/project/script',
@@ -42,8 +42,8 @@ describe('Page Layout and Presentation Mode', () => {
             },
           });
           
-          if (route === '/all') {
-            // /all should disable presentation mode automatically
+          if (route === '/portfolio') {
+            // /portfolio should disable presentation mode automatically
             cy.get('body').should('not.have.class', 'presentation-mode');
           } else {
             cy.get('body').should('have.class', 'presentation-mode');
@@ -57,7 +57,7 @@ describe('Page Layout and Presentation Mode', () => {
                 return className.includes('bg-blue-600/40') || className.includes('bg-blue-600');
               });
               if (slideBtn.length > 0) {
-                expect(slideBtn).to.exist;
+                expect(slideBtn.length).to.be.greaterThan(0);
               }
             });
           }

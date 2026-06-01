@@ -16,7 +16,7 @@ const processWords = (text: string, separatorRegex: RegExp, hoverClass: string, 
   
   return parts.map((part, index) =>
     separatorRegex.test(part) ? (
-      <React.Fragment key={index}>{part}</React.Fragment>
+      <span key={index} className="theme-transition">{part}</span>
     ) : (
       <span key={index} className={hoverClass}>
         {part}
@@ -44,7 +44,7 @@ export default function HoverableWords({ children, className, prophover }: Hover
   }
 
   // The "gacor" effect: gradient text on hover with smooth transition
-  const gacorHover = 'transition-all inline-block duration-700 ease-in-out hover:scale-110 hover:font-black cursor-pointer hover:text-transparent hover:bg-clip-text hover:bg-gacor';
+  const gacorHover = 'transition-all inline-block duration-700 ease-in-out hover:scale-105 hover:font-bold cursor-pointer hover:bg-gacor';
   
   const finalPropHover = prophover || gacorHover;
 

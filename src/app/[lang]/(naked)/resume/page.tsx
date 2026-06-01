@@ -28,7 +28,7 @@ export async function generateMetadata({
     openGraph: {
       title: `${title} | Faran Aiki`,
       description: `Professional Portfolio of Muhammad Faran Aiki - ${dict.Software_Engineer} & ${dict.SAT_Tutor}`,
-      url: `https://faranaiki.id/${lang}/portfolio${query}`,
+      url: `https://faranaiki.id/${lang}/resume${query}`,
       siteName: "faranaiki.id",
       type: "website",
       images: [
@@ -41,8 +41,8 @@ export async function generateMetadata({
       ],
     },
     alternates: {
-      canonical: `/${lang}/portfolio${query}`,
-      languages: getLanguageAlternates(`/portfolio${query}`),
+      canonical: `/${lang}/resume${query}`,
+      languages: getLanguageAlternates(`/resume${query}`),
     }
   };
 }
@@ -112,6 +112,7 @@ export default async function PortfolioPage({
       title: dict.ALTH_Project,
       tech: 'Flutter, Dart, Microsoft SSO',
       description: dict.ALTH_Project_Description,
+      link: 'https://github.com/FaranAiki/alth_lupa',
       image: '/documents/project/ALTH_0.webp',
       category: 'it'
     },

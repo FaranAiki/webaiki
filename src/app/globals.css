@@ -71,14 +71,19 @@
 
   .bg-gacor {
     background: linear-gradient(
-      90deg, 
+      135deg, 
       var(--gacor-1), 
       var(--gacor-2), 
       var(--gacor-3), 
+      var(--gacor-2),
       var(--gacor-1)
     );
-    background-size: 200% auto;
-    animation: gradient-x 6s linear infinite;
+    background-size: 400% 400%;
+    animation: gradient-x 8s ease infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    will-change: background-position;
   }
 
   .logo-gacor {
@@ -110,7 +115,7 @@
 }
 
 :root {
-  /* Light Mode Variables (Default) */ /* Softened from #ffffff */ /* Strictly black for maximum contrast in light mode */
+  /* Light Mode Variables (Default) */
   color-scheme: light;
 
   /* Semantic Colors */
@@ -119,11 +124,12 @@
   --text-muted: #374151; 
   --primary: oklch(0.205 0 0); 
 
-  /* Gacor Gradient Variables (Darker for Light Mode) */
-  --gacor-1: #0e7490; /* cyan-700 */
+  /* Gacor Gradient Variables (Vibrant but visible for Light Mode) */
+  --gacor-1: #0284c7; /* sky-600 */
   --gacor-2: #0891b2; /* cyan-600 */
-  --gacor-3: #0369a1; /* sky-700 */
-  --gacor-svg: #0891b2; /* cyan-600 */ --background: oklch(1 0 0); --foreground: oklch(0.145 0 0); --card: oklch(1 0 0); --card-foreground: oklch(0.145 0 0); --popover: oklch(1 0 0); --popover-foreground: oklch(0.145 0 0); --primary-foreground: oklch(0.985 0 0); --secondary: oklch(0.97 0 0); --secondary-foreground: oklch(0.205 0 0); --muted: oklch(0.97 0 0); --muted-foreground: oklch(0.556 0 0); --accent: oklch(0.97 0 0); --accent-foreground: oklch(0.205 0 0); --destructive: oklch(0.577 0.245 27.325); --border: oklch(0.922 0 0); --input: oklch(0.922 0 0); --ring: oklch(0.708 0 0); --chart-1: oklch(0.87 0 0); --chart-2: oklch(0.556 0 0); --chart-3: oklch(0.439 0 0); --chart-4: oklch(0.371 0 0); --chart-5: oklch(0.269 0 0); --radius: 0.625rem; --sidebar: oklch(0.985 0 0); --sidebar-foreground: oklch(0.145 0 0); --sidebar-primary: oklch(0.205 0 0); --sidebar-primary-foreground: oklch(0.985 0 0); --sidebar-accent: oklch(0.97 0 0); --sidebar-accent-foreground: oklch(0.205 0 0); --sidebar-border: oklch(0.922 0 0); --sidebar-ring: oklch(0.708 0 0);
+  --gacor-3: #4f46e5; /* indigo-600 */
+  --gacor-svg: #0891b2; /* cyan-600 */
+ --background: oklch(1 0 0); --foreground: oklch(0.145 0 0); --card: oklch(1 0 0); --card-foreground: oklch(0.145 0 0); --popover: oklch(1 0 0); --popover-foreground: oklch(0.145 0 0); --primary-foreground: oklch(0.985 0 0); --secondary: oklch(0.97 0 0); --secondary-foreground: oklch(0.205 0 0); --muted: oklch(0.97 0 0); --muted-foreground: oklch(0.556 0 0); --accent: oklch(0.97 0 0); --accent-foreground: oklch(0.205 0 0); --destructive: oklch(0.577 0.245 27.325); --border: oklch(0.922 0 0); --input: oklch(0.922 0 0); --ring: oklch(0.708 0 0); --chart-1: oklch(0.87 0 0); --chart-2: oklch(0.556 0 0); --chart-3: oklch(0.439 0 0); --chart-4: oklch(0.371 0 0); --chart-5: oklch(0.269 0 0); --radius: 0.625rem; --sidebar: oklch(0.985 0 0); --sidebar-foreground: oklch(0.145 0 0); --sidebar-primary: oklch(0.205 0 0); --sidebar-primary-foreground: oklch(0.985 0 0); --sidebar-accent: oklch(0.97 0 0); --sidebar-accent-foreground: oklch(0.205 0 0); --sidebar-border: oklch(0.922 0 0); --sidebar-ring: oklch(0.708 0 0);
 }
 
 /* Dark Mode Variables (Applied when 'dark' class is present) */
@@ -277,37 +283,24 @@ body {
   transition-delay: 0s !important;
 }
 
+.theme-transition {
+  transition: color 0.5s ease, background-color 0.5s ease, border-color 0.5s ease;
+}
+
 /* Specific overrides for no-transition elements if needed */
 .no-transition, .no-transition * {
   transition: none !important;
 }
 
-/* View Transitions API Animations - Circular Expansion */
+/* View Transitions API Animations - Clean Crossfade */
 ::view-transition-group(root) {
-  animation-duration: 0.5s;
-  animation-timing-function: var(--expo-out);
+  animation-duration: 0.4s;
 }
 
 ::view-transition-old(root),
 ::view-transition-new(root) {
-  animation: none;
   mix-blend-mode: normal;
-}
-
-::view-transition-old(root) {
-  z-index: 1;
-}
-
-::view-transition-new(root) {
-  z-index: 9999;
-}
-
-.dark::view-transition-old(root) {
-  z-index: 9999;
-}
-
-.dark::view-transition-new(root) {
-  z-index: 1;
+  animation-duration: 0.4s;
 }
 
 :root {

@@ -20,9 +20,9 @@ export function PresentationProvider({ children }: { children: React.ReactNode }
   const [isLargeScreen, setIsLargeScreen] = useState(true);
   const pathname = usePathname();
 
-  // Disable presentation mode on /all route
+  // Disable presentation mode on /portfolio route
   useEffect(() => {
-    if (pathname?.endsWith('/all')) {
+    if (pathname?.endsWith('/portfolio')) {
       setIsPresentationMode(false);
     }
   }, [pathname]);

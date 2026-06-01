@@ -89,6 +89,7 @@ export default async function RootLayout({
       <Header 
         navLinks={navLinks} 
         current_lang={lang} 
+        portfolio_label={dict.Portfolio}
         en_lang={dict.English} 
         zh_lang={dict.Mandarin} 
         id_lang={dict.Indonesian} 
