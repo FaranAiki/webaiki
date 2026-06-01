@@ -221,10 +221,6 @@
   "FAQ_Faran_A2": "我是一名“T型”专业人士，在软件工程方面有深厚的造诣，同时在艺术和科学领域有广泛的涉猎。",
   "FAQ_Faran_Q3": "你如何评价自己的性格？",
   "FAQ_Faran_A3": "我是一个动手能力强的数字化“宅男”，比起被动阅读，我更喜欢亲手构建。",
-  "FAQ_Faran_Q4": "你的使命是什么？",
-  "FAQ_Faran_A4": "通过软件连接先进技术与人类创意。",
-  "FAQ_Faran_Q5": "什么动力促使你成长？",
-  "FAQ_Faran_A5": "解决复杂问题的过程一直激励着我不断进步。",
   "FAQ_Website_Title": "关于本网站的常见问题",
   "FAQ_Website_Q1": "这个网站使用了哪些技术栈？",
   "FAQ_Website_A1": "本网站采用 Next.js (App Router)、Tailwind CSS、Framer Motion 和 TypeScript 构建。",
@@ -235,5 +231,7 @@
   "FAQ_Website_Q4": "网站支持全球访问吗？",
   "FAQ_Website_A4": "是的，它支持超过 12 种语言，以实现全球覆盖。",
   "FAQ_Website_Q5": "隐私是如何处理的？",
-  "FAQ_Website_A5": "尊重用户隐私，承诺零侵入性跟踪。"
+  "FAQ_Website_A5": "尊重用户隐私，承诺零侵入性跟踪。",
+  "FAQ_Faran_Q4": "什么动力促使你成长？",
+  "FAQ_Faran_A4": "因为这是他的存在认同，是一个与其名字含义相契合的意义。"
 }

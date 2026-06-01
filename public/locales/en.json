@@ -236,10 +236,6 @@
   "FAQ_Faran_A2": "Faran identifies as a T-shaped professional, combining deep expertise in Software Engineering with a broad range of interests across various arts and sciences.",
   "FAQ_Faran_Q3": "Is Faran a 'nerd' in the traditional sense?",
   "FAQ_Faran_A3": "Yes, Faran considers himself a hands-on digital nerd who finds fulfillment in building and creating rather than just passive reading.",
-  "FAQ_Faran_Q4": "What is Faran's long-term mission?",
-  "FAQ_Faran_A4": "His mission is to engineer software that effectively bridges the gap between advanced technology and human creativity.",
-  "FAQ_Faran_Q5": "What motivates Faran's continuous growth?",
-  "FAQ_Faran_A5": "Faran is driven by the challenge of solving complex problems and the desire to continuously refine his craft.",
   "FAQ_Website_Title": "Frequently Asked Questions about This Website",
   "FAQ_Website_Q1": "What technologies power this site?",
   "FAQ_Website_A1": "This website is built using Next.js (App Router), Tailwind CSS, Framer Motion, and TypeScript.",
@@ -250,5 +246,7 @@
   "FAQ_Website_Q4": "Is this website accessible to a global audience?",
   "FAQ_Website_A4": "Yes, it supports over 12 languages to ensure accessibility for a global audience.",
   "FAQ_Website_Q5": "How is user privacy handled on this site?",
-  "FAQ_Website_A5": "The website respects user privacy with zero invasive tracking or data collection."
+  "FAQ_Website_A5": "The website respects user privacy with zero invasive tracking or data collection.",
+  "FAQ_Faran_Q4": "What motivates Faran's continuous growth?",
+  "FAQ_Faran_A4": "Because it is his existential identity, which is the meaning that aligns with the significance of his name."
 }

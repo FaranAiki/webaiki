@@ -221,10 +221,6 @@
   "FAQ_Faran_A2": "Ik ben een T-shaped professional, wat betekent dat ik diepgaande kennis heb van Software Engineering, gecombineerd met een brede interesse in kunsten en wetenschappen.",
   "FAQ_Faran_Q3": "Hoe zou je je persoonlijkheid omschrijven?",
   "FAQ_Faran_A3": "Ik ben een hands-on digitale nerd die liever dingen bouwt dan passief informatie tot zich neemt.",
-  "FAQ_Faran_Q4": "Wat is je missie?",
-  "FAQ_Faran_A4": "Het overbruggen van de kloof tussen geavanceerde technologie en menselijke creativiteit door middel van software.",
-  "FAQ_Faran_Q5": "Wat motiveert je groei?",
-  "FAQ_Faran_A5": "Ik word gemotiveerd door het oplossen van complexe problemen.",
   "FAQ_Website_Title": "Veelgestelde vragen over deze website",
   "FAQ_Website_Q1": "Welke tech-stack wordt gebruikt?",
   "FAQ_Website_A1": "De site is gebouwd met Next.js (App Router), Tailwind CSS, Framer Motion en TypeScript.",
@@ -235,5 +231,7 @@
   "FAQ_Website_Q4": "Wordt wereldwijd bereik ondersteund?",
   "FAQ_Website_A4": "Ja, de website ondersteunt meer dan 12 talen.",
   "FAQ_Website_Q5": "Hoe wordt er omgegaan met privacy?",
-  "FAQ_Website_A5": "We respecteren de privacy van gebruikers met nul invasieve tracking."
+  "FAQ_Website_A5": "We respecteren de privacy van gebruikers met nul invasieve tracking.",
+  "FAQ_Faran_Q4": "Wat motiveert je groei?",
+  "FAQ_Faran_A4": "Omdat het zijn existentiële identiteit is, een betekenis die resoneert met de definitie van zijn naam."
 }

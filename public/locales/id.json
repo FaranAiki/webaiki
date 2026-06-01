@@ -236,10 +236,6 @@
   "FAQ_Faran_A2": "Faran mengidentifikasi dirinya sebagai profesional bertipe 'T-shaped', yang menggabungkan keahlian mendalam dalam Rekayasa Perangkat Lunak dengan minat yang luas di berbagai bidang seni dan sains.",
   "FAQ_Faran_Q3": "Apakah Faran seorang 'nerd' dalam pengertian tradisional?",
   "FAQ_Faran_A3": "Ya, Faran menganggap dirinya sebagai 'digital nerd' yang praktis, yang menemukan kepuasan dalam membangun dan menciptakan sesuatu daripada sekadar membaca secara pasif.",
-  "FAQ_Faran_Q4": "Apa misi jangka panjang Faran?",
-  "FAQ_Faran_A4": "Misinya adalah untuk merancang perangkat lunak yang secara efektif menjembatani kesenjangan antara teknologi canggih dan kreativitas manusia.",
-  "FAQ_Faran_Q5": "Apa yang memotivasi pertumbuhan berkelanjutan Faran?",
-  "FAQ_Faran_A5": "Faran didorong oleh tantangan dalam menyelesaikan masalah yang kompleks dan keinginan untuk terus menyempurnakan keahliannya.",
   "FAQ_Website_Title": "Soal Sering Ditanya tentang Situs Ini",
   "FAQ_Website_Q1": "Teknologi apa yang menggerakkan situs ini?",
   "FAQ_Website_A1": "Situs web ini dibangun menggunakan Next.js (App Router), Tailwind CSS, Framer Motion, dan TypeScript.",
@@ -250,5 +246,7 @@
   "FAQ_Website_Q4": "Apakah situs web ini dapat diakses oleh audiens global?",
   "FAQ_Website_A4": "Ya, situs ini mendukung lebih dari 12 bahasa untuk memastikan aksesibilitas bagi audiens global.",
   "FAQ_Website_Q5": "Bagaimana privasi pengguna ditangani di situs ini?",
-  "FAQ_Website_A5": "Situs web ini menghormati privasi pengguna dengan nol pelacakan invasif atau pengumpulan data."
+  "FAQ_Website_A5": "Situs web ini menghormati privasi pengguna dengan nol pelacakan invasif atau pengumpulan data.",
+  "FAQ_Faran_Q4": "Apa yang memotivasi pertumbuhan berkelanjutan Faran?",
+  "FAQ_Faran_A4": "Karena itu adalah identitas eksistensialnya, yaitu makna yang sesuai dengan arti namanya."
 }
