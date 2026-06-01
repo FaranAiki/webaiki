@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export type SlideNumberFormat = 'decimal' | 'hex' | 'binary';
 
@@ -17,6 +18,14 @@ export function PresentationProvider({ children }: { children: React.ReactNode }
   const [isPresentationMode, setIsPresentationMode] = useState(false);
   const [slideNumberFormat, setSlideNumberFormat] = useState<SlideNumberFormat>('binary');
   const [isLargeScreen, setIsLargeScreen] = useState(true);
+  const pathname = usePathname();
+
+  // Disable presentation mode on /all route
+  useEffect(() => {
+    if (pathname?.endsWith('/all')) {
+      setIsPresentationMode(false);
+    }
+  }, [pathname]);
 
   // Load state from localStorage on mount and handle resizing
   useEffect(() => {

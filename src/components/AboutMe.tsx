@@ -370,16 +370,19 @@ export function VisionMissionSection(props: AboutSubSectionProps) {
 }
 
 export default function AboutMe(props: AboutMeProps) {
-  const { isDark } = useAboutLayout(props);
+  const { isDark, isPresentationMode } = useAboutLayout(props);
 
   return (
-    <div className={`w-full ${props.isCompact ? 'py-4' : 'py-8'} md:px-5`}>
+    <div className={`w-full ${props.isCompact ? 'py-4' : 'py-8'} md:px-5 ${isPresentationMode ? 'presentation-container' : ''}`}>
       <AboutSection {...props} />
-      <SectionSeparator isDark={isDark} isCompact={props.isCompact} />
+      {!isPresentationMode && <SectionSeparator isDark={isDark} isCompact={props.isCompact} />}
+      
       <PhilosophySection {...props} />
-      <SectionSeparator isDark={isDark} isCompact={props.isCompact} />
+      {!isPresentationMode && <SectionSeparator isDark={isDark} isCompact={props.isCompact} />}
+      
       <PrinciplesSection {...props} />
-      <SectionSeparator isDark={isDark} isCompact={props.isCompact} />
+      {!isPresentationMode && <SectionSeparator isDark={isDark} isCompact={props.isCompact} />}
+      
       <VisionMissionSection {...props} />
     </div>
   );

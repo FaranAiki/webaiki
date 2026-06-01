@@ -264,6 +264,8 @@ html.dark body {
 }
 
 .presentation-background {
+  position: sticky;
+  top: 0;
   will-change: transform, opacity;
   transform: translateZ(0);
   backface-visibility: hidden;

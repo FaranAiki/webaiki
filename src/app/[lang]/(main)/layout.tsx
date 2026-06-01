@@ -1,17 +1,12 @@
 import Header from "@/components/Header";
 import "../../globals.css";
 // Replace React's per-request cache with Next.js's global cross-request cache
-import { unstable_cache } from 'next/cache';
 
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 
 import { getDictionary } from '@/components/Translator';
 
-import fs from 'fs';
-import path from 'path';
-
-// Import Lucide Icons
 import { 
   Home, 
   User, 
@@ -28,20 +23,7 @@ import {
   Code
 } from 'lucide-react';
 
-import ClientOnlyWidgets from "@/components/ClientOnlyWidgets";
 import { CookieInitializer } from "@/components/CookieInitialize";
-
-// Cache the background fetching globally across ALL requests!
-export const getBackgrounds = unstable_cache(
-  async () => {
-    const photosDir = path.join(process.cwd(), 'public', 'images', 'background');
-    if (!fs.existsSync(photosDir)) return [];
-    // Only return .webp files to avoid loading orphaned or old files
-    return fs.readdirSync(photosDir).filter(file => file.toLowerCase().endsWith('.webp'));
-  },
-  ['background-images-cache-webp-v1'], // Updated key to invalidate old cache
-  { revalidate: false } 
-);
 
 export default async function RootLayout({
   children,
@@ -54,9 +36,6 @@ export default async function RootLayout({
   const { lang } = await params;
   const dict = getDictionary(lang);
   
-  // Await our globally cached backgrounds list
-  const backgrounds = await getBackgrounds();
-
   // Navigation Links with Icons
   const navLinks = [
     { 
@@ -140,7 +119,6 @@ export default async function RootLayout({
       <div id="main-content">
         {children}
       </div>
-      <ClientOnlyWidgets backgrounds={backgrounds} />
     </>
   );
 }

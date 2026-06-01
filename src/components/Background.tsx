@@ -194,7 +194,7 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
   }, []); // Run once, but use Ref for isDark updates
 
   return (
-    <div ref={containerRef} className="fixed top-0 left-0 w-full h-full z-[-1] pointer-events-none overflow-hidden contain-strict">
+    <div ref={containerRef} className="absolute inset-0 z-[-1] pointer-events-none overflow-hidden contain-strict">
       {/* Added transition for canvas opacity to help smooth theme switches */}
       <canvas
         ref={canvasRef}
@@ -245,7 +245,7 @@ export default function Background({ carousel }: BackgroundProps) {
   const isDark = resolvedTheme === 'dark';
 
   return (
-    <div className={`presentation-background fixed inset-0 w-full h-full z-[-1] pointer-events-none transition-colors duration-[1500ms] ease-in-out bg-white dark:bg-black transform-gpu contain-strict`}>
+    <div className={`presentation-background sticky top-0 left-0 w-full h-screen -mb-[100vh] z-[-1] pointer-events-none transition-colors duration-[1500ms] ease-in-out bg-white dark:bg-black transform-gpu contain-strict overflow-hidden`}>
       
       <div className={`transition-opacity duration-[1500ms] ease-in-out w-full h-full absolute inset-0 opacity-100 transform-gpu`} style={{ backfaceVisibility: 'hidden' }}>
         {carousel.map((src, index) => (

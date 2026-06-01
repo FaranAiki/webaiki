@@ -19,6 +19,8 @@ const geistMono = Geist_Mono({
 import { Providers } from "@/components/Providers";
 import { getDictionary } from "@/components/Translator";
 import { LOCALES } from "@/lib/seo";
+import { getBackgrounds } from "@/lib/data";
+import ClientOnlyWidgets from "@/components/ClientOnlyWidgets";
 
 export function generateStaticParams() {
   return LOCALES.map((lang) => ({ lang }));
@@ -34,6 +36,7 @@ export default async function BaseLayout({
   const nonce = (await headers()).get('x-nonce') || undefined;
   const { lang } = await params;
   const dict = getDictionary(lang);
+  const backgrounds = getBackgrounds();
 
   const sultanLabels = {
     Creating: dict.Sultan_PDF_Creating,
@@ -53,6 +56,7 @@ export default async function BaseLayout({
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
         <Providers sultanLabels={sultanLabels}>
+          <ClientOnlyWidgets backgrounds={backgrounds} />
           {children}
         </Providers>
         <Script

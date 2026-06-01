@@ -21,7 +21,7 @@ export default function FadeInSection({
   totalSlides,
   initialVisible = false
 }: FadeInSectionProps) {
-  const { isPresentationMode } = usePresentation();
+  const { isPresentationMode, slideNumberFormat, cycleSlideNumberFormat } = usePresentation();
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -33,6 +33,14 @@ export default function FadeInSection({
 
   const formatNumber = (num: number | undefined, total: number | undefined) => {
     if (num === undefined || total === undefined) return '';
+    
+    if (slideNumberFormat === 'binary') {
+        return num.toString(2).padStart(total.toString(2).length, '0');
+    } else if (slideNumberFormat === 'hex') {
+        return num.toString(16).toUpperCase();
+    }
+    
+    // Default decimal
     const totalDigits = total.toString().length;
     return num.toString().padStart(totalDigits, '0');
   };
@@ -58,15 +66,22 @@ export default function FadeInSection({
       
       {isPresentationMode && slideIndex && (
         <div className="absolute bottom-8 right-8 z-[100] print:hidden">
-          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/20 backdrop-blur-md border border-white/10 shadow-xl">
-            <span className="text-cyan-400 font-black tabular-nums tracking-tighter">
+          <button 
+            onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                cycleSlideNumberFormat();
+            }}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-600/40 backdrop-blur-md border border-blue-400/30 shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:bg-blue-600/60 transition-all duration-300 cursor-pointer group hover:scale-105"
+          >
+            <span className="text-white font-black tabular-nums tracking-tighter group-hover:text-cyan-200 transition-colors">
               {formatNumber(slideIndex, totalSlides)}
             </span>
-            <span className="text-gray-500">/</span>
-            <span className="text-cyan-500/80 font-medium tabular-nums">
+            <span className="text-white/40">/</span>
+            <span className="text-white/80 font-medium tabular-nums">
               {formatNumber(totalSlides, totalSlides)}
             </span>
-          </div>
+          </button>
         </div>
       )}
     </motion.div>
