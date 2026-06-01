@@ -13,8 +13,8 @@ import {
   getProjectExperiences, 
   getOrganizationExperiences, 
   getAwardExperiences,
-  getCertificatesDataSync,
-  getCollectionsDataSync,
+  getCertificatesData,
+  getCollectionsData,
   getFaranAikiPhoto
 } from '@/lib/data';
 
@@ -22,7 +22,7 @@ import { Briefcase, Code, Users, Trophy, FileCheck, Star } from 'lucide-react';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const dict = getDictionary(lang);
+  const dict = await getDictionary(lang);
 
   return {
     metadataBase: new URL('https://faranaiki.id'),
@@ -53,16 +53,16 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
 export default async function AllHighlightsPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = getDictionary(lang);
+  const dict = await getDictionary(lang);
   const faranPhotos = await getFaranAikiPhoto();
 
   const workExp = getWorkExperiences(dict);
   const projectExp = getProjectExperiences(dict);
   const orgExp = getOrganizationExperiences(dict);
   const awardExp = getAwardExperiences(dict);
-  const certificatesData = getCertificatesDataSync(lang);
-  const collegeData = getCollectionsDataSync(lang, 'college');
-  const literatureData = getCollectionsDataSync(lang, 'literature');
+  const certificatesData = await getCertificatesData(lang);
+  const collegeData = await getCollectionsData(lang, 'college');
+  const literatureData = await getCollectionsData(lang, 'literature');
 
   // Filtering function for Experience structure (Point >= 80)
   const filterImportantExp = (exps: Experience[]): Experience[] => {
@@ -117,7 +117,7 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
   const importantLiterature = filterImportantCollections(literatureData);
 
   return (
-    <main className="w-full pt-20 pb-20 space-y-10">
+    <main className="w-full pt-20 pb-20 space-y-6">
       {/* Refined Portfolio Header */}
       <section className="container mx-auto px-4 sm:px-8">
         <PortfolioAboutHeader 
@@ -129,7 +129,7 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
           about_principle_title={dict.Faran_Principle_Title}
           about_principle_1={dict.Faran_Principle_1}
           about_principle_2={dict.Faran_Principle_2}
-          about_principle_3={dict.Faran_Principle_3}
+          about_principle_3=""
           about_vision_mission_title={dict.Faran_Vision_Mission_Title}
           about_vision_mission_1={dict.Faran_Vision_Mission_1}
           about_vision_mission_2={dict.Faran_Vision_Mission_2}
@@ -141,29 +141,47 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
       </section>
 
       {/* Professional Content - High Point Highlights */}
-      <div className="space-y-10">
+      <div className="space-y-6">
         {/* Work & Projects - High Impact Full Width */}
         {importantWork.length > 0 && (
-          <section className="space-y-4">
+          <section className="space-y-2">
             <div className="container mx-auto px-4 sm:px-8">
                 <div className="flex items-center gap-3 border-b border-gray-800/30 pb-1.5">
                     <Briefcase size={18} className="text-cyan-500" />
                     <h2 className="text-lg md:text-xl font-bold tracking-tight text-white">{dict.Work}</h2>
                 </div>
             </div>
-            <ExperiencesClient experiences={importantWork} lang={lang} layout="bento" canChange={false} click_to_close_text={dict.Click_To_Close} />
+            <ExperiencesClient 
+              experiences={importantWork} 
+              lang={lang} 
+              layout="bento" 
+              canChange={false} 
+              click_to_close_text={dict.Click_To_Close} 
+              modern_text={dict.Presentation_Modern}
+              cinematic_text={dict.Presentation_Cinematic}
+              editorial_text={dict.Presentation_Editorial}
+            />
           </section>
         )}
 
         {importantProjects.length > 0 && (
-          <section className="space-y-4">
+          <section className="space-y-2">
             <div className="container mx-auto px-4 sm:px-8">
                 <div className="flex items-center gap-3 border-b border-gray-800/30 pb-1.5">
                     <Code size={18} className="text-purple-500" />
                     <h2 className="text-lg md:text-xl font-bold tracking-tight text-white">{dict.Project}</h2>
                 </div>
             </div>
-            <ExperiencesClient experiences={importantProjects} lang={lang} layout="bento" canChange={false} click_to_close_text={dict.Click_To_Close} />
+            <ExperiencesClient 
+              experiences={importantProjects} 
+              lang={lang} 
+              layout="bento" 
+              canChange={false} 
+              click_to_close_text={dict.Click_To_Close} 
+              modern_text={dict.Presentation_Modern}
+              cinematic_text={dict.Presentation_Cinematic}
+              editorial_text={dict.Presentation_Editorial}
+            />
           </section>
         )}
 
@@ -171,25 +189,43 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
         {(importantOrg.length > 0 || importantAwards.length > 0) && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 container mx-auto px-4 sm:px-8">
             {importantOrg.length > 0 && (
-              <section className="space-y-4">
+              <section className="space-y-2">
                 <div className="flex items-center gap-3 border-b border-gray-800/30 pb-1.5">
                     <Users size={18} className="text-blue-500" />
                     <h2 className="text-lg md:text-xl font-bold tracking-tight text-white">{dict.Organization}</h2>
                 </div>
                 <div className="lg:contents">
-                   <ExperiencesClient experiences={importantOrg} lang={lang} layout="grid" canChange={false} click_to_close_text={dict.Click_To_Close} />
+                   <ExperiencesClient 
+                     experiences={importantOrg} 
+                     lang={lang} 
+                     layout="grid" 
+                     canChange={false} 
+                     click_to_close_text={dict.Click_To_Close} 
+                     modern_text={dict.Presentation_Modern}
+                     cinematic_text={dict.Presentation_Cinematic}
+                     editorial_text={dict.Presentation_Editorial}
+                   />
                 </div>
               </section>
             )}
 
             {importantAwards.length > 0 && (
-              <section className="space-y-4">
+              <section className="space-y-2">
                 <div className="flex items-center gap-3 border-b border-gray-800/30 pb-1.5">
                     <Trophy size={18} className="text-yellow-500" />
                     <h2 className="text-lg md:text-xl font-bold tracking-tight text-white">{dict.Award}</h2>
                 </div>
                 <div className="lg:contents">
-                  <ExperiencesClient experiences={importantAwards} lang={lang} layout="grid" canChange={false} click_to_close_text={dict.Click_To_Close} />
+                  <ExperiencesClient 
+                    experiences={importantAwards} 
+                    lang={lang} 
+                    layout="grid" 
+                    canChange={false} 
+                    click_to_close_text={dict.Click_To_Close} 
+                    modern_text={dict.Presentation_Modern}
+                    cinematic_text={dict.Presentation_Cinematic}
+                    editorial_text={dict.Presentation_Editorial}
+                  />
                 </div>
               </section>
             )}

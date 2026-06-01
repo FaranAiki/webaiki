@@ -1,18 +1,14 @@
 import type { Metadata } from "next";
 import "../../../globals.css";
 
-import { CollectionsData } from '@/components/InteractiveCollections';
 import LiteratureLoader from './literature-loader'
 import { getDictionary } from '@/components/Translator';
-import { cache } from 'react';
-import fs from 'fs';
-import path from 'path';
-
+import { getCollectionsData } from '@/lib/data';
 import { getLanguageAlternates } from '@/lib/seo';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const dict = getDictionary(lang);
+  const dict = await getDictionary(lang);
 
   return {
     metadataBase: new URL('https://faranaiki.id'),
@@ -41,54 +37,10 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
-// Now completely synchronous utilizing purely fs.*Sync
-export const getCollectionsData = cache((lang: string) => {
-  const dict = getDictionary(lang);
-  const literatureDir = path.join(process.cwd(), 'public', 'documents', 'literature');
-  
-  if (!fs.existsSync(literatureDir)) return {};
-
-  const typeLiteratureFolders = fs.readdirSync(literatureDir);
-  const allCollectionsData: CollectionsData = {};
-
-  for (const typeLiterature of typeLiteratureFolders) {
-    const typeLiteraturePath = path.join(literatureDir, typeLiterature);
-    const literatureName = dict[typeLiterature] || typeLiterature;
-
-    if (fs.statSync(typeLiteraturePath).isDirectory()) {
-      allCollectionsData[literatureName] = {};
-      const yearFolders = fs.readdirSync(typeLiteraturePath);
-
-      for (const year of yearFolders) {
-        const yearPath = path.join(typeLiteraturePath, year);
-
-        if (fs.statSync(yearPath).isDirectory()) {
-          allCollectionsData[literatureName][year] = {};
-          const files = fs.readdirSync(yearPath);
-
-          for (const file of files) {
-            const fileName = path.parse(file).name;
-            let openPath: string = '';
-
-            if (file.endsWith('.link') || file.endsWith('.lnk')) { 
-              openPath = fs.readFileSync(path.join(process.cwd(), 'public', 'documents', 'literature', typeLiterature, year, file), 'utf-8');
-            } else {
-              openPath = `/documents/literature/${typeLiterature}/${year}/${file}`;
-            }
-
-            allCollectionsData[literatureName][year][fileName] = { path: openPath, point: 50 };
-          }
-        }
-      }
-    }
-  }
-  return allCollectionsData;
-});
-
 export default async function LiteraturePage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = getDictionary(lang);
-  const literature_data = getCollectionsData(lang);
+  const dict = await getDictionary(lang);
+  const literature_data = await getCollectionsData(lang, 'literature');
 
   return (
     <main className="container mx-auto px-6 pb-16 pt-24">

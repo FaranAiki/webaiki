@@ -1,4 +1,8 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -106,60 +110,90 @@
 }
 
 :root {
-  /* Light Mode Variables (Default) */
-  --background: #f9fafb; /* Softened from #ffffff */
-  --foreground: #000000; /* Strictly black for maximum contrast in light mode */
+  /* Light Mode Variables (Default) */ /* Softened from #ffffff */ /* Strictly black for maximum contrast in light mode */
   color-scheme: light;
-  
+
   /* Semantic Colors */
   --card-bg: rgba(255, 255, 255, 0.7); 
   --card-border: #e5e7eb; 
   --text-muted: #374151; 
-  --primary: #0891b2; 
-  
+  --primary: oklch(0.205 0 0); 
+
   /* Gacor Gradient Variables (Darker for Light Mode) */
   --gacor-1: #0e7490; /* cyan-700 */
   --gacor-2: #0891b2; /* cyan-600 */
   --gacor-3: #0369a1; /* sky-700 */
-  --gacor-svg: #0891b2; /* cyan-600 */
+  --gacor-svg: #0891b2; /* cyan-600 */ --background: oklch(1 0 0); --foreground: oklch(0.145 0 0); --card: oklch(1 0 0); --card-foreground: oklch(0.145 0 0); --popover: oklch(1 0 0); --popover-foreground: oklch(0.145 0 0); --primary-foreground: oklch(0.985 0 0); --secondary: oklch(0.97 0 0); --secondary-foreground: oklch(0.205 0 0); --muted: oklch(0.97 0 0); --muted-foreground: oklch(0.556 0 0); --accent: oklch(0.97 0 0); --accent-foreground: oklch(0.205 0 0); --destructive: oklch(0.577 0.245 27.325); --border: oklch(0.922 0 0); --input: oklch(0.922 0 0); --ring: oklch(0.708 0 0); --chart-1: oklch(0.87 0 0); --chart-2: oklch(0.556 0 0); --chart-3: oklch(0.439 0 0); --chart-4: oklch(0.371 0 0); --chart-5: oklch(0.269 0 0); --radius: 0.625rem; --sidebar: oklch(0.985 0 0); --sidebar-foreground: oklch(0.145 0 0); --sidebar-primary: oklch(0.205 0 0); --sidebar-primary-foreground: oklch(0.985 0 0); --sidebar-accent: oklch(0.97 0 0); --sidebar-accent-foreground: oklch(0.205 0 0); --sidebar-border: oklch(0.922 0 0); --sidebar-ring: oklch(0.708 0 0);
 }
 
 /* Dark Mode Variables (Applied when 'dark' class is present) */
 .dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
   color-scheme: dark;
 
   /* Semantic Colors Dark */
   --card-bg: rgba(31, 41, 55, 0.6); /* gray-800 with opacity */
   --card-border: #374151; /* gray-700 */
   --text-muted: #9ca3af; /* gray-400 */
-  --primary: #22d3ee; /* cyan-400 */
-  
+  --primary: oklch(0.922 0 0); /* cyan-400 */
+
   /* Gacor Gradient Variables (Bright for Dark Mode) */
   --gacor-1: #0891b2; /* cyan-600 */
   --gacor-2: #22d3ee; /* cyan-400 */
   --gacor-3: #0ea5e9; /* sky-500 */
-  --gacor-svg: #22d3ee; /* cyan-400 */
+  --gacor-svg: #22d3ee; /* cyan-400 */ --card: oklch(0.205 0 0); --card-foreground: oklch(0.985 0 0); --popover: oklch(0.205 0 0); --popover-foreground: oklch(0.985 0 0); --primary-foreground: oklch(0.205 0 0); --secondary: oklch(0.269 0 0); --secondary-foreground: oklch(0.985 0 0); --muted: oklch(0.269 0 0); --muted-foreground: oklch(0.708 0 0); --accent: oklch(0.269 0 0); --accent-foreground: oklch(0.985 0 0); --destructive: oklch(0.704 0.191 22.216); --border: oklch(1 0 0 / 10%); --input: oklch(1 0 0 / 15%); --ring: oklch(0.556 0 0); --chart-1: oklch(0.87 0 0); --chart-2: oklch(0.556 0 0); --chart-3: oklch(0.439 0 0); --chart-4: oklch(0.371 0 0); --chart-5: oklch(0.269 0 0); --sidebar: oklch(0.205 0 0); --sidebar-foreground: oklch(0.985 0 0); --sidebar-primary: oklch(0.488 0.243 264.376); --sidebar-primary-foreground: oklch(0.985 0 0); --sidebar-accent: oklch(0.269 0 0); --sidebar-accent-foreground: oklch(0.985 0 0); --sidebar-border: oklch(1 0 0 / 10%); --sidebar-ring: oklch(0.556 0 0);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
 /* Universal Typography & Line Height Inheritance */
 body, body p, body div, body span, body li, body h1, body h2, body h3, body h4, body h5, body h6,
 body a, body label, body section, body article, body blockquote {
-  line-height: var(--app-line-height) !important;
-  letter-spacing: var(--app-letter-spacing) !important;
-}
-
-/* Force specific elements to inherit font-size if they have classes that might override */
-body p, body span, body div, body li, body h1, body h2, body h3, body h4, body h5, body h6 {
-  font-size: inherit;
+  line-height: var(--app-line-height);
+  letter-spacing: var(--app-letter-spacing);
 }
 
 /* Base Body Style */
@@ -167,32 +201,18 @@ body {
   --text-scale-factor: 1;
   --app-line-height: 1.5;
   --app-letter-spacing: 0px;
-  
-  font-size: calc(1rem * var(--text-scale-factor)) !important;
-  line-height: var(--app-line-height) !important;
-  letter-spacing: var(--app-letter-spacing) !important;
-}
 
-/* Override Tailwind font-size classes to use em so they scale with body */
-body .text-xs { font-size: 0.75em !important; }
-body .text-sm { font-size: 0.875em !important; }
-body .text-base { font-size: 1em !important; }
-body .text-lg { font-size: 1.125em !important; }
-body .text-xl { font-size: 1.25em !important; }
-body .text-2xl { font-size: 1.5em !important; }
-body .text-3xl { font-size: 1.875em !important; }
-body .text-4xl { font-size: 2.25em !important; }
-body .text-5xl { font-size: 3em !important; }
-body .text-6xl { font-size: 3.75em !important; }
+  font-size: calc(1rem * var(--text-scale-factor));
+}
 
 /* Force line-height overrides */
 body [class*="leading-"] {
-  line-height: var(--app-line-height) !important;
+  line-height: var(--app-line-height);
 }
 
 /* Exceptions for UI elements that need natural line-height for alignment */
 body svg *, body .lucide, body .lucide * {
-  line-height: normal !important;
+  line-height: normal;
 }
 
 @layer utilities {
@@ -384,7 +404,7 @@ body.presentation-mode .presentation-section img {
     background-color: #f9fafb !important;
     color: #000000 !important;
   }
-  
+
   html.dark:not(:has(body.presentation-mode)) {
     background-color: #0a0a0a !important;
     color: #ededed !important;
@@ -564,7 +584,7 @@ body.presentation-mode .presentation-section img {
     --card-bg: #ffffff !important;
     --card-border: #e5e7eb !important;
     --text-muted: #374151 !important;
-    
+
     /* Override Tailwind v4 internal color variables that use oklch */
     --color-white: #ffffff !important;
     --color-black: #000000 !important;
@@ -603,5 +623,17 @@ body.presentation-mode .presentation-section img {
   /* Ensure background transparency takes precedence even with compatibility layer (Dark Mode) */
   html.dark.is-printing-sultan body.presentation-mode {
     background-color: transparent !important;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
   }
 }

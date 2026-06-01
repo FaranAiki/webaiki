@@ -50,6 +50,9 @@ interface ExperiencesClientProps {
     bento_text?: string;
     smooth_text?: string;
     click_to_close_text?: string;
+    modern_text?: string;
+    cinematic_text?: string;
+    editorial_text?: string;
 }
 
 // --- Sub-components for stability ---
@@ -71,11 +74,17 @@ const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, j
 
     return (
         <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            layout
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
             onClick={() => setIsExpanded(!isExpanded)}
-            className={`${spanClass} relative rounded-3xl overflow-hidden group border ${cardBorder} ${inactiveCardBg} shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer`}
+            transition={{ 
+                duration: 0.6, 
+                ease: [0.23, 1, 0.32, 1],
+                layout: { duration: 0.4 } 
+            }}
+            className={`${spanClass} relative rounded-3xl overflow-hidden group border ${cardBorder} ${inactiveCardBg} shadow-sm hover:shadow-xl cursor-pointer`}
         >
             {hasImage && (
                 <Image 
@@ -141,7 +150,10 @@ export default function ExperiencesClient({
     grid_text = 'Grid',
     bento_text = 'Bento',
     smooth_text = 'Smooth',
-    click_to_close_text = 'Click to close'
+    click_to_close_text = 'Click to close',
+    modern_text = 'Modern',
+    cinematic_text = 'Cinematic',
+    editorial_text = 'Editorial'
 }: ExperiencesClientProps) {
     const [currentLayout, setCurrentLayout] = useState<LayoutType>(layout);
     const [presentationLayout, setPresentationLayout] = useState<PresentationLayoutType>('modern');
@@ -222,9 +234,9 @@ export default function ExperiencesClient({
                 <div className={`fixed bottom-8 left-8 z-[100] flex items-center p-1.5 rounded-xl border backdrop-blur-md shadow-2xl transition-all duration-300 ${isDark ? 'bg-gray-900/90 border-gray-700 ring-1 ring-white/10' : 'bg-white/90 border-gray-200 ring-1 ring-black/5'}`}>
                     <div className="flex gap-1">
                         {[
-                            { id: 'modern', icon: <LayoutPanelLeft size={18} />, label: 'Modern' },
-                            { id: 'split', icon: <Rows size={18} />, label: 'Cinematic' },
-                            { id: 'minimal', icon: <div className="w-[18px] h-[18px] border-2 border-current rounded-sm flex items-center justify-center font-bold text-[10px] leading-none">E</div>, label: 'Editorial' }
+                            { id: 'modern', icon: <LayoutPanelLeft size={18} />, label: modern_text || 'Modern' },
+                            { id: 'split', icon: <Rows size={18} />, label: cinematic_text || 'Cinematic' },
+                            { id: 'minimal', icon: <div className="w-[18px] h-[18px] border-2 border-current rounded-sm flex items-center justify-center font-bold text-[10px] leading-none">E</div>, label: editorial_text || 'Editorial' }
                         ].map((l) => (
                             <button
                                 key={l.id}
@@ -312,15 +324,15 @@ export default function ExperiencesClient({
                                                     <span className="w-16 h-1.5 bg-cyan-500 rounded-full" />
                                                     <h2 className="text-gacor-smooth font-black text-2xl tracking-tight">{job.year}</h2>
                                                 </div>
-                                                <h3 className={`text-6xl md:text-8xl font-black leading-[0.85] tracking-tighter ${isDark ? 'text-white' : 'text-gray-900'}`}>{job.title}</h3>
-                                                <p className="text-2xl md:text-4xl text-gacor-smooth font-bold italic tracking-tight">{job.company}</p>
+                                                <h3 className={`text-5xl md:text-7xl font-black leading-[0.85] tracking-tighter ${isDark ? 'text-white' : 'text-gray-900'}`}>{job.title}</h3>
+                                                <p className="text-xl md:text-3xl text-gacor-smooth font-bold italic tracking-tight">{job.company}</p>
                                                 </div>
                                                 <div className="flex-1 max-w-xl">
                                                 <div className={`p-1 rounded-sm mb-4 inline-block ${isDark ? 'bg-cyan-500/20 text-cyan-300' : 'bg-cyan-100 text-cyan-700'} text-xs font-black px-2 py-0.5`}>
                                                     {job.date}
                                                 </div>
-                                                <HoverableWords className={`text-xl md:text-2xl leading-relaxed font-medium ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
-                                                    {job.description}
+                                                <HoverableWords className={`text-lg md:text-xl leading-relaxed font-medium ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
+                                                    {formatCJK(job.description, lang)}
                                                 </HoverableWords>
                                                 </div>
                                                 </div>
@@ -333,7 +345,7 @@ export default function ExperiencesClient({
                                                 <div className={`w-full h-full flex items-center justify-center p-8 md:p-16 relative overflow-hidden transition-colors duration-500 ${isDark ? 'bg-black' : 'bg-white'}`}>
                                                 {/* Background Decorative Text */}
                                                 <div className={`absolute top-0 left-0 w-full h-full flex items-center justify-center pointer-events-none opacity-[0.04] overflow-hidden select-none transition-opacity duration-700`}>
-                                                <span className={`text-[45vw] font-black leading-none text-gacor-smooth`}>{job.year}</span>
+                                                <span className={`text-[35vw] font-black leading-none text-gacor-smooth`}>{job.year}</span>
                                                 </div>
 
                                                 <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-12 gap-16 items-center relative z-10">
@@ -343,14 +355,14 @@ export default function ExperiencesClient({
                                                     <p className="text-gacor-smooth font-black text-xl tracking-tight">{job.date}</p>
                                                     <span className="flex-grow h-px bg-cyan-500/30" />
                                                 </div>
-                                                <h3 className={`text-7xl md:text-9xl font-black ${isDark ? 'text-white' : 'text-gray-950'} leading-[0.85] tracking-tighter`}>
+                                                <h3 className={`text-6xl md:text-8xl font-black ${isDark ? 'text-white' : 'text-gray-950'} leading-[0.85] tracking-tighter`}>
                                                     {job.title}
                                                 </h3>
-                                                <p className="text-3xl md:text-4xl font-bold text-gacor-smooth italic tracking-tight">{job.company}</p>
+                                                <p className="text-2xl md:text-3xl font-bold text-gacor-smooth italic tracking-tight">{job.company}</p>
                                                 </div>
 
                                             <div className="max-w-2xl">
-                                                <HoverableWords className={`text-2xl md:text-3xl leading-snug font-medium ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+                                                <HoverableWords className={`text-xl md:text-2xl leading-snug font-medium ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
                                                     {job.description}
                                                 </HoverableWords>
                                             </div>

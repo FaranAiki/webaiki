@@ -7,7 +7,7 @@ import { getLanguageAlternates } from '@/lib/seo';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const dict = getDictionary(lang);
+  const dict = await getDictionary(lang);
 
   return {
     metadataBase: new URL('https://faranaiki.id'),

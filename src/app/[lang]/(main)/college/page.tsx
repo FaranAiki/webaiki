@@ -1,67 +1,15 @@
 import type { Metadata } from "next";
 import "../../../globals.css";
 
-import { CollectionsData } from '@/components/InteractiveCollections';
-import React, { cache } from 'react';
+import React from 'react';
 import CollegeLoader from './college-loader';
 import { getDictionary } from '@/components/Translator';
-
-import fs from 'fs';
-import path from 'path';
-
-// Wrap in cache and make purely synchronous!
-export const getCollectionsData = cache((lang: string) => {
-  const dict = getDictionary(lang);
-  const certificatesDir = path.join(process.cwd(), 'public', 'documents', 'college');
-  
-  // Return empty if directory doesn't exist to prevent crashes
-  if (!fs.existsSync(certificatesDir)) return {};
-
-  const semesterFolders = fs.readdirSync(certificatesDir);
-  const allCollectionsData: CollectionsData = {};
-
-  for (const semester of semesterFolders) {
-    const semesterPath = path.join(certificatesDir, semester);
-    const semesterName = dict[semester] || semester;
-
-    if (fs.statSync(semesterPath).isDirectory()) {
-      allCollectionsData[semesterName] = {};
-      const subjectFolders = fs.readdirSync(semesterPath);
-
-      for (const subject of subjectFolders) {
-        const subjectPath = path.join(semesterPath, subject);
-
-        if (fs.statSync(subjectPath).isDirectory()) {
-          const subject_name = dict[subject] || subject; 
-          allCollectionsData[semesterName][subject_name] = {};
-          const files = fs.readdirSync(subjectPath);
-
-          for (const file of files) {
-            const fileName = path.parse(file).name;
-            let openPath: string = '';
-
-            if (file.endsWith('.link') || file.endsWith('.lnk')) { 
-              openPath = fs.readFileSync(path.join(process.cwd(), 'public', 'documents', 'college', semester, subject, file), 'utf-8');
-            } else if (file.endsWith('py') || file.endsWith('python')) {
-              openPath= `https://faranaiki.id/project/script?type=python&source=/documents/college/${semester}/${subject}/${file}`;
-            } else {
-              openPath = `/documents/college/${semester}/${subject}/${file}`;
-            }
-
-            allCollectionsData[semesterName][subject_name][fileName] = { path: openPath, point: 50 };
-          }
-        }
-      }
-    }
-  }
-  return allCollectionsData;
-});
-
+import { getCollectionsData } from '@/lib/data';
 import { getLanguageAlternates } from '@/lib/seo';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const dict = getDictionary(lang);
+  const dict = await getDictionary(lang);
 
   return {
     metadataBase: new URL('https://faranaiki.id'),
@@ -92,9 +40,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
 export default async function CollegePage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = getDictionary(lang);
-  // Synchronous resolution now
-  const college_data = getCollectionsData(lang);
+  const dict = await getDictionary(lang);
+  const college_data = await getCollectionsData(lang, 'college');
 
   return (
     <main className="container mx-auto pt-8 pb-16 pt-24">

@@ -142,14 +142,14 @@ export function PortfolioAboutHeader(props: AboutMeProps) {
               {formatCJK(props.about_text_2, props.lang)}
             </HoverableWords>
             <div className="space-y-3">
-               {[props.about_principle_1, props.about_principle_2, props.about_principle_3].map((p, i) => (
+               {[props.about_principle_1, props.about_principle_2, props.about_principle_3].filter(p => p && p.trim() !== "").map((p, i) => (
                  <motion.div 
                     key={i} 
                     className="flex gap-3 items-start group cursor-default"
                     whileHover={{ x: 4 }}
                  >
                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 mt-1.5 shrink-0 group-hover:bg-cyan-400 group-hover:scale-125 transition-all" />
-                   <HoverableWords className={`text-xs md:text-sm ${textClass} opacity-90 group-hover:opacity-100 group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-all`}>
+                   <HoverableWords className={`text-xs md:text-sm ${textClass} opacity-90 group-hover:opacity-100 transition-all`}>
                       {formatCJK(p, props.lang)}
                    </HoverableWords>
                  </motion.div>
@@ -242,7 +242,6 @@ export function PhilosophySection(props: AboutSubSectionProps) {
             </h2>
             <HoverableWords
               className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass} font-medium`}
-              prophover={`transition-[colors,transform] inline-block duration-200 ease-in-out hover:text-cyan-600 dark:hover:text-cyan-300 hover:scale-105 cursor-pointer`}
             >
               {formatCJK(props.about_philosophy, props.lang)}
             </HoverableWords>
@@ -277,24 +276,14 @@ export function PrinciplesSection(props: AboutSubSectionProps) {
               <span className="nav-active-gacor">{props.about_principle_title}</span>
             </h2>
             <div className="space-y-4">
-              <HoverableWords
-                  className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}
-                  prophover='transition-[colors,opacity,transform] inline-block duration-200 ease-in-out hover:translate-x-1 hover:text-cyan-600 cursor-pointer'
-              >
-                  {formatCJK(props.about_principle_1, props.lang)}
-              </HoverableWords>
-              <HoverableWords
-                  className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}
-                  prophover='transition-[colors,opacity,transform] inline-block duration-200 ease-in-out hover:translate-x-1 hover:text-cyan-600 cursor-pointer'
-              >
-                  {formatCJK(props.about_principle_2, props.lang)}
-              </HoverableWords>
-              <HoverableWords
-                  className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}
-                  prophover='transition-[colors,opacity,transform] inline-block duration-200 ease-in-out hover:translate-x-1 hover:text-cyan-600 cursor-pointer'
-              >
-                  {formatCJK(props.about_principle_3, props.lang)}
-              </HoverableWords>
+              {[props.about_principle_1, props.about_principle_2, props.about_principle_3].filter(p => p && p.trim() !== "").map((p, i) => (
+                <HoverableWords
+                    key={i}
+                    className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}
+                >
+                    {formatCJK(p, props.lang)}
+                </HoverableWords>
+              ))}
             </div>
           </div>
 
@@ -330,19 +319,16 @@ export function VisionMissionSection(props: AboutSubSectionProps) {
             <div className="space-y-4">
               <HoverableWords
                   className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}
-                  prophover={`transition-[colors,opacity,transform] inline-block duration-200 ease-in-out hover:scale-105 hover:text-cyan-600 dark:hover:text-cyan-300 cursor-pointer`}
               >
                   {formatCJK(props.about_vision_mission_1, props.lang)}
               </HoverableWords>
               <HoverableWords
                   className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}
-                  prophover={`transition-[colors,transform,opacity] inline-block duration-200 ease-in-out hover:scale-105 hover:text-cyan-600 dark:hover:text-cyan-300 cursor-pointer`}
               >
                   {formatCJK(props.about_vision_mission_2, props.lang)}
               </HoverableWords>
               <HoverableWords
                   className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}
-                  prophover={`transition-[colors,transform,opacity] inline-block duration-200 ease-in-out hover:scale-105 hover:text-cyan-600 dark:hover:text-cyan-300 cursor-pointer`}
               >
                   {formatCJK(props.about_vision_mission_3, props.lang)}
               </HoverableWords>

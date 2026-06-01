@@ -47,6 +47,7 @@ interface PuppeteerPage {
   on: (event: string, handler: (req: PuppeteerRequest) => void) => void;
   evaluateOnNewDocument: (fn: (...args: unknown[]) => void, ...args: unknown[]) => Promise<void>;
   goto: (url: string, options: { waitUntil: string | string[]; timeout: number }) => Promise<unknown>;
+  waitForSelector: (selector: string, options?: { timeout?: number }) => Promise<unknown>;
   evaluate: (fn: (...args: unknown[]) => unknown, ...args: unknown[]) => Promise<unknown>;
   evaluateHandle: (fn: string) => Promise<unknown>;
   pdf: (options: {

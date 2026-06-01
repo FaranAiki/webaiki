@@ -104,8 +104,10 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
     { value: 'justify', icon: <AlignJustify size={18} />, title: 'Justify' },
   ];
 
+  const currentFontClass = fonts.find(f => f.name === font)?.class || '';
+
   const renderContent = () => (
-    <div className="space-y-6">
+    <div className="space-y-6" data-lenis-prevent>
       {/* Header */}
       <div className={`flex items-center justify-between border-b pb-4 ${isDark ? 'border-gray-700/50' : 'border-gray-200'}`}>
         <h3 className="text-lg font-bold flex items-center gap-2 nav-active-gacor">
@@ -203,7 +205,7 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
         <div className="space-y-2">
           <div className="flex justify-between items-center">
             <span className="text-xs font-bold text-gray-500 tracking-wide">{labels.Text_Scaling}</span>
-            <span className="text-xs font-mono text-cyan-500 font-bold">{textScale}%</span>
+            <span className={`text-xs font-bold text-cyan-500 ${currentFontClass}`}>{textScale}%</span>
           </div>
           <div className="flex items-center gap-4">
             <button onClick={() => adjustScale(-5)} className={`p-2 rounded-lg ${isDark ? 'bg-gray-800 hover:bg-gray-700 text-gray-400' : 'bg-gray-100 hover:bg-gray-200 text-gray-600'}`}>
@@ -224,7 +226,7 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
         <div className="space-y-2">
           <div className="flex justify-between items-center">
             <span className="text-xs font-bold text-gray-500 tracking-wide">{labels.Letter_Spacing}</span>
-            <span className="text-xs font-mono text-cyan-500 font-bold">{letterSpacing}px</span>
+            <span className={`text-xs font-bold text-cyan-500 ${currentFontClass}`}>{letterSpacing}px</span>
           </div>
           <div className="flex items-center gap-4">
             <button onClick={() => adjustSpacing(-0.1)} className={`p-2 rounded-lg ${isDark ? 'bg-gray-800 hover:bg-gray-700 text-gray-400' : 'bg-gray-100 hover:bg-gray-200 text-gray-600'}`}>
@@ -245,7 +247,7 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
         <div className="space-y-2">
           <div className="flex justify-between items-center">
             <span className="text-xs font-bold text-gray-500 tracking-wide">{labels.Line_Height}</span>
-            <span className="text-xs font-mono text-cyan-500 font-bold">{lineHeight}</span>
+            <span className={`text-xs font-bold text-cyan-500 ${currentFontClass}`}>{lineHeight}</span>
           </div>
           <div className="flex items-center gap-4">
             <button onClick={() => adjustLineHeight(-0.1)} className={`p-2 rounded-lg ${isDark ? 'bg-gray-800 hover:bg-gray-700 text-gray-400' : 'bg-gray-100 hover:bg-gray-200 text-gray-600'}`}>
@@ -287,7 +289,9 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
       </button>
 
       {isOpen && (
-        <div className={`
+        <div 
+          data-lenis-prevent
+          className={`
           absolute right-0 top-full mt-3 
           w-[calc(100vw-2rem)] sm:w-80 
           max-w-[320px] sm:max-w-none

@@ -1,49 +1,31 @@
 import 'server-only'; // Ensures this only runs on the server
 import { cookies } from 'next/headers'; 
 
-// Statically importing locales so they are available synchronously (like comptime/build-time)
-import en from '../../public/locales/en.json';
-import id from '../../public/locales/id.json';
-import zh from '../../public/locales/zh.json';
-import jp from '../../public/locales/jp.json';
-import ru from '../../public/locales/ru.json';
-import fr from '../../public/locales/fr.json';
-import ar from '../../public/locales/ar.json';
-import es from '../../public/locales/es.json';
-import ko from '../../public/locales/ko.json';
-import de from '../../public/locales/de.json';
-import nl from '../../public/locales/nl.json';
-import ha from '../../public/locales/ha.json';
-
-const dictionaries = {
-  en,
-  id,
-  zh,
-  jp,
-  ru,
-  fr,
-  ar,
-  es,
-  ko,
-  de,
-  nl,
-  ha,
+const dictionaries: Record<string, () => Promise<Record<string, string>>> = {
+  en: () => import('../../public/locales/en.json').then((module) => module.default),
+  id: () => import('../../public/locales/id.json').then((module) => module.default),
+  zh: () => import('../../public/locales/zh.json').then((module) => module.default),
+  jp: () => import('../../public/locales/jp.json').then((module) => module.default),
+  ru: () => import('../../public/locales/ru.json').then((module) => module.default),
+  fr: () => import('../../public/locales/fr.json').then((module) => module.default),
+  ar: () => import('../../public/locales/ar.json').then((module) => module.default),
+  es: () => import('../../public/locales/es.json').then((module) => module.default),
+  ko: () => import('../../public/locales/ko.json').then((module) => module.default),
+  de: () => import('../../public/locales/de.json').then((module) => module.default),
+  nl: () => import('../../public/locales/nl.json').then((module) => module.default),
+  ha: () => import('../../public/locales/ha.json').then((module) => module.default),
 };
 
-// Now a synchronous function! No more await needed.
-export const getDictionary = (locale: string): Record<string, string> => {
-  if (locale in dictionaries) {
-    return dictionaries[locale as keyof typeof dictionaries];
-  }
-  // Fallback to 'id' if the locale isn't found
-  return dictionaries.id;
+export const getDictionary = async (locale: string): Promise<Record<string, string>> => {
+  const loader = dictionaries[locale] || dictionaries.en;
+  return loader();
 };
 
 // For pages like not-found.tsx that don't receive URL params
 export async function getDictionaryFromCookie() {
   const cookieStore = await cookies();
   const language = cookieStore.get('language')?.value || 'id';
-  return getDictionary(language);
+  return await getDictionary(language);
 }
 
 // Keep this available if absolutely needed, though relying on URL params is better

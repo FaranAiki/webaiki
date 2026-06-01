@@ -17,6 +17,7 @@ import {
 
 import { usePresentation } from '@/components/PresentationContext';
 import { formatCJK } from '@/lib/utils';
+import { useAppStore } from '@/lib/store';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -129,6 +130,7 @@ export default function Header(props: HeaderProps) {
     const { resolvedTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
     const { isPresentationMode, togglePresentationMode } = usePresentation();
+    const setScrollLocked = useAppStore((state) => state.setScrollLocked);
 
     useEffect(() => {
         setMounted(true);
@@ -436,12 +438,21 @@ export default function Header(props: HeaderProps) {
 
                         <div 
                             className="hidden md:block"
-                            onMouseEnter={() => setLangMenuVisible(false)}
+                            onMouseEnter={() => {
+                                setLangMenuVisible(false);
+                                setScrollLocked(true);
+                            }}
+                            onMouseLeave={() => {
+                                if (!isSettingsOpen) setScrollLocked(false);
+                            }}
                         >
                             <SettingsPopup 
                                 labels={settings_labels} 
                                 isOpen={isSettingsOpen}
-                                onOpenChange={setIsSettingsOpen}
+                                onOpenChange={(open) => {
+                                    setIsSettingsOpen(open);
+                                    setScrollLocked(open);
+                                }}
                             />
                         </div>
 
@@ -451,7 +462,13 @@ export default function Header(props: HeaderProps) {
                             onMouseEnter={() => {
                                 setLangMenuVisible(true);
                                 setIsSettingsOpen(false);
+                                setScrollLocked(true);
                             }}
+                            onMouseLeave={() => {
+                                setLangMenuVisible(false);
+                                setScrollLocked(false);
+                            }}
+                            data-lenis-prevent
                         >
                             <button 
                                 className={`group flex items-center gap-1.5 p-2 rounded-full hover:${isDark ? 'bg-white/10' : 'bg-gray-100'} transition-colors hover-gacor ${isLangMenuVisible ? 'nav-active-gacor' : ''}`}
@@ -494,7 +511,10 @@ export default function Header(props: HeaderProps) {
             </header>
 
             {/* --- Mobile Sidebar Navigation --- */}
-            <div className={`no-scrollbar fixed top-0 right-0 h-full w-[80%] max-w-sm ${mobileMenuBg} md:backdrop-blur-xl shadow-2xl z-[60] transform transition-transform duration-300 ease-out ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} md:hidden overflow-y-auto`}>
+            <div 
+                data-lenis-prevent
+                className={`no-scrollbar fixed top-0 right-0 h-full w-[80%] max-w-sm ${mobileMenuBg} md:backdrop-blur-xl shadow-2xl z-[60] transform transition-transform duration-300 ease-out ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} md:hidden overflow-y-auto`}
+            >
                 <div className="absolute top-4 right-4 z-[70]">
                     <button
                         onClick={() => setMobileMenuOpen(false)}

@@ -13,7 +13,7 @@ export async function generateMetadata({
 }) {
   const { lang } = await params;
   const { type } = await searchParams;
-  const dict = getDictionary(lang);
+  const dict = await getDictionary(lang);
 
   const title = type === 'it' ? dict.Portfolio_IT : 
                 type === 'tutor' ? dict.Portfolio_Tutor : 
@@ -56,7 +56,7 @@ export default async function PortfolioPage({
 }) {
   const { lang } = await params;
   const { type } = await searchParams;
-  const dict = getDictionary(lang);
+  const dict = await getDictionary(lang);
 
   const education = [
     {

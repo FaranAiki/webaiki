@@ -7,6 +7,7 @@ import Image from 'next/image';
 import PopRotateSection from '@/components/PopRotateSection';
 import FadeInSection from '@/components/FadeInSection';
 import { usePresentation } from './PresentationContext';
+import { motion } from 'framer-motion';
 
 interface SocialLink {
   name: string;
@@ -176,24 +177,28 @@ export default function SocialDisplay() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-center justify-center">
                   {chunk.map((link, index) => (
                     <PopRotateSection key={link.name} delay={index * 100} className="h-full">
-                      <a
+                      <motion.a
                           href={link.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={`group ${cardBg} backdrop-blur-sm border rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-300 transform hover:-translate-y-2 ${link.color} h-full min-h-[200px]`}
+                          whileHover={{ y: -8, scale: 1.02 }}
+                          transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                          className={`group ${cardBg} backdrop-blur-sm border rounded-2xl p-8 flex flex-col items-center justify-center text-center ${link.color} h-full min-h-[200px]`}
                       >
                           <div className={`text-base ${usernameText} mb-4 transition-colors`}>
                           {link.username}
                           </div>
 
-                          <div className="mb-6 transform group-hover:scale-110 transition-transform duration-300">
-                          {link.icon}
+                          <div className="mb-6">
+                            <motion.div className="transform transition-none" whileHover={{ scale: 1.1 }}>
+                              {link.icon}
+                            </motion.div>
                           </div>
 
                           <div className={`text-2xl font-bold ${nameText}`}>
                           {link.name}
                           </div>
-                      </a>
+                      </motion.a>
                     </PopRotateSection>
                   ))}
                 </div>
@@ -211,11 +216,13 @@ export default function SocialDisplay() {
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
                 {socialLinks.map((link, index) => (
                   <PopRotateSection key={link.name} delay={(index % 6) * 50} className="h-full">
-                    <a
+                    <motion.a
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`group ${cardBg} backdrop-blur-sm border rounded-lg p-6 flex flex-col items-center justify-center text-center transition-[transform] duration-300 transform hover:-translate-y-2 ${link.color} h-full`}
+                        whileHover={{ y: -8 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                        className={`group ${cardBg} backdrop-blur-sm border rounded-lg p-6 flex flex-col items-center justify-center text-center ${link.color} h-full`}
                     >
                         <div className={`text-sm ${usernameText} mb-4 transition-colors`}>
                         {link.username}
@@ -228,7 +235,7 @@ export default function SocialDisplay() {
                         <div className={`text-lg font-semibold ${nameText}`}>
                         {link.name}
                         </div>
-                    </a>
+                    </motion.a>
                   </PopRotateSection>
                 ))}
               </div>

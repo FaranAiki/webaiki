@@ -9,7 +9,7 @@ import { getOrganizationExperiences } from '@/lib/data';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const dict = getDictionary(lang);
+  const dict = await getDictionary(lang);
 
   return {
     metadataBase: new URL('https://faranaiki.id'),
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
 export default async function OrganizationExperiencesPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = getDictionary(lang);
+  const dict = await getDictionary(lang);
 
   const organizationExperiences = getOrganizationExperiences(dict);
 
@@ -56,6 +56,9 @@ export default async function OrganizationExperiencesPage({ params }: { params: 
         bento_text={dict.Bento}
         smooth_text={dict.Smooth}
         click_to_close_text={dict.Click_To_Close}
+        modern_text={dict.Presentation_Modern}
+        cinematic_text={dict.Presentation_Cinematic}
+        editorial_text={dict.Presentation_Editorial}
       />
     </main>
   );

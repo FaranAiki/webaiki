@@ -32,9 +32,9 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: Promise<{ lang: string }>;
 }>) {
-  // Use the url parameter directly and load dictionary synchronously
+  // Use the url parameter directly and load dictionary asynchronously
   const { lang } = await params;
-  const dict = getDictionary(lang);
+  const dict = await getDictionary(lang);
   
   // Navigation Links with Icons
   const navLinks = [

@@ -394,8 +394,8 @@ export const getAwardExperiences = (dict: Dictionary) => [{
   ],
 }];
 
-export const getCollectionsDataSync = cache((lang: string, type: 'literature' | 'college') => {
-  const dict = getDictionary(lang);
+export const getCollectionsData = cache(async (lang: string, type: 'literature' | 'college') => {
+  const dict = await getDictionary(lang);
   const baseDir = path.join(process.cwd(), 'public', 'documents', type);
   
   if (!fs.existsSync(baseDir)) return {};
@@ -440,8 +440,8 @@ export const getCollectionsDataSync = cache((lang: string, type: 'literature' | 
   return allCollectionsData;
 });
 
-export const getCertificatesDataSync = cache((lang: string) => {
-  const dict = getDictionary(lang);
+export const getCertificatesData = cache(async (lang: string) => {
+  const dict = await getDictionary(lang);
   const baseDir = path.join(process.cwd(), 'public', 'documents', 'certificate');
   
   if (!fs.existsSync(baseDir)) return {};

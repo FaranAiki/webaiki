@@ -20,6 +20,9 @@ interface ProvidersProps {
   };
 }
 
+import QueryProvider from "./QueryProvider";
+import SmoothScroll from "./SmoothScroll";
+
 export function Providers({ children, sultanLabels }: ProvidersProps) {
   const [mounted, setMounted] = useState(false);
 
@@ -33,7 +36,11 @@ export function Providers({ children, sultanLabels }: ProvidersProps) {
     // to avoid markup mismatches.
     return (
       <SettingsProvider>
-        <PresentationProvider>{children}</PresentationProvider>
+        <PresentationProvider>
+          <QueryProvider>
+            {children}
+          </QueryProvider>
+        </PresentationProvider>
       </SettingsProvider>
     );
   }
@@ -41,10 +48,14 @@ export function Providers({ children, sultanLabels }: ProvidersProps) {
   return (
     <SettingsProvider>
       <PresentationProvider>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
-          <SultanPrint labels={sultanLabels} />
-        </ThemeProvider>
+        <QueryProvider>
+          <SmoothScroll>
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+              {children}
+              <SultanPrint labels={sultanLabels} />
+            </ThemeProvider>
+          </SmoothScroll>
+        </QueryProvider>
       </PresentationProvider>
     </SettingsProvider>
   );
