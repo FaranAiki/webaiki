@@ -24,6 +24,7 @@ export function PresentationProvider({ children }: { children: React.ReactNode }
   useEffect(() => {
     if (pathname?.endsWith('/portfolio')) {
       setIsPresentationMode(false);
+      localStorage.setItem("presentation_mode", "false");
     }
   }, [pathname]);
 
@@ -55,7 +56,9 @@ export function PresentationProvider({ children }: { children: React.ReactNode }
       const large = window.innerWidth >= 768; // md breakpoint
       setIsLargeScreen(large);
       
-      if (!large) {
+      const isPortfolio = window.location.pathname.endsWith('/portfolio');
+
+      if (!large || isPortfolio) {
         setIsPresentationMode(false);
       } else if (savedMode === "true" || hasBodyClass) {
         setIsPresentationMode(true);
@@ -68,7 +71,7 @@ export function PresentationProvider({ children }: { children: React.ReactNode }
   }, []);
 
   const togglePresentationMode = () => {
-    if (!isLargeScreen) return; // Disable toggling on small screens
+    if (!isLargeScreen || pathname?.endsWith('/portfolio')) return; // Disable toggling on small screens or portfolio
 
     setIsPresentationMode((prev) => {
       const next = !prev;

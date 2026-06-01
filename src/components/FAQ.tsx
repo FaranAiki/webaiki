@@ -41,14 +41,14 @@ export default function FAQ({ id, title, items, className = "" }: FAQProps) {
               key={index}
               className={`group relative rounded-3xl overflow-hidden transition-all duration-500 ${
                 isOpen 
-                ? 'bg-white dark:bg-zinc-900 shadow-2xl shadow-cyan-500/10' 
-                : 'bg-white/50 dark:bg-white/5 hover:bg-white dark:hover:bg-white/10'
+                ? 'bg-white dark:bg-gray-900/90 shadow-2xl shadow-cyan-500/10' 
+                : 'bg-white/50 dark:bg-gray-900/40 hover:bg-white dark:hover:bg-gray-900/60'
               }`}
             >
               {/* Subtle Border */}
               <div className={`absolute inset-0 p-[1.5px] rounded-3xl bg-gradient-to-br from-cyan-500 to-blue-600 transition-opacity duration-500 ${isOpen ? 'opacity-100' : 'opacity-10'}`} />
               
-              <div className="relative h-full rounded-[23px] bg-white dark:bg-zinc-900 transition-colors duration-500">
+              <div className="relative h-full rounded-[23px] bg-white dark:bg-gray-900/90 transition-colors duration-500">
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                   className="w-full flex items-center justify-between p-6 md:p-8 text-left transition-all"
@@ -57,7 +57,7 @@ export default function FAQ({ id, title, items, className = "" }: FAQProps) {
                   <div className="flex gap-4 items-center">
                     <span className={`hidden md:flex items-center justify-center w-8 h-8 rounded-full text-xs font-black transition-all duration-500 ${
                       isOpen 
-                      ? 'bg-gradient-to-br from-cyan-500 to-blue-600 text-white rotate-[360deg]' 
+                      ? 'bg-cyan-500 text-white rotate-[360deg]' 
                       : 'bg-black/5 dark:bg-white/10 text-gray-400 group-hover:bg-cyan-500/10 group-hover:text-cyan-500'
                     }`}>
                       {index + 1}
@@ -86,7 +86,7 @@ export default function FAQ({ id, title, items, className = "" }: FAQProps) {
                       transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
                     >
                       <div className="px-6 md:px-8 pb-8 md:pb-10 pt-2">
-                        <div className="p-6 rounded-2xl bg-gray-50 dark:bg-black/40 border border-black/5 dark:border-white/10">
+                        <div className="p-6 rounded-2xl bg-gray-50 dark:bg-gray-800/50 border border-black/5 dark:border-white/10">
                           <p className="text-base md:text-lg leading-relaxed text-gray-800 dark:text-gray-100 font-medium opacity-100">
                             {item.answer}
                           </p>

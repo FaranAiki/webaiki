@@ -104,7 +104,7 @@ export default async function HomePage({
         />
       </section>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-20">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-32 md:mt-48">
         <FAQ id="faq-faran" title={dict.FAQ_Faran_Title} items={faranFaqs} />
         <FAQ id="faq-website" title={dict.FAQ_Website_Title} items={websiteFaqs} />
       </div>

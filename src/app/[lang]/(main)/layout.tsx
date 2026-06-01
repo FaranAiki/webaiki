@@ -106,6 +106,7 @@ export default async function RootLayout({
         presentation_mode={dict.Presentation_Mode}
         navigation_label={dict.Navigation}
         logo_alt={dict.Logo_Alt}
+        share_copied={dict.Copied_To_Clipboard}
         settings_labels={{
           Settings: dict.Settings,
           Typography: dict.Typography,

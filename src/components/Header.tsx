@@ -9,10 +9,13 @@ import { Inter } from "next/font/google";
 import ThemeToggle from '@/components/ThemeToggle'; 
 import { useTheme } from 'next-themes';
 import SettingsPopup from '@/components/SettingsPopup';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import { 
   Monitor,
-  MonitorPlay
+  MonitorPlay,
+  Share2,
+  Check
 } from 'lucide-react';
 
 import { usePresentation } from '@/components/PresentationContext';
@@ -48,6 +51,7 @@ interface HeaderProps {
     presentation_mode: string;
     navigation_label: string;
     logo_alt: string;
+    share_copied: string;
     settings_labels: {
         Settings: string;
         Typography: string;
@@ -118,6 +122,7 @@ export default function Header(props: HeaderProps) {
         presentation_mode,
         navigation_label,
         logo_alt,
+        share_copied,
         settings_labels
     } = props;
     const pathname = usePathname();
@@ -126,6 +131,7 @@ export default function Header(props: HeaderProps) {
     const [isSettingsOpen, setIsSettingsOpen] = useState(false);
     const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [shouldShowHeader, setShouldShowHeader] = useState(true);
+    const [showShareSuccess, setShowShareSuccess] = useState(false);
     const lastYPosRef = useRef(0);
     const tickingRef = useRef(false);
 
@@ -134,6 +140,50 @@ export default function Header(props: HeaderProps) {
     const { isPresentationMode, togglePresentationMode } = usePresentation();
     const setScrollLocked = useAppStore((state) => state.setScrollLocked);
     const langMenuRef = useRef<HTMLDivElement>(null);
+
+    const handleShare = () => {
+        const settingsParams = [
+            'presentation_mode',
+            'presentation_slide_format',
+            'settings-font',
+            'settings-align',
+            'settings-scale',
+            'settings-spacing',
+            'settings-lineheight'
+        ];
+
+        const url = new URL(window.location.origin + pathname);
+        settingsParams.forEach(param => {
+            const value = localStorage.getItem(param);
+            if (value !== null) {
+                url.searchParams.set(param, value);
+            }
+        });
+
+        const shareData = {
+            title: 'Faran Aiki',
+            text: 'Check out Faran Aiki\'s personal website!',
+            url: url.toString()
+        };
+
+        if (navigator.share) {
+            navigator.share(shareData).catch(err => {
+                console.error('Error sharing:', err);
+                copyToClipboard(url.toString());
+            });
+        } else {
+            copyToClipboard(url.toString());
+        }
+    };
+
+    const copyToClipboard = (text: string) => {
+        navigator.clipboard.writeText(text).then(() => {
+            setShowShareSuccess(true);
+            setTimeout(() => setShowShareSuccess(false), 2000);
+        }).catch(err => {
+            console.error('Could not copy text: ', err);
+        });
+    };
 
     useEffect(() => {
         setMounted(true);
@@ -159,10 +209,9 @@ export default function Header(props: HeaderProps) {
         };
     }, [isLangMenuVisible, setScrollLocked]);
 
-    // Handle body overflow and scroll locking when any menu is open
+    // Handle body overflow and scroll locking when mobile menu is open
     useEffect(() => {
-        const anyMenuOpen = isMobileMenuOpen || isLangMenuVisible || isSettingsOpen;
-        if (anyMenuOpen) {
+        if (isMobileMenuOpen) {
             document.body.style.overflow = 'hidden';
             setScrollLocked(true);
         } else {
@@ -173,7 +222,7 @@ export default function Header(props: HeaderProps) {
             document.body.style.overflow = '';
             setScrollLocked(false);
         };
-    }, [isMobileMenuOpen, isLangMenuVisible, isSettingsOpen, setScrollLocked]);
+    }, [isMobileMenuOpen, setScrollLocked]);
 
     // Close mobile menu on window resize
     useEffect(() => {
@@ -345,6 +394,25 @@ export default function Header(props: HeaderProps) {
                         />
                     </div>
 
+                        {/* Share Button (Mobile) */}
+                        <div className="md:hidden flex items-center justify-center self-center">
+                            <button
+                                onClick={handleShare}
+                                title="Share this page with current settings"
+                                className={`
+                                    flex items-center justify-center transition-all duration-300 p-2 rounded-full
+                                    ${showShareSuccess 
+                                        ? 'text-green-500 bg-green-500/10 scale-110' 
+                                        : isDark
+                                            ? 'text-gray-400 hover:text-cyan-400'
+                                            : 'text-gray-500 hover:text-cyan-600'
+                                    }
+                                `}
+                            >
+                                {showShareSuccess ? <Check size={20} strokeWidth={2} /> : <Share2 size={20} strokeWidth={2} />}
+                            </button>
+                        </div>
+
                         {/* Presentation Mode Toggle */}
                         {!pathname.endsWith('/portfolio') && (
                             <div className="hidden md:flex items-center justify-center ml-4 self-center">
@@ -365,6 +433,25 @@ export default function Header(props: HeaderProps) {
                                 </button>
                             </div>
                         )}
+
+                        {/* Share Button (Desktop) */}
+                        <div className="hidden md:flex items-center justify-center ml-2 self-center">
+                            <button
+                                onClick={handleShare}
+                                title="Share this page with current settings"
+                                className={`
+                                    flex items-center justify-center transition-all duration-300 p-2 rounded-full
+                                    ${showShareSuccess 
+                                        ? 'text-green-500 bg-green-500/10 scale-110' 
+                                        : isDark
+                                            ? 'text-gray-400 hover:text-cyan-400 hover:bg-gray-800'
+                                            : 'text-gray-500 hover:text-cyan-600 hover:bg-gray-100'
+                                    }
+                                `}
+                            >
+                                {showShareSuccess ? <Check size={24} strokeWidth={2} /> : <Share2 size={24} strokeWidth={2} />}
+                            </button>
+                        </div>
                     </div>
 
                     {/* --- Mobile Title (Center) --- */}
@@ -466,13 +553,14 @@ export default function Header(props: HeaderProps) {
 
                         <div 
                             className="hidden md:block"
+                            onMouseEnter={() => setScrollLocked(true)}
+                            onMouseLeave={() => setScrollLocked(false)}
                         >
                             <SettingsPopup 
                                 labels={settings_labels} 
                                 isOpen={isSettingsOpen}
                                 onOpenChange={(open) => {
                                     setIsSettingsOpen(open);
-                                    setScrollLocked(open);
                                     if (open) setLangMenuVisible(false);
                                 }}
                             />
@@ -482,12 +570,13 @@ export default function Header(props: HeaderProps) {
                         <div
                             className="hidden md:flex relative cursor-pointer"
                             ref={langMenuRef}
+                            onMouseEnter={() => setScrollLocked(true)}
+                            onMouseLeave={() => setScrollLocked(false)}
                         >
                             <button 
                                 onClick={() => {
                                     const nextState = !isLangMenuVisible;
                                     setLangMenuVisible(nextState);
-                                    setScrollLocked(nextState);
                                     if (nextState) setIsSettingsOpen(false);
                                 }}
                                 className={`group flex items-center gap-1.5 p-2 rounded-full hover:${isDark ? 'bg-white/10' : 'bg-gray-100'} transition-colors hover-gacor ${isLangMenuVisible ? 'nav-active-gacor' : ''}`}
@@ -622,6 +711,34 @@ export default function Header(props: HeaderProps) {
                     onClick={() => setMobileMenuOpen(false)}
                 ></div>
             )}
+
+            {/* Toast Notification */}
+            <AnimatePresence>
+                {showShareSuccess && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 50, scale: 0.9, x: '-50%' }}
+                        animate={{ opacity: 1, y: 0, scale: 1, x: '-50%' }}
+                        exit={{ opacity: 0, y: 20, scale: 0.9, x: '-50%' }}
+                        className="fixed bottom-8 left-1/2 z-[100] px-6 py-3 rounded-2xl bg-white dark:bg-gray-900 shadow-2xl border border-transparent"
+                        style={{ 
+                            boxShadow: '0 10px 40px -10px rgba(6, 182, 212, 0.3)',
+                        }}
+                    >
+                        {/* Gradient Border Effect */}
+                        <div className="absolute inset-0 p-[1.5px] rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 -z-10" />
+                        <div className="absolute inset-[1.5px] rounded-[15px] bg-white dark:bg-gray-900 -z-10" />
+
+                        <div className="flex items-center gap-3">
+                            <div className="flex items-center justify-center w-6 h-6 rounded-full bg-cyan-500 text-white">
+                                <Check size={14} strokeWidth={4} />
+                            </div>
+                            <span className="font-bold text-sm md:text-base whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-600 dark:from-cyan-400 dark:to-blue-400">
+                                {share_copied}
+                            </span>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </>
     );
 }

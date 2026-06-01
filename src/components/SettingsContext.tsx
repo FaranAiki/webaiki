@@ -128,7 +128,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
     if (savedFont) setFont(savedFont);
     if (savedAlign) setTextAlign(savedAlign);
-    if (savedScale) setTextScale(Number(savedScale));
+    if (savedScale) setTextScale(Math.min(Math.max(Number(savedScale), 80), 120));
     if (savedSpacing) setLetterSpacing(Number(savedSpacing));
     if (savedLineHeight) setLineHeight(Number(savedLineHeight));
     
@@ -143,6 +143,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     localStorage.setItem('settings-spacing', letterSpacing.toString());
     localStorage.setItem('settings-lineheight', lineHeight.toString());
 
+    const root = document.documentElement;
     const body = document.body;
     
     // 1. Font Class on BODY (Global)
@@ -154,16 +155,13 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       body.classList.add(activeFont.class);
     }
 
-    // 2. Body Settings (Global)
-    // Scale via CSS variable on body
-    body.style.setProperty('--text-scale-factor', (textScale / 100).toString());
+    // 2. Global Settings via CSS variables on root
+    root.style.setProperty('--text-scale-factor', (textScale / 100).toString());
+    root.style.setProperty('--app-letter-spacing', `${letterSpacing}px`);
+    root.style.setProperty('--app-line-height', lineHeight.toString());
     
-    // Alignment (applied to body, but might need to be careful with UI elements)
+    // Alignment (applied to body)
     body.style.textAlign = textAlign === 'default' ? '' : textAlign;
-    
-    // Spacing & Height
-    body.style.setProperty('--app-letter-spacing', `${letterSpacing}px`);
-    body.style.setProperty('--app-line-height', lineHeight.toString());
   }, [font, textAlign, textScale, letterSpacing, lineHeight, mounted]);
 
   return (

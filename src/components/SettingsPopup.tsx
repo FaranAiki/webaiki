@@ -85,7 +85,7 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
   };
 
   const adjustScale = (delta: number) => {
-    setTextScale(Math.min(Math.max(textScale + delta, 50), 150));
+    setTextScale(Math.min(Math.max(textScale + delta, 80), 120));
   };
 
   const adjustSpacing = (delta: number) => {
@@ -212,7 +212,7 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
               <Minus size={16} />
             </button>
             <input 
-              type="range" min="50" max="150" step="5" value={textScale}
+              type="range" min="80" max="120" step="5" value={textScale}
               onChange={(e) => setTextScale(parseInt(e.target.value))}
               className="flex-1 accent-cyan-500 h-1.5 bg-gray-700 rounded-lg appearance-none cursor-pointer"
             />
