@@ -105,11 +105,26 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   };
 
   useEffect(() => {
-    const savedFont = localStorage.getItem('settings-font');
-    const savedAlign = localStorage.getItem('settings-align') as TextAlign;
-    const savedScale = localStorage.getItem('settings-scale');
-    const savedSpacing = localStorage.getItem('settings-spacing');
-    const savedLineHeight = localStorage.getItem('settings-lineheight');
+    // Helper to get from cookie or localStorage
+    const getSetting = (key: string) => {
+      // 1. Check cookies first (most recent from URL via middleware)
+      const cookies = document.cookie.split('; ').reduce((acc: Record<string, string>, current) => {
+        const [name, value] = current.split('=');
+        if (name && value) acc[name.trim()] = value;
+        return acc;
+      }, {});
+      
+      if (cookies[key]) return decodeURIComponent(cookies[key]);
+      
+      // 2. Fallback to localStorage
+      return localStorage.getItem(key);
+    };
+
+    const savedFont = getSetting('settings-font');
+    const savedAlign = getSetting('settings-align') as TextAlign;
+    const savedScale = getSetting('settings-scale');
+    const savedSpacing = getSetting('settings-spacing');
+    const savedLineHeight = getSetting('settings-lineheight');
 
     if (savedFont) setFont(savedFont);
     if (savedAlign) setTextAlign(savedAlign);

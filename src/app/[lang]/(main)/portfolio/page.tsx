@@ -10,7 +10,7 @@ import SocialDisplay, { SocialLink } from '@/components/SocialDisplay';
 import { Github, Linkedin, Instagram, Twitter, Youtube, Share2 } from 'lucide-react';
 import Image from 'next/image';
 
-import { getLanguageAlternates } from '@/lib/seo';
+import { getLanguageAlternates, getBaseMetadata, getPersonSchema, getBreadcrumbSchema, getFaqSchema } from '@/lib/seo';
 
 import {
   getWorkExperiences,
@@ -172,8 +172,24 @@ export default async function PortfolioHighlightsPage({ params }: { params: Prom
     { question: dict.FAQ_Faran_Q4, answer: dict.FAQ_Faran_A4 },
   ];
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      getPersonSchema(lang, dict.Faran_About_1?.replace(/<[^>]*>/g, '')),
+      getBreadcrumbSchema([
+        { name: dict.Home, item: `/${lang}` },
+        { name: dict.Portfolio, item: `/${lang}/portfolio` },
+      ]),
+      getFaqSchema(faranFaqs),
+    ]
+  };
+
   return (
     <main className="w-full pt-20 pb-20 space-y-6">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Refined Portfolio Header */}
       <section id="about" className="container mx-auto px-4 sm:px-8">
         <PortfolioAboutHeader

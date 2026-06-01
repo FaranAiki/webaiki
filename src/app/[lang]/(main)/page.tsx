@@ -12,7 +12,7 @@ export const getFaranAikiPhoto = cache(() => {
   return fs.readdirSync(photosDir);
 });
 
-import { getLanguageAlternates, getBaseMetadata, getPersonSchema, getWebsiteSchema, SITE_URL } from '@/lib/seo';
+import { getLanguageAlternates, getBaseMetadata, getPersonSchema, getWebsiteSchema, SITE_URL, getFaqSchema } from '@/lib/seo';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -73,6 +73,7 @@ export default async function HomePage({
     "@graph": [
       getPersonSchema(lang, dict.Faran_About_1?.replace(/<[^>]*>/g, '')),
       getWebsiteSchema(lang),
+      getFaqSchema([...faranFaqs, ...websiteFaqs]),
     ]
   };
 

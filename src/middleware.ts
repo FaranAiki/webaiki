@@ -24,7 +24,26 @@ const base_cspHeader = `
 
 // Security implementation for Content Security Policy and Nonce
 export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
+  const { pathname, searchParams } = request.nextUrl;
+
+  // Capture settings from URL query parameters
+  const settingsParams = [
+    'presentation_mode',
+    'presentation_slide_format',
+    'settings-font',
+    'settings-align',
+    'settings-scale',
+    'settings-spacing',
+    'settings-lineheight'
+  ];
+
+  const foundSettings: Record<string, string> = {};
+  settingsParams.forEach(param => {
+    const value = searchParams.get(param);
+    if (value !== null) {
+      foundSettings[param] = value;
+    }
+  });
 
   // 1. Get the language from the cookie
   const cookieLang = request.cookies.get('language')?.value;
@@ -73,6 +92,11 @@ export function middleware(request: NextRequest) {
     request: {
       headers: requestHeaders,
     },
+  });
+
+  // Set cookies for found settings so client can pick them up
+  Object.entries(foundSettings).forEach(([name, value]) => {
+    response.cookies.set(name, value, { maxAge: 60 }); 
   });
 
   let finalCspHeader = cspHeader;

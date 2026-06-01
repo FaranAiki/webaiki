@@ -24,9 +24,9 @@ export default function FAQ({ id, title, items, className = "" }: FAQProps) {
       <div className="relative group mb-10 pb-4 border-b border-black/10 dark:border-white/10">
         <div className="flex items-center gap-4">
           <div className="p-2 text-cyan-500">
-            <HelpCircle size={28} strokeWidth={2.5} />
+            <HelpCircle size={24} strokeWidth={2.5} />
           </div>
-          <h2 className="text-2xl md:text-4xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600">
+          <h2 className="text-xl md:text-2xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600">
             {title}
           </h2>
         </div>

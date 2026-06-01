@@ -29,8 +29,20 @@ export function PresentationProvider({ children }: { children: React.ReactNode }
 
   // Load state from localStorage on mount and handle resizing
   useEffect(() => {
-    const savedFormat = localStorage.getItem("presentation_slide_format") as SlideNumberFormat;
-    const savedMode = localStorage.getItem("presentation_mode");
+    // Helper to get from cookie or localStorage
+    const getSetting = (key: string) => {
+      const cookies = document.cookie.split('; ').reduce((acc: Record<string, string>, current) => {
+        const [name, value] = current.split('=');
+        if (name && value) acc[name.trim()] = value;
+        return acc;
+      }, {});
+      
+      if (cookies[key]) return decodeURIComponent(cookies[key]);
+      return localStorage.getItem(key);
+    };
+
+    const savedFormat = getSetting("presentation_slide_format") as SlideNumberFormat;
+    const savedMode = getSetting("presentation_mode");
 
     // Check if body already has the class (e.g., from Sultan Print injection)
     const hasBodyClass = document.body.classList.contains('presentation-mode');
