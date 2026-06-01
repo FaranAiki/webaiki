@@ -146,9 +146,9 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
         {importantWork.length > 0 && (
           <section className="space-y-2">
             <div className="container mx-auto px-4 sm:px-8">
-                <div className="flex items-center gap-3 border-b border-gray-800/30 pb-1.5">
+                <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
                     <Briefcase size={18} className="text-cyan-500" />
-                    <h2 className="text-lg md:text-xl font-bold tracking-tight text-white">{dict.Work}</h2>
+                    <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Work}</h2>
                 </div>
             </div>
             <ExperiencesClient
@@ -167,15 +167,15 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
         {importantProjects.length > 0 && (
           <section className="space-y-2">
             <div className="container mx-auto px-4 sm:px-8">
-                <div className="flex items-center gap-3 border-b border-gray-800/30 pb-1.5">
+                <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
                     <Code size={18} className="text-purple-500" />
-                    <h2 className="text-lg md:text-xl font-bold tracking-tight text-white">{dict.Project}</h2>
+                    <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Project}</h2>
                 </div>
             </div>
             <ExperiencesClient
               experiences={importantProjects}
               lang={lang}
-              layout="bento"
+              layout="original"
               canChange={false}
               click_to_close_text={dict.Click_To_Close}
               modern_text={dict.Presentation_Modern}
@@ -190,15 +190,15 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 container mx-auto px-4 sm:px-8">
             {importantOrg.length > 0 && (
               <section className="space-y-2">
-                <div className="flex items-center gap-3 border-b border-gray-800/30 pb-1.5">
+                <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
                     <Users size={18} className="text-blue-500" />
-                    <h2 className="text-lg md:text-xl font-bold tracking-tight text-white">{dict.Organization}</h2>
+                    <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Organization}</h2>
                 </div>
                 <div className="lg:contents">
                    <ExperiencesClient
                      experiences={importantOrg}
                      lang={lang}
-                     layout="grid"
+                     layout="timeline"
                      canChange={false}
                      click_to_close_text={dict.Click_To_Close}
                      modern_text={dict.Presentation_Modern}
@@ -211,9 +211,9 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
 
             {importantAwards.length > 0 && (
               <section className="space-y-2">
-                <div className="flex items-center gap-3 border-b border-gray-800/30 pb-1.5">
+                <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
                     <Trophy size={18} className="text-yellow-500" />
-                    <h2 className="text-lg md:text-xl font-bold tracking-tight text-white">{dict.Award}</h2>
+                    <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Award}</h2>
                 </div>
                 <div className="lg:contents">
                   <ExperiencesClient
@@ -236,9 +236,9 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
         {Object.keys(importantCerts).length > 0 && (
           <section className="space-y-4">
             <div className="container mx-auto px-4 sm:px-8">
-                <div className="flex items-center gap-3 border-b border-gray-800/30 pb-1.5">
+                <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
                     <FileCheck size={18} className="text-emerald-500" />
-                    <h2 className="text-lg md:text-xl font-bold tracking-tight text-white">{dict.Certificate}</h2>
+                    <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Certificate}</h2>
                 </div>
             </div>
             <CertificatesDisplay certificates={importantCerts} lang={lang} allTranslation={dict.All} click_to_close_text={dict.Click_To_Close} />
@@ -248,11 +248,10 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
         {/* Highlighted Materials - Side-by-Side on Desktop */}
         {(Object.keys(importantCollege).length > 0 || Object.keys(importantLiterature).length > 0) && (
           <section className="space-y-4 container mx-auto px-4 sm:px-8">
-            <div className="flex items-center gap-3 border-b border-gray-800/30 pb-1.5">
+            <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
                 <Star size={18} className="text-rose-500" />
-                <h2 className="text-lg md:text-xl font-bold tracking-tight text-white">{dict.Important_Highlights}</h2>
-            </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Important_Highlights}</h2>
+            </div>            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {Object.keys(importantCollege).length > 0 && (
                     <InteractiveCollections data={importantCollege} lang={lang} force_click={true} />
                 )}

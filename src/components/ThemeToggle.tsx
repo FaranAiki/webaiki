@@ -20,8 +20,27 @@ export default function ThemeToggle() {
   }
 
   const handleThemeChange = (newTheme: string) => {
-    setTheme(newTheme);
-    setCookies("theme", newTheme);
+    // Add transition class to body for smooth fallback
+    document.documentElement.classList.add('theme-transitioning');
+    
+    const cleanup = () => {
+      setTimeout(() => {
+        document.documentElement.classList.remove('theme-transitioning');
+      }, 500);
+    };
+
+    // Check if View Transitions API is supported
+    if (typeof document !== 'undefined' && (document as any).startViewTransition) {
+      (document as any).startViewTransition(() => {
+        setTheme(newTheme);
+        setCookies("theme", newTheme);
+      });
+      cleanup();
+    } else {
+      setTheme(newTheme);
+      setCookies("theme", newTheme);
+      cleanup();
+    }
   };
 
   const cycleTheme = () => {
