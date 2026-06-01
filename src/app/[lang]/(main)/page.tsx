@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AboutMe from '@/components/AboutMe';
+import FAQ from '@/components/FAQ';
 import { getDictionary } from '@/components/Translator';
 import { cache } from 'react';
 import fs from 'fs';
@@ -52,6 +53,22 @@ export default async function HomePage({
   const { lang } = await params;
   const dict = await getDictionary(lang);
 
+  const faranFaqs = [
+    { question: dict.FAQ_Faran_Q1, answer: dict.FAQ_Faran_A1 },
+    { question: dict.FAQ_Faran_Q2, answer: dict.FAQ_Faran_A2 },
+    { question: dict.FAQ_Faran_Q3, answer: dict.FAQ_Faran_A3 },
+    { question: dict.FAQ_Faran_Q4, answer: dict.FAQ_Faran_A4 },
+    { question: dict.FAQ_Faran_Q5, answer: dict.FAQ_Faran_A5 },
+  ];
+
+  const websiteFaqs = [
+    { question: dict.FAQ_Website_Q1, answer: dict.FAQ_Website_A1 },
+    { question: dict.FAQ_Website_Q2, answer: dict.FAQ_Website_A2 },
+    { question: dict.FAQ_Website_Q3, answer: dict.FAQ_Website_A3 },
+    { question: dict.FAQ_Website_Q4, answer: dict.FAQ_Website_A4 },
+    { question: dict.FAQ_Website_Q5, answer: dict.FAQ_Website_A5 },
+  ];
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -84,6 +101,11 @@ export default async function HomePage({
         about_text_2={dict.Faran_About_2} 
         lang={lang}
       />
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-20">
+        <FAQ title={dict.FAQ_Faran_Title} items={faranFaqs} />
+        <FAQ title={dict.FAQ_Website_Title} items={websiteFaqs} />
+      </div>
     </main>
   );
 }

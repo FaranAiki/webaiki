@@ -9,7 +9,7 @@ import FadeInSection from '@/components/FadeInSection';
 import { usePresentation } from './PresentationContext';
 import { motion } from 'framer-motion';
 
-interface SocialLink {
+export interface SocialLink {
   name: string;
   username: string;
   url: string;
@@ -17,7 +17,12 @@ interface SocialLink {
   color: string;
 }
 
-export default function SocialDisplay() {
+interface SocialDisplayProps {
+  customLinks?: SocialLink[];
+  hidePresentation?: boolean;
+}
+
+export default function SocialDisplay({ customLinks, hidePresentation = false }: SocialDisplayProps) {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const { isPresentationMode } = usePresentation();
@@ -37,7 +42,7 @@ export default function SocialDisplay() {
   // Icon Colors
   const githubColor = isDark ? 'text-white' : 'text-gray-900';
 
-  const socialLinks: SocialLink[] = [
+  const defaultSocialLinks: SocialLink[] = [
     {
       name: "GitHub",
       username: "FaranAiki",
@@ -152,6 +157,8 @@ export default function SocialDisplay() {
     },
   ];
 
+  const socialLinks = customLinks || defaultSocialLinks;
+
   // Helper function to chunk array
   const chunkArray = (arr: SocialLink[], size: number) => {
     return Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
@@ -160,11 +167,12 @@ export default function SocialDisplay() {
   };
 
   const socialChunks = chunkArray(socialLinks, 4);
+  const showPresentation = isPresentationMode && !hidePresentation;
 
   return (
     <div className="w-full h-full">
       {/* Presentation Mode: Grouped into Slides */}
-      {isPresentationMode && (
+      {showPresentation && (
         <div className="presentation-container">
           {socialChunks.map((chunk, chunkIdx) => (
             <FadeInSection 
@@ -177,28 +185,25 @@ export default function SocialDisplay() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-center justify-center">
                   {chunk.map((link, index) => (
                     <PopRotateSection key={link.name} delay={index * 100} className="h-full">
-                      <motion.a
+                      {/* CRITICAL: Use standard <a> instead of motion.a to avoid double-animation conflicts in popups */}
+                      <a
                           href={link.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          whileHover={{ y: -8, scale: 1.02 }}
-                          transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                          className={`group ${cardBg} backdrop-blur-sm border rounded-2xl p-8 flex flex-col items-center justify-center text-center ${link.color} h-full min-h-[200px]`}
+                          className={`group ${cardBg} backdrop-blur-sm border rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02] ${link.color} h-full min-h-[200px] shadow-sm hover:shadow-xl`}
                       >
                           <div className={`text-base ${usernameText} mb-4 transition-colors`}>
                           {link.username}
                           </div>
 
-                          <div className="mb-6">
-                            <motion.div className="transform transition-none" whileHover={{ scale: 1.1 }}>
+                          <div className="mb-6 transition-transform group-hover:scale-110 duration-300">
                               {link.icon}
-                            </motion.div>
                           </div>
 
                           <div className={`text-2xl font-bold ${nameText}`}>
                           {link.name}
                           </div>
-                      </motion.a>
+                      </a>
                     </PopRotateSection>
                   ))}
                 </div>
@@ -209,33 +214,32 @@ export default function SocialDisplay() {
       )}
 
       {/* Normal Mode */}
-      {!isPresentationMode && (
+      {!showPresentation && (
         <div className="block">
-          <FadeInSection className="w-full h-full flex items-center justify-center py-20">
+          <FadeInSection className="w-full h-full flex items-center justify-center py-12 md:py-20">
             <div className={`container mx-auto max-w-5xl ${containerText}`}>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
                 {socialLinks.map((link, index) => (
                   <PopRotateSection key={link.name} delay={(index % 6) * 50} className="h-full">
-                    <motion.a
+                    {/* CRITICAL: Standard <a> to fix Framer Motion conflicts in popups */}
+                    <a
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        whileHover={{ y: -8 }}
-                        transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                        className={`group ${cardBg} backdrop-blur-sm border rounded-lg p-6 flex flex-col items-center justify-center text-center ${link.color} h-full`}
+                        className={`group ${cardBg} backdrop-blur-sm border rounded-lg p-6 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-2 ${link.color} h-full shadow-sm hover:shadow-lg`}
                     >
                         <div className={`text-sm ${usernameText} mb-4 transition-colors`}>
                         {link.username}
                         </div>
 
-                        <div className="mb-4">
+                        <div className="mb-4 transition-transform group-hover:scale-110 duration-300">
                         {link.icon}
                         </div>
 
                         <div className={`text-lg font-semibold ${nameText}`}>
                         {link.name}
                         </div>
-                    </motion.a>
+                    </a>
                   </PopRotateSection>
                 ))}
               </div>

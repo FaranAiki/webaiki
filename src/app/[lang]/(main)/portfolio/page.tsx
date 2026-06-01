@@ -5,6 +5,10 @@ import ExperiencesClient, { Experience, Job } from '@/components/ExperienceDispl
 import CertificatesDisplay, { CertificateData } from '@/components/CertificatesDisplay';
 import InteractiveCollections, { CollectionsData } from '@/components/InteractiveCollections';
 import { PortfolioAboutHeader } from '@/components/AboutMe';
+import FAQ from '@/components/FAQ';
+import SocialDisplay, { SocialLink } from '@/components/SocialDisplay';
+import { Github, Linkedin, Instagram, Twitter, Youtube, Share2 } from 'lucide-react';
+import Image from 'next/image';
 
 import { getLanguageAlternates } from '@/lib/seo';
 
@@ -115,6 +119,59 @@ export default async function PortfolioHighlightsPage({ params }: { params: Prom
 
   const importantCollege = filterImportantCollections(collegeData);
   const importantLiterature = filterImportantCollections(literatureData);
+
+  const importantSocialLinks: SocialLink[] = [
+    {
+      name: "GitHub",
+      username: "FaranAiki",
+      url: "https://github.com/FaranAiki",
+      icon: <Github size={32} />,
+      color: "hover:border-gray-500"
+    },
+    {
+      name: "LinkedIn",
+      username: "Muhammad Faran Aiki",
+      url: "https://www.linkedin.com/in/muhammad-faran-aiki-8a6305343/",
+      icon: <Linkedin size={32} className="text-blue-500" />,
+      color: "hover:border-blue-500"
+    },
+    {
+      name: "Instagram",
+      username: "@mfaranaiki",
+      url: "https://www.instagram.com/mfaranaiki/",
+      icon: <Instagram size={32} className="text-pink-500" />,
+      color: "hover:border-pink-500"
+    },
+    {
+      name: "Twitter / X",
+      username: "@FaranAiki",
+      url: "https://x.com/FaranAiki",
+      icon: <Twitter size={32} className="text-sky-500" />,
+      color: "hover:border-sky-500"
+    },
+    {
+      name: "Link Tree",
+      username: "Faran Aiki",
+      url: "https://linktr.ee/FaranAiki",
+      icon: <Image alt="LinkTree icon" width="32" height="32" src="/images/social/linktree.webp" className="brightness-0 invert-[0.5] sepia-[1] hue-rotate-[70deg] saturate-[3]" />,
+      color: "hover:border-green-200"
+    },
+    {
+      name: "YouTube",
+      username: "Muhammad Faran Aiki",
+      url: "https://www.youtube.com/@FaranAiki",
+      icon: <Youtube size={32} className="text-red-600" />,
+      color: "hover:border-red-600"
+    },
+  ];
+
+  const faranFaqs = [
+    { question: dict.FAQ_Faran_Q1, answer: dict.FAQ_Faran_A1 },
+    { question: dict.FAQ_Faran_Q2, answer: dict.FAQ_Faran_A2 },
+    { question: dict.FAQ_Faran_Q3, answer: dict.FAQ_Faran_A3 },
+    { question: dict.FAQ_Faran_Q4, answer: dict.FAQ_Faran_A4 },
+    { question: dict.FAQ_Faran_Q5, answer: dict.FAQ_Faran_A5 },
+  ];
 
   return (
     <main className="w-full pt-20 pb-20 space-y-6">
@@ -261,6 +318,22 @@ export default async function PortfolioHighlightsPage({ params }: { params: Prom
             </div>
           </section>
         )}
+
+        {/* Social Media Section */}
+        <section className="space-y-4 container mx-auto px-4 sm:px-8 pb-12">
+            <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
+                <Share2 size={18} className="text-cyan-500" />
+                <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Social}</h2>
+            </div>
+            <div className="bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-3xl overflow-hidden">
+                <SocialDisplay customLinks={importantSocialLinks} hidePresentation={true} />
+            </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="container mx-auto px-4 sm:px-8 pb-20">
+            <FAQ title={dict.FAQ_Faran_Title} items={faranFaqs} />
+        </section>
       </div>
     </main>
   );

@@ -213,5 +213,17 @@
   "Jump_Game_Project": "Jump! Game",
   "Jump_Game_Description": "A simple platformer like Geometry Dash I made with C# and Visual Studio. My parents actually played this game too! From this project, I also learned how to use FPS and Time.deltaTime properly.",
   "Below_Below_Project": "Below Below",
-  "Below_Below_Description": "A narrative-driven mining exploration game where you are reincarnated as a mining slave. It features a hybrid of 2D exploration and 3D mining mechanics, dynamic world generation, and complex survival systems like crafting and NPC interactions. Built with Godot 4.2 and GDScript."
+  "Below_Below_Description": "A narrative-driven mining exploration game where you are reincarnated as a mining slave. It features a hybrid of 2D exploration and 3D mining mechanics, dynamic world generation, and complex survival systems like crafting and NPC interactions. Built with Godot 4.2 and GDScript.",
+  "FAQ_Faran_Title": "Preguntas frecuentes sobre Faran",
+  "FAQ_Faran_1": "Faran es un polímata que combina a la perfección sus pasiones por la escritura, la música y las matemáticas. Representó al ITB en la Final de Matemáticas ONMIPA-PT 2026 en Unair, un testimonio de su dedicación que demuestra que la excelencia se puede lograr a través de la persistencia, incluso sin una formación previa en la OSN.",
+  "FAQ_Faran_2": "Defiende un modelo de experiencia en forma de T: mantiene una profunda competencia técnica en Ingeniería de Software mientras permanece curioso y abierto de mente en las artes y las ciencias.",
+  "FAQ_Faran_3": "Faran, autoproclamado 'nerd', prospera con el aprendizaje práctico y la exploración digital. Prefiere construir y desarmar cosas en el reino digital en lugar del consumo pasivo de libros de texto.",
+  "FAQ_Faran_4": "Su misión es diseñar software de gran impacto que actúe como un puente entre la tecnología de vanguardia y el potencial ilimitado de la creatividad humana.",
+  "FAQ_Faran_5": "A Faran lo impulsa la emoción de resolver acertijos complejos. Para él, cada problema difícil es una oportunidad para innovar y superar los límites de lo posible.",
+  "FAQ_Website_Title": "Preguntas frecuentes sobre este sitio web",
+  "FAQ_Website_1": "Esta plataforma funciona con un stack de alto rendimiento: Next.js (App Router), Tailwind CSS, Framer Motion y TypeScript, lo que garantiza una experiencia de usuario moderna y segura en cuanto a tipos.",
+  "FAQ_Website_2": "La chispa para este sitio surgió de una amistad colaborativa con el presidente de STEI-K 2025, lo que inspiró a Faran a construir un hogar digital para su viaje.",
+  "FAQ_Website_3": "El rendimiento no es negociable. Este sitio está meticulosamente optimizado para SEO y mantiene unas Core Web Vitals casi perfectas para una entrega ultrarrápida.",
+  "FAQ_Website_4": "Diseñada para el mundo, esta página web admite más de 12 idiomas, rompiendo barreras para compartir la historia de Faran con una audiencia global.",
+  "FAQ_Website_5": "Tu privacidad importa. Este sitio está construido con un compromiso con la transparencia y cero seguimiento invasivo: tus datos permanecen privados, como debe ser."
 }
