@@ -60,30 +60,39 @@ export default function FadeInSection({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.6, delay: delay / 1000, ease: "easeOut" }}
-      className={`relative ${className}`}
+      className={`relative ${className} ${isPresentationMode ? 'presentation-section' : ''}`}
     >
-      {children}
-      
-      {isPresentationMode && slideIndex && (
-        <div className="absolute bottom-8 right-8 z-[100] print:hidden">
-          <button 
-            onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                cycleSlideNumberFormat();
-            }}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-600/40 backdrop-blur-md border border-blue-400/30 shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:bg-blue-600/60 transition-all duration-300 cursor-pointer group hover:scale-105"
-          >
-            <span className="text-white font-black tabular-nums tracking-tighter group-hover:text-cyan-200 transition-colors">
-              {formatNumber(slideIndex, totalSlides)}
-            </span>
-            <span className="text-white/40">/</span>
-            <span className="text-white/80 font-medium tabular-nums">
-              {formatNumber(totalSlides, totalSlides)}
-            </span>
-          </button>
+      {isPresentationMode ? (
+        <div className="relative w-full h-full flex items-center justify-center">
+          {children}
+
+          {slideIndex && (
+            <div className="absolute bottom-0 right-0 m-6 md:m-12 z-[100] print:hidden">
+              <button 
+                onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    cycleSlideNumberFormat();
+                }}
+                className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-cyan-600/30 backdrop-blur-md border border-cyan-400/30 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:bg-cyan-600/50 transition-all duration-300 cursor-pointer group hover:scale-105"
+              >
+                <span className="text-white font-black tabular-nums tracking-tighter group-hover:text-cyan-200 transition-colors">
+                  {formatNumber(slideIndex, totalSlides)}
+                </span>
+                <span className="text-white/40">/</span>
+                <span className="text-white/80 font-medium tabular-nums">
+                  {formatNumber(totalSlides, totalSlides)}
+                </span>
+              </button>
+            </div>
+          )}
         </div>
+      ) : (
+        <>
+          {children}
+        </>
       )}
     </motion.div>
   );
-}
+  }
+

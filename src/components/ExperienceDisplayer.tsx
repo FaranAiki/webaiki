@@ -256,7 +256,7 @@ export default function ExperiencesClient({
                         >
                             {/* 1. Modern (Original Side-by-Side) */}
                             {presentationLayout === 'modern' && (
-                                <div className={`${isDark ? 'text-white' : 'text-gray-900'} w-full h-full px-4 md:px-8 flex flex-col md:flex-row print:flex-row gap-4 md:gap-12 items-center justify-center mx-auto pt-16 pb-8`}>
+                                <div className={`${isDark ? 'text-white' : 'text-gray-900'} w-full h-full px-4 md:px-8 flex flex-col md:flex-row print:flex-row gap-4 md:gap-12 items-center justify-center mx-auto pt-20 pb-10`}>
                                     <div className="flex-[1.2] flex flex-col justify-center space-y-6 max-w-2xl print:max-w-none">
                                         <div className="space-y-2">
                                             <h2 className="text-gacor-smooth font-bold text-xl md:text-2xl tracking-tight">{job.year}</h2>
