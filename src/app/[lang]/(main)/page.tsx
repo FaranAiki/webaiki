@@ -83,28 +83,30 @@ export default async function HomePage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <AboutMe 
-        carouselPhotos={getFaranAikiPhoto()} 
-        faran_photo={dict.Faran_Photo}
-        about_philosophy_title={dict.Faran_Philosophy_Title} 
-        about_philosophy={dict.Faran_Philosophy}
-        about_principle_title={dict.Faran_Principle_Title} 
-        about_principle_1={dict.Faran_Principle_1}
-        about_principle_2={dict.Faran_Principle_2}
-        about_principle_3={dict.Faran_Principle_3} 
-        about_vision_mission_title={dict.Faran_Vision_Mission_Title} 
-        about_vision_mission_1={dict.Faran_Vision_Mission_1}
-        about_vision_mission_2={dict.Faran_Vision_Mission_2}
-        about_vision_mission_3={dict.Faran_Vision_Mission_3}
-        about_title={dict.About_Me} 
-        about_text_1={dict.Faran_About_1} 
-        about_text_2={dict.Faran_About_2} 
-        lang={lang}
-      />
+      <section id="about">
+        <AboutMe 
+          carouselPhotos={getFaranAikiPhoto()} 
+          faran_photo={dict.Faran_Photo}
+          about_philosophy_title={dict.Faran_Philosophy_Title} 
+          about_philosophy={dict.Faran_Philosophy}
+          about_principle_title={dict.Faran_Principle_Title} 
+          about_principle_1={dict.Faran_Principle_1}
+          about_principle_2={dict.Faran_Principle_2}
+          about_principle_3={dict.Faran_Principle_3} 
+          about_vision_mission_title={dict.Faran_Vision_Mission_Title} 
+          about_vision_mission_1={dict.Faran_Vision_Mission_1}
+          about_vision_mission_2={dict.Faran_Vision_Mission_2}
+          about_vision_mission_3={dict.Faran_Vision_Mission_3}
+          about_title={dict.About_Me} 
+          about_text_1={dict.Faran_About_1} 
+          about_text_2={dict.Faran_About_2} 
+          lang={lang}
+        />
+      </section>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-20">
-        <FAQ title={dict.FAQ_Faran_Title} items={faranFaqs} />
-        <FAQ title={dict.FAQ_Website_Title} items={websiteFaqs} />
+        <FAQ id="faq-faran" title={dict.FAQ_Faran_Title} items={faranFaqs} />
+        <FAQ id="faq-website" title={dict.FAQ_Website_Title} items={websiteFaqs} />
       </div>
     </main>
   );

@@ -176,7 +176,7 @@ export default async function PortfolioHighlightsPage({ params }: { params: Prom
   return (
     <main className="w-full pt-20 pb-20 space-y-6">
       {/* Refined Portfolio Header */}
-      <section className="container mx-auto px-4 sm:px-8">
+      <section id="about" className="container mx-auto px-4 sm:px-8">
         <PortfolioAboutHeader
           lang={lang}
           carouselPhotos={faranPhotos}
@@ -201,7 +201,7 @@ export default async function PortfolioHighlightsPage({ params }: { params: Prom
       <div className="space-y-6">
         {/* Work & Projects - High Impact Full Width */}
         {importantWork.length > 0 && (
-          <section className="space-y-2">
+          <section id="work" className="space-y-2">
             <div className="container mx-auto px-4 sm:px-8">
                 <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
                     <Briefcase size={18} className="text-cyan-500" />
@@ -222,7 +222,7 @@ export default async function PortfolioHighlightsPage({ params }: { params: Prom
         )}
 
         {importantProjects.length > 0 && (
-          <section className="space-y-2">
+          <section id="projects" className="space-y-2">
             <div className="container mx-auto px-4 sm:px-8">
                 <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
                     <Code size={18} className="text-purple-500" />
@@ -246,7 +246,7 @@ export default async function PortfolioHighlightsPage({ params }: { params: Prom
         {(importantOrg.length > 0 || importantAwards.length > 0) && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 container mx-auto px-4 sm:px-8">
             {importantOrg.length > 0 && (
-              <section className="space-y-2">
+              <section id="organizations" className="space-y-2">
                 <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
                     <Users size={18} className="text-blue-500" />
                     <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Organization}</h2>
@@ -267,7 +267,7 @@ export default async function PortfolioHighlightsPage({ params }: { params: Prom
             )}
 
             {importantAwards.length > 0 && (
-              <section className="space-y-2">
+              <section id="awards" className="space-y-2">
                 <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
                     <Trophy size={18} className="text-yellow-500" />
                     <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Award}</h2>
@@ -291,7 +291,7 @@ export default async function PortfolioHighlightsPage({ params }: { params: Prom
 
         {/* Certificates - Visual Grid */}
         {Object.keys(importantCerts).length > 0 && (
-          <section className="space-y-4">
+          <section id="certificates" className="space-y-4">
             <div className="container mx-auto px-4 sm:px-8">
                 <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
                     <FileCheck size={18} className="text-emerald-500" />
@@ -304,7 +304,7 @@ export default async function PortfolioHighlightsPage({ params }: { params: Prom
 
         {/* Highlighted Materials - Side-by-Side on Desktop */}
         {(Object.keys(importantCollege).length > 0 || Object.keys(importantLiterature).length > 0) && (
-          <section className="space-y-4 container mx-auto px-4 sm:px-8">
+          <section id="highlights" className="space-y-4 container mx-auto px-4 sm:px-8">
             <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
                 <Star size={18} className="text-rose-500" />
                 <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Important_Highlights}</h2>
@@ -320,7 +320,7 @@ export default async function PortfolioHighlightsPage({ params }: { params: Prom
         )}
 
         {/* Social Media Section */}
-        <section className="space-y-4 container mx-auto px-4 sm:px-8 pb-12">
+        <section id="social" className="space-y-4 container mx-auto px-4 sm:px-8 pb-12">
             <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
                 <Share2 size={18} className="text-cyan-500" />
                 <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Social}</h2>

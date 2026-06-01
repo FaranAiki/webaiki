@@ -10,16 +10,17 @@ interface FaqItem {
 }
 
 interface FAQProps {
+  id?: string;
   title: string;
   items: FaqItem[];
   className?: string;
 }
 
-export default function FAQ({ title, items, className = "" }: FAQProps) {
+export default function FAQ({ id, title, items, className = "" }: FAQProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <div className={`w-full max-w-4xl mx-auto ${className}`}>
+    <div id={id} className={`w-full max-w-4xl mx-auto ${className}`}>
       <div className="relative group mb-10 pb-4 border-b border-black/10 dark:border-white/10">
         <div className="flex items-center gap-4">
           <div className="p-2 text-cyan-500">
