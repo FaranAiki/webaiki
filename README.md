@@ -1,90 +1,78 @@
-# faranaiki.id | Technical Portfolio & Personal Ecosystem
+# faranaiki.id | Technical Portfolio and Personal Ecosystem
 
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.x-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
 
-## 🚀 Overview
-This is the high-performance personal ecosystem and technical portfolio of **Muhammad Faran Aiki**. Beyond a simple static site, it serves as a living demonstration of **AI-native engineering**, **system architecture**, and **comprehensive business analysis**.
+## Overview
+This is the high-performance personal ecosystem and technical portfolio of Muhammad Faran Aiki. It serves as a comprehensive demonstration of AI-native engineering, advanced system architecture, and rigorous analytical frameworks.
 
-### 🌟 Key Highlights
-- **AI-Integrated UX:** Custom Gemini-powered chat agent for interactive user inquiries.
-- **i18n Mastery:** Full support for 7+ languages (ID, EN, ZH, JA, RU, FR, AR) including RTL support.
-- **High Performance:** Optimized for Core Web Vitals with advanced image handling, shimmer effects, and ISR.
-- **Academic Hub:** Centralized repository for ITB (Bandung Institute of Technology) assignments and resources.
+### Technical Highlights
+- AI-Integrated User Experience: Custom Gemini-powered chat agent for interactive system inquiries.
+- Advanced Presentation Mode: Horizontal slide-based navigation with scroll-snap, keyboard shortcuts, and wheel-to-horizontal translation.
+- Sultan PDF Engine: Server-side high-fidelity PDF generation utilizing Puppeteer and Chromium for exact layout replication and vector-based output.
+- Internationalization: Full support for over 12 languages including RTL (Arabic) and CJK (Chinese, Japanese, Korean) formatting optimizations.
+- Responsive Background System: Site-wide sticky background architecture ensuring aesthetic consistency across all routes and layout variations.
 
 ---
 
-## 🛠 Tech Stack & Architecture
+## Technical Stack and Architecture
 
 ### Frontend
-- **Framework:** Next.js 15 (App Router)
-- **Language:** TypeScript (Strict Mode)
-- **Styling:** Tailwind CSS (Custom dynamic theme system)
-- **Animations:** Framer Motion & Custom CSS Glitch Effects
-- **Icons:** Lucide React
+- Framework: Next.js 15 (App Router architecture)
+- Language: TypeScript with strict type safety
+- Styling: Tailwind CSS featuring a custom dynamic theme system and OKLCH color space compatibility
+- Animations: Framer Motion for structural transitions and custom CSS for high-performance glitch effects
+- Icons: Lucide React
 
-### Backend & API
-- **AI Engine:** Google Gemini Pro API
-- **Data Fetching:** ISR (Incremental Static Regeneration) for YouTube & Spotify integration.
-- **Internationalization:** Synchronous dictionary loading system with cookie-based persistence.
+### Backend and API
+- AI Engine: Google Gemini Pro API integration
+- PDF Generation: Node.js serverless functions running puppeteer-core with @sparticuz/chromium
+- Data Management: Incremental Static Regeneration (ISR) for dynamic content fetching (YouTube, Spotify)
+- Middleware: Custom routing logic for locale detection and presentation mode state management
 
-### Performance Optimizations
-- **Image Handling:** Next/Image with custom base64 shimmer placeholders and LCP priority loading.
-- **Speed Index:** Delayed heavy iframe loading (Spotify/SoundCloud) to prioritize Time to Interactive (TTI).
-- **SEO:** Dynamic Metadata generation via `generateMetadata` for per-language OpenGraph/Twitter card support.
+### Quality Assurance
+- End-to-End Testing: Comprehensive Cypress suite covering all routes, internationalization states, and layout modes
+- Performance Monitoring: Optimized for Core Web Vitals with advanced image handling and shimmer placeholders
+- Static Analysis: Strict ESLint configuration and TypeScript compilation checks
 
 ---
 
-## 📊 Business Analysis Frameworks
+## Business Analysis Frameworks
 
-This project implements professional BA standards to ensure maximum stakeholder value.
+The project incorporates professional Business Analysis standards to demonstrate system-level thinking and stakeholder alignment.
 
 ### Business Analysis Core Concept Model (BACCM)
 | Core Concept | Description | Project Application |
 | :--- | :--- | :--- |
-| **Context** | Tech landscape in 2025/2026. | Differentiating AI implementation and analytical rigour from "raw coding". |
-| **Need** | High-signal proof of skill. | Bypassing automated filters with direct proof of system thinking. |
-| **Stakeholder** | Recruiters, Tech Leads, Users. | Providing reduced time-to-hire and high-utility educational content. |
-| **Solution** | Next.js Platform. | Features Gemini-integrated UI and documented BA frameworks (Kano, BACCM). |
-| **Value** | Increased conversion. | Hub for all professional/creative IP and brand ownership. |
-
-### Kano Method Analysis
-- **Must-Have:** Basic Portfolio, SEO Searching.
-- **Performance:** Speed Optimization, Core Web Vitals.
-- **Attractive:** Gemini Chatbot, Multi-language support, Glitch UI, Interactive CLI.
+| **Context** | Modern technology landscape (2025/2026) | Differentiating AI implementation and analytical rigour from standard development |
+| **Need** | Verified proof of technical expertise | Bypassing automated recruitment filters with direct proof of system-wide thinking |
+| **Stakeholder** | Recruiters, Technical Leads, Collaborators | Minimizing time-to-hire through immediate access to educational and professional assets |
+| **Solution** | Next.js Ecosystem | Features Gemini-integrated UI and documented BA frameworks (Kano, BACCM) |
+| **Value** | Increased professional conversion | Centralized hub for intellectual property and personal brand ownership |
 
 ---
 
-## 🏗 Key Projects Featured
+## Key Feature Implementations
 
-### [ALTH: Aku Lupa Tandai Hadir](https://faranaiki.id/project)
-An innovative attendance reminder for ITB students.
-- **Stack:** Flutter, Dart, Burp Suite (Reverse Engineering).
-- **Function:** Automates SIX portal signal processing via Microsoft SSO authentication.
+### Presentation Mode Logic
+A custom context-driven system that transforms the standard vertical portfolio into a horizontal presentation. Includes:
+- Scroll Interception: Translating vertical wheel input into horizontal movement
+- Slide Numbering: Dynamic numbering supporting Decimal, Hexadecimal, and Binary formats
+- Format Cycling: Interactive numbering UI allowing users to switch between numeric bases on the fly
 
-### [Alkyl Compiler](https://github.com/FaranAiki/alkyl)
-A custom programming language and compiler.
-- **Stack:** LLVM-IR, C.
-- **Goal:** Creating a language optimized for both AI generation and human readability.
-
----
-
-## 🔗 Connect with Me
-- **X/Twitter:** [@FaranAiki](https://x.com/FaranAiki)
-- **LinkedIn:** [Muhammad Faran Aiki](https://www.linkedin.com/in/muhammad-faran-aiki-8a6305343/)
-- **Website:** [faranaiki.id](https://faranaiki.id)
+### Sultan PDF Generator
+A high-fidelity export tool designed to bypass standard browser print limitations:
+- Server-side Rendering: Ensures consistent output regardless of user browser or OS
+- State Injection: Forces the application into a specialized print state via localStorage injection before capture
+- Asset Preloading: Robust image and font detection to ensure zero layout shift during generation
 
 ---
 
-## 📝 The Usage of This Project
-I made this page to share my **LIFE**. While most might not care, I value the documentation of progress.
-- **College:** Sharing assignments so others can learn.
-- **Portfolio:** Showcasing technical milestones.
-- **Hobby:** Exploring the intersection of design and logic.
-
-### 💡 Motivation
-Inspired by the leadership of SEEI-C 2025, ITB. This project taught me the depth of Next.js, the potential of AI integration, and the importance of rigorous system standards.
+## Connection Information
+- LinkedIn: [Muhammad Faran Aiki](https://www.linkedin.com/in/muhammad-faran-aiki-8a6305343/)
+- GitHub: [FaranAiki](https://github.com/FaranAiki)
+- Portfolio Website: [faranaiki.id](https://faranaiki.id)
 
 ---
-*Created with passion (and AI assistance) by Faran Aiki.*
+*Developed by Muhammad Faran Aiki with advanced AI orchestration.*

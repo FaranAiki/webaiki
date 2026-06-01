@@ -97,57 +97,87 @@ export async function POST(req: NextRequest) {
       const theme = t as string;
       const receivedSlideFormat = f as string;
       const settings = s as SultanRequest['settings'];
-      localStorage.setItem('presentation_mode', 'true');
-      localStorage.setItem('theme', theme);
+      
+      // Force early state
+      window.localStorage.setItem('presentation_mode', 'true');
+      window.localStorage.setItem('theme', theme);
       if (receivedSlideFormat) {
-        localStorage.setItem('presentation_slide_format', receivedSlideFormat);
+        window.localStorage.setItem('presentation_slide_format', receivedSlideFormat);
       }
       if (settings) {
-        localStorage.setItem('settings-scale', settings.textScale.toString());
-        localStorage.setItem('settings-font', settings.font);
-        localStorage.setItem('settings-lineheight', settings.lineHeight.toString());
-        localStorage.setItem('settings-spacing', settings.letterSpacing.toString());
-        localStorage.setItem('settings-align', settings.textAlign);
+        window.localStorage.setItem('settings-scale', settings.textScale.toString());
+        window.localStorage.setItem('settings-font', settings.font);
+        window.localStorage.setItem('settings-lineheight', settings.lineHeight.toString());
+        window.localStorage.setItem('settings-spacing', settings.letterSpacing.toString());
+        window.localStorage.setItem('settings-align', settings.textAlign);
       }
+      
+      // Disable smooth scrolling which can mess with screenshots/PDFs
+      const style = document.createElement('style');
+      style.textContent = '* { scroll-behavior: auto !important; transition: none !important; animation: none !important; }';
+      document.head.appendChild(style);
     }, theme, slideFormat, settings);
 
-    // 2. Exact Navigation - wait for EVERYTHING
-    await page.goto(url, { waitUntil: 'networkidle0', timeout: 45000 });
+    // 2. Exact Navigation - Optimized for speed and reliability
+    // We wait for 'load' instead of 'networkidle0' which can hang on analytics/background scripts
+    console.log(`Navigating to: ${url}`);
+    await page.goto(url, { waitUntil: 'load', timeout: 60000 });
     
-    // 3. Final Layout Force
+    // Additional wait for main content to be present
+    try {
+      await page.waitForSelector('main', { timeout: 10000 });
+    } catch {
+      console.warn("Main selector not found within 10s, continuing anyway...");
+    }
+
+    // 3. Final Layout Force - Crucial for Puppeteer to see the right dimensions
     await page.evaluate((t: unknown) => {
       const theme = t as string;
       document.documentElement.classList.add(theme, 'is-printing-sultan');
       document.body.classList.add('presentation-mode');
       
+      // Force all presentation sections to be visible and correctly sized
+      const main = document.querySelector('main');
+      if (main) {
+        main.style.display = 'block';
+        main.style.height = 'auto';
+        main.style.overflow = 'visible';
+      }
+
       const style = document.createElement('style');
       style.textContent = `
-        * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
-        .fixed, header, nav, footer, .no-print, .presentation-switcher { display: none !important; }
-        body.presentation-mode main { display: block !important; height: auto !important; }
-        .presentation-section { display: flex !important; height: 100vh !important; opacity: 1 !important; visibility: visible !important; }
+        @page { size: A4 landscape; margin: 0; }
+        * { transition: none !important; animation: none !important; }
+        .fixed, header, nav, footer, .no-print, .presentation-switcher, #ask-me-popup-container { display: none !important; }
+        body.presentation-mode main { display: block !important; height: auto !important; width: 100% !important; overflow: visible !important; }
+        .presentation-section { display: flex !important; height: 100vh !important; width: 100% !important; opacity: 1 !important; visibility: visible !important; break-after: page; }
+        .presentation-container { display: block !important; height: auto !important; width: 100% !important; }
         img { opacity: 1 !important; visibility: visible !important; display: block !important; }
       `;
       document.head.appendChild(style);
     }, theme);
 
-    // 4. Robust Image Wait
+    // 4. Robust Image & Content Wait
     await page.evaluate(async () => {
+      // Wait for all images
       const imgs = Array.from(document.querySelectorAll('img'));
       await Promise.all(imgs.map(img => {
         if (img.complete) return Promise.resolve();
         return new Promise(resolve => { img.onload = resolve; img.onerror = resolve; });
       }));
-      await new Promise(r => setTimeout(r, 1000)); // Final stability buffer
+
+      // Final buffer to let React finish any last-second renders
+      await new Promise(r => setTimeout(r, 2000));
     });
 
+    // 5. Generate PDF
     const pdfBuffer = await page.pdf({
       format: 'A4',
       landscape: true,
       printBackground: true,
-      scale: 1, // Exact scale
+      scale: 1, 
       margin: { top: '0', right: '0', bottom: '0', left: '0' },
-      timeout: 30000
+      timeout: 60000
     });
 
     await browser.close();
