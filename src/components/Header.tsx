@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { setCookies } from '@/app/actions';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Inter } from "next/font/google";
 import ThemeToggle from '@/components/ThemeToggle'; 
 import { useTheme } from 'next-themes';
@@ -124,6 +124,7 @@ export default function Header(props: HeaderProps) {
     const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [shouldShowHeader, setShouldShowHeader] = useState(true);
     const lastYPosRef = useRef(0);
+    const tickingRef = useRef(false);
 
     const { resolvedTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
@@ -157,28 +158,38 @@ export default function Header(props: HeaderProps) {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    useEffect(() => {
-        function handleScroll() {
-            const currentYPos = window.scrollY;
-            // Add a small threshold (e.g. 5px) to avoid micro-scroll triggers
-            if (Math.abs(currentYPos - lastYPosRef.current) < 5) return;
-
-            const isScrollingUp = currentYPos < lastYPosRef.current;
-            const nextShouldShow = isScrollingUp || currentYPos < 10;
-            
-            if (nextShouldShow !== shouldShowHeader) {
-                setShouldShowHeader(nextShouldShow);
-            }
-            lastYPosRef.current = currentYPos;
+    const updateHeaderVisibility = useCallback(() => {
+        const currentYPos = window.scrollY;
+        if (Math.abs(currentYPos - lastYPosRef.current) < 10) {
+            tickingRef.current = false;
+            return;
         }
 
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        return () => window.removeEventListener('scroll', handleScroll);
+        const isScrollingUp = currentYPos < lastYPosRef.current;
+        const nextShouldShow = isScrollingUp || currentYPos < 50;
+        
+        if (nextShouldShow !== shouldShowHeader) {
+            setShouldShowHeader(nextShouldShow);
+        }
+        lastYPosRef.current = currentYPos;
+        tickingRef.current = false;
     }, [shouldShowHeader]);
+
+    useEffect(() => {
+        const onScroll = () => {
+            if (!tickingRef.current) {
+                window.requestAnimationFrame(updateHeaderVisibility);
+                tickingRef.current = true;
+            }
+        };
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => window.removeEventListener('scroll', onScroll);
+    }, [updateHeaderVisibility]);
 
     const isDark = mounted && resolvedTheme === 'dark';
 
-    // Dynamic Classes
+    // Dynamic Classes - Reduce backdrop-blur on mobile for performance
     const headerBg = isDark ? 'bg-gray-900/90 border-gray-700' : 'bg-white/90 border-gray-200';
     const mobileMenuBg = isDark ? 'bg-gray-900/95' : 'bg-slate-50/95';
     const textColor = isDark ? 'text-gray-300' : 'text-gray-700';
@@ -280,7 +291,7 @@ export default function Header(props: HeaderProps) {
             <header
                 className={`
                     w-full fixed top-0 left-0 right-0 z-40 
-                    ${headerBg} backdrop-blur-md 
+                    ${headerBg} md:backdrop-blur-md 
                     border-b shadow-sm
                     transition-transform duration-300 ease-in-out
                     ${shouldShowHeader ? 'translate-y-0' : '-translate-y-full'}
@@ -483,7 +494,7 @@ export default function Header(props: HeaderProps) {
             </header>
 
             {/* --- Mobile Sidebar Navigation --- */}
-            <div className={`no-scrollbar fixed top-0 right-0 h-full w-[80%] max-w-sm ${mobileMenuBg} backdrop-blur-xl shadow-2xl z-[60] transform transition-transform duration-300 ease-out ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} md:hidden overflow-y-auto`}>
+            <div className={`no-scrollbar fixed top-0 right-0 h-full w-[80%] max-w-sm ${mobileMenuBg} md:backdrop-blur-xl shadow-2xl z-[60] transform transition-transform duration-300 ease-out ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} md:hidden overflow-y-auto`}>
                 <div className="absolute top-4 right-4 z-[70]">
                     <button
                         onClick={() => setMobileMenuOpen(false)}

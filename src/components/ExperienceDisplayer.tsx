@@ -107,8 +107,8 @@ const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, j
                 initial={false}
                 animate={{ opacity: isExpanded ? 1 : 0, y: isExpanded ? 0 : 20 }}
                 transition={{ duration: 0.4, ease: "circOut" }}
-                className={`absolute inset-0 z-10 p-6 flex flex-col justify-center backdrop-blur-md 
-                    ${isDark ? 'bg-black/60' : 'bg-white/80'} 
+                className={`absolute inset-0 z-10 p-6 flex flex-col justify-center md:backdrop-blur-md 
+                    ${isDark ? 'bg-black/80' : 'bg-white/90'} 
                     ${isExpanded ? 'pointer-events-auto' : 'pointer-events-none'}`}
             >
                 <div className="overflow-y-auto max-h-full pr-2 custom-scrollbar">

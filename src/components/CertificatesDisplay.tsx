@@ -50,12 +50,13 @@ const BentoCertificateCard = ({
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             onClick={() => setIsExpanded(!isExpanded)}
-            className={`${spanClass} relative rounded-3xl overflow-hidden group border ${borderColor} ${cardBg} shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer h-full`}
+            className={`${spanClass} relative rounded-3xl overflow-hidden group border ${borderColor} ${cardBg} shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer h-full transform-gpu`}
         >
             <div className="absolute inset-0">
                 {filePath.endsWith('.pdf') ? (
                     <div className={`w-full h-full transition-all duration-700 ${isExpanded ? 'scale-110 blur-sm brightness-[0.3]' : 'opacity-60 group-hover:opacity-100'}`}>
-                        <PdfPreview fileUrl={filePath} />
+                        {/* Only render PDF in grid if it's visible, and priority true if expanded */}
+                        <PdfPreview fileUrl={filePath} priority={isExpanded} />
                     </div>
                 ) : (
                     <Image 
@@ -63,6 +64,7 @@ const BentoCertificateCard = ({
                         alt={fileName} 
                         fill 
                         className={`object-cover transition-all duration-700 ${isExpanded ? 'scale-110 blur-sm brightness-[0.3]' : 'opacity-60 group-hover:opacity-100'}`} 
+                        sizes="(max-width: 768px) 50vw, 33vw"
                     />
                 )}
             </div>
@@ -78,7 +80,7 @@ const BentoCertificateCard = ({
                 initial={false}
                 animate={{ opacity: isExpanded ? 1 : 0, y: isExpanded ? 0 : 20 }}
                 transition={{ duration: 0.4, ease: "circOut" }}
-                className={`absolute inset-0 z-10 p-6 flex flex-col justify-center backdrop-blur-md ${isDark ? 'bg-black/60' : 'bg-white/80'} ${isExpanded ? 'pointer-events-auto' : 'pointer-events-none'}`}
+                className={`absolute inset-0 z-10 p-6 flex flex-col justify-center backdrop-blur-md md:backdrop-blur-xl ${isDark ? 'bg-black/60' : 'bg-white/80'} ${isExpanded ? 'pointer-events-auto' : 'pointer-events-none'}`}
             >
                 <div className="overflow-y-auto max-h-full flex flex-col items-center justify-center text-center">
                     <p className="text-gacor-smooth text-xs font-bold mb-2 tracking-widest">{year}</p>
@@ -250,7 +252,7 @@ export default function CertificatesDisplay({
                     >
                       {filePath.endsWith('.pdf') ? (
                         <div className="w-full h-full flex justify-center items-center overflow-hidden">
-                          <PdfPreview fileUrl={filePath} width={350} />
+                          <PdfPreview fileUrl={filePath} width={350} priority={true} />
                         </div>
                       ) : (
                         <Image
@@ -274,250 +276,248 @@ export default function CertificatesDisplay({
       ))}
 
       {/* Normal Mode */}
-      {!isPresentationMode && (
-        <div className="block w-full max-w-5xl mx-auto p-4 space-y-6 pt-8">
-          {hasCertificates && (
-            <LayoutSwitcher
-                currentLayout={currentLayout}
-                setCurrentLayout={setCurrentLayout}
-                isDark={isDark}
-                canChange={true}
-                options={[
-                    { id: 'original', icon: <LayoutPanelLeft size={18} />, label: original_text },
-                    { id: 'timeline', icon: <Milestone size={18} />, label: timeline_text },
-                    { id: 'grid', icon: <LayoutGrid size={18} />, label: grid_text },
-                    { id: 'bento', icon: <Grid2X2 size={18} />, label: bento_text }
-                ]}
-            />
-          )}
+      <div className="block w-full max-w-5xl mx-auto p-4 space-y-6 pt-8">
+        {hasCertificates && (
+          <LayoutSwitcher
+              currentLayout={currentLayout}
+              setCurrentLayout={setCurrentLayout}
+              isDark={isDark}
+              canChange={true}
+              options={[
+                  { id: 'original', icon: <LayoutPanelLeft size={18} />, label: original_text },
+                  { id: 'timeline', icon: <Milestone size={18} />, label: timeline_text },
+                  { id: 'grid', icon: <LayoutGrid size={18} />, label: grid_text },
+                  { id: 'bento', icon: <Grid2X2 size={18} />, label: bento_text }
+              ]}
+          />
+        )}
 
-          {currentLayout === 'original' && (
-              <div className="space-y-6">
-                {Object.entries(certificates).map(([category, yearsData]) => {
-                  const isOpen = openCategories.includes(category);
-                  const activeYear = selectedYears[category] || (categoryYears[category][0] || 'All');
+        {currentLayout === 'original' && (
+            <div className="space-y-6">
+              {Object.entries(certificates).map(([category, yearsData]) => {
+                const isOpen = openCategories.includes(category);
+                const activeYear = selectedYears[category] || (categoryYears[category][0] || 'All');
 
-                  const filteredFiles = (() => {
-                    if (activeYear === 'All') {
-                      return Object.values(yearsData).reduce(
-                        (acc, files) => ({ ...acc, ...files }),
-                        {}
-                      );
-                    }
-                    return yearsData[activeYear] || {};
-                  })();
+                const filteredFiles = (() => {
+                  if (activeYear === 'All') {
+                    return Object.values(yearsData).reduce(
+                      (acc, files) => ({ ...acc, ...files }),
+                      {}
+                    );
+                  }
+                  return yearsData[activeYear] || {};
+                })();
 
-                  return (
-                    <div key={category} className={`border-b ${borderColor} pb-4`}>
-                      {/* Category Title FadeIn */}
-                      <FadeInSection delay={50}>
-                          <button
-                          onClick={() => handleCategoryClick(category)}
-                          className={`w-full text-left text-2xl font-bold text-gacor-smooth hover:scale-102 transition-[transform,colors]`}
-                          >
-                          {formatCJK(category, lang)}
-                          </button>
-                      </FadeInSection>
+                return (
+                  <div key={category} className={`border-b ${borderColor} pb-4`}>
+                    {/* Category Title FadeIn */}
+                    <FadeInSection delay={50}>
+                        <button
+                        onClick={() => handleCategoryClick(category)}
+                        className={`w-full text-left text-2xl font-bold text-gacor-smooth hover:scale-102 transition-[transform,colors]`}
+                        >
+                        {formatCJK(category, lang)}
+                        </button>
+                    </FadeInSection>
 
-                      <div
-                      className={`transition-[transform] duration-250 animate-fade-in ease-in-out overflow-hidden ${
-                          isOpen ? 'max-h-[10000px] mt-4' : 'max-h-0'
-                      }`}
-                      >
-                      {/* Year Selection FadeIn */}
-                      <FadeInSection delay={50}>
-                          <div className="flex flex-wrap gap-2 mb-6">
-                              <button
-                              onClick={() => handleYearClick(category, 'All')}
-                              className={`px-3 py-1 text-sm rounded-full ${
-                                  activeYear === 'All'
-                                  ? 'bg-cyan-500 text-white transition-[colors,transform] hover:scale-105'
-                                  : `${buttonInactiveBg} ${buttonInactiveText}`
-                              }`}
-                              >
-                              {allTranslation}
-                              </button>
-                              {categoryYears[category].map((year) => (
-                              <button
-                                  key={year}
-                                  onClick={() => handleYearClick(category, year)}
-                                  className={`px-3 py-1 text-sm rounded-full ${
-                                  activeYear === year
-                                      ? 'bg-cyan-500 text-white'
-                                      : `${buttonInactiveBg} ${buttonInactiveText} transition-[transform,colors] hover:scale-105`
-                                  }`}
-                              >
-                                  {year}
-                              </button>
-                              ))}
-                          </div>
-                      </FadeInSection>
+                    <div
+                    className={`transition-[transform] duration-250 animate-fade-in ease-in-out overflow-hidden ${
+                        isOpen ? 'max-h-[10000px] mt-4' : 'max-h-0'
+                    }`}
+                    >
+                    {/* Year Selection FadeIn */}
+                    <FadeInSection delay={50}>
+                        <div className="flex flex-wrap gap-2 mb-6">
+                            <button
+                            onClick={() => handleYearClick(category, 'All')}
+                            className={`px-3 py-1 text-sm rounded-full ${
+                                activeYear === 'All'
+                                ? 'bg-cyan-500 text-white transition-[colors,transform] hover:scale-105'
+                                : `${buttonInactiveBg} ${buttonInactiveText}`
+                            }`}
+                            >
+                            {allTranslation}
+                            </button>
+                            {categoryYears[category].map((year) => (
+                            <button
+                                key={year}
+                                onClick={() => handleYearClick(category, year)}
+                                className={`px-3 py-1 text-sm rounded-full ${
+                                activeYear === year
+                                    ? 'bg-cyan-500 text-white'
+                                    : `${buttonInactiveBg} ${buttonInactiveText} transition-[transform,colors] hover:scale-105`
+                                }`}
+                            >
+                                {year}
+                            </button>
+                            ))}
+                        </div>
+                    </FadeInSection>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                          {Object.entries(filteredFiles).map(([fileName, fileData]) => {
-                          const filePath = getPath(fileData);
-                          return (
-                          <PopRotateSection delay={50} key={fileName} className="h-full">
-                              <div
-                                  className={`${cardBg} rounded-lg overflow-hidden shadow-lg transition-[colors,transform,opacity] hover:scale-105 hover:opacity-100 opacity-90 h-full flex flex-col transform-gpu`}
-                                  style={{ boxShadow: isDark ? 'inset 0 0 0 1px rgba(255,255,255,0.1)' : 'inset 0 0 0 1px rgba(0,0,0,0.1)' }}
-                              >
-                                  <a
-                                  href={filePath}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="block h-48 w-full relative"
-                                  >
-                                  {filePath.endsWith('.pdf') ? (
-                                      <div className="w-full h-full overflow-hidden">
-                                          <PdfPreview fileUrl={filePath} />
-                                      </div>
-                                  ) : (
-                                      <Image
-                                      src={filePath}
-                                      alt={fileName}
-                                      fill
-                                      className="object-cover scale-[1.01]"
-                                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                      />
-                                  )}
-                                  </a>
-                                  <div className="p-4 flex-grow">
-                                  <h3 className={`font-semibold ${titleColor} truncate hover-gacor`}>
-                                      {formatCJK(fileName, lang)}
-                                  </h3>
-                                  </div>
-                              </div>
-                          </PopRotateSection>
-                          );})}
-                      </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-          )}
-
-          {currentLayout === 'timeline' && (
-              <div className="relative border-l-2 border-cyan-500/30 ml-4 md:ml-8 space-y-12">
-                  {Object.entries(certificates).flatMap(([category, yearsData]) => 
-                    Object.entries(yearsData).map(([year, files]) => ({ category, year, files }))
-                  ).sort((a, b) => b.year.localeCompare(a.year)).map((item) => (
-                      <div key={`${item.category}-${item.year}`} className="relative pl-8">
-                          <div className="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-cyan-500 border-4 border-white dark:border-gray-900 shadow-sm" />
-                          <div className="flex flex-wrap items-baseline gap-x-4 mb-6">
-                              <h2 className={`text-3xl font-black text-gacor-smooth`}>{item.year}</h2>
-                              <h3 className={`text-xl font-bold text-gacor-smooth opacity-70`}>{formatCJK(item.category, lang)}</h3>
-                          </div>
-                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                              {Object.entries(item.files).map(([fileName, fileData]) => {
-                                  const filePath = getPath(fileData);
-                                  return (
-                                  <motion.div
-                                      key={fileName}
-                                      initial={{ opacity: 0, x: 20 }}
-                                      whileInView={{ opacity: 1, x: 0 }}
-                                      viewport={{ once: true }}
-                                      className={`${cardBg} overflow-hidden rounded-xl border ${borderColor} flex flex-col shadow-md group transform-gpu`}
-                                  >
-                                      <a href={filePath} target="_blank" rel="noopener noreferrer" className="relative aspect-video w-full overflow-hidden">
-                                          {filePath.endsWith('.pdf') ? (
-                                              <div className="w-full h-full">
-                                                  <PdfPreview fileUrl={filePath} />
-                                              </div>
-                                          ) : (
-                                              <Image src={filePath} alt={fileName} fill className="object-cover transition-transform group-hover:scale-105" />
-                                          )}
-                                      </a>
-                                      <div className="p-3">
-                                          <h4 className={`font-bold ${titleColor} hover-gacor line-clamp-1 text-sm`}>{formatCJK(fileName, lang)}</h4>
-                                      </div>
-                                  </motion.div>
-                              );})}
-                          </div>
-                      </div>
-                  ))}
-              </div>
-          )}
-
-          {currentLayout === 'grid' && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                  {Object.entries(certificates).flatMap(([category, yearsData]) => 
-                    Object.entries(yearsData).flatMap(([year, files]) => 
-                        Object.entries(files).map(([fileName, fileData]) => ({ category, year, fileName, fileData }))
-                    )
-                  ).map((item) => {
-                      const filePath = getPath(item.fileData);
-                      return (
-                      <motion.div
-                          key={`${item.category}-${item.year}-${item.fileName}`}
-                          initial={{ opacity: 0, scale: 0.9 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          viewport={{ once: true }}
-                          whileHover={{ y: -5 }}
-                          className={`${cardBg} rounded-2xl overflow-hidden border ${borderColor} shadow-md group transform-gpu`}
-                      >
-                          <a href={filePath} target="_blank" rel="noopener noreferrer" className="block relative aspect-video">
-                            {filePath.endsWith('.pdf') ? (
-                                <div className="w-full h-full overflow-hidden">
-                                    <PdfPreview fileUrl={filePath} />
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                        {Object.entries(filteredFiles).map(([fileName, fileData]) => {
+                        const filePath = getPath(fileData);
+                        return (
+                        <PopRotateSection delay={50} key={fileName} className="h-full">
+                            <div
+                                className={`${cardBg} rounded-lg overflow-hidden shadow-lg transition-[colors,transform,opacity] hover:scale-105 hover:opacity-100 opacity-90 h-full flex flex-col transform-gpu`}
+                                style={{ boxShadow: isDark ? 'inset 0 0 0 1px rgba(255,255,255,0.1)' : 'inset 0 0 0 1px rgba(0,0,0,0.1)' }}
+                            >
+                                <a
+                                href={filePath}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block h-48 w-full relative"
+                                >
+                                {filePath.endsWith('.pdf') ? (
+                                    <div className="w-full h-full overflow-hidden">
+                                        <PdfPreview fileUrl={filePath} />
+                                    </div>
+                                ) : (
+                                    <Image
+                                    src={filePath}
+                                    alt={fileName}
+                                    fill
+                                    className="object-cover scale-[1.01]"
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                    />
+                                )}
+                                </a>
+                                <div className="p-4 flex-grow">
+                                <h3 className={`font-semibold ${titleColor} truncate hover-gacor`}>
+                                    {formatCJK(fileName, lang)}
+                                </h3>
                                 </div>
-                            ) : (
-                                <Image src={filePath} alt={item.fileName} fill className="object-cover" />
-                            )}
-                          </a>
-                          <div className="p-4">
-                              <div className="flex justify-between items-start mb-1">
-                                  <span className="text-[10px] font-bold text-gacor-smooth tracking-tighter">{formatCJK(item.category, lang)}</span>
-                                  <span className={`text-[10px] font-mono ${titleColor} opacity-50`}>{item.year}</span>
-                              </div>
-                              <h3 className={`text-sm font-bold ${titleColor} hover-gacor line-clamp-1`}>{formatCJK(item.fileName, lang)}</h3>
-                          </div>
-                      </motion.div>
-                  );})}
-              </div>
-          )}
+                            </div>
+                        </PopRotateSection>
+                        );})}
+                    </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+        )}
 
-          {currentLayout === 'bento' && (
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[250px]">
-                  {Object.entries(certificates).flatMap(([category, yearsData]) => 
-                    Object.entries(yearsData).flatMap(([year, files]) => 
-                        Object.entries(files).map(([fileName, fileData]) => ({ category, year, fileName, fileData }))
-                    )
-                  ).map((item, idx) => {
-                      const spans = [
-                          "md:col-span-2 md:row-span-2",
-                          "md:col-span-2 md:row-span-1",
-                          "md:col-span-1 md:row-span-1",
-                          "md:col-span-1 md:row-span-1",
-                          "md:col-span-1 md:row-span-1",
-                          "md:col-span-3 md:row-span-1",
-                          "md:col-span-2 md:row-span-1",
-                          "md:col-span-2 md:row-span-2",
-                      ];
-                      const spanClass = spans[idx % spans.length];
-                      const filePath = getPath(item.fileData);
-                      return (
-                          <BentoCertificateCard 
-                              key={`${item.category}-${item.year}-${item.fileName}`}
-                              fileName={item.fileName}
-                              filePath={filePath}
-                              category={item.category}
-                              year={item.year}
-                              borderColor={borderColor}
-                              cardBg={cardBg}
-                              isDark={isDark}
-                              lang={lang}
-                              titleColor={titleColor}
-                              click_to_close_text={click_to_close_text}
-                              spanClass={spanClass}
-                          />
-                      );
-                  })}
-              </div>
-          )}
-        </div>
-      )}
+        {currentLayout === 'timeline' && (
+            <div className="relative border-l-2 border-cyan-500/30 ml-4 md:ml-8 space-y-12">
+                {Object.entries(certificates).flatMap(([category, yearsData]) => 
+                  Object.entries(yearsData).map(([year, files]) => ({ category, year, files }))
+                ).sort((a, b) => b.year.localeCompare(a.year)).map((item) => (
+                    <div key={`${item.category}-${item.year}`} className="relative pl-8">
+                        <div className="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-cyan-500 border-4 border-white dark:border-gray-900 shadow-sm" />
+                        <div className="flex flex-wrap items-baseline gap-x-4 mb-6">
+                            <h2 className={`text-3xl font-black text-gacor-smooth`}>{item.year}</h2>
+                            <h3 className={`text-xl font-bold text-gacor-smooth opacity-70`}>{formatCJK(item.category, lang)}</h3>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {Object.entries(item.files).map(([fileName, fileData]) => {
+                                const filePath = getPath(fileData);
+                                return (
+                                <motion.div
+                                    key={fileName}
+                                    initial={{ opacity: 0, x: 20 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    className={`${cardBg} overflow-hidden rounded-xl border ${borderColor} flex flex-col shadow-md group transform-gpu`}
+                                >
+                                    <a href={filePath} target="_blank" rel="noopener noreferrer" className="relative aspect-video w-full overflow-hidden">
+                                        {filePath.endsWith('.pdf') ? (
+                                            <div className="w-full h-full">
+                                                <PdfPreview fileUrl={filePath} />
+                                            </div>
+                                        ) : (
+                                            <Image src={filePath} alt={fileName} fill className="object-cover transition-transform group-hover:scale-105" sizes="(max-width: 768px) 100vw, 33vw" />
+                                        )}
+                                    </a>
+                                    <div className="p-3">
+                                        <h4 className={`font-bold ${titleColor} hover-gacor line-clamp-1 text-sm`}>{formatCJK(fileName, lang)}</h4>
+                                    </div>
+                                </motion.div>
+                            );})}
+                        </div>
+                    </div>
+                ))}
+            </div>
+        )}
+
+        {currentLayout === 'grid' && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {Object.entries(certificates).flatMap(([category, yearsData]) => 
+                  Object.entries(yearsData).flatMap(([year, files]) => 
+                      Object.entries(files).map(([fileName, fileData]) => ({ category, year, fileName, fileData }))
+                  )
+                ).map((item) => {
+                    const filePath = getPath(item.fileData);
+                    return (
+                    <motion.div
+                        key={`${item.category}-${item.year}-${item.fileName}`}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        whileHover={{ y: -5 }}
+                        className={`${cardBg} rounded-2xl overflow-hidden border ${borderColor} shadow-md group transform-gpu`}
+                    >
+                        <a href={filePath} target="_blank" rel="noopener noreferrer" className="block relative aspect-video">
+                          {filePath.endsWith('.pdf') ? (
+                              <div className="w-full h-full overflow-hidden">
+                                  <PdfPreview fileUrl={filePath} />
+                              </div>
+                          ) : (
+                              <Image src={filePath} alt={item.fileName} fill className="object-cover" sizes="(max-width: 768px) 100vw, 25vw" />
+                          )}
+                        </a>
+                        <div className="p-4">
+                            <div className="flex justify-between items-start mb-1">
+                                <span className="text-[10px] font-bold text-gacor-smooth tracking-tighter">{formatCJK(item.category, lang)}</span>
+                                <span className={`text-[10px] font-mono ${titleColor} opacity-50`}>{item.year}</span>
+                            </div>
+                            <h3 className={`text-sm font-bold ${titleColor} hover-gacor line-clamp-1`}>{formatCJK(item.fileName, lang)}</h3>
+                        </div>
+                    </motion.div>
+                );})}
+            </div>
+        )}
+
+        {currentLayout === 'bento' && (
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[250px]">
+                {Object.entries(certificates).flatMap(([category, yearsData]) => 
+                  Object.entries(yearsData).flatMap(([year, files]) => 
+                      Object.entries(files).map(([fileName, fileData]) => ({ category, year, fileName, fileData }))
+                  )
+                ).map((item, idx) => {
+                    const spans = [
+                        "md:col-span-2 md:row-span-2",
+                        "md:col-span-2 md:row-span-1",
+                        "md:col-span-1 md:row-span-1",
+                        "md:col-span-1 md:row-span-1",
+                        "md:col-span-1 md:row-span-1",
+                        "md:col-span-3 md:row-span-1",
+                        "md:col-span-2 md:row-span-1",
+                        "md:col-span-2 md:row-span-2",
+                    ];
+                    const spanClass = spans[idx % spans.length];
+                    const filePath = getPath(item.fileData);
+                    return (
+                        <BentoCertificateCard 
+                            key={`${item.category}-${item.year}-${item.fileName}`}
+                            fileName={item.fileName}
+                            filePath={filePath}
+                            category={item.category}
+                            year={item.year}
+                            borderColor={borderColor}
+                            cardBg={cardBg}
+                            isDark={isDark}
+                            lang={lang}
+                            titleColor={titleColor}
+                            click_to_close_text={click_to_close_text}
+                            spanClass={spanClass}
+                        />
+                    );
+                })}
+            </div>
+        )}
+      </div>
     </div>
   );
 }
