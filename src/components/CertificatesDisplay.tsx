@@ -69,7 +69,7 @@ const BentoCertificateCard = ({
             
             {/* Base Content */}
             <div className={`absolute inset-0 p-6 flex flex-col justify-end transition-opacity duration-500 bg-gradient-to-t ${isDark ? 'from-black/80' : 'from-white/90'} via-transparent to-transparent ${isExpanded ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-                <p className="text-gacor-smooth text-[10px] font-bold mb-1 uppercase tracking-widest">{year} • {formatCJK(category, lang)}</p>
+                <p className="text-gacor-smooth text-[10px] font-bold mb-1 tracking-widest">{year} • {formatCJK(category, lang)}</p>
                 <h3 className={`text-sm font-black leading-tight ${titleColor} hover-gacor`}>{formatCJK(fileName, lang)}</h3>
             </div>
 
@@ -81,7 +81,7 @@ const BentoCertificateCard = ({
                 className={`absolute inset-0 z-10 p-6 flex flex-col justify-center backdrop-blur-md ${isDark ? 'bg-black/60' : 'bg-white/80'} ${isExpanded ? 'pointer-events-auto' : 'pointer-events-none'}`}
             >
                 <div className="overflow-y-auto max-h-full flex flex-col items-center justify-center text-center">
-                    <p className="text-gacor-smooth text-xs font-bold mb-2 uppercase tracking-widest">{year}</p>
+                    <p className="text-gacor-smooth text-xs font-bold mb-2 tracking-widest">{year}</p>
                     <h3 className={`text-xl font-black mb-2 ${titleColor} hover-gacor`}>{formatCJK(fileName, lang)}</h3>
                     <p className={`text-sm italic mb-6 text-gacor-smooth`}>{formatCJK(category, lang)}</p>
                     
@@ -468,7 +468,7 @@ export default function CertificatesDisplay({
                           </a>
                           <div className="p-4">
                               <div className="flex justify-between items-start mb-1">
-                                  <span className="text-[10px] font-bold text-gacor-smooth uppercase tracking-tighter">{formatCJK(item.category, lang)}</span>
+                                  <span className="text-[10px] font-bold text-gacor-smooth tracking-tighter">{formatCJK(item.category, lang)}</span>
                                   <span className={`text-[10px] font-mono ${titleColor} opacity-50`}>{item.year}</span>
                               </div>
                               <h3 className={`text-sm font-bold ${titleColor} hover-gacor line-clamp-1`}>{formatCJK(item.fileName, lang)}</h3>

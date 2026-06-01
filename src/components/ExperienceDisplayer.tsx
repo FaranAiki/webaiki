@@ -94,8 +94,8 @@ const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, j
                 ${hasImage ? (isDark ? 'bg-gradient-to-t from-black/80 via-black/20 to-transparent' : 'bg-gradient-to-t from-white/90 via-white/20 to-transparent') : ''}
                 ${isExpanded ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                 <p className="text-cyan-500 text-xs font-bold mb-1">{job.year}</p>
-                <h3 className={`text-xl font-black leading-tight mb-1 ${isDark || (hasImage && !isExpanded) ? 'text-white' : 'text-gray-900'} ${!isDark && hasImage ? 'text-gray-900' : ''}`}>
-                    <span className={!isDark && hasImage ? 'text-black' : ''}>{job.title}</span>
+                <h3 className="text-xl font-black leading-tight mb-1 nav-active-gacor">
+                    {job.title}
                 </h3>
                 <p className={`text-sm italic ${isDark || (hasImage && !isExpanded) ? 'text-gray-300' : 'text-gray-600'} ${!isDark && hasImage ? 'text-gray-800' : ''}`}>
                     {job.company}
@@ -113,7 +113,7 @@ const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, j
             >
                 <div className="overflow-y-auto max-h-full pr-2 custom-scrollbar">
                     <p className="text-cyan-500 text-xs font-bold mb-2 uppercase tracking-widest">{job.date}</p>
-                    <h3 className={`text-xl font-black mb-1 ${isDark ? 'text-white' : 'text-gray-900'}`}>{job.title}</h3>
+                    <h3 className="text-xl font-black mb-1 nav-active-gacor">{job.title}</h3>
                     <p className={`text-sm italic mb-4 ${isDark ? 'text-cyan-300' : 'text-cyan-600'}`}>{job.company}</p>
                     <div className={`text-sm leading-relaxed ${isDark ? 'text-gray-200' : 'text-gray-700'} ${justifyClass}`}>
                         {formatCJK(job.description, lang)}
