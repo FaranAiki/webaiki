@@ -44,19 +44,23 @@ export default async function AwardPage({ params }: { params: Promise<{ lang: st
 
   const awards = getAwardExperiences(dict);
 
-  return <ExperiencesClient 
-    experiences={awards} 
-    lang={lang} 
-    layout="grid" 
-    canChange={true} 
-    original_text={dict.Original}
-    timeline_text={dict.Timeline}
-    grid_text={dict.Grid}
-    bento_text={dict.Bento}
-    smooth_text={dict.Smooth}
-    click_to_close_text={dict.Click_To_Close}
-    modern_text={dict.Presentation_Modern}
-    cinematic_text={dict.Presentation_Cinematic}
-    editorial_text={dict.Presentation_Editorial}
-  />;
+  return (
+    <main className="w-full pt-16">
+      <ExperiencesClient 
+        experiences={awards} 
+        lang={lang} 
+        layout="grid" 
+        canChange={true} 
+        original_text={dict.Original}
+        timeline_text={dict.Timeline}
+        grid_text={dict.Grid}
+        bento_text={dict.Bento}
+        smooth_text={dict.Smooth}
+        click_to_close_text={dict.Click_To_Close}
+        modern_text={dict.Presentation_Modern}
+        cinematic_text={dict.Presentation_Cinematic}
+        editorial_text={dict.Presentation_Editorial}
+      />
+    </main>
+  );
 }

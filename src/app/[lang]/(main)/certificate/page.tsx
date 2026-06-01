@@ -43,7 +43,7 @@ export default async function CertificatePage({ params }: { params: Promise<{ la
   const certificates_data = await getCertificatesData(lang);
 
   return (
-    <main className="container mx-auto px-4 sm:px-8 pb-16 pt-24">
+    <main className="container mx-auto px-4 sm:px-8 pb-16 pt-16">
       <CertificatesDisplay 
         certificates={certificates_data} 
         lang={lang} 

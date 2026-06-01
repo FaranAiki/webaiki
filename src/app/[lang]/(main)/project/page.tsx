@@ -46,7 +46,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ lang: 
   const projectExperiences = getProjectExperiences(dict);
 
   return (
-    <main className="w-full">
+    <main className="w-full pt-16">
       <ExperiencesClient 
         experiences={projectExperiences} 
         lang={lang} 

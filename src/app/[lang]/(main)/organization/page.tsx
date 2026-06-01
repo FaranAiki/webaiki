@@ -45,7 +45,7 @@ export default async function OrganizationExperiencesPage({ params }: { params: 
   const organizationExperiences = getOrganizationExperiences(dict);
 
   return (
-    <main className="w-full">
+    <main className="w-full pt-16">
       <ExperiencesClient 
         experiences={organizationExperiences} 
         lang={lang} 

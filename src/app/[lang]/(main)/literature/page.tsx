@@ -43,7 +43,7 @@ export default async function LiteraturePage({ params }: { params: Promise<{ lan
   const literature_data = await getCollectionsData(lang, 'literature');
 
   return (
-    <main className="container mx-auto px-6 pb-16 pt-24">
+    <main className="container mx-auto px-6 pb-16 pt-16">
       <LiteratureLoader 
         data={literature_data} 
         force_click={true} 

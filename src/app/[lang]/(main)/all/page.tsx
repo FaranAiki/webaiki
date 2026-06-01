@@ -8,10 +8,10 @@ import { PortfolioAboutHeader } from '@/components/AboutMe';
 
 import { getLanguageAlternates } from '@/lib/seo';
 
-import { 
-  getWorkExperiences, 
-  getProjectExperiences, 
-  getOrganizationExperiences, 
+import {
+  getWorkExperiences,
+  getProjectExperiences,
+  getOrganizationExperiences,
   getAwardExperiences,
   getCertificatesData,
   getCollectionsData,
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       ],
     },
     icons: { icon: '/icon.ico', shortcut: '/icon.ico', apple: '/icon.ico' },
-    alternates: { 
+    alternates: {
       canonical: `/${lang}/all`,
       languages: getLanguageAlternates('/all'),
     },
@@ -120,7 +120,7 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
     <main className="w-full pt-20 pb-20 space-y-6">
       {/* Refined Portfolio Header */}
       <section className="container mx-auto px-4 sm:px-8">
-        <PortfolioAboutHeader 
+        <PortfolioAboutHeader
           lang={lang}
           carouselPhotos={faranPhotos}
           faran_photo={dict.Faran_Photo}
@@ -151,12 +151,12 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
                     <h2 className="text-lg md:text-xl font-bold tracking-tight text-white">{dict.Work}</h2>
                 </div>
             </div>
-            <ExperiencesClient 
-              experiences={importantWork} 
-              lang={lang} 
-              layout="bento" 
-              canChange={false} 
-              click_to_close_text={dict.Click_To_Close} 
+            <ExperiencesClient
+              experiences={importantWork}
+              lang={lang}
+              layout="bento"
+              canChange={false}
+              click_to_close_text={dict.Click_To_Close}
               modern_text={dict.Presentation_Modern}
               cinematic_text={dict.Presentation_Cinematic}
               editorial_text={dict.Presentation_Editorial}
@@ -172,12 +172,12 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
                     <h2 className="text-lg md:text-xl font-bold tracking-tight text-white">{dict.Project}</h2>
                 </div>
             </div>
-            <ExperiencesClient 
-              experiences={importantProjects} 
-              lang={lang} 
-              layout="bento" 
-              canChange={false} 
-              click_to_close_text={dict.Click_To_Close} 
+            <ExperiencesClient
+              experiences={importantProjects}
+              lang={lang}
+              layout="bento"
+              canChange={false}
+              click_to_close_text={dict.Click_To_Close}
               modern_text={dict.Presentation_Modern}
               cinematic_text={dict.Presentation_Cinematic}
               editorial_text={dict.Presentation_Editorial}
@@ -195,12 +195,12 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
                     <h2 className="text-lg md:text-xl font-bold tracking-tight text-white">{dict.Organization}</h2>
                 </div>
                 <div className="lg:contents">
-                   <ExperiencesClient 
-                     experiences={importantOrg} 
-                     lang={lang} 
-                     layout="grid" 
-                     canChange={false} 
-                     click_to_close_text={dict.Click_To_Close} 
+                   <ExperiencesClient
+                     experiences={importantOrg}
+                     lang={lang}
+                     layout="grid"
+                     canChange={false}
+                     click_to_close_text={dict.Click_To_Close}
                      modern_text={dict.Presentation_Modern}
                      cinematic_text={dict.Presentation_Cinematic}
                      editorial_text={dict.Presentation_Editorial}
@@ -216,12 +216,12 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
                     <h2 className="text-lg md:text-xl font-bold tracking-tight text-white">{dict.Award}</h2>
                 </div>
                 <div className="lg:contents">
-                  <ExperiencesClient 
-                    experiences={importantAwards} 
-                    lang={lang} 
-                    layout="grid" 
-                    canChange={false} 
-                    click_to_close_text={dict.Click_To_Close} 
+                  <ExperiencesClient
+                    experiences={importantAwards}
+                    lang={lang}
+                    layout="grid"
+                    canChange={false}
+                    click_to_close_text={dict.Click_To_Close}
                     modern_text={dict.Presentation_Modern}
                     cinematic_text={dict.Presentation_Cinematic}
                     editorial_text={dict.Presentation_Editorial}

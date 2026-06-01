@@ -44,7 +44,7 @@ export default async function CollegePage({ params }: { params: Promise<{ lang: 
   const college_data = await getCollectionsData(lang, 'college');
 
   return (
-    <main className="container mx-auto pt-8 pb-16 pt-24">
+    <main className="container mx-auto pb-16 pt-16">
       <React.Suspense fallback={<h2 className="text-center">{dict.Loading_College}</h2>}>
         <CollegeLoader 
           data={college_data} 

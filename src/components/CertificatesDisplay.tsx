@@ -39,8 +39,8 @@ const getPath = (data: string | { path: string; point: number }): string => {
   return data?.path || '';
 };
 
-const BentoCertificateCard = ({ 
-    fileName, filePath, category, year, borderColor, cardBg, isDark, lang, titleColor, click_to_close_text, spanClass 
+const BentoCertificateCard = ({
+    fileName, filePath, category, year, borderColor, cardBg, isDark, lang, titleColor, click_to_close_text, spanClass
 }: BentoCertificateCardProps) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
@@ -59,16 +59,16 @@ const BentoCertificateCard = ({
                         <PdfPreview fileUrl={filePath} priority={isExpanded} />
                     </div>
                 ) : (
-                    <Image 
-                        src={filePath} 
-                        alt={fileName} 
-                        fill 
-                        className={`object-cover transition-all duration-700 ${isExpanded ? 'scale-110 blur-sm brightness-[0.3]' : 'opacity-60 group-hover:opacity-100'}`} 
+                    <Image
+                        src={filePath}
+                        alt={fileName}
+                        fill
+                        className={`object-cover transition-all duration-700 ${isExpanded ? 'scale-110 blur-sm brightness-[0.3]' : 'opacity-60 group-hover:opacity-100'}`}
                         sizes="(max-width: 768px) 50vw, 33vw"
                     />
                 )}
             </div>
-            
+
             {/* Base Content */}
             <div className={`absolute inset-0 p-6 flex flex-col justify-end transition-opacity duration-500 bg-gradient-to-t ${isDark ? 'from-black/80' : 'from-white/90'} via-transparent to-transparent ${isExpanded ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                 <p className="text-gacor-smooth text-[10px] font-bold mb-1 tracking-widest">{year} • {formatCJK(category, lang)}</p>
@@ -76,7 +76,7 @@ const BentoCertificateCard = ({
             </div>
 
             {/* Expanded Content (Overlay) */}
-            <motion.div 
+            <motion.div
                 initial={false}
                 animate={{ opacity: isExpanded ? 1 : 0, y: isExpanded ? 0 : 20 }}
                 transition={{ duration: 0.4, ease: "circOut" }}
@@ -86,10 +86,10 @@ const BentoCertificateCard = ({
                     <p className="text-gacor-smooth text-xs font-bold mb-2 tracking-widest">{year}</p>
                     <h3 className={`text-xl font-black mb-2 ${titleColor} hover-gacor`}>{formatCJK(fileName, lang)}</h3>
                     <p className={`text-sm italic mb-6 text-gacor-smooth`}>{formatCJK(category, lang)}</p>
-                    
-                    <a 
-                        href={filePath} 
-                        target="_blank" 
+
+                    <a
+                        href={filePath}
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="px-6 py-2 bg-cyan-500 text-white rounded-full font-bold text-sm hover:bg-cyan-600 transition-colors shadow-lg"
                         onClick={(e) => e.stopPropagation()}
@@ -97,7 +97,7 @@ const BentoCertificateCard = ({
                         View Full Document
                     </a>
                 </div>
-                
+
                 {/* Close hint */}
                 <div className={`absolute top-4 right-4 text-[10px] font-medium px-2 py-1 rounded-full ${isDark ? 'text-white/50 bg-white/10' : 'text-gray-500 bg-gray-200/50'}`}>
                     {click_to_close_text}
@@ -119,9 +119,9 @@ export type CertificatesDisplayProps = {
   click_to_close_text?: string;
 };
 
-export default function CertificatesDisplay({ 
-  certificates, 
-  allTranslation, 
+export default function CertificatesDisplay({
+  certificates,
+  allTranslation,
   lang = 'en',
   original_text = 'Original',
   timeline_text = 'Timeline',
@@ -164,25 +164,25 @@ export default function CertificatesDisplay({
 
   // Flatten for presentation mode: Each slide is a category + specific year, max 4 items per slide
   const allSlides = useMemo(() => {
-    const slides: { 
-      category: string; 
-      year: string; 
-      files: [string, { path: string; point: number }][]; 
-      part?: number; 
-      totalParts?: number 
+    const slides: {
+      category: string;
+      year: string;
+      files: [string, { path: string; point: number }][];
+      part?: number;
+      totalParts?: number
     }[] = [];
-    
+
     const sortedCategories = Object.keys(certificates).sort();
-    
+
     for (const category of sortedCategories) {
       const yearsData = certificates[category];
       const sortedYears = Object.keys(yearsData).sort((a, b) => b.localeCompare(a));
-      
+
       for (const year of sortedYears) {
         const fileEntries = Object.entries(yearsData[year]);
         const chunkSize = 6;
         const totalParts = Math.ceil(fileEntries.length / chunkSize);
-        
+
         for (let i = 0; i < fileEntries.length; i += chunkSize) {
           slides.push({
             category,
@@ -199,11 +199,11 @@ export default function CertificatesDisplay({
 
   const isDark = mounted && resolvedTheme === 'dark';
   const hasCertificates = useMemo(() => {
-    return Object.values(certificates).some(yearsData => 
+    return Object.values(certificates).some(yearsData =>
       Object.values(yearsData).some(files => Object.keys(files).length > 0)
     );
   }, [certificates]);
-  
+
   // Dynamic Classes
   const titleColor = isDark ? 'text-white' : 'text-gray-900';
   const borderColor = isDark ? 'border-gray-800' : 'border-gray-200';
@@ -221,7 +221,7 @@ export default function CertificatesDisplay({
           slideIndex={idx + 1}
           totalSlides={allSlides.length}
         >
-          <div className="flex flex-col items-center justify-center w-full max-w-6xl mx-auto p-4 pt-16 pb-8">
+          <div className="flex flex-col items-center justify-center w-full max-w-6xl mx-auto p-4 pb-8">
             <h2 className="text-xl md:text-3xl font-black mb-6 text-center flex flex-wrap justify-center items-center gap-x-4">
               <span className="text-cyan-500">{formatCJK(slide.category, lang)}</span>
               <span className="text-gray-500">|</span>
@@ -232,10 +232,10 @@ export default function CertificatesDisplay({
                 </span>
               )}
             </h2>
-            
+
             <div className={`grid gap-4 md:gap-8 w-full max-h-[75vh] p-2 overflow-visible no-scrollbar justify-items-center ${
-              slide.files.length === 4 
-                ? 'grid-cols-1 sm:grid-cols-2 max-w-4xl' 
+              slide.files.length === 4
+                ? 'grid-cols-1 sm:grid-cols-2 max-w-4xl'
                 : slide.files.length === 1
                 ? 'grid-cols-1'
                 : slide.files.length === 2
@@ -246,7 +246,7 @@ export default function CertificatesDisplay({
                 const filePath = getPath(fileData);
                 return (
                   <div key={fileName} className="flex flex-col items-center group w-full max-w-[300px] md:max-w-[350px]">
-                    <div 
+                    <div
                       className={`${cardBg} w-full aspect-[4/3] relative mb-4 rounded-xl overflow-hidden shadow-xl transition-transform group-hover:scale-105 transform-gpu`}
                       style={{ boxShadow: isDark ? 'inset 0 0 0 2px rgba(255,255,255,0.1)' : 'inset 0 0 0 2px rgba(0,0,0,0.1)' }}
                     >
@@ -401,7 +401,7 @@ export default function CertificatesDisplay({
 
         {currentLayout === 'timeline' && (
             <div className="relative border-l-2 border-cyan-500/30 ml-4 md:ml-8 space-y-12">
-                {Object.entries(certificates).flatMap(([category, yearsData]) => 
+                {Object.entries(certificates).flatMap(([category, yearsData]) =>
                   Object.entries(yearsData).map(([year, files]) => ({ category, year, files }))
                 ).sort((a, b) => b.year.localeCompare(a.year)).map((item) => (
                     <div key={`${item.category}-${item.year}`} className="relative pl-8">
@@ -443,8 +443,8 @@ export default function CertificatesDisplay({
 
         {currentLayout === 'grid' && (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {Object.entries(certificates).flatMap(([category, yearsData]) => 
-                  Object.entries(yearsData).flatMap(([year, files]) => 
+                {Object.entries(certificates).flatMap(([category, yearsData]) =>
+                  Object.entries(yearsData).flatMap(([year, files]) =>
                       Object.entries(files).map(([fileName, fileData]) => ({ category, year, fileName, fileData }))
                   )
                 ).map((item) => {
@@ -481,8 +481,8 @@ export default function CertificatesDisplay({
 
         {currentLayout === 'bento' && (
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[250px]">
-                {Object.entries(certificates).flatMap(([category, yearsData]) => 
-                  Object.entries(yearsData).flatMap(([year, files]) => 
+                {Object.entries(certificates).flatMap(([category, yearsData]) =>
+                  Object.entries(yearsData).flatMap(([year, files]) =>
                       Object.entries(files).map(([fileName, fileData]) => ({ category, year, fileName, fileData }))
                   )
                 ).map((item, idx) => {
@@ -499,7 +499,7 @@ export default function CertificatesDisplay({
                     const spanClass = spans[idx % spans.length];
                     const filePath = getPath(item.fileData);
                     return (
-                        <BentoCertificateCard 
+                        <BentoCertificateCard
                             key={`${item.category}-${item.year}-${item.fileName}`}
                             fileName={item.fileName}
                             filePath={filePath}

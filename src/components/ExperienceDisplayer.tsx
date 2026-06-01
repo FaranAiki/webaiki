@@ -8,9 +8,9 @@ import FadeInSection from '@/components/FadeInSection';
 import { shimmer, toBase64, formatCJK } from '@/lib/utils';
 import { useSettings } from './SettingsContext';
 import { usePresentation } from './PresentationContext';
-import { 
-    LayoutPanelLeft, 
-    Milestone, 
+import {
+    LayoutPanelLeft,
+    Milestone,
     LayoutGrid,
     Grid2X2,
     Rows
@@ -79,27 +79,27 @@ const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, j
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             onClick={() => setIsExpanded(!isExpanded)}
-            transition={{ 
-                duration: 0.6, 
+            transition={{
+                duration: 0.6,
                 ease: [0.23, 1, 0.32, 1],
-                layout: { duration: 0.4 } 
+                layout: { duration: 0.4 }
             }}
             className={`${spanClass} relative rounded-3xl overflow-hidden group border ${cardBorder} ${inactiveCardBg} shadow-sm hover:shadow-xl cursor-pointer`}
         >
             {hasImage && (
-                <Image 
-                    src={job.image[0]} 
-                    alt={job.company} 
-                    fill 
-                    className={`object-cover transition-all duration-700 
-                        ${isExpanded 
-                            ? (isDark ? 'scale-110 blur-sm brightness-[0.2]' : 'scale-110 blur-md opacity-20') 
-                            : 'group-hover:scale-110 opacity-60 group-hover:opacity-100'}`} 
+                <Image
+                    src={job.image[0]}
+                    alt={job.company}
+                    fill
+                    className={`object-cover transition-all duration-700
+                        ${isExpanded
+                            ? (isDark ? 'scale-110 blur-sm brightness-[0.2]' : 'scale-110 blur-md opacity-20')
+                            : 'group-hover:scale-110 opacity-60 group-hover:opacity-100'}`}
                 />
             )}
-            
+
             {/* Base Content */}
-            <div className={`absolute inset-0 p-6 flex flex-col justify-end transition-opacity duration-500 
+            <div className={`absolute inset-0 p-6 flex flex-col justify-end transition-opacity duration-500
                 ${hasImage ? (isDark ? 'bg-gradient-to-t from-black/80 via-black/20 to-transparent' : 'bg-gradient-to-t from-white/90 via-white/20 to-transparent') : ''}
                 ${isExpanded ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                 <p className="text-cyan-500 text-xs font-bold mb-1">{job.year}</p>
@@ -112,12 +112,12 @@ const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, j
             </div>
 
             {/* Expanded Content (Overlay) */}
-            <motion.div 
+            <motion.div
                 initial={false}
                 animate={{ opacity: isExpanded ? 1 : 0, y: isExpanded ? 0 : 20 }}
                 transition={{ duration: 0.4, ease: "circOut" }}
-                className={`absolute inset-0 z-10 p-6 flex flex-col justify-center md:backdrop-blur-md 
-                    ${isDark ? 'bg-black/80' : 'bg-white/90'} 
+                className={`absolute inset-0 z-10 p-6 flex flex-col justify-center md:backdrop-blur-md
+                    ${isDark ? 'bg-black/80' : 'bg-white/90'}
                     ${isExpanded ? 'pointer-events-auto' : 'pointer-events-none'}`}
             >
                 <div className="overflow-y-auto max-h-full pr-2 custom-scrollbar">
@@ -128,9 +128,9 @@ const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, j
                         {formatCJK(job.description, lang)}
                     </div>
                 </div>
-                
+
                 {/* Close hint */}
-                <div className={`absolute top-4 right-4 text-xs font-medium px-2 py-1 rounded-full 
+                <div className={`absolute top-4 right-4 text-xs font-medium px-2 py-1 rounded-full
                     ${isDark ? 'text-white/50 bg-white/10' : 'text-gray-500 bg-gray-200/50'}`}>
                     {click_to_close_text}
                 </div>
@@ -140,10 +140,10 @@ const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, j
 };
 BentoCard.displayName = 'BentoCard';
 
-export default function ExperiencesClient({ 
-    experiences, 
-    lang = 'en', 
-    layout = 'original', 
+export default function ExperiencesClient({
+    experiences,
+    lang = 'en',
+    layout = 'original',
     canChange = false,
     original_text = 'Original',
     timeline_text = 'Timeline',
@@ -215,10 +215,10 @@ export default function ExperiencesClient({
         <div className="w-full h-full relative">
             {/* Flying Widgets - Hoisted to window level for true stickiness */}
             {!isPresentationMode && allJobs.length > 0 && (
-                <LayoutSwitcher 
-                    currentLayout={currentLayout} 
-                    setCurrentLayout={setCurrentLayout} 
-                    isDark={isDark} 
+                <LayoutSwitcher
+                    currentLayout={currentLayout}
+                    setCurrentLayout={setCurrentLayout}
+                    isDark={isDark}
                     canChange={canChange}
                     options={[
                         { id: 'original', icon: <LayoutPanelLeft size={18} />, label: original_text },
@@ -245,8 +245,8 @@ export default function ExperiencesClient({
                                 className={`p-2 rounded-lg transition-all duration-200 ${
                                     presentationLayout === l.id
                                         ? 'bg-cyan-500 text-white shadow-md scale-105'
-                                        : isDark 
-                                            ? 'text-gray-400 hover:text-gray-200 hover:bg-gray-800' 
+                                        : isDark
+                                            ? 'text-gray-400 hover:text-gray-200 hover:bg-gray-800'
                                             : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
                                 }`}
                             >
@@ -303,11 +303,11 @@ export default function ExperiencesClient({
                                 <div className="w-full h-full relative overflow-hidden flex items-end">
                                     {job.image && job.image.length > 0 ? (
                                         <div className="absolute inset-0 z-0">
-                                            <Image 
-                                                src={job.image[0]} 
-                                                alt={job.company} 
-                                                fill 
-                                                className={`object-cover transition-all duration-1000 ${isDark ? 'brightness-[0.35]' : 'brightness-[1.1] grayscale-[0.2] opacity-20'}`} 
+                                            <Image
+                                                src={job.image[0]}
+                                                alt={job.company}
+                                                fill
+                                                className={`object-cover transition-all duration-1000 ${isDark ? 'brightness-[0.35]' : 'brightness-[1.1] grayscale-[0.2] opacity-20'}`}
                                                 priority={true}
                                                 loading="eager"
                                             />
@@ -316,7 +316,7 @@ export default function ExperiencesClient({
                                     ) : (
                                         <div className={`absolute inset-0 z-0 ${isDark ? 'bg-gray-950' : 'bg-gray-50'}`} />
                                     )}
-                                    
+
                                     <div className="relative z-10 w-full max-w-6xl mx-auto p-8 md:p-16 mb-16">
                                         <div className="flex flex-col md:flex-row items-end justify-between gap-12">
                                             <div className="flex-1 space-y-6">
@@ -367,7 +367,7 @@ export default function ExperiencesClient({
                                                 </HoverableWords>
                                             </div>
                                         </div>
-                                        
+
                                         {job.image && job.image.length > 0 && (
                                             <div className="md:col-span-5 relative group">
                                                 <div className="aspect-[4/5] relative rounded-2xl overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] transition-all duration-700 group-hover:rotate-0 rotate-3 group-hover:scale-105">
@@ -385,7 +385,7 @@ export default function ExperiencesClient({
                     ))
                 ) : (
                     <div className={`${mounted ? (isDark ? 'text-white' : 'text-gray-900') : 'text-gray-900'} min-h-screen p-4 sm:p-8 md:p-12 w-full transition-colors duration-300`}>
-                        <div className="container mx-auto max-w-6xl pt-16">
+                        <div className="container mx-auto max-w-6xl">
                             {currentLayout === 'original' && (
                             <div className="flex flex-col md:flex-row gap-8 md:gap-16">
                                 <div className="w-full md:w-1/2">
@@ -463,8 +463,8 @@ export default function ExperiencesClient({
                                         <h2 className="text-3xl font-black text-gacor-smooth mb-8">{experience.year}</h2>
                                         <div className="space-y-12">
                                             {experience.jobs.map((job, index) => (
-                                                <motion.div 
-                                                    key={`${experience.year}-${index}`} 
+                                                <motion.div
+                                                    key={`${experience.year}-${index}`}
                                                     initial={{ opacity: 0, x: -20 }}
                                                     whileInView={{ opacity: 1, x: 0 }}
                                                     viewport={{ once: true }}
@@ -497,7 +497,7 @@ export default function ExperiencesClient({
                         {currentLayout === 'grid' && (
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {allJobs.map((job, idx) => (
-                                    <motion.div 
+                                    <motion.div
                                         key={`${job.year}-${idx}`}
                                         initial={{ opacity: 0, scale: 0.9, y: 20 }}
                                         whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -534,9 +534,9 @@ export default function ExperiencesClient({
                                         "md:col-span-2 md:row-span-2", // Big square
                                     ];
                                     const spanClass = spans[idx % spans.length];
-                                    
+
                                     return (
-                                        <BentoCard 
+                                        <BentoCard
                                             key={`${job.year}-${idx}`}
                                             job={job}
                                             spanClass={spanClass}

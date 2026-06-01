@@ -45,7 +45,7 @@ export default async function WorkExperiencesPage({ params }: { params: Promise<
   const workExperiences = getWorkExperiences(dict);
 
   return (
-    <main className="w-full">
+    <main className="w-full pt-16">
       <ExperiencesClient 
         experiences={workExperiences} 
         lang={lang} 
