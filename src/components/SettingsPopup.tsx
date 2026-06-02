@@ -14,7 +14,6 @@ import {
   RotateCcw,
   ChevronDown
 } from 'lucide-react';
-import { useTheme } from 'next-themes';
 
 interface SettingsPopupProps {
   labels: {
