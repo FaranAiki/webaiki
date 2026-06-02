@@ -135,6 +135,10 @@
   /* This ensures all 'rem' values scale proportionally without compounding */
   --text-scale-factor: 1;
   font-size: calc(100% * var(--text-scale-factor, 1));
+
+  /* App Typography Settings */
+  --app-line-height: 1.5;
+  --app-letter-spacing: 0px;
 }
 
 /* Dark Mode Variables (Applied when 'dark' class is present) */
@@ -209,15 +213,14 @@ body a, body label, body section, body article, body blockquote {
 
 /* Base Body Style */
 body {
-  --app-line-height: 1.5;
-  --app-letter-spacing: 0px;
   background-color: var(--background);
   color: var(--foreground);
 }
 
 /* Force line-height overrides */
-body [class*="leading-"] {
+body [class*="leading-"], body [class*="tracking-"] {
   line-height: var(--app-line-height);
+  letter-spacing: var(--app-letter-spacing);
 }
 
 /* Exceptions for UI elements that need natural line-height for alignment */
