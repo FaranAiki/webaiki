@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState, useMemo, useEffect } from 'react';
 import dynamic from 'next/dynamic';
@@ -27,8 +27,6 @@ interface BentoCertificateCardProps {
     filePath: string;
     category: string;
     year: string;
-    borderColor: string;
-    cardBg: string;
     isDark: boolean;
     lang: string;
     titleColor: string;
@@ -42,7 +40,7 @@ const getPath = (data: string | { path: string; point: number }): string => {
 };
 
 const BentoCertificateCard = ({
-    fileName, filePath, category, year, borderColor, cardBg, isDark, lang, titleColor, click_to_close_text, spanClass
+    fileName, filePath, category, year, isDark, lang, titleColor, click_to_close_text, spanClass
 }: BentoCertificateCardProps) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
@@ -52,12 +50,11 @@ const BentoCertificateCard = ({
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             onClick={() => setIsExpanded(!isExpanded)}
-            className={`${spanClass} relative rounded-3xl overflow-hidden group border ${borderColor} ${cardBg} shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer h-full transform-gpu`}
+            className={`${spanClass} relative rounded-3xl overflow-hidden group transition-all duration-500 cursor-pointer h-full transform-gpu`}
         >
             <div className="absolute inset-0">
                 {filePath.endsWith('.pdf') ? (
-                    <div className={`w-full h-full transition-all duration-700 ${isExpanded ? 'scale-110 blur-sm brightness-[0.3]' : 'opacity-60 group-hover:opacity-100'}`}>
-                        {/* Only render PDF in grid if it's visible, and priority true if expanded */}
+                    <div className={`w-full h-full transition-all duration-700 ${isExpanded ? 'scale-110 blur-sm brightness-[0.3]' : 'opacity-80 group-hover:opacity-100'}`}>
                         <PdfPreview fileUrl={filePath} priority={isExpanded} />
                     </div>
                 ) : (
@@ -65,16 +62,16 @@ const BentoCertificateCard = ({
                         src={filePath}
                         alt={fileName}
                         fill
-                        className={`object-cover transition-all duration-700 ${isExpanded ? 'scale-110 blur-sm brightness-[0.3]' : 'opacity-60 group-hover:opacity-100'}`}
+                        className={`object-cover transition-all duration-700 ${isExpanded ? 'scale-110 blur-sm brightness-[0.3]' : 'opacity-80 group-hover:opacity-100'}`}
                         sizes="(max-width: 768px) 50vw, 33vw"
                     />
                 )}
             </div>
 
-            {/* Base Content */}
-            <div className={`absolute inset-0 p-6 flex flex-col justify-end transition-opacity duration-500 bg-gradient-to-t ${isDark ? 'from-black/80' : 'from-white/90'} via-transparent to-transparent ${isExpanded ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-                <p className="text-gacor-smooth text-[10px] font-bold mb-1 tracking-widest">{year} • {formatCJK(category, lang)}</p>
-                <h3 className={`text-sm font-black leading-tight ${titleColor} hover-gacor`}>{formatCJK(fileName, lang)}</h3>
+            {/* Base Content - Shows only on hover or when not expanded */}
+            <div className={`absolute inset-0 p-6 flex flex-col justify-end transition-all duration-500 bg-gradient-to-t ${isDark ? 'from-black/90 via-black/40' : 'from-white/95 via-white/60'} to-transparent opacity-0 group-hover:opacity-100 ${isExpanded ? 'opacity-0 pointer-events-none' : ''}`}>
+                <p className="text-cyan-600 dark:text-cyan-400 text-[10px] font-black mb-1 tracking-widest uppercase">{year} • {formatCJK(category, lang)}</p>
+                <h3 className={`text-sm font-black leading-tight ${titleColor} line-clamp-2`}>{formatCJK(fileName, lang)}</h3>
             </div>
 
             {/* Expanded Content (Overlay) */}
@@ -85,8 +82,8 @@ const BentoCertificateCard = ({
                 className={`absolute inset-0 z-10 p-6 flex flex-col justify-center backdrop-blur-md md:backdrop-blur-xl ${isDark ? 'bg-black/60' : 'bg-white/80'} ${isExpanded ? 'pointer-events-auto' : 'pointer-events-none'}`}
             >
                 <div className="overflow-y-auto max-h-full flex flex-col items-center justify-center text-center">
-                    <p className="text-gacor-smooth text-xs font-bold mb-2 tracking-widest">{year}</p>
-                    <h3 className={`text-xl font-black mb-2 ${titleColor} hover-gacor`}>{formatCJK(fileName, lang)}</h3>
+                    <p className="text-cyan-500 text-xs font-bold mb-2 tracking-widest">{year}</p>
+                    <h3 className={`text-xl font-black mb-2 ${titleColor}`}>{formatCJK(fileName, lang)}</h3>
                     <p className={`text-sm italic mb-6 text-gacor-smooth`}>{formatCJK(category, lang)}</p>
 
                     <a
@@ -482,7 +479,7 @@ export default function CertificatesDisplay({
         )}
 
         {currentLayout === 'bento' && (
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[250px]">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 auto-rows-[250px]">
                 {Object.entries(certificates).flatMap(([category, yearsData]) =>
                   Object.entries(yearsData).flatMap(([year, files]) =>
                       Object.entries(files).map(([fileName, fileData]) => ({ category, year, fileName, fileData }))
@@ -507,8 +504,6 @@ export default function CertificatesDisplay({
                             filePath={filePath}
                             category={item.category}
                             year={item.year}
-                            borderColor={borderColor}
-                            cardBg={cardBg}
                             isDark={isDark}
                             lang={lang}
                             titleColor={titleColor}
