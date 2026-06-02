@@ -70,7 +70,7 @@ const BentoCertificateCard = ({
 
             {/* Base Content - Shows only on hover or when not expanded */}
             <div className={`absolute inset-0 p-6 flex flex-col justify-end transition-all duration-500 bg-gradient-to-t ${isDark ? 'from-black/90 via-black/40' : 'from-white/95 via-white/60'} to-transparent opacity-0 group-hover:opacity-100 ${isExpanded ? 'opacity-0 pointer-events-none' : ''}`}>
-                <p className="text-cyan-600 dark:text-cyan-400 text-[10px] font-black mb-1 tracking-widest uppercase">{year} • {formatCJK(category, lang)}</p>
+                <p className="text-cyan-600 dark:text-cyan-400 text-[10px] font-black mb-1 tracking-widest">{year} • {formatCJK(category, lang)}</p>
                 <h3 className={`text-sm font-black leading-tight ${titleColor} line-clamp-2`}>{formatCJK(fileName, lang)}</h3>
             </div>
 

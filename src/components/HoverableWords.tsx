@@ -13,7 +13,7 @@ const processWords = (text: string, separatorRegex: RegExp, hoverClass: string, 
   }
 
   const parts = text.split(new RegExp(`(${separatorRegex.source})`)).filter(Boolean);
-  
+
   return parts.map((part, index) =>
     separatorRegex.test(part) ? (
       <span key={index} className="theme-transition">{part}</span>
@@ -28,7 +28,7 @@ const processWords = (text: string, separatorRegex: RegExp, hoverClass: string, 
 export default function HoverableWords({ children, className, prophover }: HoverableWordsProps) {
   const [isMobile, setIsMobile] = useState(false);
   const finalClassName = className || '';
-  
+
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
@@ -44,12 +44,12 @@ export default function HoverableWords({ children, className, prophover }: Hover
   }
 
   // The "gacor" effect: gradient text on hover with smooth transition
-  const gacorHover = 'transition-all inline-block duration-700 ease-in-out hover:scale-105 hover:font-bold cursor-pointer hover:bg-gacor';
-  
+  const gacorHover = 'transition-all inline-block duration-700 ease-in-out hover:scale-105 hover:font-bold cursor-pointer hover:nav-active-gacor';
+
   const finalPropHover = prophover || gacorHover;
 
   const separatorRegex = /[\"\'\[\]\(\)\s]+/;
-  
+
   // Regex to split by <b>...</b> or <i>...</i> tags (case-insensitive)
   const tagRegex = /(<b>.*?<\/b>|<i>.*?<\/i>)/gi;
 

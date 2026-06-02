@@ -161,9 +161,9 @@ const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, j
                             <div className={`text-sm leading-relaxed ${isDark ? 'text-gray-200' : 'text-gray-700'} ${justifyClass}`}>
                                 {formatCJK(job.description, lang)}
                             </div>
-                            
+
                             {job.url && (
-                                <button 
+                                <button
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         window.open(job.url, '_blank', 'noopener,noreferrer');
@@ -276,7 +276,7 @@ export default function ExperiencesClient({
             )}
 
             {isPresentationMode && (
-                <div className={`fixed bottom-8 left-8 z-[100] flex items-center p-1.5 rounded-xl border backdrop-blur-md shadow-2xl transition-all duration-300 bg-white/90 dark:bg-gray-900/90 border-gray-200 dark:border-gray-700 ring-1 ring-black/5 dark:ring-white/10`}>
+                <div className={`fixed bottom-8 left-8 z-[100] flex items-center p-1.5 rounded-xl border backdrop-blur-md shadow-2xl transition-all duration-300 border-gray-200 dark:border-gray-700 ring-1 ring-black/5 dark:ring-white/10`}>
                     <div className="flex gap-1">
                         {[
                             { id: 'modern', icon: <LayoutPanelLeft size={18} />, label: modern_text || 'Modern' },
@@ -322,7 +322,7 @@ export default function ExperiencesClient({
                                         <HoverableWords className={`text-base md:text-lg ${justifyClass} ${descText} font-medium`}>
                                             {job.description}
                                         </HoverableWords>
-                                        
+
                                         {job.url && (
                                             <a href={job.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-3 bg-cyan-500 text-white rounded-full font-bold text-sm hover:bg-cyan-600 transition-all w-fit shadow-lg hover:scale-105">
                                                 <ExternalLink size={18} />
@@ -330,9 +330,9 @@ export default function ExperiencesClient({
                                             </a>
                                         )}
                                     </div>
-                                    
+
                                     <div className="flex-[0.8] flex justify-center items-center w-full h-full transform-gpu">
-                                        <div className="relative w-full h-full max-w-[400px] max-h-[400px] aspect-square flex justify-center items-center overflow-hidden transform-gpu rounded-3xl bg-gray-100 dark:bg-gray-800">
+                                        <div className="relative w-full h-full max-w-[400px] max-h-[400px] aspect-square flex justify-center items-center overflow-hidden transform-gpu rounded-3xl">
                                             {job.image && job.image.length > 0 ? (
                                                 <Image src={job.image[0]} alt={job.company} fill className="object-contain transition-transform duration-700 hover:scale-[1.03] scale-[1.01]" sizes="(max-width: 768px) 100vw, 400px" priority={true} loading="eager" />
                                             ) : (
@@ -345,7 +345,7 @@ export default function ExperiencesClient({
 
                             {/* 2. Cinematic */}
                             {presentationLayout === 'split' && (
-                                <div className="w-full h-full relative overflow-hidden flex items-end bg-background">
+                                <div className="w-full h-full relative overflow-hidden flex items-end bg-background/30">
                                     {job.image && job.image.length > 0 ? (
                                         <div className="absolute inset-0 z-0">
                                             <Image src={job.image[0]} alt={job.company} fill className={`object-cover transition-all duration-1000 dark:brightness-[0.35] brightness-[1.1] grayscale-[0.2] opacity-20`} priority={true} loading="eager" />
@@ -364,9 +364,9 @@ export default function ExperiencesClient({
                                                     <span className="w-16 h-1.5 bg-cyan-500 rounded-full" />
                                                     <h2 className="text-cyan-600 dark:text-cyan-400 font-black text-2xl tracking-tight">{job.year}</h2>
                                                 </div>
-                                                <h3 className={`text-5xl md:text-7xl font-black leading-[0.85] tracking-tighter text-foreground`}>{job.title}</h3>
+                                                <h3 className={`text-3xl md:text-5xl font-black leading-[0.85] tracking-tighter text-foreground`}>{job.title}</h3>
                                                 <p className="text-xl md:text-3xl text-cyan-600 dark:text-cyan-400 font-bold italic tracking-tight">{job.company}</p>
-                                                
+
                                                 {job.url && (
                                                     <a href={job.url} target="_blank" rel="noopener noreferrer" className="mt-4 flex items-center gap-2 px-6 py-3 bg-cyan-500 text-white rounded-full font-bold text-sm hover:bg-cyan-600 transition-all w-fit shadow-xl">
                                                         <ExternalLink size={18} />
@@ -389,7 +389,7 @@ export default function ExperiencesClient({
 
                                                 {/* 3. Editorial */}
                                                 {presentationLayout === 'minimal' && (
-                                                <div className={`w-full h-full flex items-center justify-center p-8 md:p-16 relative overflow-hidden transition-colors duration-500 bg-background`}>
+                                                <div className={`w-full h-full flex items-center justify-center p-8 md:p-16 relative overflow-hidden transition-colors duration-500`}>
                                                 <div className={`absolute top-0 left-0 w-full h-full flex items-center justify-center pointer-events-none opacity-[0.04] overflow-hidden select-none transition-opacity duration-700`}>
                                                 <span className={`text-[35vw] font-black leading-none text-cyan-500`}>{job.year}</span>
                                                 </div>
@@ -401,7 +401,7 @@ export default function ExperiencesClient({
                                                     <p className="text-cyan-600 dark:text-cyan-400 font-black text-xl tracking-tight">{job.date}</p>
                                                     <span className="flex-grow h-px bg-cyan-500/30" />
                                                 </div>
-                                                <h3 className={`text-6xl md:text-8xl font-black text-foreground leading-[0.85] tracking-tighter`}>
+                                                <h3 className={`text-3xl md:text-5xl font-black text-foreground leading-[0.85] tracking-tighter`}>
                                                     {job.title}
                                                 </h3>
                                                 <p className="text-2xl md:text-3xl font-bold text-cyan-600 dark:text-cyan-400 italic tracking-tight">{job.company}</p>
@@ -411,7 +411,7 @@ export default function ExperiencesClient({
                                                 <HoverableWords className={`text-xl md:text-2xl leading-snug font-medium text-foreground`}>
                                                     {job.description}
                                                 </HoverableWords>
-                                                
+
                                                 {job.url && (
                                                     <a href={job.url} target="_blank" rel="noopener noreferrer" className="mt-10 flex items-center gap-2 px-8 py-4 bg-cyan-500 text-white rounded-full font-black text-base hover:bg-cyan-600 transition-all w-fit shadow-2xl hover:scale-105">
                                                         <ExternalLink size={20} />
@@ -422,7 +422,7 @@ export default function ExperiencesClient({
                                         </div>
 
                                         <div className="md:col-span-5 relative group">
-                                            <div className="aspect-[4/5] relative rounded-2xl overflow-hidden shadow-2xl transition-all duration-700 group-hover:rotate-0 rotate-3 group-hover:scale-105 bg-gray-100 dark:bg-gray-800">
+                                            <div className="aspect-[4/5] relative rounded-2xl overflow-hidden shadow-2xl transition-all duration-700 group-hover:rotate-0 rotate-3 group-hover:scale-105">
                                                 {job.image && job.image.length > 0 ? (
                                                     <Image src={job.image[0]} alt={job.company} fill className="object-cover" />
                                                 ) : (

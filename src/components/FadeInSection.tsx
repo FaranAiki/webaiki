@@ -13,9 +13,9 @@ interface FadeInSectionProps {
   initialVisible?: boolean;
 }
 
-export default function FadeInSection({ 
-  children, 
-  delay = 0, 
+export default function FadeInSection({
+  children,
+  delay = 0,
   className = "",
   slideIndex,
   totalSlides,
@@ -35,13 +35,13 @@ export default function FadeInSection({
 
   const formatNumber = (num: number | undefined, total: number | undefined) => {
     if (num === undefined || total === undefined) return '';
-    
+
     if (slideNumberFormat === 'binary') {
         return num.toString(2).padStart(total.toString(2).length, '0');
     } else if (slideNumberFormat === 'hex') {
         return `0x${num.toString(16).toUpperCase()}`;
     }
-    
+
     // Default decimal
     const totalDigits = total.toString().length;
     return num.toString().padStart(totalDigits, '0');
@@ -66,12 +66,12 @@ export default function FadeInSection({
       className={`relative ${className} ${isPresentationMode ? 'presentation-section' : ''}`}
     >
       {isPresentationMode ? (
-        <div className="relative w-full h-full flex items-center justify-center bg-white dark:bg-black text-black dark:text-white">
+        <div className="relative w-full h-full flex items-center justify-center text-black dark:text-white">
           {children}
 
           {slideIndex && (
             <div className="absolute bottom-0 right-0 m-6 md:m-12 z-[100] print:hidden">
-              <button 
+              <button
                 onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
