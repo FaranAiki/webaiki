@@ -8,25 +8,17 @@ import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema }
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang);
+  const baseMetadata = getBaseMetadata();
 
   return {
-    ...getBaseMetadata(),
+    ...baseMetadata,
     title: `${dict.Social} | Faran Aiki`,
     description: "Faran Aiki's social media links and profiles",
     openGraph: {
+      ...baseMetadata.openGraph,
       title: `${dict.Social} | Faran Aiki`,
       description: "Faran Aiki's social media links and profiles",
       url: `${SITE_URL}/${lang}/social`,
-      siteName: "faranaiki.id",
-      type: "website",
-      images: [
-        {
-          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.webp',
-          width: 1200,
-          height: 630,
-          alt: 'Faran Aiki',
-        },
-      ],
     },
     alternates: { 
       canonical: `/${lang}/social`,

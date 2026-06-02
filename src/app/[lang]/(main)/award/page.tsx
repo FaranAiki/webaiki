@@ -10,25 +10,17 @@ import { getAwardExperiences } from '@/lib/data';
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang);
+  const baseMetadata = getBaseMetadata();
 
   return {
-    ...getBaseMetadata(),
+    ...baseMetadata,
     title: `${dict.Award} | Faran Aiki`,
     description: dict.SEO_Award_Description || "Faran Aiki's Awards and Scholarships",
     openGraph: {
+      ...baseMetadata.openGraph,
       title: `${dict.Award} | Faran Aiki`,
       description: dict.SEO_Award_Description || "Faran Aiki's Awards and Scholarships",
       url: `${SITE_URL}/${lang}/award`,
-      siteName: "faranaiki.id",
-      type: "website",
-      images: [
-        {
-          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.webp',
-          width: 1200,
-          height: 630,
-          alt: 'Faran Aiki',
-        },
-      ],
     },
     alternates: { 
       canonical: `/${lang}/award`,

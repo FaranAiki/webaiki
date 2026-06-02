@@ -3,22 +3,22 @@ import PythonCLI from "@/components/PythonCLI";
 import "../../../../globals.css"; 
 
 import { getDictionary } from '@/components/Translator';
-import { getLanguageAlternates } from '@/lib/seo';
+import { getLanguageAlternates, getBaseMetadata, SITE_URL } from '@/lib/seo';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
+  const baseMetadata = getBaseMetadata();
+
   return {
-    metadataBase: new URL("https://faranaiki.id"),
+    ...baseMetadata,
     title: "Faran Aiki's Project",
     description: "Faran Aiki's project history and others",
     openGraph: {
+      ...baseMetadata.openGraph,
       title: "Faran Aiki's Project",
       description: "Faran Aiki's project history and others",
-      url: `https://faranaiki.id/${lang}/project/script`,
-      siteName: "Faran Aiki's Project",
-      type: "website",
+      url: `${SITE_URL}/${lang}/project/script`,
     },
-    icons: { icon: "/icon.ico", shortcut: "/icon.ico", apple: "/icon.ico" },
     alternates: { 
       canonical: `/${lang}/project/script`,
       languages: getLanguageAlternates('/project/script'),

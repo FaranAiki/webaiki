@@ -14,7 +14,7 @@ export async function initializeCookies() {
   for (const item in cookie_default) {
     if (!cookieStore.has(item)) {
       cookieStore.set(item, cookie_default[item], {
-        httpOnly: true, 
+        httpOnly: false, 
         secure: process.env.NODE_ENV === 'production', 
         path: '/',
       });
@@ -57,7 +57,7 @@ export async function initializeCookies() {
 
     // Set the cookie
     cookieStore.set('language', selectedLanguage, {
-      httpOnly: true,
+      httpOnly: false,
       secure: process.env.NODE_ENV === 'production',
       path: '/',
     });
@@ -67,7 +67,7 @@ export async function initializeCookies() {
 export async function setCookies(name: string, val: string) {
   const cookieStore = await cookies();
   cookieStore.set(name, val, {
-    httpOnly: true, // Makes the cookie inaccessible to client-side JavaScript
+    httpOnly: false, // Allow client-side JS to read settings cookies
     secure: process.env.NODE_ENV === 'production', // Only send over HTTPS
     path: '/',
   });

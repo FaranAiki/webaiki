@@ -24,19 +24,10 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     title: `${dict.About_Me} | Faran Aiki`,
     description: dict.SEO_Home_Description || "Muhammad Faran Aiki's personal files, portfolio, and others",
     openGraph: {
+      ...baseMetadata.openGraph,
       title: `${dict.About_Me} | Faran Aiki`,
       description: dict.SEO_Home_Description || "Muhammad Faran Aiki's personal files, portfolio, and others",
       url: `${SITE_URL}/${lang}`,
-      siteName: "Faran Aiki",
-      type: "website",
-      images: [
-        {
-          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.webp',
-          width: 1200,
-          height: 630,
-          alt: 'Faran Aiki',
-        },
-      ],
     },
     alternates: {
       canonical: `/${lang}`,

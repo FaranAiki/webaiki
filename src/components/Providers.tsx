@@ -2,12 +2,14 @@
 
 import { ThemeProvider } from "next-themes";
 import { useEffect, useState } from "react";
-import { PresentationProvider } from "./PresentationContext";
+import { PresentationProvider, SlideNumberFormat } from "./PresentationContext";
 import { SettingsProvider } from "./SettingsContext";
 import SultanPrint from "./SultanPrint";
 
 interface ProvidersProps {
   children: React.ReactNode;
+  initialIsPresentationMode?: boolean;
+  initialSlideNumberFormat?: SlideNumberFormat;
   sultanLabels?: {
     Creating: string;
     Ready: string;
@@ -23,7 +25,12 @@ interface ProvidersProps {
 import QueryProvider from "./QueryProvider";
 import SmoothScroll from "./SmoothScroll";
 
-export function Providers({ children, sultanLabels }: ProvidersProps) {
+export function Providers({ 
+  children, 
+  sultanLabels,
+  initialIsPresentationMode,
+  initialSlideNumberFormat
+}: ProvidersProps) {
   const [mounted, setMounted] = useState(false);
 
   // Only render the provider after mounting to prevent hydration mismatches
@@ -36,7 +43,10 @@ export function Providers({ children, sultanLabels }: ProvidersProps) {
     // to avoid markup mismatches.
     return (
       <SettingsProvider>
-        <PresentationProvider>
+        <PresentationProvider 
+          initialIsPresentationMode={initialIsPresentationMode}
+          initialSlideNumberFormat={initialSlideNumberFormat}
+        >
           <QueryProvider>
             {children}
           </QueryProvider>
@@ -47,7 +57,10 @@ export function Providers({ children, sultanLabels }: ProvidersProps) {
 
   return (
     <SettingsProvider>
-      <PresentationProvider>
+      <PresentationProvider
+        initialIsPresentationMode={initialIsPresentationMode}
+        initialSlideNumberFormat={initialSlideNumberFormat}
+      >
         <QueryProvider>
           <SmoothScroll>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>

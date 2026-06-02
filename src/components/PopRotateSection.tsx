@@ -10,7 +10,7 @@ interface PopRotateSectionProps {
 }
 
 export default function PopRotateSection({ children, delay = 0, className = "" }: PopRotateSectionProps) {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -18,6 +18,10 @@ export default function PopRotateSection({ children, delay = 0, className = "" }
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  if (isMobile === null) {
+    return <div className={`${className} opacity-0`}>{children}</div>;
+  }
 
   if (isMobile) {
     return <div className={className}>{children}</div>;

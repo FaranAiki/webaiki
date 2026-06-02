@@ -11,32 +11,24 @@ import { getProjectExperiences } from '@/lib/data';
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang);
+  const baseMetadata = getBaseMetadata();
 
   return {
-    ...getBaseMetadata(),
+    ...baseMetadata,
     title: `${dict.Project} | Faran Aiki`,
-    description: dict.SEO_Project_Description || "Faran Aiki's project history and others",
+    description: dict.SEO_Project_Description || "Showcase of Faran Aiki's software projects and contributions",
     openGraph: {
+      ...baseMetadata.openGraph,
       title: `${dict.Project} | Faran Aiki`,
-      description: dict.SEO_Project_Description || "Faran Aiki's project history and others",
+      description: dict.SEO_Project_Description || "Showcase of Faran Aiki's software projects and contributions",
       url: `${SITE_URL}/${lang}/project`,
-      siteName: "faranaiki.id",
-      type: "website",
-      images: [
-        {
-          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.webp',
-          width: 1200,
-          height: 630,
-          alt: 'Faran Aiki',
-        },
-      ],
     },
     alternates: { 
       canonical: `/${lang}/project`,
       languages: getLanguageAlternates('/project'),
     },
   };
-}
+  }
 
 export default async function ProjectPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;

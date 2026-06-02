@@ -52,6 +52,7 @@ interface HeaderProps {
     navigation_label: string;
     logo_alt: string;
     share_copied: string;
+    share_description: string;
     settings_labels: {
         Settings: string;
         Typography: string;
@@ -123,49 +124,58 @@ export default function Header(props: HeaderProps) {
         navigation_label,
         logo_alt,
         share_copied,
+        share_description,
         settings_labels
-    } = props;
-    const pathname = usePathname();
-    const router = useRouter();
-    const [isLangMenuVisible, setLangMenuVisible] = useState(false);
-    const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-    const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const [shouldShowHeader, setShouldShowHeader] = useState(true);
-    const [showShareSuccess, setShowShareSuccess] = useState(false);
-    const lastYPosRef = useRef(0);
-    const tickingRef = useRef(false);
+        } = props;
+        const pathname = usePathname();
+        const router = useRouter();
+        const [isLangMenuVisible, setLangMenuVisible] = useState(false);
+        const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+        const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+        const [shouldShowHeader, setShouldShowHeader] = useState(true);
+        const [showShareSuccess, setShowShareSuccess] = useState(false);
+        const lastYPosRef = useRef(0);
+        const tickingRef = useRef(false);
 
-    const { resolvedTheme } = useTheme();
-    const [mounted, setMounted] = useState(false);
-    const { isPresentationMode, togglePresentationMode } = usePresentation();
-    const setScrollLocked = useAppStore((state) => state.setScrollLocked);
-    const langMenuRef = useRef<HTMLDivElement>(null);
+        const { theme, resolvedTheme } = useTheme();
+        const [mounted, setMounted] = useState(false);
+        const { isPresentationMode, togglePresentationMode } = usePresentation();
+        const setScrollLocked = useAppStore((state) => state.setScrollLocked);
+        const langMenuRef = useRef<HTMLDivElement>(null);
 
-    const handleShare = () => {
-        const settingsParams = [
-            'presentation_mode',
-            'presentation_slide_format',
-            'settings-font',
-            'settings-align',
-            'settings-scale',
-            'settings-spacing',
-            'settings-lineheight'
-        ];
+        const handleShare = () => {
+            const settingsParams = [
+                'theme',
+                'presentation_mode',
+                'presentation_slide_format',
+                'settings-font',
+                'settings-align',
+                'settings-scale',
+                'settings-spacing',
+                'settings-lineheight'
+            ];
 
-        const url = new URL(window.location.origin + pathname);
-        settingsParams.forEach(param => {
-            const value = localStorage.getItem(param);
-            if (value !== null) {
-                url.searchParams.set(param, value);
-            }
-        });
+            const url = new URL(window.location.origin + pathname);
+            settingsParams.forEach(param => {
+                let value = null;
+
+                // Priority: next-themes state -> localStorage -> cookies
+                if (param === 'theme') {
+                    value = theme || resolvedTheme;
+                } else {
+                    value = localStorage.getItem(param);
+                }
+
+                if (value !== null && value !== undefined) {
+                    url.searchParams.set(param, value);
+                }
+            });
 
         const shareData = {
             title: 'Faran Aiki',
-            text: 'Check out Faran Aiki\'s personal website!',
+            text: share_description || 'Check out Faran Aiki\'s personal website!',
             url: url.toString()
         };
-
         if (navigator.share) {
             navigator.share(shareData).catch(err => {
                 console.error('Error sharing:', err);

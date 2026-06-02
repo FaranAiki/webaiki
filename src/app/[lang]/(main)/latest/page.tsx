@@ -1,34 +1,21 @@
 import { getDictionary } from '@/components/Translator';
+import { Metadata } from 'next';
+import { getLanguageAlternates, getBaseMetadata, SITE_URL } from '@/lib/seo';
 
-import { getLanguageAlternates } from '@/lib/seo';
-
-export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang);
+  const baseMetadata = getBaseMetadata();
 
   return {
-    metadataBase: new URL('https://faranaiki.id'),
+    ...baseMetadata,
     title: `${dict.Latest} | Faran Aiki`,
     description: "Faran Aiki's Latest Information",
     openGraph: {
+      ...baseMetadata.openGraph,
       title: `${dict.Latest} | Faran Aiki`,
       description: "Faran Aiki's Latest Information",
-      url: `https://faranaiki.id/${lang}/latest`,
-      siteName: "faranaiki.id",
-      type: "website",
-      images: [
-        {
-          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.webp',
-          width: 1200,
-          height: 630,
-          alt: 'Faran Aiki',
-        },
-      ],
-    },
-    icons: {
-      icon: '/icon.ico',
-      shortcut: '/icon.ico',
-      apple: '/icon.ico',
+      url: `${SITE_URL}/${lang}/latest`,
     },
     alternates: {
       canonical: `/${lang}/latest`,

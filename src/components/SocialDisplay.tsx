@@ -1,13 +1,11 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { useTheme } from 'next-themes';
 import { Github, Linkedin, Instagram, Twitter, Mail, Youtube } from 'lucide-react';
 import Image from 'next/image';
 import PopRotateSection from '@/components/PopRotateSection';
 import FadeInSection from '@/components/FadeInSection';
 import { usePresentation } from './PresentationContext';
-import { motion } from 'framer-motion';
 
 export interface SocialLink {
   name: string;
@@ -23,7 +21,6 @@ interface SocialDisplayProps {
 }
 
 export default function SocialDisplay({ customLinks, hidePresentation = false }: SocialDisplayProps) {
-  const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const { isPresentationMode } = usePresentation();
 
@@ -31,16 +28,14 @@ export default function SocialDisplay({ customLinks, hidePresentation = false }:
     setMounted(true);
   }, []);
 
-  const isDark = mounted && resolvedTheme === 'dark';
-
-  // Dynamic Styles
-  const containerText = isDark ? 'text-gray-100' : 'text-gray-900';
-  const cardBg = isDark ? 'bg-gray-800/60 border-gray-700' : 'bg-white border-gray-200 shadow-lg';
-  const usernameText = isDark ? 'text-gray-400 group-hover:text-white' : 'text-gray-500 group-hover:text-black';
-  const nameText = isDark ? 'text-gray-100' : 'text-gray-900';
+  // Static/CSS-variable based styles to prevent flicker
+  const containerClass = "text-foreground";
+  const cardBg = "bg-[var(--card-bg)] border-[var(--card-border)] backdrop-blur-sm shadow-sm hover:shadow-lg";
+  const usernameClass = "text-[var(--text-muted)] group-hover:text-foreground";
+  const nameClass = "text-foreground";
   
-  // Icon Colors
-  const githubColor = isDark ? 'text-white' : 'text-gray-900';
+  // Icon Colors - Using Tailwind's dark: variant is safer than JS-based theme detection for initial render
+  const githubColor = "text-black dark:text-white";
 
   const defaultSocialLinks: SocialLink[] = [
     {
@@ -89,7 +84,7 @@ export default function SocialDisplay({ customLinks, hidePresentation = false }:
       name: "TikTok",
       username: "@faranaiki07",
       url: "https://www.tiktok.com/@faranaiki07",
-      icon: <Image alt="Tiktok icon" width="48" height="48" src="/images/social/tiktok.webp" className={isDark ? "brightness-0 invert" : ""} />,
+      icon: <Image alt="Tiktok icon" width="48" height="48" src="/images/social/tiktok.webp" className="dark:brightness-0 dark:invert" />,
       color: "hover:border-black"
     },
     {
@@ -110,7 +105,7 @@ export default function SocialDisplay({ customLinks, hidePresentation = false }:
       name: "Lichess",
       username: "FaranAiki",
       url: "https://lichess.org/@/FaranAiki",
-      icon: <Image alt='Lichess icon' width="48" height="48" src="/images/social/lichess.webp" className={isDark ? "brightness-0 invert" : ""} />,
+      icon: <Image alt='Lichess icon' width="48" height="48" src="/images/social/lichess.webp" className="dark:brightness-0 dark:invert" />,
       color: "hover:border-white"
     },
     {
@@ -181,18 +176,17 @@ export default function SocialDisplay({ customLinks, hidePresentation = false }:
               slideIndex={chunkIdx + 1}
               totalSlides={socialChunks.length}
             >
-              <div className={`container mx-auto max-w-5xl ${containerText} px-4`}>
+              <div className={`container mx-auto max-w-5xl ${containerClass} px-4`}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-center justify-center">
                   {chunk.map((link, index) => (
                     <PopRotateSection key={link.name} delay={index * 100} className="h-full">
-                      {/* CRITICAL: Use standard <a> instead of motion.a to avoid double-animation conflicts in popups */}
                       <a
                           href={link.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={`group ${cardBg} backdrop-blur-sm border rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02] ${link.color} h-full min-h-[200px] shadow-sm hover:shadow-xl`}
+                          className={`group ${cardBg} border rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02] ${link.color} h-full min-h-[200px]`}
                       >
-                          <div className={`text-base ${usernameText} mb-4 transition-colors`}>
+                          <div className={`text-base ${usernameClass} mb-4 transition-colors`}>
                           {link.username}
                           </div>
 
@@ -200,7 +194,7 @@ export default function SocialDisplay({ customLinks, hidePresentation = false }:
                               {link.icon}
                           </div>
 
-                          <div className={`text-2xl font-bold ${nameText}`}>
+                          <div className={`text-2xl font-bold ${nameClass}`}>
                           {link.name}
                           </div>
                       </a>
@@ -217,18 +211,17 @@ export default function SocialDisplay({ customLinks, hidePresentation = false }:
       {!showPresentation && (
         <div className="block">
           <FadeInSection className="w-full h-full flex items-center justify-center py-12 md:py-20">
-            <div className={`container mx-auto max-w-5xl ${containerText}`}>
+            <div className={`container mx-auto max-w-5xl ${containerClass}`}>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
                 {socialLinks.map((link, index) => (
                   <PopRotateSection key={link.name} delay={(index % 6) * 50} className="h-full">
-                    {/* CRITICAL: Standard <a> to fix Framer Motion conflicts in popups */}
                     <a
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`group ${cardBg} backdrop-blur-sm border rounded-lg p-6 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-2 ${link.color} h-full shadow-sm hover:shadow-lg`}
+                        className={`group ${cardBg} border rounded-lg p-6 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-2 ${link.color} h-full shadow-sm hover:shadow-lg`}
                     >
-                        <div className={`text-sm ${usernameText} mb-4 transition-colors`}>
+                        <div className={`text-sm ${usernameClass} mb-4 transition-colors`}>
                         {link.username}
                         </div>
 
@@ -236,7 +229,7 @@ export default function SocialDisplay({ customLinks, hidePresentation = false }:
                         {link.icon}
                         </div>
 
-                        <div className={`text-lg font-semibold ${nameText}`}>
+                        <div className={`text-lg font-semibold ${nameClass}`}>
                         {link.name}
                         </div>
                     </a>

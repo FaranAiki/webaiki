@@ -107,6 +107,7 @@ export default async function RootLayout({
         navigation_label={dict.Navigation}
         logo_alt={dict.Logo_Alt}
         share_copied={dict.Copied_To_Clipboard}
+        share_description={dict.Share_Description}
         settings_labels={{
           Settings: dict.Settings,
           Typography: dict.Typography,

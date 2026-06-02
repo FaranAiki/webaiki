@@ -10,7 +10,7 @@ import SocialDisplay, { SocialLink } from '@/components/SocialDisplay';
 import { Github, Linkedin, Instagram, Twitter, Youtube, Share2 } from 'lucide-react';
 import Image from 'next/image';
 
-import { getLanguageAlternates, getBaseMetadata, getPersonSchema, getBreadcrumbSchema, getFaqSchema } from '@/lib/seo';
+import { getLanguageAlternates, getBaseMetadata, getPersonSchema, getBreadcrumbSchema, getFaqSchema, SITE_URL } from '@/lib/seo';
 
 import {
   getWorkExperiences,
@@ -27,27 +27,18 @@ import { Briefcase, Code, Users, Trophy, FileCheck, Star } from 'lucide-react';
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang);
+  const baseMetadata = getBaseMetadata();
 
   return {
-    metadataBase: new URL('https://faranaiki.id'),
+    ...baseMetadata,
     title: `${dict.Portfolio} | Faran Aiki`,
-    description: "Full professional portfolio and highlights of Muhammad Faran Aiki",
+    description: dict.Portfolio_Description || "Full professional portfolio and highlights of Muhammad Faran Aiki",
     openGraph: {
+      ...baseMetadata.openGraph,
       title: `${dict.Portfolio} | Faran Aiki`,
-      description: "Full professional portfolio and highlights of Muhammad Faran Aiki",
-      url: `https://faranaiki.id/${lang}/portfolio`,
-      siteName: "faranaiki.id",
-      type: "website",
-      images: [
-        {
-          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.webp',
-          width: 1200,
-          height: 630,
-          alt: 'Faran Aiki',
-        },
-      ],
+      description: dict.Portfolio_Description || "Full professional portfolio and highlights of Muhammad Faran Aiki",
+      url: `${SITE_URL}/${lang}/portfolio`,
     },
-    icons: { icon: '/icon.ico', shortcut: '/icon.ico', apple: '/icon.ico' },
     alternates: {
       canonical: `/${lang}/portfolio`,
       languages: getLanguageAlternates('/portfolio'),

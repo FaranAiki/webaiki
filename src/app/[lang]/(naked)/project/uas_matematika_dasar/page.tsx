@@ -2,33 +2,25 @@
 
 import { getDictionary } from '@/components/Translator';
 import UasHeader from "./UasHeader";
+import { Metadata } from 'next';
 
-import { getLanguageAlternates } from '@/lib/seo';
+import { getLanguageAlternates, getBaseMetadata, SITE_URL } from '@/lib/seo';
 
-export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang);
+  const baseMetadata = getBaseMetadata();
 
   return {
-    metadataBase: new URL('https://faranaiki.id'),
+    ...baseMetadata,
     title: `${dict.Make_Interactive_UAS} | Faran Aiki`,
     description: dict.Make_Interactive_UAS_Description || "Faran Aiki's project to develop interactive widgets and AI explanations",
     openGraph: {
+      ...baseMetadata.openGraph,
       title: `${dict.Make_Interactive_UAS} | Faran Aiki`,
       description: dict.Make_Interactive_UAS_Description || "Faran Aiki's project to develop interactive widgets and AI explanations",
-      url: `https://faranaiki.id/${lang}/project/uas_matematika_dasar`,
-      siteName: "faranaiki.id",
-      type: "website",
-      images: [
-        {
-          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.webp',
-          width: 1200,
-          height: 630,
-          alt: 'Faran Aiki',
-        },
-      ],
+      url: `${SITE_URL}/${lang}/project/uas_matematika_dasar`,
     },
-    icons: { icon: '/icon.ico', shortcut: '/icon.ico', apple: '/icon.ico' },
     alternates: { 
       canonical: `/${lang}/project/uas_matematika_dasar`,
       languages: getLanguageAlternates('/project/uas_matematika_dasar'),

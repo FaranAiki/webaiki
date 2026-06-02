@@ -9,25 +9,17 @@ import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema }
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang);
+  const baseMetadata = getBaseMetadata();
 
   return {
-    ...getBaseMetadata(),
+    ...baseMetadata,
     title: `${dict.Certificate} | Faran Aiki`,
     description: dict.SEO_Certificate_Description || "Faran Aiki's professional certificates and achievements",
     openGraph: {
+      ...baseMetadata.openGraph,
       title: `${dict.Certificate} | Faran Aiki`,
       description: dict.SEO_Certificate_Description || "Faran Aiki's professional certificates and achievements",
       url: `${SITE_URL}/${lang}/certificate`,
-      siteName: "faranaiki.id",
-      type: "website",
-      images: [
-        {
-          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.webp',
-          width: 1200,
-          height: 630,
-          alt: 'Faran Aiki',
-        },
-      ],
     },
     alternates: { 
       canonical: `/${lang}/certificate`,

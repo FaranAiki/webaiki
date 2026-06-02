@@ -1,15 +1,16 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useParams, useSearchParams, useRouter, usePathname } from 'next/navigation';
+import { useParams, useSearchParams, usePathname } from 'next/navigation';
 import { initializeCookies, setCookies } from '@/app/actions';
+import { useTheme } from 'next-themes';
 
 export function CookieInitializer() {
   const params = useParams();
   const searchParams = useSearchParams();
-  const router = useRouter();
   const pathname = usePathname();
   const lang = params?.lang as string;
+  const { setTheme } = useTheme();
 
   useEffect(() => {
     initializeCookies();
@@ -30,6 +31,7 @@ export function CookieInitializer() {
 
       // 2. Handle Settings sync from cookies (set by middleware from URL params)
       const settingsParams = [
+        'theme',
         'presentation_mode',
         'presentation_slide_format',
         'settings-font',
@@ -44,28 +46,34 @@ export function CookieInitializer() {
         if (searchParams.get(param) !== null) {
           hasSettingsInUrl = true;
         }
-        
+
         // Ensure settings are synced to localStorage if cookie exists
         if (cookies[param]) {
           const value = decodeURIComponent(cookies[param]);
-          localStorage.setItem(param, value);
+
+          if (param === 'theme') {
+            setTheme(value);
+          } else {
+            localStorage.setItem(param, value);
+          }
+
           // Delete cookie
           document.cookie = `${param}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
         }
       });
 
-      // 3. Clean up URL parameters after they've been processed by middleware/cookies
+      // 3. Clean URL if parameters were processed
       if (hasSettingsInUrl) {
-        const newParams = new URLSearchParams(searchParams.toString());
-        settingsParams.forEach(p => newParams.delete(p));
-        const query = newParams.toString();
-        const newUrl = `${pathname}${query ? `?${query}` : ''}`;
-        
+        const query = new URLSearchParams(searchParams.toString());
+        settingsParams.forEach(param => query.delete(param));
+
+        const newUrl = `${pathname}${query.toString() ? `?${query.toString()}` : ''}`;
+
         // Use replace to clean URL without adding to history
         window.history.replaceState(null, '', newUrl);
       }
     }
-  }, [lang, searchParams, pathname]);
+  }, [lang, searchParams, pathname, setTheme]);
 
   return null;
 }

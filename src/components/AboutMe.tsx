@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { useTheme } from 'next-themes';
 import { shimmer, toBase64, formatCJK } from '@/lib/utils';
 import Image from 'next/image';
 import HoverableWords from '@/components/HoverableWords';
@@ -30,9 +29,9 @@ export type AboutMeProps = {
   isCompact?: boolean;
 };
 
-export const SectionSeparator = ({ isDark, isCompact }: { isDark: boolean, isCompact?: boolean }) => (
+export const SectionSeparator = ({ isCompact }: { isDark?: boolean, isCompact?: boolean }) => (
   <div className={`SectionSeparator w-full max-w-4xl mx-auto ${isCompact ? 'my-4 md:my-6' : 'my-16 md:my-24'} transform-gpu`}>
-    <div className={`h-px bg-gradient-to-r from-transparent ${isDark ? 'via-gray-500/30' : 'via-black/10'} to-transparent`} />
+    <div className="h-px bg-gradient-to-r from-transparent via-[var(--card-border)] to-transparent opacity-30" />
   </div>
 );
 
@@ -47,7 +46,6 @@ interface AboutSubSectionProps extends AboutMeProps {
 function useAboutLayout(props: AboutSubSectionProps) {
   const { textAlign } = useSettings();
   const { isPresentationMode: presMode } = usePresentation();
-  const { resolvedTheme } = useTheme();
 
   const lang = props.lang;
   const isJustified = lang !== 'jp' && lang !== 'zh';
@@ -56,9 +54,8 @@ function useAboutLayout(props: AboutSubSectionProps) {
   const justifyClass = props.justifyClass ?? (textAlign === 'default' ? defaultJustifyClass : `text-${textAlign}`);
   const responsiveJustifyClass = props.responsiveJustifyClass ?? (textAlign === 'default' ? `text-center md:${justifyClass}` : justifyClass);
   const isPresentationMode = props.isPresentationMode ?? presMode;
-  const titleClass = props.titleClass ?? "text-black dark:text-white";
-  const textClass = props.textClass ?? "text-black dark:text-gray-200";
-  const isDark = resolvedTheme === 'dark';
+  const titleClass = props.titleClass ?? "text-foreground";
+  const textClass = props.textClass ?? "text-foreground/90 dark:text-foreground/80";
 
   return {
     justifyClass,
@@ -66,15 +63,16 @@ function useAboutLayout(props: AboutSubSectionProps) {
     isPresentationMode,
     titleClass,
     textClass,
-    isDark
   };
 }
 
 export function PortfolioAboutHeader(props: AboutMeProps) {
-  const { textClass, isDark } = useAboutLayout(props);
+  const { textClass } = useAboutLayout(props);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     if (!props.carouselPhotos || props.carouselPhotos.length <= 1) return;
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % props.carouselPhotos.length);
@@ -88,26 +86,30 @@ export function PortfolioAboutHeader(props: AboutMeProps) {
       <div className="lg:col-span-4 flex justify-center lg:justify-start">
         <div className="relative w-48 h-48 md:w-64 md:h-64 lg:w-full lg:aspect-square group transform-gpu">
           <div className="absolute inset-0 bg-cyan-500/20 blur-[60px] rounded-full opacity-50 group-hover:opacity-80 transition-opacity" />
-          <div className={`relative w-full h-full rounded-3xl overflow-hidden border-2 ${isDark ? 'border-cyan-500/30 bg-gray-900/50' : 'border-cyan-500/20 bg-white/50'} backdrop-blur-sm shadow-2xl`}>
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentIndex}
-                initial={{ opacity: 0, scale: 1.1 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.6 }}
-                className="relative w-full h-full"
-              >
-                <Image
-                  src={`/images/photo_faran_aiki/${props.carouselPhotos[currentIndex]}`}
-                  alt={props.faran_photo}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 200px, 400px"
-                  priority
-                />
-              </motion.div>
-            </AnimatePresence>
+          <div className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-cyan-500/20 dark:border-cyan-500/30 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm shadow-2xl">
+            {mounted ? (
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentIndex}
+                  initial={{ opacity: 0, scale: 1.1 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.6 }}
+                  className="relative w-full h-full"
+                >
+                  <Image
+                    src={`/images/photo_faran_aiki/${props.carouselPhotos[currentIndex]}`}
+                    alt={props.faran_photo}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 200px, 400px"
+                    priority
+                  />
+                </motion.div>
+              </AnimatePresence>
+            ) : (
+                <div className="w-full h-full bg-gray-200 dark:bg-gray-800 animate-pulse" />
+            )}
           </div>
         </div>
       </div>
@@ -130,7 +132,7 @@ export function PortfolioAboutHeader(props: AboutMeProps) {
             <HoverableWords className={`text-sm md:text-base leading-relaxed ${textClass}`}>
               {formatCJK(props.about_text_1, props.lang)}
             </HoverableWords>
-            <div className={`p-4 rounded-xl ${isDark ? 'bg-white/5' : 'bg-black/5'} border ${isDark ? 'border-white/10' : 'border-black/5'} hover:scale-[1.02] transition-transform duration-300 group`}>
+            <div className="p-4 rounded-xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 hover:scale-[1.02] transition-transform duration-300 group">
               <p className={`text-xs font-bold text-cyan-500 mb-2 group-hover:text-cyan-400 transition-colors`}>{props.about_philosophy_title}</p>
               <HoverableWords className={`text-sm italic ${textClass} opacity-80 group-hover:opacity-100 transition-opacity`}>
                 {formatCJK(props.about_philosophy, props.lang)}
@@ -165,8 +167,10 @@ export function PortfolioAboutHeader(props: AboutMeProps) {
 export function AboutSection(props: AboutSubSectionProps) {
   const { responsiveJustifyClass, justifyClass, titleClass, textClass } = useAboutLayout(props);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     if (!props.carouselPhotos || props.carouselPhotos.length <= 1) return;
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % props.carouselPhotos.length);
@@ -196,7 +200,7 @@ export function AboutSection(props: AboutSubSectionProps) {
               className={`relative ${props.isCompact ? 'w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56' : 'w-64 h-64 md:w-80 md:h-80 lg:w-[400px] lg:h-[400px]'} flex justify-center items-center overflow-hidden transform-gpu`}
             >
               <AnimatePresence mode="wait">
-                {props.carouselPhotos && props.carouselPhotos.length > 0 && (
+                {mounted && props.carouselPhotos && props.carouselPhotos.length > 0 ? (
                 <motion.div
                   key={currentIndex}
                   initial={{ opacity: 0, scale: 1.1 }}
@@ -222,6 +226,8 @@ export function AboutSection(props: AboutSubSectionProps) {
                     priority={true}
                   />
                 </motion.div>
+                ) : (
+                    <div className="w-full h-full bg-gray-200 dark:bg-gray-800 animate-pulse rounded-full" />
                 )}
               </AnimatePresence>
             </div>
@@ -356,18 +362,27 @@ export function VisionMissionSection(props: AboutSubSectionProps) {
 }
 
 export default function AboutMe(props: AboutMeProps) {
-  const { isDark, isPresentationMode } = useAboutLayout(props);
+  const { isPresentationMode } = useAboutLayout(props);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+      return <div className="w-full h-96" />;
+  }
 
   return (
     <div className={`w-full ${props.isCompact ? 'py-4' : 'py-8'} md:px-5 ${isPresentationMode ? 'presentation-container' : ''}`}>
       <AboutSection {...props} />
-      {!isPresentationMode && <SectionSeparator isDark={isDark} isCompact={props.isCompact} />}
+      {!isPresentationMode && <SectionSeparator isCompact={props.isCompact} />}
       
       <PhilosophySection {...props} />
-      {!isPresentationMode && <SectionSeparator isDark={isDark} isCompact={props.isCompact} />}
+      {!isPresentationMode && <SectionSeparator isCompact={props.isCompact} />}
       
       <PrinciplesSection {...props} />
-      {!isPresentationMode && <SectionSeparator isDark={isDark} isCompact={props.isCompact} />}
+      {!isPresentationMode && <SectionSeparator isCompact={props.isCompact} />}
       
       <VisionMissionSection {...props} />
     </div>

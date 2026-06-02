@@ -14,22 +14,39 @@ interface PresentationContextType {
 
 const PresentationContext = createContext<PresentationContextType | undefined>(undefined);
 
-export function PresentationProvider({ children }: { children: React.ReactNode }) {
-  const [isPresentationMode, setIsPresentationMode] = useState(false);
-  const [slideNumberFormat, setSlideNumberFormat] = useState<SlideNumberFormat>('binary');
+interface PresentationProviderProps {
+  children: React.ReactNode;
+  initialIsPresentationMode?: boolean;
+  initialSlideNumberFormat?: SlideNumberFormat;
+}
+
+export function PresentationProvider({ 
+  children, 
+  initialIsPresentationMode = false,
+  initialSlideNumberFormat = 'binary'
+}: PresentationProviderProps) {
+  const [isPresentationMode, setIsPresentationMode] = useState(initialIsPresentationMode);
+  const [slideNumberFormat, setSlideNumberFormat] = useState<SlideNumberFormat>(initialSlideNumberFormat);
   const [isLargeScreen, setIsLargeScreen] = useState(true);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Disable presentation mode on /portfolio route
   useEffect(() => {
     if (pathname?.endsWith('/portfolio')) {
       setIsPresentationMode(false);
-      localStorage.setItem("presentation_mode", "false");
+      if (mounted) localStorage.setItem("presentation_mode", "false");
     }
-  }, [pathname]);
+  }, [pathname, mounted]);
 
   // Load state from localStorage on mount and handle resizing
   useEffect(() => {
+    if (!mounted) return;
+
     // Helper to get from cookie or localStorage
     const getSetting = (key: string) => {
       const cookies = document.cookie.split('; ').reduce((acc: Record<string, string>, current) => {
@@ -68,7 +85,7 @@ export function PresentationProvider({ children }: { children: React.ReactNode }
     checkScreenSize();
     window.addEventListener('resize', checkScreenSize);
     return () => window.removeEventListener('resize', checkScreenSize);
-  }, []);
+  }, [mounted]);
 
   const togglePresentationMode = () => {
     if (!isLargeScreen || pathname?.endsWith('/portfolio')) return; // Disable toggling on small screens or portfolio

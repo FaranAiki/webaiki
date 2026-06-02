@@ -21,7 +21,8 @@ import { getDictionary } from "@/components/Translator";
 import { LOCALES } from "@/lib/seo";
 import { getBackgrounds } from "@/lib/data";
 import ClientOnlyWidgets from "@/components/ClientOnlyWidgets";
-// import AskMePopup from "@/components/AskMePopup";
+import { cookies } from 'next/headers';
+import { SlideNumberFormat } from "@/components/PresentationContext";
 
 export function generateStaticParams() {
   return LOCALES.map((lang) => ({ lang }));
@@ -38,6 +39,10 @@ export default async function BaseLayout({
   const { lang } = await params;
   const dict = await getDictionary(lang);
   const backgrounds = getBackgrounds();
+  const cookieStore = await cookies();
+  
+  const initialIsPresentationMode = cookieStore.get('presentation_mode')?.value === 'true';
+  const initialSlideNumberFormat = (cookieStore.get('presentation_slide_format')?.value as SlideNumberFormat) || 'binary';
 
   const sultanLabels = {
     Creating: dict.Sultan_PDF_Creating,
@@ -69,7 +74,11 @@ export default async function BaseLayout({
         <meta name="google-site-verification" content="xZMulZsvn0xj7TrxhEN8O9KLWSmNIfx6tqFtOpbgOV4" />
       </head>
       <body className={`${inter.variable} ${geistMono.variable} font-sans antialiased`}>
-        <Providers sultanLabels={sultanLabels}>
+        <Providers 
+          sultanLabels={sultanLabels}
+          initialIsPresentationMode={initialIsPresentationMode}
+          initialSlideNumberFormat={initialSlideNumberFormat}
+        >
           <ClientOnlyWidgets backgrounds={backgrounds} />
           {children}
           {/* 

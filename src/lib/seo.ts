@@ -55,6 +55,23 @@ export function getBaseMetadata(): Metadata {
     verification: {
       google: 'xZMulZsvn0xj7TrxhEN8O9KLWSmNIfx6tqFtOpbgOV4',
     },
+    openGraph: {
+      type: 'website',
+      siteName: 'Faran Aiki',
+      images: [
+        {
+          url: `${SITE_URL}/images/photo_faran_aiki/1_fa_photo_linkedin.webp`,
+          width: 1200,
+          height: 630,
+          alt: 'Muhammad Faran Aiki',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Faran Aiki',
+      images: [`${SITE_URL}/images/photo_faran_aiki/1_fa_photo_linkedin.webp`],
+    },
   };
 }
 

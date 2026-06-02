@@ -17,19 +17,10 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     title: `${dict.Work} | Faran Aiki`,
     description: dict.SEO_Work_Description || "Faran Aiki's Work History and Internships",
     openGraph: {
+      ...baseMetadata.openGraph,
       title: `${dict.Work} | Faran Aiki`,
       description: dict.SEO_Work_Description || "Faran Aiki's Work History and Internships",
       url: `${SITE_URL}/${lang}/work`,
-      siteName: "Faran Aiki",
-      type: "website",
-      images: [
-        {
-          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.webp',
-          width: 1200,
-          height: 630,
-          alt: 'Faran Aiki',
-        },
-      ],
     },
     alternates: { 
       canonical: `/${lang}/work`,

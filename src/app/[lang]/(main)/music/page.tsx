@@ -7,25 +7,17 @@ import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema }
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang);
+  const baseMetadata = getBaseMetadata();
 
   return {
-    ...getBaseMetadata(),
+    ...baseMetadata,
     title: `${dict.Music} | Faran Aiki`,
     description: "Faran Aiki's music made using either LMMS or other DAW",
     openGraph: {
+      ...baseMetadata.openGraph,
       title: `${dict.Music} | Faran Aiki`,
       description: "Faran Aiki's music made using either LMMS or other DAW",
       url: `${SITE_URL}/${lang}/music`,
-      siteName: "faranaiki.id",
-      type: "website",
-      images: [
-        {
-          url: '/images/photo_faran_aiki/1_fa_photo_linkedin.webp',
-          width: 1200,
-          height: 630,
-          alt: 'Faran Aiki',
-        },
-      ],
     },
     alternates: {
       canonical: `/${lang}/music`,
