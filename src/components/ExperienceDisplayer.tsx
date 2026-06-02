@@ -18,7 +18,7 @@ import {
     Briefcase
 } from 'lucide-react';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { LayoutSwitcher } from './LayoutSwitcher';
 
 export type Job = {
@@ -95,16 +95,12 @@ const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, j
 
     return (
         <motion.div
-            layout
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
+            viewport={{ once: true, margin: "-20px" }}
             onClick={handleBoxClick}
-            transition={{
-                duration: 0.6,
-                ease: [0.23, 1, 0.32, 1],
-                layout: { duration: 0.4 }
-            }}
+            transition={{ duration: 0.4 }}
+            // REMOVED transition-all to prevent Framer Motion conflicts
             className={`${spanClass} relative rounded-3xl overflow-hidden group border ${cardBorder} ${inactiveCardBg} shadow-sm hover:shadow-xl cursor-pointer transform-gpu`}
         >
             {hasImage ? (
@@ -112,20 +108,20 @@ const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, j
                     src={job.image[0]}
                     alt={job.company}
                     fill
-                    className={`object-cover transition-all duration-700
+                    className={`object-cover transition-transform duration-700
                         ${isExpanded
                             ? (isDark ? 'scale-110 blur-sm brightness-[0.2]' : 'scale-110 blur-md opacity-20')
-                            : 'group-hover:scale-110 opacity-60 group-hover:opacity-100'}`}
+                            : 'group-hover:scale-105 opacity-60 group-hover:opacity-100'}`}
                 />
             ) : (
-                <div className={`absolute inset-0 transition-all duration-700 ${isExpanded ? 'blur-sm brightness-[0.3]' : 'opacity-40 group-hover:opacity-80'}`}>
+                <div className={`absolute inset-0 transition-opacity duration-700 ${isExpanded ? 'blur-sm brightness-[0.3]' : 'opacity-40 group-hover:opacity-80'}`}>
                     <PlaceholderIcon company={job.company} />
                 </div>
             )}
 
             {/* Base Content */}
             <div className={`absolute inset-0 p-6 flex flex-col justify-end transition-opacity duration-500
-                ${isDark ? 'bg-gradient-to-t from-black/80 via-black/20 to-transparent' : 'bg-gradient-to-t from-white/90 via-white/20 to-transparent'}
+                ${isDark ? 'bg-gradient-to-t from-black/80 via-black/20' : 'bg-gradient-to-t from-white/95 via-white/40'} to-transparent
                 ${isExpanded ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                 <div className="flex justify-between items-start">
                     <div className="flex-1">
@@ -144,48 +140,50 @@ const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, j
             </div>
 
             {/* Expanded Content (Overlay) */}
-            <motion.div
-                initial={false}
-                animate={{ opacity: isExpanded ? 1 : 0, y: isExpanded ? 0 : 20 }}
-                transition={{ duration: 0.4, ease: "circOut" }}
-                className={`absolute inset-0 z-10 p-6 flex flex-col justify-center md:backdrop-blur-md
-                    ${isDark ? 'bg-black/80' : 'bg-white/90'}
-                    ${isExpanded ? 'pointer-events-auto' : 'pointer-events-none'}`}
-                onClick={(e) => {
-                    if (isExpanded) {
-                        e.stopPropagation();
-                        setIsExpanded(false);
-                    }
-                }}
-            >
-                <div className="overflow-y-auto max-h-full pr-2 custom-scrollbar">
-                    <p className="text-cyan-500 text-xs font-bold mb-2">{job.date}</p>
-                    <h3 className="text-xl font-black mb-1 nav-active-gacor">{job.title}</h3>
-                    <p className={`text-sm italic mb-4 ${isDark ? 'text-cyan-300' : 'text-cyan-600'}`}>{job.company}</p>
-                    <div className={`text-sm leading-relaxed ${isDark ? 'text-gray-200' : 'text-gray-700'} ${justifyClass}`}>
-                        {formatCJK(job.description, lang)}
-                    </div>
-                    
-                    {job.url && (
-                        <button 
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                window.open(job.url, '_blank', 'noopener,noreferrer');
-                            }}
-                            className="mt-6 flex items-center gap-2 px-4 py-2 bg-cyan-500 text-white rounded-full font-bold text-xs hover:bg-cyan-600 transition-colors w-fit"
-                        >
-                            <ExternalLink size={14} />
-                            Visit Project
-                        </button>
-                    )}
-                </div>
+            <AnimatePresence>
+                {isExpanded && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        transition={{ duration: 0.3 }}
+                        className={`absolute inset-0 z-10 p-6 flex flex-col justify-center backdrop-blur-md
+                            ${isDark ? 'bg-black/80' : 'bg-white/90'}`}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setIsExpanded(false);
+                        }}
+                    >
+                        <div className="overflow-y-auto max-h-full pr-2 custom-scrollbar">
+                            <p className="text-cyan-500 text-xs font-bold mb-2">{job.date}</p>
+                            <h3 className="text-xl font-black mb-1 nav-active-gacor">{job.title}</h3>
+                            <p className={`text-sm italic mb-4 ${isDark ? 'text-cyan-300' : 'text-cyan-600'}`}>{job.company}</p>
+                            <div className={`text-sm leading-relaxed ${isDark ? 'text-gray-200' : 'text-gray-700'} ${justifyClass}`}>
+                                {formatCJK(job.description, lang)}
+                            </div>
+                            
+                            {job.url && (
+                                <button 
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        window.open(job.url, '_blank', 'noopener,noreferrer');
+                                    }}
+                                    className="mt-6 flex items-center gap-2 px-4 py-2 bg-cyan-500 text-white rounded-full font-bold text-xs hover:bg-cyan-600 transition-colors w-fit"
+                                >
+                                    <ExternalLink size={14} />
+                                    Visit Project
+                                </button>
+                            )}
+                        </div>
 
-                {/* Close hint */}
-                <div className={`absolute top-4 right-4 text-[10px] font-medium px-2 py-1 rounded-full
-                    ${isDark ? 'text-white/50 bg-white/10' : 'text-gray-500 bg-gray-200/50'}`}>
-                    {click_to_close_text}
-                </div>
-            </motion.div>
+                        {/* Close hint */}
+                        <div className={`absolute top-4 right-4 text-[10px] font-medium px-2 py-1 rounded-full
+                            ${isDark ? 'text-white/50 bg-white/10' : 'text-gray-500 bg-gray-200/50'}`}>
+                            {click_to_close_text}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </motion.div>
     );
 };
@@ -230,13 +228,12 @@ export default function ExperiencesClient({
     }, [activeJob]);
 
     const isDark = mounted && resolvedTheme === 'dark';
-    const mainText = isDark ? 'text-white' : 'text-black';
-    const descText = isDark ? 'text-gray-300' : 'text-gray-700';
-    const activeCardBg = isDark ? 'bg-gray-800' : 'bg-gray-100 border-cyan-500';
-    const inactiveCardBg = isDark ? 'bg-gray-800/50 hover:bg-gray-800' : 'bg-white hover:bg-gray-50';
-    const cardBorder = isDark ? 'border-transparent' : 'border-gray-200';
-    const dateStyle = useMemo(() => ({ color: isDark ? '#9ca3af' : '#6b7280', opacity: 0.8 }), [isDark]);
-    const companyStyle = useMemo(() => ({ color: isDark ? '#22d3ee' : '#0284c7' }), [isDark]);
+    const mainText = "text-foreground";
+    const descText = "text-foreground/80 dark:text-foreground/70";
+    const activeCardBg = "bg-gray-100 dark:bg-gray-800 border-cyan-500";
+    const inactiveCardBg = "bg-white dark:bg-gray-800/50 hover:bg-gray-50 dark:hover:bg-gray-800";
+    const cardBorder = "border-gray-200 dark:border-gray-700/50";
+    const dateStyle = useMemo(() => ({ opacity: 0.8 }), []);
 
     const isJustified = lang !== 'jp' && lang !== 'zh';
     const defaultJustifyClass = isJustified ? 'text-justify' : 'text-left';
@@ -257,13 +254,11 @@ export default function ExperiencesClient({
         }
     };
 
-    // Pre-calculated shimmer to avoid re-calculating in render
     const shimmer600x400 = useMemo(() => `data:image/svg+xml;base64,${toBase64(shimmer(600, 400))}`, []);
     const shimmer400x225 = useMemo(() => `data:image/svg+xml;base64,${toBase64(shimmer(400, 225))}`, []);
 
     return (
         <div className="w-full h-full relative">
-            {/* Flying Widgets - Hoisted to window level for true stickiness */}
             {!isPresentationMode && allJobs.length > 0 && (
                 <LayoutSwitcher
                     currentLayout={currentLayout}
@@ -281,7 +276,7 @@ export default function ExperiencesClient({
             )}
 
             {isPresentationMode && (
-                <div className={`fixed bottom-8 left-8 z-[100] flex items-center p-1.5 rounded-xl border backdrop-blur-md shadow-2xl transition-all duration-300 ${isDark ? 'bg-gray-900/90 border-gray-700 ring-1 ring-white/10' : 'bg-white/90 border-gray-200 ring-1 ring-black/5'}`}>
+                <div className={`fixed bottom-8 left-8 z-[100] flex items-center p-1.5 rounded-xl border backdrop-blur-md shadow-2xl transition-all duration-300 bg-white/90 dark:bg-gray-900/90 border-gray-200 dark:border-gray-700 ring-1 ring-black/5 dark:ring-white/10`}>
                     <div className="flex gap-1">
                         {[
                             { id: 'modern', icon: <LayoutPanelLeft size={18} />, label: modern_text || 'Modern' },
@@ -295,9 +290,7 @@ export default function ExperiencesClient({
                                 className={`p-2 rounded-lg transition-all duration-200 ${
                                     presentationLayout === l.id
                                         ? 'bg-cyan-500 text-white shadow-md scale-105'
-                                        : isDark
-                                            ? 'text-gray-400 hover:text-gray-200 hover:bg-gray-800'
-                                            : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+                                        : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800'
                                 }`}
                             >
                                 {l.icon}
@@ -316,27 +309,22 @@ export default function ExperiencesClient({
                             slideIndex={idx + 1}
                             totalSlides={allJobs.length}
                         >
-                            {/* 1. Modern (Original Side-by-Side) */}
+                            {/* 1. Modern */}
                             {presentationLayout === 'modern' && (
-                                <div className={`${isDark ? 'text-white' : 'text-gray-900'} w-full h-full px-4 md:px-8 flex flex-col md:flex-row print:flex-row gap-4 md:gap-12 items-center justify-center mx-auto pt-20 pb-10`}>
+                                <div className={`text-foreground w-full h-full px-4 md:px-8 flex flex-col md:flex-row print:flex-row gap-4 md:gap-12 items-center justify-center mx-auto pt-20 pb-10`}>
                                     <div className="flex-[1.2] flex flex-col justify-center space-y-6 max-w-2xl print:max-w-none">
                                         <div className="space-y-2">
-                                            <h2 className="text-gacor-smooth font-bold text-xl md:text-2xl tracking-tight">{job.year}</h2>
-                                            <h3 className="text-3xl md:text-5xl font-black leading-tight tracking-tighter">{job.title}</h3>
-                                            <h4 className="text-gacor-smooth text-xl md:text-2xl italic opacity-90">{job.company}</h4>
-                                            <p style={dateStyle} className="text-base md:text-lg font-medium italic">{job.date}</p>
+                                            <h2 className="text-cyan-600 dark:text-cyan-400 font-bold text-xl md:text-2xl tracking-tight">{job.year}</h2>
+                                            <h3 className="text-3xl md:text-5xl font-black leading-tight tracking-tighter text-foreground">{job.title}</h3>
+                                            <h4 className="text-cyan-600 dark:text-cyan-400 text-xl md:text-2xl italic opacity-90">{job.company}</h4>
+                                            <p style={dateStyle} className="text-base md:text-lg font-medium italic text-muted-foreground">{job.date}</p>
                                         </div>
                                         <HoverableWords className={`text-base md:text-lg ${justifyClass} ${descText} font-medium`}>
                                             {job.description}
                                         </HoverableWords>
                                         
                                         {job.url && (
-                                            <a 
-                                                href={job.url} 
-                                                target="_blank" 
-                                                rel="noopener noreferrer"
-                                                className="flex items-center gap-2 px-6 py-3 bg-cyan-500 text-white rounded-full font-bold text-sm hover:bg-cyan-600 transition-all w-fit shadow-lg hover:scale-105"
-                                            >
+                                            <a href={job.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-3 bg-cyan-500 text-white rounded-full font-bold text-sm hover:bg-cyan-600 transition-all w-fit shadow-lg hover:scale-105">
                                                 <ExternalLink size={18} />
                                                 Visit Project
                                             </a>
@@ -344,17 +332,9 @@ export default function ExperiencesClient({
                                     </div>
                                     
                                     <div className="flex-[0.8] flex justify-center items-center w-full h-full transform-gpu">
-                                        <div className="relative w-full h-full max-w-[400px] max-h-[400px] aspect-square flex justify-center items-center overflow-hidden transform-gpu rounded-3xl">
+                                        <div className="relative w-full h-full max-w-[400px] max-h-[400px] aspect-square flex justify-center items-center overflow-hidden transform-gpu rounded-3xl bg-gray-100 dark:bg-gray-800">
                                             {job.image && job.image.length > 0 ? (
-                                                <Image
-                                                    src={job.image[0]}
-                                                    alt={job.company}
-                                                    fill
-                                                    className="object-contain transition-transform duration-700 hover:scale-[1.03] scale-[1.01]"
-                                                    sizes="(max-width: 768px) 100vw, 400px"
-                                                    priority={true}
-                                                    loading="eager"
-                                                />
+                                                <Image src={job.image[0]} alt={job.company} fill className="object-contain transition-transform duration-700 hover:scale-[1.03] scale-[1.01]" sizes="(max-width: 768px) 100vw, 400px" priority={true} loading="eager" />
                                             ) : (
                                                 <PlaceholderIcon company={job.company} />
                                             )}
@@ -363,23 +343,16 @@ export default function ExperiencesClient({
                                 </div>
                             )}
 
-                            {/* 2. Cinematic (Full-bleed Background) */}
+                            {/* 2. Cinematic */}
                             {presentationLayout === 'split' && (
-                                <div className="w-full h-full relative overflow-hidden flex items-end">
+                                <div className="w-full h-full relative overflow-hidden flex items-end bg-background">
                                     {job.image && job.image.length > 0 ? (
                                         <div className="absolute inset-0 z-0">
-                                            <Image
-                                                src={job.image[0]}
-                                                alt={job.company}
-                                                fill
-                                                className={`object-cover transition-all duration-1000 ${isDark ? 'brightness-[0.35]' : 'brightness-[1.1] grayscale-[0.2] opacity-20'}`}
-                                                priority={true}
-                                                loading="eager"
-                                            />
-                                            <div className={`absolute inset-0 ${isDark ? 'bg-gradient-to-t from-black via-black/40 to-transparent' : 'bg-gradient-to-t from-white via-white/40 to-transparent'}`} />
+                                            <Image src={job.image[0]} alt={job.company} fill className={`object-cover transition-all duration-1000 dark:brightness-[0.35] brightness-[1.1] grayscale-[0.2] opacity-20`} priority={true} loading="eager" />
+                                            <div className={`absolute inset-0 bg-gradient-to-t dark:from-black from-white via-transparent to-transparent`} />
                                         </div>
                                     ) : (
-                                        <div className={`absolute inset-0 z-0 ${isDark ? 'bg-gray-950' : 'bg-gray-50'} flex items-center justify-center opacity-10`}>
+                                        <div className={`absolute inset-0 z-0 bg-gray-50 dark:bg-gray-950 flex items-center justify-center opacity-10`}>
                                             <Briefcase size={400} className="text-cyan-500" />
                                         </div>
                                     )}
@@ -389,28 +362,23 @@ export default function ExperiencesClient({
                                             <div className="flex-1 space-y-6">
                                                 <div className="flex items-center gap-4">
                                                     <span className="w-16 h-1.5 bg-cyan-500 rounded-full" />
-                                                    <h2 className="text-gacor-smooth font-black text-2xl tracking-tight">{job.year}</h2>
+                                                    <h2 className="text-cyan-600 dark:text-cyan-400 font-black text-2xl tracking-tight">{job.year}</h2>
                                                 </div>
-                                                <h3 className={`text-5xl md:text-7xl font-black leading-[0.85] tracking-tighter ${isDark ? 'text-white' : 'text-gray-900'}`}>{job.title}</h3>
-                                                <p className="text-xl md:text-3xl text-gacor-smooth font-bold italic tracking-tight">{job.company}</p>
+                                                <h3 className={`text-5xl md:text-7xl font-black leading-[0.85] tracking-tighter text-foreground`}>{job.title}</h3>
+                                                <p className="text-xl md:text-3xl text-cyan-600 dark:text-cyan-400 font-bold italic tracking-tight">{job.company}</p>
                                                 
                                                 {job.url && (
-                                                    <a 
-                                                        href={job.url} 
-                                                        target="_blank" 
-                                                        rel="noopener noreferrer"
-                                                        className="mt-4 flex items-center gap-2 px-6 py-3 bg-cyan-500 text-white rounded-full font-bold text-sm hover:bg-cyan-600 transition-all w-fit shadow-xl"
-                                                    >
+                                                    <a href={job.url} target="_blank" rel="noopener noreferrer" className="mt-4 flex items-center gap-2 px-6 py-3 bg-cyan-500 text-white rounded-full font-bold text-sm hover:bg-cyan-600 transition-all w-fit shadow-xl">
                                                         <ExternalLink size={18} />
                                                         Visit Project
                                                     </a>
                                                 )}
                                                 </div>
                                                 <div className="flex-1 max-w-xl">
-                                                <div className={`p-1 rounded-sm mb-4 inline-block ${isDark ? 'bg-cyan-500/20 text-cyan-300' : 'bg-cyan-100 text-cyan-700'} text-xs font-black px-2 py-0.5`}>
+                                                <div className={`p-1 rounded-sm mb-4 inline-block bg-cyan-100 dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 text-xs font-black px-2 py-0.5`}>
                                                     {job.date}
                                                 </div>
-                                                <HoverableWords className={`text-lg md:text-xl leading-relaxed font-medium ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
+                                                <HoverableWords className={`text-lg md:text-xl leading-relaxed font-medium text-foreground`}>
                                                     {formatCJK(job.description, lang)}
                                                 </HoverableWords>
                                                 </div>
@@ -419,39 +387,33 @@ export default function ExperiencesClient({
                                                 </div>
                                                 )}
 
-                                                {/* 3. Editorial (Bold Typography) */}
+                                                {/* 3. Editorial */}
                                                 {presentationLayout === 'minimal' && (
-                                                <div className={`w-full h-full flex items-center justify-center p-8 md:p-16 relative overflow-hidden transition-colors duration-500 ${isDark ? 'bg-black' : 'bg-white'}`}>
-                                                {/* Background Decorative Text */}
+                                                <div className={`w-full h-full flex items-center justify-center p-8 md:p-16 relative overflow-hidden transition-colors duration-500 bg-background`}>
                                                 <div className={`absolute top-0 left-0 w-full h-full flex items-center justify-center pointer-events-none opacity-[0.04] overflow-hidden select-none transition-opacity duration-700`}>
-                                                <span className={`text-[35vw] font-black leading-none text-gacor-smooth`}>{job.year}</span>
+                                                <span className={`text-[35vw] font-black leading-none text-cyan-500`}>{job.year}</span>
                                                 </div>
 
                                                 <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-12 gap-16 items-center relative z-10">
                                                 <div className="md:col-span-7 space-y-10">
                                                 <div className="space-y-4">
                                                 <div className="flex items-center gap-3">
-                                                    <p className="text-gacor-smooth font-black text-xl tracking-tight">{job.date}</p>
+                                                    <p className="text-cyan-600 dark:text-cyan-400 font-black text-xl tracking-tight">{job.date}</p>
                                                     <span className="flex-grow h-px bg-cyan-500/30" />
                                                 </div>
-                                                <h3 className={`text-6xl md:text-8xl font-black ${isDark ? 'text-white' : 'text-gray-950'} leading-[0.85] tracking-tighter`}>
+                                                <h3 className={`text-6xl md:text-8xl font-black text-foreground leading-[0.85] tracking-tighter`}>
                                                     {job.title}
                                                 </h3>
-                                                <p className="text-2xl md:text-3xl font-bold text-gacor-smooth italic tracking-tight">{job.company}</p>
+                                                <p className="text-2xl md:text-3xl font-bold text-cyan-600 dark:text-cyan-400 italic tracking-tight">{job.company}</p>
                                                 </div>
 
                                             <div className="max-w-2xl">
-                                                <HoverableWords className={`text-xl md:text-2xl leading-snug font-medium ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+                                                <HoverableWords className={`text-xl md:text-2xl leading-snug font-medium text-foreground`}>
                                                     {job.description}
                                                 </HoverableWords>
                                                 
                                                 {job.url && (
-                                                    <a 
-                                                        href={job.url} 
-                                                        target="_blank" 
-                                                        rel="noopener noreferrer"
-                                                        className="mt-10 flex items-center gap-2 px-8 py-4 bg-cyan-500 text-white rounded-full font-black text-base hover:bg-cyan-600 transition-all w-fit shadow-2xl hover:scale-105"
-                                                    >
+                                                    <a href={job.url} target="_blank" rel="noopener noreferrer" className="mt-10 flex items-center gap-2 px-8 py-4 bg-cyan-500 text-white rounded-full font-black text-base hover:bg-cyan-600 transition-all w-fit shadow-2xl hover:scale-105">
                                                         <ExternalLink size={20} />
                                                         Explore Now
                                                     </a>
@@ -460,14 +422,13 @@ export default function ExperiencesClient({
                                         </div>
 
                                         <div className="md:col-span-5 relative group">
-                                            <div className="aspect-[4/5] relative rounded-2xl overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] transition-all duration-700 group-hover:rotate-0 rotate-3 group-hover:scale-105">
+                                            <div className="aspect-[4/5] relative rounded-2xl overflow-hidden shadow-2xl transition-all duration-700 group-hover:rotate-0 rotate-3 group-hover:scale-105 bg-gray-100 dark:bg-gray-800">
                                                 {job.image && job.image.length > 0 ? (
                                                     <Image src={job.image[0]} alt={job.company} fill className="object-cover" />
                                                 ) : (
                                                     <PlaceholderIcon company={job.company} />
                                                 )}
                                             </div>
-                                            {/* Decorative Elements */}
                                             <div className={`absolute -bottom-6 -left-6 w-32 h-32 border-b-[6px] border-l-[6px] border-cyan-500 rounded-bl-4xl -z-10 transition-transform duration-500 group-hover:-translate-x-2 group-hover:translate-y-2`} />
                                             <div className={`absolute -top-6 -right-6 w-32 h-32 border-t-[6px] border-r-[6px] border-cyan-500 rounded-tr-4xl -z-10 transition-transform duration-500 group-hover:translate-x-2 group-hover:-translate-y-2`} />
                                         </div>
@@ -477,41 +438,39 @@ export default function ExperiencesClient({
                         </FadeInSection>
                     ))
                 ) : (
-                    <div className={`${mounted ? (isDark ? 'text-white' : 'text-gray-900') : 'text-gray-900'} min-h-screen p-4 sm:p-8 md:p-12 w-full transition-colors duration-300`}>
+                    <div className={`min-h-screen p-4 sm:p-8 md:p-12 w-full transition-colors duration-300 text-foreground`}>
                         <div className="container mx-auto max-w-6xl">
                             {currentLayout === 'original' && (
                             <div className="flex flex-col md:flex-row gap-8 md:gap-16">
                                 <div className="w-full md:w-1/2">
                                     {experiences.map((experience) => (
-                                        <div key={experience.year} className={`mb-12 cursor-pointer`}>
-                                            <h2 className={`transition-[transform] hover:scale-105 text-2xl font-bold text-gacor-smooth mb-6 top-0 py-2`}>
+                                        <div key={experience.year} className={`mb-12`}>
+                                            <h2 className={`transition-transform duration-300 hover:scale-105 text-2xl font-bold text-cyan-600 dark:text-cyan-400 mb-6 py-2`}>
                                                 {experience.year}
                                             </h2>
                                             <div className="space-y-4">
                                                 {experience.jobs.map((job, index) => (
                                                     <motion.div
                                                         key={`${experience.year}-${index}`}
-                                                        initial={{ opacity: 0, y: 20 }}
+                                                        initial={{ opacity: 0, y: 10 }}
                                                         whileInView={{ opacity: 1, y: 0 }}
-                                                        viewport={{ once: true, margin: "0px 0px -50px 0px" }}
-                                                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                                                        onMouseEnter={() => handleJobChange(job)}
-                                                        onFocus={() => handleJobChange(job)}
-                                                        tabIndex={0}
+                                                        viewport={{ once: true }}
                                                         onClick={() => job.url && window.open(job.url, '_blank', 'noopener,noreferrer')}
-                                                        className={`p-6 rounded-lg cursor-pointer border-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all group
+                                                        onMouseEnter={() => handleJobChange(job)}
+                                                        // REMOVED transition-all to prevent Framer Motion conflicts
+                                                        className={`p-6 rounded-lg cursor-pointer border-2 shadow-sm group
                                                             ${activeJob.title === job.title && activeJob.company === job.company
                                                                 ? `${activeCardBg}`
                                                                 : `${inactiveCardBg} ${cardBorder} hover:border-cyan-500/50`
                                                             }`}
                                                     >
-                                                        <p style={dateStyle} className="text-sm mb-1">{job.date}</p>
+                                                        <p className="text-xs mb-1 text-muted-foreground">{job.date}</p>
                                                         <div className="flex justify-between items-center mb-1">
-                                                            <h3 className={`text-xl font-bold ${mainText} hover-gacor ${job.url ? 'underline decoration-dotted decoration-cyan-500/30' : ''}`}>{job.title}</h3>
+                                                            <h3 className={`text-xl font-bold ${mainText} group-hover:text-cyan-500 ${job.url ? 'underline decoration-dotted decoration-cyan-500/30' : ''}`}>{job.title}</h3>
                                                             {job.url && <ExternalLink size={14} className="text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity" />}
                                                         </div>
-                                                        <p className="text-gacor-smooth italic mb-3">{job.company}</p>
-                                                        <HoverableWords className={`${justifyClass} ${descText}`}>
+                                                        <p className="text-cyan-600 dark:text-cyan-400 italic mb-3">{job.company}</p>
+                                                        <HoverableWords className={`${justifyClass} ${descText} text-sm`}>
                                                             {formatCJK(job.description, lang)}
                                                         </HoverableWords>
                                                     </motion.div>
@@ -525,28 +484,14 @@ export default function ExperiencesClient({
                                         <div className="w-full">
                                             <div className="relative w-full max-w-[600px] aspect-[3/2] mx-auto shadow-2xl overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800">
                                                 {hasValidImage ? (
-                                                    <Image
-                                                        fill
-                                                        src={activeImageSrc!}
-                                                        placeholder="blur"
-                                                        blurDataURL={shimmer600x400}
-                                                        alt={`${activeJob.company} preview`}
-                                                        className="object-cover"
-                                                        priority
-                                                    />
+                                                    <Image fill src={activeImageSrc!} placeholder="blur" blurDataURL={shimmer600x400} alt={`${activeJob.company}`} className="object-cover" priority />
                                                 ) : (
                                                     <PlaceholderIcon company={activeJob.company} />
                                                 )}
                                             </div>
                                             <div className="mt-4 text-center">
                                                 <h3 className={`text-2xl font-black ${mainText}`}>{activeJob.title}</h3>
-                                                <p style={companyStyle} className="text-lg italic">{activeJob.company}</p>
-                                                {activeJob.url && (
-                                                    <a href={activeJob.url} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex items-center gap-1.5 text-cyan-500 font-bold hover:text-cyan-400 transition-colors">
-                                                        <ExternalLink size={16} />
-                                                        View Details
-                                                    </a>
-                                                )}
+                                                <p className="text-lg italic text-cyan-600 dark:text-cyan-400">{activeJob.company}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -559,15 +504,14 @@ export default function ExperiencesClient({
                                 {experiences.map((experience) => (
                                     <div key={experience.year} className="relative pl-8">
                                         <div className="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-cyan-500 border-4 border-white dark:border-gray-900 shadow-sm" />
-                                        <h2 className="text-3xl font-black text-gacor-smooth mb-8">{experience.year}</h2>
+                                        <h2 className="text-3xl font-black text-cyan-600 dark:text-cyan-400 mb-8">{experience.year}</h2>
                                         <div className="space-y-12">
                                             {experience.jobs.map((job, index) => (
                                                 <motion.div
                                                     key={`${experience.year}-${index}`}
-                                                    initial={{ opacity: 0, x: -20 }}
+                                                    initial={{ opacity: 0, x: -10 }}
                                                     whileInView={{ opacity: 1, x: 0 }}
                                                     viewport={{ once: true }}
-                                                    transition={{ duration: 0.5, delay: index * 0.1 }}
                                                     onClick={() => job.url && window.open(job.url, '_blank', 'noopener,noreferrer')}
                                                     className={`flex flex-col md:flex-row gap-6 group ${job.url ? 'cursor-pointer' : ''}`}
                                                 >
@@ -581,13 +525,13 @@ export default function ExperiencesClient({
                                                         </div>
                                                     </div>
                                                     <div className="flex-1">
-                                                        <p style={dateStyle} className="text-sm mb-1">{job.date}</p>
+                                                        <p className="text-xs mb-1 text-muted-foreground">{job.date}</p>
                                                         <div className="flex items-center gap-2 mb-1">
-                                                            <h3 className={`text-2xl font-bold ${mainText} hover-gacor`}>{job.title}</h3>
+                                                            <h3 className={`text-2xl font-bold ${mainText} group-hover:text-cyan-500`}>{job.title}</h3>
                                                             {job.url && <ExternalLink size={16} className="text-cyan-500 opacity-0 group-hover:opacity-100 transition-all" />}
                                                         </div>
-                                                        <p className="text-lg font-semibold italic text-gacor-smooth mb-4">{job.company}</p>
-                                                        <HoverableWords className={`${justifyClass} ${descText}`}>
+                                                        <p className="text-lg font-semibold italic text-cyan-600 dark:text-cyan-400 mb-4">{job.company}</p>
+                                                        <HoverableWords className={`${justifyClass} ${descText} text-sm`}>
                                                             {formatCJK(job.description, lang)}
                                                         </HoverableWords>
                                                     </div>
@@ -604,12 +548,11 @@ export default function ExperiencesClient({
                                 {allJobs.map((job, idx) => (
                                     <motion.div
                                         key={`${job.year}-${idx}`}
-                                        initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                                        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                                        initial={{ opacity: 0, y: 10 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
-                                        whileHover={{ y: -8 }}
                                         onClick={() => job.url && window.open(job.url, '_blank', 'noopener,noreferrer')}
-                                        className={`flex flex-col p-6 rounded-2xl border ${cardBorder} ${inactiveCardBg} group shadow-sm hover:shadow-2xl transition-all duration-300 ${job.url ? 'cursor-pointer' : ''}`}
+                                        className={`flex flex-col p-6 rounded-2xl border ${cardBorder} ${inactiveCardBg} group shadow-sm hover:shadow-2xl transition-shadow duration-300 ${job.url ? 'cursor-pointer' : ''}`}
                                     >
                                         <div className="relative aspect-video mb-6 rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-800">
                                             {job.image && job.image.length > 0 ? (
@@ -618,12 +561,12 @@ export default function ExperiencesClient({
                                                 <PlaceholderIcon company={job.company} />
                                             )}
                                         </div>
-                                        <p style={dateStyle} className="text-xs font-medium mb-1">{job.date}</p>
+                                        <p className="text-xs mb-1 text-muted-foreground">{job.date}</p>
                                         <div className="flex justify-between items-start mb-1">
-                                            <h3 className={`text-xl font-black ${mainText} hover-gacor line-clamp-1`}>{job.title}</h3>
+                                            <h3 className={`text-xl font-black ${mainText} group-hover:text-cyan-500 line-clamp-1`}>{job.title}</h3>
                                             {job.url && <ExternalLink size={14} className="text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity shrink-0 ml-2" />}
                                         </div>
-                                        <p className="text-sm italic text-gacor-smooth mb-4">{job.company}</p>
+                                        <p className="text-sm italic text-cyan-600 dark:text-cyan-400 mb-4">{job.company}</p>
                                     </motion.div>
                                 ))}
                             </div>
@@ -632,30 +575,10 @@ export default function ExperiencesClient({
                         {currentLayout === 'bento' && (
                             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[300px]">
                                 {allJobs.map((job, idx) => {
-                                    const spans = [
-                                        "md:col-span-2 md:row-span-2", // Big square
-                                        "md:col-span-2 md:row-span-1", // Wide
-                                        "md:col-span-1 md:row-span-1", // Small
-                                        "md:col-span-1 md:row-span-1", // Small
-                                        "md:col-span-1 md:row-span-1", // Small
-                                        "md:col-span-3 md:row-span-1", // Very Wide
-                                        "md:col-span-2 md:row-span-1", // Wide
-                                        "md:col-span-2 md:row-span-2", // Big square
-                                    ];
+                                    const spans = ["md:col-span-2 md:row-span-2", "md:col-span-2 md:row-span-1", "md:col-span-1 md:row-span-1", "md:col-span-1 md:row-span-1", "md:col-span-1 md:row-span-1", "md:col-span-3 md:row-span-1", "md:col-span-2 md:row-span-1", "md:col-span-2 md:row-span-2"];
                                     const spanClass = spans[idx % spans.length];
-
                                     return (
-                                        <BentoCard
-                                            key={`${job.year}-${idx}`}
-                                            job={job}
-                                            spanClass={spanClass}
-                                            cardBorder={cardBorder}
-                                            inactiveCardBg={inactiveCardBg}
-                                            isDark={isDark}
-                                            lang={lang}
-                                            justifyClass={justifyClass}
-                                            click_to_close_text={click_to_close_text}
-                                        />
+                                        <BentoCard key={`${job.year}-${idx}`} job={job} spanClass={spanClass} cardBorder={cardBorder} inactiveCardBg={inactiveCardBg} isDark={isDark} lang={lang} justifyClass={justifyClass} click_to_close_text={click_to_close_text} />
                                     );
                                 })}
                             </div>
@@ -666,10 +589,9 @@ export default function ExperiencesClient({
                                 {allJobs.map((job, idx) => (
                                     <motion.div
                                         key={`${job.year}-${idx}`}
-                                        initial={{ opacity: 0, y: 50 }}
+                                        initial={{ opacity: 0, y: 20 }}
                                         whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true, margin: "-100px" }}
-                                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                                        viewport={{ once: true, margin: "-50px" }}
                                         onClick={() => job.url && window.open(job.url, '_blank', 'noopener,noreferrer')}
                                         className={`group ${job.url ? 'cursor-pointer' : ''}`}
                                     >
@@ -677,13 +599,13 @@ export default function ExperiencesClient({
                                             <div className="w-full md:w-1/2 space-y-4">
                                                 <div className="flex items-center gap-4">
                                                     <span className="h-px w-12 bg-cyan-500"></span>
-                                                    <p style={dateStyle} className="text-sm font-bold">{job.date}</p>
+                                                    <p className="text-sm font-bold text-muted-foreground">{job.date}</p>
                                                 </div>
                                                 <div className="flex items-center gap-3">
-                                                    <h3 className={`text-4xl md:text-5xl font-black ${mainText} leading-tight`}>{job.title}</h3>
+                                                    <h3 className={`text-4xl md:text-5xl font-black ${mainText} group-hover:text-cyan-500 leading-tight transition-colors`}>{job.title}</h3>
                                                     {job.url && <ExternalLink size={24} className="text-cyan-500 opacity-0 group-hover:opacity-100 transition-all translate-y-2" />}
                                                 </div>
-                                                <p style={companyStyle} className="text-xl font-medium italic opacity-80">{job.company}</p>
+                                                <p className="text-xl font-medium italic text-cyan-600 dark:text-cyan-400 opacity-80">{job.company}</p>
                                                 <HoverableWords className={`${justifyClass} ${descText} text-lg leading-relaxed`}>
                                                     {formatCJK(job.description, lang)}
                                                 </HoverableWords>

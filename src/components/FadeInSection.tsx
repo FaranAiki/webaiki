@@ -39,7 +39,7 @@ export default function FadeInSection({
     if (slideNumberFormat === 'binary') {
         return num.toString(2).padStart(total.toString(2).length, '0');
     } else if (slideNumberFormat === 'hex') {
-        return num.toString(16).toUpperCase();
+        return `0x${num.toString(16).toUpperCase()}`;
     }
     
     // Default decimal
@@ -66,7 +66,7 @@ export default function FadeInSection({
       className={`relative ${className} ${isPresentationMode ? 'presentation-section' : ''}`}
     >
       {isPresentationMode ? (
-        <div className="relative w-full h-full flex items-center justify-center">
+        <div className="relative w-full h-full flex items-center justify-center bg-white dark:bg-black text-black dark:text-white">
           {children}
 
           {slideIndex && (
@@ -98,4 +98,3 @@ export default function FadeInSection({
     </motion.div>
   );
   }
-
