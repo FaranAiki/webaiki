@@ -1,9 +1,11 @@
 'use client';
 
 import { useState, useMemo, useEffect } from 'react';
-import PdfPreview from '@/components/PdfPreview';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
+
+const PdfPreview = dynamic(() => import('@/components/PdfPreview'), { ssr: false });
 import PopRotateSection from '@/components/PopRotateSection';
 import FadeInSection from '@/components/FadeInSection';
 import { usePresentation } from './PresentationContext';

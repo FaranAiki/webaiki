@@ -29,13 +29,11 @@ export default function ThemeToggle() {
     if ('startViewTransition' in doc) {
       doc.startViewTransition(() => {
         setTheme(newTheme);
-        setCookies("theme", newTheme);
       });
     } else {
       // Fallback: use the helper class for smooth transition in non-supporting browsers
       doc.documentElement.classList.add('theme-transitioning');
       setTheme(newTheme);
-      setCookies("theme", newTheme);
       
       setTimeout(() => {
         doc.documentElement.classList.remove('theme-transitioning');

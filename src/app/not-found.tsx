@@ -30,8 +30,8 @@ export default async function NotFound() {
   return (
     <html lang="en">
       <body>
-        <CookieInitializer />
         <Providers>
+          <CookieInitializer />
           <main className="container mx-auto px-8 pt-24 pb-16 min-h-screen flex items-center justify-center">
             <div className='flex text-center text-lg justify-center cursor-pointer'>
                 <h1 className="text-4xl transition-opacity duration-200 hover:opacity-75 cursor-pointer">

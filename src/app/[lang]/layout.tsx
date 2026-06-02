@@ -23,6 +23,7 @@ import { getBackgrounds } from "@/lib/data";
 import ClientOnlyWidgets from "@/components/ClientOnlyWidgets";
 import { cookies } from 'next/headers';
 import { SlideNumberFormat } from "@/components/PresentationContext";
+import { CookieInitializer } from "@/components/CookieInitialize";
 
 export function generateStaticParams() {
   return LOCALES.map((lang) => ({ lang }));
@@ -79,6 +80,7 @@ export default async function BaseLayout({
           initialIsPresentationMode={initialIsPresentationMode}
           initialSlideNumberFormat={initialSlideNumberFormat}
         >
+          <CookieInitializer />
           <ClientOnlyWidgets backgrounds={backgrounds} />
           {children}
           {/* 

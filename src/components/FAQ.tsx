@@ -41,14 +41,14 @@ export default function FAQ({ id, title, items, className = "" }: FAQProps) {
               key={index}
               className={`group relative rounded-3xl overflow-hidden transition-all duration-500 ${
                 isOpen 
-                ? 'bg-white dark:bg-gray-900/90 shadow-2xl shadow-cyan-500/10' 
+                ? 'bg-white/75 dark:bg-gray-900/75 shadow-2xl shadow-cyan-500/10' 
                 : 'bg-white/50 dark:bg-gray-900/40 hover:bg-white dark:hover:bg-gray-900/60'
               }`}
             >
               {/* Subtle Border */}
               <div className={`absolute inset-0 p-[1.5px] rounded-3xl bg-gradient-to-br from-cyan-500 to-blue-600 transition-opacity duration-500 ${isOpen ? 'opacity-100' : 'opacity-10'}`} />
               
-              <div className="relative h-full rounded-[23px] bg-white dark:bg-gray-900/90 transition-colors duration-500">
+              <div className="relative h-full rounded-[23px] bg-white/75 dark:bg-gray-900/75 transition-colors duration-500">
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                   className="w-full flex items-center justify-between p-6 md:p-8 text-left transition-all"
@@ -70,10 +70,10 @@ export default function FAQ({ id, title, items, className = "" }: FAQProps) {
                       {item.question}
                     </span>
                   </div>
-                  <div className={`p-2 rounded-xl transition-all duration-500 ${
-                    isOpen ? 'bg-cyan-500 text-white rotate-180 scale-110' : 'bg-black/5 dark:bg-white/10 text-gray-400'
+                  <div className={`transition-all duration-500 ${
+                    isOpen ? 'text-cyan-500 rotate-180 scale-110' : 'text-gray-400 dark:text-gray-500'
                   }`}>
-                    <ChevronDown size={20} strokeWidth={3} />
+                    <ChevronDown size={24} strokeWidth={2.5} />
                   </div>
                 </button>
 
@@ -86,7 +86,7 @@ export default function FAQ({ id, title, items, className = "" }: FAQProps) {
                       transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
                     >
                       <div className="px-6 md:px-8 pb-8 md:pb-10 pt-2">
-                        <div className="p-6 rounded-2xl bg-gray-50 dark:bg-gray-800/50 border border-black/5 dark:border-white/10">
+                        <div className="p-6 rounded-2xl bg-gray-50/75 dark:bg-gray-800/75 border border-black/5 dark:border-white/10">
                           <p className="text-base md:text-lg leading-relaxed text-gray-800 dark:text-gray-100 font-medium opacity-100">
                             {item.answer}
                           </p>

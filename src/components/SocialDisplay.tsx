@@ -21,12 +21,7 @@ interface SocialDisplayProps {
 }
 
 export default function SocialDisplay({ customLinks, hidePresentation = false }: SocialDisplayProps) {
-  const [mounted, setMounted] = useState(false);
   const { isPresentationMode } = usePresentation();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   // Static/CSS-variable based styles to prevent flicker
   const containerClass = "text-foreground";

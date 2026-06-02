@@ -22,9 +22,11 @@ export default function FadeInSection({
   initialVisible = false
 }: FadeInSectionProps) {
   const { isPresentationMode, slideNumberFormat, cycleSlideNumberFormat } = usePresentation();
-  const [isMobile, setIsMobile] = useState<boolean | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
     window.addEventListener('resize', checkMobile);
@@ -45,17 +47,9 @@ export default function FadeInSection({
     return num.toString().padStart(totalDigits, '0');
   };
 
-  // Prevent hydration mismatch/flicker by not rendering anything during SSR/initial mount
-  if (isMobile === null) {
-    return (
-      <div className={`${className} opacity-0`}>
-        {children}
-      </div>
-    );
-  }
-
   // Skip animations on mobile for better performance
-  if (isMobile && !isPresentationMode) {
+  // But only after mounting to ensure SSR matches client first render
+  if (mounted && isMobile && !isPresentationMode) {
     return (
       <div className={className}>
         {children}

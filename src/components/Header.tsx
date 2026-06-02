@@ -157,16 +157,20 @@ export default function Header(props: HeaderProps) {
 
             const url = new URL(window.location.origin + pathname);
             settingsParams.forEach(param => {
-                let value = null;
+                let value: string | null = null;
 
-                // Priority: next-themes state -> localStorage -> cookies
+                // Priority: active state -> localStorage
                 if (param === 'theme') {
-                    value = theme || resolvedTheme;
+                    // Use resolvedTheme to ensure the recipient sees what the sender sees (light or dark)
+                    // even if the sender's setting was 'system'.
+                    value = resolvedTheme || null;
+                } else if (param === 'presentation_mode') {
+                    value = String(isPresentationMode);
                 } else {
                     value = localStorage.getItem(param);
                 }
 
-                if (value !== null && value !== undefined) {
+                if (value !== null && value !== undefined && value !== 'null') {
                     url.searchParams.set(param, value);
                 }
             });

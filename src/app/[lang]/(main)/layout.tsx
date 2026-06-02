@@ -85,7 +85,6 @@ export default async function RootLayout({
 
   return (
     <>
-      <CookieInitializer />
       <Header 
         navLinks={navLinks} 
         current_lang={lang} 

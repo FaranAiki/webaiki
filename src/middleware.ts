@@ -57,11 +57,32 @@ export function middleware(request: NextRequest) {
     (loc) => pathname.startsWith(`/${loc}/`) || pathname === `/${loc}`
   );
 
+  // Generate a random nonce and encode it as base64
+  const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
+
+  const cspHeader = base_cspHeader.replace("nonce-placeholder", `nonce-${nonce}`)
+
+  const applySettingsCookies = (res: NextResponse) => {
+    Object.entries(foundSettings).forEach(([name, value]) => {
+      // Use a special prefix to indicate these are "commands" from the URL
+      res.cookies.set(`__set_${name}`, value, { 
+        maxAge: 60, 
+        path: '/', 
+        httpOnly: false,
+        sameSite: 'lax'
+      });
+    });
+  };
+
   // 4. If it doesn't have a prefix, redirect to the URL WITH the prefix
   if (!pathnameHasLocale) {
     request.nextUrl.pathname = `/${locale}${pathname}`;
     // E.g. incoming request is /about -> redirects to /en/about
     const redirectResponse = NextResponse.redirect(request.nextUrl);
+    
+    // Apply settings cookies to redirect response too!
+    applySettingsCookies(redirectResponse);
+
     const isPythonRedirect = request.nextUrl.pathname.includes('/project/script');
 
     if (isPythonRedirect) {
@@ -75,11 +96,6 @@ export function middleware(request: NextRequest) {
     redirectResponse.headers.set('Cross-Origin-Resource-Policy', 'cross-origin');
     return redirectResponse;
   }
-
-  // Generate a random nonce and encode it as base64
-  const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
-
-  const cspHeader = base_cspHeader.replace("nonce-placeholder", `nonce-${nonce}`)
 
   const requestHeaders = new Headers(request.headers);
   // Pass the nonce and CSP to the request headers
@@ -95,10 +111,8 @@ export function middleware(request: NextRequest) {
     },
   });
 
-  // Set cookies for found settings so client can pick them up
-  Object.entries(foundSettings).forEach(([name, value]) => {
-    response.cookies.set(name, value, { maxAge: 60 }); 
-  });
+  // Set cookies for found settings
+  applySettingsCookies(response);
 
   let finalCspHeader = cspHeader;
   if (isUasProject) {

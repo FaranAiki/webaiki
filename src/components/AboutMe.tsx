@@ -363,15 +363,6 @@ export function VisionMissionSection(props: AboutSubSectionProps) {
 
 export default function AboutMe(props: AboutMeProps) {
   const { isPresentationMode } = useAboutLayout(props);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-      return <div className="w-full h-96" />;
-  }
 
   return (
     <div className={`w-full ${props.isCompact ? 'py-4' : 'py-8'} md:px-5 ${isPresentationMode ? 'presentation-container' : ''}`}>

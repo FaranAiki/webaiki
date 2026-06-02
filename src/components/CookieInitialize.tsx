@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useParams, useSearchParams, usePathname } from 'next/navigation';
 import { initializeCookies, setCookies } from '@/app/actions';
 import { useTheme } from 'next-themes';
@@ -10,11 +10,21 @@ export function CookieInitializer() {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const lang = params?.lang as string;
-  const { setTheme } = useTheme();
+  const { setTheme, theme } = useTheme();
+  
+  // Track parameters already processed to prevent loops
+  const processedParams = useRef<Set<string>>(new Set());
 
   useEffect(() => {
     initializeCookies();
   }, []);
+
+  // Sync theme to cookie on change so server knows it on next load
+  useEffect(() => {
+    if (theme) {
+        document.cookie = `theme=${theme}; path=/; max-age=31536000; SameSite=Lax`;
+    }
+  }, [theme]);
 
   useEffect(() => {
     // 1. Handle Language sync
@@ -25,8 +35,9 @@ export function CookieInitializer() {
         return acc;
       }, {});
 
-      if (cookies['language'] !== lang) {
+      if (cookies['language'] !== lang && !processedParams.current.has(`lang-${lang}`)) {
         setCookies('language', lang);
+        processedParams.current.add(`lang-${lang}`);
       }
 
       // 2. Handle Settings sync from cookies (set by middleware from URL params)
@@ -47,18 +58,20 @@ export function CookieInitializer() {
           hasSettingsInUrl = true;
         }
 
-        // Ensure settings are synced to localStorage if cookie exists
-        if (cookies[param]) {
-          const value = decodeURIComponent(cookies[param]);
-
+        // Check for the "command" cookie from middleware
+        const cookieValue = cookies[`__set_${param}`];
+        if (cookieValue && !processedParams.current.has(`${param}-${cookieValue}`)) {
+          const value = decodeURIComponent(cookieValue);
+          
           if (param === 'theme') {
             setTheme(value);
           } else {
             localStorage.setItem(param, value);
           }
-
-          // Delete cookie
-          document.cookie = `${param}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+          
+          // Delete cookie IMMEDIATELY after processing
+          document.cookie = `__set_${param}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+          processedParams.current.add(`${param}-${cookieValue}`);
         }
       });
 
