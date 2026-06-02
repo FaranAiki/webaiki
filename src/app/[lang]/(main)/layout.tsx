@@ -23,8 +23,6 @@ import {
   Code
 } from 'lucide-react';
 
-import { CookieInitializer } from "@/components/CookieInitialize";
-
 export default async function RootLayout({
   children,
   params,

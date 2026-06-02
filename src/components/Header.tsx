@@ -137,7 +137,7 @@ export default function Header(props: HeaderProps) {
         const lastYPosRef = useRef(0);
         const tickingRef = useRef(false);
 
-        const { theme, resolvedTheme } = useTheme();
+        const { resolvedTheme } = useTheme();
         const [mounted, setMounted] = useState(false);
         const { isPresentationMode, togglePresentationMode } = usePresentation();
         const setScrollLocked = useAppStore((state) => state.setScrollLocked);

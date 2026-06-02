@@ -54,24 +54,32 @@ export function CookieInitializer() {
 
       let hasSettingsInUrl = false;
       settingsParams.forEach(param => {
-        if (searchParams.get(param) !== null) {
+        const urlValue = searchParams.get(param);
+        if (urlValue !== null) {
           hasSettingsInUrl = true;
         }
 
-        // Check for the "command" cookie from middleware
-        const cookieValue = cookies[`__set_${param}`];
-        if (cookieValue && !processedParams.current.has(`${param}-${cookieValue}`)) {
-          const value = decodeURIComponent(cookieValue);
-          
+        // Check for the "command" cookie OR direct URL param
+        const cookieName = `__set_${param}`;
+        const cookieValue = cookies[cookieName];
+        const finalValue = urlValue || cookieValue;
+
+        if (finalValue && !processedParams.current.has(`${param}-${finalValue}`)) {
+          const value = decodeURIComponent(finalValue);
+
           if (param === 'theme') {
+            // Give ThemeProvider a moment to settle if needed, though usually direct call is fine
             setTheme(value);
           } else {
             localStorage.setItem(param, value);
           }
-          
-          // Delete cookie IMMEDIATELY after processing
-          document.cookie = `__set_${param}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-          processedParams.current.add(`${param}-${cookieValue}`);
+
+          // Delete command cookie if it exists
+          if (cookieValue) {
+            document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+          }
+
+          processedParams.current.add(`${param}-${finalValue}`);
         }
       });
 

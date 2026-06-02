@@ -35,6 +35,7 @@ interface SettingsPopupProps {
 export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenChange, inline = false }: SettingsPopupProps) {
   const [internalIsOpen, setInternalIsOpen] = useState(false);
   const [isFontDropdownOpen, setIsFontDropdownOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   
   const isOpen = externalIsOpen !== undefined ? externalIsOpen : internalIsOpen;
   const setIsOpen = useCallback((value: boolean) => {
@@ -53,13 +54,14 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
     lineHeight, setLineHeight,
     resetSettings
   } = useSettings();
-  const { resolvedTheme } = useTheme();
-  const isDark = resolvedTheme === 'dark';
-  const textColor = isDark ? 'text-gray-300' : 'text-slate-700';
+  
+  // Use CSS variables and Tailwind dark: variants for styling to avoid hydration mismatch
+  const textColorClass = "text-[var(--text-muted)]";
   const popupRef = useRef<HTMLDivElement>(null);
   const fontDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    setMounted(true);
     const handleClickOutside = (event: MouseEvent) => {
       if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
         setIsOpen(false);
@@ -109,7 +111,7 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
   const renderContent = () => (
     <div className="space-y-6" data-lenis-prevent>
       {/* Header */}
-      <div className={`flex items-center justify-between border-b pb-4 ${isDark ? 'border-gray-700/50' : 'border-gray-200'}`}>
+      <div className={`flex items-center justify-between border-b pb-4 border-gray-200 dark:border-gray-700/50`}>
         <h3 className="text-lg font-bold flex items-center gap-2 nav-active-gacor">
           <Settings size={20} className="text-cyan-500" />
           {labels.Settings}
@@ -136,8 +138,8 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
             onClick={() => setIsFontDropdownOpen(!isFontDropdownOpen)}
             className={`
               w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200
-              ${isDark ? 'bg-gray-800 text-gray-200 border-gray-700 hover:bg-gray-700' : 'bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100'}
-              border border-transparent hover:border-cyan-500/50
+              bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700
+              border hover:border-cyan-500/50
               ${fonts.find(f => f.name === font)?.class || ''}
             `}
           >
@@ -148,8 +150,8 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
           {isFontDropdownOpen && (
             <div className={`
               absolute left-0 right-0 mt-2 max-h-60 overflow-y-auto z-[70]
-              ${isDark ? 'bg-gray-800 border-gray-700 shadow-black/40' : 'bg-white border-gray-200 shadow-gray-200/50'} 
-              border rounded-xl shadow-xl custom-scrollbar
+              bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 shadow-xl shadow-gray-200/50 dark:shadow-black/40 
+              border rounded-xl custom-scrollbar
             `}>
               {fonts.map((f) => (
                 <button
@@ -162,7 +164,7 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
                     w-full text-left px-4 py-3 text-sm transition-colors
                     ${font === f.name 
                       ? 'bg-cyan-500 text-white' 
-                      : isDark ? 'hover:bg-gray-700 text-gray-300' : 'hover:bg-gray-100 text-gray-700'}
+                      : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300'}
                     ${f.class || ''}
                   `}
                 >
@@ -180,7 +182,7 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
           <AlignLeft size={14} />
           {labels.Alignment}
         </div>
-        <div className={`flex ${isDark ? 'bg-gray-800/50 border-gray-700/50' : 'bg-gray-100 border-gray-200'} p-1 rounded-xl border`}>
+        <div className={`flex bg-gray-100 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700/50 p-1 rounded-xl border`}>
           {alignments.map((a) => (
             <button
               key={a.value}
@@ -190,7 +192,7 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
                 flex-1 flex items-center justify-center p-2 rounded-lg transition-all duration-200
                 ${textAlign === a.value 
                   ? 'bg-cyan-500 text-white shadow-md' 
-                  : isDark ? 'text-gray-400 hover:text-white' : 'text-gray-500 hover:text-gray-900'}
+                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'}
               `}
             >
               {a.icon}
@@ -208,15 +210,15 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
             <span className={`text-xs font-bold text-cyan-500 ${currentFontClass}`}>{textScale}%</span>
           </div>
           <div className="flex items-center gap-4">
-            <button onClick={() => adjustScale(-5)} className={`p-2 rounded-lg ${isDark ? 'bg-gray-800 hover:bg-gray-700 text-gray-400' : 'bg-gray-100 hover:bg-gray-200 text-gray-600'}`}>
+            <button onClick={() => adjustScale(-5)} className={`p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400`}>
               <Minus size={16} />
             </button>
             <input 
               type="range" min="80" max="120" step="5" value={textScale}
               onChange={(e) => setTextScale(parseInt(e.target.value))}
-              className="flex-1 accent-cyan-500 h-1.5 bg-gray-700 rounded-lg appearance-none cursor-pointer"
+              className="flex-1 accent-cyan-500 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer"
             />
-            <button onClick={() => adjustScale(5)} className={`p-2 rounded-lg ${isDark ? 'bg-gray-800 hover:bg-gray-700 text-gray-400' : 'bg-gray-100 hover:bg-gray-200 text-gray-600'}`}>
+            <button onClick={() => adjustScale(5)} className={`p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400`}>
               <Plus size={16} />
             </button>
           </div>
@@ -229,15 +231,15 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
             <span className={`text-xs font-bold text-cyan-500 ${currentFontClass}`}>{letterSpacing}px</span>
           </div>
           <div className="flex items-center gap-4">
-            <button onClick={() => adjustSpacing(-0.1)} className={`p-2 rounded-lg ${isDark ? 'bg-gray-800 hover:bg-gray-700 text-gray-400' : 'bg-gray-100 hover:bg-gray-200 text-gray-600'}`}>
+            <button onClick={() => adjustSpacing(-0.1)} className={`p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400`}>
               <Minus size={16} />
             </button>
             <input 
               type="range" min="-2" max="10" step="0.1" value={letterSpacing}
               onChange={(e) => setLetterSpacing(parseFloat(e.target.value))}
-              className="flex-1 accent-cyan-500 h-1.5 bg-gray-700 rounded-lg appearance-none cursor-pointer"
+              className="flex-1 accent-cyan-500 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer"
             />
-            <button onClick={() => adjustSpacing(0.1)} className={`p-2 rounded-lg ${isDark ? 'bg-gray-800 hover:bg-gray-700 text-gray-400' : 'bg-gray-100 hover:bg-gray-200 text-gray-600'}`}>
+            <button onClick={() => adjustSpacing(0.1)} className={`p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400`}>
               <Plus size={16} />
             </button>
           </div>
@@ -250,15 +252,15 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
             <span className={`text-xs font-bold text-cyan-500 ${currentFontClass}`}>{lineHeight}</span>
           </div>
           <div className="flex items-center gap-4">
-            <button onClick={() => adjustLineHeight(-0.1)} className={`p-2 rounded-lg ${isDark ? 'bg-gray-800 hover:bg-gray-700 text-gray-400' : 'bg-gray-100 hover:bg-gray-200 text-gray-600'}`}>
+            <button onClick={() => adjustLineHeight(-0.1)} className={`p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400`}>
               <Minus size={16} />
             </button>
             <input 
               type="range" min="0.8" max="3" step="0.1" value={lineHeight}
               onChange={(e) => setLineHeight(parseFloat(e.target.value))}
-              className="flex-1 accent-cyan-500 h-1.5 bg-gray-700 rounded-lg appearance-none cursor-pointer"
+              className="flex-1 accent-cyan-500 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer"
             />
-            <button onClick={() => adjustLineHeight(0.1)} className={`p-2 rounded-lg ${isDark ? 'bg-gray-800 hover:bg-gray-700 text-gray-400' : 'bg-gray-100 hover:bg-gray-200 text-gray-600'}`}>
+            <button onClick={() => adjustLineHeight(0.1)} className={`p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400`}>
               <Plus size={16} />
             </button>
           </div>
@@ -279,7 +281,7 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
     <div className="relative" ref={popupRef}>
       <button
         onClick={toggleOpen}
-        className={`group p-2.5 rounded-full hover:${isDark ? 'bg-white/10' : 'bg-gray-100'} transition-all duration-300 hover-gacor ${isOpen ? 'nav-active-gacor' : textColor}`}
+        className={`group p-2.5 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition-all duration-300 hover-gacor ${isOpen ? 'nav-active-gacor' : textColorClass}`}
         aria-label={labels.Settings}
       >
         <Settings 
@@ -295,8 +297,8 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
           absolute right-0 top-full mt-3 
           w-[calc(100vw-2rem)] sm:w-80 
           max-w-[320px] sm:max-w-none
-          ${isDark ? 'bg-gray-900/95 border-gray-700 shadow-black/40' : 'bg-white/95 border-gray-200 shadow-gray-200/50'} 
-          md:backdrop-blur-xl border rounded-2xl shadow-2xl z-50 p-6
+          bg-white/95 dark:bg-gray-900/95 border-gray-200 dark:border-gray-700 shadow-2xl shadow-gray-200/50 dark:shadow-black/40 
+          md:backdrop-blur-xl border rounded-2xl z-50 p-6
           animate-fade-in origin-top-right ring-1 ring-black/5
         `}>
           {renderContent()}
@@ -311,7 +313,7 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
           background: transparent;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: ${isDark ? '#374151' : '#e5e7eb'};
+          background: ${mounted ? (document.documentElement.classList.contains('dark') ? '#374151' : '#e5e7eb') : '#e5e7eb'};
           border-radius: 10px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {

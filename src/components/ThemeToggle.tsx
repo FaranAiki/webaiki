@@ -5,7 +5,6 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { Sun, Moon, Monitor } from "lucide-react";
-import { setCookies } from "@/app/actions";
 
 export default function ThemeToggle() {
   const [mounted, setMounted] = useState(false);

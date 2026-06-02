@@ -39,8 +39,7 @@ export function Providers({
   }, []);
 
   if (!mounted) {
-    // Return children as-is (or a loading state) during server-render/initial client render
-    // to avoid markup mismatches.
+    // Return a stable structure during SSR/initial client render
     return (
       <SettingsProvider>
         <PresentationProvider 
@@ -48,7 +47,9 @@ export function Providers({
           initialSlideNumberFormat={initialSlideNumberFormat}
         >
           <QueryProvider>
-            {children}
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+                {children}
+            </ThemeProvider>
           </QueryProvider>
         </PresentationProvider>
       </SettingsProvider>
