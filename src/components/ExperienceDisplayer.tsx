@@ -13,7 +13,9 @@ import {
     Milestone,
     LayoutGrid,
     Grid2X2,
-    Rows
+    Rows,
+    ExternalLink,
+    Briefcase
 } from 'lucide-react';
 
 import { motion } from 'framer-motion';
@@ -57,6 +59,17 @@ interface ExperiencesClientProps {
 
 // --- Sub-components for stability ---
 
+const PlaceholderIcon = ({ company }: { company: string }) => (
+    <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 p-8">
+        <div className="p-5 rounded-full bg-white/50 dark:bg-gray-700/50 mb-4 shadow-sm">
+            <Briefcase size={48} className="text-cyan-500" />
+        </div>
+        <p className="text-xs font-black uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500 text-center px-4 line-clamp-2">
+            {company}
+        </p>
+    </div>
+);
+
 interface BentoCardProps {
     job: Job;
     spanClass: string;
@@ -72,21 +85,29 @@ const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, j
     const [isExpanded, setIsExpanded] = useState(false);
     const hasImage = job.image && job.image.length > 0;
 
+    const handleBoxClick = () => {
+        if (job.url && !isExpanded) {
+            window.open(job.url, '_blank', 'noopener,noreferrer');
+            return;
+        }
+        setIsExpanded(!isExpanded);
+    };
+
     return (
         <motion.div
             layout
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            onClick={() => setIsExpanded(!isExpanded)}
+            onClick={handleBoxClick}
             transition={{
                 duration: 0.6,
                 ease: [0.23, 1, 0.32, 1],
                 layout: { duration: 0.4 }
             }}
-            className={`${spanClass} relative rounded-3xl overflow-hidden group border ${cardBorder} ${inactiveCardBg} shadow-sm hover:shadow-xl cursor-pointer`}
+            className={`${spanClass} relative rounded-3xl overflow-hidden group border ${cardBorder} ${inactiveCardBg} shadow-sm hover:shadow-xl cursor-pointer transform-gpu`}
         >
-            {hasImage && (
+            {hasImage ? (
                 <Image
                     src={job.image[0]}
                     alt={job.company}
@@ -96,17 +117,28 @@ const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, j
                             ? (isDark ? 'scale-110 blur-sm brightness-[0.2]' : 'scale-110 blur-md opacity-20')
                             : 'group-hover:scale-110 opacity-60 group-hover:opacity-100'}`}
                 />
+            ) : (
+                <div className={`absolute inset-0 transition-all duration-700 ${isExpanded ? 'blur-sm brightness-[0.3]' : 'opacity-40 group-hover:opacity-80'}`}>
+                    <PlaceholderIcon company={job.company} />
+                </div>
             )}
 
             {/* Base Content */}
             <div className={`absolute inset-0 p-6 flex flex-col justify-end transition-opacity duration-500
-                ${hasImage ? (isDark ? 'bg-gradient-to-t from-black/80 via-black/20 to-transparent' : 'bg-gradient-to-t from-white/90 via-white/20 to-transparent') : ''}
+                ${isDark ? 'bg-gradient-to-t from-black/80 via-black/20 to-transparent' : 'bg-gradient-to-t from-white/90 via-white/20 to-transparent'}
                 ${isExpanded ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-                <p className="text-cyan-500 text-xs font-bold mb-1">{job.year}</p>
-                <h3 className="text-xl font-black leading-tight mb-1 nav-active-gacor">
-                    {job.title}
-                </h3>
-                <p className={`text-sm italic ${isDark || (hasImage && !isExpanded) ? 'text-gray-300' : 'text-gray-600'} ${!isDark && hasImage ? 'text-gray-800' : ''}`}>
+                <div className="flex justify-between items-start">
+                    <div className="flex-1">
+                        <p className="text-cyan-500 text-xs font-bold mb-1">{job.year}</p>
+                        <h3 className="text-lg md:text-xl font-black leading-tight mb-1 nav-active-gacor line-clamp-2">
+                            {job.title}
+                        </h3>
+                    </div>
+                    {job.url && (
+                        <ExternalLink size={16} className="text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity ml-2 shrink-0" />
+                    )}
+                </div>
+                <p className={`text-sm italic ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
                     {job.company}
                 </p>
             </div>
@@ -119,6 +151,12 @@ const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, j
                 className={`absolute inset-0 z-10 p-6 flex flex-col justify-center md:backdrop-blur-md
                     ${isDark ? 'bg-black/80' : 'bg-white/90'}
                     ${isExpanded ? 'pointer-events-auto' : 'pointer-events-none'}`}
+                onClick={(e) => {
+                    if (isExpanded) {
+                        e.stopPropagation();
+                        setIsExpanded(false);
+                    }
+                }}
             >
                 <div className="overflow-y-auto max-h-full pr-2 custom-scrollbar">
                     <p className="text-cyan-500 text-xs font-bold mb-2">{job.date}</p>
@@ -127,10 +165,23 @@ const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, j
                     <div className={`text-sm leading-relaxed ${isDark ? 'text-gray-200' : 'text-gray-700'} ${justifyClass}`}>
                         {formatCJK(job.description, lang)}
                     </div>
+                    
+                    {job.url && (
+                        <button 
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                window.open(job.url, '_blank', 'noopener,noreferrer');
+                            }}
+                            className="mt-6 flex items-center gap-2 px-4 py-2 bg-cyan-500 text-white rounded-full font-bold text-xs hover:bg-cyan-600 transition-colors w-fit"
+                        >
+                            <ExternalLink size={14} />
+                            Visit Project
+                        </button>
+                    )}
                 </div>
 
                 {/* Close hint */}
-                <div className={`absolute top-4 right-4 text-xs font-medium px-2 py-1 rounded-full
+                <div className={`absolute top-4 right-4 text-[10px] font-medium px-2 py-1 rounded-full
                     ${isDark ? 'text-white/50 bg-white/10' : 'text-gray-500 bg-gray-200/50'}`}>
                     {click_to_close_text}
                 </div>
@@ -190,7 +241,6 @@ export default function ExperiencesClient({
     const isJustified = lang !== 'jp' && lang !== 'zh';
     const defaultJustifyClass = isJustified ? 'text-justify' : 'text-left';
     const justifyClass = textAlign === 'default' ? defaultJustifyClass : `text-${textAlign}`;
-    const responsiveJustifyClass = textAlign === 'default' ? `text-center md:${justifyClass}` : justifyClass;
 
     const activeImageSrc = useMemo(() => {
         const idx = (activeJob?.image && currentImageIndex < activeJob.image.length) ? currentImageIndex : 0;
@@ -279,10 +329,23 @@ export default function ExperiencesClient({
                                         <HoverableWords className={`text-base md:text-lg ${justifyClass} ${descText} font-medium`}>
                                             {job.description}
                                         </HoverableWords>
+                                        
+                                        {job.url && (
+                                            <a 
+                                                href={job.url} 
+                                                target="_blank" 
+                                                rel="noopener noreferrer"
+                                                className="flex items-center gap-2 px-6 py-3 bg-cyan-500 text-white rounded-full font-bold text-sm hover:bg-cyan-600 transition-all w-fit shadow-lg hover:scale-105"
+                                            >
+                                                <ExternalLink size={18} />
+                                                Visit Project
+                                            </a>
+                                        )}
                                     </div>
-                                    {job.image && job.image.length > 0 && (
-                                        <div className="flex-[0.8] flex justify-center items-center w-full h-full transform-gpu">
-                                            <div className="relative w-full h-full max-w-[400px] max-h-[400px] flex justify-center items-center overflow-hidden transform-gpu">
+                                    
+                                    <div className="flex-[0.8] flex justify-center items-center w-full h-full transform-gpu">
+                                        <div className="relative w-full h-full max-w-[400px] max-h-[400px] aspect-square flex justify-center items-center overflow-hidden transform-gpu rounded-3xl">
+                                            {job.image && job.image.length > 0 ? (
                                                 <Image
                                                     src={job.image[0]}
                                                     alt={job.company}
@@ -292,9 +355,11 @@ export default function ExperiencesClient({
                                                     priority={true}
                                                     loading="eager"
                                                 />
-                                            </div>
+                                            ) : (
+                                                <PlaceholderIcon company={job.company} />
+                                            )}
                                         </div>
-                                    )}
+                                    </div>
                                 </div>
                             )}
 
@@ -314,7 +379,9 @@ export default function ExperiencesClient({
                                             <div className={`absolute inset-0 ${isDark ? 'bg-gradient-to-t from-black via-black/40 to-transparent' : 'bg-gradient-to-t from-white via-white/40 to-transparent'}`} />
                                         </div>
                                     ) : (
-                                        <div className={`absolute inset-0 z-0 ${isDark ? 'bg-gray-950' : 'bg-gray-50'}`} />
+                                        <div className={`absolute inset-0 z-0 ${isDark ? 'bg-gray-950' : 'bg-gray-50'} flex items-center justify-center opacity-10`}>
+                                            <Briefcase size={400} className="text-cyan-500" />
+                                        </div>
                                     )}
 
                                     <div className="relative z-10 w-full max-w-6xl mx-auto p-8 md:p-16 mb-16">
@@ -326,6 +393,18 @@ export default function ExperiencesClient({
                                                 </div>
                                                 <h3 className={`text-5xl md:text-7xl font-black leading-[0.85] tracking-tighter ${isDark ? 'text-white' : 'text-gray-900'}`}>{job.title}</h3>
                                                 <p className="text-xl md:text-3xl text-gacor-smooth font-bold italic tracking-tight">{job.company}</p>
+                                                
+                                                {job.url && (
+                                                    <a 
+                                                        href={job.url} 
+                                                        target="_blank" 
+                                                        rel="noopener noreferrer"
+                                                        className="mt-4 flex items-center gap-2 px-6 py-3 bg-cyan-500 text-white rounded-full font-bold text-sm hover:bg-cyan-600 transition-all w-fit shadow-xl"
+                                                    >
+                                                        <ExternalLink size={18} />
+                                                        Visit Project
+                                                    </a>
+                                                )}
                                                 </div>
                                                 <div className="flex-1 max-w-xl">
                                                 <div className={`p-1 rounded-sm mb-4 inline-block ${isDark ? 'bg-cyan-500/20 text-cyan-300' : 'bg-cyan-100 text-cyan-700'} text-xs font-black px-2 py-0.5`}>
@@ -365,19 +444,33 @@ export default function ExperiencesClient({
                                                 <HoverableWords className={`text-xl md:text-2xl leading-snug font-medium ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
                                                     {job.description}
                                                 </HoverableWords>
+                                                
+                                                {job.url && (
+                                                    <a 
+                                                        href={job.url} 
+                                                        target="_blank" 
+                                                        rel="noopener noreferrer"
+                                                        className="mt-10 flex items-center gap-2 px-8 py-4 bg-cyan-500 text-white rounded-full font-black text-base hover:bg-cyan-600 transition-all w-fit shadow-2xl hover:scale-105"
+                                                    >
+                                                        <ExternalLink size={20} />
+                                                        Explore Now
+                                                    </a>
+                                                )}
                                             </div>
                                         </div>
 
-                                        {job.image && job.image.length > 0 && (
-                                            <div className="md:col-span-5 relative group">
-                                                <div className="aspect-[4/5] relative rounded-2xl overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] transition-all duration-700 group-hover:rotate-0 rotate-3 group-hover:scale-105">
+                                        <div className="md:col-span-5 relative group">
+                                            <div className="aspect-[4/5] relative rounded-2xl overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] transition-all duration-700 group-hover:rotate-0 rotate-3 group-hover:scale-105">
+                                                {job.image && job.image.length > 0 ? (
                                                     <Image src={job.image[0]} alt={job.company} fill className="object-cover" />
-                                                </div>
-                                                {/* Decorative Elements */}
-                                                <div className={`absolute -bottom-6 -left-6 w-32 h-32 border-b-[6px] border-l-[6px] border-cyan-500 rounded-bl-4xl -z-10 transition-transform duration-500 group-hover:-translate-x-2 group-hover:translate-y-2`} />
-                                                <div className={`absolute -top-6 -right-6 w-32 h-32 border-t-[6px] border-r-[6px] border-cyan-500 rounded-tr-4xl -z-10 transition-transform duration-500 group-hover:translate-x-2 group-hover:-translate-y-2`} />
+                                                ) : (
+                                                    <PlaceholderIcon company={job.company} />
+                                                )}
                                             </div>
-                                        )}
+                                            {/* Decorative Elements */}
+                                            <div className={`absolute -bottom-6 -left-6 w-32 h-32 border-b-[6px] border-l-[6px] border-cyan-500 rounded-bl-4xl -z-10 transition-transform duration-500 group-hover:-translate-x-2 group-hover:translate-y-2`} />
+                                            <div className={`absolute -top-6 -right-6 w-32 h-32 border-t-[6px] border-r-[6px] border-cyan-500 rounded-tr-4xl -z-10 transition-transform duration-500 group-hover:translate-x-2 group-hover:-translate-y-2`} />
+                                        </div>
                                     </div>
                                 </div>
                             )}
@@ -390,7 +483,7 @@ export default function ExperiencesClient({
                             <div className="flex flex-col md:flex-row gap-8 md:gap-16">
                                 <div className="w-full md:w-1/2">
                                     {experiences.map((experience) => (
-                                        <div key={experience.year} className={`mb-12 ${responsiveJustifyClass} cursor-pointer`}>
+                                        <div key={experience.year} className={`mb-12 cursor-pointer`}>
                                             <h2 className={`transition-[transform] hover:scale-105 text-2xl font-bold text-gacor-smooth mb-6 top-0 py-2`}>
                                                 {experience.year}
                                             </h2>
@@ -405,20 +498,18 @@ export default function ExperiencesClient({
                                                         onMouseEnter={() => handleJobChange(job)}
                                                         onFocus={() => handleJobChange(job)}
                                                         tabIndex={0}
-                                                        className={`p-6 rounded-lg cursor-pointer border-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-cyan-500
+                                                        onClick={() => job.url && window.open(job.url, '_blank', 'noopener,noreferrer')}
+                                                        className={`p-6 rounded-lg cursor-pointer border-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all group
                                                             ${activeJob.title === job.title && activeJob.company === job.company
                                                                 ? `${activeCardBg}`
                                                                 : `${inactiveCardBg} ${cardBorder} hover:border-cyan-500/50`
                                                             }`}
                                                     >
                                                         <p style={dateStyle} className="text-sm mb-1">{job.date}</p>
-                                                        {job.url ? (
-                                                            <a href={job.url} target="_blank" rel="noopener noreferrer" className="block w-fit">
-                                                                <h3 className={`text-xl font-bold ${mainText} hover-gacor underline decoration-dotted decoration-cyan-500/50`}>{job.title}</h3>
-                                                            </a>
-                                                        ) : (
-                                                            <h3 className={`text-xl font-bold ${mainText} hover-gacor`}>{job.title}</h3>
-                                                        )}
+                                                        <div className="flex justify-between items-center mb-1">
+                                                            <h3 className={`text-xl font-bold ${mainText} hover-gacor ${job.url ? 'underline decoration-dotted decoration-cyan-500/30' : ''}`}>{job.title}</h3>
+                                                            {job.url && <ExternalLink size={14} className="text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity" />}
+                                                        </div>
                                                         <p className="text-gacor-smooth italic mb-3">{job.company}</p>
                                                         <HoverableWords className={`${justifyClass} ${descText}`}>
                                                             {formatCJK(job.description, lang)}
@@ -431,9 +522,9 @@ export default function ExperiencesClient({
                                 </div>
                                 <div className="hidden md:block w-1/2">
                                     <div className="sticky top-32 flex justify-center">
-                                        {hasValidImage && (
-                                            <div className="w-full">
-                                                <div className="relative w-full max-w-[600px] aspect-[3/2] mx-auto shadow-2xl overflow-hidden rounded-lg">
+                                        <div className="w-full">
+                                            <div className="relative w-full max-w-[600px] aspect-[3/2] mx-auto shadow-2xl overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800">
+                                                {hasValidImage ? (
                                                     <Image
                                                         fill
                                                         src={activeImageSrc!}
@@ -443,13 +534,21 @@ export default function ExperiencesClient({
                                                         className="object-cover"
                                                         priority
                                                     />
-                                                </div>
-                                                <div className="mt-4 text-center">
-                                                    <h3 className={`text-2xl font-black ${mainText}`}>{activeJob.title}</h3>
-                                                    <p style={companyStyle} className="text-lg italic">{activeJob.company}</p>
-                                                </div>
+                                                ) : (
+                                                    <PlaceholderIcon company={activeJob.company} />
+                                                )}
                                             </div>
-                                        )}
+                                            <div className="mt-4 text-center">
+                                                <h3 className={`text-2xl font-black ${mainText}`}>{activeJob.title}</h3>
+                                                <p style={companyStyle} className="text-lg italic">{activeJob.company}</p>
+                                                {activeJob.url && (
+                                                    <a href={activeJob.url} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex items-center gap-1.5 text-cyan-500 font-bold hover:text-cyan-400 transition-colors">
+                                                        <ExternalLink size={16} />
+                                                        View Details
+                                                    </a>
+                                                )}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -469,18 +568,24 @@ export default function ExperiencesClient({
                                                     whileInView={{ opacity: 1, x: 0 }}
                                                     viewport={{ once: true }}
                                                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                                                    className="flex flex-col md:flex-row gap-6 group"
+                                                    onClick={() => job.url && window.open(job.url, '_blank', 'noopener,noreferrer')}
+                                                    className={`flex flex-col md:flex-row gap-6 group ${job.url ? 'cursor-pointer' : ''}`}
                                                 >
-                                                    {job.image && job.image.length > 0 && (
-                                                        <div className="w-full md:w-1/3 shrink-0">
-                                                            <div className="relative aspect-video rounded-xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-800">
-                                                                <Image src={job.image[0]} alt={job.company} fill className="object-cover" placeholder="blur" blurDataURL={shimmer400x225} />
-                                                            </div>
+                                                    <div className="w-full md:w-1/3 shrink-0">
+                                                        <div className="relative aspect-video rounded-xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-800 bg-gray-100 dark:bg-gray-800">
+                                                            {job.image && job.image.length > 0 ? (
+                                                                <Image src={job.image[0]} alt={job.company} fill className="object-cover transition-transform group-hover:scale-105" placeholder="blur" blurDataURL={shimmer400x225} />
+                                                            ) : (
+                                                                <PlaceholderIcon company={job.company} />
+                                                            )}
                                                         </div>
-                                                    )}
+                                                    </div>
                                                     <div className="flex-1">
                                                         <p style={dateStyle} className="text-sm mb-1">{job.date}</p>
-                                                        <h3 className={`text-2xl font-bold ${mainText} hover-gacor mb-1`}>{job.title}</h3>
+                                                        <div className="flex items-center gap-2 mb-1">
+                                                            <h3 className={`text-2xl font-bold ${mainText} hover-gacor`}>{job.title}</h3>
+                                                            {job.url && <ExternalLink size={16} className="text-cyan-500 opacity-0 group-hover:opacity-100 transition-all" />}
+                                                        </div>
                                                         <p className="text-lg font-semibold italic text-gacor-smooth mb-4">{job.company}</p>
                                                         <HoverableWords className={`${justifyClass} ${descText}`}>
                                                             {formatCJK(job.description, lang)}
@@ -503,17 +608,21 @@ export default function ExperiencesClient({
                                         whileInView={{ opacity: 1, scale: 1, y: 0 }}
                                         viewport={{ once: true }}
                                         whileHover={{ y: -8 }}
-                                        className={`flex flex-col p-6 rounded-2xl border ${cardBorder} ${inactiveCardBg} group shadow-sm hover:shadow-2xl transition-shadow duration-300`}
+                                        onClick={() => job.url && window.open(job.url, '_blank', 'noopener,noreferrer')}
+                                        className={`flex flex-col p-6 rounded-2xl border ${cardBorder} ${inactiveCardBg} group shadow-sm hover:shadow-2xl transition-all duration-300 ${job.url ? 'cursor-pointer' : ''}`}
                                     >
-                                        <div className="relative aspect-video mb-6 rounded-xl overflow-hidden bg-gray-200 dark:bg-gray-700">
+                                        <div className="relative aspect-video mb-6 rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-800">
                                             {job.image && job.image.length > 0 ? (
-                                                <Image src={job.image[0]} alt={job.company} fill className="object-cover" placeholder="blur" blurDataURL={shimmer400x225} />
+                                                <Image src={job.image[0]} alt={job.company} fill className="object-cover transition-transform group-hover:scale-105" placeholder="blur" blurDataURL={shimmer400x225} />
                                             ) : (
-                                                <div className="w-full h-full flex items-center justify-center text-gray-400">No Image</div>
+                                                <PlaceholderIcon company={job.company} />
                                             )}
                                         </div>
                                         <p style={dateStyle} className="text-xs font-medium mb-1">{job.date}</p>
-                                        <h3 className={`text-xl font-black ${mainText} hover-gacor mb-1 line-clamp-1`}>{job.title}</h3>
+                                        <div className="flex justify-between items-start mb-1">
+                                            <h3 className={`text-xl font-black ${mainText} hover-gacor line-clamp-1`}>{job.title}</h3>
+                                            {job.url && <ExternalLink size={14} className="text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity shrink-0 ml-2" />}
+                                        </div>
                                         <p className="text-sm italic text-gacor-smooth mb-4">{job.company}</p>
                                     </motion.div>
                                 ))}
@@ -561,7 +670,8 @@ export default function ExperiencesClient({
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true, margin: "-100px" }}
                                         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                                        className="group"
+                                        onClick={() => job.url && window.open(job.url, '_blank', 'noopener,noreferrer')}
+                                        className={`group ${job.url ? 'cursor-pointer' : ''}`}
                                     >
                                         <div className="flex flex-col md:flex-row gap-8 items-center">
                                             <div className="w-full md:w-1/2 space-y-4">
@@ -569,19 +679,24 @@ export default function ExperiencesClient({
                                                     <span className="h-px w-12 bg-cyan-500"></span>
                                                     <p style={dateStyle} className="text-sm font-bold">{job.date}</p>
                                                 </div>
-                                                <h3 className={`text-4xl md:text-5xl font-black ${mainText} leading-tight`}>{job.title}</h3>
+                                                <div className="flex items-center gap-3">
+                                                    <h3 className={`text-4xl md:text-5xl font-black ${mainText} leading-tight`}>{job.title}</h3>
+                                                    {job.url && <ExternalLink size={24} className="text-cyan-500 opacity-0 group-hover:opacity-100 transition-all translate-y-2" />}
+                                                </div>
                                                 <p style={companyStyle} className="text-xl font-medium italic opacity-80">{job.company}</p>
                                                 <HoverableWords className={`${justifyClass} ${descText} text-lg leading-relaxed`}>
                                                     {formatCJK(job.description, lang)}
                                                 </HoverableWords>
                                             </div>
-                                            {job.image && job.image.length > 0 && (
-                                                <div className="w-full md:w-1/2">
-                                                    <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl transition-transform duration-700 group-hover:scale-[1.02]">
+                                            <div className="w-full md:w-1/2">
+                                                <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl transition-transform duration-700 group-hover:scale-[1.02] bg-gray-100 dark:bg-gray-800">
+                                                    {job.image && job.image.length > 0 ? (
                                                         <Image src={job.image[0]} alt={job.company} fill className="object-cover" />
-                                                    </div>
+                                                    ) : (
+                                                        <PlaceholderIcon company={job.company} />
+                                                    )}
                                                 </div>
-                                            )}
+                                            </div>
                                         </div>
                                     </motion.div>
                                 ))}

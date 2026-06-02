@@ -60,17 +60,18 @@ export function getBaseMetadata(): Metadata {
       siteName: 'Faran Aiki',
       images: [
         {
-          url: `${SITE_URL}/images/photo_faran_aiki/1_fa_photo_linkedin.webp`,
+          url: `${SITE_URL}/images/og-preview.jpg`,
           width: 1200,
           height: 630,
           alt: 'Muhammad Faran Aiki',
+          type: 'image/jpeg',
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
       title: 'Faran Aiki',
-      images: [`${SITE_URL}/images/photo_faran_aiki/1_fa_photo_linkedin.webp`],
+      images: [`${SITE_URL}/images/og-preview.jpg`],
     },
   };
 }
@@ -81,7 +82,7 @@ export function getPersonSchema(lang: string, description?: string) {
     "@id": `${SITE_URL}/#person`,
     "name": "Muhammad Faran Aiki",
     "url": SITE_URL,
-    "image": `${SITE_URL}/images/photo_faran_aiki/1_fa_photo_linkedin.webp`,
+    "image": `${SITE_URL}/images/og-preview.jpg`,
     "sameAs": [
       "https://github.com/faranaiki",
       "https://linkedin.com/in/faranaiki"
