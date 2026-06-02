@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Github, Linkedin, Instagram, Twitter, Mail, Youtube } from 'lucide-react';
 import Image from 'next/image';
-import PopRotateSection from '@/components/PopRotateSection';
-import FadeInSection from '@/components/FadeInSection';
 import { usePresentation } from './PresentationContext';
+import { motion } from 'framer-motion';
 
 export interface SocialLink {
   name: string;
@@ -20,6 +19,33 @@ interface SocialDisplayProps {
   hidePresentation?: boolean;
 }
 
+// Professional animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.05,
+      delayChildren: 0.1
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20, scale: 0.95 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    scale: 1,
+    transition: { 
+      type: "spring",
+      damping: 20,
+      stiffness: 100,
+      duration: 0.4
+    }
+  }
+};
+
 export default function SocialDisplay({ customLinks, hidePresentation = false }: SocialDisplayProps) {
   const { isPresentationMode } = usePresentation();
 
@@ -29,7 +55,6 @@ export default function SocialDisplay({ customLinks, hidePresentation = false }:
   const usernameClass = "text-[var(--text-muted)] group-hover:text-foreground";
   const nameClass = "text-foreground";
   
-  // Icon Colors - Using Tailwind's dark: variant is safer than JS-based theme detection for initial render
   const githubColor = "text-black dark:text-white";
 
   const defaultSocialLinks: SocialLink[] = [
@@ -149,7 +174,6 @@ export default function SocialDisplay({ customLinks, hidePresentation = false }:
 
   const socialLinks = customLinks || defaultSocialLinks;
 
-  // Helper function to chunk array
   const chunkArray = (arr: SocialLink[], size: number) => {
     return Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
       arr.slice(i * size, i * size + size)
@@ -161,20 +185,21 @@ export default function SocialDisplay({ customLinks, hidePresentation = false }:
 
   return (
     <div className="w-full h-full">
-      {/* Presentation Mode: Grouped into Slides */}
       {showPresentation && (
         <div className="presentation-container">
           {socialChunks.map((chunk, chunkIdx) => (
-            <FadeInSection 
+            <motion.div 
               key={`social-slide-${chunkIdx}`} 
-              className="w-full h-full flex-shrink-0"
-              slideIndex={chunkIdx + 1}
-              totalSlides={socialChunks.length}
+              className="w-full h-full flex-shrink-0 flex items-center justify-center presentation-section"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
             >
               <div className={`container mx-auto max-w-5xl ${containerClass} px-4`}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-center justify-center">
-                  {chunk.map((link, index) => (
-                    <PopRotateSection key={link.name} delay={index * 100} className="h-full">
+                  {chunk.map((link) => (
+                    <motion.div key={link.name} className="h-full" variants={itemVariants}>
                       <a
                           href={link.url}
                           target="_blank"
@@ -193,47 +218,50 @@ export default function SocialDisplay({ customLinks, hidePresentation = false }:
                           {link.name}
                           </div>
                       </a>
-                    </PopRotateSection>
+                    </motion.div>
                   ))}
                 </div>
               </div>
-            </FadeInSection>
+            </motion.div>
           ))}
         </div>
       )}
 
-      {/* Normal Mode */}
       {!showPresentation && (
-        <div className="block">
-          <FadeInSection className="w-full h-full flex items-center justify-center py-12 md:py-20">
-            <div className={`container mx-auto max-w-5xl ${containerClass}`}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
-                {socialLinks.map((link, index) => (
-                  <PopRotateSection key={link.name} delay={(index % 6) * 50} className="h-full">
-                    <a
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`group ${cardBg} border rounded-lg p-6 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-2 ${link.color} h-full shadow-sm hover:shadow-lg`}
-                    >
-                        <div className={`text-sm ${usernameClass} mb-4 transition-colors`}>
-                        {link.username}
-                        </div>
+        <motion.div 
+          className="block w-full h-full flex items-center justify-center py-12 md:py-20"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.05 }}
+        >
+          <div className={`container mx-auto max-w-5xl ${containerClass}`}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
+              {socialLinks.map((link) => (
+                <motion.div key={link.name} className="h-full" variants={itemVariants}>
+                  <a
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`group ${cardBg} border rounded-lg p-6 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-2 ${link.color} h-full shadow-sm hover:shadow-lg`}
+                  >
+                      <div className={`text-sm ${usernameClass} mb-4 transition-colors`}>
+                      {link.username}
+                      </div>
 
-                        <div className="mb-4 transition-transform group-hover:scale-110 duration-300">
-                        {link.icon}
-                        </div>
+                      <div className="mb-4 transition-transform group-hover:scale-110 duration-300">
+                      {link.icon}
+                      </div>
 
-                        <div className={`text-lg font-semibold ${nameClass}`}>
-                        {link.name}
-                        </div>
-                    </a>
-                  </PopRotateSection>
-                ))}
-              </div>
+                      <div className={`text-lg font-semibold ${nameClass}`}>
+                      {link.name}
+                      </div>
+                  </a>
+                </motion.div>
+              ))}
             </div>
-          </FadeInSection>
-        </div>
+          </div>
+        </motion.div>
       )}
     </div>
   );
