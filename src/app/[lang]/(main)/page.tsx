@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import AboutMe from '@/components/AboutMe';
-import FAQ from '@/components/FAQ';
-import { getDictionary } from '@/components/Translator';
+import AboutMe from '@/components/portfolio/AboutMe';
+import FAQ from '@/components/portfolio/FAQ';
+import { getDictionary } from '@/components/layout/Translator';
 import { cache } from 'react';
 import fs from 'fs';
 import path from 'path';

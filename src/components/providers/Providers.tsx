@@ -4,7 +4,7 @@ import { ThemeProvider } from "next-themes";
 import { useEffect, useState } from "react";
 import { PresentationProvider, SlideNumberFormat } from "./PresentationContext";
 import { SettingsProvider } from "./SettingsContext";
-import SultanPrint from "./SultanPrint";
+import SultanPrint from "../interactive/SultanPrint";
 
 interface ProvidersProps {
   children: React.ReactNode;
@@ -25,7 +25,7 @@ interface ProvidersProps {
 
 import QueryProvider from "./QueryProvider";
 import SmoothScroll from "./SmoothScroll";
-import LoadingOverlay from "./LoadingOverlay";
+import LoadingOverlay from "../layout/LoadingOverlay";
 
 export function Providers({ 
   children, 

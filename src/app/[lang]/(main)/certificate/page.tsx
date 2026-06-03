@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "../../../globals.css";
 
-import CertificatesDisplay from '@/components/CertificatesDisplay';
-import { getDictionary } from '@/components/Translator';
+import CertificatesDisplay from '@/components/portfolio/CertificatesDisplay';
+import { getDictionary } from '@/components/layout/Translator';
 import { getCertificatesData } from '@/lib/data';
 import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema } from '@/lib/seo';
 

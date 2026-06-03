@@ -3,7 +3,7 @@ import "../../../globals.css";
 
 import React from 'react';
 import CollegeLoader from './college-loader';
-import { getDictionary } from '@/components/Translator';
+import { getDictionary } from '@/components/layout/Translator';
 import { getCollectionsData } from '@/lib/data';
 import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema } from '@/lib/seo';
 

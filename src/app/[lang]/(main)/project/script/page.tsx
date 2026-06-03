@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import PythonCLI from "@/components/PythonCLI"; 
+import PythonCLI from "@/components/interactive/PythonCLI"; 
 import "../../../../globals.css"; 
 
-import { getDictionary } from '@/components/Translator';
+import { getDictionary } from '@/components/layout/Translator';
 import { getLanguageAlternates, getBaseMetadata, SITE_URL } from '@/lib/seo';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {

@@ -23,7 +23,7 @@ export type CollegeLoaderProps = {
 
 // Use dynamic import for the component that needs browser APIs
 const CollegeDisplay = dynamic(
-  () => import('@/components/InteractiveCollections'),
+  () => import('@/components/portfolio/InteractiveCollections'),
   { 
     ssr: false, // ssr: false is allowed here
   }

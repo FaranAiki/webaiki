@@ -1,5 +1,5 @@
 import { headers } from "next/headers";
-import { getDictionary } from "@/components/Translator";
+import { getDictionary } from "@/components/layout/Translator";
 import Image from "next/image";
 
 /**

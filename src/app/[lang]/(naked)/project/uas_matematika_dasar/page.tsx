@@ -1,6 +1,6 @@
 // This is the Flutter project
 
-import { getDictionary } from '@/components/Translator';
+import { getDictionary } from '@/components/layout/Translator';
 import UasHeader from "./UasHeader";
 import { Metadata } from 'next';
 

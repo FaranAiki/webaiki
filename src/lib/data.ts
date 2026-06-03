@@ -1,9 +1,9 @@
 import { cache } from 'react';
 import fs from 'fs';
 import path from 'path';
-import { getDictionary } from '@/components/Translator';
-import { CollectionsData } from '@/components/InteractiveCollections';
-import { CertificateData } from '@/components/CertificatesDisplay';
+import { getDictionary } from '@/components/layout/Translator';
+import { CollectionsData } from '@/components/portfolio/InteractiveCollections';
+import { CertificateData } from '@/components/portfolio/CertificatesDisplay';
 
 export const getBackgrounds = cache(() => {
   const photosDir = path.join(process.cwd(), 'public', 'images', 'background');
@@ -35,7 +35,7 @@ export const getWorkExperiences = (dict: Dictionary) => [
         ]
       },
       {
-        date: `${dict.February} 2026 — ${dict.Present}`,
+        date: `${dict.February} 2026 — ${dict.April} 2026`,
         title: dict.SAT_Tutor,
         company: 'Kobi Education',
         description: dict.SAT_Tutor_Description,
@@ -62,7 +62,7 @@ export const getWorkExperiences = (dict: Dictionary) => [
     year: '2025',
     jobs: [
       {
-        date: `${dict.October} 2025 — ${dict.Present}`,
+        date: `${dict.October} 2025 — ${dict.February} 2026`,
         title: dict.Software_Engineer,
         company: 'Analitica',
         description: dict.Software_Engineer_Description,

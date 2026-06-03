@@ -2,8 +2,8 @@
 
 import { useEffect, useState, useRef } from 'react';
 import { useTheme } from 'next-themes';
-import { usePresentation } from './PresentationContext';
-import { useSettings, fonts } from './SettingsContext';
+import { usePresentation } from '../providers/PresentationContext';
+import { useSettings, fonts } from '../providers/SettingsContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Loader2, FileCheck, AlertCircle, X } from 'lucide-react';
 

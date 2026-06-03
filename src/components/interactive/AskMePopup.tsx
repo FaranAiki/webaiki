@@ -6,7 +6,7 @@ import { useTheme } from 'next-themes';
 import dynamic from 'next/dynamic';
 import { useMutation } from '@tanstack/react-query';
 
-import { usePresentation } from './PresentationContext';
+import { usePresentation } from '../providers/PresentationContext';
 import { useAppStore } from '@/lib/store';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';

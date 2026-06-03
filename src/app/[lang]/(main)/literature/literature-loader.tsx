@@ -23,7 +23,7 @@ export type LiteratureLoaderProps = {
 
 // Use dynamic import for the component that needs browser APIs
 const LiteratureDisplay = dynamic(
-  () => import('@/components/InteractiveCollections'),
+  () => import('@/components/portfolio/InteractiveCollections'),
   { 
     ssr: false, // ssr: false is allowed here
   }

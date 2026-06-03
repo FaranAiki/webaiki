@@ -3,7 +3,7 @@
 import React from 'react';
 import { Github, Linkedin, Instagram, Twitter, Mail, Youtube } from 'lucide-react';
 import Image from 'next/image';
-import { usePresentation } from './PresentationContext';
+import { usePresentation } from '../providers/PresentationContext';
 import { motion, Variants } from 'framer-motion';
 
 export interface SocialLink {

@@ -5,9 +5,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
 
-import FadeInSection from '@/components/FadeInSection';
-import PopRotateSection from '@/components/PopRotateSection';
-import { usePresentation } from './PresentationContext';
+import FadeInSection from '@/components/shared/FadeInSection';
+import PopRotateSection from '@/components/shared/PopRotateSection';
+import { usePresentation } from '../providers/PresentationContext';
 import { formatCJK } from '@/lib/utils';
 
 interface PlaylistItem {

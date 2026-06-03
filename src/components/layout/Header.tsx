@@ -6,9 +6,9 @@ import Image from 'next/image';
 import { setCookies } from '@/app/actions';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Inter } from "next/font/google";
-import ThemeToggle from '@/components/ThemeToggle'; 
+import ThemeToggle from '@/components/shared/ThemeToggle'; 
 import { useTheme } from 'next-themes';
-import SettingsPopup from '@/components/SettingsPopup';
+import SettingsPopup from '@/components/providers/SettingsPopup';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import { 
@@ -18,7 +18,7 @@ import {
   Check
 } from 'lucide-react';
 
-import { usePresentation } from '@/components/PresentationContext';
+import { usePresentation } from '@/components/providers/PresentationContext';
 import { formatCJK } from '@/lib/utils';
 import { useAppStore } from '@/lib/store';
 

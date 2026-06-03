@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "../../../globals.css";
-import { getDictionary } from '@/components/Translator';
+import { getDictionary } from '@/components/layout/Translator';
 import { SITE_URL, getBaseMetadata, getLanguageAlternates } from '@/lib/seo';
-import FAQ from '@/components/FAQ';
+import FAQ from '@/components/portfolio/FAQ';
 import {
   getWorkExperiences,
   getProjectExperiences,
@@ -11,7 +11,7 @@ import {
 } from '@/lib/data';
 import { Briefcase, Code, Users, Trophy, Github, Linkedin, Instagram, Twitter, Star } from 'lucide-react';
 import Link from 'next/link';
-import PortfolioSummaryItem from '@/components/PortfolioSummaryItem';
+import PortfolioSummaryItem from '@/components/portfolio/PortfolioSummaryItem';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -63,13 +63,19 @@ export default async function PortfolioSummaryPage({ params }: { params: Promise
       <div className="space-y-6">
         {/* Compact Header */}
         <section className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-theme-border pb-3">
-          <div className="space-y-0.5">
+          <div className="space-y-1">
             <h1 className="text-2xl md:text-3xl font-black tracking-tighter nav-active-gacor">
               {dict.Portfolio || 'Portfolio'}
             </h1>
-            <p className="text-base font-bold text-foreground opacity-80 tracking-widest">
-              Muhammad Faran Aiki
-            </p>
+            <div>
+                <p className="text-sm font-bold text-foreground opacity-80">
+                Muhammad Faran Aiki | {dict.STI}, {dict.ITB}, {dict.Indonesia}
+                </p>
+                <p
+                    className="text-sm text-[var(--text-muted)] max-w-2xl mt-2 leading-relaxed"
+                    dangerouslySetInnerHTML={{ __html: dict.Faran_About_2 }}
+                />
+            </div>
           </div>
 
           {/* Compact Social */}
@@ -96,7 +102,7 @@ export default async function PortfolioSummaryPage({ params }: { params: Promise
           <section className="space-y-2">
             <div className="flex items-center gap-2 border-b border-theme-border/50 pb-0.5">
               <Briefcase size={12} className="text-theme-500" />
-              <h2 className="text-lg font-black nav-active-gacor tracking-[0.2em] text-theme-muted">{dict.Work}</h2>
+              <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">{dict.Work}</h2>
             </div>
             <div className="space-y-1">
               {workExp.map((job, i) => (
@@ -115,7 +121,7 @@ export default async function PortfolioSummaryPage({ params }: { params: Promise
           <section className="space-y-2">
             <div className="flex items-center gap-2 border-b border-theme-border/50 pb-0.5">
               <Code size={12} className="text-theme-500" />
-              <h2 className="text-lg font-black nav-active-gacor tracking-[0.2em] text-theme-muted">{dict.Project}</h2>
+              <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">{dict.Project}</h2>
             </div>
             <div className="space-y-1">
               {projectExp.map((job, i) => (
@@ -135,7 +141,7 @@ export default async function PortfolioSummaryPage({ params }: { params: Promise
           <section className="space-y-2">
             <div className="flex items-center gap-2 border-b border-theme-border/50 pb-0.5">
               <Users size={12} className="text-theme-500" />
-              <h2 className="text-lg font-black nav-active-gacor tracking-[0.2em] text-theme-muted">{dict.Organization}</h2>
+              <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">{dict.Organization}</h2>
             </div>
             <div className="space-y-1">
               {orgExp.map((job, i) => (
@@ -154,7 +160,7 @@ export default async function PortfolioSummaryPage({ params }: { params: Promise
           <section className="space-y-2">
             <div className="flex items-center gap-2 border-b border-theme-border/50 pb-0.5">
               <Trophy size={12} className="text-theme-500" />
-              <h2 className="text-lg font-black nav-active-gacor tracking-[0.2em] text-theme-muted">{dict.Award}</h2>
+              <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">{dict.Award}</h2>
             </div>
             <div className="space-y-1">
               {awardExp.map((job, i) => (
@@ -175,7 +181,7 @@ export default async function PortfolioSummaryPage({ params }: { params: Promise
             <div className="flex justify-center">
                 <Link
                     href={`/${lang}/all`}
-                    className="inline-flex items-center gap-2 px-4 py-1.5 rounded-lg bg-theme-surface-strong border border-theme-border hover:border-theme-500 transition-all font-bold text-[10px] text-[var(--text-muted)] hover:text-theme-500 group tracking-widest"
+                    className="inline-flex items-center gap-2 px-4 py-1.5 rounded-lg bg-theme-surface-strong border border-theme-border hover:border-theme-500 transition-all font-bold text-xs text-[var(--text-muted)] hover:text-theme-500 group tracking-widest"
                 >
                     <Star size={12} className="group-hover:animate-spin-slow" />
                     {dict.Full_Portfolio || 'Full Portfolio'}

@@ -1,4 +1,4 @@
-import { getDictionary } from '@/components/Translator';
+import { getDictionary } from '@/components/layout/Translator';
 import { Metadata } from 'next';
 import { getLanguageAlternates, getBaseMetadata, SITE_URL } from '@/lib/seo';
 

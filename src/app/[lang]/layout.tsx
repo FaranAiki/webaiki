@@ -16,14 +16,14 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-import { Providers } from "@/components/Providers";
-import { getDictionary } from "@/components/Translator";
+import { Providers } from "@/components/providers/Providers";
+import { getDictionary } from "@/components/layout/Translator";
 import { LOCALES } from "@/lib/seo";
 import { getBackgrounds } from "@/lib/data";
-import ClientOnlyWidgets from "@/components/ClientOnlyWidgets";
+import ClientOnlyWidgets from "@/components/providers/ClientOnlyWidgets";
 import { cookies } from 'next/headers';
-import { SlideNumberFormat } from "@/components/PresentationContext";
-import { CookieInitializer } from "@/components/CookieInitialize";
+import { SlideNumberFormat } from "@/components/providers/PresentationContext";
+import { CookieInitializer } from "@/components/providers/CookieInitialize";
 
 export function generateStaticParams() {
   return LOCALES.map((lang) => ({ lang }));

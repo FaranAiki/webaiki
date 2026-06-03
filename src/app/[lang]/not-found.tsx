@@ -1,8 +1,8 @@
-import Background from "@/components/Background"
+import Background from "@/components/layout/Background"
 import "../globals.css";
 import Link from "next/link";
 
-import { getDictionaryFromCookie } from '@/components/Translator';
+import { getDictionaryFromCookie } from '@/components/layout/Translator';
 
 import fs from 'fs';
 import path from 'path';

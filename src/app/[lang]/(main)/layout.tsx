@@ -1,11 +1,11 @@
-import Header from "@/components/Header";
+import Header from "@/components/layout/Header";
 import "../../globals.css";
 // Replace React's per-request cache with Next.js's global cross-request cache
 
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 
-import { getDictionary } from '@/components/Translator';
+import { getDictionary } from '@/components/layout/Translator';
 
 import { 
   Home, 

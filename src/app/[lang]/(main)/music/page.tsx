@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "../../../globals.css";
-import MusicDisplay from '@/components/MusicDisplay';
-import { getDictionary } from '@/components/Translator';
+import MusicDisplay from '@/components/interactive/MusicDisplay';
+import { getDictionary } from '@/components/layout/Translator';
 import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema } from '@/lib/seo';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {

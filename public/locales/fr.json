@@ -158,7 +158,7 @@
   "Mathematics_Private_Tutor_Description": "Fournir un tutorat individuel aux étudiants en olympiades de mathématiques pour les compétitions de collège. Développement de plans de cours personnalisés pour aider les étudiants à atteindre leurs objectifs académiques et à améliorer leur compréhension de concepts complexes.",
   "Education_Team": "Équipe Éducation",
   "Education_Team_Description": "Aide à la création de matériels de contenu éducatif, tels que les mathématiques générales, et création de 600 problèmes de physique, chimie et mathématiques pour le Tes Kemampuan Akademik (TKA) du lycée. Soutien à la planification et à l'exécution de programmes d'apprentissage pour les étudiants et les professionnels, et aide à l'utilisation de l'intelligence artificielle.",
-  "ITB": "Institut de Technologie de Bandung",
+  "ITB": "Institut de technologie de Bandung",
   "Sponsorship_Wisokto_ITB": "Sponsorisation de la remise des diplômes d'octobre 2025 de l'ITB, comité WisNight et promotion de Nipis Madu",
   "Sponsorship_Wisokto_ITB_Description": "Contact de plusieurs entreprises pour une collaboration lors de la cérémonie de remise des diplômes d'octobre 2025 de l'Institut de Technologie de Bandung, comme Mamikos. De plus, service en tant que membre du comité aidant au processus de l'événement WisNight, comme le transport de sept boîtes de Nipis Madu. Ensuite, création de quatre vidéos promotionnelles pour Nipis Madu avec l'aide d'autres membres du comité.",
   "Impact_Web_Lead": "Chef d'équipe du développement Web Web Impact 6.0",
@@ -265,5 +265,8 @@
   "Color_Mono": "Mono",
   "Hebrew": "Hébreu",
   "Greek": "Grec",
-  "Preparing_Portfolio": "Préparation du meilleur site de portfolio"
+  "Preparing_Portfolio": "Préparation du meilleur site de portfolio",
+  "STI": "Systèmes d'information et technologie",
+  "Indonesia": "Indonésie",
+  "Semester": "Semestre"
 }

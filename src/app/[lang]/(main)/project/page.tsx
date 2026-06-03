@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import ExperiencesClient from '@/components/ExperienceDisplayer';
+import ExperiencesClient from '@/components/portfolio/ExperienceDisplayer';
 import "../../../globals.css"; 
 
-import { getDictionary } from '@/components/Translator';
+import { getDictionary } from '@/components/layout/Translator';
 
 import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema, getProjectSchema, getPersonSchema } from '@/lib/seo';
 

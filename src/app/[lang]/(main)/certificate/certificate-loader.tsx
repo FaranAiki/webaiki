@@ -13,7 +13,7 @@ type CertificateData = {
 
 // Use dynamic import for the component that needs browser APIs
 const CertificatesDisplay = dynamic(
-  () => import('@/components/CertificatesDisplay'),
+  () => import('@/components/portfolio/CertificatesDisplay'),
   { 
     ssr: false, // ssr: false is allowed here
   }

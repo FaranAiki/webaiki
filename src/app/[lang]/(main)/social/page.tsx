@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import { getDictionary } from '@/components/Translator';
-import SocialDisplay from '@/components/SocialDisplay';
+import { getDictionary } from '@/components/layout/Translator';
+import SocialDisplay from '@/components/portfolio/SocialDisplay';
 import "../../../globals.css";
 
 import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema } from '@/lib/seo';

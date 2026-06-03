@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "../../../globals.css";
 
 import LiteratureLoader from './literature-loader'
-import { getDictionary } from '@/components/Translator';
+import { getDictionary } from '@/components/layout/Translator';
 import { getCollectionsData } from '@/lib/data';
 import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema } from '@/lib/seo';
 

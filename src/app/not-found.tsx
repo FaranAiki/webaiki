@@ -1,12 +1,12 @@
-import Background from "@/components/Background"
+import Background from "@/components/layout/Background"
 import "./globals.css";
 import Link from "next/link";
 
 // Import Providers
-import { Providers } from "@/components/Providers";
-import { CookieInitializer } from '@/components/CookieInitialize';
+import { Providers } from "@/components/providers/Providers";
+import { CookieInitializer } from '@/components/providers/CookieInitialize';
 
-import { getDictionaryFromCookie } from '@/components/Translator';
+import { getDictionaryFromCookie } from '@/components/layout/Translator';
 
 import fs from 'fs';
 import path from 'path';
