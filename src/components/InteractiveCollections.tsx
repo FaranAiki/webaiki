@@ -312,7 +312,7 @@ export default function InteractiveCollections( {
                           >
                               <div className="mb-4">
                                   <span className="text-xs font-bold text-gacor-smooth tracking-widest">{formatCJK(item.h1, lang)}</span>
-                                  <h3 className={`text-lg font-black ${titleColor} hover-gacor line-clamp-1`}>{formatCJK(item.docName, lang)}</h3>
+                                  <h3 className={`text-lg font-black ${titleColor} hover-gacor`}>{formatCJK(item.docName, lang)}</h3>
                                   <p className={`text-sm italic text-gacor-smooth`}>{formatCJK(item.h2, lang)}</p>
                               </div>
                               {filePath ? (

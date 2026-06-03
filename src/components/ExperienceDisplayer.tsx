@@ -64,7 +64,7 @@ const PlaceholderIcon = ({ company }: { company: string }) => (
         <div className="p-5 rounded-full bg-theme-surface/50 mb-4 shadow-theme-shadow">
             <Briefcase size={48} className="text-theme-500" />
         </div>
-        <p className="text-xs font-black uppercase tracking-[0.2em] text-[var(--text-muted)] text-center px-4 line-clamp-2">
+        <p className="text-xs font-black uppercase tracking-[0.2em] text-[var(--text-muted)] text-center px-4">
             {company}
         </p>
     </div>
@@ -126,7 +126,7 @@ const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, j
                 <div className="flex justify-between items-start">
                     <div className="flex-1">
                         <p className="text-theme-500 text-xs font-bold mb-1">{job.year}</p>
-                        <h3 className="text-lg md:text-xl font-black leading-tight mb-1 nav-active-gacor line-clamp-2">
+                        <h3 className="text-lg md:text-xl font-black leading-tight mb-1 nav-active-gacor">
                             {job.title}
                         </h3>
                     </div>
@@ -445,7 +445,7 @@ export default function ExperiencesClient({
                                 <div className="w-full md:w-1/2">
                                     {experiences.map((experience) => (
                                         <div key={experience.year} className={`mb-12`}>
-                                            <h2 className={`transition-transform duration-300 hover:scale-105 text-2xl font-bold text-theme-600 dark:text-theme-400 mb-6 py-2`}>
+                                            <h2 className={`transition-transform duration-300 hover:scale-105 text-2xl font-bold text-theme-600 dark:text-theme-400 mb-6 py-2 cursor-pointer`}>
                                                 {experience.year}
                                             </h2>
                                             <div className="space-y-4">
@@ -563,7 +563,7 @@ export default function ExperiencesClient({
                                         </div>
                                         <p className="text-xs mb-1 text-muted-foreground">{job.date}</p>
                                         <div className="flex justify-between items-start mb-1">
-                                            <h3 className={`text-xl font-black ${mainText} group-hover:text-theme-500 line-clamp-1`}>{job.title}</h3>
+                                            <h3 className={`text-xl font-black ${mainText} group-hover:text-theme-500`}>{job.title}</h3>
                                             {job.url && <ExternalLink size={14} className="text-theme-500 opacity-0 group-hover:opacity-100 transition-opacity shrink-0 ml-2" />}
                                         </div>
                                         <p className="text-sm italic text-theme-600 dark:text-theme-400 mb-4">{job.company}</p>
