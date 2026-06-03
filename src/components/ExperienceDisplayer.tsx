@@ -64,7 +64,7 @@ const PlaceholderIcon = ({ company }: { company: string }) => (
         <div className="p-5 rounded-full bg-theme-surface/50 mb-4 shadow-theme-shadow">
             <Briefcase size={48} className="text-theme-500" />
         </div>
-        <p className="text-xs font-black uppercase tracking-[0.2em] text-[var(--text-muted)] text-center px-4">
+        <p className="text-xs font-black tracking-[0.2em] text-[var(--text-muted)] text-center px-4">
             {company}
         </p>
     </div>
