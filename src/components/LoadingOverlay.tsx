@@ -12,15 +12,19 @@ export default function LoadingOverlay({ isMounted, label }: LoadingOverlayProps
   const [isVisible, setIsVisible] = useState(true);
   const [hasStarted, setHasStarted] = useState(false);
 
+  const EULER_MASCHERONI = 0.577;
+
   useEffect(() => {
     // Start animation slightly after mount to ensure smoothness
     const startTimer = setTimeout(() => setHasStarted(true), 150);
     
     if (isMounted && hasStarted) {
-      // We want the animation to at least play for ~2.5 seconds total 
-      // so it doesn't feel rushed even on fast connections.
-      // If it's already been some time, this will still feel responsive.
-      const exitTimer = setTimeout(() => setIsVisible(false), 2200);
+      // Use the Euler-Mascheroni constant (0.577s) as a pause after loading finishes
+      const exitDelay = EULER_MASCHERONI * 1000;
+      // We wait for the signature animation (2.5s) to mostly finish, 
+      // then add the 0.577s "aesthetic pause"
+      const exitTimer = setTimeout(() => setIsVisible(false), 2500 + exitDelay);
+      
       return () => {
         clearTimeout(startTimer);
         clearTimeout(exitTimer);

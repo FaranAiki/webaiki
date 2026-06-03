@@ -483,11 +483,22 @@ export default function ExperiencesClient({
                                     <div className="sticky top-32 flex justify-center">
                                         <div className="w-full">
                                             <div className="relative w-full max-w-[600px] aspect-[3/2] mx-auto shadow-2xl overflow-hidden rounded-lg bg-theme-surface-strong">
-                                                {hasValidImage ? (
-                                                    <Image fill src={activeImageSrc!} placeholder="blur" blurDataURL={shimmer600x400} alt={`${activeJob.company}`} className="object-cover" priority />
-                                                ) : (
-                                                    <PlaceholderIcon company={activeJob.company} />
-                                                )}
+                                                <AnimatePresence mode="wait">
+                                                    <motion.div
+                                                        key={activeImageSrc || activeJob.company}
+                                                        initial={{ opacity: 0, scale: 1.05 }}
+                                                        animate={{ opacity: 1, scale: 1 }}
+                                                        exit={{ opacity: 0, scale: 0.95 }}
+                                                        transition={{ duration: 0.5, ease: "easeInOut" }}
+                                                        className="w-full h-full relative"
+                                                    >
+                                                        {hasValidImage ? (
+                                                            <Image fill src={activeImageSrc!} placeholder="blur" blurDataURL={shimmer600x400} alt={`${activeJob.company}`} className="object-cover" priority />
+                                                        ) : (
+                                                            <PlaceholderIcon company={activeJob.company} />
+                                                        )}
+                                                    </motion.div>
+                                                </AnimatePresence>
                                             </div>
                                             <div className="mt-4 text-center">
                                                 <h3 className={`text-2xl font-black ${mainText}`}>{activeJob.title}</h3>
