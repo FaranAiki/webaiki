@@ -24,7 +24,7 @@ export const getWorkExperiences = (dict: Dictionary) => [
     year: '2026',
     jobs: [
       {
-        date: `${dict.April} — ${dict.May}`,
+        date: `${dict.April} 2026 — ${dict.May} 2026`,
         title: dict.Impact_Module_Author,
         company: 'STEI-K 2025',
         description: dict.Impact_Module_Author_Description,
@@ -35,7 +35,7 @@ export const getWorkExperiences = (dict: Dictionary) => [
         ]
       },
       {
-        date: `${dict.February} — ${dict.Present}`,
+        date: `${dict.February} 2026 — ${dict.Present}`,
         title: dict.SAT_Tutor,
         company: 'Kobi Education',
         description: dict.SAT_Tutor_Description,
@@ -46,7 +46,7 @@ export const getWorkExperiences = (dict: Dictionary) => [
         ]
       },
       {
-        date: `${dict.January} — ${dict.Present}`,
+        date: `${dict.January} 2026 — ${dict.Present}`,
         title: dict.Compile_Module_Author,
         company: 'STEI-K 2025',
         description: dict.Compile_Module_Author_Description,
@@ -62,7 +62,7 @@ export const getWorkExperiences = (dict: Dictionary) => [
     year: '2025',
     jobs: [
       {
-        date: `${dict.October} — ${dict.Present}`,
+        date: `${dict.October} 2025 — ${dict.Present}`,
         title: dict.Software_Engineer,
         company: 'Analitica',
         description: dict.Software_Engineer_Description,
@@ -74,7 +74,7 @@ export const getWorkExperiences = (dict: Dictionary) => [
         ]
       },
       {
-        date: `${dict.August} — ${dict.Present}`,
+        date: `${dict.August} 2025 — ${dict.Present}`,
         title: dict.Mathematics_Private_Tutor,
         company: 'KPM-Nol Persen',
         description: dict.Mathematics_Private_Tutor_Description,
@@ -86,7 +86,7 @@ export const getWorkExperiences = (dict: Dictionary) => [
         ]
       },
       {
-        date: `${dict.May} — ${dict.September}`,
+        date: `${dict.May} 2025 — ${dict.September} 2025`,
         title: dict.Education_Team,
         company: 'Analitica',
         description: dict.Education_Team_Description,
@@ -106,7 +106,7 @@ export const getProjectExperiences = (dict: Dictionary) => [
     year: '2026',
     jobs: [
       {
-        date: `${dict.May}`,
+        date: `${dict.May} 2026`,
         title: dict.Lidia_Project,
         company: 'Python, Pandas, Gemini-CLI, Jupyter Notebook, ETL',
         description: dict.Lidia_Project_Description,
@@ -121,7 +121,7 @@ export const getProjectExperiences = (dict: Dictionary) => [
         ]
       },
       {
-        date: `${dict.March}`,
+        date: `${dict.March} 2026`,
         title: dict.ALTH_Project,
         company: 'Flutter, Dart, Burp Suite, Microsoft SSO',
         description: dict.ALTH_Project_Description,
@@ -135,7 +135,7 @@ export const getProjectExperiences = (dict: Dictionary) => [
         ],
       },
       {
-        date: `${dict.February} — ${dict.Present}`,
+        date: `${dict.February} 2026 — ${dict.Present}`,
         title: dict.Alkyl_Compiler,
         company: 'LLVM, C',
         description: dict.Alkyl_Compiler_Description,
@@ -153,7 +153,7 @@ export const getProjectExperiences = (dict: Dictionary) => [
     year: '2025',
     jobs: [
       {
-        date: `${dict.November} — ${dict.Present}`,
+        date: `${dict.November} 2025 — ${dict.Present}`,
         title: dict.Make_Interactive_UAS,
         company: 'Analitica',
         description: dict.Make_Interactive_UAS_Description,
@@ -166,7 +166,7 @@ export const getProjectExperiences = (dict: Dictionary) => [
         url: '/project/uas_matematika_dasar',
       },
       {
-        date: `${dict.October} — ${dict.Present}`,
+        date: `${dict.October} 2025 — ${dict.Present}`,
         title: dict.Make_Website,
         company: 'faranaiki.id',
         description: dict.Make_Website_Description,
@@ -184,7 +184,7 @@ export const getProjectExperiences = (dict: Dictionary) => [
     year: '2024',
     jobs: [
       {
-        date: `${dict.January} — ${dict.April}`,
+        date: `${dict.January} 2024 — ${dict.April} 2024`,
         title: dict.Below_Below_Project,
         company: 'Godot 4.2, GDScript',
         description: dict.Below_Below_Description,
@@ -202,7 +202,7 @@ export const getProjectExperiences = (dict: Dictionary) => [
     year: '2023',
     jobs: [
       {
-        date: `${dict.November} — ${dict.Present}`,
+        date: `${dict.November} 2023 — ${dict.Present}`,
         title: dict.Make_Nihwm,
         company: 'Linux',
         description: dict.Make_Nihwm_Description,
@@ -218,7 +218,7 @@ export const getProjectExperiences = (dict: Dictionary) => [
     year: '2019',
     jobs: [
       {
-        date: `${dict.January} — ${dict.February}`,
+        date: `${dict.January} 2019 — ${dict.February} 2019`,
         title: dict.Jump_Game_Project,
         company: 'C#, Visual Studio',
         description: dict.Jump_Game_Description,
@@ -235,7 +235,7 @@ export const getOrganizationExperiences = (dict: Dictionary) => [
     year: '2026',
     jobs: [
       {
-        date: `${dict.May} — ${dict.Present}`,
+        date: `${dict.May} 2026 — ${dict.Present}`,
         title: dict.GDG_ITB_Title,
         company: 'GDG Campus ITB',
         description: dict.GDG_ITB_Description,
@@ -245,7 +245,7 @@ export const getOrganizationExperiences = (dict: Dictionary) => [
         ]
       },
       {
-        date: `${dict.March} — ${dict.Present}`,
+        date: `${dict.March} 2026 — ${dict.Present}`,
         title: dict.Impact_Web_Lead,
         company: dict.STEI_K || 'STEI-K',
         description: dict.Impact_Web_Lead_Description,
@@ -261,7 +261,7 @@ export const getOrganizationExperiences = (dict: Dictionary) => [
     year: '2025',
     jobs: [
       {
-        date: `${dict.September} — ${dict.October}`,
+        date: `${dict.September} 2025 — ${dict.October} 2025`,
         title: dict.Sponsorship_Wisokto_ITB,
         company: dict.ITB,
         description: dict.Sponsorship_Wisokto_ITB_Description,
@@ -274,7 +274,7 @@ export const getOrganizationExperiences = (dict: Dictionary) => [
         ]
       },
       {
-        date: `${dict.June} — ${dict.August}`,
+        date: `${dict.June} 2025 — ${dict.August} 2025`,
         title: dict.Treasurer_SYNC,
         company: dict.STEI_K || 'STEI-K',
         description: dict.Treasurer_SYNC_Description,
@@ -285,7 +285,7 @@ export const getOrganizationExperiences = (dict: Dictionary) => [
         ]
       },
       {
-        date: `${dict.January} — ${dict.May}`,
+        date: `${dict.January} 2025 — ${dict.May} 2025`,
         title: dict.IT_Club_Vice_Renpy,
         company: 'IT Club SMAN 1 Kota Depok',
         description: dict.IT_Club_Vice_Renpy_Description,
@@ -300,7 +300,7 @@ export const getOrganizationExperiences = (dict: Dictionary) => [
     year: '2024',
     jobs: [
       {
-        date: `${dict.June} — ${dict.May}`,
+        date: `${dict.June} 2024 — ${dict.May} 2025`,
         title: dict.IT_Club_Tutor,
         company: 'IT Club SMAN 1 Kota Depok',
         description: dict.IT_Club_Tutor_Description,
@@ -312,7 +312,7 @@ export const getOrganizationExperiences = (dict: Dictionary) => [
         ]
       },
       {
-        date: `${dict.March} — ${dict.April}`,
+        date: `${dict.March} 2024 — ${dict.April} 2024`,
         title: dict.PARAS,
         company: 'SMA Negeri 1 Kota Depok',
         description: dict.PARAS_Description,
@@ -328,7 +328,7 @@ export const getOrganizationExperiences = (dict: Dictionary) => [
     year: '2023',
     jobs: [
       {
-        date: `${dict.August} — ${dict.September}`,
+        date: `${dict.August} 2023 — ${dict.September} 2023`,
         title: dict.Concerto,
         company: 'Student Club 1 Depok',
         description: dict.Concerto_Description,
@@ -339,7 +339,7 @@ export const getOrganizationExperiences = (dict: Dictionary) => [
         ]
       },
       {
-        date: `${dict.January} — ${dict.December}`,
+        date: `${dict.January} 2023 — ${dict.December} 2023`,
         title: dict.Student_Club_Member,
         company: 'Student Club 1 Depok',
         description: dict.Student_Club_Member_Description,
@@ -352,7 +352,7 @@ export const getOrganizationExperiences = (dict: Dictionary) => [
     year: '2022',
     jobs: [
       {
-        date: `${dict.July} — ${dict.December}`,
+        date: `${dict.July} 2022 — ${dict.December} 2022`,
         title: dict.English_Club_Member,
         company: 'English Club 1 Depok',
         description: dict.English_Club_Member_Description,
@@ -364,7 +364,7 @@ export const getOrganizationExperiences = (dict: Dictionary) => [
         ]
       },
       {
-        date: `${dict.July} — ${dict.December}`,
+        date: `${dict.July} 2022 — ${dict.December} 2022`,
         title: dict.NBK_Member,
         company: 'Nihongo Benkyoukai 1 Depok',
         description: dict.NBK_Member_Description,
@@ -383,7 +383,7 @@ export const getAwardExperiences = (dict: Dictionary) => [{
   year: '2025',
   jobs: [
     {
-      date: `${dict.November} — ${dict.Present}`,
+      date: `${dict.November} 2025 — ${dict.Present}`,
       title: dict.Paragon_Scholarship_Title,
       company: dict.PT_Paragon || 'PT Paragon',
       description: dict.Paragon_Scholarship_Desc,

@@ -13,12 +13,12 @@ interface PortfolioSummaryItemProps {
   url?: string;
 }
 
-export default function PortfolioSummaryItem({ 
-  title, 
-  company, 
-  date, 
-  description, 
-  url 
+export default function PortfolioSummaryItem({
+  title,
+  company,
+  date,
+  description,
+  url
 }: PortfolioSummaryItemProps) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -31,36 +31,36 @@ export default function PortfolioSummaryItem({
   const brief = getBrief(description);
 
   return (
-    <div 
-      className="group space-y-1 cursor-pointer transition-all duration-300"
+    <div
+      className="group cursor-pointer transition-all duration-300 border-l-2 border-transparent hover:border-theme-500 pl-3 -ml-3 py-1"
       onClick={() => setIsOpen(!isOpen)}
     >
-      <div className="flex justify-between items-start gap-4">
-        <div className="flex items-center gap-2">
-            <h3 className="font-bold text-lg text-foreground group-hover:text-theme-500 transition-colors leading-tight">
-              {title}
-            </h3>
+      <div className="flex justify-between items-center gap-2">
+        <h3 className="font-bold text-base text-foreground group-hover:text-theme-500 transition-colors leading-tight">
+          {title}
+        </h3>
+        <div className="flex items-center gap-2 shrink-0">
             {url && (
-              <a 
-                href={url} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="shrink-0"
+              <a
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-1 hover:bg-theme-500/10 rounded-md transition-colors"
                 onClick={(e) => e.stopPropagation()}
               >
-                <ExternalLink size={14} className="text-theme-muted opacity-0 group-hover:opacity-100 transition-opacity" />
+                <ExternalLink size={14} className="text-theme-muted" />
               </a>
             )}
-        </div>
-        <div className="text-theme-muted pt-1">
-            {isOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+            <div className="text-theme-muted">
+                {isOpen ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+            </div>
         </div>
       </div>
-      
-      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-medium">
+
+      <div className="flex flex-wrap items-center gap-x-3 text-[10px] md:text-xs font-medium tracking-wider">
         <span className="text-theme-500">{company}</span>
         <span className="text-[var(--text-muted)] flex items-center gap-1">
-           <Calendar size={12} />
+           <Calendar size={10} />
            {date}
         </span>
       </div>
@@ -71,11 +71,11 @@ export default function PortfolioSummaryItem({
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            transition={{ duration: 0.2, ease: "easeInOut" }}
             className="overflow-hidden"
           >
-            <div className="pt-2">
-                <HoverableWords className="text-sm text-[var(--text-muted)] leading-relaxed">
+            <div className="pt-1.5 pb-1">
+                <HoverableWords className="text-xs md:text-sm text-[var(--text-muted)] leading-relaxed">
                   {brief}
                 </HoverableWords>
             </div>

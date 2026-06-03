@@ -3,11 +3,11 @@ import "../../../globals.css";
 import { getDictionary } from '@/components/Translator';
 import { SITE_URL, getBaseMetadata, getLanguageAlternates } from '@/lib/seo';
 import FAQ from '@/components/FAQ';
-import { 
-  getWorkExperiences, 
-  getProjectExperiences, 
-  getOrganizationExperiences, 
-  getAwardExperiences 
+import {
+  getWorkExperiences,
+  getProjectExperiences,
+  getOrganizationExperiences,
+  getAwardExperiences
 } from '@/lib/data';
 import { Briefcase, Code, Users, Trophy, Github, Linkedin, Instagram, Twitter, Star } from 'lucide-react';
 import Link from 'next/link';
@@ -45,10 +45,10 @@ export default async function PortfolioSummaryPage({ params }: { params: Promise
   const awardExp = getAwardExperiences(dict).flatMap(y => y.jobs).filter(j => (j.point || 0) >= 80).sort((a, b) => (b.point || 0) - (a.point || 0));
 
   const socialLinks = [
-    { icon: <Github size={20} />, url: "https://github.com/FaranAiki", label: "GitHub" },
-    { icon: <Linkedin size={20} />, url: "https://www.linkedin.com/in/muhammad-faran-aiki-8a6305343/", label: "LinkedIn" },
-    { icon: <Instagram size={20} />, url: "https://www.instagram.com/mfaranaiki/", label: "Instagram" },
-    { icon: <Twitter size={20} />, url: "https://x.com/FaranAiki", label: "Twitter" },
+    { icon: <Github size={18} />, url: "https://github.com/FaranAiki", label: "GitHub" },
+    { icon: <Linkedin size={18} />, url: "https://www.linkedin.com/in/muhammad-faran-aiki-8a6305343/", label: "LinkedIn" },
+    { icon: <Instagram size={18} />, url: "https://www.instagram.com/mfaranaiki/", label: "Instagram" },
+    { icon: <Twitter size={18} />, url: "https://x.com/FaranAiki", label: "Twitter" },
   ];
 
   const faranFaqs = [
@@ -59,23 +59,28 @@ export default async function PortfolioSummaryPage({ params }: { params: Promise
   ];
 
   return (
-    <main className="container mx-auto px-4 md:px-8 pt-24 pb-16 max-w-4xl">
-      <div className="space-y-12">
+    <main className="container mx-auto px-4 md:px-6 pt-24 pb-12 max-w-4xl">
+      <div className="space-y-6">
         {/* Compact Header */}
-        <section className="text-center space-y-4">
-          <h1 className="text-3xl md:text-4xl font-black tracking-tighter nav-active-gacor">
-            {dict.Portfolio || 'Portfolio'} Muhammad Faran Aiki
-          </h1>
-          
+        <section className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-theme-border pb-3">
+          <div className="space-y-0.5">
+            <h1 className="text-2xl md:text-3xl font-black tracking-tighter nav-active-gacor">
+              {dict.Portfolio || 'Portfolio'}
+            </h1>
+            <p className="text-base font-bold text-foreground opacity-80 tracking-widest">
+              Muhammad Faran Aiki
+            </p>
+          </div>
+
           {/* Compact Social */}
-          <div className="flex justify-center gap-4 pt-2">
+          <div className="flex gap-2">
             {socialLinks.map((link, i) => (
-              <a 
-                key={i} 
-                href={link.url} 
-                target="_blank" 
+              <a
+                key={i}
+                href={link.url}
+                target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-full bg-theme-surface-strong border border-theme-border text-theme-muted hover:text-theme-500 hover:border-theme-500 transition-all hover:scale-110"
+                className="p-1.5 rounded-lg bg-theme-surface-strong border border-theme-border text-theme-muted hover:text-theme-500 hover:border-theme-500 transition-all hover:scale-105"
                 title={link.label}
               >
                 {link.icon}
@@ -85,17 +90,17 @@ export default async function PortfolioSummaryPage({ params }: { params: Promise
         </section>
 
         {/* Experience Sections */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
-          
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+
           {/* Work Summary */}
-          <section className="space-y-6">
-            <div className="flex items-center gap-2 border-b border-theme-border pb-2">
-              <Briefcase size={18} className="text-theme-500" />
-              <h2 className="text-xl font-bold nav-active-gacor tracking-widest text-theme-muted uppercase">{dict.Work}</h2>
+          <section className="space-y-2">
+            <div className="flex items-center gap-2 border-b border-theme-border/50 pb-0.5">
+              <Briefcase size={12} className="text-theme-500" />
+              <h2 className="text-lg font-black nav-active-gacor tracking-[0.2em] text-theme-muted">{dict.Work}</h2>
             </div>
-            <div className="space-y-8">
+            <div className="space-y-1">
               {workExp.map((job, i) => (
-                <PortfolioSummaryItem 
+                <PortfolioSummaryItem
                   key={i}
                   title={job.title}
                   company={job.company}
@@ -107,14 +112,14 @@ export default async function PortfolioSummaryPage({ params }: { params: Promise
           </section>
 
           {/* Project Summary */}
-          <section className="space-y-6">
-            <div className="flex items-center gap-2 border-b border-theme-border pb-2">
-              <Code size={18} className="text-theme-500" />
-              <h2 className="text-xl font-bold nav-active-gacor tracking-widest text-theme-muted uppercase">{dict.Project}</h2>
+          <section className="space-y-2">
+            <div className="flex items-center gap-2 border-b border-theme-border/50 pb-0.5">
+              <Code size={12} className="text-theme-500" />
+              <h2 className="text-lg font-black nav-active-gacor tracking-[0.2em] text-theme-muted">{dict.Project}</h2>
             </div>
-            <div className="space-y-8">
+            <div className="space-y-1">
               {projectExp.map((job, i) => (
-                <PortfolioSummaryItem 
+                <PortfolioSummaryItem
                   key={i}
                   title={job.title}
                   company={job.company}
@@ -127,14 +132,14 @@ export default async function PortfolioSummaryPage({ params }: { params: Promise
           </section>
 
           {/* Organization Summary */}
-          <section className="space-y-6">
-            <div className="flex items-center gap-2 border-b border-theme-border pb-2">
-              <Users size={18} className="text-theme-500" />
-              <h2 className="text-xl font-bold nav-active-gacor tracking-widest text-theme-muted uppercase">{dict.Organization}</h2>
+          <section className="space-y-2">
+            <div className="flex items-center gap-2 border-b border-theme-border/50 pb-0.5">
+              <Users size={12} className="text-theme-500" />
+              <h2 className="text-lg font-black nav-active-gacor tracking-[0.2em] text-theme-muted">{dict.Organization}</h2>
             </div>
-            <div className="space-y-8">
+            <div className="space-y-1">
               {orgExp.map((job, i) => (
-                <PortfolioSummaryItem 
+                <PortfolioSummaryItem
                   key={i}
                   title={job.title}
                   company={job.company}
@@ -146,14 +151,14 @@ export default async function PortfolioSummaryPage({ params }: { params: Promise
           </section>
 
           {/* Award Summary */}
-          <section className="space-y-6">
-            <div className="flex items-center gap-2 border-b border-theme-border pb-2">
-              <Trophy size={18} className="text-theme-500" />
-              <h2 className="text-xl font-bold nav-active-gacor tracking-widest text-theme-muted uppercase">{dict.Award}</h2>
+          <section className="space-y-2">
+            <div className="flex items-center gap-2 border-b border-theme-border/50 pb-0.5">
+              <Trophy size={12} className="text-theme-500" />
+              <h2 className="text-lg font-black nav-active-gacor tracking-[0.2em] text-theme-muted">{dict.Award}</h2>
             </div>
-            <div className="space-y-8">
+            <div className="space-y-1">
               {awardExp.map((job, i) => (
-                <PortfolioSummaryItem 
+                <PortfolioSummaryItem
                   key={i}
                   title={job.title}
                   company={job.company}
@@ -165,21 +170,23 @@ export default async function PortfolioSummaryPage({ params }: { params: Promise
           </section>
         </div>
 
-        {/* Call to action for full portfolio */}
-        <section className="pt-8 text-center border-t border-theme-border">
-            <Link 
-                href={`/${lang}/all`}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-theme-surface-strong border border-theme-border hover:border-theme-500 transition-all font-bold text-sm text-[var(--text-muted)] hover:text-theme-500 group"
-            >
-                <Star size={16} className="group-hover:animate-spin-slow" />
-                {dict.Full_Portfolio || 'Full Portfolio'}
-            </Link>
-        </section>
+        {/* Footer Actions */}
+        <div className="pt-4 space-y-6">
+            <div className="flex justify-center">
+                <Link
+                    href={`/${lang}/all`}
+                    className="inline-flex items-center gap-2 px-4 py-1.5 rounded-lg bg-theme-surface-strong border border-theme-border hover:border-theme-500 transition-all font-bold text-[10px] text-[var(--text-muted)] hover:text-theme-500 group tracking-widest"
+                >
+                    <Star size={12} className="group-hover:animate-spin-slow" />
+                    {dict.Full_Portfolio || 'Full Portfolio'}
+                </Link>
+            </div>
 
-        {/* Compact FAQ Section */}
-        <section className="pb-20">
-            <FAQ title={dict.FAQ_Faran_Title} items={faranFaqs} />
-        </section>
+            {/* Compact FAQ Section */}
+            <section className="border-t border-theme-border pt-6">
+                <FAQ title={dict.FAQ_Faran_Title} items={faranFaqs} />
+            </section>
+        </div>
       </div>
     </main>
   );
