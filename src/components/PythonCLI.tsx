@@ -349,9 +349,9 @@ while True:
 
   return (
     <div className="font-sans flex items-center justify-center min-h-screen p-4 no-scrollbar">
-      <div className="w-full max-w-3xl bg-gray-900 text-gray-100 rounded-lg shadow-2xl overflow-hidden flex flex-col h-[80vh] border border-gray-800">
+      <div className="w-full max-w-3xl bg-theme-bg-dark text-foreground rounded-lg shadow-2xl overflow-hidden flex flex-col h-[80vh] border border-theme-border">
         
-        <div className="flex items-center justify-between p-3 bg-gray-800 border-b border-gray-700 shrink-0 select-none bg-opacity-90">
+        <div className="flex items-center justify-between p-3 bg-theme-surface border-b border-theme-border shrink-0 select-none bg-opacity-90">
           <div className="w-24"></div> 
           <span className="font-mono text-sm font-bold opacity-80 text-center">
              {formatCJK(terminalTitle, lang)}
@@ -367,7 +367,7 @@ while True:
           <div className="whitespace-pre-wrap break-words font-mono no-scrollbar">
             
             {(isLoading || isFetchingScript) && (
-                <div className="text-blue-300 animate-pulse mb-2">
+                <div className="text-theme-300 animate-pulse mb-2">
                     {formatCJK(loadingText, lang)}
                 </div>
             )}
@@ -376,9 +376,9 @@ while True:
               <span 
                 key={index} 
                 className={
-                  item.type === "system" ? "text-gray-500 italic" : 
-                  item.type === "input" ? "text-white font-bold" :
-                  "text-gray-100"
+                  item.type === "system" ? "text-theme-muted italic" : 
+                  item.type === "input" ? "text-foreground font-bold" :
+                  "text-foreground"
                 }
               >
                 {item.text}
@@ -394,11 +394,11 @@ while True:
                     value={currentInput}
                     onChange={handleInputChange}
                     onKeyDown={handleKeyDown}
-                    className="bg-transparent border-none outline-none text-cyan-300 font-bold p-0 m-0 min-w-[1ch]"
+                    className="bg-transparent border-none outline-none text-theme-400 font-bold p-0 m-0 min-w-[1ch]"
                     autoFocus
                     autoComplete="off"
                     style={{ 
-                      caretColor: '#22d3ee', 
+                      caretColor: 'var(--theme-color-400)', 
                       width: `${Math.max(1, currentInput.length)}ch` 
                     }}
                   />
@@ -407,7 +407,7 @@ while True:
             )}
             
             {!isWaitingForInput && !isLoading && (
-                  <span className="inline-block w-2 h-4 bg-gray-500 animate-pulse align-middle ml-1" />
+                  <span className="inline-block w-2 h-4 bg-theme-muted animate-pulse align-middle ml-1" />
             )}
           </div>
         </div>

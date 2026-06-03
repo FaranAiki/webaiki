@@ -38,7 +38,7 @@ export default async function NotFound() {
                 {dict.Not_Found}
                 </h1>
             </div>
-              <Link href="/" className="flex items-center space-x-2 text-xl font-semibold hover:text-cyan-500 hover:scale-105 transition-[opacity,transform] duration-200 ml-6">
+              <Link href="/" className="flex items-center space-x-2 text-xl font-semibold hover:text-theme-500 hover:scale-105 transition-[opacity,transform] duration-200 ml-6">
                  <Home size={24} />
                  <span>{dict.Home}</span>
               </Link>

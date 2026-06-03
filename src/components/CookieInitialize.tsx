@@ -43,6 +43,7 @@ export function CookieInitializer() {
       // 2. Handle Settings sync from cookies (set by middleware from URL params)
       const settingsParams = [
         'theme',
+        'color',
         'presentation_mode',
         'presentation_slide_format',
         'settings-font',

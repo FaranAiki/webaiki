@@ -26,7 +26,7 @@ export function LayoutSwitcher<T extends string>({
     if (!canChange || options.length <= 1) return null;
     
     return (
-        <div className={`fixed bottom-8 right-8 z-50 flex items-center p-1.5 rounded-xl border backdrop-blur-md shadow-lg transition-colors duration-300 ${isDark ? 'bg-gray-900/90 border-gray-800' : 'bg-white/90 border-gray-200'}`}>
+        <div className={`fixed bottom-8 right-8 z-50 flex items-center p-1.5 rounded-xl border backdrop-blur-md shadow-lg transition-colors duration-300 bg-theme-surface/90 border-theme-border`}>
             <div className="flex gap-1">
                 {options.map((opt) => (
                     <button
@@ -35,10 +35,8 @@ export function LayoutSwitcher<T extends string>({
                         title={opt.label}
                         className={`p-2 rounded-lg transition-colors duration-200 ${
                             currentLayout === opt.id
-                                ? 'bg-cyan-500 text-white shadow-sm'
-                                : isDark
-                                    ? 'text-gray-400 hover:text-gray-200 hover:bg-gray-800'
-                                    : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+                                ? 'bg-theme-500 text-white shadow-sm'
+                                : 'text-theme-muted hover:text-foreground hover:bg-theme-surface-strong'
                         }`}
                     >
                         {opt.icon}

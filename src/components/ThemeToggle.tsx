@@ -49,9 +49,7 @@ export default function ThemeToggle() {
   const isDark = resolvedTheme === 'dark';
   
   // Desktop
-  const desktopContainerClass = isDark 
-    ? "bg-gray-800 border-gray-700" 
-    : "bg-white border-gray-300 shadow-sm";
+  const desktopContainerClass = "bg-theme-surface border-theme-border shadow-theme-shadow";
 
   // Icon for the single button mode
   const CurrentIcon = theme === 'light' ? Sun : theme === 'dark' ? Moon : Monitor;
@@ -62,10 +60,10 @@ export default function ThemeToggle() {
       {/* Visible up to lg breakpoint (so that it is visible on md) */}
       <button
         onClick={cycleTheme}
-        className={`hidden md:block lg:hidden p-2 rounded-full transition-[transform,colors] duration-300 border ${
+        className={`hidden md:block lg:hidden p-2 rounded-full transition-[transform,colors] duration-300 border bg-theme-surface border-theme-border shadow-theme-shadow ${
           isDark 
-            ? "bg-gray-800 border-gray-700 text-yellow-400 hover:bg-gray-700" 
-            : "bg-white border-gray-300 text-orange-500 hover:bg-gray-100 shadow-sm"
+            ? "text-yellow-400 hover:bg-theme-surface-strong" 
+            : "text-orange-500 hover:bg-theme-surface-strong shadow-sm"
         }`}
         aria-label="Toggle Theme"
       >
@@ -79,8 +77,8 @@ export default function ThemeToggle() {
           onClick={() => handleThemeChange("system")}
           className={`p-1.5 rounded-full transition-[colors,transform] duration-200 ${
             theme === "system"
-              ? "bg-gray-100 text-blue-500 shadow-sm ring-1 ring-gray-200"
-              : "text-gray-400 hover:text-gray-600"
+              ? "bg-theme-surface-strong text-theme-500 shadow-sm ring-1 ring-theme-border"
+              : "text-theme-muted hover:text-theme-600"
           }`}
           aria-label="Switch to system theme"
         >
@@ -91,8 +89,8 @@ export default function ThemeToggle() {
           onClick={() => handleThemeChange("light")}
           className={`p-1.5 rounded-full transition-[colors,transform] duration-200 ${
             theme === "light"
-              ? "bg-gray-100 text-orange-500 shadow-sm ring-1 ring-gray-200"
-              : "text-gray-400 hover:text-gray-600"
+              ? "bg-theme-surface-strong text-orange-500 shadow-sm ring-1 ring-theme-border"
+              : "text-theme-muted hover:text-theme-600"
           }`}
           aria-label="Switch to light theme"
         >
@@ -103,8 +101,8 @@ export default function ThemeToggle() {
           onClick={() => handleThemeChange("dark")}
           className={`p-1.5 rounded-full transition-[colors,transform] duration-200 ${
             theme === "dark"
-              ? "bg-gray-700 text-yellow-400 shadow-sm ring-1 ring-gray-600"
-              : "text-gray-400 hover:text-gray-600"
+              ? "bg-theme-surface-strong text-yellow-400 shadow-sm ring-1 ring-theme-border"
+              : "text-theme-muted hover:text-theme-600"
           }`}
           aria-label="Switch to dark theme"
         >

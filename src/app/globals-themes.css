@@ -1,0 +1,74 @@
+  /* Semantic Colors */
+  --card-bg: rgba(255, 255, 255, 0.7); 
+  --card-border: #e5e7eb; 
+  --text-muted: #374151; 
+  --primary: oklch(0.205 0 0); 
+
+  /* Gacor Gradient Variables (Vibrant but visible for Light Mode) */
+  --gacor-1: #0284c7; /* sky-600 */
+  --gacor-2: #0891b2; /* theme-600 */
+  --gacor-3: #4f46e5; /* indigo-600 */
+  --gacor-svg: #0891b2; /* theme-600 */
+  --accent-shadow: rgba(6, 182, 212, 0.3);
+}
+
+/* Color Variant Overrides */
+.theme-pink {
+  --gacor-1: #db2777; /* pink-600 */
+  --gacor-2: #be185d; /* pink-700 */
+  --gacor-3: #9d174d; /* pink-800 */
+  --gacor-svg: #be185d;
+  --accent-shadow: rgba(219, 39, 119, 0.3);
+  --color-theme-300: #f9a8d4 !important; /* pink-300 */
+  --color-theme-400: #f472b6 !important;
+  --color-theme-500: #ec4899 !important;
+  --color-theme-600: #db2777 !important;
+  --color-theme-700: #be185d !important;
+  --color-theme-800: #9d174d !important;
+  --color-theme-900: #831843 !important;
+}
+
+.theme-green {
+  --gacor-1: #16a34a; /* green-600 */
+  --gacor-2: #15803d; /* green-700 */
+  --gacor-3: #166534; /* green-800 */
+  --gacor-svg: #15803d;
+  --accent-shadow: rgba(22, 163, 74, 0.3);
+  --color-theme-300: #86efac !important; /* green-300 */
+  --color-theme-400: #4ade80 !important;
+  --color-theme-500: #22c55e !important;
+  --color-theme-600: #16a34a !important;
+  --color-theme-700: #15803d !important;
+  --color-theme-800: #166534 !important;
+  --color-theme-900: #14532d !important;
+}
+
+.dark.theme-pink {
+  --gacor-1: #f472b6; /* pink-400 */
+  --gacor-2: #ec4899; /* pink-500 */
+  --gacor-3: #db2777; /* pink-600 */
+  --gacor-svg: #ec4899;
+  --accent-shadow: rgba(236, 72, 153, 0.3);
+  --color-theme-300: #f9a8d4 !important;
+  --color-theme-400: #f472b6 !important;
+  --color-theme-500: #ec4899 !important;
+  --color-theme-600: #db2777 !important;
+  --color-theme-700: #be185d !important;
+  --color-theme-800: #9d174d !important;
+  --color-theme-900: #831843 !important;
+}
+
+.dark.theme-green {
+  --gacor-1: #4ade80; /* green-400 */
+  --gacor-2: #22c55e; /* green-500 */
+  --gacor-3: #16a34a; /* green-600 */
+  --gacor-svg: #22c55e;
+  --accent-shadow: rgba(34, 197, 94, 0.3);
+  --color-theme-300: #86efac !important;
+  --color-theme-400: #4ade80 !important;
+  --color-theme-500: #22c55e !important;
+  --color-theme-600: #16a34a !important;
+  --color-theme-700: #15803d !important;
+  --color-theme-800: #166534 !important;
+  --color-theme-900: #14532d !important;
+}

@@ -48,11 +48,11 @@ function PdfPreview({ fileUrl, width = 300, priority = false }: PdfPreviewProps)
   }), []);
 
   return (
-    <div ref={containerRef} className="w-full h-full overflow-hidden flex justify-center items-center bg-gray-700/50">
+    <div ref={containerRef} className="w-full h-full overflow-hidden flex justify-center items-center bg-theme-surface-strong/50">
       {!isInView ? (
         <div className="flex flex-col items-center gap-2">
-          <div className="w-8 h-8 border-2 border-white/20 border-t-white/80 rounded-full animate-spin" />
-          <span className="text-[10px] text-white/40 uppercase font-black">PDF</span>
+          <div className="w-8 h-8 border-2 border-theme-surface/20 border-t-theme-500/80 rounded-full animate-spin" />
+          <span className="text-[10px] text-theme-muted uppercase font-black">PDF</span>
         </div>
       ) : (
         <Document
@@ -60,7 +60,7 @@ function PdfPreview({ fileUrl, width = 300, priority = false }: PdfPreviewProps)
           file={fileUrl}
           className="flex justify-center"
           options={options}
-          loading={<div className="text-white text-[10px] font-bold">...</div>}
+          loading={<div className="text-theme-muted text-[10px] font-bold">...</div>}
         >
           <Page 
             pageNumber={1} 

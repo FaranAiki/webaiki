@@ -92,11 +92,11 @@ export default function InteractiveCollections( {
     );
   }, [data]);
 
-  const buttonBg = isDark ? 'bg-gray-800/70 hover:bg-gray-700' : 'bg-white hover:bg-gray-100 shadow-sm border border-gray-200';
-  const activeButtonBg = isDark ? 'bg-cyan-600/90 text-white shadow-lg' : 'bg-cyan-600/90 text-white shadow-lg';
+  const buttonBg = isDark ? 'bg-theme-surface-strong/70 hover:bg-theme-surface-strong' : 'bg-theme-surface hover:bg-theme-surface-strong shadow-sm border border-theme-border';
+  const activeButtonBg = 'bg-theme-600/90 text-white shadow-lg';
   const buttonText = isDark ? 'text-white' : 'text-black';
-  const dropdownBg = isDark ? 'bg-gray-800/45 border-gray-700' : 'bg-white border-gray-200 shadow-xl';
-  const linkText = isDark ? 'text-gray-400' : 'text-gray-600';
+  const dropdownBg = isDark ? 'bg-theme-surface-strong/45 border-theme-border' : 'bg-theme-surface border-theme-border shadow-xl';
+  const linkText = 'text-theme-muted';
 
   const titleColor = isDark ? 'text-white' : 'text-black';
 
@@ -114,11 +114,11 @@ export default function InteractiveCollections( {
             >
               <div className="flex flex-col items-center justify-center w-full max-w-4xl mx-auto p-4 pt-20 pb-10">
                 <h2 className="text-2xl md:text-4xl font-black mb-8 text-center flex flex-wrap justify-center items-center gap-x-4">
-                  <span className="text-cyan-500">{formatCJK(slide.headingOne, lang)}</span>
-                  <span className="text-gray-500">|</span>
+                  <span className="text-theme-500">{formatCJK(slide.headingOne, lang)}</span>
+                  <span className="text-theme-muted">|</span>
                   <span className={titleColor}>{formatCJK(slide.headingTwo, lang)}</span>
                   {slide.totalParts > 1 && (
-                    <span className="text-lg md:text-xl text-gray-400 font-mono">
+                    <span className="text-lg md:text-xl text-theme-muted font-mono">
                       [{slide.part}/{slide.totalParts}]
                     </span>
                   )}
@@ -131,9 +131,9 @@ export default function InteractiveCollections( {
                     <div key={docName} className={`${dropdownBg} p-3 md:p-4 rounded-xl border flex items-center justify-between group hover:scale-102 transition-transform w-full max-w-2xl shadow-md`}>
                       <div className="flex items-center gap-3">
                         {filePath ? (
-                          <LinkIcon size={20} className="text-cyan-500" />
+                          <LinkIcon size={20} className="text-theme-500" />
                         ) : (
-                          <XCircle size={20} className="text-gray-500" />
+                          <XCircle size={20} className="text-theme-muted" />
                         )}
                         <span className={`text-base md:text-lg font-bold ${titleColor} truncate max-w-[250px] md:max-w-md`}>{formatCJK(docName, lang)}</span>
                       </div>
@@ -142,7 +142,7 @@ export default function InteractiveCollections( {
                           href={filePath} 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="bg-cyan-500 text-white px-4 py-1.5 rounded-full font-bold text-sm hover:bg-cyan-600 transition-colors shadow-md shrink-0"
+                          className="bg-theme-500 text-white px-4 py-1.5 rounded-full font-bold text-sm hover:bg-theme-600 transition-colors shadow-md shrink-0"
                         >
                           Open
                         </a>
@@ -158,7 +158,7 @@ export default function InteractiveCollections( {
 
       {/* Normal Mode */}
       {!isPresentationMode && (
-        <main className={`block min-h-screen ${isDark ? 'text-white' : 'text-gray-900'} p-4 sm:p-8 pt-8`}>
+        <main className={`block min-h-screen text-foreground p-4 sm:p-8 pt-8`}>
           {hasContent && (
               <LayoutSwitcher
                   currentLayout={currentLayout}
@@ -215,7 +215,7 @@ export default function InteractiveCollections( {
                                           onClick={() => activeHeadingTwo === headingTwo ? setActiveHeadingTwo(null) : setActiveHeadingTwo(headingTwo)}
                                       >
                                           
-                                          {Object.entries(documents).length > 0 && (<h3 className={`font-bold hover-gacor cursor-pointer hover:text-cyan-600 transition-colors`}>{formatCJK(headingTwo, lang)}</h3>)}
+                                          {Object.entries(documents).length > 0 && (<h3 className={`font-bold hover-gacor cursor-pointer hover:text-theme-600 transition-colors`}>{formatCJK(headingTwo, lang)}</h3>)}
                                           
                                           {activeHeadingTwo === headingTwo && (
                                           Object.keys(documents).length > 0 ? (
@@ -228,12 +228,12 @@ export default function InteractiveCollections( {
                                                       delay={docIndex * 30} // Staggered delay for each document
                                                   >
                                                       {filePath ? (
-                                                          <a href={filePath} target="_blank" rel="noopener noreferrer" className="flex items-center hover-gacor hover:text-cyan-600 transition-colors">
+                                                          <a href={filePath} target="_blank" rel="noopener noreferrer" className="flex items-center hover-gacor hover:text-theme-600 transition-colors">
                                                           <LinkIcon size={16} className="mr-2 flex-shrink-0" />
                                                           <span>{formatCJK(docName, lang)}</span>
                                                           </a>
                                                       ) : (
-                                                          <span className="flex items-center text-gray-400 cursor-not-allowed">
+                                                          <span className="flex items-center text-theme-muted cursor-not-allowed">
                                                           <XCircle size={16} className="mr-2 flex-shrink-0" />
                                                           <span>{formatCJK(docName, lang)} (Not available)</span>
                                                           </span>
@@ -242,7 +242,7 @@ export default function InteractiveCollections( {
                                               );})}
                                               </div>
                                           ) : (
-                                              <p className="pl-6 mt-1 text-sm text-gray-500 italic animate-fade-in">No documents available.</p>
+                                              <p className="pl-6 mt-1 text-sm text-theme-muted italic animate-fade-in">No documents available.</p>
                                           )
                                           )}
                                       </div>
@@ -258,11 +258,11 @@ export default function InteractiveCollections( {
               )}
 
               {currentLayout === 'timeline' && (
-                  <div className="relative border-l-2 border-cyan-500/30 ml-4 md:ml-8 space-y-12">
+                  <div className="relative border-l-2 border-theme-500/30 ml-4 md:ml-8 space-y-12">
                       {Object.entries(data).map(([headingOne, courses]) => (
                           Object.keys(courses).length > 0 && (
                               <div key={headingOne} className="relative pl-8">
-                                  <div className="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-cyan-500 border-4 border-white dark:border-gray-900 shadow-sm" />
+                                  <div className="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-theme-500 border-4 border-theme-surface dark:border-theme-bg-dark shadow-sm" />
                                   <h2 className={`text-3xl font-black text-gacor-smooth mb-8`}>{formatCJK(headingOne, lang)}</h2>
                                   <div className="space-y-8">
                                       {Object.entries(courses).map(([headingTwo, documents]) => (
@@ -275,11 +275,11 @@ export default function InteractiveCollections( {
                                                       <div key={docName} className={`p-4 rounded-xl border ${dropdownBg} flex items-center justify-between group`}>
                                                           <span className={`font-medium ${titleColor} hover-gacor`}>{formatCJK(docName, lang)}</span>
                                                           {filePath ? (
-                                                              <a href={filePath} target="_blank" rel="noopener noreferrer" className="text-cyan-500 hover:text-cyan-600 transition-colors">
+                                                              <a href={filePath} target="_blank" rel="noopener noreferrer" className="text-theme-500 hover:text-theme-600 transition-colors">
                                                                   <LinkIcon size={18} />
                                                               </a>
                                                           ) : (
-                                                              <XCircle size={18} className="text-gray-400" />
+                                                              <XCircle size={18} className="text-theme-muted" />
                                                           )}
                                                       </div>
                                                   );})}
@@ -320,12 +320,12 @@ export default function InteractiveCollections( {
                                       href={filePath} 
                                       target="_blank" 
                                       rel="noopener noreferrer" 
-                                      className="inline-flex items-center gap-2 text-cyan-500 font-bold hover:underline"
+                                      className="inline-flex items-center gap-2 text-theme-500 font-bold hover:underline"
                                   >
                                       View Document <LinkIcon size={14} />
                                   </a>
                               ) : (
-                                  <span className="text-gray-400 text-sm italic">Not available</span>
+                                  <span className="text-theme-muted text-sm italic">Not available</span>
                               )}
                           </motion.div>
                       );})}

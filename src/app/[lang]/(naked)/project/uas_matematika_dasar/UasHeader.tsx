@@ -14,14 +14,14 @@ export default function UasHeader() {
           href="https://docs.google.com/forms/d/e/1FAIpQLSfTP1CXKHXdwSC-NtCjx3Lb1xt5NNGNYMzZo9_WA8GiKcEsuw/viewform?usp=dialog" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="hover:text-cyan-400 font-semibold transition-colors duration-200 flex items-center gap-2"
+          className="hover:text-theme-400 font-semibold transition-colors duration-200 flex items-center gap-2"
         >
           Isi Survey
         </a>
         <div className="w-px h-6 bg-gray-700" /> {/* Divider */}
         <button 
           onClick={() => setShowDonation(true)}
-          className="hover:text-cyan-400 font-semibold transition-colors duration-200 flex items-center gap-2"
+          className="hover:text-theme-400 font-semibold transition-colors duration-200 flex items-center gap-2"
         >
           Donasi
         </button>
@@ -29,17 +29,17 @@ export default function UasHeader() {
 
       {showDonation && (
         <div className="fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4 backdrop-blur-sm animate-fade-in">
-          <div className="bg-white p-6 rounded-xl shadow-2xl relative max-w-sm w-full animate-float">
+          <div className="bg-theme-surface p-6 rounded-xl shadow-2xl relative max-w-sm w-full animate-float border border-theme-border">
             <button 
               onClick={() => setShowDonation(false)}
-              className="absolute top-3 right-3 text-gray-500 hover:text-red-500 transition-colors bg-gray-100 rounded-full p-1"
+              className="absolute top-3 right-3 text-theme-muted hover:text-red-500 transition-colors bg-theme-surface-strong rounded-full p-1"
             >
               <X size={20} />
             </button>
             
-            <h3 className="text-2xl font-bold mb-6 text-center text-gray-900">Dukungan / Donasi</h3>
+            <h3 className="text-2xl font-bold mb-6 text-center text-foreground">Dukungan / Donasi</h3>
             
-            <div className="relative w-full aspect-square bg-gray-100 rounded-lg border-2 border-dashed border-gray-300 flex items-center justify-center overflow-hidden">
+            <div className="relative w-full aspect-square bg-theme-surface-strong rounded-lg border-2 border-dashed border-theme-border flex items-center justify-center overflow-hidden">
               {/* Replace the src below with your actual QRIS or donation image path */}
               <div className="text-center p-4">
                 <Image 
@@ -51,7 +51,7 @@ export default function UasHeader() {
               </div>
             </div>
             
-            <p className="text-center text-gray-600 mt-4 text-sm">
+            <p className="text-center text-theme-muted mt-4 text-sm">
               Terima kasih atas dukungan Anda!
             </p>
           </div>

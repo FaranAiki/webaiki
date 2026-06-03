@@ -52,7 +52,7 @@ export default function NowPlaying() {
 
   if (loading) {
     return (
-      <div className="flex items-center space-x-2 text-sm text-gray-400">
+      <div className="flex items-center space-x-2 text-sm text-theme-muted">
         <SpotifyIcon />
         <span>Loading...</span>
       </div>
@@ -69,12 +69,12 @@ export default function NowPlaying() {
             </div>
           )}
           <div className="overflow-hidden">
-            <p className="text-sm font-bold text-cyan-400 truncate group-hover:text-cyan-300 transition-colors">{data.title}</p>
-            <p className="text-xs text-gray-300 truncate group-hover:text-gray-200 transition-colors">{data.artist}</p>
+            <p className="text-sm font-bold text-theme-400 truncate group-hover:text-theme-300 transition-colors">{data.title}</p>
+            <p className="text-xs text-theme-muted/80 truncate group-hover:text-theme-muted transition-colors">{data.artist}</p>
           </div>
         </Link>
       ) : (
-        <div className="flex items-center space-x-2 text-gray-300">
+        <div className="flex items-center space-x-2 text-theme-muted">
           <SpotifyIcon />
           <span className="text-sm hidden md:inline">Not Playing</span>
         </div>

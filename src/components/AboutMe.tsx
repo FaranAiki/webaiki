@@ -85,8 +85,8 @@ export function PortfolioAboutHeader(props: AboutMeProps) {
       {/* Visual Identity */}
       <div className="lg:col-span-4 flex justify-center lg:justify-start">
         <div className="relative w-48 h-48 md:w-64 md:h-64 lg:w-full lg:aspect-square group transform-gpu">
-          <div className="absolute inset-0 bg-cyan-500/20 blur-[60px] rounded-full opacity-50 group-hover:opacity-80 transition-opacity" />
-          <div className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-cyan-500/20 dark:border-cyan-500/30 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm shadow-2xl">
+          <div className="absolute inset-0 bg-theme-500/20 blur-[60px] rounded-full opacity-50 group-hover:opacity-80 transition-opacity" />
+          <div className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-theme-500/20 dark:border-theme-500/30 bg-theme-surface/50 backdrop-blur-sm shadow-theme-shadow">
             {mounted ? (
               <AnimatePresence mode="wait">
                 <motion.div
@@ -108,7 +108,7 @@ export function PortfolioAboutHeader(props: AboutMeProps) {
                 </motion.div>
               </AnimatePresence>
             ) : (
-                <div className="w-full h-full bg-gray-200 dark:bg-gray-800 animate-pulse" />
+                <div className="w-full h-full bg-theme-surface-strong animate-pulse" />
             )}
           </div>
         </div>
@@ -120,10 +120,10 @@ export function PortfolioAboutHeader(props: AboutMeProps) {
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter nav-active-gacor leading-none cursor-default hover:opacity-80 transition-opacity">
             {props.about_title}
           </h1>
-          <p className="text-cyan-500 font-bold tracking-tight text-xs md:text-sm flex gap-2 flex-wrap">
-            <span className="hover:text-cyan-400 transition-colors cursor-default">{props.about_philosophy_title}</span>
-            <span className="text-gray-500">•</span>
-            <span className="hover:text-cyan-400 transition-colors cursor-default">{props.about_vision_mission_title}</span>
+          <p className="text-theme-500 font-bold tracking-tight text-xs md:text-sm flex gap-2 flex-wrap">
+            <span className="hover:text-theme-400 transition-colors cursor-default">{props.about_philosophy_title}</span>
+            <span className="text-theme-muted">•</span>
+            <span className="hover:text-theme-400 transition-colors cursor-default">{props.about_vision_mission_title}</span>
           </p>
         </div>
         
@@ -132,8 +132,8 @@ export function PortfolioAboutHeader(props: AboutMeProps) {
             <HoverableWords className={`text-sm md:text-base leading-relaxed ${textClass}`}>
               {formatCJK(props.about_text_1, props.lang)}
             </HoverableWords>
-            <div className="p-4 rounded-xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 hover:scale-[1.02] transition-transform duration-300 group">
-              <p className={`text-xs font-bold text-cyan-500 mb-2 group-hover:text-cyan-400 transition-colors`}>{props.about_philosophy_title}</p>
+            <div className="p-4 rounded-xl bg-theme-surface-strong border border-theme-border hover:scale-[1.02] transition-transform duration-300 group">
+              <p className={`text-xs font-bold text-theme-500 mb-2 group-hover:text-theme-400 transition-colors`}>{props.about_philosophy_title}</p>
               <HoverableWords className={`text-sm italic ${textClass} opacity-80 group-hover:opacity-100 transition-opacity`}>
                 {formatCJK(props.about_philosophy, props.lang)}
               </HoverableWords>
@@ -150,7 +150,7 @@ export function PortfolioAboutHeader(props: AboutMeProps) {
                     className="flex gap-3 items-start group cursor-default"
                     whileHover={{ x: 4 }}
                  >
-                   <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 mt-1.5 shrink-0 group-hover:bg-cyan-400 group-hover:scale-125 transition-all" />
+                   <span className="w-1.5 h-1.5 rounded-full bg-theme-500 mt-1.5 shrink-0 group-hover:bg-theme-400 group-hover:scale-125 transition-all" />
                    <HoverableWords className={`text-xs md:text-sm ${textClass} opacity-90 group-hover:opacity-100 transition-all`}>
                       {formatCJK(p, props.lang)}
                    </HoverableWords>
@@ -227,7 +227,7 @@ export function AboutSection(props: AboutSubSectionProps) {
                   />
                 </motion.div>
                 ) : (
-                    <div className="w-full h-full bg-gray-200 dark:bg-gray-800 animate-pulse rounded-full" />
+                    <div className="w-full h-full bg-theme-surface-strong animate-pulse rounded-full" />
                 )}
               </AnimatePresence>
             </div>
@@ -264,7 +264,7 @@ export function PhilosophySection(props: AboutSubSectionProps) {
             sizes="(max-width: 768px) 128px, 288px"
             quality={85}
             priority={isPresentationMode}
-            className="object-contain md:animate-float transition-[colors,transform,opacity] duration-500 ease-in-out opacity-90 hover:opacity-100 md:hover:-rotate-3 drop-shadow-xl md:hover:drop-shadow-[0_0_20px_rgba(6,182,212,0.6)]"
+            className="object-contain md:animate-float transition-[colors,transform,opacity] duration-500 ease-in-out opacity-90 hover:opacity-100 md:hover:-rotate-3 drop-shadow-xl md:hover:drop-shadow-[0_0_20px_var(--accent-shadow)]"
             />
             </div>          </div>
         </div>
@@ -304,7 +304,7 @@ export function PrinciplesSection(props: AboutSubSectionProps) {
                 sizes="(max-width: 768px) 128px, 288px"
                 quality={85}
                 priority={isPresentationMode}
-                className="object-contain transition-[colors,opacity,transform] duration-500 ease-in-out opacity-90 hover:opacity-100 hover:scale-105 hover:rotate-2 drop-shadow-xl hover:drop-shadow-[0_0_20px_rgba(16,185,129,0.5)]"
+                className="object-contain transition-[colors,opacity,transform] duration-500 ease-in-out opacity-90 hover:opacity-100 hover:scale-105 hover:rotate-2 drop-shadow-xl hover:drop-shadow-[0_0_20px_var(--accent-shadow)]"
               />
             </div>
           </div>
@@ -352,7 +352,7 @@ export function VisionMissionSection(props: AboutSubSectionProps) {
                 sizes="(max-width: 768px) 128px, 288px"
                 quality={85}
                 priority={isPresentationMode}
-                className="object-contain md:animate-float transition-[colors,transform,opacity] duration-500 ease-in-out opacity-90 hover:opacity-100 hover:scale-110 hover:brightness-110 drop-shadow-xl hover:drop-shadow-[0_0_20px_rgba(168,85,247,0.5)]"
+                className="object-contain md:animate-float transition-[colors,transform,opacity] duration-500 ease-in-out opacity-90 hover:opacity-100 hover:scale-110 hover:brightness-110 drop-shadow-xl hover:drop-shadow-[0_0_20px_var(--accent-shadow)]"
               />
             </div>
           </div>

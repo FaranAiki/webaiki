@@ -77,9 +77,9 @@ export default function FadeInSection({
                     e.stopPropagation();
                     cycleSlideNumberFormat();
                 }}
-                className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-cyan-600/30 backdrop-blur-md border border-cyan-400/30 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:bg-cyan-600/50 transition-all duration-300 cursor-pointer group hover:scale-105"
+                className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-theme-600/30 backdrop-blur-md border border-theme-400/30 shadow-[0_0_20px_var(--accent-shadow)] hover:bg-theme-600/50 transition-all duration-300 cursor-pointer group hover:scale-105"
               >
-                <span className="text-white font-black tabular-nums tracking-tighter group-hover:text-cyan-200 transition-colors">
+                <span className="text-white font-black tabular-nums tracking-tighter group-hover:text-theme-200 transition-colors">
                   {formatNumber(slideIndex, totalSlides)}
                 </span>
                 <span className="text-white/40">/</span>

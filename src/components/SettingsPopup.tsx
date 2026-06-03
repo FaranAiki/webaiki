@@ -12,7 +12,8 @@ import {
   Plus, 
   Minus, 
   RotateCcw,
-  ChevronDown
+  ChevronDown,
+  Palette
 } from 'lucide-react';
 
 interface SettingsPopupProps {
@@ -25,6 +26,7 @@ interface SettingsPopupProps {
     Line_Height: string;
     Font_Default: string;
     Reset_Settings: string;
+    Color_Variant: string;
   };
   isOpen?: boolean;
   onOpenChange?: (isOpen: boolean) => void;
@@ -51,6 +53,7 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
     textScale, setTextScale,
     letterSpacing, setLetterSpacing,
     lineHeight, setLineHeight,
+    color, setColor,
     resetSettings
   } = useSettings();
   
@@ -104,29 +107,58 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
     { value: 'right', icon: <AlignRight size={18} />, title: 'Right' },
     { value: 'justify', icon: <AlignJustify size={18} />, title: 'Justify' },
   ];
+  const colors = [
+    { name: 'blue', class: 'bg-[#0ea5e9]' },
+    { name: 'pink', class: 'bg-[#db2777]' },
+    { name: 'green', class: 'bg-[#16a34a]' },
+    { name: 'purple', class: 'bg-[#9333ea]' },
+    { name: 'orange', class: 'bg-[#ea580c]' },
+  ];
 
   const currentFontClass = fonts.find(f => f.name === font)?.class || '';
 
   const renderContent = () => (
     <div className="space-y-6" data-lenis-prevent>
       {/* Header */}
-      <div className={`flex items-center justify-between border-b pb-4 border-gray-200 dark:border-gray-700/50`}>
+      <div className={`flex items-center justify-between border-b pb-4 border-theme-border`}>
         <h3 className="text-lg font-bold flex items-center gap-2 nav-active-gacor">
-          <Settings size={20} className="text-cyan-500" />
+          <Settings size={20} className="text-theme-500" />
           {labels.Settings}
         </h3>
         <button 
           onClick={handleReset}
-          className="text-xs font-medium text-cyan-500 hover:text-cyan-400 transition-colors flex items-center gap-1"
+          className="text-xs font-medium text-theme-500 hover:text-theme-400 transition-colors flex items-center gap-1"
         >
           <RotateCcw size={12} />
           {labels.Reset_Settings}
         </button>
       </div>
 
+      {/* Color Variant Section */}
+      <div className="space-y-3">
+        <div className="flex items-center gap-2 text-xs font-bold text-theme-muted tracking-wide">
+          <Palette size={14} />
+          {labels.Color_Variant}
+        </div>
+        <div className="flex gap-3">
+          {colors.map((c) => (
+            <button
+              key={c.name}
+              onClick={() => setColor(c.name)}
+              className={`
+                w-8 h-8 rounded-full border-2 transition-all duration-200
+                ${c.class}
+                ${color === c.name ? 'border-theme-border scale-110 shadow-lg' : 'border-transparent hover:scale-105'}
+              `}
+              title={c.name}
+            />
+          ))}
+        </div>
+      </div>
+
       {/* Typography Section */}
       <div className="space-y-3">
-        <div className="flex items-center gap-2 text-xs font-bold text-gray-500 tracking-wide">
+        <div className="flex items-center gap-2 text-xs font-bold text-theme-muted tracking-wide">
           <Type size={14} />
           {labels.Typography}
         </div>
@@ -137,8 +169,8 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
             onClick={() => setIsFontDropdownOpen(!isFontDropdownOpen)}
             className={`
               w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200
-              bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700
-              border hover:border-cyan-500/50
+              bg-theme-surface-strong text-foreground border-theme-border hover:bg-theme-surface-strong/80
+              border hover:border-theme-500/50
               ${fonts.find(f => f.name === font)?.class || ''}
             `}
           >
@@ -149,7 +181,7 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
           {isFontDropdownOpen && (
             <div className={`
               absolute left-0 right-0 mt-2 max-h-60 overflow-y-auto z-[70]
-              bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 shadow-xl shadow-gray-200/50 dark:shadow-black/40 
+              bg-theme-surface border-theme-border shadow-xl shadow-theme-shadow
               border rounded-xl custom-scrollbar
             `}>
               {fonts.map((f) => (
@@ -162,8 +194,8 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
                   className={`
                     w-full text-left px-4 py-3 text-sm transition-colors
                     ${font === f.name 
-                      ? 'bg-cyan-500 text-white' 
-                      : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300'}
+                      ? 'bg-theme-500 text-white' 
+                      : 'hover:bg-theme-surface-strong text-foreground'}
                     ${f.class || ''}
                   `}
                 >
@@ -177,11 +209,11 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
 
       {/* Alignment Section */}
       <div className="space-y-3">
-        <div className="flex items-center gap-2 text-xs font-bold text-gray-500 tracking-wide">
+        <div className="flex items-center gap-2 text-xs font-bold text-theme-muted tracking-wide">
           <AlignLeft size={14} />
           {labels.Alignment}
         </div>
-        <div className={`flex bg-gray-100 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700/50 p-1 rounded-xl border`}>
+        <div className={`flex bg-theme-surface-strong border-theme-border p-1 rounded-xl border`}>
           {alignments.map((a) => (
             <button
               key={a.value}
@@ -190,8 +222,8 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
               className={`
                 flex-1 flex items-center justify-center p-2 rounded-lg transition-all duration-200
                 ${textAlign === a.value 
-                  ? 'bg-cyan-500 text-white shadow-md' 
-                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'}
+                  ? 'bg-theme-500 text-white shadow-md' 
+                  : 'text-theme-muted hover:text-foreground'}
               `}
             >
               {a.icon}
@@ -205,19 +237,19 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
         {/* Text Scaling */}
         <div className="space-y-2">
           <div className="flex justify-between items-center">
-            <span className="text-xs font-bold text-gray-500 tracking-wide">{labels.Text_Scaling}</span>
-            <span className={`text-xs font-bold text-cyan-500 ${currentFontClass}`}>{textScale}%</span>
+            <span className="text-xs font-bold text-theme-muted tracking-wide">{labels.Text_Scaling}</span>
+            <span className={`text-xs font-bold text-theme-500 ${currentFontClass}`}>{textScale}%</span>
           </div>
           <div className="flex items-center gap-4">
-            <button onClick={() => adjustScale(-5)} className={`p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400`}>
+            <button onClick={() => adjustScale(-5)} className={`p-2 rounded-lg bg-theme-surface-strong hover:bg-theme-surface-strong/80 text-theme-muted`}>
               <Minus size={16} />
             </button>
             <input 
               type="range" min="80" max="120" step="5" value={textScale}
               onChange={(e) => setTextScale(parseInt(e.target.value))}
-              className="flex-1 accent-cyan-500 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer"
+              className="flex-1 accent-theme-500 h-1.5 bg-theme-border rounded-lg appearance-none cursor-pointer"
             />
-            <button onClick={() => adjustScale(5)} className={`p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400`}>
+            <button onClick={() => adjustScale(5)} className={`p-2 rounded-lg bg-theme-surface-strong hover:bg-theme-surface-strong/80 text-theme-muted`}>
               <Plus size={16} />
             </button>
           </div>
@@ -226,19 +258,19 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
         {/* Letter Spacing */}
         <div className="space-y-2">
           <div className="flex justify-between items-center">
-            <span className="text-xs font-bold text-gray-500 tracking-wide">{labels.Letter_Spacing}</span>
-            <span className={`text-xs font-bold text-cyan-500 ${currentFontClass}`}>{letterSpacing}px</span>
+            <span className="text-xs font-bold text-theme-muted tracking-wide">{labels.Letter_Spacing}</span>
+            <span className={`text-xs font-bold text-theme-500 ${currentFontClass}`}>{letterSpacing}px</span>
           </div>
           <div className="flex items-center gap-4">
-            <button onClick={() => adjustSpacing(-0.1)} className={`p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400`}>
+            <button onClick={() => adjustSpacing(-0.1)} className={`p-2 rounded-lg bg-theme-surface-strong hover:bg-theme-surface-strong/80 text-theme-muted`}>
               <Minus size={16} />
             </button>
             <input 
               type="range" min="-2" max="10" step="0.1" value={letterSpacing}
               onChange={(e) => setLetterSpacing(parseFloat(e.target.value))}
-              className="flex-1 accent-cyan-500 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer"
+              className="flex-1 accent-theme-500 h-1.5 bg-theme-border rounded-lg appearance-none cursor-pointer"
             />
-            <button onClick={() => adjustSpacing(0.1)} className={`p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400`}>
+            <button onClick={() => adjustSpacing(0.1)} className={`p-2 rounded-lg bg-theme-surface-strong hover:bg-theme-surface-strong/80 text-theme-muted`}>
               <Plus size={16} />
             </button>
           </div>
@@ -247,19 +279,19 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
         {/* Line Height */}
         <div className="space-y-2">
           <div className="flex justify-between items-center">
-            <span className="text-xs font-bold text-gray-500 tracking-wide">{labels.Line_Height}</span>
-            <span className={`text-xs font-bold text-cyan-500 ${currentFontClass}`}>{lineHeight}</span>
+            <span className="text-xs font-bold text-theme-muted tracking-wide">{labels.Line_Height}</span>
+            <span className={`text-xs font-bold text-theme-500 ${currentFontClass}`}>{lineHeight}</span>
           </div>
           <div className="flex items-center gap-4">
-            <button onClick={() => adjustLineHeight(-0.1)} className={`p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400`}>
+            <button onClick={() => adjustLineHeight(-0.1)} className={`p-2 rounded-lg bg-theme-surface-strong hover:bg-theme-surface-strong/80 text-theme-muted`}>
               <Minus size={16} />
             </button>
             <input 
               type="range" min="0.8" max="3" step="0.1" value={lineHeight}
               onChange={(e) => setLineHeight(parseFloat(e.target.value))}
-              className="flex-1 accent-cyan-500 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer"
+              className="flex-1 accent-theme-500 h-1.5 bg-theme-border rounded-lg appearance-none cursor-pointer"
             />
-            <button onClick={() => adjustLineHeight(0.1)} className={`p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400`}>
+            <button onClick={() => adjustLineHeight(0.1)} className={`p-2 rounded-lg bg-theme-surface-strong hover:bg-theme-surface-strong/80 text-theme-muted`}>
               <Plus size={16} />
             </button>
           </div>
@@ -280,7 +312,7 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
     <div className="relative" ref={popupRef}>
       <button
         onClick={toggleOpen}
-        className={`group p-2.5 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition-all duration-300 hover-gacor ${isOpen ? 'nav-active-gacor' : textColorClass}`}
+        className={`group p-2.5 rounded-full hover:bg-theme-surface-strong transition-all duration-300 hover-gacor ${isOpen ? 'nav-active-gacor' : textColorClass}`}
         aria-label={labels.Settings}
       >
         <Settings 
@@ -296,7 +328,7 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
           absolute right-0 top-full mt-3 
           w-[calc(100vw-2rem)] sm:w-80 
           max-w-[320px] sm:max-w-none
-          bg-white/95 dark:bg-gray-900/95 border-gray-200 dark:border-gray-700 shadow-2xl shadow-gray-200/50 dark:shadow-black/40 
+          bg-theme-surface/95 dark:bg-theme-bg-dark/95 border-theme-border dark:border-theme-border shadow-2xl shadow-theme-shadow dark:shadow-theme-shadow
           md:backdrop-blur-xl border rounded-2xl z-50 p-6
           animate-fade-in origin-top-right ring-1 ring-black/5
         `}>
@@ -312,11 +344,11 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
           background: transparent;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: ${mounted ? (document.documentElement.classList.contains('dark') ? '#374151' : '#e5e7eb') : '#e5e7eb'};
+          background: ${mounted ? 'var(--theme-border)' : '#e5e7eb'};
           border-radius: 10px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: #0891b2;
+          background: var(--theme-color-600);
         }
       `}</style>
     </div>

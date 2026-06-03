@@ -29,6 +29,7 @@ export function middleware(request: NextRequest) {
   // Capture settings from URL query parameters
   const settingsParams = [
     'theme',
+    'color',
     'presentation_mode',
     'presentation_slide_format',
     'settings-font',

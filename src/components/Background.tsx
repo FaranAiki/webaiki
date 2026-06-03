@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useTheme } from 'next-themes';
 import Image from 'next/image'
+import { useSettings } from './SettingsContext';
 
 const SLIDE_DURATION = 10000;
 
@@ -16,10 +17,16 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
   const mouseRef = useRef({ x: 0, y: 0, isActive: false });
   // Ref to track theme inside animation loop without restarting effect
   const isDarkRef = useRef(isDark);
+  const { colorRGB } = useSettings();
+  const colorRGBRef = useRef(colorRGB);
 
   useEffect(() => {
     isDarkRef.current = isDark;
   }, [isDark]);
+
+  useEffect(() => {
+    colorRGBRef.current = colorRGB;
+  }, [colorRGB]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -119,10 +126,15 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
         const width = canvas.width / (window.devicePixelRatio || 1);
         const height = canvas.height / (window.devicePixelRatio || 1);
 
-        // Determine color based on current theme ref
+        // Determine color based on current theme ref and selected color variant
+        // In dark mode, we make it slightly more vibrant/lighter
         const BASE_COLOR = isDarkRef.current 
-          ? { r: 100, g: 200, b: 255 } 
-          : { r: 25, g: 125, b: 200 };
+          ? { 
+              r: Math.min(255, colorRGBRef.current.r + 50), 
+              g: Math.min(255, colorRGBRef.current.g + 50), 
+              b: Math.min(255, colorRGBRef.current.b + 50) 
+            } 
+          : colorRGBRef.current;
 
         ctx.clearRect(0, 0, width, height);
         
@@ -243,8 +255,8 @@ export default function Background({ carousel }: BackgroundProps) {
   }, [carousel]);
 
   return (
-    <div className={`presentation-background sticky top-0 left-0 w-full h-screen -mb-[100vh] z-[-1] pointer-events-none transition-colors duration-[1500ms] ease-in-out bg-white dark:bg-black transform-gpu contain-strict overflow-hidden`}>
-      
+    <div className={`presentation-background sticky top-0 left-0 w-full h-screen -mb-[100vh] z-[-1] pointer-events-none transition-colors duration-[1500ms] ease-in-out bg-theme-bg dark:bg-theme-bg-dark transform-gpu contain-strict overflow-hidden`}>
+
       <div className={`transition-opacity duration-[1500ms] ease-in-out w-full h-full absolute inset-0 opacity-100 transform-gpu`} style={{ backfaceVisibility: 'hidden' }}>
         {carousel.map((src, index) => (
             <div
@@ -271,7 +283,7 @@ export default function Background({ carousel }: BackgroundProps) {
         
         {/* Adjusted Gradient to improve text readability on all backgrounds with SLOW transition for epilepsy prevention */}
         <div 
-          className="absolute inset-0 transition-[colors,opacity] duration-[1500ms] ease-in-out transform-gpu bg-gradient-to-b from-white/95 via-white/90 to-white dark:from-black/70 dark:via-black/40 dark:to-black/80" 
+          className="absolute inset-0 transition-[colors,opacity] duration-[1500ms] ease-in-out transform-gpu bg-gradient-to-b from-theme-surface/95 via-theme-surface/90 to-theme-surface" 
           style={{ backfaceVisibility: 'hidden' }}
         />
         

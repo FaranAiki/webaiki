@@ -117,14 +117,14 @@ export default async function PortfolioHighlightsPage({ params }: { params: Prom
       username: "FaranAiki",
       url: "https://github.com/FaranAiki",
       icon: <Github size={32} />,
-      color: "hover:border-gray-500"
+      color: "hover:border-theme-border"
     },
     {
       name: "LinkedIn",
       username: "Muhammad Faran Aiki",
       url: "https://www.linkedin.com/in/muhammad-faran-aiki-8a6305343/",
-      icon: <Linkedin size={32} className="text-blue-500" />,
-      color: "hover:border-blue-500"
+      icon: <Linkedin size={32} className="text-theme-500" />,
+      color: "hover:border-theme-500"
     },
     {
       name: "Instagram",
@@ -210,7 +210,7 @@ export default async function PortfolioHighlightsPage({ params }: { params: Prom
           <section id="work" className="space-y-2">
             <div className="container mx-auto px-4 sm:px-8">
                 <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
-                    <Briefcase size={18} className="text-cyan-500" />
+                    <Briefcase size={18} className="text-theme-500" />
                     <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Work}</h2>
                 </div>
             </div>
@@ -328,7 +328,7 @@ export default async function PortfolioHighlightsPage({ params }: { params: Prom
         {/* Social Media Section */}
         <section id="social" className="space-y-4 container mx-auto px-4 sm:px-8 pb-12">
             <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
-                <Share2 size={18} className="text-cyan-500" />
+                <Share2 size={18} className="text-theme-500" />
                 <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Social}</h2>
             </div>
             <div className="bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-3xl overflow-hidden">

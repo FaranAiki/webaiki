@@ -99,7 +99,7 @@ function AskMePopup({
         onClick={handleOpenPopup}
         variant="outline"
         size="icon"
-        className={`fixed bottom-6 left-6 z-20 h-14 w-14 rounded-full shadow-lg transition-transform hover:scale-110 focus:ring-2 focus:ring-cyan-400 ${isDark ? 'bg-cyan-600 hover:bg-cyan-500 text-white border-transparent' : 'bg-white hover:bg-cyan-200 text-black'}`}
+        className={`fixed bottom-6 left-6 z-20 h-14 w-14 rounded-full shadow-lg transition-transform hover:scale-110 focus:ring-2 focus:ring-theme-400 bg-theme-surface hover:bg-theme-surface-strong text-foreground border-theme-border`}
         aria-label={ask_title}
       >
         <MessageSquare className="size-6" />
@@ -152,7 +152,7 @@ function AskMePopup({
                   </div>
                   <Button
                     type="submit"
-                    className="w-full font-semibold bg-cyan-600 hover:bg-cyan-500 text-white disabled:opacity-50"
+                    className="w-full font-semibold bg-theme-600 hover:bg-theme-500 text-white disabled:opacity-50"
                     disabled={mutation.isPending || !question.trim()}
                   >
                     {mutation.isPending ? waiting : submit}

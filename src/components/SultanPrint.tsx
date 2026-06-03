@@ -162,10 +162,8 @@ export default function SultanPrint({ labels }: SultanPrintProps) {
           initial={{ opacity: 0, y: 50, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 20, scale: 0.9 }}
-          className={`fixed bottom-8 right-8 z-[9999] w-80 overflow-hidden rounded-2xl border shadow-2xl backdrop-blur-xl transition-colors ${activeFont?.variable || ''} ${activeFont?.class || ''}`}
+          className={`fixed bottom-8 right-8 z-[9999] w-80 overflow-hidden rounded-2xl border border-theme-border shadow-2xl backdrop-blur-xl transition-colors ${activeFont?.variable || ''} ${activeFont?.class || ''} bg-theme-surface/90`}
           style={{
-            backgroundColor: isDark ? 'rgba(17, 24, 39, 0.9)' : 'rgba(255, 255, 255, 0.9)',
-            borderColor: isDark ? 'rgba(55, 65, 81, 1)' : 'rgba(229, 231, 235, 1)',
             fontFamily: 'inherit',
             lineHeight: lineHeight.toString(),
             letterSpacing: `${letterSpacing}px`
@@ -176,7 +174,7 @@ export default function SultanPrint({ labels }: SultanPrintProps) {
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center gap-4">
                 <div className={`p-2 rounded-lg ${
-                  status === 'printing' ? 'bg-cyan-500/20 text-cyan-500' :
+                  status === 'printing' ? 'bg-theme-500/20 text-theme-500' :
                   status === 'success' ? 'bg-green-500/20 text-green-500' :
                   'bg-red-500/20 text-red-500'
                 }`}>
@@ -186,7 +184,7 @@ export default function SultanPrint({ labels }: SultanPrintProps) {
                 </div>
                 <div>
                   <h3 
-                    className={`font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}
+                    className={`font-bold text-foreground`}
                     style={{ fontSize: `${1.125 * scale}rem` }}
                   >
                     {status === 'printing' && l.Creating}
@@ -194,7 +192,7 @@ export default function SultanPrint({ labels }: SultanPrintProps) {
                     {status === 'error' && l.Failed}
                   </h3>
                   <p 
-                    className={`${isDark ? 'text-gray-400' : 'text-gray-500'}`}
+                    className={`text-theme-muted`}
                     style={{ fontSize: `${0.75 * scale}rem` }}
                   >
                     {status === 'printing' && l.Description}
@@ -207,7 +205,7 @@ export default function SultanPrint({ labels }: SultanPrintProps) {
               {status === 'printing' && (
                 <button 
                   onClick={handleCancel}
-                  className="p-1 rounded-md hover:bg-gray-500/10 transition-colors text-gray-400 hover:text-red-500"
+                  className="p-1 rounded-md hover:bg-theme-500/10 transition-colors text-theme-muted hover:text-red-500"
                   title={l.Cancel}
                 >
                   <X className="w-5 h-5" />
@@ -217,16 +215,16 @@ export default function SultanPrint({ labels }: SultanPrintProps) {
 
             {status === 'printing' && (
               <div className="space-y-2">
-                <div className="h-2 w-full bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div className="h-2 w-full bg-theme-surface-strong rounded-full overflow-hidden">
                   <motion.div 
-                    className="h-full bg-cyan-500"
+                    className="h-full bg-[var(--gacor-svg)]"
                     initial={{ width: 0 }}
                     animate={{ width: `${progress}%` }}
                     transition={{ type: "spring", damping: 15, stiffness: 100 }}
                   />
                 </div>
                 <div 
-                  className="flex justify-between text-gray-400"
+                  className="flex justify-between text-theme-muted"
                   style={{ fontSize: `${0.625 * scale}rem` }}
                 >
                   <span>{l.Estimating}</span>
@@ -238,7 +236,7 @@ export default function SultanPrint({ labels }: SultanPrintProps) {
             {status === 'error' && (
               <button 
                 onClick={() => setStatus('idle')}
-                className="w-full py-2 font-bold rounded-lg bg-gray-200 dark:bg-gray-700 hover:opacity-80 transition-opacity"
+                className="w-full py-2 font-bold rounded-lg bg-theme-surface-strong hover:opacity-80 transition-opacity text-foreground"
                 style={{ fontSize: `${0.75 * scale}rem` }}
               >
                 {l.Dismiss}
@@ -263,7 +261,7 @@ export default function SultanPrint({ labels }: SultanPrintProps) {
               animate={{ x: ['-100%', '100%'] }}
               transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
               style={{
-                background: 'linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.05), transparent)'
+                background: 'linear-gradient(90deg, transparent, var(--theme-shadow), transparent)'
               }}
             />
           )}

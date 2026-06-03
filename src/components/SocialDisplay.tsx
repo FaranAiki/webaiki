@@ -62,15 +62,15 @@ export default function SocialDisplay({ customLinks, hidePresentation = false }:
       name: "GitHub",
       username: "FaranAiki",
       url: "https://github.com/FaranAiki",
-      icon: <Github size={48} className={githubColor} />,
-      color: "hover:border-gray-500"
+      icon: <Github size={48} className="text-black dark:text-white" />,
+      color: "hover:border-theme-border"
     },
     {
       name: "LinkedIn",
       username: "Muhammad Faran Aiki",
       url: "https://www.linkedin.com/in/muhammad-faran-aiki-8a6305343/",
-      icon: <Linkedin size={48} className="text-blue-500" />,
-      color: "hover:border-blue-500"
+      icon: <Linkedin size={48} className="text-theme-500" />,
+      color: "hover:border-theme-500"
     },
     {
       name: "Instagram",

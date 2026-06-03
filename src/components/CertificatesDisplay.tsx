@@ -69,8 +69,8 @@ const BentoCertificateCard = ({
             </div>
 
             {/* Base Content - Shows only on hover or when not expanded */}
-            <div className={`absolute inset-0 p-6 flex flex-col justify-end transition-all duration-500 bg-gradient-to-t ${isDark ? 'from-black/90 via-black/40' : 'from-white/95 via-white/60'} to-transparent opacity-0 group-hover:opacity-100 ${isExpanded ? 'opacity-0 pointer-events-none' : ''}`}>
-                <p className="text-cyan-600 dark:text-cyan-400 text-[10px] font-black mb-1 tracking-widest">{year} • {formatCJK(category, lang)}</p>
+            <div className={`absolute inset-0 p-6 flex flex-col justify-end transition-all duration-500 bg-gradient-to-t ${isDark ? 'from-theme-bg-dark/90 via-theme-bg-dark/40' : 'from-theme-surface/95 via-theme-surface/60'} to-transparent opacity-0 group-hover:opacity-100 ${isExpanded ? 'opacity-0 pointer-events-none' : ''}`}>
+                <p className="text-theme-600 dark:text-theme-400 text-[10px] font-black mb-1 tracking-widest">{year} • {formatCJK(category, lang)}</p>
                 <h3 className={`text-sm font-black leading-tight ${titleColor} line-clamp-2`}>{formatCJK(fileName, lang)}</h3>
             </div>
 
@@ -79,10 +79,10 @@ const BentoCertificateCard = ({
                 initial={false}
                 animate={{ opacity: isExpanded ? 1 : 0, y: isExpanded ? 0 : 20 }}
                 transition={{ duration: 0.4, ease: "circOut" }}
-                className={`absolute inset-0 z-10 p-6 flex flex-col justify-center backdrop-blur-md md:backdrop-blur-xl ${isDark ? 'bg-black/60' : 'bg-white/80'} ${isExpanded ? 'pointer-events-auto' : 'pointer-events-none'}`}
+                className={`absolute inset-0 z-10 p-6 flex flex-col justify-center backdrop-blur-md md:backdrop-blur-xl ${isDark ? 'bg-theme-bg-dark/60' : 'bg-theme-surface/80'} ${isExpanded ? 'pointer-events-auto' : 'pointer-events-none'}`}
             >
                 <div className="overflow-y-auto max-h-full flex flex-col items-center justify-center text-center">
-                    <p className="text-cyan-500 text-xs font-bold mb-2 tracking-widest">{year}</p>
+                    <p className="text-theme-500 text-xs font-bold mb-2 tracking-widest">{year}</p>
                     <h3 className={`text-xl font-black mb-2 ${titleColor}`}>{formatCJK(fileName, lang)}</h3>
                     <p className={`text-sm italic mb-6 text-gacor-smooth`}>{formatCJK(category, lang)}</p>
 
@@ -90,7 +90,7 @@ const BentoCertificateCard = ({
                         href={filePath}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-6 py-2 bg-cyan-500 text-white rounded-full font-bold text-sm hover:bg-cyan-600 transition-colors shadow-lg"
+                        className="px-6 py-2 bg-theme-500 text-white rounded-full font-bold text-sm hover:bg-theme-600 transition-colors shadow-lg"
                         onClick={(e) => e.stopPropagation()}
                     >
                         View Full Document
@@ -98,7 +98,7 @@ const BentoCertificateCard = ({
                 </div>
 
                 {/* Close hint */}
-                <div className={`absolute top-4 right-4 text-[10px] font-medium px-2 py-1 rounded-full ${isDark ? 'text-white/50 bg-white/10' : 'text-gray-500 bg-gray-200/50'}`}>
+                <div className={`absolute top-4 right-4 text-[10px] font-medium px-2 py-1 rounded-full ${isDark ? 'text-white/50 bg-theme-surface-strong/10' : 'text-theme-muted bg-theme-surface-strong/50'}`}>
                     {click_to_close_text}
                 </div>
             </motion.div>
@@ -204,11 +204,11 @@ export default function CertificatesDisplay({
   }, [certificates]);
 
   // Dynamic Classes
-  const titleColor = isDark ? 'text-white' : 'text-gray-900';
-  const borderColor = isDark ? 'border-gray-800' : 'border-gray-200';
-  const cardBg = isDark ? 'bg-gray-800' : 'bg-white';
-  const buttonInactiveBg = isDark ? 'bg-gray-800' : 'bg-gray-200';
-  const buttonInactiveText = isDark ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-300';
+  const titleColor = 'text-foreground';
+  const borderColor = 'border-theme-border';
+  const cardBg = 'bg-theme-surface';
+  const buttonInactiveBg = 'bg-theme-surface-strong';
+  const buttonInactiveText = 'text-theme-muted hover:bg-theme-border hover:text-foreground';
 
   return (
     <div className={`w-full h-full ${isPresentationMode ? 'presentation-container flex flex-row flex-nowrap w-full h-screen' : ''}`}>
@@ -222,11 +222,11 @@ export default function CertificatesDisplay({
         >
           <div className="flex flex-col items-center justify-center w-full max-w-6xl mx-auto p-4 pb-8">
             <h2 className="text-xl md:text-3xl font-black mb-6 text-center flex flex-wrap justify-center items-center gap-x-4">
-              <span className="text-cyan-500">{formatCJK(slide.category, lang)}</span>
-              <span className="text-gray-500">|</span>
+              <span className="text-theme-500">{formatCJK(slide.category, lang)}</span>
+              <span className="text-theme-muted">|</span>
               <span className={titleColor}>{slide.year}</span>
               {slide.totalParts && slide.totalParts > 1 && (
-                <span className="text-base md:text-lg text-gray-400 font-mono">
+                <span className="text-base md:text-lg text-theme-muted font-mono">
                   [{slide.part}/{slide.totalParts}]
                 </span>
               )}
@@ -247,7 +247,7 @@ export default function CertificatesDisplay({
                   <div key={fileName} className="flex flex-col items-center group w-full max-w-[300px] md:max-w-[350px]">
                     <div
                       className={`${cardBg} w-full aspect-[4/3] relative mb-4 rounded-xl overflow-hidden shadow-xl transition-transform group-hover:scale-105 transform-gpu`}
-                      style={{ boxShadow: isDark ? 'inset 0 0 0 2px rgba(255,255,255,0.1)' : 'inset 0 0 0 2px rgba(0,0,0,0.1)' }}
+                      style={{ boxShadow: 'inset 0 0 0 2px rgba(var(--theme-border-rgb),0.1)' }}
                     >
                       {filePath.endsWith('.pdf') ? (
                         <div className="w-full h-full flex justify-center items-center overflow-hidden">
@@ -263,7 +263,7 @@ export default function CertificatesDisplay({
                         />
                       )}
                     </div>
-                    <p className={`text-center font-bold text-sm md:text-xl lg:text-2xl ${isDark ? 'text-gray-200' : 'text-gray-800'} line-clamp-2 px-2 leading-tight`}>
+                    <p className={`text-center font-bold text-sm md:text-xl lg:text-2xl text-foreground line-clamp-2 px-2 leading-tight`}>
                       {formatCJK(fileName, lang)}
                     </p>
                   </div>
@@ -331,7 +331,7 @@ export default function CertificatesDisplay({
                             onClick={() => handleYearClick(category, 'All')}
                             className={`px-3 py-1 text-sm rounded-full ${
                                 activeYear === 'All'
-                                ? 'bg-cyan-500 text-white transition-[colors,transform] hover:scale-105'
+                                ? 'bg-theme-500 text-white transition-[colors,transform] hover:scale-105'
                                 : `${buttonInactiveBg} ${buttonInactiveText}`
                             }`}
                             >
@@ -343,7 +343,7 @@ export default function CertificatesDisplay({
                                 onClick={() => handleYearClick(category, year)}
                                 className={`px-3 py-1 text-sm rounded-full ${
                                 activeYear === year
-                                    ? 'bg-cyan-500 text-white'
+                                    ? 'bg-theme-500 text-white'
                                     : `${buttonInactiveBg} ${buttonInactiveText} transition-[transform,colors] hover:scale-105`
                                 }`}
                             >
@@ -399,12 +399,12 @@ export default function CertificatesDisplay({
         )}
 
         {currentLayout === 'timeline' && (
-            <div className="relative border-l-2 border-cyan-500/30 ml-4 md:ml-8 space-y-12">
+            <div className="relative border-l-2 border-theme-500/30 ml-4 md:ml-8 space-y-12">
                 {Object.entries(certificates).flatMap(([category, yearsData]) =>
                   Object.entries(yearsData).map(([year, files]) => ({ category, year, files }))
                 ).sort((a, b) => b.year.localeCompare(a.year)).map((item) => (
                     <div key={`${item.category}-${item.year}`} className="relative pl-8">
-                        <div className="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-cyan-500 border-4 border-white dark:border-gray-900 shadow-sm" />
+                        <div className="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-theme-500 border-4 border-theme-surface dark:border-theme-bg-dark shadow-sm" />
                         <div className="flex flex-wrap items-baseline gap-x-4 mb-6">
                             <h2 className={`text-3xl font-black text-gacor-smooth`}>{item.year}</h2>
                             <h3 className={`text-xl font-bold text-gacor-smooth opacity-70`}>{formatCJK(item.category, lang)}</h3>

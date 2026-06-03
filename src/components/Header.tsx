@@ -62,6 +62,7 @@ interface HeaderProps {
         Line_Height: string;
         Font_Default: string;
         Reset_Settings: string;
+        Color_Variant: string;
     };
 }
 
@@ -146,6 +147,7 @@ export default function Header(props: HeaderProps) {
         const handleShare = () => {
             const settingsParams = [
                 'theme',
+                'color',
                 'presentation_mode',
                 'presentation_slide_format',
                 'settings-font',
@@ -282,11 +284,11 @@ export default function Header(props: HeaderProps) {
     const isDark = mounted && resolvedTheme === 'dark';
 
     // Dynamic Classes - Reduce backdrop-blur on mobile for performance
-    const headerBg = isDark ? 'bg-gray-900/90 border-gray-700' : 'bg-white/90 border-gray-200';
-    const mobileMenuBg = isDark ? 'bg-gray-900/95' : 'bg-slate-50/95';
-    const textColor = isDark ? 'text-gray-300' : 'text-gray-700';
-    const activeText = isDark ? 'text-cyan-400' : 'text-cyan-600';
-    const dropdownBg = isDark ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200';
+    const headerBg = isDark ? 'bg-theme-bg-dark/90 border-theme-border' : 'bg-theme-surface/90 border-theme-border';
+    const mobileMenuBg = isDark ? 'bg-theme-bg-dark/95' : 'bg-theme-surface-strong/95';
+    const textColor = "text-[var(--text-muted)]";
+    const activeText = isDark ? 'text-theme-400' : 'text-theme-600';
+    const dropdownBg = isDark ? 'bg-theme-bg-dark border-theme-border' : 'bg-theme-surface border-theme-border';
 
     const languages = [
         { code: 'id', name: id_lang, flag: '/images/flags/id.webp' },
@@ -320,7 +322,7 @@ export default function Header(props: HeaderProps) {
     };
 
     const LanguageMenu = () => (
-        <div className={`w-full md:w-56 ${dropdownBg} backdrop-blur-md md:border rounded-xl shadow-xl py-2 animate-fade-in ring-1 ring-black/5`}>
+        <div className={`w-full md:w-56 ${dropdownBg} backdrop-blur-md md:border rounded-xl shadow-theme-shadow py-2 animate-fade-in ring-1 ring-black/5`}>
             <ul>
                 {languages.map((lang) => {
                     const isCurrent = lang.code === current_lang;
@@ -329,7 +331,7 @@ export default function Header(props: HeaderProps) {
                             <button
                                 onClick={() => handleLanguageChange(lang.code)}
                                 aria-label={`Change language to ${lang.name}`}
-                                className={`w-full text-left px-5 py-2.5 text-sm hover:${isDark? 'bg-gray-700' : 'bg-gray-100'} hover:${isDark? 'text-cyan-400' : 'text-cyan-600'} transition-[colors,transform] duration-200 ${isCurrent ? `${activeText} font-bold bg-gray-50/5` : textColor} flex items-center gap-3 group`}
+                                className={`w-full text-left px-5 py-2.5 text-sm hover:bg-theme-surface-strong hover:${isDark? 'text-theme-400' : 'text-theme-600'} transition-[colors,transform] duration-200 ${isCurrent ? `${activeText} font-bold bg-theme-surface-strong/50` : textColor} flex items-center gap-3 group`}
                             >
                                 <div className="w-5 h-3.5 relative shrink-0">
                                     <Image 
@@ -384,7 +386,7 @@ export default function Header(props: HeaderProps) {
                 className={`
                     w-full fixed top-0 left-0 right-0 z-40 
                     ${headerBg} md:backdrop-blur-md 
-                    border-b shadow-sm
+                    border-b shadow-theme-shadow
                     transition-transform duration-300 ease-in-out
                     ${shouldShowHeader ? 'translate-y-0' : '-translate-y-full'}
                 `}
@@ -395,7 +397,7 @@ export default function Header(props: HeaderProps) {
                     <div 
                         className="flex-1 flex items-center gap-4"
                     >
-                    <div className={`transition-[colors,transform,opacity] shadow-md border ${isDark ? "border-cyan-800" : "border-gray-200"} opacity-100 hover:opacity-80 scale-100 hover:scale-110 cursor-pointer rounded-full overflow-hidden transform-gpu`}>
+                    <div className={`transition-[colors,transform,opacity] shadow-md border border-theme-border opacity-100 hover:opacity-80 scale-100 hover:scale-110 cursor-pointer rounded-full overflow-hidden transform-gpu`}>
                         <Image
                             onClick={() => router.push(getLocalizedHref('/portfolio'))}
                             src='/icon.ico'
@@ -418,8 +420,8 @@ export default function Header(props: HeaderProps) {
                                     ${showShareSuccess 
                                         ? 'text-green-500 bg-green-500/10 scale-110' 
                                         : isDark
-                                            ? 'text-gray-400 hover:text-cyan-400'
-                                            : 'text-gray-500 hover:text-cyan-600'
+                                            ? 'text-theme-muted hover:text-theme-400'
+                                            : 'text-theme-muted hover:text-theme-600'
                                     }
                                 `}
                             >
@@ -436,10 +438,10 @@ export default function Header(props: HeaderProps) {
                                     className={`
                                         flex items-center justify-center transition-all duration-300 p-2 rounded-full
                                         ${(mounted && isPresentationMode) 
-                                            ? 'text-cyan-500 bg-cyan-500/10 scale-110 drop-shadow-[0_0_8px_rgba(6,182,212,0.4)]' 
+                                            ? 'text-theme-500 bg-theme-500/10 scale-110 drop-shadow-[0_0_8px_rgba(6,182,212,0.4)]' 
                                             : isDark
-                                                ? 'text-gray-400 hover:text-cyan-400 hover:bg-gray-800'
-                                                : 'text-gray-500 hover:text-cyan-600 hover:bg-gray-100'
+                                                ? 'text-theme-muted hover:text-theme-400 hover:bg-theme-surface-strong'
+                                                : 'text-theme-muted hover:text-theme-600 hover:bg-theme-surface-strong'
                                         }
                                     `}
                                 >
@@ -458,8 +460,8 @@ export default function Header(props: HeaderProps) {
                                     ${showShareSuccess 
                                         ? 'text-green-500 bg-green-500/10 scale-110' 
                                         : isDark
-                                            ? 'text-gray-400 hover:text-cyan-400 hover:bg-gray-800'
-                                            : 'text-gray-500 hover:text-cyan-600 hover:bg-gray-100'
+                                            ? 'text-theme-muted hover:text-theme-400 hover:bg-theme-surface-strong'
+                                            : 'text-theme-muted hover:text-theme-600 hover:bg-theme-surface-strong'
                                     }
                                 `}
                             >
@@ -500,7 +502,7 @@ export default function Header(props: HeaderProps) {
                                                     text-[15px] tracking-wide
                                                     ${isChildActive
                                                         ? `nav-active-gacor font-bold`
-                                                        : `${textColor} font-medium hover-gacor group-hover:text-cyan-600`
+                                                        : `${textColor} font-medium hover-gacor group-hover:text-theme-600`
                                                     }`}
                                             >
                                                 {link.icon && <span className="mr-2 hidden lg:inline-block opacity-80 group-hover:opacity-100">{link.icon}</span>}
@@ -517,7 +519,7 @@ export default function Header(props: HeaderProps) {
                                                             <li key={subLink.href}>
                                                                 <Link
                                                                     href={getLocalizedHref(subLink.href)}
-                                                                    className={`flex items-center px-5 py-3 text-[14px] hover:${isDark ? 'bg-gray-700/50' : 'bg-gray-50'} transition-[colors,transform] ${isSubActive
+                                                                    className={`flex items-center px-5 py-3 text-[14px] hover:bg-theme-surface-strong/50 transition-[colors,transform] ${isSubActive
                                                                             ? `nav-active-gacor font-bold`
                                                                             : `${textColor} hover-gacor font-medium`
                                                                         }`}
@@ -593,7 +595,7 @@ export default function Header(props: HeaderProps) {
                                     setLangMenuVisible(nextState);
                                     if (nextState) setIsSettingsOpen(false);
                                 }}
-                                className={`group flex items-center gap-1.5 p-2 rounded-full hover:${isDark ? 'bg-white/10' : 'bg-gray-100'} transition-colors hover-gacor ${isLangMenuVisible ? 'nav-active-gacor' : ''}`}
+                                className={`group flex items-center gap-1.5 p-2 rounded-full hover:bg-theme-surface-strong transition-colors hover-gacor ${isLangMenuVisible ? 'nav-active-gacor' : ''}`}
                                 aria-label="Select language"
                                 aria-haspopup="true"
                                 aria-expanded={isLangMenuVisible}
@@ -620,7 +622,7 @@ export default function Header(props: HeaderProps) {
                         <div className="md:hidden flex items-center cursor-pointer">
                             <button
                                 onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
-                                className={`transition-all duration-300 z-50 p-2 rounded-lg hover:bg-gray-100/10 hover-gacor
+                                className={`transition-all duration-300 z-50 p-2 rounded-lg hover:bg-theme-surface-strong hover-gacor
                                     ${isMobileMenuOpen ? 'nav-active-gacor' : textColor}
                                 `}
                                 aria-label="Toggle menu"
@@ -640,14 +642,14 @@ export default function Header(props: HeaderProps) {
                 <div className="absolute top-4 right-4 z-[70]">
                     <button
                         onClick={() => setMobileMenuOpen(false)}
-                        className={`p-2 rounded-lg hover:bg-gray-100/10 transition-colors hover-gacor ${textColor}`}
+                        className={`p-2 rounded-lg hover:bg-theme-surface-strong transition-colors hover-gacor ${textColor}`}
                         aria-label="Close menu"
                     >
                         <CloseIcon />
                     </button>
                 </div>
                 <nav className="mt-20 px-8 pb-12">
-                    <div className="mb-8 border-b dark:border-gray-700 border-gray-200 pb-4">
+                    <div className="mb-8 border-b border-theme-border pb-4">
                         <span className={`text-xl font-black tracking-tight nav-active-gacor`}>
                             {formatCJK(navigation_label, current_lang)}
                         </span>
@@ -658,11 +660,11 @@ export default function Header(props: HeaderProps) {
                             if (link.subLinks && link.subLinks.length > 0) {
                                 return (
                                     <li key={link.name}>
-                                        <span className={`flex items-center text-sm font-bold ${isDark ? 'text-gray-400' : 'text-gray-500'} mb-4`}>
+                                        <span className={`flex items-center text-sm font-bold text-theme-muted mb-4`}>
                                             {link.icon && <span className="mr-2 inline-block flex-shrink-0 opacity-70">{link.icon}</span>}
                                             {formatCJK(link.name, current_lang)}
                                         </span>
-                                        <ul className="flex flex-col space-y-4 pl-4 border-l-2 border-gray-200/50 dark:border-gray-700/50">
+                                        <ul className="flex flex-col space-y-4 pl-4 border-l-2 border-theme-border">
                                             {link.subLinks.map(subLink => {
                                                 const isActive = normalizedPathname === subLink.href;
                                                 return (
@@ -672,7 +674,7 @@ export default function Header(props: HeaderProps) {
                                                             onClick={() => setMobileMenuOpen(false)}
                                                             className={`flex items-center text-[16px] transition-[colors,transform] duration-300 ${isActive
                                                                     ? `${activeText} font-bold`
-                                                                    : `${textColor} font-medium hover:text-cyan-600 hover:translate-x-1`
+                                                                    : `${textColor} font-medium hover:text-theme-600 hover:translate-x-1`
                                                                 }`}
                                                         >
                                                             {subLink.icon && <span className="mr-3 scale-90 inline-block flex-shrink-0 opacity-70">{subLink.icon}</span>}
@@ -694,7 +696,7 @@ export default function Header(props: HeaderProps) {
                                         onClick={() => setMobileMenuOpen(false)}
                                         className={`flex items-center text-lg transition-[colors,transform] duration-300 ${isActive
                                                 ? `${activeText} font-bold`
-                                                : `${textColor} font-semibold hover:text-cyan-600`
+                                                : `${textColor} font-semibold hover:text-theme-600`
                                             }`}
                                     >
                                         {link.icon && <span className="mr-3 inline-block flex-shrink-0 opacity-80">{link.icon}</span>}
@@ -705,15 +707,15 @@ export default function Header(props: HeaderProps) {
                         })}
                     </ul>
 
-                    <div className={`mt-10 mb-8 border-t ${isDark ? 'border-gray-700' : 'border-gray-200'} pt-8`}>
+                    <div className={`mt-10 mb-8 border-t border-theme-border pt-8`}>
                         <div className="flex justify-between items-center mb-6">
                             <ThemeToggle />
                         </div>
                         <SettingsPopup labels={settings_labels} inline={true} />
                     </div>
 
-                    <div className={`mt-10 border-t ${isDark ? 'border-gray-700' : 'border-gray-200'} pt-8`}>
-                        <p className={`px-0 text-sm font-bold ${isDark ? 'text-gray-400' : 'text-gray-500'} mb-4`}>{select_lang}</p>
+                    <div className={`mt-10 border-t border-theme-border pt-8`}>
+                        <p className={`px-0 text-sm font-bold text-theme-muted mb-4`}>{select_lang}</p>
                         <LanguageMenu />
                     </div>
                 </nav>
@@ -733,20 +735,20 @@ export default function Header(props: HeaderProps) {
                         initial={{ opacity: 0, y: 50, scale: 0.9, x: '-50%' }}
                         animate={{ opacity: 1, y: 0, scale: 1, x: '-50%' }}
                         exit={{ opacity: 0, y: 20, scale: 0.9, x: '-50%' }}
-                        className="fixed bottom-8 left-1/2 z-[100] px-6 py-3 rounded-2xl bg-white dark:bg-gray-900 shadow-2xl border border-transparent"
+                        className="fixed bottom-8 left-1/2 z-[100] px-6 py-3 rounded-2xl bg-theme-surface shadow-theme-shadow border border-transparent"
                         style={{ 
-                            boxShadow: '0 10px 40px -10px rgba(6, 182, 212, 0.3)',
+                            boxShadow: '0 10px 40px -10px var(--accent-shadow)',
                         }}
                     >
                         {/* Gradient Border Effect */}
-                        <div className="absolute inset-0 p-[1.5px] rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 -z-10" />
-                        <div className="absolute inset-[1.5px] rounded-[15px] bg-white dark:bg-gray-900 -z-10" />
+                        <div className="absolute inset-0 p-[1.5px] rounded-2xl bg-gradient-to-r from-[var(--gacor-1)] via-[var(--gacor-2)] to-[var(--gacor-3)] -z-10" />
+                        <div className="absolute inset-[1.5px] rounded-[15px] bg-theme-surface -z-10" />
 
                         <div className="flex items-center gap-3">
-                            <div className="flex items-center justify-center w-6 h-6 rounded-full bg-cyan-500 text-white">
+                            <div className="flex items-center justify-center w-6 h-6 rounded-full bg-theme-500 text-white">
                                 <Check size={14} strokeWidth={4} />
                             </div>
-                            <span className="font-bold text-sm md:text-base whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-600 dark:from-cyan-400 dark:to-blue-400">
+                            <span className="font-bold text-sm md:text-base whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-[var(--gacor-1)] via-[var(--gacor-2)] to-[var(--gacor-3)]">
                                 {share_copied}
                             </span>
                         </div>

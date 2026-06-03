@@ -83,6 +83,9 @@ interface SettingsContextType {
   setLetterSpacing: (spacing: number) => void;
   lineHeight: number;
   setLineHeight: (height: number) => void;
+  color: string;
+  setColor: (color: string) => void;
+  colorRGB: { r: number, g: number, b: number };
   resetSettings: () => void;
 }
 
@@ -94,6 +97,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [textScale, setTextScale] = useState(100);
   const [letterSpacing, setLetterSpacing] = useState(0); 
   const [lineHeight, setLineHeight] = useState(1.5);
+  const [color, setColor] = useState('blue');
   const [mounted, setMounted] = useState(false);
 
   const resetSettings = () => {
@@ -102,7 +106,23 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     setTextScale(100);
     setLetterSpacing(0);
     setLineHeight(1.5);
+    setColor('blue');
   };
+
+  const colorRGB = React.useMemo(() => {
+    switch (color) {
+      case 'pink':
+        return { r: 219, g: 39, b: 119 }; // pink-600
+      case 'green':
+        return { r: 22, g: 163, b: 74 }; // green-600
+      case 'purple':
+        return { r: 147, g: 51, b: 234 }; // purple-600
+      case 'orange':
+        return { r: 234, g: 88, b: 12 }; // orange-600
+      default:
+        return { r: 8, g: 145, b: 178 }; // theme-600
+    }
+  }, [color]);
 
   useEffect(() => {
     // Helper to get from cookie or localStorage
@@ -125,12 +145,14 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     const savedScale = getSetting('settings-scale');
     const savedSpacing = getSetting('settings-spacing');
     const savedLineHeight = getSetting('settings-lineheight');
+    const savedColor = getSetting('color');
 
     if (savedFont) setFont(savedFont);
     if (savedAlign) setTextAlign(savedAlign);
     if (savedScale) setTextScale(Math.min(Math.max(Number(savedScale), 80), 120));
     if (savedSpacing) setLetterSpacing(Number(savedSpacing));
     if (savedLineHeight) setLineHeight(Number(savedLineHeight));
+    if (savedColor) setColor(savedColor);
     
     setMounted(true);
   }, []);
@@ -142,6 +164,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     localStorage.setItem('settings-scale', textScale.toString());
     localStorage.setItem('settings-spacing', letterSpacing.toString());
     localStorage.setItem('settings-lineheight', lineHeight.toString());
+    localStorage.setItem('color', color);
 
     const root = document.documentElement;
     const body = document.body;
@@ -155,14 +178,18 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       body.classList.add(activeFont.class);
     }
 
-    // 2. Global Settings via CSS variables on root
+    // 2. Color Class on ROOT
+    root.classList.remove('theme-pink', 'theme-blue', 'theme-green', 'theme-purple', 'theme-orange');
+    root.classList.add(`theme-${color}`);
+
+    // 3. Global Settings via CSS variables on root
     root.style.setProperty('--text-scale-factor', (textScale / 100).toString());
     root.style.setProperty('--app-letter-spacing', `${letterSpacing}px`);
     root.style.setProperty('--app-line-height', lineHeight.toString());
     
     // Alignment (applied to body)
     body.style.textAlign = textAlign === 'default' ? '' : textAlign;
-  }, [font, textAlign, textScale, letterSpacing, lineHeight, mounted]);
+  }, [font, textAlign, textScale, letterSpacing, lineHeight, color, mounted]);
 
   return (
     <SettingsContext.Provider value={{ 
@@ -171,6 +198,8 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       textScale, setTextScale,
       letterSpacing, setLetterSpacing,
       lineHeight, setLineHeight,
+      color, setColor,
+      colorRGB,
       resetSettings
     }}>
       {children}
