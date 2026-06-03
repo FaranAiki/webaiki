@@ -231,7 +231,7 @@ export default async function PortfolioHighlightsPage({ params }: { params: Prom
           <section id="projects" className="space-y-2">
             <div className="container mx-auto px-4 sm:px-8">
                 <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
-                    <Code size={18} className="text-purple-500" />
+                    <Code size={18} className="text-theme-500" />
                     <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Project}</h2>
                 </div>
             </div>
@@ -254,7 +254,7 @@ export default async function PortfolioHighlightsPage({ params }: { params: Prom
             {importantOrg.length > 0 && (
               <section id="organizations" className="space-y-2">
                 <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
-                    <Users size={18} className="text-blue-500" />
+                    <Users size={18} className="text-theme-500" />
                     <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Organization}</h2>
                 </div>
                 <div className="lg:contents">
@@ -275,7 +275,7 @@ export default async function PortfolioHighlightsPage({ params }: { params: Prom
             {importantAwards.length > 0 && (
               <section id="awards" className="space-y-2">
                 <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
-                    <Trophy size={18} className="text-yellow-500" />
+                    <Trophy size={18} className="text-theme-500" />
                     <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Award}</h2>
                 </div>
                 <div className="lg:contents">
@@ -300,7 +300,7 @@ export default async function PortfolioHighlightsPage({ params }: { params: Prom
           <section id="certificates" className="space-y-4">
             <div className="container mx-auto px-4 sm:px-8">
                 <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
-                    <FileCheck size={18} className="text-emerald-500" />
+                    <FileCheck size={18} className="text-theme-500" />
                     <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Certificate}</h2>
                 </div>
             </div>
@@ -312,7 +312,7 @@ export default async function PortfolioHighlightsPage({ params }: { params: Prom
         {(Object.keys(importantCollege).length > 0 || Object.keys(importantLiterature).length > 0) && (
           <section id="highlights" className="space-y-4 container mx-auto px-4 sm:px-8">
             <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
-                <Star size={18} className="text-rose-500" />
+                <Star size={18} className="text-theme-500" />
                 <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Important_Highlights}</h2>
             </div>            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {Object.keys(importantCollege).length > 0 && (

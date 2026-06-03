@@ -40,7 +40,7 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
     let particles: Particle[] = [];
 
     const PARTICLE_COUNT = 80;
-    const CONNECTION_DISTANCE = 150; 
+    const CONNECTION_DISTANCE = 150;
     const MOUSE_RADIUS = 100;
 
     class Particle {
@@ -55,7 +55,7 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
       constructor(w: number, h: number) {
         this.x = Math.random() * w;
         this.y = Math.random() * h;
-        this.vx = (Math.random() - 0.5) * 0.5; 
+        this.vx = (Math.random() - 0.5) * 0.5;
         this.vy = (Math.random() - 0.5) * 0.5;
         this.size = Math.random() * 2 + 1;
         this.baseX = this.x;
@@ -78,7 +78,7 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
             const forceDirectionX = dx / distance;
             const forceDirectionY = dy / distance;
             const force = (MOUSE_RADIUS - distance) / MOUSE_RADIUS;
-            const directionX = forceDirectionX * force * 2; 
+            const directionX = forceDirectionX * force * 2;
             const directionY = forceDirectionY * force * 2;
 
             this.x -= directionX;
@@ -99,12 +99,12 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
     const init = () => {
         const dpr = Math.min(window.devicePixelRatio || 1, 2); // Cap DPR for performance
         const rect = container.getBoundingClientRect();
-        
+
         canvas.width = rect.width * dpr;
         canvas.height = rect.height * dpr;
-        
+
         ctx.scale(dpr, dpr);
-        
+
         canvas.style.width = `${rect.width}px`;
         canvas.style.height = `${rect.height}px`;
 
@@ -113,7 +113,7 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
         let particleCount = PARTICLE_COUNT;
         if (rect.width < 480) particleCount = 12; // Lowered from 20
         else if (rect.width < 768) particleCount = 25; // Lowered from 40
-        
+
         for (let i = 0; i < particleCount; i++) {
           particles.push(new Particle(rect.width, rect.height));
         }
@@ -121,25 +121,25 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
 
     const animate = () => {
       if (!ctx || !canvas) return;
-      
+
       if (document.visibilityState === 'visible') {
         const width = canvas.width / (window.devicePixelRatio || 1);
         const height = canvas.height / (window.devicePixelRatio || 1);
 
         // Determine color based on current theme ref and selected color variant
         // In dark mode, we make it slightly more vibrant/lighter
-        const BASE_COLOR = isDarkRef.current 
-          ? { 
-              r: Math.min(255, colorRGBRef.current.r + 50), 
-              g: Math.min(255, colorRGBRef.current.g + 50), 
-              b: Math.min(255, colorRGBRef.current.b + 50) 
-            } 
+        const BASE_COLOR = isDarkRef.current
+          ? {
+              r: Math.min(255, colorRGBRef.current.r + 50),
+              g: Math.min(255, colorRGBRef.current.g + 50),
+              b: Math.min(255, colorRGBRef.current.b + 50)
+            }
           : colorRGBRef.current;
 
         ctx.clearRect(0, 0, width, height);
-        
+
         const isMobile = width < 768;
-        
+
         particles.forEach((particle) => {
           // Disable mouse interaction on mobile to save CPU
           particle.update(width, height, isMobile);
@@ -147,9 +147,9 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
         });
 
         connectParticles(width, height, BASE_COLOR);
-        
+
       }
-      
+
       animationFrameId = requestAnimationFrame(animate);
     };
 
@@ -158,7 +158,7 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
       const isMobile = w < 768;
       const maxDistance = isMobile ? CONNECTION_DISTANCE * 0.8 : CONNECTION_DISTANCE;
       const maxDistanceSq = maxDistance * maxDistance;
-      
+
       ctx.lineWidth = 1.5;
       for (let a = 0; a < particles.length; a++) {
         for (let b = a + 1; b < particles.length; b++) {
@@ -187,14 +187,14 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
         isActive: true
       };
     };
-    
+
     const handleResize = () => {
         init();
     };
 
     window.addEventListener('resize', handleResize);
-    window.addEventListener('mousemove', handleMouseMove, { passive: true }); 
-    
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+
     init();
     animate();
 
@@ -238,7 +238,7 @@ export default function Background({ carousel }: BackgroundProps) {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => {
         const nextIndex = (prevIndex + 1) % carousel.length;
-        
+
         // Add the new index to our loaded set so it gets rendered and fetched
         setLoadedIndices((prev) => {
           if (prev.has(nextIndex)) return prev;
@@ -254,6 +254,11 @@ export default function Background({ carousel }: BackgroundProps) {
     return () => clearInterval(interval);
   }, [carousel]);
 
+  const isDark = resolvedTheme === 'dark';
+  const overlayClass = isDark
+    ? "from-theme-surface/70 via-theme-surface/40 to-theme-surface/80"
+    : "from-theme-surface/95 via-theme-surface/65 to-theme-surface";
+
   return (
     <div className={`presentation-background sticky top-0 left-0 w-full h-screen -mb-[100vh] z-[-1] pointer-events-none transition-colors duration-[1500ms] ease-in-out bg-theme-bg dark:bg-theme-bg-dark transform-gpu contain-strict overflow-hidden`}>
 
@@ -262,7 +267,7 @@ export default function Background({ carousel }: BackgroundProps) {
             <div
                 key={index}
                 className={`blur-sm md:blur-md absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out scale-110 transform-gpu will-change-[opacity,transform] ${
-                    index === currentIndex ? 'opacity-60 z-0' : 'opacity-0 -z-10'
+                    index === currentIndex ? 'opacity-80 z-0' : 'opacity-0 -z-10'
                 }`}
                 style={{ backfaceVisibility: 'hidden' }}
             >
@@ -280,14 +285,14 @@ export default function Background({ carousel }: BackgroundProps) {
                 )}
             </div>
         ))}
-        
+
         {/* Adjusted Gradient to improve text readability on all backgrounds with SLOW transition for epilepsy prevention */}
-        <div 
-          className="absolute inset-0 transition-[colors,opacity] duration-[1500ms] ease-in-out transform-gpu bg-gradient-to-b from-theme-surface/95 via-theme-surface/90 to-theme-surface" 
+        <div
+          className={`absolute inset-0 transition-[colors,opacity] duration-[1500ms] ease-in-out transform-gpu bg-gradient-to-b ${overlayClass}`}
           style={{ backfaceVisibility: 'hidden' }}
         />
-        
-        {mounted && <GeometricPattern isDark={resolvedTheme === 'dark'}/>}
+
+        {mounted && <GeometricPattern isDark={isDark}/>}
       </div>
     </div>
   );
