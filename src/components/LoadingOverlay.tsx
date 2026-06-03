@@ -20,16 +20,36 @@ export default function LoadingOverlay({ isMounted, label }: LoadingOverlayProps
     if (isVisible) {
       const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
       setScrollLocked(true);
+      
+      // Disable scrolling on both html and body to be absolutely sure
+      document.documentElement.classList.add("no-scrollbar");
+      document.documentElement.style.setProperty("overflow", "hidden", "important");
+      document.documentElement.style.setProperty("height", "100%", "important");
+      
+      document.body.classList.add("no-scrollbar");
       document.body.style.setProperty("overflow", "hidden", "important");
+      document.body.style.setProperty("height", "100%", "important");
       document.body.style.setProperty("padding-right", `${scrollbarWidth}px`, "important");
     } else {
       setScrollLocked(false);
+      document.documentElement.classList.remove("no-scrollbar");
+      document.documentElement.style.removeProperty("overflow");
+      document.documentElement.style.removeProperty("height");
+      
+      document.body.classList.remove("no-scrollbar");
       document.body.style.removeProperty("overflow");
+      document.body.style.removeProperty("height");
       document.body.style.removeProperty("padding-right");
     }
     return () => {
       setScrollLocked(false);
+      document.documentElement.classList.remove("no-scrollbar");
+      document.documentElement.style.removeProperty("overflow");
+      document.documentElement.style.removeProperty("height");
+      
+      document.body.classList.remove("no-scrollbar");
       document.body.style.removeProperty("overflow");
+      document.body.style.removeProperty("height");
       document.body.style.removeProperty("padding-right");
     };
   }, [isVisible, setScrollLocked]);

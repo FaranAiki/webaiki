@@ -65,6 +65,12 @@ interface HeaderProps {
         Font_Default: string;
         Reset_Settings: string;
         Color_Variant: string;
+        Color_Blue: string;
+        Color_Pink: string;
+        Color_Green: string;
+        Color_Purple: string;
+        Color_Orange: string;
+        Color_Mono: string;
     };
 }
 
