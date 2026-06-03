@@ -113,6 +113,7 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
     { name: 'green', class: 'bg-[#16a34a]' },
     { name: 'purple', class: 'bg-[#9333ea]' },
     { name: 'orange', class: 'bg-[#ea580c]' },
+    { name: 'mono', class: 'bg-[#64748b]' },
   ];
 
   const currentFontClass = fonts.find(f => f.name === font)?.class || '';
