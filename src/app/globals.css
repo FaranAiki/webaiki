@@ -147,24 +147,24 @@
 
 /* Color Variant Overrides */
 
-/* Pink (Rose Quartz - Elegant) */
+/* Pink (Vibrant Rose - Energetic) */
 .theme-pink {
-  --theme-bg: #fff1f2;
-  --theme-bg-dark: #4c0519;
+  --theme-bg: #fdf2f8;
+  --theme-bg-dark: #500724;
   --theme-surface: #ffffff;
-  --theme-surface-strong: #fff1f2;
-  --theme-border: #fecdd3;
-  --theme-muted: #9d174d;
-  --theme-shadow: rgba(225, 29, 72, 0.1);
-  --theme-color-100: #fff1f2;
-  --theme-color-200: #ffe4e6;
-  --theme-color-300: #fecdd3;
-  --theme-color-400: #fda4af;
-  --theme-color-500: #fb7185;
-  --theme-color-600: #f43f5e;
-  --theme-color-700: #e11d48;
-  --theme-color-800: #be123c;
-  --theme-color-900: #9f1239;
+  --theme-surface-strong: #fce7f3;
+  --theme-border: #fbcfe8;
+  --theme-muted: #be185d;
+  --theme-shadow: rgba(219, 39, 119, 0.1);
+  --theme-color-100: #fdf2f8;
+  --theme-color-200: #fce7f3;
+  --theme-color-300: #fbcfe8;
+  --theme-color-400: #f472b6;
+  --theme-color-500: #ec4899;
+  --theme-color-600: #db2777;
+  --theme-color-700: #be185d;
+  --theme-color-800: #9d174d;
+  --theme-color-900: #831843;
 }
 
 /* Green (Emerald Forest - Professional) */

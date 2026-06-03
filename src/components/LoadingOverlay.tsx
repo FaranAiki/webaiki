@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useAppStore } from "@/lib/store";
 
 interface LoadingOverlayProps {
   isMounted: boolean;
@@ -11,8 +12,27 @@ interface LoadingOverlayProps {
 export default function LoadingOverlay({ isMounted, label }: LoadingOverlayProps) {
   const [isVisible, setIsVisible] = useState(true);
   const [hasStarted, setHasStarted] = useState(false);
+  const setScrollLocked = useAppStore((state) => state.setScrollLocked);
 
   const EULER_MASCHERONI = 0.577;
+
+  useEffect(() => {
+    if (isVisible) {
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      setScrollLocked(true);
+      document.body.style.setProperty("overflow", "hidden", "important");
+      document.body.style.setProperty("padding-right", `${scrollbarWidth}px`, "important");
+    } else {
+      setScrollLocked(false);
+      document.body.style.removeProperty("overflow");
+      document.body.style.removeProperty("padding-right");
+    }
+    return () => {
+      setScrollLocked(false);
+      document.body.style.removeProperty("overflow");
+      document.body.style.removeProperty("padding-right");
+    };
+  }, [isVisible, setScrollLocked]);
 
   useEffect(() => {
     // Start animation slightly after mount to ensure smoothness

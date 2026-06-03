@@ -116,7 +116,13 @@ export default async function RootLayout({
           Line_Height: dict.Line_Height,
           Font_Default: dict.Font_Default,
           Reset_Settings: dict.Reset_Settings,
-          Color_Variant: dict.Color_Variant
+          Color_Variant: dict.Color_Variant,
+          Color_Blue: dict.Color_Blue,
+          Color_Pink: dict.Color_Pink,
+          Color_Green: dict.Color_Green,
+          Color_Purple: dict.Color_Purple,
+          Color_Orange: dict.Color_Orange,
+          Color_Mono: dict.Color_Mono
         }}
       />
       <div id="main-content">

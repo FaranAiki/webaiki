@@ -27,6 +27,12 @@ interface SettingsPopupProps {
     Font_Default: string;
     Reset_Settings: string;
     Color_Variant: string;
+    Color_Blue: string;
+    Color_Pink: string;
+    Color_Green: string;
+    Color_Purple: string;
+    Color_Orange: string;
+    Color_Mono: string;
   };
   isOpen?: boolean;
   onOpenChange?: (isOpen: boolean) => void;
@@ -108,12 +114,12 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
     { value: 'justify', icon: <AlignJustify size={18} />, title: 'Justify' },
   ];
   const colors = [
-    { name: 'blue', class: 'bg-[#0ea5e9]' },
-    { name: 'pink', class: 'bg-[#db2777]' },
-    { name: 'green', class: 'bg-[#16a34a]' },
-    { name: 'purple', class: 'bg-[#9333ea]' },
-    { name: 'orange', class: 'bg-[#ea580c]' },
-    { name: 'mono', class: 'bg-[#64748b]' },
+    { name: 'blue', class: 'bg-[#0ea5e9]', label: labels.Color_Blue },
+    { name: 'pink', class: 'bg-[#ec4899]', label: labels.Color_Pink },
+    { name: 'green', class: 'bg-[#16a34a]', label: labels.Color_Green },
+    { name: 'purple', class: 'bg-[#9333ea]', label: labels.Color_Purple },
+    { name: 'orange', class: 'bg-[#ea580c]', label: labels.Color_Orange },
+    { name: 'mono', class: 'bg-[#64748b]', label: labels.Color_Mono },
   ];
 
   const currentFontClass = fonts.find(f => f.name === font)?.class || '';
@@ -151,7 +157,7 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
                 ${c.class}
                 ${color === c.name ? 'border-theme-border scale-110 shadow-lg' : 'border-transparent hover:scale-105'}
               `}
-              title={c.name}
+              title={c.label}
             />
           ))}
         </div>
