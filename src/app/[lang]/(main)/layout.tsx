@@ -20,7 +20,9 @@ import {
   BookOpen, 
   GraduationCap,
   Compass,
-  Code
+  Code,
+  Star,
+  LayoutGrid
 } from 'lucide-react';
 
 export default async function RootLayout({
@@ -47,6 +49,8 @@ export default async function RootLayout({
       href: '#',
       icon: <User size={18} />,
       subLinks: [
+        { name: dict.Portfolio || 'Portfolio', href: '/portfolio', icon: <Star size={16} /> },
+        { name: dict.All || 'All', href: '/all', icon: <LayoutGrid size={16} /> },
         { name: dict.Social, href: '/social', icon: <Share2 size={16} /> },
         { name: dict.Certificate, href:'/certificate', icon: <FileCheck size={16} /> },
       ]
@@ -87,6 +91,7 @@ export default async function RootLayout({
         navLinks={navLinks} 
         current_lang={lang} 
         portfolio_label={dict.Portfolio}
+        all_label={dict.All}
         en_lang={dict.English} 
         zh_lang={dict.Mandarin} 
         id_lang={dict.Indonesian} 

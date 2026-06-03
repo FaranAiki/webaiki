@@ -35,9 +35,9 @@ export function PresentationProvider({
     setMounted(true);
   }, []);
 
-  // Disable presentation mode on /portfolio route
+  // Disable presentation mode on /portfolio and /all routes
   useEffect(() => {
-    if (pathname?.endsWith('/portfolio')) {
+    if (pathname?.endsWith('/portfolio') || pathname?.endsWith('/all')) {
       setIsPresentationMode(false);
       if (mounted) localStorage.setItem("presentation_mode", "false");
     }
@@ -73,9 +73,9 @@ export function PresentationProvider({
       const large = window.innerWidth >= 768; // md breakpoint
       setIsLargeScreen(large);
       
-      const isPortfolio = window.location.pathname.endsWith('/portfolio');
+      const isPortfolioOrAll = window.location.pathname.endsWith('/portfolio') || window.location.pathname.endsWith('/all');
 
-      if (!large || isPortfolio) {
+      if (!large || isPortfolioOrAll) {
         setIsPresentationMode(false);
       } else if (savedMode === "true" || hasBodyClass) {
         setIsPresentationMode(true);
@@ -88,7 +88,8 @@ export function PresentationProvider({
   }, [mounted]);
 
   const togglePresentationMode = () => {
-    if (!isLargeScreen || pathname?.endsWith('/portfolio')) return; // Disable toggling on small screens or portfolio
+    const isPortfolioOrAll = pathname?.endsWith('/portfolio') || pathname?.endsWith('/all');
+    if (!isLargeScreen || isPortfolioOrAll) return; // Disable toggling on small screens or portfolio/all
 
     setIsPresentationMode((prev) => {
       const next = !prev;

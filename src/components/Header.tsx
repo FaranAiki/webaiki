@@ -35,6 +35,7 @@ interface HeaderProps {
     navLinks: NavLink[];
     current_lang: string;
     portfolio_label: string;
+    all_label: string;
     en_lang: string;
     zh_lang: string;
     id_lang: string;
@@ -116,6 +117,7 @@ export default function Header(props: HeaderProps) {
         navLinks, 
         current_lang, 
         portfolio_label,
+        all_label,
         en_lang, 
         zh_lang, 
         id_lang, 
@@ -411,7 +413,7 @@ export default function Header(props: HeaderProps) {
                     >
                     <div className={`transition-[colors,transform,opacity] shadow-md border border-theme-border opacity-100 hover:opacity-80 scale-100 hover:scale-110 cursor-pointer rounded-full overflow-hidden transform-gpu`}>
                         <Image
-                            onClick={() => router.push(getLocalizedHref('/portfolio'))}
+                            onClick={() => router.push(getLocalizedHref('/all'))}
                             src='/icon.ico'
                             alt={logo_alt}
                             title={logo_alt}
@@ -442,7 +444,7 @@ export default function Header(props: HeaderProps) {
                         </div>
 
                         {/* Presentation Mode Toggle */}
-                        {!pathname.endsWith('/portfolio') && (
+                        {(!pathname.endsWith('/portfolio') && !pathname.endsWith('/all')) && (
                             <div className="hidden md:flex items-center justify-center ml-4 self-center">
                                 <button
                                     onClick={togglePresentationMode}
@@ -484,9 +486,9 @@ export default function Header(props: HeaderProps) {
 
                     {/* --- Mobile Title (Center) --- */}
                     <div className={`md:hidden ${inter.className}`} >
-                        {normalizedPathname === '/portfolio' ? (
+                        {(normalizedPathname === '/portfolio' || normalizedPathname === '/all') ? (
                             <h1 className={`flex items-center justify-center transition-[colors,transform] duration-200 text-lg font-black nav-active-gacor whitespace-nowrap cursor-pointer opacity-95`}>
-                                {formatCJK(portfolio_label, current_lang)}
+                                {formatCJK(normalizedPathname === '/portfolio' ? portfolio_label : all_label, current_lang)}
                             </h1>
                         ) : activeLink && (
                             <h1 className={`flex items-center justify-center transition-[colors,transform] duration-200 text-lg font-black nav-active-gacor whitespace-nowrap cursor-pointer opacity-95`}>

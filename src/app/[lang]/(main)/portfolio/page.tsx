@@ -1,28 +1,17 @@
 import type { Metadata } from "next";
 import "../../../globals.css";
 import { getDictionary } from '@/components/Translator';
-import ExperiencesClient, { Experience, Job } from '@/components/ExperienceDisplayer';
-import CertificatesDisplay, { CertificateData } from '@/components/CertificatesDisplay';
-import InteractiveCollections, { CollectionsData } from '@/components/InteractiveCollections';
-import { PortfolioAboutHeader } from '@/components/AboutMe';
+import { SITE_URL, getBaseMetadata, getLanguageAlternates } from '@/lib/seo';
 import FAQ from '@/components/FAQ';
-import SocialDisplay, { SocialLink } from '@/components/SocialDisplay';
-import { Github, Linkedin, Instagram, Twitter, Youtube, Share2 } from 'lucide-react';
-import Image from 'next/image';
-
-import { getLanguageAlternates, getBaseMetadata, getPersonSchema, getBreadcrumbSchema, getFaqSchema, SITE_URL } from '@/lib/seo';
-
-import {
-  getWorkExperiences,
-  getProjectExperiences,
-  getOrganizationExperiences,
-  getAwardExperiences,
-  getCertificatesData,
-  getCollectionsData,
-  getFaranAikiPhoto
+import { 
+  getWorkExperiences, 
+  getProjectExperiences, 
+  getOrganizationExperiences, 
+  getAwardExperiences 
 } from '@/lib/data';
-
-import { Briefcase, Code, Users, Trophy, FileCheck, Star } from 'lucide-react';
+import { Briefcase, Code, Users, Trophy, Github, Linkedin, Instagram, Twitter, Star } from 'lucide-react';
+import Link from 'next/link';
+import PortfolioSummaryItem from '@/components/PortfolioSummaryItem';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -31,12 +20,12 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
   return {
     ...baseMetadata,
-    title: `${dict.Portfolio} | Faran Aiki`,
-    description: dict.Portfolio_Description || "Full professional portfolio and highlights of Muhammad Faran Aiki",
+    title: `${dict.Portfolio || 'Portfolio'} | Faran Aiki`,
+    description: dict.Portfolio_Summary_Description || "Compact summary of Muhammad Faran Aiki's professional experiences and highlights",
     openGraph: {
       ...baseMetadata.openGraph,
-      title: `${dict.Portfolio} | Faran Aiki`,
-      description: dict.Portfolio_Description || "Full professional portfolio and highlights of Muhammad Faran Aiki",
+      title: `${dict.Portfolio || 'Portfolio'} | Faran Aiki`,
+      description: dict.Portfolio_Summary_Description || "Compact summary of Muhammad Faran Aiki's professional experiences and highlights",
       url: `${SITE_URL}/${lang}/portfolio`,
     },
     alternates: {
@@ -46,114 +35,20 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
-export default async function PortfolioHighlightsPage({ params }: { params: Promise<{ lang: string }> }) {
+export default async function PortfolioSummaryPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
-  const faranPhotos = await getFaranAikiPhoto();
 
-  const workExp = getWorkExperiences(dict);
-  const projectExp = getProjectExperiences(dict);
-  const orgExp = getOrganizationExperiences(dict);
-  const awardExp = getAwardExperiences(dict);
-  const certificatesData = await getCertificatesData(lang);
-  const collegeData = await getCollectionsData(lang, 'college');
-  const literatureData = await getCollectionsData(lang, 'literature');
+  const workExp = getWorkExperiences(dict).flatMap(y => y.jobs).filter(j => (j.point || 0) >= 80).sort((a, b) => (b.point || 0) - (a.point || 0));
+  const projectExp = getProjectExperiences(dict).flatMap(y => y.jobs).filter(j => (j.point || 0) >= 80).sort((a, b) => (b.point || 0) - (a.point || 0));
+  const orgExp = getOrganizationExperiences(dict).flatMap(y => y.jobs).filter(j => (j.point || 0) >= 80).sort((a, b) => (b.point || 0) - (a.point || 0));
+  const awardExp = getAwardExperiences(dict).flatMap(y => y.jobs).filter(j => (j.point || 0) >= 80).sort((a, b) => (b.point || 0) - (a.point || 0));
 
-  // Filtering function for Experience structure (Point >= 80)
-  const filterImportantExp = (exps: Experience[]): Experience[] => {
-    return exps.map(yearGroup => ({
-      ...yearGroup,
-      jobs: yearGroup.jobs.filter((job: Job) => (job.point || 0) >= 80)
-    })).filter(yearGroup => yearGroup.jobs.length > 0);
-  };
-
-  const importantWork = filterImportantExp(workExp);
-  const importantProjects = filterImportantExp(projectExp);
-  const importantOrg = filterImportantExp(orgExp);
-  const importantAwards = filterImportantExp(awardExp);
-
-  // Filter Certificates (Point >= 80)
-  const filterImportantCerts = (data: CertificateData): CertificateData => {
-    const filtered: CertificateData = {};
-    for (const cat in data) {
-      for (const year in data[cat]) {
-        for (const file in data[cat][year]) {
-          if ((data[cat][year][file].point || 0) >= 80) {
-            if (!filtered[cat]) filtered[cat] = {};
-            if (!filtered[cat][year]) filtered[cat][year] = {};
-            filtered[cat][year][file] = data[cat][year][file];
-          }
-        }
-      }
-    }
-    return filtered;
-  };
-
-  const importantCerts = filterImportantCerts(certificatesData);
-
-  // Filter Collections (Point >= 80)
-  const filterImportantCollections = (data: CollectionsData): CollectionsData => {
-    const filtered: CollectionsData = {};
-    for (const h1 in data) {
-      for (const h2 in data[h1]) {
-        for (const file in data[h1][h2]) {
-          if ((data[h1][h2][file].point || 0) >= 80) {
-            if (!filtered[h1]) filtered[h1] = {};
-            if (!filtered[h1][h2]) filtered[h1][h2] = {};
-            filtered[h1][h2][file] = data[h1][h2][file];
-          }
-        }
-      }
-    }
-    return filtered;
-  };
-
-  const importantCollege = filterImportantCollections(collegeData);
-  const importantLiterature = filterImportantCollections(literatureData);
-
-  const importantSocialLinks: SocialLink[] = [
-    {
-      name: "GitHub",
-      username: "FaranAiki",
-      url: "https://github.com/FaranAiki",
-      icon: <Github size={32} />,
-      color: "hover:border-theme-border"
-    },
-    {
-      name: "LinkedIn",
-      username: "Muhammad Faran Aiki",
-      url: "https://www.linkedin.com/in/muhammad-faran-aiki-8a6305343/",
-      icon: <Linkedin size={32} className="text-theme-500" />,
-      color: "hover:border-theme-500"
-    },
-    {
-      name: "Instagram",
-      username: "@mfaranaiki",
-      url: "https://www.instagram.com/mfaranaiki/",
-      icon: <Instagram size={32} className="text-pink-500" />,
-      color: "hover:border-pink-500"
-    },
-    {
-      name: "Twitter / X",
-      username: "@FaranAiki",
-      url: "https://x.com/FaranAiki",
-      icon: <Twitter size={32} className="text-sky-500" />,
-      color: "hover:border-sky-500"
-    },
-    {
-      name: "Link Tree",
-      username: "Faran Aiki",
-      url: "https://linktr.ee/FaranAiki",
-      icon: <Image alt="LinkTree icon" width="32" height="32" src="/images/social/linktree.webp" className="brightness-0 invert-[0.5] sepia-[1] hue-rotate-[70deg] saturate-[3]" />,
-      color: "hover:border-green-200"
-    },
-    {
-      name: "YouTube",
-      username: "Muhammad Faran Aiki",
-      url: "https://www.youtube.com/@FaranAiki",
-      icon: <Youtube size={32} className="text-red-600" />,
-      color: "hover:border-red-600"
-    },
+  const socialLinks = [
+    { icon: <Github size={20} />, url: "https://github.com/FaranAiki", label: "GitHub" },
+    { icon: <Linkedin size={20} />, url: "https://www.linkedin.com/in/muhammad-faran-aiki-8a6305343/", label: "LinkedIn" },
+    { icon: <Instagram size={20} />, url: "https://www.instagram.com/mfaranaiki/", label: "Instagram" },
+    { icon: <Twitter size={20} />, url: "https://x.com/FaranAiki", label: "Twitter" },
   ];
 
   const faranFaqs = [
@@ -163,181 +58,126 @@ export default async function PortfolioHighlightsPage({ params }: { params: Prom
     { question: dict.FAQ_Faran_Q4, answer: dict.FAQ_Faran_A4 },
   ];
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@graph": [
-      getPersonSchema(lang, dict.Faran_About_1?.replace(/<[^>]*>/g, '')),
-      getBreadcrumbSchema([
-        { name: dict.Home, item: `/${lang}` },
-        { name: dict.Portfolio, item: `/${lang}/portfolio` },
-      ]),
-      getFaqSchema(faranFaqs),
-    ]
-  };
-
   return (
-    <main className="w-full pt-20 pb-20 space-y-6">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      {/* Refined Portfolio Header */}
-      <section id="about" className="container mx-auto px-4 sm:px-8">
-        <PortfolioAboutHeader
-          lang={lang}
-          carouselPhotos={faranPhotos}
-          faran_photo={dict.Faran_Photo}
-          about_philosophy_title={dict.Faran_Philosophy_Title}
-          about_philosophy={dict.Faran_Philosophy}
-          about_principle_title={dict.Faran_Principle_Title}
-          about_principle_1={dict.Faran_Principle_1}
-          about_principle_2={dict.Faran_Principle_2}
-          about_principle_3=""
-          about_vision_mission_title={dict.Faran_Vision_Mission_Title}
-          about_vision_mission_1={dict.Faran_Vision_Mission_1}
-          about_vision_mission_2={dict.Faran_Vision_Mission_2}
-          about_vision_mission_3={dict.Faran_Vision_Mission_3}
-          about_title={dict.About_Me}
-          about_text_1={dict.Faran_About_1}
-          about_text_2={dict.Faran_About_2}
-        />
-      </section>
-
-      {/* Professional Content - High Point Highlights */}
-      <div className="space-y-6">
-        {/* Work & Projects - High Impact Full Width */}
-        {importantWork.length > 0 && (
-          <section id="work" className="space-y-2">
-            <div className="container mx-auto px-4 sm:px-8">
-                <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
-                    <Briefcase size={18} className="text-theme-500" />
-                    <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Work}</h2>
-                </div>
-            </div>
-            <ExperiencesClient
-              experiences={importantWork}
-              lang={lang}
-              layout="bento"
-              canChange={false}
-              click_to_close_text={dict.Click_To_Close}
-              modern_text={dict.Presentation_Modern}
-              cinematic_text={dict.Presentation_Cinematic}
-              editorial_text={dict.Presentation_Editorial}
-            />
-          </section>
-        )}
-
-        {importantProjects.length > 0 && (
-          <section id="projects" className="space-y-2">
-            <div className="container mx-auto px-4 sm:px-8">
-                <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
-                    <Code size={18} className="text-theme-500" />
-                    <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Project}</h2>
-                </div>
-            </div>
-            <ExperiencesClient
-              experiences={importantProjects}
-              lang={lang}
-              layout="original"
-              canChange={false}
-              click_to_close_text={dict.Click_To_Close}
-              modern_text={dict.Presentation_Modern}
-              cinematic_text={dict.Presentation_Cinematic}
-              editorial_text={dict.Presentation_Editorial}
-            />
-          </section>
-        )}
-
-        {/* Side-by-Side Organizations and Awards on Desktop */}
-        {(importantOrg.length > 0 || importantAwards.length > 0) && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 container mx-auto px-4 sm:px-8">
-            {importantOrg.length > 0 && (
-              <section id="organizations" className="space-y-2">
-                <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
-                    <Users size={18} className="text-theme-500" />
-                    <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Organization}</h2>
-                </div>
-                <div className="lg:contents">
-                   <ExperiencesClient
-                     experiences={importantOrg}
-                     lang={lang}
-                     layout="timeline"
-                     canChange={false}
-                     click_to_close_text={dict.Click_To_Close}
-                     modern_text={dict.Presentation_Modern}
-                     cinematic_text={dict.Presentation_Cinematic}
-                     editorial_text={dict.Presentation_Editorial}
-                   />
-                </div>
-              </section>
-            )}
-
-            {importantAwards.length > 0 && (
-              <section id="awards" className="space-y-2">
-                <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
-                    <Trophy size={18} className="text-theme-500" />
-                    <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Award}</h2>
-                </div>
-                <div className="lg:contents">
-                  <ExperiencesClient
-                    experiences={importantAwards}
-                    lang={lang}
-                    layout="timeline"
-                    canChange={false}
-                    click_to_close_text={dict.Click_To_Close}
-                    modern_text={dict.Presentation_Modern}
-                    cinematic_text={dict.Presentation_Cinematic}
-                    editorial_text={dict.Presentation_Editorial}
-                  />
-                </div>
-              </section>
-            )}
+    <main className="container mx-auto px-4 md:px-8 pt-24 pb-16 max-w-4xl">
+      <div className="space-y-12">
+        {/* Compact Header */}
+        <section className="text-center space-y-4">
+          <h1 className="text-3xl md:text-4xl font-black tracking-tighter nav-active-gacor">
+            {dict.Portfolio || 'Portfolio'} Muhammad Faran Aiki
+          </h1>
+          
+          {/* Compact Social */}
+          <div className="flex justify-center gap-4 pt-2">
+            {socialLinks.map((link, i) => (
+              <a 
+                key={i} 
+                href={link.url} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="p-2 rounded-full bg-theme-surface-strong border border-theme-border text-theme-muted hover:text-theme-500 hover:border-theme-500 transition-all hover:scale-110"
+                title={link.label}
+              >
+                {link.icon}
+              </a>
+            ))}
           </div>
-        )}
-
-        {/* Certificates - Visual Grid */}
-        {Object.keys(importantCerts).length > 0 && (
-          <section id="certificates" className="space-y-4">
-            <div className="container mx-auto px-4 sm:px-8">
-                <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
-                    <FileCheck size={18} className="text-theme-500" />
-                    <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Certificate}</h2>
-                </div>
-            </div>
-            <CertificatesDisplay certificates={importantCerts} lang={lang} allTranslation={dict.All} click_to_close_text={dict.Click_To_Close} />
-          </section>
-        )}
-
-        {/* Highlighted Materials - Side-by-Side on Desktop */}
-        {(Object.keys(importantCollege).length > 0 || Object.keys(importantLiterature).length > 0) && (
-          <section id="highlights" className="space-y-4 container mx-auto px-4 sm:px-8">
-            <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
-                <Star size={18} className="text-theme-500" />
-                <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Important_Highlights}</h2>
-            </div>            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {Object.keys(importantCollege).length > 0 && (
-                    <InteractiveCollections data={importantCollege} lang={lang} force_click={true} />
-                )}
-                {Object.keys(importantLiterature).length > 0 && (
-                    <InteractiveCollections data={importantLiterature} lang={lang} force_click={true} />
-                )}
-            </div>
-          </section>
-        )}
-
-        {/* Social Media Section */}
-        <section id="social" className="space-y-4 container mx-auto px-4 sm:px-8 pb-12">
-            <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
-                <Share2 size={18} className="text-theme-500" />
-                <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Social}</h2>
-            </div>
-            <div className="bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-3xl overflow-hidden">
-                <SocialDisplay customLinks={importantSocialLinks} hidePresentation={true} />
-            </div>
         </section>
 
-        {/* FAQ Section */}
-        <section className="container mx-auto px-4 sm:px-8 pb-20">
+        {/* Experience Sections */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+          
+          {/* Work Summary */}
+          <section className="space-y-6">
+            <div className="flex items-center gap-2 border-b border-theme-border pb-2">
+              <Briefcase size={18} className="text-theme-500" />
+              <h2 className="text-xl font-bold nav-active-gacor tracking-widest text-theme-muted uppercase">{dict.Work}</h2>
+            </div>
+            <div className="space-y-8">
+              {workExp.map((job, i) => (
+                <PortfolioSummaryItem 
+                  key={i}
+                  title={job.title}
+                  company={job.company}
+                  date={job.date}
+                  description={job.description}
+                />
+              ))}
+            </div>
+          </section>
+
+          {/* Project Summary */}
+          <section className="space-y-6">
+            <div className="flex items-center gap-2 border-b border-theme-border pb-2">
+              <Code size={18} className="text-theme-500" />
+              <h2 className="text-xl font-bold nav-active-gacor tracking-widest text-theme-muted uppercase">{dict.Project}</h2>
+            </div>
+            <div className="space-y-8">
+              {projectExp.map((job, i) => (
+                <PortfolioSummaryItem 
+                  key={i}
+                  title={job.title}
+                  company={job.company}
+                  date={job.date}
+                  description={job.description}
+                  url={job.url}
+                />
+              ))}
+            </div>
+          </section>
+
+          {/* Organization Summary */}
+          <section className="space-y-6">
+            <div className="flex items-center gap-2 border-b border-theme-border pb-2">
+              <Users size={18} className="text-theme-500" />
+              <h2 className="text-xl font-bold nav-active-gacor tracking-widest text-theme-muted uppercase">{dict.Organization}</h2>
+            </div>
+            <div className="space-y-8">
+              {orgExp.map((job, i) => (
+                <PortfolioSummaryItem 
+                  key={i}
+                  title={job.title}
+                  company={job.company}
+                  date={job.date}
+                  description={job.description}
+                />
+              ))}
+            </div>
+          </section>
+
+          {/* Award Summary */}
+          <section className="space-y-6">
+            <div className="flex items-center gap-2 border-b border-theme-border pb-2">
+              <Trophy size={18} className="text-theme-500" />
+              <h2 className="text-xl font-bold nav-active-gacor tracking-widest text-theme-muted uppercase">{dict.Award}</h2>
+            </div>
+            <div className="space-y-8">
+              {awardExp.map((job, i) => (
+                <PortfolioSummaryItem 
+                  key={i}
+                  title={job.title}
+                  company={job.company}
+                  date={job.date}
+                  description={job.description}
+                />
+              ))}
+            </div>
+          </section>
+        </div>
+
+        {/* Call to action for full portfolio */}
+        <section className="pt-8 text-center border-t border-theme-border">
+            <Link 
+                href={`/${lang}/all`}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-theme-surface-strong border border-theme-border hover:border-theme-500 transition-all font-bold text-sm text-[var(--text-muted)] hover:text-theme-500 group"
+            >
+                <Star size={16} className="group-hover:animate-spin-slow" />
+                {dict.Full_Portfolio || 'Full Portfolio'}
+            </Link>
+        </section>
+
+        {/* Compact FAQ Section */}
+        <section className="pb-20">
             <FAQ title={dict.FAQ_Faran_Title} items={faranFaqs} />
         </section>
       </div>

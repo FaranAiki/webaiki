@@ -4,6 +4,7 @@ describe('Typography Settings Persistence and Application', () => {
     '/',
     '/work',
     '/portfolio',
+    '/all',
   ];
 
   languages.forEach((lang) => {

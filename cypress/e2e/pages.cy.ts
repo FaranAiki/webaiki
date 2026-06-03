@@ -5,6 +5,7 @@ describe('Page Layout and Presentation Mode', () => {
     '/social',
     '/work',
     '/college',
+    '/all',
     '/portfolio',
     '/latest',
     '/project',
@@ -42,8 +43,8 @@ describe('Page Layout and Presentation Mode', () => {
             },
           });
           
-          if (route === '/portfolio') {
-            // /portfolio should disable presentation mode automatically
+          if (route === '/portfolio' || route === '/all') {
+            // /portfolio and /all should disable presentation mode automatically
             cy.get('body').should('not.have.class', 'presentation-mode');
           } else {
             cy.get('body').should('have.class', 'presentation-mode');

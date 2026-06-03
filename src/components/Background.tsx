@@ -258,7 +258,7 @@ export default function Background({ carousel }: BackgroundProps) {
   const overlayClass = !mounted
     ? "from-theme-surface/90 via-theme-surface/75 to-theme-surface/95" // Default for SSR
     : isDark
-      ? "from-theme-surface/90 via-theme-surface/80 to-theme-surface/90"
+      ? "from-theme-surface/93 via-theme-surface/85 to-theme-surface/93"
       : "from-theme-surface/85 via-theme-surface/85 to-theme-surface/85";
 
   return (
