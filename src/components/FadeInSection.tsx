@@ -70,7 +70,7 @@ export default function FadeInSection({
           {children}
 
           {slideIndex && (
-            <div className="absolute bottom-0 right-0 m-6 md:m-12 z-[100] print:hidden">
+            <div className="absolute bottom-0 right-0 m-6 md:m-12 z-[100]">
               <button
                 onClick={(e) => {
                     e.preventDefault();

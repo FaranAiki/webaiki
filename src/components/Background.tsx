@@ -254,10 +254,12 @@ export default function Background({ carousel }: BackgroundProps) {
     return () => clearInterval(interval);
   }, [carousel]);
 
-  const isDark = resolvedTheme === 'dark';
-  const overlayClass = isDark
-    ? "from-theme-surface/70 via-theme-surface/40 to-theme-surface/80"
-    : "from-theme-surface/95 via-theme-surface/65 to-theme-surface";
+  const isDark = mounted && resolvedTheme === 'dark';
+  const overlayClass = !mounted
+    ? "from-theme-surface/90 via-theme-surface/75 to-theme-surface/95" // Default for SSR
+    : isDark
+      ? "from-theme-surface/80 via-theme-surface/50 to-theme-surface/80"
+      : "from-theme-surface/90 via-theme-surface/75 to-theme-surface/95";
 
   return (
     <div className={`presentation-background sticky top-0 left-0 w-full h-screen -mb-[100vh] z-[-1] pointer-events-none transition-colors duration-[1500ms] ease-in-out bg-theme-bg dark:bg-theme-bg-dark transform-gpu contain-strict overflow-hidden`}>

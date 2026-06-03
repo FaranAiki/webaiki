@@ -70,12 +70,13 @@ export default async function BaseLayout({
   */
 
   return (
-    <html lang={lang} suppressHydrationWarning={true} nonce={nonce}>
+    <html lang={lang} dir={lang === 'he' || lang === 'ar' ? 'rtl' : 'ltr'} suppressHydrationWarning={true} nonce={nonce}>
       <head>
         <meta name="google-site-verification" content="xZMulZsvn0xj7TrxhEN8O9KLWSmNIfx6tqFtOpbgOV4" />
       </head>
       <body className={`${inter.variable} ${geistMono.variable} font-sans antialiased`}>
         <Providers 
+          loadingLabel={dict.Preparing_Portfolio}
           sultanLabels={sultanLabels}
           initialIsPresentationMode={initialIsPresentationMode}
           initialSlideNumberFormat={initialSlideNumberFormat}

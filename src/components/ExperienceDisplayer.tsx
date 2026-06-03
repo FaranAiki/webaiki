@@ -276,7 +276,7 @@ export default function ExperiencesClient({
             )}
 
             {isPresentationMode && (
-                <div className={`fixed bottom-8 left-8 z-[100] flex items-center p-1.5 rounded-xl border backdrop-blur-md shadow-2xl transition-all duration-300 border-theme-border ring-1 ring-black/5 dark:ring-white/10`}>
+                <div className={`fixed bottom-8 left-8 z-[100] flex items-center p-1.5 rounded-xl border backdrop-blur-md shadow-2xl transition-all duration-300 border-theme-border ring-1 ring-black/5 dark:ring-white/10 print:hidden`}>
                     <div className="flex gap-1">
                         {[
                             { id: 'modern', icon: <LayoutPanelLeft size={18} />, label: modern_text || 'Modern' },

@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 
 import { useState, useEffect, useMemo } from 'react';
 import { ChevronRight, Link as LinkIcon, XCircle, LayoutPanelLeft, Milestone, LayoutGrid } from 'lucide-react';
@@ -29,9 +29,9 @@ const getPath = (data: string | { path: string; point: number }): string => {
   return data?.path || '';
 };
 
-export default function InteractiveCollections( { 
-  data, 
-  force_click, 
+export default function InteractiveCollections( {
+  data,
+  force_click,
   lang = 'en',
   original_text = 'Original',
   timeline_text = 'Timeline',
@@ -50,26 +50,26 @@ export default function InteractiveCollections( {
 
   // Flatten for presentation mode: Max 4 items per slide
   const allSlides = useMemo(() => {
-    const slides: { 
-      headingOne: string; 
-      headingTwo: string; 
+    const slides: {
+      headingOne: string;
+      headingTwo: string;
       documents: [string, { path: string; point: number }][];
       part: number;
       totalParts: number;
     }[] = [];
-    
+
     const sortedHeadingOnes = Object.keys(data).sort();
-    
+
     for (const h1 of sortedHeadingOnes) {
       const headingTwos = data[h1];
       const sortedHeadingTwos = Object.keys(headingTwos).sort();
-      
+
       for (const h2 of sortedHeadingTwos) {
         const docEntries = Object.entries(headingTwos[h2]);
         if (docEntries.length > 0) {
           const chunkSize = 6;
           const totalParts = Math.ceil(docEntries.length / chunkSize);
-          
+
           for (let i = 0; i < docEntries.length; i += chunkSize) {
             slides.push({
               headingOne: h1,
@@ -87,7 +87,7 @@ export default function InteractiveCollections( {
 
   const isDark = mounted && resolvedTheme === 'dark';
   const hasContent = useMemo(() => {
-    return Object.values(data).some(h1 => 
+    return Object.values(data).some(h1 =>
       Object.values(h1).some(h2 => Object.keys(h2).length > 0)
     );
   }, [data]);
@@ -123,7 +123,7 @@ export default function InteractiveCollections( {
                     </span>
                   )}
                 </h2>
-                
+
                 <div className="w-full space-y-3 overflow-visible p-2 flex flex-col items-center no-scrollbar">
                   {slide.documents.map(([docName, docData]) => {
                     const filePath = getPath(docData);
@@ -138,9 +138,9 @@ export default function InteractiveCollections( {
                         <span className={`text-base md:text-lg font-bold ${titleColor} truncate max-w-[250px] md:max-w-md`}>{formatCJK(docName, lang)}</span>
                       </div>
                       {filePath && (
-                        <a 
-                          href={filePath} 
-                          target="_blank" 
+                        <a
+                          href={filePath}
+                          target="_blank"
                           rel="noopener noreferrer"
                           className="bg-theme-500 text-white px-4 py-1.5 rounded-full font-bold text-sm hover:bg-theme-600 transition-colors shadow-md shrink-0"
                         >
@@ -179,7 +179,7 @@ export default function InteractiveCollections( {
                       {Object.entries(data).map(([headingOne, courses]) => (
                       (Object.entries(courses).length > 0) &&
                       <FadeInSection key={headingOne} className="w-full max-w-2xl">
-                          <div 
+                          <div
                           className="w-full"
                           onMouseEnter={() => !force_click && (activeHeadingTwo === null) && setActiveHeadingOne(headingOne)}
                           >
@@ -193,7 +193,7 @@ export default function InteractiveCollections( {
                               }}}
                               className={`w-full flex justify-between items-center text-left p-4 rounded-lg transition-[colors,transform] duration-300 border-transparent ${
                               activeHeadingOne === headingOne
-                              ? activeButtonBg 
+                              ? activeButtonBg
                               : `${buttonBg} ${buttonText}`
                               }`}
                           >
@@ -207,24 +207,24 @@ export default function InteractiveCollections( {
                               <div className={`mt-2 ${dropdownBg} p-6 rounded-lg border animate-fade-in md:backdrop-blur-sm`}>
                               <div className="space-y-4">
                                   {Object.entries(courses).map(([headingTwo, documents], index) => (
-                                  <PopRotateSection 
-                                      key={headingTwo} 
-                                      delay={index * 50} 
+                                  <PopRotateSection
+                                      key={headingTwo}
+                                      delay={index * 50}
                                   >
-                                      <div 
+                                      <div
                                           onClick={() => activeHeadingTwo === headingTwo ? setActiveHeadingTwo(null) : setActiveHeadingTwo(headingTwo)}
                                       >
-                                          
+
                                           {Object.entries(documents).length > 0 && (<h3 className={`font-bold hover-gacor cursor-pointer hover:text-theme-600 transition-colors`}>{formatCJK(headingTwo, lang)}</h3>)}
-                                          
+
                                           {activeHeadingTwo === headingTwo && (
                                           Object.keys(documents).length > 0 ? (
                                               <div className={`pl-6 mt-2 space-y-2 ${linkText} animate-fade-in`}>
                                               {Object.entries(documents).map(([docName, docData], docIndex) => {
                                                   const filePath = getPath(docData);
                                                   return (
-                                                  <FadeInSection 
-                                                      key={docName} 
+                                                  <FadeInSection
+                                                      key={docName}
                                                       delay={docIndex * 30} // Staggered delay for each document
                                                   >
                                                       {filePath ? (
@@ -295,8 +295,8 @@ export default function InteractiveCollections( {
 
               {currentLayout === 'grid' && (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      {Object.entries(data).flatMap(([h1, courses]) => 
-                          Object.entries(courses).flatMap(([h2, documents]) => 
+                      {Object.entries(data).flatMap(([h1, courses]) =>
+                          Object.entries(courses).flatMap(([h2, documents]) =>
                               Object.entries(documents).map(([docName, docData]) => ({ h1, h2, docName, docData }))
                           )
                       ).map((item) => {
@@ -311,15 +311,15 @@ export default function InteractiveCollections( {
                               className={`p-6 rounded-2xl border ${dropdownBg} group shadow-sm hover:shadow-xl transition-all duration-300`}
                           >
                               <div className="mb-4">
-                                  <span className="text-xs font-bold text-gacor-smooth uppercase tracking-widest">{formatCJK(item.h1, lang)}</span>
+                                  <span className="text-xs font-bold text-gacor-smooth tracking-widest">{formatCJK(item.h1, lang)}</span>
                                   <h3 className={`text-lg font-black ${titleColor} hover-gacor line-clamp-1`}>{formatCJK(item.docName, lang)}</h3>
                                   <p className={`text-sm italic text-gacor-smooth`}>{formatCJK(item.h2, lang)}</p>
                               </div>
                               {filePath ? (
-                                  <a 
-                                      href={filePath} 
-                                      target="_blank" 
-                                      rel="noopener noreferrer" 
+                                  <a
+                                      href={filePath}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
                                       className="inline-flex items-center gap-2 text-theme-500 font-bold hover:underline"
                                   >
                                       View Document <LinkIcon size={14} />

@@ -14,6 +14,8 @@ const dictionaries: Record<string, () => Promise<Record<string, string>>> = {
   de: () => import('../../public/locales/de.json').then((module) => module.default),
   nl: () => import('../../public/locales/nl.json').then((module) => module.default),
   ha: () => import('../../public/locales/ha.json').then((module) => module.default),
+  he: () => import('../../public/locales/he.json').then((module) => module.default),
+  el: () => import('../../public/locales/el.json').then((module) => module.default),
 };
 
 export const getDictionary = async (locale: string): Promise<Record<string, string>> => {

@@ -47,6 +47,8 @@ interface HeaderProps {
     de_lang: string;
     nl_lang: string;
     ha_lang: string;
+    he_lang: string;
+    el_lang: string;
     select_lang: string;
     presentation_mode: string;
     navigation_label: string;
@@ -120,6 +122,8 @@ export default function Header(props: HeaderProps) {
         de_lang, 
         nl_lang, 
         ha_lang,
+        he_lang,
+        el_lang,
         select_lang, 
         presentation_mode,
         navigation_label,
@@ -303,6 +307,8 @@ export default function Header(props: HeaderProps) {
         { code: 'nl', name: nl_lang, flag: '/images/flags/nl.webp' },
         { code: 'ar', name: ar_lang, flag: '/images/flags/ar.webp' },
         { code: 'ha', name: ha_lang, flag: '/images/flags/ha.webp' },
+        { code: 'he', name: he_lang, flag: '/images/flags/he.webp' },
+        { code: 'el', name: el_lang, flag: '/images/flags/el.webp' },
     ];
 
     const handleLanguageChange = async (langCode: string) => {

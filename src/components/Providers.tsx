@@ -10,6 +10,7 @@ interface ProvidersProps {
   children: React.ReactNode;
   initialIsPresentationMode?: boolean;
   initialSlideNumberFormat?: SlideNumberFormat;
+  loadingLabel?: string;
   sultanLabels?: {
     Creating: string;
     Ready: string;
@@ -24,10 +25,12 @@ interface ProvidersProps {
 
 import QueryProvider from "./QueryProvider";
 import SmoothScroll from "./SmoothScroll";
+import LoadingOverlay from "./LoadingOverlay";
 
 export function Providers({ 
   children, 
   sultanLabels,
+  loadingLabel,
   initialIsPresentationMode,
   initialSlideNumberFormat
 }: ProvidersProps) {
@@ -48,6 +51,7 @@ export function Providers({
         >
           <QueryProvider>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+                <LoadingOverlay isMounted={mounted} label={loadingLabel} />
                 {children}
             </ThemeProvider>
           </QueryProvider>
@@ -65,6 +69,7 @@ export function Providers({
         <QueryProvider>
           <SmoothScroll>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+              <LoadingOverlay isMounted={mounted} label={loadingLabel} />
               {children}
               <SultanPrint labels={sultanLabels} />
             </ThemeProvider>

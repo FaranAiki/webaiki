@@ -99,6 +99,8 @@ export default async function RootLayout({
         de_lang={dict.German}
         nl_lang={dict.Dutch}
         ha_lang={dict.Hausa}
+        he_lang={dict.Hebrew}
+        el_lang={dict.Greek}
         select_lang={dict.Select_Language}
         presentation_mode={dict.Presentation_Mode}
         navigation_label={dict.Navigation}
