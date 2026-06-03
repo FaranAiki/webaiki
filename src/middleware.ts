@@ -47,11 +47,28 @@ export function middleware(request: NextRequest) {
     }
   });
 
-  // 1. Get the language from the cookie
+  // 1. Get the language from the cookie or Accept-Language header
   const cookieLang = request.cookies.get('language')?.value;
   
-  // 2. Validate the cookie or fallback to default
-  const locale = locales.includes(cookieLang as string) ? cookieLang : defaultLocale;
+  let locale = defaultLocale;
+  if (cookieLang && locales.includes(cookieLang)) {
+    locale = cookieLang;
+  } else {
+    // Detect browser language
+    const acceptLanguage = request.headers.get('accept-language');
+    if (acceptLanguage) {
+      const preferredLocales = acceptLanguage.split(',').map(lang => {
+        const [code] = lang.split(';')[0].split('-');
+        return code.trim().toLowerCase();
+      });
+      for (const code of preferredLocales) {
+        if (locales.includes(code)) {
+          locale = code;
+          break;
+        }
+      }
+    }
+  }
 
   // 3. Check if the current URL already has a language prefix
   const pathnameHasLocale = locales.some(
@@ -102,6 +119,7 @@ export function middleware(request: NextRequest) {
   // Pass the nonce and CSP to the request headers
   requestHeaders.set('x-nonce', nonce);
   requestHeaders.set('Content-Security-Policy', cspHeader);
+  requestHeaders.set('x-locale', locale);
 
   const isUasProject = pathname.includes('/project/uas_matematika_dasar');
   const isPythonProject = pathname.includes('/project/script');
