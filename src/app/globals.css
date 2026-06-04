@@ -611,7 +611,6 @@ body.presentation-mode .presentation-section img {
 @media print {
   @page {
     margin: 0;
-    size: landscape;
   }
 
   /* Force presentation mode visuals during print */

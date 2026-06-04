@@ -1,0 +1,6 @@
+# Global owners
+*       @FaranAiki
+
+# Specific paths
+/public/ @FaranAiki
+/src/    @FaranAiki

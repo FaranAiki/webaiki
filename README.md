@@ -61,7 +61,7 @@ A custom context-driven system that transforms the standard vertical portfolio i
 - Slide Numbering: Dynamic numbering supporting Decimal, Hexadecimal, and Binary formats
 - Format Cycling: Interactive numbering UI allowing users to switch between numeric bases on the fly
 
-### Sultan PDF Generator
+### Sultan PDF Generator (Experimental)
 A high-fidelity export tool designed to bypass standard browser print limitations:
 - Server-side Rendering: Ensures consistent output regardless of user browser or OS
 - State Injection: Forces the application into a specialized print state via localStorage injection before capture

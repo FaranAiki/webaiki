@@ -114,6 +114,15 @@ export function PresentationProvider({
     if (isPresentationMode) {
       document.body.classList.add('presentation-mode');
       
+      // Inject landscape orientation style for printing
+      const styleId = 'presentation-print-style';
+      if (!document.getElementById(styleId)) {
+        const style = document.createElement('style');
+        style.id = styleId;
+        style.innerHTML = '@media print { @page { size: landscape; } }';
+        document.head.appendChild(style);
+      }
+      
       const handleWheel = (e: WheelEvent) => {
         const target = e.target as HTMLElement;
         const main = document.querySelector('main');
@@ -183,6 +192,11 @@ export function PresentationProvider({
       };
     } else {
       document.body.classList.remove('presentation-mode');
+      const styleId = 'presentation-print-style';
+      const style = document.getElementById(styleId);
+      if (style) {
+        style.remove();
+      }
     }
   }, [isPresentationMode]);
 
