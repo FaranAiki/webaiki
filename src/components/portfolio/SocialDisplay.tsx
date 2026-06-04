@@ -55,8 +55,6 @@ export default function SocialDisplay({ customLinks, hidePresentation = false }:
   const usernameClass = "text-[var(--text-muted)] group-hover:text-foreground";
   const nameClass = "text-foreground";
   
-  const githubColor = "text-black dark:text-white";
-
   const defaultSocialLinks: SocialLink[] = [
     {
       name: "GitHub",

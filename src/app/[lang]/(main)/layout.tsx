@@ -127,7 +127,10 @@ export default async function RootLayout({
           Color_Green: dict.Color_Green,
           Color_Purple: dict.Color_Purple,
           Color_Orange: dict.Color_Orange,
-          Color_Mono: dict.Color_Mono
+          Color_Mono: dict.Color_Mono,
+          Advanced_Section: dict.Advanced_Section,
+          ATS_Friendly: dict.ATS_Friendly,
+          Expand_All: dict.Expand_All
         }}
       />
       <div id="main-content">

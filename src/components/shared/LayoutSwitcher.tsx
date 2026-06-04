@@ -11,7 +11,6 @@ export interface LayoutOption<T extends string> {
 interface LayoutSwitcherProps<T extends string> {
     currentLayout: T;
     setCurrentLayout: (layout: T) => void;
-    isDark: boolean;
     canChange: boolean;
     options: LayoutOption<T>[];
 }
@@ -19,7 +18,6 @@ interface LayoutSwitcherProps<T extends string> {
 export function LayoutSwitcher<T extends string>({ 
     currentLayout, 
     setCurrentLayout, 
-    isDark, 
     canChange, 
     options 
 }: LayoutSwitcherProps<T>) {

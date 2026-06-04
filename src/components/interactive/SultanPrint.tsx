@@ -149,8 +149,6 @@ export default function SultanPrint({ labels }: SultanPrintProps) {
     };
   }, [resolvedTheme, slideNumberFormat, font, textAlign, textScale, letterSpacing, lineHeight, isAtsMode, isExpandAll]);
 
-  const isDark = resolvedTheme === 'dark';
-  
   // Find active font 
   const activeFont = fonts.find(f => f.name === font);
   

@@ -65,8 +65,6 @@ export default function MusicDisplay({ youtubeItems = [], error, lang }: MusicDi
     };
   }, [isPresentationMode]);
 
-  const isDark = mounted && resolvedTheme === 'dark';
-
   const items = useMemo(() => Array.isArray(youtubeItems) ? youtubeItems : [], [youtubeItems]);
 
   // Chunk YouTube items for presentation slides (max 6 per slide)

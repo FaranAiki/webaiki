@@ -280,7 +280,6 @@ export default function CertificatesDisplay({
           <LayoutSwitcher
               currentLayout={currentLayout}
               setCurrentLayout={setCurrentLayout}
-              isDark={isDark}
               canChange={true}
               options={[
                   { id: 'original', icon: <LayoutPanelLeft size={18} />, label: original_text },

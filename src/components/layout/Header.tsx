@@ -72,6 +72,9 @@ interface HeaderProps {
         Color_Purple: string;
         Color_Orange: string;
         Color_Mono: string;
+        Advanced_Section: string;
+        ATS_Friendly: string;
+        Expand_All: string;
     };
 }
 

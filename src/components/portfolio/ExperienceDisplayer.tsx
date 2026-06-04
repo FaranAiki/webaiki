@@ -263,7 +263,6 @@ export default function ExperiencesClient({
                 <LayoutSwitcher
                     currentLayout={currentLayout}
                     setCurrentLayout={setCurrentLayout}
-                    isDark={isDark}
                     canChange={canChange}
                     options={[
                         { id: 'original', icon: <LayoutPanelLeft size={18} />, label: original_text },
