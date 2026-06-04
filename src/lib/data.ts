@@ -137,7 +137,7 @@ export const getProjectExperiences = (dict: Dictionary) => [
       {
         date: `${dict.February} 2026 — ${dict.Present}`,
         title: dict.Alkyl_Compiler,
-        company: 'LLVM, C',
+        company: 'LLVM, C, Valgrind, GDB',
         description: dict.Alkyl_Compiler_Description,
         point: 95,
         image: [
@@ -155,7 +155,7 @@ export const getProjectExperiences = (dict: Dictionary) => [
       {
         date: `${dict.November} 2025 — ${dict.Present}`,
         title: dict.Make_Interactive_UAS,
-        company: 'Analitica',
+        company: 'Flutter, Dart, Mathematics, FL Chart',
         description: dict.Make_Interactive_UAS_Description,
         point: 85,
         image: [
@@ -168,7 +168,7 @@ export const getProjectExperiences = (dict: Dictionary) => [
       {
         date: `${dict.October} 2025 — ${dict.Present}`,
         title: dict.Make_Website,
-        company: 'faranaiki.id',
+        company: 'NextJS, TailwindCSS, TypeScript, Prisma, SQL, Lenis, Framer-Motion',
         description: dict.Make_Website_Description,
         point: 80,
         image: [
@@ -204,13 +204,27 @@ export const getProjectExperiences = (dict: Dictionary) => [
       {
         date: `${dict.November} 2023 — ${dict.Present}`,
         title: dict.Make_Nihwm,
-        company: 'Linux',
+        company: 'Linux, C, XOrg',
         description: dict.Make_Nihwm_Description,
         point: 70,
         image: [
           '/documents/project/Nihwm_0.webp',
         ],
         url: 'https://www.github.com/FaranAiki/nihwm',
+      },
+    ]
+  },
+  {
+    year: '2022',
+    jobs: [
+      {
+        date: `${dict.April} 2022`,
+        title: dict.Olive_Divergence,
+        company: 'C++, Qt',
+        description: dict.Olive_Divergence_Desc,
+        point: 75,
+        image: [],
+        url: 'https://github.com/OldFaranAiki/olive-divergence/',
       },
     ]
   },
