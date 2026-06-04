@@ -84,6 +84,51 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: 'faranaiki.id' },
     ],
   },
+
+  async redirects() {
+    const socials = [
+      { slug: 'github', url: 'https://github.com/FaranAiki' },
+      { slug: 'linkedin', url: 'https://www.linkedin.com/in/muhammad-faran-aiki-8a6305343/' },
+      { slug: 'instagram', url: 'https://www.instagram.com/mfaranaiki/' },
+      { slug: 'twitter', url: 'https://x.com/FaranAiki' },
+      { slug: 'x', url: 'https://x.com/FaranAiki' },
+      { slug: 'linktree', url: 'https://linktr.ee/FaranAiki' },
+      { slug: 'youtube', url: 'https://www.youtube.com/@FaranAiki' },
+      { slug: 'tiktok', url: 'https://www.tiktok.com/@faranaiki07' },
+      { slug: 'mal', url: 'https://myanimelist.net/profile/FaranAiki' },
+      { slug: 'myanimelist', url: 'https://myanimelist.net/profile/FaranAiki' },
+      { slug: 'lichess', url: 'https://lichess.org/@/FaranAiki' },
+      { slug: 'quora', url: 'https://id.quora.com/profile/Muhammad-Faran-Aiki-4' },
+      { slug: 'reddit', url: 'https://www.reddit.com/user/FaranAiki/' },
+      { slug: 'slideshare', url: 'https://www.slideshare.net/MuhammadFaranAiki' },
+      { slug: 'scribd', url: 'https://id.scribd.com/user/530310522/Muhammad-Faran-Aiki' },
+      { slug: 'line', url: 'https://line.me/ti/p/8ZF2kENUEj' },
+      { slug: 'telegram', url: 'https://t.me/FaranAiki' },
+      { slug: 'email', url: 'mailto:faran.aiki.business@gmail.com' },
+    ];
+
+    const langPattern = '(en|id|zh|jp|ru|fr|ar|es|ko|de|nl|ha|he|el)';
+    
+    const redirectList: { source: string; destination: string; permanent: boolean }[] = [];
+    
+    socials.forEach(({ slug, url }) => {
+      // Root-level redirect: /slug
+      redirectList.push({
+        source: `/${slug}`,
+        destination: url,
+        permanent: false,
+      });
+      
+      // Localized redirect: /[lang]/slug
+      redirectList.push({
+        source: `/:lang${langPattern}/${slug}`,
+        destination: url,
+        permanent: false,
+      });
+    });
+
+    return redirectList;
+  },
 };
 
 export default nextConfig;
