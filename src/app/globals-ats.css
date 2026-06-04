@@ -1,0 +1,207 @@
+/* ATS Mode Styles - STRICTLY SCOPED */
+body.ats-mode main.portfolio-main {
+  line-height: 1.1 !important;
+  font-size: 12px !important;
+  max-width: 850px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 20mm !important;
+  padding-right: 20mm !important;
+  padding-top: 24px !important;
+  overflow: visible !important;
+  height: auto !important;
+}
+
+/* Force everything to be top-bottom */
+body.ats-mode .portfolio-header-section:not(.ats-header),
+body.ats-mode .portfolio-grid {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  gap: 3px !important;
+  width: 100% !important;
+  overflow: visible !important;
+}
+
+body.ats-mode .ats-header {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  width: 100% !important;
+}
+
+body.ats-mode .portfolio-social-icon-link {
+  display: none !important;
+}
+
+body.ats-mode .portfolio-social-text-link {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 11px !important;
+  text-decoration: none !important;
+  color: var(--theme-color-600) !important;
+  font-weight: bold !important;
+}
+
+body.ats-mode .portfolio-social-text-link svg {
+  width: 12px !important;
+  height: 12px !important;
+  color: var(--theme-color-600) !important;
+}
+
+body.ats-mode .portfolio-grid {
+  gap: 8px !important;
+}
+
+body.ats-mode .portfolio-main section {
+  margin-top: 0 !important;
+  margin-bottom: 3px !important;
+  overflow: visible !important;
+}
+
+/* Tighten Summary Items uniformly */
+body.ats-mode .portfolio-main .space-y-1,
+body.ats-mode .portfolio-main .space-y-2 {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0px !important;
+  overflow: visible !important;
+}
+
+body.ats-mode .portfolio-main .portfolio-grid > section {
+  width: 100% !important;
+}
+
+body.ats-mode .portfolio-summary-item {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0px !important;
+  border-left: none !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+  overflow: visible !important;
+}
+
+body.ats-mode .portfolio-item-header {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+body.ats-mode .portfolio-item-meta {
+  display: none !important;
+}
+
+body.ats-mode .portfolio-social-text-icon {
+  display: flex !important;
+}
+
+body.ats-mode .portfolio-item-actions,
+body.ats-mode .portfolio-item-chevron,
+body.ats-mode .portfolio-item-link {
+  display: none !important;
+}
+
+body.ats-mode .portfolio-item-title {
+  font-size: 13px !important;
+}
+
+body.ats-mode .portfolio-item-meta-ats {
+  font-size: 11px !important;
+}
+
+/* Prevent ATS mode from stripping 'gacor' styles from the navbar/settings */
+body.ats-mode header .nav-active-gacor,
+body.ats-mode .SettingsPopup_content .nav-active-gacor {
+  background: linear-gradient(90deg, var(--gacor-1), var(--gacor-2), var(--gacor-3), var(--gacor-1)) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* Only hide non-essential content area elements */
+body.ats-mode main.portfolio-main .FAQ_website_section,
+body.ats-mode main.portfolio-main section.border-t.border-theme-border.pt-6,
+body.ats-mode main.portfolio-main .pt-24 {
+  padding-top: 0 !important;
+}
+
+body.ats-mode main.portfolio-main .pb-12 {
+  padding-bottom: 0 !important;
+}
+
+/* Presentation and Sultan Print Styles */
+.presentation-background {
+  position: sticky;
+  top: 0;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  contain: strict;
+}
+
+body.presentation-mode {
+  overflow: hidden !important;
+}
+
+body.presentation-mode main {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  height: 100vh !important;
+  width: 100vw !important;
+  scroll-snap-type: x mandatory;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  max-width: none !important;
+}
+
+body.presentation-mode .presentation-container {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  height: 100vh !important;
+  width: auto !important;
+}
+
+body.presentation-mode .presentation-section,
+body.presentation-mode .presentation-container > * {
+  min-width: 100vw !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+  flex-shrink: 0 !important;
+  scroll-snap-align: start;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  transform: none !important;
+  opacity: 1 !important;
+  filter: none !important;
+  position: relative;
+}
+
+body.presentation-mode main > div:not(.presentation-container) {
+  display: contents;
+}
+
+body.presentation-mode .presentation-section img {
+  max-height: 75vh;
+  max-width: 95%;
+  height: auto;
+  width: auto;
+  object-fit: contain;
+}

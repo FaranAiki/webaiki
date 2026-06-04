@@ -1,0 +1,90 @@
+@media print {
+  /* Reset Page Margins */
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  /* Global Reset for Print - No Gradients, No Shadows */
+  * {
+    background-image: none !important;
+    background-clip: border-box !important;
+    -webkit-background-clip: border-box !important;
+    -webkit-text-fill-color: currentcolor !important;
+    text-fill-color: currentcolor !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  html, body {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    background-image: none !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Standard CV Margin (1 inch) via Padding on the Main Container */
+  body.ats-mode main.portfolio-main {
+    padding: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    background: #ffffff !important;
+  }
+
+  /* Force visibility for content */
+  main, section, .portfolio-content-wrapper, .portfolio-summary-item {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    overflow: visible !important;
+  }
+
+  /* Hide Backgrounds and UI */
+  header, nav, footer:not(.print\:block), .no-print,
+  canvas, [class*="Background_"], .presentation-background,
+  .portfolio-item-actions, .portfolio-item-chevron, .portfolio-item-link,
+  #ask-me-popup-container, .cookie-initializer {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+  }
+
+  /* Typography Fixes */
+  body.ats-mode {
+    font-size: 12px !important;
+    line-height: 1.1 !important;
+  }
+
+  /* Color Fixes */
+  * {
+    color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  /* Keep theme color for specific links if desired */
+  body.ats-mode .portfolio-social-text-link {
+    color: var(--theme-color-600) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+
+  /* Page Break Logic */
+  .portfolio-summary-item {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    margin-bottom: 4px !important;
+  }
+
+  /* Ensure content flows to next page */
+  .portfolio-grid {
+    display: block !important;
+  }
+}

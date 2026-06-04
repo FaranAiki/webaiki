@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { usePathname } from 'next/navigation';
 import { useSettings, fonts, TextAlign } from './SettingsContext';
 import { 
   Settings, 
@@ -43,6 +44,7 @@ interface SettingsPopupProps {
 }
 
 export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenChange, inline = false }: SettingsPopupProps) {
+  const pathname = usePathname();
   const [internalIsOpen, setInternalIsOpen] = useState(false);
   const [isFontDropdownOpen, setIsFontDropdownOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -67,7 +69,16 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
     isExpandAll, setIsExpandAll,
     resetSettings
   } = useSettings();
-  
+
+  const isPortfolioPage = pathname?.includes('/portfolio');
+
+  // Disable ATS mode if we leave the portfolio page
+  useEffect(() => {
+    if (!isPortfolioPage && isAtsMode) {
+      setIsAtsMode(false);
+    }
+  }, [isPortfolioPage, isAtsMode, setIsAtsMode]);
+
   // Use CSS variables and Tailwind dark: variants for styling to avoid hydration mismatch
   const textColorClass = "text-[var(--text-muted)]";
   const popupRef = useRef<HTMLDivElement>(null);
@@ -130,7 +141,7 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
   const currentFontClass = fonts.find(f => f.name === font)?.class || '';
 
   const renderContent = () => (
-    <div className="space-y-6" data-lenis-prevent>
+    <div className="space-y-6 SettingsPopup_content" data-lenis-prevent>
       {/* Header */}
       <div className={`flex items-center justify-between border-b pb-4 border-theme-border`}>
         <h3 className="text-lg font-bold flex items-center gap-2 nav-active-gacor">
@@ -242,50 +253,52 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
             </button>
           ))}
         </div>
-        </div>
+      </div>
 
-        {/* Advanced & Printing Section */}
+      {/* Advanced & Printing Section - ONLY ON PORTFOLIO PAGE */}
+      {isPortfolioPage && (
         <div className="space-y-3">
-        <div className="flex items-center gap-2 text-xs font-bold text-theme-muted tracking-wide">
-          <Settings size={14} />
-          {labels.Advanced_Section}
-        </div>
-        <div className="space-y-2">
-          <label className="flex items-center gap-3 cursor-pointer group">
-            <div className="relative">
-              <input 
-                type="checkbox" 
-                checked={isAtsMode}
-                onChange={(e) => setIsAtsMode(e.target.checked)}
-                className="sr-only"
-              />
-              <div className={`w-10 h-5 rounded-full transition-colors duration-200 ${isAtsMode ? 'bg-theme-500' : 'bg-theme-surface-strong border border-theme-border'}`} />
-              <div className={`absolute top-1 left-1 w-3 h-3 rounded-full bg-white transition-transform duration-200 ${isAtsMode ? 'translate-x-5' : 'translate-x-0'}`} />
-            </div>
-            <span className="text-sm font-medium text-foreground group-hover:text-theme-500 transition-colors">
-              {labels.ATS_Friendly}
-            </span>
-          </label>
+          <div className="flex items-center gap-2 text-xs font-bold text-theme-muted tracking-wide">
+            <Settings size={14} />
+            {labels.Advanced_Section}
+          </div>
+          <div className="space-y-2">
+            <label className="flex items-center gap-3 cursor-pointer group">
+              <div className="relative">
+                <input 
+                  type="checkbox" 
+                  checked={isAtsMode}
+                  onChange={(e) => setIsAtsMode(e.target.checked)}
+                  className="sr-only"
+                />
+                <div className={`w-10 h-5 rounded-full transition-colors duration-200 ${isAtsMode ? 'bg-theme-500' : 'bg-theme-surface-strong border border-theme-border'}`} />
+                <div className={`absolute top-1 left-1 w-3 h-3 rounded-full bg-white transition-transform duration-200 ${isAtsMode ? 'translate-x-5' : 'translate-x-0'}`} />
+              </div>
+              <span className="text-sm font-medium text-foreground group-hover:text-theme-500 transition-colors">
+                {labels.ATS_Friendly}
+              </span>
+            </label>
 
-          <label className="flex items-center gap-3 cursor-pointer group">
-            <div className="relative">
-              <input 
-                type="checkbox" 
-                checked={isExpandAll}
-                onChange={(e) => setIsExpandAll(e.target.checked)}
-                className="sr-only"
-              />
-              <div className={`w-10 h-5 rounded-full transition-colors duration-200 ${isExpandAll ? 'bg-theme-500' : 'bg-theme-surface-strong border border-theme-border'}`} />
-              <div className={`absolute top-1 left-1 w-3 h-3 rounded-full bg-white transition-transform duration-200 ${isExpandAll ? 'translate-x-5' : 'translate-x-0'}`} />
-            </div>
-            <span className="text-sm font-medium text-foreground group-hover:text-theme-500 transition-colors">
-              {labels.Expand_All}
-            </span>
-          </label>
+            <label className="flex items-center gap-3 cursor-pointer group">
+              <div className="relative">
+                <input 
+                  type="checkbox" 
+                  checked={isExpandAll}
+                  onChange={(e) => setIsExpandAll(e.target.checked)}
+                  className="sr-only"
+                />
+                <div className={`w-10 h-5 rounded-full transition-colors duration-200 ${isExpandAll ? 'bg-theme-500' : 'bg-theme-surface-strong border border-theme-border'}`} />
+                <div className={`absolute top-1 left-1 w-3 h-3 rounded-full bg-white transition-transform duration-200 ${isExpandAll ? 'translate-x-5' : 'translate-x-0'}`} />
+              </div>
+              <span className="text-sm font-medium text-foreground group-hover:text-theme-500 transition-colors">
+                {labels.Expand_All}
+              </span>
+            </label>
+          </div>
         </div>
-        </div>
+      )}
 
-        {/* Controls Section */}
+      {/* Controls Section */}
       <div className="space-y-5">
         {/* Text Scaling */}
         <div className="space-y-2">

@@ -19,7 +19,9 @@ interface FAQProps {
 
 export default function FAQ({ id, title, items, className = "" }: FAQProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const { isExpandAll } = useSettings();
+  const { isExpandAll, isAtsMode } = useSettings();
+
+  if (isAtsMode) return null;
 
   return (
     <div id={id} className={`w-full max-w-4xl mx-auto ${className}`}>

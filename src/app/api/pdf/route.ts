@@ -160,7 +160,7 @@ export async function POST(req: NextRequest) {
       const style = document.createElement('style');
       style.textContent = `
         @page { size: A4 landscape; margin: 0; }
-        ${isAts ? '@page { size: A4 portrait; margin: 20mm; }' : ''}
+        ${isAts ? '@page { size: A4 portrait; margin: 5mm 20mm; }' : ''}
         * { transition: none !important; animation: none !important; }
         .fixed, header, nav, footer, .no-print, .presentation-switcher, #ask-me-popup-container { display: none !important; }
         body.presentation-mode main { display: block !important; height: auto !important; width: 100% !important; overflow: visible !important; }
@@ -170,7 +170,7 @@ export async function POST(req: NextRequest) {
         img { opacity: 1 !important; visibility: visible !important; display: block !important; }
         ${isAts ? 'img, .presentation-background, .presentation-nav { display: none !important; }' : ''}
         ${isAts ? 'body { background: white !important; color: black !important; }' : ''}
-        ${isAts ? '.presentation-section { border-bottom: 1px solid #eee; padding-bottom: 2rem; margin-bottom: 2rem; }' : ''}
+        ${isAts ? '.presentation-section { border-bottom: none !important; padding: 0 !important; margin: 0 !important; }' : ''}
       `;
       document.head.appendChild(style);
     }, theme, isAtsMode, isExpandAll);
@@ -194,7 +194,7 @@ export async function POST(req: NextRequest) {
       landscape: !isAtsMode,
       printBackground: !isAtsMode,
       scale: 1, 
-      margin: isAtsMode ? { top: '20mm', right: '20mm', bottom: '20mm', left: '20mm' } : { top: '0', right: '0', bottom: '0', left: '0' },
+      margin: isAtsMode ? { top: '5mm', right: '20mm', bottom: '5mm', left: '20mm' } : { top: '0', right: '0', bottom: '0', left: '0' },
       timeout: 60000
     });
 
