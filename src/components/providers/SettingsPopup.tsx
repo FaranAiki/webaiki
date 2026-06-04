@@ -33,6 +33,9 @@ interface SettingsPopupProps {
     Color_Purple: string;
     Color_Orange: string;
     Color_Mono: string;
+    Advanced_Section: string;
+    ATS_Friendly: string;
+    Expand_All: string;
   };
   isOpen?: boolean;
   onOpenChange?: (isOpen: boolean) => void;
@@ -60,6 +63,8 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
     letterSpacing, setLetterSpacing,
     lineHeight, setLineHeight,
     color, setColor,
+    isAtsMode, setIsAtsMode,
+    isExpandAll, setIsExpandAll,
     resetSettings
   } = useSettings();
   
@@ -237,9 +242,50 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
             </button>
           ))}
         </div>
-      </div>
+        </div>
 
-      {/* Controls Section */}
+        {/* Advanced & Printing Section */}
+        <div className="space-y-3">
+        <div className="flex items-center gap-2 text-xs font-bold text-theme-muted tracking-wide">
+          <Settings size={14} />
+          {labels.Advanced_Section}
+        </div>
+        <div className="space-y-2">
+          <label className="flex items-center gap-3 cursor-pointer group">
+            <div className="relative">
+              <input 
+                type="checkbox" 
+                checked={isAtsMode}
+                onChange={(e) => setIsAtsMode(e.target.checked)}
+                className="sr-only"
+              />
+              <div className={`w-10 h-5 rounded-full transition-colors duration-200 ${isAtsMode ? 'bg-theme-500' : 'bg-theme-surface-strong border border-theme-border'}`} />
+              <div className={`absolute top-1 left-1 w-3 h-3 rounded-full bg-white transition-transform duration-200 ${isAtsMode ? 'translate-x-5' : 'translate-x-0'}`} />
+            </div>
+            <span className="text-sm font-medium text-foreground group-hover:text-theme-500 transition-colors">
+              {labels.ATS_Friendly}
+            </span>
+          </label>
+
+          <label className="flex items-center gap-3 cursor-pointer group">
+            <div className="relative">
+              <input 
+                type="checkbox" 
+                checked={isExpandAll}
+                onChange={(e) => setIsExpandAll(e.target.checked)}
+                className="sr-only"
+              />
+              <div className={`w-10 h-5 rounded-full transition-colors duration-200 ${isExpandAll ? 'bg-theme-500' : 'bg-theme-surface-strong border border-theme-border'}`} />
+              <div className={`absolute top-1 left-1 w-3 h-3 rounded-full bg-white transition-transform duration-200 ${isExpandAll ? 'translate-x-5' : 'translate-x-0'}`} />
+            </div>
+            <span className="text-sm font-medium text-foreground group-hover:text-theme-500 transition-colors">
+              {labels.Expand_All}
+            </span>
+          </label>
+        </div>
+        </div>
+
+        {/* Controls Section */}
       <div className="space-y-5">
         {/* Text Scaling */}
         <div className="space-y-2">

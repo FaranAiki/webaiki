@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Calendar, ExternalLink, ChevronDown, ChevronUp } from 'lucide-react';
 import HoverableWords from '../shared/HoverableWords';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useSettings } from '../providers/SettingsContext';
 
 interface PortfolioSummaryItemProps {
   title: string;
@@ -21,6 +22,7 @@ export default function PortfolioSummaryItem({
   url
 }: PortfolioSummaryItemProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const { isExpandAll } = useSettings();
 
   const getBrief = (text: string) => {
     if (!text) return "";
@@ -29,6 +31,7 @@ export default function PortfolioSummaryItem({
   };
 
   const brief = getBrief(description);
+  const showContent = isOpen || isExpandAll;
 
   return (
     <div
@@ -52,7 +55,7 @@ export default function PortfolioSummaryItem({
               </a>
             )}
             <div className="text-theme-muted">
-                {isOpen ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+                {showContent ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
             </div>
         </div>
       </div>
@@ -66,8 +69,8 @@ export default function PortfolioSummaryItem({
       </div>
 
 
-      <AnimatePresence>
-        {isOpen && brief && (
+      <AnimatePresence initial={false}>
+        {showContent && brief && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}

@@ -9,6 +9,8 @@ interface SultanRequest {
   url: string;
   theme: 'light' | 'dark';
   slideFormat: string;
+  isAtsMode?: boolean;
+  isExpandAll?: boolean;
   settings?: {
     font: string;
     textAlign: string;
@@ -71,7 +73,7 @@ interface PuppeteerRequest {
 export async function POST(req: NextRequest) {
   let browser: PuppeteerBrowser | null = null;
   try {
-    const { url, theme, slideFormat, settings } = (await req.json()) as SultanRequest;
+    const { url, theme, slideFormat, isAtsMode, isExpandAll, settings } = (await req.json()) as SultanRequest;
 
     if (!url) return NextResponse.json({ error: 'URL is required' }, { status: 400 });
 
@@ -94,10 +96,12 @@ export async function POST(req: NextRequest) {
     const page = await browser.newPage();
     
     // 1. Force state & Disable all lazy logic at source
-    await page.evaluateOnNewDocument((t: unknown, f: unknown, s: unknown) => {
+    await page.evaluateOnNewDocument((t: unknown, f: unknown, s: unknown, ats: unknown, exp: unknown) => {
       const theme = t as string;
       const receivedSlideFormat = f as string;
       const settings = s as SultanRequest['settings'];
+      const isAts = ats as boolean;
+      const isExpand = exp as boolean;
       
       // Force early state
       window.localStorage.setItem('presentation_mode', 'true');
@@ -112,12 +116,15 @@ export async function POST(req: NextRequest) {
         window.localStorage.setItem('settings-spacing', settings.letterSpacing.toString());
         window.localStorage.setItem('settings-align', settings.textAlign);
       }
+
+      window.localStorage.setItem('settings-ats', isAts ? 'true' : 'false');
+      window.localStorage.setItem('settings-expand-all', isExpand ? 'true' : 'false');
       
       // Disable smooth scrolling which can mess with screenshots/PDFs
       const style = document.createElement('style');
       style.textContent = '* { scroll-behavior: auto !important; transition: none !important; animation: none !important; }';
       document.head.appendChild(style);
-    }, theme, slideFormat, settings);
+    }, theme, slideFormat, settings, isAtsMode, isExpandAll);
 
     // 2. Exact Navigation - Optimized for speed and reliability
     // We wait for 'load' instead of 'networkidle0' which can hang on analytics/background scripts
@@ -132,10 +139,15 @@ export async function POST(req: NextRequest) {
     }
 
     // 3. Final Layout Force - Crucial for Puppeteer to see the right dimensions
-    await page.evaluate((t: unknown) => {
+    await page.evaluate((t: unknown, ats: unknown, exp: unknown) => {
       const theme = t as string;
+      const isAts = ats as boolean;
+      const isExpand = exp as boolean;
+
       document.documentElement.classList.add(theme, 'is-printing-sultan');
       document.body.classList.add('presentation-mode');
+      if (isAts) document.body.classList.add('ats-mode');
+      if (isExpand) document.body.classList.add('expand-all');
       
       // Force all presentation sections to be visible and correctly sized
       const main = document.querySelector('main');
@@ -148,15 +160,20 @@ export async function POST(req: NextRequest) {
       const style = document.createElement('style');
       style.textContent = `
         @page { size: A4 landscape; margin: 0; }
+        ${isAts ? '@page { size: A4 portrait; margin: 20mm; }' : ''}
         * { transition: none !important; animation: none !important; }
         .fixed, header, nav, footer, .no-print, .presentation-switcher, #ask-me-popup-container { display: none !important; }
         body.presentation-mode main { display: block !important; height: auto !important; width: 100% !important; overflow: visible !important; }
         .presentation-section { display: flex !important; height: 100vh !important; width: 100% !important; opacity: 1 !important; visibility: visible !important; break-after: page; }
+        ${isAts ? '.presentation-section { display: block !important; height: auto !important; break-after: auto !important; }' : ''}
         .presentation-container { display: block !important; height: auto !important; width: 100% !important; }
         img { opacity: 1 !important; visibility: visible !important; display: block !important; }
+        ${isAts ? 'img, .presentation-background, .presentation-nav { display: none !important; }' : ''}
+        ${isAts ? 'body { background: white !important; color: black !important; }' : ''}
+        ${isAts ? '.presentation-section { border-bottom: 1px solid #eee; padding-bottom: 2rem; margin-bottom: 2rem; }' : ''}
       `;
       document.head.appendChild(style);
-    }, theme);
+    }, theme, isAtsMode, isExpandAll);
 
     // 4. Robust Image & Content Wait
     await page.evaluate(async () => {
@@ -174,10 +191,10 @@ export async function POST(req: NextRequest) {
     // 5. Generate PDF
     const pdfBuffer = await page.pdf({
       format: 'A4',
-      landscape: true,
-      printBackground: true,
+      landscape: !isAtsMode,
+      printBackground: !isAtsMode,
       scale: 1, 
-      margin: { top: '0', right: '0', bottom: '0', left: '0' },
+      margin: isAtsMode ? { top: '20mm', right: '20mm', bottom: '20mm', left: '20mm' } : { top: '0', right: '0', bottom: '0', left: '0' },
       timeout: 60000
     });
 

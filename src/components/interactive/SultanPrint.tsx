@@ -29,7 +29,7 @@ interface SultanPrintProps {
 export default function SultanPrint({ labels }: SultanPrintProps) {
   const { resolvedTheme } = useTheme();
   const { slideNumberFormat } = usePresentation();
-  const { font, textAlign, textScale, letterSpacing, lineHeight } = useSettings();
+  const { font, textAlign, textScale, letterSpacing, lineHeight, isAtsMode, isExpandAll } = useSettings();
   
   const [status, setStatus] = useState<'idle' | 'printing' | 'success' | 'error'>('idle');
   const [progress, setProgress] = useState(0);
@@ -90,6 +90,8 @@ export default function SultanPrint({ labels }: SultanPrintProps) {
             url: window.location.href,
             theme: resolvedTheme,
             slideFormat: slideNumberFormat,
+            isAtsMode,
+            isExpandAll,
             settings: {
               font,
               textAlign,
@@ -145,7 +147,7 @@ export default function SultanPrint({ labels }: SultanPrintProps) {
         if (progressInterval) clearInterval(progressInterval);
         if (abortControllerRef.current) abortControllerRef.current.abort();
     };
-  }, [resolvedTheme, slideNumberFormat, font, textAlign, textScale, letterSpacing, lineHeight]);
+  }, [resolvedTheme, slideNumberFormat, font, textAlign, textScale, letterSpacing, lineHeight, isAtsMode, isExpandAll]);
 
   const isDark = resolvedTheme === 'dark';
   

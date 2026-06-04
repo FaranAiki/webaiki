@@ -85,6 +85,10 @@ interface SettingsContextType {
   setLineHeight: (height: number) => void;
   color: string;
   setColor: (color: string) => void;
+  isAtsMode: boolean;
+  setIsAtsMode: (ats: boolean) => void;
+  isExpandAll: boolean;
+  setIsExpandAll: (expand: boolean) => void;
   colorRGB: { r: number, g: number, b: number };
   resetSettings: () => void;
 }
@@ -98,6 +102,8 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [letterSpacing, setLetterSpacing] = useState(0); 
   const [lineHeight, setLineHeight] = useState(1.5);
   const [color, setColor] = useState('blue');
+  const [isAtsMode, setIsAtsMode] = useState(false);
+  const [isExpandAll, setIsExpandAll] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   const resetSettings = () => {
@@ -107,6 +113,8 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     setLetterSpacing(0);
     setLineHeight(1.5);
     setColor('blue');
+    setIsAtsMode(false);
+    setIsExpandAll(false);
   };
 
   const colorRGB = React.useMemo(() => {
@@ -148,6 +156,8 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     const savedSpacing = getSetting('settings-spacing');
     const savedLineHeight = getSetting('settings-lineheight');
     const savedColor = getSetting('color');
+    const savedAts = getSetting('settings-ats');
+    const savedExpand = getSetting('settings-expand-all');
 
     if (savedFont) setFont(savedFont);
     if (savedAlign) setTextAlign(savedAlign);
@@ -155,6 +165,8 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     if (savedSpacing) setLetterSpacing(Number(savedSpacing));
     if (savedLineHeight) setLineHeight(Number(savedLineHeight));
     if (savedColor) setColor(savedColor);
+    if (savedAts) setIsAtsMode(savedAts === 'true');
+    if (savedExpand) setIsExpandAll(savedExpand === 'true');
     
     setMounted(true);
   }, []);
@@ -167,6 +179,8 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     localStorage.setItem('settings-spacing', letterSpacing.toString());
     localStorage.setItem('settings-lineheight', lineHeight.toString());
     localStorage.setItem('color', color);
+    localStorage.setItem('settings-ats', isAtsMode.toString());
+    localStorage.setItem('settings-expand-all', isExpandAll.toString());
 
     const root = document.documentElement;
     const body = document.body;
@@ -191,7 +205,15 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     
     // Alignment (applied to body)
     body.style.textAlign = textAlign === 'default' ? '' : textAlign;
-  }, [font, textAlign, textScale, letterSpacing, lineHeight, color, mounted]);
+
+    // ATS Mode and Expand All helpers
+    if (isAtsMode) body.classList.add('ats-mode');
+    else body.classList.remove('ats-mode');
+
+    if (isExpandAll) body.classList.add('expand-all');
+    else body.classList.remove('expand-all');
+
+  }, [font, textAlign, textScale, letterSpacing, lineHeight, color, isAtsMode, isExpandAll, mounted]);
 
   return (
     <SettingsContext.Provider value={{ 
@@ -201,6 +223,8 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       letterSpacing, setLetterSpacing,
       lineHeight, setLineHeight,
       color, setColor,
+      isAtsMode, setIsAtsMode,
+      isExpandAll, setIsExpandAll,
       colorRGB,
       resetSettings
     }}>
