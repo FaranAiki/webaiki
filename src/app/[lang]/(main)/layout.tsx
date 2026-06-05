@@ -143,7 +143,8 @@ export default async function RootLayout({
           Management: dict.Management,
           Arts: dict.Arts,
           Achievement: dict.Achievement,
-          Language: dict.Language
+          Language: dict.Language,
+          User: dict.User
         }}
       />
       <div id="main-content">

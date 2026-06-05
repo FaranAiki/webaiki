@@ -31,8 +31,8 @@ export type Job = {
     url?: string;
     year?: string;
     point?: number;
-    tag?: ExperienceTag;
-    tagLabel?: string;
+    tag?: ExperienceTag[];
+    tagLabel?: string[];
 };
 
 export type Experience = {
@@ -63,12 +63,16 @@ interface ExperiencesClientProps {
 
 // --- Sub-components for stability ---
 
-const TagBadge = ({ label }: { label?: string }) => {
-    if (!label) return null;
+const TagBadge = ({ labels }: { labels?: string[] }) => {
+    if (!labels || labels.length === 0) return null;
     return (
-        <span className="inline-block px-1.5 py-0.5 text-[9px] font-black rounded-md bg-theme-500/10 text-theme-500 border border-theme-500/20 tracking-wider ml-2 vertical-middle">
-            {label}
-        </span>
+        <div className="inline-flex flex-wrap gap-1 ml-2 vertical-middle">
+            {labels.map((label, idx) => (
+                <span key={idx} className="inline-block px-1.5 py-0.5 text-[9px] font-black rounded-md bg-theme-500/10 text-theme-500 border border-theme-500/20 tracking-wider">
+                    {label}
+                </span>
+            ))}
+        </div>
     );
 };
 
@@ -142,7 +146,7 @@ const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, j
                         <p className="text-theme-500 text-xs font-bold mb-1">{job.year}</p>
                         <h3 className="text-lg md:text-xl font-black leading-tight mb-1 nav-active-gacor">
                             {job.title}
-                            <TagBadge label={job.tagLabel} />
+                            <TagBadge labels={job.tagLabel} />
                         </h3>
                     </div>
                     {job.url && (
@@ -171,7 +175,7 @@ const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, j
                     >
                         <div className="overflow-y-auto max-h-full pr-2 custom-scrollbar">
                             <p className="text-theme-500 text-xs font-bold mb-2">{job.date}</p>
-                            <h3 className="text-xl font-black mb-1 nav-active-gacor">{job.title}<TagBadge label={job.tagLabel} /></h3>
+                            <h3 className="text-xl font-black mb-1 nav-active-gacor">{job.title}<TagBadge labels={job.tagLabel} /></h3>
                             <p className={`text-sm italic mb-4 ${isDark ? 'text-theme-300' : 'text-theme-600'}`}>{job.company}</p>
                             <div className={`text-sm leading-relaxed text-foreground ${justifyClass}`}>
                                 {formatCJK(job.description, lang)}
@@ -329,7 +333,7 @@ export default function ExperiencesClient({
                                     <div className="flex-[1.2] flex flex-col justify-center space-y-6 max-w-2xl print:max-w-none">
                                         <div className="space-y-2">
                                             <h2 className="text-theme-600 dark:text-theme-400 font-bold text-xl md:text-2xl tracking-tight">{job.year}</h2>
-                                            <h3 className="text-3xl md:text-5xl font-black leading-tight tracking-tighter text-foreground">{job.title}<TagBadge label={job.tagLabel} /></h3>
+                                            <h3 className="text-3xl md:text-5xl font-black leading-tight tracking-tighter text-foreground">{job.title}<TagBadge labels={job.tagLabel} /></h3>
                                             <h4 className="text-theme-600 dark:text-theme-400 text-xl md:text-2xl italic opacity-90">{job.company}</h4>
                                             <p style={dateStyle} className="text-base md:text-lg font-medium italic text-muted-foreground">{job.date}</p>
                                         </div>
@@ -378,7 +382,7 @@ export default function ExperiencesClient({
                                                     <span className="w-16 h-1.5 bg-theme-500 rounded-full" />
                                                     <h2 className="text-theme-600 dark:text-theme-400 font-black text-2xl tracking-tight">{job.year}</h2>
                                                 </div>
-                                                <h3 className={`text-3xl md:text-5xl font-black leading-[0.85] tracking-tighter text-foreground`}>{job.title}<TagBadge label={job.tagLabel} /></h3>
+                                                <h3 className={`text-3xl md:text-5xl font-black leading-[0.85] tracking-tighter text-foreground`}>{job.title}<TagBadge labels={job.tagLabel} /></h3>
                                                 <p className="text-xl md:text-3xl text-theme-600 dark:text-theme-400 font-bold italic tracking-tight">{job.company}</p>
 
                                                 {job.url && (
@@ -417,7 +421,7 @@ export default function ExperiencesClient({
                                                 </div>
                                                 <h3 className={`text-3xl md:text-5xl font-black text-foreground leading-[0.85] tracking-tighter`}>
                                                     {job.title}
-                                                    <TagBadge label={job.tagLabel} />
+                                                    <TagBadge labels={job.tagLabel} />
                                                 </h3>
                                                 <p className="text-2xl md:text-3xl font-bold text-theme-600 dark:text-theme-400 italic tracking-tight">{job.company}</p>
                                                 </div>
@@ -481,7 +485,7 @@ export default function ExperiencesClient({
                                                     >
                                                         <p className="text-xs mb-1 text-muted-foreground">{job.date}</p>
                                                         <div className="flex justify-between items-center mb-1">
-                                                            <h3 className={`text-xl font-bold ${mainText} group-hover:text-theme-500 ${job.url ? 'underline decoration-dotted decoration-theme-500/30' : ''}`}>{job.title}<TagBadge label={job.tagLabel} /></h3>
+                                                            <h3 className={`text-xl font-bold ${mainText} group-hover:text-theme-500 ${job.url ? 'underline decoration-dotted decoration-theme-500/30' : ''}`}>{job.title}<TagBadge labels={job.tagLabel} /></h3>
                                                             {job.url && <ExternalLink size={14} className="text-theme-500 opacity-0 group-hover:opacity-100 transition-opacity" />}
                                                         </div>
                                                         <p className="text-theme-600 dark:text-theme-400 italic mb-3">{job.company}</p>
@@ -516,7 +520,7 @@ export default function ExperiencesClient({
                                                 </AnimatePresence>
                                             </div>
                                             <div className="mt-4 text-center">
-                                                <h3 className={`text-2xl font-black ${mainText}`}>{activeJob.title}<TagBadge label={activeJob.tagLabel} /></h3>
+                                                <h3 className={`text-2xl font-black ${mainText}`}>{activeJob.title}<TagBadge labels={activeJob.tagLabel} /></h3>
                                                 <p className="text-lg italic text-theme-600 dark:text-theme-400">{activeJob.company}</p>
                                             </div>
                                         </div>
@@ -553,7 +557,7 @@ export default function ExperiencesClient({
                                                     <div className="flex-1">
                                                         <p className="text-xs mb-1 text-muted-foreground">{job.date}</p>
                                                         <div className="flex items-center gap-2 mb-1">
-                                                            <h3 className={`text-2xl font-bold ${mainText} group-hover:text-theme-500`}>{job.title}<TagBadge label={job.tagLabel} /></h3>
+                                                            <h3 className={`text-2xl font-bold ${mainText} group-hover:text-theme-500`}>{job.title}<TagBadge labels={job.tagLabel} /></h3>
                                                             {job.url && <ExternalLink size={16} className="text-theme-500 opacity-0 group-hover:opacity-100 transition-all" />}
                                                         </div>
                                                         <p className="text-lg font-semibold italic text-theme-600 dark:text-theme-400 mb-4">{job.company}</p>
@@ -589,7 +593,7 @@ export default function ExperiencesClient({
                                         </div>
                                         <p className="text-xs mb-1 text-muted-foreground">{job.date}</p>
                                         <div className="flex justify-between items-start mb-1">
-                                            <h3 className={`text-xl font-black ${mainText} group-hover:text-theme-500`}>{job.title}<TagBadge label={job.tagLabel} /></h3>
+                                            <h3 className={`text-xl font-black ${mainText} group-hover:text-theme-500`}>{job.title}<TagBadge labels={job.tagLabel} /></h3>
                                             {job.url && <ExternalLink size={14} className="text-theme-500 opacity-0 group-hover:opacity-100 transition-opacity shrink-0 ml-2" />}
                                         </div>
                                         <p className="text-sm italic text-theme-600 dark:text-theme-400 mb-4">{job.company}</p>
@@ -628,7 +632,7 @@ export default function ExperiencesClient({
                                                     <p className="text-sm font-bold text-muted-foreground">{job.date}</p>
                                                 </div>
                                                 <div className="flex items-center gap-3">
-                                                    <h3 className={`text-4xl md:text-5xl font-black ${mainText} group-hover:text-theme-500 leading-tight transition-colors`}>{job.title}<TagBadge label={job.tagLabel} /></h3>
+                                                    <h3 className={`text-4xl md:text-5xl font-black ${mainText} group-hover:text-theme-500 leading-tight transition-colors`}>{job.title}<TagBadge labels={job.tagLabel} /></h3>
                                                     {job.url && <ExternalLink size={24} className="text-theme-500 opacity-0 group-hover:opacity-100 transition-all translate-y-2" />}
                                                 </div>
                                                 <p className="text-xl font-medium italic text-theme-600 dark:text-theme-400 opacity-80">{job.company}</p>

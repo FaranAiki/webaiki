@@ -5,6 +5,8 @@ import { useSettings } from '../providers/SettingsContext';
 import { Briefcase, Code, Users, Trophy } from 'lucide-react';
 import PortfolioSummaryItem from './PortfolioSummaryItem';
 
+import { ExperienceTag } from '@/lib/types';
+
 interface Job {
   title: string;
   company: string;
@@ -12,8 +14,21 @@ interface Job {
   description: string;
   point?: number;
   url?: string;
-  tag?: string;
+  tag?: string[];
 }
+
+const CATEGORY_ORDER: Record<string, number> = {
+  [ExperienceTag.Education]: 1,
+  [ExperienceTag.Data]: 2,
+  [ExperienceTag.Human]: 3,
+  [ExperienceTag.Technology]: 4,
+  [ExperienceTag.Math]: 5,
+  [ExperienceTag.Management]: 6,
+  [ExperienceTag.Arts]: 7,
+  [ExperienceTag.Achievement]: 8,
+  [ExperienceTag.Language]: 9,
+  [ExperienceTag.User]: 10,
+};
 
 interface PortfolioExperienceListProps {
   workExperiences: Job[];
@@ -44,10 +59,22 @@ export default function PortfolioExperienceList({
       filtered = jobs.filter(j => (j.point || 0) >= 80);
     } else if (portfolioFilter !== 'all') {
       // Filter by tag
-      filtered = jobs.filter(j => j.tag === portfolioFilter);
+      filtered = jobs.filter(j => j.tag?.includes(portfolioFilter));
     }
     
-    return filtered.sort((a, b) => (b.point || 0) - (a.point || 0));
+    return filtered.sort((a, b) => {
+      const catA = a.tag?.[0] || '';
+      const catB = b.tag?.[0] || '';
+      
+      const orderA = CATEGORY_ORDER[catA] || 999;
+      const orderB = CATEGORY_ORDER[catB] || 999;
+      
+      if (orderA !== orderB) {
+        return orderA - orderB;
+      }
+      
+      return (b.point || 0) - (a.point || 0);
+    });
   };
 
   const filteredWork = useMemo(() => filterJobs(workExperiences), [workExperiences, portfolioFilter]);

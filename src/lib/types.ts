@@ -7,5 +7,7 @@ export enum ExperienceTag {
     Management = "Management",
     Arts = "Arts",
     Achievement = "Achievement",
-    Language = "Language"
+    Language = "Language",
+    User = "User"
 }
+

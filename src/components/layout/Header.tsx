@@ -87,6 +87,7 @@ interface HeaderProps {
         Arts: string;
         Achievement: string;
         Language: string;
+        User: string;
     };
 }
 
