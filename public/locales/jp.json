@@ -290,9 +290,9 @@
   "User": "ユーザー",
   "Identity": "アイデンティティ",
   "Website": "ウェブサイト",
-  "Website_Summary": "このサイトの技術、パフォーマンス、目的に関する情報。",
-  "What_Do_You_Want_To_Base": "何を{word}たいですか？",
-  "Word_See": "見",
+  "Website_Summary": "このサイトの技術、パフォーマンス、目的についての情報。",
+  "What_Do_You_Want_To_Base": "何を{word}たいですか",
+  "Word_See": "見る",
   "Word_Do": "し",
   "Word_Know": "知り",
   "Word_Search": "探し"

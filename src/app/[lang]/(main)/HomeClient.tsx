@@ -1,27 +1,62 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import TrackingEye from "@/components/interactive/TrackingEye";
+import TrackingIcon, { TrackerType } from "@/components/interactive/TrackingIcon";
 import FadeInSection from "@/components/shared/FadeInSection";
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface HomeClientProps {
   lang: string;
   dict: any;
-  questionText: string;
 }
 
-export default function HomeClient({ lang, dict, questionText }: HomeClientProps) {
+export default function HomeClient({ lang, dict }: HomeClientProps) {
   const [isReady, setIsReady] = useState(false);
+  const [wordIndex, setWordIndex] = useState(0);
+
+  const cyclingData: { word: string; type: TrackerType }[] = [
+    { word: dict.Word_See || "see", type: 'see' },
+    { word: dict.Word_Do || "do", type: 'do' },
+    { word: dict.Word_Know || "know", type: 'know' },
+    { word: dict.Word_Search || "search", type: 'search' }
+  ];
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsReady(true);
-    }, 800);
-    return () => clearTimeout(timer);
+    const checkLoading = () => {
+      const loadingOverlay = document.querySelector('.fixed.inset-0.z-\\[100\\]');
+      if (!loadingOverlay) {
+        setIsReady(true);
+      } else {
+        const observer = new MutationObserver(() => {
+          if (!document.querySelector('.fixed.inset-0.z-\\[100\\]')) {
+            setIsReady(true);
+            observer.disconnect();
+          }
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+        const fallback = setTimeout(() => {
+          setIsReady(true);
+          observer.disconnect();
+        }, 3000);
+        return () => {
+          observer.disconnect();
+          clearTimeout(fallback);
+        };
+      }
+    };
+    checkLoading();
   }, []);
 
-  const words = questionText.split(' ');
+  useEffect(() => {
+    if (!isReady) return;
+    const interval = setInterval(() => {
+      setWordIndex((prev) => (prev + 1) % cyclingData.length);
+    }, 3000); // 3 second interval
+    return () => clearInterval(interval);
+  }, [isReady, cyclingData.length]);
+
+  const baseText = dict.What_Do_You_Want_To_Base || "What do you want to {word}?";
+  const parts = baseText.split("{word}");
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -34,76 +69,71 @@ export default function HomeClient({ lang, dict, questionText }: HomeClientProps
     },
   };
 
-  const wordVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 20,
-      filter: 'blur(10px)',
-    },
-    visible: { 
-      opacity: 1, 
+  const partVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
       y: 0,
-      filter: 'blur(0px)',
-      transition: {
-        duration: 0.8,
-        ease: [0.2, 0.65, 0.3, 0.9],
-      },
-    },
+      transition: { duration: 0.4, ease: "easeOut" }
+    }
   };
 
-  // Subtle floating animation for each word
-  const floatingAnimation = (i: number) => ({
-    y: [0, -5, 0],
-    transition: {
-      duration: 3,
-      repeat: Infinity,
-      ease: "easeInOut",
-      delay: i * 0.2,
-    }
-  });
-
   return (
-    <main className="min-h-[85vh] flex flex-col items-center justify-center p-6 md:p-12 overflow-hidden">
-      <div className="w-full max-w-5xl">
-        <div className="flex flex-col md:flex-row items-center md:items-center justify-between gap-8 md:gap-12">
+    <main className="min-h-[85vh] flex flex-col items-center justify-center pt-24 overflow-hidden">
+      <div className="w-full max-w-6xl">
+        <div className="relative flex flex-col md:flex-row items-center justify-between gap-12">
 
           {/* The Main Question Section */}
-          <div className="relative flex-1 max-w-3xl">
-              <motion.h1 
-                className="text-5xl md:text-8xl font-black tracking-tighter leading-[1] nav-active-gacor relative z-10"
+          <div className="relative flex-1 z-10 text-center md:text-left">
+              <motion.h1
+                className="text-4xl md:text-6xl font-black tracking-tighter"
                 variants={containerVariants}
                 initial="hidden"
                 animate={isReady ? "visible" : "hidden"}
               >
-                {words.map((word, index) => (
-                  <motion.span 
-                    key={index} 
-                    className="inline-block mr-[0.2em]"
-                    variants={wordVariants}
-                    animate={isReady ? floatingAnimation(index) : {}}
-                  >
-                    {word}
-                  </motion.span>
-                ))}
+                <motion.span variants={partVariants} className="inline-block whitespace-pre-wrap nav-active-gacor">{parts[0]}</motion.span>
+
+                {/* Dynamic Word Container - Using a more stable inline-flex approach */}
+                <span className="inline-flex relative vertical-middle mx-[0.1em] h-[1.1em] min-w-[1.5ch]">
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={wordIndex}
+                      initial={{ y: 30, opacity: 0 }}
+                      animate={{ y: 24, opacity: 1 }}
+                      exit={{ y: -30, opacity: 0 }}
+                      transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+                      className="absolute left-0 bottom-0 text-theme-500 whitespace-nowrap nav-active-gacor"
+                    >
+                      {cyclingData[wordIndex].word}
+                    </motion.span>
+                  </AnimatePresence>
+                </span>
+
+                <motion.span variants={partVariants} className="inline-block whitespace-pre-wrap nav-active-gacor">{parts[1]}</motion.span>
               </motion.h1>
           </div>
 
-          {/* The Eye Section (Right side) */}
-          <motion.div 
-            className="flex-shrink-0 relative group translate-y-[-10%] md:translate-y-0"
-            initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
-            animate={isReady ? { opacity: 1, scale: 1, rotate: 0 } : {}}
-            transition={{ delay: 1, duration: 1, ease: "easeOut" }}
-          >
-              <TrackingEye />
-              <div className="absolute -inset-8 bg-theme-500/5 rounded-full blur-3xl -z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-          </motion.div>
+          {/* Dynamic Interactive Icon Section (Floating Right) */}
+          <div className="flex-shrink-0 relative w-48 h-48 md:w-64 md:h-64 flex items-center justify-center">
+            <AnimatePresence mode="wait">
+                <motion.div
+                    key={wordIndex}
+                    initial={{ opacity: 0, scale: 0.8, rotate: -15, filter: 'blur(10px)' }}
+                    animate={{ opacity: 1, scale: 1, rotate: 0, filter: 'blur(0px)' }}
+                    exit={{ opacity: 0, scale: 1.1, rotate: 15, filter: 'blur(10px)' }}
+                    transition={{ duration: 0.6, ease: "anticipate" }}
+                    className="absolute"
+                >
+                    <TrackingIcon type={cyclingData[wordIndex].type} />
+                </motion.div>
+            </AnimatePresence>
+          </div>
 
         </div>
 
         {/* Quick Navigation / Explore Section */}
-        <FadeInSection delay={1.5}>
-            <div className="mt-20 md:mt-32 grid grid-cols-2 md:grid-cols-4 gap-4 w-full">
+        <FadeInSection delay={isReady ? 1.2 : 0}>
+            <div className="mt-24 md:mt-32 grid grid-cols-2 md:grid-cols-4 gap-4 w-full no-print">
                 {[
                     { name: dict.Identity, href: `/${lang}/identity` },
                     { name: dict.Website, href: `/${lang}/website` },
