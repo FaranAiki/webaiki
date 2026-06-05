@@ -274,5 +274,14 @@
   "Semester": "فصل دراسي",
   "Olive_Divergence": "Olive Divergence",
   "Olive_Divergence_Desc": "A fork of the 0.1.x version of Olive Video Editor, focusing on feature experimentation and community-driven development.",
-  "Resume": "Resume"
+  "Resume": "Resume",
+  "Education": "التعليم",
+  "Data": "البيانات",
+  "Human": "بشري",
+  "Technology": "التكنولوجيا",
+  "Math": "الرياضيات",
+  "Management": "الإدارة",
+  "Arts": "الفنون",
+  "Achievement": "الإنجاز",
+  "Language": "اللغة"
 }

@@ -274,5 +274,14 @@
   "Semester": "Εξάμηνο",
   "Olive_Divergence": "Olive Divergence",
   "Olive_Divergence_Desc": "A fork of the 0.1.x version of Olive Video Editor, focusing on feature experimentation and community-driven development.",
-  "Resume": "Resume"
+  "Resume": "Resume",
+  "Education": "Εκπαίδευση",
+  "Data": "Δεδομένα",
+  "Human": "Άνθρωπος",
+  "Technology": "Τεχνολογία",
+  "Math": "Μαθηματικά",
+  "Management": "Διαχείριση",
+  "Arts": "Τέχνες",
+  "Achievement": "Επίτευγμα",
+  "Language": "Γλώσσα"
 }

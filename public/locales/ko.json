@@ -274,5 +274,14 @@
   "Semester": "학기",
   "Olive_Divergence": "Olive Divergence",
   "Olive_Divergence_Desc": "A fork of the 0.1.x version of Olive Video Editor, focusing on feature experimentation and community-driven development.",
-  "Resume": "Resume"
+  "Resume": "Resume",
+  "Education": "교육",
+  "Data": "데이터",
+  "Human": "인간",
+  "Technology": "기술",
+  "Math": "수학",
+  "Management": "경영",
+  "Arts": "예술",
+  "Achievement": "성취",
+  "Language": "언어"
 }

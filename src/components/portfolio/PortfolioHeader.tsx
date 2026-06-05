@@ -29,7 +29,7 @@ export default function PortfolioHeader({ title, resumeLabel, subtitle, about, s
   if (isAtsMode) {
     return (
       <section className="flex flex-col items-center text-center gap-1 border-b border-theme-border pb-1 portfolio-header-section ats-header">
-        <h1 className="text-3xl font-black tracking-tighter uppercase">
+        <h1 className="text-3xl font-black tracking-tighter">
           {resumeLabel}
         </h1>
 
