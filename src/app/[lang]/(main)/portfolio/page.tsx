@@ -14,6 +14,7 @@ import Link from 'next/link';
 import PortfolioSummaryItem from '@/components/portfolio/PortfolioSummaryItem';
 import PortfolioHeader from '@/components/portfolio/PortfolioHeader';
 import PortfolioClientWrapper from '@/components/portfolio/PortfolioClientWrapper';
+import PortfolioExperienceList from '@/components/portfolio/PortfolioExperienceList';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -41,10 +42,10 @@ export default async function PortfolioSummaryPage({ params }: { params: Promise
   const { lang } = await params;
   const dict = await getDictionary(lang);
 
-  const workExp = getWorkExperiences(dict).flatMap(y => y.jobs).filter(j => (j.point || 0) >= 80).sort((a, b) => (b.point || 0) - (a.point || 0));
-  const projectExp = getProjectExperiences(dict).flatMap(y => y.jobs).filter(j => (j.point || 0) >= 80).sort((a, b) => (b.point || 0) - (a.point || 0));
-  const orgExp = getOrganizationExperiences(dict).flatMap(y => y.jobs).filter(j => (j.point || 0) >= 80).sort((a, b) => (b.point || 0) - (a.point || 0));
-  const awardExp = getAwardExperiences(dict).flatMap(y => y.jobs).filter(j => (j.point || 0) >= 80).sort((a, b) => (b.point || 0) - (a.point || 0));
+  const workExp = getWorkExperiences(dict).flatMap(y => y.jobs);
+  const projectExp = getProjectExperiences(dict).flatMap(y => y.jobs);
+  const orgExp = getOrganizationExperiences(dict).flatMap(y => y.jobs);
+  const awardExp = getAwardExperiences(dict).flatMap(y => y.jobs);
 
   const socialLinks = [
     { icon: <Github size={18} />, url: "https://github.com/FaranAiki", label: "GitHub" },
@@ -99,85 +100,18 @@ export default async function PortfolioSummaryPage({ params }: { params: Promise
           />
 
           {/* Experience Sections */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 portfolio-grid">
-
-            {/* Work Summary */}
-            <section className="space-y-1">
-              <div className="flex items-center gap-2 border-b border-theme-border/50 pb-0.5">
-                <Briefcase size={12} className="text-theme-500" />
-                <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">{dict.Work}</h2>
-              </div>
-              <div className="space-y-1">
-                {workExp.map((job, i) => (
-                  <PortfolioSummaryItem
-                    key={i}
-                    title={`${i + 1}. ${job.title}`}
-                    company={job.company}
-                    date={job.date}
-                    description={job.description}
-                  />
-                ))}
-              </div>
-            </section>
-
-            {/* Project Summary */}
-            <section className="space-y-1">
-              <div className="flex items-center gap-2 border-b border-theme-border/50 pb-0.5">
-                <Code size={12} className="text-theme-500" />
-                <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">{dict.Project}</h2>
-              </div>
-              <div className="space-y-1">
-                {projectExp.map((job, i) => (
-                  <PortfolioSummaryItem
-                    key={i}
-                    title={`${i + 1}. ${job.title}`}
-                    company={job.company}
-                    date={job.date}
-                    description={job.description}
-                    url={job.url}
-                  />
-                ))}
-              </div>
-            </section>
-
-            {/* Organization Summary */}
-            <section className="space-y-1">
-              <div className="flex items-center gap-2 border-b border-theme-border/50 pb-0.5">
-                <Users size={12} className="text-theme-500" />
-                <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">{dict.Organization}</h2>
-              </div>
-              <div className="space-y-1">
-                {orgExp.map((job, i) => (
-                  <PortfolioSummaryItem
-                    key={i}
-                    title={`${i + 1}. ${job.title}`}
-                    company={job.company}
-                    date={job.date}
-                    description={job.description}
-                  />
-                ))}
-              </div>
-            </section>
-
-            {/* Award Summary */}
-            <section className="space-y-1">
-              <div className="flex items-center gap-2 border-b border-theme-border/50 pb-0.5">
-                <Trophy size={12} className="text-theme-500" />
-                <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">{dict.Award}</h2>
-              </div>
-              <div className="space-y-1">
-                {awardExp.map((job, i) => (
-                  <PortfolioSummaryItem
-                    key={i}
-                    title={`${i + 1}. ${job.title}`}
-                    company={job.company}
-                    date={job.date}
-                    description={job.description}
-                  />
-                ))}
-              </div>
-            </section>
-          </div>
+          <PortfolioExperienceList 
+            workExperiences={workExp}
+            projectExperiences={projectExp}
+            organizationExperiences={orgExp}
+            awardExperiences={awardExp}
+            labels={{
+              Work: dict.Work,
+              Project: dict.Project,
+              Organization: dict.Organization,
+              Award: dict.Award
+            }}
+          />
 
           {/* Footer Actions */}
           <div className="pt-4 space-y-6 no-print">

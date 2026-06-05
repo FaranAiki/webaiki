@@ -1,0 +1,156 @@
+"use client";
+
+import React, { useMemo } from 'react';
+import { useSettings } from '../providers/SettingsContext';
+import { Briefcase, Code, Users, Trophy } from 'lucide-react';
+import PortfolioSummaryItem from './PortfolioSummaryItem';
+
+interface Job {
+  title: string;
+  company: string;
+  date: string;
+  description: string;
+  point?: number;
+  url?: string;
+  tag?: string;
+}
+
+interface PortfolioExperienceListProps {
+  workExperiences: Job[];
+  projectExperiences: Job[];
+  organizationExperiences: Job[];
+  awardExperiences: Job[];
+  labels: {
+    Work: string;
+    Project: string;
+    Organization: string;
+    Award: string;
+  };
+}
+
+export default function PortfolioExperienceList({
+  workExperiences,
+  projectExperiences,
+  organizationExperiences,
+  awardExperiences,
+  labels
+}: PortfolioExperienceListProps) {
+  const { portfolioFilter } = useSettings();
+
+  const filterJobs = (jobs: Job[]) => {
+    let filtered = jobs;
+    
+    if (portfolioFilter === 'top') {
+      filtered = jobs.filter(j => (j.point || 0) >= 80);
+    } else if (portfolioFilter !== 'all') {
+      // Filter by tag
+      filtered = jobs.filter(j => j.tag === portfolioFilter);
+    }
+    
+    return filtered.sort((a, b) => (b.point || 0) - (a.point || 0));
+  };
+
+  const filteredWork = useMemo(() => filterJobs(workExperiences), [workExperiences, portfolioFilter]);
+  const filteredProject = useMemo(() => filterJobs(projectExperiences), [projectExperiences, portfolioFilter]);
+  const filteredOrg = useMemo(() => filterJobs(organizationExperiences), [organizationExperiences, portfolioFilter]);
+  const filteredAward = useMemo(() => filterJobs(awardExperiences), [awardExperiences, portfolioFilter]);
+
+  const hasAnyExperience = filteredWork.length > 0 || filteredProject.length > 0 || filteredOrg.length > 0 || filteredAward.length > 0;
+
+  if (!hasAnyExperience) {
+      return (
+          <div className="py-12 text-center text-theme-muted italic">
+              No Experiences Found For This Filter.
+          </div>
+      );
+  }
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 portfolio-grid">
+      {/* Work Summary */}
+      {filteredWork.length > 0 && (
+        <section className="space-y-1">
+          <div className="flex items-center gap-2 border-b border-theme-border/50 pb-0.5">
+            <Briefcase size={12} className="text-theme-500" />
+            <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">{labels.Work}</h2>
+          </div>
+          <div className="space-y-1">
+            {filteredWork.map((job, i) => (
+              <PortfolioSummaryItem
+                key={i}
+                title={`${i + 1}. ${job.title}`}
+                company={job.company}
+                date={job.date}
+                description={job.description}
+              />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Project Summary */}
+      {filteredProject.length > 0 && (
+        <section className="space-y-1">
+          <div className="flex items-center gap-2 border-b border-theme-border/50 pb-0.5">
+            <Code size={12} className="text-theme-500" />
+            <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">{labels.Project}</h2>
+          </div>
+          <div className="space-y-1">
+            {filteredProject.map((job, i) => (
+              <PortfolioSummaryItem
+                key={i}
+                title={`${i + 1}. ${job.title}`}
+                company={job.company}
+                date={job.date}
+                description={job.description}
+                url={job.url}
+              />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Organization Summary */}
+      {filteredOrg.length > 0 && (
+        <section className="space-y-1">
+          <div className="flex items-center gap-2 border-b border-theme-border/50 pb-0.5">
+            <Users size={12} className="text-theme-500" />
+            <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">{labels.Organization}</h2>
+          </div>
+          <div className="space-y-1">
+            {filteredOrg.map((job, i) => (
+              <PortfolioSummaryItem
+                key={i}
+                title={`${i + 1}. ${job.title}`}
+                company={job.company}
+                date={job.date}
+                description={job.description}
+              />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Award Summary */}
+      {filteredAward.length > 0 && (
+        <section className="space-y-1">
+          <div className="flex items-center gap-2 border-b border-theme-border/50 pb-0.5">
+            <Trophy size={12} className="text-theme-500" />
+            <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">{labels.Award}</h2>
+          </div>
+          <div className="space-y-1">
+            {filteredAward.map((job, i) => (
+              <PortfolioSummaryItem
+                key={i}
+                title={`${i + 1}. ${job.title}`}
+                company={job.company}
+                date={job.date}
+                description={job.description}
+              />
+            ))}
+          </div>
+        </section>
+      )}
+    </div>
+  );
+}

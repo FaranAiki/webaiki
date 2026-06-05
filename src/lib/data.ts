@@ -334,8 +334,8 @@ export const getOrganizationExperiences = (dict: Dictionary) => [
           '/documents/organization/SYNC_0.webp',
           '/documents/organization/SYNC_1.webp',
         ],
-        tag: ExperienceTag.Management,
-        tagLabel: dict.Management
+        tag: ExperienceTag.Human,
+        tagLabel: dict.Human
       },
       {
         date: `${dict.January} 2025 — ${dict.May} 2025`,
@@ -406,8 +406,8 @@ export const getOrganizationExperiences = (dict: Dictionary) => [
         description: dict.Student_Club_Member_Description,
         point: 50,
         image: [],
-        tag: ExperienceTag.Achievement,
-        tagLabel: dict.Achievement
+        tag: ExperienceTag.Education,
+        tagLabel: dict.Education
       },
     ]
   },
@@ -458,8 +458,8 @@ export const getAwardExperiences = (dict: Dictionary) => [{
       image: [
         '/documents/award/paragon_scholarship.webp',
       ],
-      tag: ExperienceTag.Achievement,
-      tagLabel: dict.Achievement
+      tag: ExperienceTag.Education,
+      tagLabel: dict.Education
     },
   ],
 }];

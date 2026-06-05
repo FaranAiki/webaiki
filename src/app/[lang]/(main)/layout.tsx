@@ -7,17 +7,17 @@ import 'react-pdf/dist/Page/TextLayer.css';
 
 import { getDictionary } from '@/components/layout/Translator';
 
-import { 
-  Home, 
-  User, 
-  Share2, 
-  FileCheck, 
-  Briefcase, 
-  Users, 
-  Trophy, 
-  Palette, 
-  Music, 
-  BookOpen, 
+import {
+  Home,
+  User,
+  Share2,
+  FileCheck,
+  Briefcase,
+  Users,
+  Trophy,
+  Palette,
+  Music,
+  BookOpen,
   GraduationCap,
   Compass,
   Code,
@@ -35,17 +35,17 @@ export default async function RootLayout({
   // Use the url parameter directly and load dictionary asynchronously
   const { lang } = await params;
   const dict = await getDictionary(lang);
-  
+
   // Navigation Links with Icons
   const navLinks = [
-    { 
-      name: dict.Home, 
+    {
+      name: dict.Home,
       href: '/',
       icon: <Home size={18} />
     },
-    
-    { 
-      name: dict.Profile, 
+
+    {
+      name: dict.Profile,
       href: '#',
       icon: <User size={18} />,
       subLinks: [
@@ -56,10 +56,10 @@ export default async function RootLayout({
       ]
     },
 
-    { 
-      name: dict.Experience, 
+    {
+      name: dict.Experience,
       href: '#',
-      icon: <Compass size={18} />, 
+      icon: <Compass size={18} />,
       subLinks: [
         { name: dict.Work, href: '/work', icon: <Briefcase size={16} /> },
         { name: dict.Project, href: '/project', icon: <Code size={16} /> },
@@ -68,8 +68,8 @@ export default async function RootLayout({
       ]
     },
 
-    { 
-      name: dict.Artwork, 
+    {
+      name: dict.Artwork,
       href: '#',
       icon: <Palette size={18} />,
       subLinks: [
@@ -78,8 +78,8 @@ export default async function RootLayout({
       ]
     },
 
-    { 
-      name: dict.College, 
+    {
+      name: dict.College,
       href: '/college',
       icon: <GraduationCap size={18} />
     },
@@ -87,18 +87,18 @@ export default async function RootLayout({
 
   return (
     <>
-      <Header 
-        navLinks={navLinks} 
-        current_lang={lang} 
+      <Header
+        navLinks={navLinks}
+        current_lang={lang}
         portfolio_label={dict.Portfolio}
         all_label={dict.All}
-        en_lang={dict.English} 
-        zh_lang={dict.Mandarin} 
-        id_lang={dict.Indonesian} 
-        jp_lang={dict.Japanese} 
-        ru_lang={dict.Russian} 
-        fr_lang={dict.French} 
-        ar_lang={dict.Arabic} 
+        en_lang={dict.English}
+        zh_lang={dict.Mandarin}
+        id_lang={dict.Indonesian}
+        jp_lang={dict.Japanese}
+        ru_lang={dict.Russian}
+        fr_lang={dict.French}
+        ar_lang={dict.Arabic}
         es_lang={dict.Spanish}
         ko_lang={dict.Korean}
         de_lang={dict.German}
@@ -130,7 +130,20 @@ export default async function RootLayout({
           Color_Mono: dict.Color_Mono,
           Advanced_Section: dict.Advanced_Section,
           ATS_Friendly: dict.ATS_Friendly,
-          Expand_All: dict.Expand_All
+          Expand_All: dict.Expand_All,
+          Portfolio_Filter: dict.Portfolio_Filter,
+          Filter_All: dict.All,
+          Filter_Top: dict.Top,
+          Education: dict.Education,
+
+          Data: dict.Data,
+          Human: dict.Human,
+          Technology: dict.Technology,
+          Math: dict.Math,
+          Management: dict.Management,
+          Arts: dict.Arts,
+          Achievement: dict.Achievement,
+          Language: dict.Language
         }}
       />
       <div id="main-content">

@@ -1,6 +1,9 @@
 # project mandates
 
-- do not use uppercase for any text. I repeat, do not use uppercase.
+- for i82n, make sure to use a proper capitalization okay.
+- do not use uppercase for any text IN THE WEBSITE OKAY, like tailwind's uppercase.
+- usage of uppercase, BUT NOT capitalization OR TITLE CASE for UI/UX is banned.
+- Title Case is preferred over UPPERCASE
 - do not change anything that was not explicitly requested.
 - do not modify any existing design or aesthetic choices.
 - do not remove any existing features.

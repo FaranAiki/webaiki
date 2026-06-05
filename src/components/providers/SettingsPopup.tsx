@@ -2,19 +2,21 @@
 
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { usePathname } from 'next/navigation';
-import { useSettings, fonts, TextAlign } from './SettingsContext';
-import { 
-  Settings, 
-  Type, 
-  AlignLeft, 
-  AlignCenter, 
-  AlignRight, 
-  AlignJustify, 
-  Plus, 
-  Minus, 
+import { useSettings, fonts, TextAlign, PortfolioFilter } from './SettingsContext';
+import { ExperienceTag } from '@/lib/types';
+import {
+  Settings,
+  Type,
+  AlignLeft,
+  AlignCenter,
+  AlignRight,
+  AlignJustify,
+  Plus,
+  Minus,
   RotateCcw,
   ChevronDown,
-  Palette
+  Palette,
+  Filter
 } from 'lucide-react';
 
 interface SettingsPopupProps {
@@ -37,6 +39,19 @@ interface SettingsPopupProps {
     Advanced_Section: string;
     ATS_Friendly: string;
     Expand_All: string;
+    Portfolio_Filter: string;
+    Filter_All: string;
+    Filter_Top: string;
+    // Tag labels
+    Education: string;
+    Data: string;
+    Human: string;
+    Technology: string;
+    Math: string;
+    Management: string;
+    Arts: string;
+    Achievement: string;
+    Language: string;
   };
   isOpen?: boolean;
   onOpenChange?: (isOpen: boolean) => void;
@@ -47,8 +62,9 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
   const pathname = usePathname();
   const [internalIsOpen, setInternalIsOpen] = useState(false);
   const [isFontDropdownOpen, setIsFontDropdownOpen] = useState(false);
+  const [isFilterDropdownOpen, setIsFilterDropdownOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-  
+
   const isOpen = externalIsOpen !== undefined ? externalIsOpen : internalIsOpen;
   const setIsOpen = useCallback((value: boolean) => {
     if (onOpenChange) {
@@ -58,15 +74,16 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
     }
   }, [onOpenChange]);
 
-  const { 
-    font, setFont, 
-    textAlign, setTextAlign, 
+  const {
+    font, setFont,
+    textAlign, setTextAlign,
     textScale, setTextScale,
     letterSpacing, setLetterSpacing,
     lineHeight, setLineHeight,
     color, setColor,
     isAtsMode, setIsAtsMode,
     isExpandAll, setIsExpandAll,
+    portfolioFilter, setPortfolioFilter,
     resetSettings
   } = useSettings();
 
@@ -83,6 +100,7 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
   const textColorClass = "text-[var(--text-muted)]";
   const popupRef = useRef<HTMLDivElement>(null);
   const fontDropdownRef = useRef<HTMLDivElement>(null);
+  const filterDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -93,16 +111,19 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
       if (fontDropdownRef.current && !fontDropdownRef.current.contains(event.target as Node)) {
         setIsFontDropdownOpen(false);
       }
+      if (filterDropdownRef.current && !filterDropdownRef.current.contains(event.target as Node)) {
+        setIsFilterDropdownOpen(false);
+      }
     };
 
-    if (isOpen || isFontDropdownOpen) {
+    if (isOpen || isFontDropdownOpen || isFilterDropdownOpen) {
       document.addEventListener('mousedown', handleClickOutside);
     }
-    
+
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isOpen, isFontDropdownOpen, setIsOpen]);
+  }, [isOpen, isFontDropdownOpen, isFilterDropdownOpen, setIsOpen]);
 
   const toggleOpen = () => setIsOpen(!isOpen);
 
@@ -148,7 +169,7 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
           <Settings size={20} className="text-theme-500" />
           {labels.Settings}
         </h3>
-        <button 
+        <button
           onClick={handleReset}
           className="text-xs font-medium text-theme-500 hover:text-theme-400 transition-colors flex items-center gap-1"
         >
@@ -185,7 +206,7 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
           <Type size={14} />
           {labels.Typography}
         </div>
-        
+
         {/* Custom Font Dropdown */}
         <div className="relative" ref={fontDropdownRef}>
           <button
@@ -216,8 +237,8 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
                   }}
                   className={`
                     w-full text-left px-4 py-3 text-sm transition-colors
-                    ${font === f.name 
-                      ? 'bg-theme-500 text-white' 
+                    ${font === f.name
+                      ? 'bg-theme-500 text-white'
                       : 'hover:bg-theme-surface-strong text-foreground'}
                     ${f.class || ''}
                   `}
@@ -244,8 +265,8 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
               title={a.title}
               className={`
                 flex-1 flex items-center justify-center p-2 rounded-lg transition-all duration-200
-                ${textAlign === a.value 
-                  ? 'bg-theme-500 text-white shadow-md' 
+                ${textAlign === a.value
+                  ? 'bg-theme-500 text-white shadow-md'
                   : 'text-theme-muted hover:text-foreground'}
               `}
             >
@@ -262,11 +283,91 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
             <Settings size={14} />
             {labels.Advanced_Section}
           </div>
+
+          {/* Portfolio Filter Dropdown */}
+          <div className="space-y-2">
+            <div className="flex items-center gap-2 font-bold text-xs text-theme-muted/80 tracking-widest">
+              <Filter size={10} />
+              {labels.Portfolio_Filter}
+            </div>
+            <div className="relative" ref={filterDropdownRef}>
+              <button
+                onClick={() => setIsFilterDropdownOpen(!isFilterDropdownOpen)}
+                className={`
+                  w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-all duration-200
+                  bg-theme-surface-strong text-foreground border-theme-border hover:bg-theme-surface-strong/80
+                  border hover:border-theme-500/50
+                `}
+              >
+                <span className="truncate pr-2">
+                  {portfolioFilter === 'all' ? labels.Filter_All :
+                   portfolioFilter === 'top' ? labels.Filter_Top :
+                   labels[portfolioFilter as keyof typeof labels] || portfolioFilter}
+                </span>
+                <ChevronDown size={14} className={`shrink-0 transition-transform duration-200 ${isFilterDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {isFilterDropdownOpen && (
+                <div className={`
+                  absolute left-0 right-0 mt-2 max-h-48 overflow-y-auto z-[70]
+                  bg-theme-surface border-theme-border shadow-xl shadow-theme-shadow
+                  border rounded-xl custom-scrollbar
+                `}>
+                  <button
+                    onClick={() => {
+                      setPortfolioFilter('all');
+                      setIsFilterDropdownOpen(false);
+                    }}
+                    className={`
+                      w-full text-left px-4 py-2 text-xs transition-colors
+                      ${portfolioFilter === 'all'
+                        ? 'bg-theme-500 text-white'
+                        : 'hover:bg-theme-surface-strong text-foreground'}
+                    `}
+                  >
+                    {labels.Filter_All}
+                  </button>
+                  <button
+                    onClick={() => {
+                      setPortfolioFilter('top');
+                      setIsFilterDropdownOpen(false);
+                    }}
+                    className={`
+                      w-full text-left px-4 py-2 text-xs transition-colors
+                      ${portfolioFilter === 'top'
+                        ? 'bg-theme-500 text-white'
+                        : 'hover:bg-theme-surface-strong text-foreground'}
+                    `}
+                  >
+                    {labels.Filter_Top}
+                  </button>
+                  {Object.values(ExperienceTag).map((tag) => (
+                    <button
+                      key={tag}
+                      onClick={() => {
+                        setPortfolioFilter(tag);
+                        setIsFilterDropdownOpen(false);
+                      }}
+                      className={`
+                        w-full text-left px-4 py-2 text-xs transition-colors
+                        ${portfolioFilter === tag
+                          ? 'bg-theme-500 text-white'
+                          : 'hover:bg-theme-surface-strong text-foreground'}
+                      `}
+                    >
+                      {labels[tag as keyof typeof labels] || tag}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
           <div className="space-y-2">
             <label className="flex items-center gap-3 cursor-pointer group">
               <div className="relative">
-                <input 
-                  type="checkbox" 
+                <input
+                  type="checkbox"
                   checked={isAtsMode}
                   onChange={(e) => setIsAtsMode(e.target.checked)}
                   className="sr-only"
@@ -281,8 +382,8 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
 
             <label className="flex items-center gap-3 cursor-pointer group">
               <div className="relative">
-                <input 
-                  type="checkbox" 
+                <input
+                  type="checkbox"
                   checked={isExpandAll}
                   onChange={(e) => setIsExpandAll(e.target.checked)}
                   className="sr-only"
@@ -310,7 +411,7 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
             <button onClick={() => adjustScale(-5)} className={`p-2 rounded-lg bg-theme-surface-strong hover:bg-theme-surface-strong/80 text-theme-muted`}>
               <Minus size={16} />
             </button>
-            <input 
+            <input
               type="range" min="80" max="120" step="5" value={textScale}
               onChange={(e) => setTextScale(parseInt(e.target.value))}
               className="flex-1 accent-theme-500 h-1.5 bg-theme-border rounded-lg appearance-none cursor-pointer"
@@ -331,7 +432,7 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
             <button onClick={() => adjustSpacing(-0.1)} className={`p-2 rounded-lg bg-theme-surface-strong hover:bg-theme-surface-strong/80 text-theme-muted`}>
               <Minus size={16} />
             </button>
-            <input 
+            <input
               type="range" min="-2" max="10" step="0.1" value={letterSpacing}
               onChange={(e) => setLetterSpacing(parseFloat(e.target.value))}
               className="flex-1 accent-theme-500 h-1.5 bg-theme-border rounded-lg appearance-none cursor-pointer"
@@ -352,7 +453,7 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
             <button onClick={() => adjustLineHeight(-0.1)} className={`p-2 rounded-lg bg-theme-surface-strong hover:bg-theme-surface-strong/80 text-theme-muted`}>
               <Minus size={16} />
             </button>
-            <input 
+            <input
               type="range" min="0.8" max="3" step="0.1" value={lineHeight}
               onChange={(e) => setLineHeight(parseFloat(e.target.value))}
               className="flex-1 accent-theme-500 h-1.5 bg-theme-border rounded-lg appearance-none cursor-pointer"
@@ -381,18 +482,18 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
         className={`group p-2.5 rounded-full hover:bg-theme-surface-strong transition-all duration-300 hover-gacor ${isOpen ? 'nav-active-gacor' : textColorClass}`}
         aria-label={labels.Settings}
       >
-        <Settings 
-          size={22} 
-          className={`transition-all duration-300 ${isOpen ? 'rotate-90' : ''}`} 
+        <Settings
+          size={22}
+          className={`transition-all duration-300 ${isOpen ? 'rotate-90' : ''}`}
         />
       </button>
 
       {isOpen && (
-        <div 
+        <div
           data-lenis-prevent
           className={`
-          absolute right-0 top-full mt-3 
-          w-[calc(100vw-2rem)] sm:w-80 
+          absolute right-0 top-full mt-3
+          w-[calc(100vw-2rem)] sm:w-80
           max-w-[320px] sm:max-w-none
           bg-theme-surface/95 dark:bg-theme-bg-dark/95 border-theme-border dark:border-theme-border shadow-2xl shadow-theme-shadow dark:shadow-theme-shadow
           md:backdrop-blur-xl border rounded-2xl z-50 p-6

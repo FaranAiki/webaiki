@@ -75,6 +75,18 @@ interface HeaderProps {
         Advanced_Section: string;
         ATS_Friendly: string;
         Expand_All: string;
+        Portfolio_Filter: string;
+        Filter_All: string;
+        Filter_Top: string;
+        Education: string;
+        Data: string;
+        Human: string;
+        Technology: string;
+        Math: string;
+        Management: string;
+        Arts: string;
+        Achievement: string;
+        Language: string;
     };
 }
 

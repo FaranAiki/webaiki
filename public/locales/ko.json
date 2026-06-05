@@ -283,5 +283,8 @@
   "Management": "경영",
   "Arts": "예술",
   "Achievement": "성취",
-  "Language": "언어"
+  "Language": "언어",
+  "Portfolio_Filter": "포트폴리오 필터",
+  "Filter_Top": "상위",
+  "Top": "상위"
 }

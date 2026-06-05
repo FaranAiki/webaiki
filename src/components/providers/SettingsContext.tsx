@@ -71,6 +71,7 @@ export const fonts = [
 ];
 
 export type TextAlign = 'default' | 'left' | 'center' | 'right' | 'justify';
+export type PortfolioFilter = 'all' | 'top' | string;
 
 interface SettingsContextType {
   font: string;
@@ -89,6 +90,8 @@ interface SettingsContextType {
   setIsAtsMode: (ats: boolean) => void;
   isExpandAll: boolean;
   setIsExpandAll: (expand: boolean) => void;
+  portfolioFilter: PortfolioFilter;
+  setPortfolioFilter: (filter: PortfolioFilter) => void;
   colorRGB: { r: number, g: number, b: number };
   resetSettings: () => void;
 }
@@ -104,6 +107,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [color, setColor] = useState('blue');
   const [isAtsMode, setIsAtsMode] = useState(false);
   const [isExpandAll, setIsExpandAll] = useState(false);
+  const [portfolioFilter, setPortfolioFilter] = useState<PortfolioFilter>('top');
   const [mounted, setMounted] = useState(false);
 
   const resetSettings = () => {
@@ -115,6 +119,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     setColor('blue');
     setIsAtsMode(false);
     setIsExpandAll(false);
+    setPortfolioFilter('top');
   };
 
   const colorRGB = React.useMemo(() => {
@@ -158,6 +163,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     const savedColor = getSetting('color');
     const savedAts = getSetting('settings-ats');
     const savedExpand = getSetting('settings-expand-all');
+    const savedFilter = getSetting('settings-portfolio-filter');
 
     if (savedFont) setFont(savedFont);
     if (savedAlign) setTextAlign(savedAlign);
@@ -167,6 +173,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     if (savedColor) setColor(savedColor);
     if (savedAts) setIsAtsMode(savedAts === 'true');
     if (savedExpand) setIsExpandAll(savedExpand === 'true');
+    if (savedFilter) setPortfolioFilter(savedFilter as PortfolioFilter);
     
     setMounted(true);
   }, []);
@@ -181,6 +188,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     localStorage.setItem('color', color);
     localStorage.setItem('settings-ats', isAtsMode.toString());
     localStorage.setItem('settings-expand-all', isExpandAll.toString());
+    localStorage.setItem('settings-portfolio-filter', portfolioFilter);
 
     const root = document.documentElement;
     const body = document.body;
@@ -216,23 +224,23 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   }, [font, textAlign, textScale, letterSpacing, lineHeight, color, isAtsMode, isExpandAll, mounted]);
 
   return (
-    <SettingsContext.Provider value={{ 
-      font, setFont, 
-      textAlign, setTextAlign, 
-      textScale, setTextScale,
-      letterSpacing, setLetterSpacing,
-      lineHeight, setLineHeight,
-      color, setColor,
-      isAtsMode, setIsAtsMode,
-      isExpandAll, setIsExpandAll,
-      colorRGB,
-      resetSettings
-    }}>
-      {children}
-    </SettingsContext.Provider>
+  <SettingsContext.Provider value={{ 
+    font, setFont, 
+    textAlign, setTextAlign, 
+    textScale, setTextScale,
+    letterSpacing, setLetterSpacing,
+    lineHeight, setLineHeight,
+    color, setColor,
+    isAtsMode, setIsAtsMode,
+    isExpandAll, setIsExpandAll,
+    portfolioFilter, setPortfolioFilter,
+    colorRGB,
+    resetSettings
+  }}>
+    {children}
+  </SettingsContext.Provider>
   );
-};
-
+  };
 export const useSettings = () => {
   const context = useContext(SettingsContext);
   if (context === undefined) {

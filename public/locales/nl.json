@@ -283,5 +283,8 @@
   "Management": "Management",
   "Arts": "Kunsten",
   "Achievement": "Prestatie",
-  "Language": "Taal"
+  "Language": "Taal",
+  "Portfolio_Filter": "Portfoliofilter",
+  "Filter_Top": "Top",
+  "Top": "Top"
 }
