@@ -22,7 +22,9 @@ import {
   Compass,
   Code,
   Star,
-  LayoutGrid
+  LayoutGrid,
+  Fingerprint,
+  Globe
 } from 'lucide-react';
 
 export default async function RootLayout({
@@ -40,8 +42,13 @@ export default async function RootLayout({
   const navLinks = [
     {
       name: dict.Home,
-      href: '/',
-      icon: <Home size={18} />
+      href: '#',
+      icon: <Home size={18} />,
+      subLinks: [
+        { name: dict.Home, href: '/', icon: <Home size={16} /> },
+        { name: dict.Identity || 'Identity', href: '/identity', icon: <Fingerprint size={16} /> },
+        { name: dict.Website || 'Website', href: '/website', icon: <Globe size={16} /> },
+      ]
     },
 
     {

@@ -287,5 +287,13 @@
   "Portfolio_Filter": "ポートフォリオフィルター",
   "Filter_Top": "トップ",
   "Top": "トップ",
-  "User": "ユーザー"
+  "User": "ユーザー",
+  "Identity": "アイデンティティ",
+  "Website": "ウェブサイト",
+  "Website_Summary": "このサイトの技術、パフォーマンス、目的に関する情報。",
+  "What_Do_You_Want_To_Base": "何を{word}たいですか？",
+  "Word_See": "見",
+  "Word_Do": "し",
+  "Word_Know": "知り",
+  "Word_Search": "探し"
 }

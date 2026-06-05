@@ -287,5 +287,13 @@
   "Portfolio_Filter": "Portfolio Filter",
   "Filter_Top": "Top",
   "Top": "Top",
-  "User": "User"
+  "User": "User",
+  "Identity": "Identity",
+  "Website": "Website",
+  "Website_Summary": "Information about the technologies, performance, and purpose of this site.",
+  "What_Do_You_Want_To_Base": "What do you want to {word}?",
+  "Word_See": "see",
+  "Word_Do": "do",
+  "Word_Know": "know",
+  "Word_Search": "search"
 }

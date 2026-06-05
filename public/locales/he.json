@@ -287,5 +287,13 @@
   "Portfolio_Filter": "מסנן תיק עבודות",
   "Filter_Top": "עליון",
   "Top": "עליון",
-  "User": "משתמש"
+  "User": "משתמש",
+  "Identity": "זהות",
+  "Website": "אתר אינטרנט",
+  "Website_Summary": "מידע על הטכנולוגיות, הביצועים והמטרה של אתר זה.",
+  "What_Do_You_Want_To_Base": "מה אתה רוצה {word}?",
+  "Word_See": "לראות",
+  "Word_Do": "לעשות",
+  "Word_Know": "לדעת",
+  "Word_Search": "לחפש"
 }

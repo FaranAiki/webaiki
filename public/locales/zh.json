@@ -287,5 +287,13 @@
   "Portfolio_Filter": "作品集筛选",
   "Filter_Top": "顶部",
   "Top": "顶部",
-  "User": "用户"
+  "User": "用户",
+  "Identity": "身份",
+  "Website": "网站",
+  "Website_Summary": "关于本网站的技术、性能和目的的信息。",
+  "What_Do_You_Want_To_Base": "你想{word}什么？",
+  "Word_See": "看",
+  "Word_Do": "做",
+  "Word_Know": "了解",
+  "Word_Search": "搜"
 }

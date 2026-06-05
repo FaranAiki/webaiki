@@ -287,5 +287,13 @@
   "Portfolio_Filter": "Filtro de Portafolio",
   "Filter_Top": "Superior",
   "Top": "Superior",
-  "User": "Usuario"
+  "User": "Usuario",
+  "Identity": "Identidad",
+  "Website": "Sitio Web",
+  "Website_Summary": "Información sobre las tecnologías, el rendimiento y el propósito de este sitio.",
+  "What_Do_You_Want_To_Base": "¿Qué quieres {word}?",
+  "Word_See": "ver",
+  "Word_Do": "hacer",
+  "Word_Know": "saber",
+  "Word_Search": "buscar"
 }

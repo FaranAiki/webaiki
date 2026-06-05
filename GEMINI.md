@@ -2,6 +2,7 @@
 
 - for i82n, make sure to use a proper capitalization okay.
 - do not use uppercase for any text IN THE WEBSITE OKAY, like tailwind's uppercase.
+- do not add "uppercase" in the STYLE TAILWINDCSS DIV!
 - usage of uppercase, BUT NOT capitalization OR TITLE CASE for UI/UX is banned.
 - Title Case is preferred over UPPERCASE
 - do not change anything that was not explicitly requested.

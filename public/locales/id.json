@@ -287,5 +287,13 @@
   "Portfolio_Filter": "Filter Portofolio",
   "Filter_Top": "Teratas",
   "Top": "Teratas",
-  "User": "Pengguna"
+  "User": "Pengguna",
+  "Identity": "Identitas",
+  "Website": "Situs Web",
+  "Website_Summary": "Informasi tentang teknologi, performa, dan tujuan dari situs ini.",
+  "What_Do_You_Want_To_Base": "Apa yang ingin kamu {word}?",
+  "Word_See": "lihat",
+  "Word_Do": "lakukan",
+  "Word_Know": "tahu",
+  "Word_Search": "cari"
 }
