@@ -54,8 +54,10 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     
     if (isScrollLocked) {
       lenisRef.current.stop();
+      document.documentElement.classList.add('overflow-hidden');
     } else {
       lenisRef.current.start();
+      document.documentElement.classList.remove('overflow-hidden');
     }
   }, [isScrollLocked]);
 

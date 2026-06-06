@@ -159,10 +159,10 @@ export default function SearchBar({
 
   // Lock scroll when results are open and there are results
   useEffect(() => {
-    const shouldLock = isFocused && (query.trim().length >= 2 || results.length > 0);
+    const shouldLock = isFocused && (query.trim().length >= 2);
     setScrollLocked(shouldLock);
     return () => setScrollLocked(false);
-  }, [isFocused, query, results.length, setScrollLocked]);
+  }, [isFocused, query, setScrollLocked]);
 
   const getTypeIcon = (type: string) => {
     switch (type) {
