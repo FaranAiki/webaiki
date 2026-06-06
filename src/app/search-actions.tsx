@@ -18,6 +18,7 @@ export interface SearchResult {
   url: string;
   tags?: string[];
   score?: number;
+  keywords?: string[];
 }
 
 interface ExperienceItem {
@@ -43,45 +44,131 @@ export async function searchContent(query: string, lang: string): Promise<Search
 
   const results: SearchResult[] = [];
 
-  const calculateScore = (text: string, terms: string[]) => {
+  const calculateScore = (item: Partial<SearchResult>, terms: string[]) => {
     let score = 0;
-    const lowerText = text.toLowerCase();
+    const fieldsToSearch = [
+      { text: item.title || "", weight: 10 },
+      { text: item.description || "", weight: 3 },
+      { text: item.company || "", weight: 5 },
+      { text: item.date || "", weight: 2 },
+      { text: (item.tags || []).join(" "), weight: 4 },
+      { text: (item.keywords || []).join(" "), weight: 8 }
+    ];
+
     terms.forEach(term => {
-      if (lowerText.includes(term)) {
-        score += 10;
-        if (lowerText.startsWith(term)) score += 5;
-      }
+      fieldsToSearch.forEach(field => {
+        const lowerText = field.text.toLowerCase();
+        if (lowerText.includes(term)) {
+          score += field.weight;
+          if (lowerText.startsWith(term)) score += field.weight * 0.5;
+          if (lowerText === term) score += field.weight * 2;
+        }
+      });
     });
     return score;
   };
 
-  // 1. Search Static Pages
-  const pages = [
-    { title: dict.Home || "Home", description: dict.What_Do_You_Want_To_Base || "Main dashboard", url: `/${lang}` },
-    { title: dict.Identity || "Identity", description: dict.SEO_Home_Description || "About and philosophy", url: `/${lang}/identity` },
-    { title: dict.Website || "Website", description: dict.Website_Summary || "Technical info", url: `/${lang}/website` },
-    { title: dict.Portfolio || "Portfolio", description: dict.Preparing_Portfolio || "Full collection", url: `/${lang}/portfolio` },
-    { title: dict.College || "College", description: dict.SEO_College_Description || "Academic work", url: `/${lang}/college` },
-    { title: dict.Work || "Work", description: dict.Work || "Experience", url: `/${lang}/work` },
-    { title: dict.Project || "Project", description: dict.Project || "Projects", url: `/${lang}/project` },
-    { title: dict.Organization || "Organization", description: dict.Organization || "Organizations", url: `/${lang}/organization` },
-    { title: dict.Literature || "Literature", description: dict.Literature || "Writing", url: `/${lang}/literature` },
-    { title: dict.Award || "Award", description: dict.Award || "Achievements", url: `/${lang}/award` },
-    { title: dict.Social || "Social", description: dict.Social || "Contact", url: `/${lang}/social` },
-    { title: dict.Music || "Music", description: dict.Music || "Playlist", url: `/${lang}/music` },
-    { title: dict.Latest || "Latest", description: dict.Latest || "Updates", url: `/${lang}/latest` },
-    { title: dict.Certificates || "Certificates", description: dict.Certificates || "Credentials", url: `/${lang}/certificate` },
-    { title: dict.All || "All", description: dict.All || "Everything", url: `/${lang}/all` },
+  // 1. Search Static Pages with expanded keywords
+  const pages: (Omit<SearchResult, 'type' | 'score'> & { keywords: string[] })[] = [
+    { 
+      title: dict.Home || "Home", 
+      description: dict.What_Do_You_Want_To_Base || "Main dashboard and navigation", 
+      url: `/${lang}`,
+      keywords: ["beranda", "main", "start", "welcome", "dashboard", "home"]
+    },
+    { 
+      title: dict.Identity || "Identity", 
+      description: dict.SEO_Home_Description || "About Faran Aiki, philosophy, and background", 
+      url: `/${lang}/identity`,
+      keywords: ["profile", "about", "bio", "faran", "aiki", "identity", "philosophy", "who am i", "personal", "biografi"]
+    },
+    { 
+      title: dict.Website || "Website", 
+      description: dict.Website_Summary || "Technical stack and performance details", 
+      url: `/${lang}/website`,
+      keywords: ["tech", "stack", "performance", "lighthouse", "nextjs", "build", "coding", "website", "situs", "teknologi"]
+    },
+    { 
+      title: dict.Portfolio || "Portfolio", 
+      description: dict.Preparing_Portfolio || "Selected works and highlighted professional experience", 
+      url: `/${lang}/portfolio`,
+      keywords: ["work", "projects", "showcase", "resume", "cv", "portfolio", "experience", "highlight", "best"]
+    },
+    { 
+      title: dict.College || "College", 
+      description: dict.SEO_College_Description || "Academic journey and study materials at ITB", 
+      url: `/${lang}/college`,
+      keywords: ["itb", "study", "university", "academic", "courses", "notes", "education", "college", "kuliah", "mahasiswa", "sti"]
+    },
+    { 
+      title: dict.Work || "Work", 
+      description: dict.Work || "Professional employment history", 
+      url: `/${lang}/work`,
+      keywords: ["job", "career", "employment", "professional", "company", "experience", "work", "kerja", "karir"]
+    },
+    { 
+      title: dict.Project || "Project", 
+      description: dict.Project || "Technical and personal projects", 
+      url: `/${lang}/project`,
+      keywords: ["coding", "apps", "software", "development", "github", "build", "project", "proyek", "tugas"]
+    },
+    { 
+      title: dict.Organization || "Organization", 
+      description: dict.Organization || "Extracurricular and leadership activities", 
+      url: `/${lang}/organization`,
+      keywords: ["leadership", "committee", "club", "team", "organization", "organisasi", "komunitas", "gdg", "stei"]
+    },
+    { 
+      title: dict.Literature || "Literature", 
+      description: dict.Literature || "Poems, essays, and creative writing", 
+      url: `/${lang}/literature`,
+      keywords: ["writing", "poems", "essays", "creative", "stories", "literature", "sastra", "puisi", "tulisan"]
+    },
+    { 
+      title: dict.Award || "Award", 
+      description: dict.Award || "Honors, scholarships, and achievements", 
+      url: `/${lang}/award`,
+      keywords: ["honor", "scholarship", "competition", "achievement", "award", "penghargaan", "prestasi", "beasiswa"]
+    },
+    { 
+      title: dict.Social || "Social", 
+      description: dict.Social || "Social media and contact information", 
+      url: `/${lang}/social`,
+      keywords: ["contact", "instagram", "linkedin", "github", "twitter", "email", "links", "social", "sosial", "kontak"]
+    },
+    { 
+      title: dict.Music || "Music", 
+      description: dict.Music || "Musical interests and playlists", 
+      url: `/${lang}/music`,
+      keywords: ["spotify", "playlist", "songs", "hobby", "music", "musik", "lagu"]
+    },
+    { 
+      title: dict.Latest || "Latest", 
+      description: dict.Latest || "Recent updates and newly added content", 
+      url: `/${lang}/latest`,
+      keywords: ["new", "recent", "updates", "fresh", "latest", "terbaru", "update"]
+    },
+    { 
+      title: dict.Certificates || "Certificates", 
+      description: dict.Certificates || "Professional and academic certifications", 
+      url: `/${lang}/certificate`,
+      keywords: ["certification", "course", "diploma", "verified", "skill", "certificate", "sertifikat", "kursus"]
+    },
+    { 
+      title: dict.All || "All", 
+      description: dict.All || "Comprehensive view of all content", 
+      url: `/${lang}/all`,
+      keywords: ["everything", "complete", "full", "all", "semua", "seluruh"]
+    },
   ];
 
   pages.forEach(page => {
-    const titleScore = calculateScore(page.title, queryTerms);
-    const descScore = calculateScore(page.description, queryTerms);
-    if (titleScore > 0 || descScore > 0) {
+    const score = calculateScore(page, queryTerms);
+    if (score > 0) {
       results.push({
         ...page,
         type: 'page',
-        score: titleScore * 2 + descScore
+        score: score * 1.5 // Prioritize pages slightly
       });
     }
   });
@@ -90,15 +177,17 @@ export async function searchContent(query: string, lang: string): Promise<Search
   const searchInList = (list: YearGroup[], type: 'work' | 'project' | 'organization' | 'award') => {
     list.forEach(yearGroup => {
       yearGroup.jobs.forEach((job) => {
-        const titleScore = calculateScore(job.title, queryTerms);
-        const descScore = calculateScore(job.description, queryTerms);
-        const companyScore = job.company ? calculateScore(job.company, queryTerms) : 0;
-        const dateScore = calculateScore(job.date, queryTerms);
-        const tagScore = job.tagLabel?.some(tag => calculateScore(tag, queryTerms) > 0) ? 10 : 0;
+        const item: Partial<SearchResult> = {
+          title: job.title,
+          description: job.description,
+          company: job.company,
+          date: job.date,
+          tags: job.tagLabel,
+        };
 
-        const totalScore = titleScore * 3 + descScore + companyScore * 2 + dateScore + tagScore;
+        const score = calculateScore(item, queryTerms);
 
-        if (totalScore > 0) {
+        if (score > 0) {
           results.push({
             title: job.title,
             company: job.company,
@@ -108,7 +197,7 @@ export async function searchContent(query: string, lang: string): Promise<Search
             type: type,
             url: job.url || `/${lang}/${type}`,
             tags: job.tagLabel,
-            score: totalScore
+            score: score
           });
         }
       });
@@ -131,11 +220,6 @@ export async function searchContent(query: string, lang: string): Promise<Search
   });
 
   return Array.from(uniqueResultsMap.values()).sort((a, b) => {
-    // 1. Pages always highly prioritized if they match well
-    if (a.type === 'page' && b.type !== 'page' && (a.score || 0) > 5) return -1;
-    if (b.type === 'page' && a.type !== 'page' && (b.score || 0) > 5) return 1;
-    
-    // 2. Sort by score
     return (b.score || 0) - (a.score || 0);
   });
 }

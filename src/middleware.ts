@@ -140,6 +140,7 @@ export function middleware(request: NextRequest) {
   }
 
   response.headers.set('Content-Security-Policy', finalCspHeader);
+  response.headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
   
   if (isPythonProject) {
     // Strict isolation ONLY for the route that needs SharedArrayBuffer (Python CLI)

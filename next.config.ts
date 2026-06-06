@@ -44,39 +44,67 @@ const nextConfig: NextConfig = {
 
       return config;
     },
+async headers() {
+  return [
+    {
+      source: '/:path*',
+      headers: [
+        {
+          // Security: Enforce HTTPS for a year, including subdomains
+          key: 'Strict-Transport-Security',
+          value: 'max-age=31536000; includeSubDomains; preload',
+        },
+        {
+          // Security: Prevent browsers from MIME-sniffing a response away from the declared content-type
+          key: 'X-Content-Type-Options',
+          value: 'nosniff',
+        },
+        {
+          // Security: Prevent site from being embedded in iframes
+          key: 'X-Frame-Options',
+          value: 'DENY',
+        },
+        {
+          // Security: Control how much referrer information is passed
+          key: 'Referrer-Policy',
+          value: 'strict-origin-when-cross-origin',
+        },
+        {
+          // Security: Control which origins can read the resource
+          key: 'Cross-Origin-Resource-Policy',
+          value: 'cross-origin',
+        }
+      ],
+    },
+    {
+      // Optimization: Cache static assets heavily
+      source: '/images/:path*',
+      headers: [
+        {
+          key: 'Cache-Control',
+          value: 'public, max-age=31536000, immutable',
+        },
+      ],
+    },
+    {
+      // Optimization: Cache fonts heavily
+      source: '/_next/static/media/:path*',
+      headers: [
+        {
+          key: 'Cache-Control',
+          value: 'public, max-age=31536000, immutable',
+        },
+      ],
+    },
+  ];
+},
 
-  async headers() {
-    return [
-      {
-        source: '/:path*',
-        headers: [
-          {
-            // Security: Enforce HTTPS for a year, including subdomains
-            key: 'Strict-Transport-Security',
-            value: 'max-age=31536000; includeSubDomains; preload',
-          },
-          {
-            // Security: Prevent browsers from MIME-sniffing a response away from the declared content-type
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            // Security: Control which origins can read the resource
-            key: 'Cross-Origin-Resource-Policy',
-            value: 'cross-origin',
-          }
-          // Note: Content-Security-Policy is omitted here because it is 
-          // generated dynamically with a Nonce in middleware.ts
-        ],
-      },
-    ];
-  },
-
-  images: {
-    // Configure allowed image sources for next/image
-    formats: ['image/avif', 'image/webp'],
-    qualities: [75, 80, 85, 90, 100],
-    remotePatterns: [
+images: {
+  // Optimization: Support modern image formats
+  formats: ['image/avif', 'image/webp'],
+  qualities: [75, 80, 85, 90],
+  remotePatterns: [
+...
       { protocol: 'https', hostname: 'static.wikia.nocookie.net' },
       { protocol: 'https', hostname: 'i.ytimg.com', pathname: '/vi/**' },
       { protocol: 'https', hostname: 'placehold.co' },
