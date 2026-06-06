@@ -94,16 +94,21 @@ export default function HomeClient({ lang, dict }: HomeClientProps) {
               >
                 <motion.span variants={partVariants} className="inline-block whitespace-pre-wrap nav-active-gacor">{parts[0]}</motion.span>
 
-                {/* Dynamic Word Container - Using a more stable inline-flex approach */}
-                <span className="inline-flex relative vertical-middle mx-[0.1em] h-[1.1em] min-w-[1.5ch]">
-                  <AnimatePresence mode="wait">
+                {/* Dynamic Word Container - Using a ghost element to set width for proper expansion */}
+                <span className="inline-flex relative vertical-middle mx-[0.05em] h-[1.1em] overflow-visible">
+                  {/* Invisible Ghost Element to reserve horizontal space */}
+                  <span className="invisible select-none pointer-events-none whitespace-nowrap px-[0.1em] nav-active-gacor">
+                    {cyclingData[wordIndex].word}
+                  </span>
+
+                  <AnimatePresence mode="popLayout">
                     <motion.span
                       key={wordIndex}
                       initial={{ y: 30, opacity: 0 }}
-                      animate={{ y: 24, opacity: 1 }}
+                      animate={{ y: 0, opacity: 1 }}
                       exit={{ y: -30, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-                      className="absolute left-0 bottom-0 text-theme-500 whitespace-nowrap nav-active-gacor lowercase"
+                      transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+                      className="absolute inset-0 flex items-center justify-center text-theme-500 whitespace-nowrap nav-active-gacor"
                     >
                       {cyclingData[wordIndex].word}
                     </motion.span>
