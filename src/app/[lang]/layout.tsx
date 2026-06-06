@@ -9,11 +9,13 @@ import 'react-pdf/dist/Page/TextLayer.css';
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  display: 'swap',
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: 'swap',
 });
 
 import { Providers } from "@/components/providers/Providers";

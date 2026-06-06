@@ -370,6 +370,7 @@ export default function Header(props: HeaderProps) {
                                         fill 
                                         className="object-cover rounded-sm grayscale-[0.2] group-hover:grayscale-0"
                                         sizes="20px"
+                                        loading="eager"
                                     />
                                 </div>
                                 <span>{lang.name}</span>
