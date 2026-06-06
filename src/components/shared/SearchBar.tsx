@@ -226,6 +226,7 @@ export default function SearchBar({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             data-lenis-prevent
+            style={{ overscrollBehavior: 'contain' }}
             className="absolute top-full left-0 right-0 mt-2 bg-theme-surface-strong border border-theme-border rounded-2xl shadow-theme-shadow overflow-hidden max-h-[60vh] overflow-y-auto"
           >
             {results.length > 0 ? (
@@ -279,9 +280,21 @@ export default function SearchBar({
                           `}>
                             <HighlightText text={result.title} query={query} />
                           </h4>
-                          <p className="text-[10px] text-theme-muted line-clamp-1 italic">
+                          <p className="text-[10px] text-theme-muted line-clamp-1 italic mb-1">
                             <HighlightText text={result.description} query={query} />
                           </p>
+                          {result.tags && result.tags.length > 0 && (
+                            <div className="flex flex-wrap gap-1">
+                              {result.tags.slice(0, 3).map((tag, i) => (
+                                <span key={i} className="text-[9px] px-1.5 py-0.5 rounded-full bg-theme-surface-strong border border-theme-border text-theme-muted">
+                                  {tag}
+                                </span>
+                              ))}
+                              {result.tags.length > 3 && (
+                                  <span className="text-[9px] text-theme-muted opacity-50">+{result.tags.length - 3}</span>
+                              )}
+                            </div>
+                          )}
                         </div>
                       </div>
 
