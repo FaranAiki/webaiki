@@ -16,6 +16,10 @@ const dictionaries: Record<string, () => Promise<Record<string, string>>> = {
   ha: () => import('../../../public/locales/ha.json').then((module) => module.default),
   he: () => import('../../../public/locales/he.json').then((module) => module.default),
   el: () => import('../../../public/locales/el.json').then((module) => module.default),
+  hi: () => import('../../../public/locales/hi.json').then((module) => module.default),
+  pt: () => import('../../../public/locales/pt.json').then((module) => module.default),
+  bn: () => import('../../../public/locales/bn.json').then((module) => module.default),
+  vi: () => import('../../../public/locales/vi.json').then((module) => module.default),
 };
 
 export const getDictionary = async (locale: string): Promise<Record<string, string>> => {

@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-export const LOCALES = ['en', 'id', 'zh', 'jp', 'ru', 'fr', 'ar', 'es', 'ko', 'de', 'nl', 'ha', 'he', 'el'];
+export const LOCALES = ['en', 'id', 'zh', 'jp', 'ru', 'fr', 'ar', 'es', 'ko', 'de', 'nl', 'ha', 'he', 'el', 'hi', 'pt', 'bn', 'vi'];
 
 // Map locale codes to hreflang codes (Next.js Metadata alternates.languages keys)
 // 'ja' is the standard code for Japanese, but our URL path uses 'jp'
@@ -19,6 +19,10 @@ export const HREFLANG_MAP: Record<string, string> = {
   ha: 'ha',
   he: 'he',
   el: 'el',
+  hi: 'hi',
+  pt: 'pt',
+  bn: 'bn',
+  vi: 'vi',
 };
 
 export const SITE_URL = 'https://faranaiki.id';
