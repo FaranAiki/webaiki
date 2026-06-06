@@ -17,6 +17,7 @@ export interface SearchResult {
   type: 'work' | 'project' | 'organization' | 'award' | 'page';
   url: string;
   tags?: string[];
+  score?: number;
 }
 
 interface ExperienceItem {
@@ -38,8 +39,21 @@ export async function searchContent(query: string, lang: string): Promise<Search
 
   const dict = await getDictionary(lang);
   const lowercaseQuery = query.toLowerCase().trim();
+  const queryTerms = lowercaseQuery.split(/\s+/).filter(term => term.length > 1);
 
   const results: SearchResult[] = [];
+
+  const calculateScore = (text: string, terms: string[]) => {
+    let score = 0;
+    const lowerText = text.toLowerCase();
+    terms.forEach(term => {
+      if (lowerText.includes(term)) {
+        score += 10;
+        if (lowerText.startsWith(term)) score += 5;
+      }
+    });
+    return score;
+  };
 
   // 1. Search Static Pages
   const pages = [
@@ -61,12 +75,13 @@ export async function searchContent(query: string, lang: string): Promise<Search
   ];
 
   pages.forEach(page => {
-    const inTitle = page.title.toLowerCase().includes(lowercaseQuery);
-    const inDesc = page.description.toLowerCase().includes(lowercaseQuery);
-    if (inTitle || inDesc) {
+    const titleScore = calculateScore(page.title, queryTerms);
+    const descScore = calculateScore(page.description, queryTerms);
+    if (titleScore > 0 || descScore > 0) {
       results.push({
         ...page,
         type: 'page',
+        score: titleScore * 2 + descScore
       });
     }
   });
@@ -75,13 +90,15 @@ export async function searchContent(query: string, lang: string): Promise<Search
   const searchInList = (list: YearGroup[], type: 'work' | 'project' | 'organization' | 'award') => {
     list.forEach(yearGroup => {
       yearGroup.jobs.forEach((job) => {
-        const inTitle = job.title.toLowerCase().includes(lowercaseQuery);
-        const inDescription = job.description.toLowerCase().includes(lowercaseQuery);
-        const inCompany = job.company?.toLowerCase().includes(lowercaseQuery);
-        const inDate = job.date.toLowerCase().includes(lowercaseQuery);
-        const inTags = job.tagLabel?.some(tag => tag.toLowerCase().includes(lowercaseQuery));
+        const titleScore = calculateScore(job.title, queryTerms);
+        const descScore = calculateScore(job.description, queryTerms);
+        const companyScore = job.company ? calculateScore(job.company, queryTerms) : 0;
+        const dateScore = calculateScore(job.date, queryTerms);
+        const tagScore = job.tagLabel?.some(tag => calculateScore(tag, queryTerms) > 0) ? 10 : 0;
 
-        if (inTitle || inDescription || inCompany || inDate || inTags) {
+        const totalScore = titleScore * 3 + descScore + companyScore * 2 + dateScore + tagScore;
+
+        if (totalScore > 0) {
           results.push({
             title: job.title,
             company: job.company,
@@ -90,7 +107,8 @@ export async function searchContent(query: string, lang: string): Promise<Search
             date: job.date,
             type: type,
             url: job.url || `/${lang}/${type}`,
-            tags: job.tagLabel
+            tags: job.tagLabel,
+            score: totalScore
           });
         }
       });
@@ -102,13 +120,22 @@ export async function searchContent(query: string, lang: string): Promise<Search
   searchInList(getOrganizationExperiences(dict) as YearGroup[], 'organization');
   searchInList(getAwardExperiences(dict) as YearGroup[], 'award');
 
-  // Deduplicate and prioritize
-  const uniqueResults = Array.from(new Map(results.map(item => [item.url + item.title, item])).values());
+  // Deduplicate by URL and Title
+  const uniqueResultsMap = new Map<string, SearchResult>();
+  results.forEach(res => {
+    const key = `${res.url}-${res.title}`;
+    const existing = uniqueResultsMap.get(key);
+    if (!existing || (res.score || 0) > (existing.score || 0)) {
+      uniqueResultsMap.set(key, res);
+    }
+  });
 
-  return uniqueResults.sort((a, b) => {
-    // Pages first
-    if (a.type === 'page' && b.type !== 'page') return -1;
-    if (a.type !== 'page' && b.type === 'page') return 1;
-    return 0;
+  return Array.from(uniqueResultsMap.values()).sort((a, b) => {
+    // 1. Pages always highly prioritized if they match well
+    if (a.type === 'page' && b.type !== 'page' && (a.score || 0) > 5) return -1;
+    if (b.type === 'page' && a.type !== 'page' && (b.score || 0) > 5) return 1;
+    
+    // 2. Sort by score
+    return (b.score || 0) - (a.score || 0);
   });
 }
