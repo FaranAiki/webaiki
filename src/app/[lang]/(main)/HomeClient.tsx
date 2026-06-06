@@ -3,11 +3,12 @@
 import React, { useState, useEffect } from 'react';
 import TrackingIcon, { TrackerType } from "@/components/interactive/TrackingIcon";
 import FadeInSection from "@/components/shared/FadeInSection";
+import SearchBar from "@/components/shared/SearchBar";
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface HomeClientProps {
   lang: string;
-  dict: any;
+  dict: Record<string, string>;
 }
 
 export default function HomeClient({ lang, dict }: HomeClientProps) {
@@ -139,7 +140,7 @@ export default function HomeClient({ lang, dict }: HomeClientProps) {
                     { name: dict.Website, href: `/${lang}/website` },
                     { name: dict.Portfolio, href: `/${lang}/portfolio` },
                     { name: dict.College, href: `/${lang}/college` }
-                ].map((item: any) => (
+                ].map((item: { name: string; href: string }) => (
                     <a
                         key={item.href}
                         href={item.href}
@@ -151,6 +152,13 @@ export default function HomeClient({ lang, dict }: HomeClientProps) {
                     </a>
                 ))}
             </div>
+        </FadeInSection>
+
+        {/* Search Bar Section */}
+        <FadeInSection delay={isReady ? 1.4 : 0}>
+          <div className="mt-16 w-full no-print">
+            <SearchBar dict={dict} scope="all" />
+          </div>
         </FadeInSection>
       </div>
     </main>
