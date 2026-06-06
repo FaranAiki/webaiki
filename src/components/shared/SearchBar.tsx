@@ -20,18 +20,18 @@ interface SearchBarProps {
 
 const HighlightText = ({ text, query }: { text: string; query: string }) => {
   if (!query.trim()) return <>{text}</>;
-  
+
   const terms = query.toLowerCase().split(/\s+/).filter(t => t.length > 1);
   if (terms.length === 0) return <>{text}</>;
-  
+
   const regex = new RegExp(`(${terms.join('|')})`, 'gi');
   const parts = text.split(regex);
-  
+
   return (
     <>
       {parts.map((part, i) => (
         regex.test(part) ? (
-          <span key={i} className="text-theme-500 font-black underline decoration-theme-500/30 underline-offset-2 lowercase">{part}</span>
+          <span key={i} className="text-theme-500 font-black underline decoration-theme-500/30 underline-offset-2">{part}</span>
         ) : (
           part
         )
@@ -247,10 +247,10 @@ export default function SearchBar({
                         {(result.image || result.type === 'certificate') && (
                           <div className="w-12 h-8 relative rounded-md overflow-hidden bg-theme-surface border border-theme-border flex-shrink-0">
                             {result.image ? (
-                              <Image 
-                                src={result.image} 
-                                alt={result.title} 
-                                fill 
+                              <Image
+                                src={result.image}
+                                alt={result.title}
+                                fill
                                 className="object-cover"
                                 sizes="48px"
                               />
@@ -262,17 +262,18 @@ export default function SearchBar({
                           </div>
                         )}
 
+                        {/* TODO make this more beautiful */}
                         <div className="flex-1 min-w-0">
                           <div className="flex flex-wrap items-center gap-2 mb-0.5">
                             <div className="flex items-center gap-1">
                               <span className="text-theme-500 scale-75">{getTypeIcon(result.type)}</span>
-                              <span className="text-[10px] font-bold text-theme-500 tracking-widest">{typeLabel}</span>
+                              <span className="text-xs font-bold text-theme-500 tracking-widest capitalize">{typeLabel}</span>
                             </div>
                             {result.date && (
-                              <span className="text-[10px] font-medium text-theme-muted">• {result.date}</span>
+                              <span className="text-xs font-medium text-theme-muted">• {result.date}</span>
                             )}
                             {result.company && (
-                              <span className="text-[10px] text-theme-muted truncate max-w-[150px]">• {result.company}</span>
+                              <span className="text-xs text-theme-muted truncate max-w-[150px]">• {result.company}</span>
                             )}
                           </div>
                           <h4 className={`text-sm font-black transition-colors truncate
@@ -280,7 +281,7 @@ export default function SearchBar({
                           `}>
                             <HighlightText text={result.title} query={query} />
                           </h4>
-                          <p className="text-[10px] text-theme-muted line-clamp-1 italic mb-1">
+                          <p className="text-xs text-theme-muted line-clamp-1 mb-1">
                             <HighlightText text={result.description} query={query} />
                           </p>
                           {result.tags && result.tags.length > 0 && (
@@ -315,6 +316,7 @@ export default function SearchBar({
       </AnimatePresence>
 
       {/* Scope Indicator (Subtle) */}
+      {/*
       <div className="mt-2 flex justify-center gap-4 text-[10px] font-bold tracking-widest text-theme-muted">
         <span className={scope === 'all' ? 'text-theme-500' : ''}>{dict.All || 'All'}</span>
         {scope === 'some' && (
@@ -325,6 +327,7 @@ export default function SearchBar({
         )}
         <span className={scope === 'current' ? 'text-theme-500' : ''}>{dict.Current_Page || 'Current Page'}</span>
       </div>
+      */}
     </div>
   );
 }

@@ -80,7 +80,7 @@ export default function HomeClient({ dict }: HomeClientProps) {
   };
 
   return (
-    <main className="min-h-[85vh] flex flex-col items-center justify-center pt-12 pb-32">
+    <main className="min-h-[65vh] flex flex-col items-center justify-center pt-12 pb-12">
       <div className="w-full max-w-6xl overflow-visible">
         <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">
 
@@ -104,11 +104,11 @@ export default function HomeClient({ dict }: HomeClientProps) {
                   <AnimatePresence mode="popLayout">
                     <motion.span
                       key={wordIndex}
-                      initial={{ y: 30, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
+                      initial={{ x: -10, y: 30, opacity: 0 }}
+                      animate={{ x: -13, y: 11.5, opacity: 1 }}
                       exit={{ y: -30, opacity: 0 }}
                       transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-                      className="absolute inset-0 flex items-center justify-center text-theme-500 whitespace-nowrap nav-active-gacor"
+                      className="absolute inset-0 flex items-center justify-center text-theme-500 whitespace-nowrap nav-active-gacor lowercase"
                     >
                       {cyclingData[wordIndex].word}
                     </motion.span>
@@ -163,7 +163,8 @@ export default function HomeClient({ dict }: HomeClientProps) {
 
         {/* Search Bar Section */}
         <FadeInSection delay={isReady ? 1.4 : 0}>
-          <section className="mt-16 w-full no-print" aria-labelledby="search-heading">
+          <section className="mt-6 w-full no-print" aria-labelledby="search-heading">
+            {/*Make sure to change the Search Faran Aiki Content to language locales*/}
             <h2 id="search-heading" className="sr-only">Search Faran Aiki Content</h2>
             <SearchBar dict={dict} scope="all" />
           </section>
