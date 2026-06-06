@@ -80,7 +80,7 @@ export default function HomeClient({ lang, dict }: HomeClientProps) {
   };
 
   return (
-    <main className="min-h-[85vh] flex flex-col items-center justify-center pt-12 overflow-hidden">
+    <main className="min-h-[85vh] flex flex-col items-center justify-center pt-12">
       <div className="w-full max-w-6xl">
         <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">
 
