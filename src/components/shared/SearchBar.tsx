@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, X, Loader2, ArrowRight, Layout, FileCheck, Award, Briefcase, Code, Users } from 'lucide-react';
 import { searchContent, SearchResult } from '@/app/search-actions';
 import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { useAppStore } from '@/lib/store';
 
 export type SearchScope = 'all' | 'current' | 'some' | string;
 
@@ -56,6 +57,7 @@ export default function SearchBar({
   const params = useParams();
   const router = useRouter();
   const lang = params?.lang as string || 'id';
+  const setScrollLocked = useAppStore((state) => state.setScrollLocked);
 
   const isFocusedRef = useRef(isFocused);
   const resultsRef = useRef(results);
@@ -154,6 +156,13 @@ export default function SearchBar({
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  // Lock scroll when results are open and there are results
+  useEffect(() => {
+    const shouldLock = isFocused && (query.trim().length >= 2 || results.length > 0);
+    setScrollLocked(shouldLock);
+    return () => setScrollLocked(false);
+  }, [isFocused, query, results.length, setScrollLocked]);
 
   const getTypeIcon = (type: string) => {
     switch (type) {
