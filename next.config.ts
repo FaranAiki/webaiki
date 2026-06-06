@@ -39,7 +39,12 @@ const nextConfig: NextConfig = {
 
       // Explicitly externalize chromium to prevent bundling its binaries
       if (isServer) {
-        config.externals = [...(Array.isArray(config.externals) ? config.externals : []), '@sparticuz/chromium'];
+        config.externals = (config.externals || []) as any;
+        if (Array.isArray(config.externals)) {
+          config.externals.push('@sparticuz/chromium');
+        } else {
+          config.externals = [config.externals, '@sparticuz/chromium'];
+        }
       }
 
       return config;
@@ -135,7 +140,7 @@ images: {
       { slug: 'email', url: 'mailto:faran.aiki.business@gmail.com' },
     ];
 
-    const langPattern = '(en|id|zh|jp|ru|fr|ar|es|ko|de|nl|ha|he|el)';
+    const langPattern = '(en|id|zh|jp|ru|fr|ar|es|ko|de|nl|ha|he|el|hi|pt|bn|vi)';
     
     const redirectList: { source: string; destination: string; permanent: boolean }[] = [];
     
