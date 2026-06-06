@@ -41,7 +41,6 @@ export default function MusicDisplay({ youtubeItems = [], error, lang }: MusicDi
   const justifyClass = isJustified ? 'text-justify' : 'text-left';
 
   useEffect(() => {
-    setMounted(true);
     // Load iframes after 1.5 seconds, or immediately upon user scroll
     const timer = setTimeout(() => setIframesLoaded(true), 1500);
     
