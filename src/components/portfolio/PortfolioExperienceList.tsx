@@ -40,6 +40,18 @@ interface PortfolioExperienceListProps {
     Project: string;
     Organization: string;
     Award: string;
+    // Tags
+    Education: string;
+    Data: string;
+    Human: string;
+    Technology: string;
+    Math: string;
+    Management: string;
+    Arts: string;
+    Achievement: string;
+    Language: string;
+    User: string;
+    Filter_Top: string;
   };
 }
 
@@ -58,16 +70,25 @@ export default function PortfolioExperienceList({
     if (portfolioFilter === 'top') {
       filtered = jobs.filter(j => (j.point || 0) >= 80);
     } else if (portfolioFilter !== 'all') {
-      // Filter by tag
-      filtered = jobs.filter(j => j.tag?.includes(portfolioFilter));
+      // Filter by tag - comparing untranslated enum key to translated tag strings in the data
+      const targetLabel = labels[portfolioFilter as keyof typeof labels];
+      filtered = jobs.filter(j => j.tag?.includes(targetLabel));
     }
     
     return filtered.sort((a, b) => {
-      const catA = a.tag?.[0] || '';
-      const catB = b.tag?.[0] || '';
+      // For sorting, we still use the enum-based CATEGORY_ORDER
+      // We need to find which enum key corresponds to the translated string
+      const findEnumKey = (translatedTag?: string) => {
+        if (!translatedTag) return '';
+        const entry = Object.entries(labels).find(([, val]) => val === translatedTag);
+        return entry ? entry[0] : '';
+      };
+
+      const keyA = findEnumKey(a.tag?.[0]);
+      const keyB = findEnumKey(b.tag?.[0]);
       
-      const orderA = CATEGORY_ORDER[catA] || 999;
-      const orderB = CATEGORY_ORDER[catB] || 999;
+      const orderA = CATEGORY_ORDER[keyA] || 999;
+      const orderB = CATEGORY_ORDER[keyB] || 999;
       
       if (orderA !== orderB) {
         return orderA - orderB;
@@ -75,7 +96,7 @@ export default function PortfolioExperienceList({
       
       return (b.point || 0) - (a.point || 0);
     });
-  }, [portfolioFilter]);
+  }, [portfolioFilter, labels]);
 
   const filteredWork = useMemo(() => filterJobs(workExperiences), [workExperiences, filterJobs]);
   const filteredProject = useMemo(() => filterJobs(projectExperiences), [projectExperiences, filterJobs]);

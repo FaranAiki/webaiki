@@ -29,7 +29,7 @@ interface ExperienceItem {
   description: string;
   date: string;
   url?: string;
-  tagLabel?: string[];
+  tag?: string[];
   image?: string[];
 }
 
@@ -185,7 +185,7 @@ export async function searchContent(query: string, lang: string): Promise<Search
           description: job.description,
           company: job.company,
           date: job.date,
-          tags: job.tagLabel,
+          tags: job.tag,
         };
 
         const score = calculateScore(item, queryTerms);
@@ -200,7 +200,7 @@ export async function searchContent(query: string, lang: string): Promise<Search
             date: job.date,
             type: type,
             url: job.url ? job.url : `/${lang}/${type}${anchor}`,
-            tags: job.tagLabel,
+            tags: job.tag,
             score: score,
             image: job.image && job.image.length > 0 ? job.image[0] : undefined
           });

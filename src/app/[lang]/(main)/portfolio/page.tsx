@@ -111,7 +111,18 @@ export default async function PortfolioSummaryPage({ params }: { params: Promise
               Work: dict.Work,
               Project: dict.Project,
               Organization: dict.Organization,
-              Award: dict.Award
+              Award: dict.Award,
+              Education: dict.Education,
+              Data: dict.Data,
+              Human: dict.Human,
+              Technology: dict.Technology,
+              Math: dict.Math,
+              Management: dict.Management,
+              Arts: dict.Arts,
+              Achievement: dict.Achievement,
+              Language: dict.Language,
+              User: dict.User,
+              Filter_Top: dict.Filter_Top
             }}
           />
 
