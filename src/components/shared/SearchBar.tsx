@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, X, Command, Loader2, ArrowRight } from 'lucide-react';
 import { searchContent, SearchResult } from '@/app/search-actions';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 
 export type SearchScope = 'all' | 'current' | 'some' | string;
 
@@ -27,14 +27,28 @@ export default function SearchBar({
   const [isFocused, setIsFocused] = useState(false);
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const params = useParams();
+  const router = useRouter();
   const lang = params?.lang as string || 'id';
+
+  const navigateToResult = (result: SearchResult) => {
+    const url = result.url || `/${lang}/${result.type}`;
+    if (url.startsWith('http')) {
+      window.open(url, '_blank');
+    } else {
+      router.push(url);
+    }
+    setIsFocused(false);
+  };
 
   const handleSearch = async (e?: React.FormEvent) => {
     e?.preventDefault();
-    if (onSearch) {
+    if (selectedIndex >= 0 && results[selectedIndex]) {
+      navigateToResult(results[selectedIndex]);
+    } else if (onSearch) {
       onSearch(query, scope);
     }
   };
@@ -46,6 +60,7 @@ export default function SearchBar({
         try {
           const searchResults = await searchContent(query, lang);
           setResults(searchResults);
+          setSelectedIndex(searchResults.length > 0 ? 0 : -1);
         } catch (error) {
           console.error("Search failed:", error);
         } finally {
@@ -53,6 +68,7 @@ export default function SearchBar({
         }
       } else {
         setResults([]);
+        setSelectedIndex(-1);
       }
     }, 300);
 
@@ -62,6 +78,7 @@ export default function SearchBar({
   const clearSearch = () => {
     setQuery('');
     setResults([]);
+    setSelectedIndex(-1);
     inputRef.current?.focus();
   };
 
@@ -71,14 +88,23 @@ export default function SearchBar({
         e.preventDefault();
         inputRef.current?.focus();
       }
-      if (e.key === 'Escape') {
+
+      if (!isFocused) return;
+
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        setSelectedIndex(prev => (prev < results.length - 1 ? prev + 1 : prev));
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        setSelectedIndex(prev => (prev > 0 ? prev - 1 : -1));
+      } else if (e.key === 'Escape') {
         setIsFocused(false);
         inputRef.current?.blur();
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  }, [isFocused, results.length]);
 
   // Handle click outside to close results
   useEffect(() => {
@@ -149,25 +175,40 @@ export default function SearchBar({
           >
             {results.length > 0 ? (
               <div className="py-2">
-                {results.map((result, index) => (
-                  <a
-                    key={`${result.type}-${index}`}
-                    href={result.url || `/${lang}/${result.type}`}
-                    className="block px-4 py-3 hover:bg-theme-surface transition-colors group border-b border-theme-border last:border-0"
-                  >
-                    <div className="flex justify-between items-start mb-1">
-                      <span className="text-[10px] font-bold text-theme-500 tracking-widest">{dict[result.type.charAt(0).toUpperCase() + result.type.slice(1)] || result.type}</span>
-                      <span className="text-[10px] font-medium text-theme-muted">{result.year}</span>
-                    </div>
-                    <h4 className="text-sm font-bold text-theme-text group-hover:text-theme-500 transition-colors flex items-center gap-2">
-                      {result.title}
-                      <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0" />
-                    </h4>
-                    {result.company && (
-                      <p className="text-xs text-theme-muted font-medium">{result.company}</p>
-                    )}
-                  </a>
-                ))}
+                {results.map((result, index) => {
+                  const typeLabel = dict[result.type.charAt(0).toUpperCase() + result.type.slice(1)] || result.type;
+                  return (
+                    <button
+                      key={`${result.type}-${index}`}
+                      onClick={() => navigateToResult(result)}
+                      onMouseEnter={() => setSelectedIndex(index)}
+                      className={`w-full text-left px-4 py-3 transition-colors group border-b border-theme-border last:border-0 flex items-center justify-between gap-4
+                        ${selectedIndex === index ? 'bg-theme-surface' : 'hover:bg-theme-surface'}
+                      `}
+                    >
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="text-[10px] font-medium text-theme-muted">{result.year}</span>
+                          {result.company && (
+                            <span className="text-[10px] text-theme-muted truncate max-w-[150px]">• {result.company}</span>
+                          )}
+                        </div>
+                        <h4 className={`text-sm font-bold transition-colors truncate
+                          ${selectedIndex === index ? 'text-theme-500' : 'text-theme-text group-hover:text-theme-500'}
+                        `}>
+                          {result.title}
+                        </h4>
+                      </div>
+                      
+                      <div className="flex items-center gap-3 flex-shrink-0">
+                        <span className="text-[10px] font-bold text-theme-500 tracking-widest">
+                          {typeLabel}
+                        </span>
+                        <ArrowRight size={14} className={`transition-all ${selectedIndex === index ? 'translate-x-0 opacity-100' : '-translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100'}`} />
+                      </div>
+                    </button>
+                  );
+                })}
               </div>
             ) : (
               <div className="p-8 text-center text-theme-muted italic text-sm">
