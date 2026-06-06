@@ -3,6 +3,7 @@ import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 
 import Script from 'next/script';
+import { headers } from 'next/headers';
 
 export default async function NakedLayout({
   children,
@@ -10,6 +11,8 @@ export default async function NakedLayout({
   children: React.ReactNode;
   params: Promise<{ lang: string }>;
 }>) {
+  const nonce = (await headers()).get('x-nonce') || undefined;
+  
   return (
     <>
         {children}
@@ -17,6 +20,7 @@ export default async function NakedLayout({
           defer
           src="https://cloud.umami.is/script.js" 
           data-website-id="a418298f-fdca-4df0-a3bf-be453b48eeaf"
+          nonce={nonce}
         />
     </>
   );

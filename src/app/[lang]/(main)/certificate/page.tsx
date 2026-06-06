@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import "../../../globals.css";
 
 import CertificatesDisplay from '@/components/portfolio/CertificatesDisplay';
@@ -31,6 +32,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 export default async function CertificatePage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
+  const nonce = (await headers()).get('x-nonce') || undefined;
   const certificates_data = await getCertificatesData(lang);
 
   const breadcrumbSchema = getBreadcrumbSchema([
@@ -43,6 +45,7 @@ export default async function CertificatePage({ params }: { params: Promise<{ la
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        nonce={nonce}
       />
       <CertificatesDisplay 
         certificates={certificates_data} 

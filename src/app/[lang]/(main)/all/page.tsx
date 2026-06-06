@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import "../../../globals.css";
 import { getDictionary } from '@/components/layout/Translator';
 import ExperiencesClient, { Experience, Job } from '@/components/portfolio/ExperienceDisplayer';
@@ -50,6 +51,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 export default async function AllHighlightsPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
+  const nonce = (await headers()).get('x-nonce') || undefined;
   const faranPhotos = await getFaranAikiPhoto();
 
   const workExp = getWorkExperiences(dict);
@@ -181,6 +183,7 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        nonce={nonce}
       />
       {/* Refined Portfolio Header */}
       <section id="about" className="container mx-auto px-4 sm:px-8">

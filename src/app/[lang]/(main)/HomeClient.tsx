@@ -103,7 +103,7 @@ export default function HomeClient({ lang, dict }: HomeClientProps) {
                       animate={{ y: 24, opacity: 1 }}
                       exit={{ y: -30, opacity: 0 }}
                       transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-                      className="absolute left-0 bottom-0 text-theme-500 whitespace-nowrap nav-active-gacor"
+                      className="absolute left-0 bottom-0 text-theme-500 whitespace-nowrap nav-active-gacor lowercase"
                     >
                       {cyclingData[wordIndex].word}
                     </motion.span>
@@ -133,6 +133,7 @@ export default function HomeClient({ lang, dict }: HomeClientProps) {
         </div>
 
         {/* Quick Navigation / Explore Section */}
+        {/*
         <FadeInSection delay={isReady ? 1.2 : 0}>
             <div className="mt-24 md:mt-32 grid grid-cols-2 md:grid-cols-4 gap-4 w-full no-print">
                 {[
@@ -153,6 +154,7 @@ export default function HomeClient({ lang, dict }: HomeClientProps) {
                 ))}
             </div>
         </FadeInSection>
+        */}
 
         {/* Search Bar Section */}
         <FadeInSection delay={isReady ? 1.4 : 0}>

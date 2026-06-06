@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import "../../../globals.css";
 import { getDictionary } from '@/components/layout/Translator';
 import ExperiencesClient from '@/components/portfolio/ExperienceDisplayer';
@@ -32,6 +33,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 export default async function WorkExperiencesPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
+  const nonce = (await headers()).get('x-nonce') || undefined;
 
   const workExperiences = getWorkExperiences(dict);
 
@@ -58,6 +60,7 @@ export default async function WorkExperiencesPage({ params }: { params: Promise<
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        nonce={nonce}
       />
       <ExperiencesClient 
         experiences={workExperiences} 

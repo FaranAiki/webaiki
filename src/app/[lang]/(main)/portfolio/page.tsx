@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import "../../../globals.css";
 import { getDictionary } from '@/components/layout/Translator';
 import { SITE_URL, getBaseMetadata, getLanguageAlternates } from '@/lib/seo';
@@ -41,6 +42,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 export default async function PortfolioSummaryPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
+  const nonce = (await headers()).get('x-nonce') || undefined;
 
   const workExp = getWorkExperiences(dict).flatMap(y => y.jobs);
   const projectExp = getProjectExperiences(dict).flatMap(y => y.jobs);
@@ -88,6 +90,7 @@ export default async function PortfolioSummaryPage({ params }: { params: Promise
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        nonce={nonce}
       />
       <PortfolioClientWrapper>
         <div className="space-y-6 portfolio-content-wrapper">

@@ -104,6 +104,7 @@ export default async function BaseLayout({
           strategy="lazyOnload"
           src="https://cloud.umami.is/script.js"
           data-website-id="a418298f-fdca-4df0-a3bf-be453b48eeaf"
+          nonce={nonce}
         />
       </body>
     </html>
