@@ -4,7 +4,8 @@ import {
   getWorkExperiences, 
   getProjectExperiences, 
   getOrganizationExperiences, 
-  getAwardExperiences 
+  getAwardExperiences,
+  getCertificatesData
 } from '@/lib/data';
 import { getDictionary } from '@/components/layout/Translator';
 
@@ -14,11 +15,12 @@ export interface SearchResult {
   description: string;
   year?: string;
   date?: string;
-  type: 'work' | 'project' | 'organization' | 'award' | 'page';
+  type: 'work' | 'project' | 'organization' | 'award' | 'page' | 'certificate';
   url: string;
   tags?: string[];
   score?: number;
   keywords?: string[];
+  image?: string;
 }
 
 interface ExperienceItem {
@@ -28,6 +30,7 @@ interface ExperienceItem {
   date: string;
   url?: string;
   tagLabel?: string[];
+  image?: string[];
 }
 
 interface YearGroup {
@@ -68,7 +71,7 @@ export async function searchContent(query: string, lang: string): Promise<Search
     return score;
   };
 
-  // 1. Search Static Pages with expanded keywords
+  // 1. Search Static Pages
   const pages: (Omit<SearchResult, 'type' | 'score'> & { keywords: string[] })[] = [
     { 
       title: dict.Home || "Home", 
@@ -168,7 +171,7 @@ export async function searchContent(query: string, lang: string): Promise<Search
       results.push({
         ...page,
         type: 'page',
-        score: score * 1.5 // Prioritize pages slightly
+        score: score * 1.5
       });
     }
   });
@@ -197,7 +200,8 @@ export async function searchContent(query: string, lang: string): Promise<Search
             type: type,
             url: job.url || `/${lang}/${type}`,
             tags: job.tagLabel,
-            score: score
+            score: score,
+            image: job.image && job.image.length > 0 ? job.image[0] : undefined
           });
         }
       });
@@ -208,6 +212,28 @@ export async function searchContent(query: string, lang: string): Promise<Search
   searchInList(getProjectExperiences(dict) as YearGroup[], 'project');
   searchInList(getOrganizationExperiences(dict) as YearGroup[], 'organization');
   searchInList(getAwardExperiences(dict) as YearGroup[], 'award');
+
+  // 3. Search Individual Certificates
+  const certData = await getCertificatesData(lang);
+  Object.entries(certData).forEach(([category, years]) => {
+    Object.entries(years).forEach(([year, certificates]) => {
+      Object.entries(certificates).forEach(([certName, details]) => {
+        const score = calculateScore({ title: certName, company: category, date: year }, queryTerms);
+        if (score > 0) {
+          results.push({
+            title: certName,
+            company: category,
+            description: `${category} - ${year}`,
+            year: year,
+            date: year,
+            type: 'certificate',
+            url: details.path,
+            score: score * 0.8 // Slightly lower priority than main categories
+          });
+        }
+      });
+    });
+  });
 
   // Deduplicate by URL and Title
   const uniqueResultsMap = new Map<string, SearchResult>();

@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, X, Loader2, ArrowRight, Layout } from 'lucide-react';
+import { Search, X, Loader2, ArrowRight, Layout, FileCheck, Award, Briefcase, Code, Users } from 'lucide-react';
 import { searchContent, SearchResult } from '@/app/search-actions';
 import { useParams, useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 export type SearchScope = 'all' | 'current' | 'some' | string;
 
@@ -15,6 +16,28 @@ interface SearchBarProps {
   dict: Record<string, string>;
   onSearch?: (query: string, scope: SearchScope) => void;
 }
+
+const HighlightText = ({ text, query }: { text: string; query: string }) => {
+  if (!query.trim()) return <>{text}</>;
+  
+  const terms = query.toLowerCase().split(/\s+/).filter(t => t.length > 1);
+  if (terms.length === 0) return <>{text}</>;
+  
+  const regex = new RegExp(`(${terms.join('|')})`, 'gi');
+  const parts = text.split(regex);
+  
+  return (
+    <>
+      {parts.map((part, i) => (
+        regex.test(part) ? (
+          <span key={i} className="text-theme-500 font-black underline decoration-theme-500/30 underline-offset-2">{part}</span>
+        ) : (
+          part
+        )
+      ))}
+    </>
+  );
+};
 
 export default function SearchBar({
   scope = 'all',
@@ -34,7 +57,6 @@ export default function SearchBar({
   const router = useRouter();
   const lang = params?.lang as string || 'id';
 
-  // Refs for keyboard navigation to avoid dependency issues
   const isFocusedRef = useRef(isFocused);
   const resultsRef = useRef(results);
   const selectedIndexRef = useRef(selectedIndex);
@@ -123,7 +145,6 @@ export default function SearchBar({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [navigateToResult]);
 
-  // Handle click outside to close results
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
@@ -133,6 +154,30 @@ export default function SearchBar({
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  const groupedResults = useMemo(() => {
+    const groups: Record<string, SearchResult[]> = {};
+    results.forEach(res => {
+      const type = res.type;
+      if (!groups[type]) groups[type] = [];
+      groups[type].push(res);
+    });
+    return groups;
+  }, [results]);
+
+  const typeOrder = ['page', 'work', 'project', 'organization', 'award', 'certificate'];
+
+  const getTypeIcon = (type: string) => {
+    switch (type) {
+      case 'page': return <Layout size={12} />;
+      case 'work': return <Briefcase size={12} />;
+      case 'project': return <Code size={12} />;
+      case 'organization': return <Users size={12} />;
+      case 'award': return <Award size={12} />;
+      case 'certificate': return <FileCheck size={12} />;
+      default: return <Search size={12} />;
+    }
+  };
 
   return (
     <div ref={containerRef} className={`relative w-full max-w-2xl mx-auto z-[60] ${className}`}>
@@ -173,7 +218,6 @@ export default function SearchBar({
               </motion.button>
             )}
           </AnimatePresence>
-
         </div>
       </form>
 
@@ -189,53 +233,76 @@ export default function SearchBar({
           >
             {results.length > 0 ? (
               <div className="py-2">
-                {results.map((result, index) => {
-                  const typeLabel = dict[result.type.charAt(0).toUpperCase() + result.type.slice(1)] || result.type;
-                  return (
-                    <button
-                      key={`${result.type}-${index}`}
-                      onClick={() => navigateToResult(result)}
-                      onMouseEnter={() => setSelectedIndex(index)}
-                      className={`w-full text-left px-4 py-3 transition-colors group border-b border-theme-border last:border-0 flex items-center justify-between gap-4
-                        ${selectedIndex === index ? 'bg-theme-surface' : 'hover:bg-theme-surface'}
-                      `}
-                    >
-                      <div className="flex-1 min-w-0">
-                        <div className="flex flex-wrap items-center gap-2 mb-1">
-                          {result.type === 'page' ? (
-                            <Layout size={10} className="text-theme-500" />
-                          ) : (
-                            <span className="text-[10px] font-bold text-theme-500 tracking-widest">{typeLabel}</span>
-                          )}
-                          {result.date && (
-                            <span className="text-[10px] font-medium text-theme-muted">• {result.date}</span>
-                          )}
-                          {result.company && (
-                            <span className="text-[10px] text-theme-muted truncate max-w-[150px]">• {result.company}</span>
-                          )}
-                        </div>
-                        <h4 className={`text-sm font-bold transition-colors truncate mb-1
-                          ${selectedIndex === index ? 'text-theme-500' : 'text-theme-text group-hover:text-theme-500'}
-                        `}>
-                          {result.title}
-                        </h4>
-                        {result.type === 'page' ? (
-                          <p className="text-sm text-theme-muted">{result.description}</p>
-                        ) : result.tags && result.tags.length > 0 && (
-                          <div className="flex flex-wrap gap-1">
-                            {result.tags.map((tag, i) => (
-                              <span key={i} className="text-[9px] px-1.5 py-0.5 rounded-full bg-theme-surface-strong border border-theme-border text-theme-muted">
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                      </div>
+                {typeOrder.map(type => {
+                  const items = groupedResults[type];
+                  if (!items) return null;
+                  
+                  const typeLabel = dict[type.charAt(0).toUpperCase() + type.slice(1)] || type;
 
-                      <div className="flex items-center gap-2 flex-shrink-0">
-                        <ArrowRight size={14} className={`transition-all ${selectedIndex === index ? 'translate-x-0 opacity-100' : '-translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100'}`} />
+                  return (
+                    <div key={type}>
+                      <div className="px-4 py-2 bg-theme-surface border-y border-theme-border/50 text-[10px] font-black tracking-[0.2em] text-theme-500 uppercase flex items-center gap-2">
+                        {getTypeIcon(type)}
+                        {typeLabel}
                       </div>
-                    </button>
+                      {items.map((result) => {
+                        const globalIndex = results.indexOf(result);
+                        return (
+                          <button
+                            key={`${result.type}-${result.url}-${result.title}`}
+                            onClick={() => navigateToResult(result)}
+                            onMouseEnter={() => setSelectedIndex(globalIndex)}
+                            className={`w-full text-left px-4 py-3 transition-colors group border-b border-theme-border last:border-0 flex items-center justify-between gap-4
+                              ${selectedIndex === globalIndex ? 'bg-theme-surface' : 'hover:bg-theme-surface'}
+                            `}
+                          >
+                            <div className="flex items-center gap-3 flex-1 min-w-0">
+                              {/* Thumbnail */}
+                              {(result.image || result.type === 'certificate') && (
+                                <div className="w-12 h-8 relative rounded-md overflow-hidden bg-theme-surface border border-theme-border flex-shrink-0">
+                                  {result.image ? (
+                                    <Image 
+                                      src={result.image} 
+                                      alt={result.title} 
+                                      fill 
+                                      className="object-cover"
+                                      sizes="48px"
+                                    />
+                                  ) : (
+                                    <div className="w-full h-full flex items-center justify-center text-theme-muted">
+                                      <FileCheck size={16} />
+                                    </div>
+                                  )}
+                                </div>
+                              )}
+
+                              <div className="flex-1 min-w-0">
+                                <div className="flex flex-wrap items-center gap-2 mb-0.5">
+                                  {result.date && (
+                                    <span className="text-[10px] font-medium text-theme-muted">{result.date}</span>
+                                  )}
+                                  {result.company && (
+                                    <span className="text-[10px] text-theme-muted truncate max-w-[150px]">• {result.company}</span>
+                                  )}
+                                </div>
+                                <h4 className={`text-sm font-black transition-colors truncate
+                                  ${selectedIndex === globalIndex ? 'text-theme-500' : 'text-theme-text group-hover:text-theme-500'}
+                                `}>
+                                  <HighlightText text={result.title} query={query} />
+                                </h4>
+                                <p className="text-[10px] text-theme-muted line-clamp-1 italic">
+                                  <HighlightText text={result.description} query={query} />
+                                </p>
+                              </div>
+                            </div>
+
+                            <div className="flex items-center gap-2 flex-shrink-0">
+                              <ArrowRight size={14} className={`transition-all ${selectedIndex === globalIndex ? 'translate-x-0 opacity-100' : '-translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100'}`} />
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
                   );
                 })}
               </div>
@@ -248,6 +315,17 @@ export default function SearchBar({
         )}
       </AnimatePresence>
 
+      {/* Scope Indicator (Subtle) */}
+      <div className="mt-2 flex justify-center gap-4 text-[10px] font-bold tracking-widest text-theme-muted">
+        <span className={scope === 'all' ? 'text-theme-500' : ''}>{dict.All || 'All'}</span>
+        {scope === 'some' && (
+          <span className="text-theme-500">{dict.Some || 'Some'}</span>
+        )}
+        {scope !== 'all' && scope !== 'current' && scope !== 'some' && (
+          <span className="text-theme-500">{typeof scope === 'string' ? scope : 'Specific'}</span>
+        )}
+        <span className={scope === 'current' ? 'text-theme-500' : ''}>{dict.Current_Page || 'Current Page'}</span>
+      </div>
     </div>
   );
 }
