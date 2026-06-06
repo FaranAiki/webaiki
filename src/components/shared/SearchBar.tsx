@@ -30,7 +30,7 @@ const HighlightText = ({ text, query }: { text: string; query: string }) => {
     <>
       {parts.map((part, i) => (
         regex.test(part) ? (
-          <span key={i} className="text-theme-500 font-black underline decoration-theme-500/30 underline-offset-2">{part}</span>
+          <span key={i} className="text-theme-500 font-black underline decoration-theme-500/30 underline-offset-2 lowercase">{part}</span>
         ) : (
           part
         )
@@ -155,18 +155,6 @@ export default function SearchBar({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const groupedResults = useMemo(() => {
-    const groups: Record<string, SearchResult[]> = {};
-    results.forEach(res => {
-      const type = res.type;
-      if (!groups[type]) groups[type] = [];
-      groups[type].push(res);
-    });
-    return groups;
-  }, [results]);
-
-  const typeOrder = ['page', 'work', 'project', 'organization', 'award', 'certificate'];
-
   const getTypeIcon = (type: string) => {
     switch (type) {
       case 'page': return <Layout size={12} />;
@@ -233,76 +221,65 @@ export default function SearchBar({
           >
             {results.length > 0 ? (
               <div className="py-2">
-                {typeOrder.map(type => {
-                  const items = groupedResults[type];
-                  if (!items) return null;
-                  
-                  const typeLabel = dict[type.charAt(0).toUpperCase() + type.slice(1)] || type;
-
+                {results.map((result, index) => {
+                  const typeLabel = dict[result.type.charAt(0).toUpperCase() + result.type.slice(1)] || result.type;
                   return (
-                    <div key={type}>
-                      <div className="px-4 py-2 bg-theme-surface border-y border-theme-border/50 text-[10px] font-black tracking-[0.2em] text-theme-500 uppercase flex items-center gap-2">
-                        {getTypeIcon(type)}
-                        {typeLabel}
-                      </div>
-                      {items.map((result) => {
-                        const globalIndex = results.indexOf(result);
-                        return (
-                          <button
-                            key={`${result.type}-${result.url}-${result.title}`}
-                            onClick={() => navigateToResult(result)}
-                            onMouseEnter={() => setSelectedIndex(globalIndex)}
-                            className={`w-full text-left px-4 py-3 transition-colors group border-b border-theme-border last:border-0 flex items-center justify-between gap-4
-                              ${selectedIndex === globalIndex ? 'bg-theme-surface' : 'hover:bg-theme-surface'}
-                            `}
-                          >
-                            <div className="flex items-center gap-3 flex-1 min-w-0">
-                              {/* Thumbnail */}
-                              {(result.image || result.type === 'certificate') && (
-                                <div className="w-12 h-8 relative rounded-md overflow-hidden bg-theme-surface border border-theme-border flex-shrink-0">
-                                  {result.image ? (
-                                    <Image 
-                                      src={result.image} 
-                                      alt={result.title} 
-                                      fill 
-                                      className="object-cover"
-                                      sizes="48px"
-                                    />
-                                  ) : (
-                                    <div className="w-full h-full flex items-center justify-center text-theme-muted">
-                                      <FileCheck size={16} />
-                                    </div>
-                                  )}
-                                </div>
-                              )}
-
-                              <div className="flex-1 min-w-0">
-                                <div className="flex flex-wrap items-center gap-2 mb-0.5">
-                                  {result.date && (
-                                    <span className="text-[10px] font-medium text-theme-muted">{result.date}</span>
-                                  )}
-                                  {result.company && (
-                                    <span className="text-[10px] text-theme-muted truncate max-w-[150px]">• {result.company}</span>
-                                  )}
-                                </div>
-                                <h4 className={`text-sm font-black transition-colors truncate
-                                  ${selectedIndex === globalIndex ? 'text-theme-500' : 'text-theme-text group-hover:text-theme-500'}
-                                `}>
-                                  <HighlightText text={result.title} query={query} />
-                                </h4>
-                                <p className="text-[10px] text-theme-muted line-clamp-1 italic">
-                                  <HighlightText text={result.description} query={query} />
-                                </p>
+                    <button
+                      key={`${result.type}-${result.url}-${result.title}-${index}`}
+                      onClick={() => navigateToResult(result)}
+                      onMouseEnter={() => setSelectedIndex(index)}
+                      className={`w-full text-left px-4 py-3 transition-colors group border-b border-theme-border last:border-0 flex items-center justify-between gap-4
+                        ${selectedIndex === index ? 'bg-theme-surface' : 'hover:bg-theme-surface'}
+                      `}
+                    >
+                      <div className="flex items-center gap-3 flex-1 min-w-0">
+                        {/* Thumbnail */}
+                        {(result.image || result.type === 'certificate') && (
+                          <div className="w-12 h-8 relative rounded-md overflow-hidden bg-theme-surface border border-theme-border flex-shrink-0">
+                            {result.image ? (
+                              <Image 
+                                src={result.image} 
+                                alt={result.title} 
+                                fill 
+                                className="object-cover"
+                                sizes="48px"
+                              />
+                            ) : (
+                              <div className="w-full h-full flex items-center justify-center text-theme-muted">
+                                <FileCheck size={16} />
                               </div>
-                            </div>
+                            )}
+                          </div>
+                        )}
 
-                            <div className="flex items-center gap-2 flex-shrink-0">
-                              <ArrowRight size={14} className={`transition-all ${selectedIndex === globalIndex ? 'translate-x-0 opacity-100' : '-translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100'}`} />
+                        <div className="flex-1 min-w-0">
+                          <div className="flex flex-wrap items-center gap-2 mb-0.5">
+                            <div className="flex items-center gap-1">
+                              <span className="text-theme-500 scale-75">{getTypeIcon(result.type)}</span>
+                              <span className="text-[10px] font-bold text-theme-500 tracking-widest">{typeLabel}</span>
                             </div>
-                          </button>
-                        );
-                      })}
-                    </div>
+                            {result.date && (
+                              <span className="text-[10px] font-medium text-theme-muted">• {result.date}</span>
+                            )}
+                            {result.company && (
+                              <span className="text-[10px] text-theme-muted truncate max-w-[150px]">• {result.company}</span>
+                            )}
+                          </div>
+                          <h4 className={`text-sm font-black transition-colors truncate
+                            ${selectedIndex === index ? 'text-theme-500' : 'text-theme-text group-hover:text-theme-500'}
+                          `}>
+                            <HighlightText text={result.title} query={query} />
+                          </h4>
+                          <p className="text-[10px] text-theme-muted line-clamp-1 italic">
+                            <HighlightText text={result.description} query={query} />
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-2 flex-shrink-0">
+                        <ArrowRight size={14} className={`transition-all ${selectedIndex === index ? 'translate-x-0 opacity-100' : '-translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100'}`} />
+                      </div>
+                    </button>
                   );
                 })}
               </div>
