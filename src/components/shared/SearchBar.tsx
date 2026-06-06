@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, X, Command, Loader2, ArrowRight } from 'lucide-react';
+import { Search, X, Command, Loader2, ArrowRight, Layout } from 'lucide-react';
 import { searchContent, SearchResult } from '@/app/search-actions';
 import { useParams, useRouter } from 'next/navigation';
 
@@ -16,12 +16,12 @@ interface SearchBarProps {
   onSearch?: (query: string, scope: SearchScope) => void;
 }
 
-export default function SearchBar({
-  scope = 'all',
-  placeholder,
-  className = "",
+export default function SearchBar({ 
+  scope = 'all', 
+  placeholder, 
+  className = "", 
   dict,
-  onSearch
+  onSearch 
 }: SearchBarProps) {
   const [query, setQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
@@ -46,14 +46,14 @@ export default function SearchBar({
   }, [isFocused, results, selectedIndex]);
 
   const navigateToResult = useCallback((result: SearchResult) => {
-    const url = result.url || `/${lang}/${result.type}`;
+    const url = result.url;
     if (url.startsWith('http')) {
       window.open(url, '_blank');
     } else {
       router.push(url);
     }
     setIsFocused(false);
-  }, [lang, router]);
+  }, [router]);
 
   const handleSearch = async (e?: React.FormEvent) => {
     e?.preventDefault();
@@ -136,7 +136,7 @@ export default function SearchBar({
 
   return (
     <div ref={containerRef} className={`relative w-full max-w-2xl mx-auto z-[60] ${className}`}>
-      <form
+      <form 
         onSubmit={handleSearch}
         className={`
           relative flex items-center transition-all duration-300 ease-in-out
@@ -147,7 +147,7 @@ export default function SearchBar({
         <div className="pl-4 text-theme-muted group-hover:text-theme-500 transition-colors">
           {isLoading ? <Loader2 size={20} className="animate-spin" /> : <Search size={20} />}
         </div>
-
+        
         <input
           ref={inputRef}
           type="text"
@@ -173,7 +173,7 @@ export default function SearchBar({
               </motion.button>
             )}
           </AnimatePresence>
-
+          
           <div className="hidden sm:flex items-center gap-1 px-2 py-1 rounded-md bg-theme-surface border border-theme-border text-[10px] font-bold text-theme-muted">
             <Command size={10} />
             <span>K</span>
@@ -205,8 +205,14 @@ export default function SearchBar({
                     >
                       <div className="flex-1 min-w-0">
                         <div className="flex flex-wrap items-center gap-2 mb-1">
-                          <span className="text-[10px] font-bold text-theme-500 tracking-widest">{typeLabel}</span>
-                          <span className="text-[10px] font-medium text-theme-muted">• {result.date}</span>
+                          {result.type === 'page' ? (
+                            <Layout size={10} className="text-theme-500" />
+                          ) : (
+                            <span className="text-[10px] font-bold text-theme-500 tracking-widest">{typeLabel}</span>
+                          )}
+                          {result.date && (
+                            <span className="text-[10px] font-medium text-theme-muted">• {result.date}</span>
+                          )}
                           {result.company && (
                             <span className="text-[10px] text-theme-muted truncate max-w-[150px]">• {result.company}</span>
                           )}
@@ -216,7 +222,9 @@ export default function SearchBar({
                         `}>
                           {result.title}
                         </h4>
-                        {result.tags && result.tags.length > 0 && (
+                        {result.type === 'page' ? (
+                          <p className="text-[10px] text-theme-muted italic line-clamp-1">{result.description}</p>
+                        ) : result.tags && result.tags.length > 0 && (
                           <div className="flex flex-wrap gap-1">
                             {result.tags.map((tag, i) => (
                               <span key={i} className="text-[9px] px-1.5 py-0.5 rounded-full bg-theme-surface-strong border border-theme-border text-theme-muted">
@@ -226,11 +234,12 @@ export default function SearchBar({
                           </div>
                         )}
                       </div>
-
+                      
                       <div className="flex items-center gap-2 flex-shrink-0">
                         <ArrowRight size={14} className={`transition-all ${selectedIndex === index ? 'translate-x-0 opacity-100' : '-translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100'}`} />
                       </div>
-                    </button>                  );
+                    </button>
+                  );
                 })}
               </div>
             ) : (
@@ -241,6 +250,18 @@ export default function SearchBar({
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Scope Indicator (Subtle) */}
+      <div className="mt-2 flex justify-center gap-4 text-[10px] font-bold tracking-widest text-theme-muted">
+        <span className={scope === 'all' ? 'text-theme-500' : ''}>{dict.All || 'All'}</span>
+        {scope === 'some' && (
+          <span className="text-theme-500">{dict.Some || 'Some'}</span>
+        )}
+        {scope !== 'all' && scope !== 'current' && scope !== 'some' && (
+          <span className="text-theme-500">{typeof scope === 'string' ? scope : 'Specific'}</span>
+        )}
+        <span className={scope === 'current' ? 'text-theme-500' : ''}>{dict.Current_Page || 'Current Page'}</span>
+      </div>
     </div>
   );
 }
