@@ -34,6 +34,17 @@ export default function SearchBar({
   const router = useRouter();
   const lang = params?.lang as string || 'id';
 
+  // Refs for keyboard navigation to avoid dependency issues
+  const isFocusedRef = useRef(isFocused);
+  const resultsRef = useRef(results);
+  const selectedIndexRef = useRef(selectedIndex);
+
+  useEffect(() => {
+    isFocusedRef.current = isFocused;
+    resultsRef.current = results;
+    selectedIndexRef.current = selectedIndex;
+  }, [isFocused, results, selectedIndex]);
+
   const navigateToResult = (result: SearchResult) => {
     const url = result.url || `/${lang}/${result.type}`;
     if (url.startsWith('http')) {
@@ -87,16 +98,22 @@ export default function SearchBar({
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
         inputRef.current?.focus();
+        return;
       }
 
-      if (!isFocused) return;
+      if (!isFocusedRef.current) return;
 
       if (e.key === 'ArrowDown') {
         e.preventDefault();
-        setSelectedIndex(prev => (prev < results.length - 1 ? prev + 1 : prev));
+        setSelectedIndex(prev => (prev < resultsRef.current.length - 1 ? prev + 1 : prev));
       } else if (e.key === 'ArrowUp') {
         e.preventDefault();
         setSelectedIndex(prev => (prev > 0 ? prev - 1 : -1));
+      } else if (e.key === 'Enter') {
+        if (selectedIndexRef.current >= 0 && resultsRef.current[selectedIndexRef.current]) {
+          e.preventDefault();
+          navigateToResult(resultsRef.current[selectedIndexRef.current]);
+        }
       } else if (e.key === 'Escape') {
         setIsFocused(false);
         inputRef.current?.blur();
@@ -104,7 +121,7 @@ export default function SearchBar({
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isFocused, results.length]);
+  }, []);
 
   // Handle click outside to close results
   useEffect(() => {
