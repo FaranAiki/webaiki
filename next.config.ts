@@ -109,9 +109,7 @@ images: {
   formats: ['image/avif', 'image/webp'],
   qualities: [75, 80, 85, 90],
   remotePatterns: [
-...
-      { protocol: 'https', hostname: 'static.wikia.nocookie.net' },
-      { protocol: 'https', hostname: 'i.ytimg.com', pathname: '/vi/**' },
+    { protocol: 'https', hostname: 'static.wikia.nocookie.net' },      { protocol: 'https', hostname: 'i.ytimg.com', pathname: '/vi/**' },
       { protocol: 'https', hostname: 'placehold.co' },
       { protocol: 'https', hostname: 'upload.wikimedia.org' },
       { protocol: 'https', hostname: 'faranaiki.id' },
