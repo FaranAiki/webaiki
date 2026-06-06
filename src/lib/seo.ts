@@ -40,6 +40,24 @@ export function getLanguageAlternates(path: string) {
 export function getBaseMetadata(): Metadata {
   return {
     metadataBase: new URL(SITE_URL),
+    title: {
+      default: 'Muhammad Faran Aiki',
+      template: '%s | Muhammad Faran Aiki',
+    },
+    description: "Official personal website of Muhammad Faran Aiki - Software Engineer, Computer Science Student at ITB, and SAT Tutor.",
+    keywords: [
+      "Muhammad Faran Aiki", "Faran Aiki", "Faran", "Aiki", "faranaiki",
+      "Software Engineer", "Web Developer", "ITB Student", "STI ITB",
+      "Bandung Institute of Technology", "Portfolio", "Indonesia"
+    ],
+    authors: [{ name: "Muhammad Faran Aiki", url: SITE_URL }],
+    creator: "Muhammad Faran Aiki",
+    publisher: "Muhammad Faran Aiki",
+    formatDetection: {
+      email: false,
+      address: false,
+      telephone: false,
+    },
     alternates: {
       canonical: '/',
       languages: getLanguageAlternates(''),
@@ -47,6 +65,7 @@ export function getBaseMetadata(): Metadata {
     robots: {
       index: true,
       follow: true,
+      nocache: false,
       googleBot: {
         index: true,
         follow: true,
@@ -57,25 +76,34 @@ export function getBaseMetadata(): Metadata {
     },
     verification: {
       google: 'xZMulZsvn0xj7TrxhEN8O9KLWSmNIfx6tqFtOpbgOV4',
+      // Add other verifications if you have them (Bing, Yandex, etc)
     },
     openGraph: {
-      type: 'website',
-      siteName: 'Faran Aiki',
+      type: 'profile',
+      firstName: 'Muhammad Faran',
+      lastName: 'Aiki',
+      username: 'faranaiki',
+      gender: 'male',
+      siteName: 'Muhammad Faran Aiki',
+      url: SITE_URL,
       images: [
         {
           url: `${SITE_URL}/images/og-preview.jpg`,
           width: 1200,
           height: 630,
-          alt: 'Muhammad Faran Aiki',
+          alt: 'Muhammad Faran Aiki - Software Engineer Portfolio',
           type: 'image/jpeg',
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Faran Aiki',
+      title: 'Muhammad Faran Aiki',
+      description: 'Software Engineer and ITB Student Portfolio',
+      creator: '@faranaiki',
       images: [`${SITE_URL}/images/og-preview.jpg`],
     },
+    category: 'technology',
   };
 }
 

@@ -163,9 +163,10 @@ export default function HomeClient({ lang, dict }: HomeClientProps) {
 
         {/* Search Bar Section */}
         <FadeInSection delay={isReady ? 1.4 : 0}>
-          <div className="mt-16 w-full no-print">
+          <section className="mt-16 w-full no-print" aria-labelledby="search-heading">
+            <h2 id="search-heading" className="sr-only">Search Faran Aiki Content</h2>
             <SearchBar dict={dict} scope="all" />
-          </div>
+          </section>
         </FadeInSection>
       </div>
     </main>
