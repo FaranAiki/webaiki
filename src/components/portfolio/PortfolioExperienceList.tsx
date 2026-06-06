@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo } from 'react';
+import React, { useMemo, useCallback } from 'react';
 import { useSettings } from '../providers/SettingsContext';
 import { Briefcase, Code, Users, Trophy } from 'lucide-react';
 import PortfolioSummaryItem from './PortfolioSummaryItem';
