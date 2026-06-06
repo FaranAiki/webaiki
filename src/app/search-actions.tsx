@@ -191,6 +191,7 @@ export async function searchContent(query: string, lang: string): Promise<Search
         const score = calculateScore(item, queryTerms);
 
         if (score > 0) {
+          const anchor = `#exp-${job.title.toLowerCase().replace(/\s+/g, '-')}`;
           results.push({
             title: job.title,
             company: job.company,
@@ -198,7 +199,7 @@ export async function searchContent(query: string, lang: string): Promise<Search
             year: yearGroup.year,
             date: job.date,
             type: type,
-            url: job.url || `/${lang}/${type}`,
+            url: job.url ? job.url : `/${lang}/${type}${anchor}`,
             tags: job.tagLabel,
             score: score,
             image: job.image && job.image.length > 0 ? job.image[0] : undefined

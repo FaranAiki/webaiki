@@ -102,6 +102,7 @@ interface BentoCardProps {
 const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, justifyClass, click_to_close_text }: BentoCardProps) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const hasImage = job.image && job.image.length > 0;
+    const itemId = `exp-${job.title.toLowerCase().replace(/\s+/g, '-')}`;
 
     const handleBoxClick = () => {
         if (job.url && !isExpanded) {
@@ -113,6 +114,7 @@ const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, j
 
     return (
         <motion.div
+            id={itemId}
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-20px" }}
@@ -471,6 +473,7 @@ export default function ExperiencesClient({
                                                 {experience.jobs.map((job, index) => (
                                                     <motion.div
                                                         key={`${experience.year}-${index}`}
+                                                        id={`exp-${job.title.toLowerCase().replace(/\s+/g, '-')}`}
                                                         initial={{ opacity: 0, y: 10 }}
                                                         whileInView={{ opacity: 1, y: 0 }}
                                                         viewport={{ once: true }}
@@ -539,6 +542,7 @@ export default function ExperiencesClient({
                                             {experience.jobs.map((job, index) => (
                                                 <motion.div
                                                     key={`${experience.year}-${index}`}
+                                                    id={`exp-${job.title.toLowerCase().replace(/\s+/g, '-')}`}
                                                     initial={{ opacity: 0, x: -10 }}
                                                     whileInView={{ opacity: 1, x: 0 }}
                                                     viewport={{ once: true }}
@@ -578,6 +582,7 @@ export default function ExperiencesClient({
                                 {allJobs.map((job, idx) => (
                                     <motion.div
                                         key={`${job.year}-${idx}`}
+                                        id={`exp-${job.title.toLowerCase().replace(/\s+/g, '-')}`}
                                         initial={{ opacity: 0, y: 10 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
@@ -619,6 +624,7 @@ export default function ExperiencesClient({
                                 {allJobs.map((job, idx) => (
                                     <motion.div
                                         key={`${job.year}-${idx}`}
+                                        id={`exp-${job.title.toLowerCase().replace(/\s+/g, '-')}`}
                                         initial={{ opacity: 0, y: 20 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true, margin: "-50px" }}
