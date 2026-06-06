@@ -293,9 +293,10 @@
   "Website_Summary": "このサイトの技術、パフォーマンス、目的についての情報。",
   "What_Do_You_Want_To_Base": "何を{word}たいですか",
   "Word_See": "見る",
-  "Word_Do": "し",
-  "Word_Know": "知り",
-  "Word_Search": "検索中 ....",
+  "Word_Do": "する",
+  "Word_Know": "知る",
+  "Word_Search": "探す",
   "Current_Page": "現在のページ",
-  "Some": "一部"
+  "Some": "一部",
+  "Search_Placeholder": "検索中 ...."
 }

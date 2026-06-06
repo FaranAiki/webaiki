@@ -292,10 +292,11 @@
   "Website": "Website",
   "Website_Summary": "Informatie over de technologieën, prestaties en het doel van deze site.",
   "What_Do_You_Want_To_Base": "Wat wil je {word}",
-  "Word_See": "zien",
-  "Word_Do": "doen",
-  "Word_Know": "weten",
-  "Word_Search": "Zoeken ....",
+  "Word_See": "Zien",
+  "Word_Do": "Doen",
+  "Word_Know": "Weten",
+  "Word_Search": "Zoeken",
   "Current_Page": "Huidige Pagina",
-  "Some": "Sommige"
+  "Some": "Sommige",
+  "Search_Placeholder": "Zoeken ...."
 }

@@ -137,7 +137,7 @@ export default function SearchBar({
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => setIsFocused(true)}
-          placeholder={placeholder || dict.Word_Search || "Search ...."}
+          placeholder={placeholder || dict.Search_Placeholder || "Search ...."}
           className="w-full py-4 px-4 bg-transparent outline-none text-theme-text placeholder:text-theme-muted font-medium"
         />
 
@@ -212,7 +212,7 @@ export default function SearchBar({
               </div>
             ) : (
               <div className="p-8 text-center text-theme-muted italic text-sm">
-                {isLoading ? dict.Waiting || "Searching ...." : dict.Not_Found || "No results found."}
+                {isLoading ? dict.Search_Placeholder || "Searching ...." : dict.Not_Found || "No results found."}
               </div>
             )}
           </motion.div>

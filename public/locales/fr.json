@@ -292,10 +292,11 @@
   "Website": "Site Web",
   "Website_Summary": "Informations sur les technologies, les performances et l'objectif de ce site.",
   "What_Do_You_Want_To_Base": "Que voulez-vous {word}",
-  "Word_See": "voir",
-  "Word_Do": "faire",
-  "Word_Know": "savoir",
-  "Word_Search": "Rechercher ....",
+  "Word_See": "Voir",
+  "Word_Do": "Faire",
+  "Word_Know": "Savoir",
+  "Word_Search": "Chercher",
   "Current_Page": "Page Actuelle",
-  "Some": "Quelques"
+  "Some": "Quelques",
+  "Search_Placeholder": "Recherche ...."
 }

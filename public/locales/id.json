@@ -292,10 +292,11 @@
   "Website": "Situs Web",
   "Website_Summary": "Informasi tentang teknologi, performa, dan tujuan situs ini.",
   "What_Do_You_Want_To_Base": "Apa yang ingin kamu {word}",
-  "Word_See": "lihat",
-  "Word_Do": "lakukan",
-  "Word_Know": "tahu",
-  "Word_Search": "Mencari ....",
+  "Word_See": "Lihat",
+  "Word_Do": "Lakukan",
+  "Word_Know": "Tahu",
+  "Word_Search": "Cari",
   "Current_Page": "Halaman Ini",
-  "Some": "Sebagian"
+  "Some": "Sebagian",
+  "Search_Placeholder": "Mencari ...."
 }

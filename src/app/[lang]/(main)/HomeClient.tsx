@@ -16,10 +16,10 @@ export default function HomeClient({ lang, dict }: HomeClientProps) {
   const [wordIndex, setWordIndex] = useState(0);
 
   const cyclingData: { word: string; type: TrackerType }[] = [
-    { word: dict.Word_See || "see", type: 'see' },
-    { word: dict.Word_Do || "do", type: 'do' },
-    { word: dict.Word_Know || "know", type: 'know' },
-    { word: dict.Word_Search || "search", type: 'search' }
+    { word: dict.Word_See || "See", type: 'see' },
+    { word: dict.Word_Do || "Do", type: 'do' },
+    { word: dict.Word_Know || "Know", type: 'know' },
+    { word: dict.Word_Search || "Search", type: 'search' }
   ];
 
   useEffect(() => {

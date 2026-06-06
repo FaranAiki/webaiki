@@ -292,10 +292,11 @@
   "Website": "Website",
   "Website_Summary": "Informationen über die Technologien, die Leistung und den Zweck dieser Website.",
   "What_Do_You_Want_To_Base": "Was möchten Sie {word}",
-  "Word_See": "sehen",
-  "Word_Do": "tun",
-  "Word_Know": "wissen",
-  "Word_Search": "Mencari ....",
+  "Word_See": "Sehen",
+  "Word_Do": "Tun",
+  "Word_Know": "Wissen",
+  "Word_Search": "Suchen",
   "Current_Page": "Aktuelle Seite",
-  "Some": "Einige"
+  "Some": "Einige",
+  "Search_Placeholder": "Suchen ...."
 }

@@ -292,10 +292,11 @@
   "Website": "الموقع الإلكتروني",
   "Website_Summary": "معلومات حول التقنيات والأداء والغرض من هذا الموقع.",
   "What_Do_You_Want_To_Base": "ماذا تريد أن {word}",
-  "Word_See": "يرى",
-  "Word_Do": "تفعل",
-  "Word_Know": "تعرف",
-  "Word_Search": "يبحث ....",
+  "Word_See": "رؤية",
+  "Word_Do": "فعل",
+  "Word_Know": "معرفة",
+  "Word_Search": "بحث",
   "Current_Page": "الصفحة الحالية",
-  "Some": "بعض"
+  "Some": "بعض",
+  "Search_Placeholder": "يبحث ...."
 }

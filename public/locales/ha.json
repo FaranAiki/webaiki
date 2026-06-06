@@ -292,10 +292,11 @@
   "Website": "Yanar Gizo",
   "Website_Summary": "Bayanai game da fasahohi, aiki, da manufar wannan rukunin yanar gizon.",
   "What_Do_You_Want_To_Base": "Me kake son {word}",
-  "Word_See": "gani",
-  "Word_Do": "yi",
-  "Word_Know": "sani",
-  "Word_Search": "Nema ....",
+  "Word_See": "Gani",
+  "Word_Do": "Yi",
+  "Word_Know": "Sani",
+  "Word_Search": "Nema",
   "Current_Page": "Shafin Yanzu",
-  "Some": "Wasu"
+  "Some": "Wasu",
+  "Search_Placeholder": "Neman ...."
 }

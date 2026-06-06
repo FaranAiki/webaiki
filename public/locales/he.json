@@ -295,7 +295,8 @@
   "Word_See": "לראות",
   "Word_Do": "לעשות",
   "Word_Know": "לדעת",
-  "Word_Search": "חיפוש ....",
+  "Word_Search": "חיפוש",
   "Current_Page": "עמוד נוכחי",
-  "Some": "כמה"
+  "Some": "כמה",
+  "Search_Placeholder": "חיפוש ...."
 }

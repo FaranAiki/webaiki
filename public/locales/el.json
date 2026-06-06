@@ -292,10 +292,11 @@
   "Website": "Ιστότοπος",
   "Website_Summary": "Πληροφορίες σχετικά με τις τεχνολογίες, την απόδοση και τον σκοπό αυτού του ιστότοπου.",
   "What_Do_You_Want_To_Base": "Τι θέλετε να {word}",
-  "Word_See": "δείτε",
-  "Word_Do": "κάνετε",
-  "Word_Know": "μάθετε",
-  "Word_Search": "Αναζήτηση ....",
+  "Word_See": "Δείτε",
+  "Word_Do": "Κάνετε",
+  "Word_Know": "Μάθετε",
+  "Word_Search": "Αναζήτηση",
   "Current_Page": "Τρέχουσα Σελίδα",
-  "Some": "Μερικά"
+  "Some": "Μερικά",
+  "Search_Placeholder": "Αναζήτηση ...."
 }

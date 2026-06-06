@@ -292,10 +292,11 @@
   "Website": "Веб-сайт",
   "Website_Summary": "Информация о технологиях, производительности и назначении этого сайта.",
   "What_Do_You_Want_To_Base": "Что вы хотите {word}",
-  "Word_See": "посмотреть",
-  "Word_Do": "сделать",
-  "Word_Know": "узнать",
-  "Word_Search": "Поиск ....",
+  "Word_See": "Посмотреть",
+  "Word_Do": "Сделать",
+  "Word_Know": "Узнать",
+  "Word_Search": "Найти",
   "Current_Page": "Текущая страница",
-  "Some": "Некоторые"
+  "Some": "Некоторые",
+  "Search_Placeholder": "Поиск ...."
 }
