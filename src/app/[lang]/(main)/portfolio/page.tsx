@@ -10,9 +10,8 @@ import {
   getOrganizationExperiences,
   getAwardExperiences
 } from '@/lib/data';
-import { Briefcase, Code, Users, Trophy, Github, Linkedin, Instagram, Twitter, Star } from 'lucide-react';
+import { Github, Linkedin, Instagram, Twitter, Star } from 'lucide-react';
 import Link from 'next/link';
-import PortfolioSummaryItem from '@/components/portfolio/PortfolioSummaryItem';
 import PortfolioHeader from '@/components/portfolio/PortfolioHeader';
 import PortfolioClientWrapper from '@/components/portfolio/PortfolioClientWrapper';
 import PortfolioExperienceList from '@/components/portfolio/PortfolioExperienceList';

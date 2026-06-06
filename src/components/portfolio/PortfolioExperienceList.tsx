@@ -52,7 +52,7 @@ export default function PortfolioExperienceList({
 }: PortfolioExperienceListProps) {
   const { portfolioFilter } = useSettings();
 
-  const filterJobs = (jobs: Job[]) => {
+  const filterJobs = useCallback((jobs: Job[]) => {
     let filtered = jobs;
     
     if (portfolioFilter === 'top') {
@@ -75,12 +75,12 @@ export default function PortfolioExperienceList({
       
       return (b.point || 0) - (a.point || 0);
     });
-  };
+  }, [portfolioFilter]);
 
-  const filteredWork = useMemo(() => filterJobs(workExperiences), [workExperiences, portfolioFilter]);
-  const filteredProject = useMemo(() => filterJobs(projectExperiences), [projectExperiences, portfolioFilter]);
-  const filteredOrg = useMemo(() => filterJobs(organizationExperiences), [organizationExperiences, portfolioFilter]);
-  const filteredAward = useMemo(() => filterJobs(awardExperiences), [awardExperiences, portfolioFilter]);
+  const filteredWork = useMemo(() => filterJobs(workExperiences), [workExperiences, filterJobs]);
+  const filteredProject = useMemo(() => filterJobs(projectExperiences), [projectExperiences, filterJobs]);
+  const filteredOrg = useMemo(() => filterJobs(organizationExperiences), [organizationExperiences, filterJobs]);
+  const filteredAward = useMemo(() => filterJobs(awardExperiences), [awardExperiences, filterJobs]);
 
   const hasAnyExperience = filteredWork.length > 0 || filteredProject.length > 0 || filteredOrg.length > 0 || filteredAward.length > 0;
 

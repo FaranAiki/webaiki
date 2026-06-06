@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { usePathname } from 'next/navigation';
-import { useSettings, fonts, TextAlign, PortfolioFilter } from './SettingsContext';
+import { useSettings, fonts, TextAlign } from './SettingsContext';
 import { ExperienceTag } from '@/lib/types';
 import {
   Settings,

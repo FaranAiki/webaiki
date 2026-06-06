@@ -7,11 +7,11 @@ import SearchBar from "@/components/shared/SearchBar";
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 
 interface HomeClientProps {
-  lang: string;
+  lang?: string;
   dict: Record<string, string>;
 }
 
-export default function HomeClient({ lang, dict }: HomeClientProps) {
+export default function HomeClient({ dict }: HomeClientProps) {
   const [isReady, setIsReady] = useState(false);
   const [wordIndex, setWordIndex] = useState(0);
 

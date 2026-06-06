@@ -87,12 +87,17 @@ function AskMePopup({
     }
   }
 
+  const isDark = resolvedTheme === 'dark';
+
+  useEffect(() => {
+    // Logic for theme-specific initializations if any
+  }, [isDark]);
+
   if (!mounted) return null;
 
   // Use CSS to hide in presentation mode to preserve state and avoid mounting issues
   const displayClass = isPresentationMode ? 'hidden' : 'block';
-  const isDark = resolvedTheme === 'dark';
-
+  
   return (
     <div className={displayClass}>
       <Button

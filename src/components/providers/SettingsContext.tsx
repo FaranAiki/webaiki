@@ -221,7 +221,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     if (isExpandAll) body.classList.add('expand-all');
     else body.classList.remove('expand-all');
 
-  }, [font, textAlign, textScale, letterSpacing, lineHeight, color, isAtsMode, isExpandAll, mounted]);
+  }, [font, textAlign, textScale, letterSpacing, lineHeight, color, isAtsMode, isExpandAll, portfolioFilter, mounted]);
 
   return (
   <SettingsContext.Provider value={{ 

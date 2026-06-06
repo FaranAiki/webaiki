@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { motion, useSpring, useMotionValue } from 'framer-motion';
-import { Eye, HandMetal, Lightbulb, Search } from 'lucide-react';
+import { HandMetal, Lightbulb, Search } from 'lucide-react';
 
 export type TrackerType = 'see' | 'do' | 'know' | 'search';
 

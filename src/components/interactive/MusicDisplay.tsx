@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useTheme } from 'next-themes';
 
 import FadeInSection from '@/components/shared/FadeInSection';
 import PopRotateSection from '@/components/shared/PopRotateSection';
@@ -37,8 +36,6 @@ export default function MusicDisplay({ youtubeItems = [], error, lang }: MusicDi
   // GTMetrix Optimization: Delay loading of heavy iframes to significantly improve Time to Interactive (TTI) and Speed Index.
   const [iframesLoaded, setIframesLoaded] = useState(false);
   const { isPresentationMode } = usePresentation();
-  const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
 
   const isJustified = lang !== 'jp' && lang !== 'zh';
   const justifyClass = isJustified ? 'text-justify' : 'text-left';
