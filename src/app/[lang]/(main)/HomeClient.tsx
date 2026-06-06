@@ -80,7 +80,7 @@ export default function HomeClient({ dict }: HomeClientProps) {
   };
 
   return (
-    <main className="min-h-[65vh] flex flex-col items-center justify-center pt-12 pb-12">
+    <main className="min-h-[50vh] flex flex-col items-center justify-center pt-12 pb-12">
       <div className="w-full max-w-6xl overflow-visible">
         <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">
 
@@ -163,7 +163,7 @@ export default function HomeClient({ dict }: HomeClientProps) {
 
         {/* Search Bar Section */}
         <FadeInSection delay={isReady ? 1.4 : 0}>
-          <section className="mt-6 w-full no-print" aria-labelledby="search-heading">
+          <section className="w-full no-print" aria-labelledby="search-heading">
             {/*Make sure to change the Search Faran Aiki Content to language locales*/}
             <h2 id="search-heading" className="sr-only">Search Faran Aiki Content</h2>
             <SearchBar dict={dict} scope="all" />

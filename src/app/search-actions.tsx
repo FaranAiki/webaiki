@@ -5,7 +5,8 @@ import {
   getProjectExperiences, 
   getOrganizationExperiences, 
   getAwardExperiences,
-  getCertificatesData
+  getCertificatesData,
+  getCollectionsData
 } from '@/lib/data';
 import { getDictionary } from '@/components/layout/Translator';
 
@@ -15,7 +16,7 @@ export interface SearchResult {
   description: string;
   year?: string;
   date?: string;
-  type: 'work' | 'project' | 'organization' | 'award' | 'page' | 'certificate';
+  type: 'work' | 'project' | 'organization' | 'award' | 'page' | 'certificate' | 'faq' | 'other';
   url: string;
   tags?: string[];
   score?: number;
@@ -214,7 +215,30 @@ export async function searchContent(query: string, lang: string): Promise<Search
   searchInList(getOrganizationExperiences(dict) as YearGroup[], 'organization');
   searchInList(getAwardExperiences(dict) as YearGroup[], 'award');
 
-  // 3. Search Individual Certificates
+  // 3. Search Collections (College & Literature)
+  const collections = ['college', 'literature'] as const;
+  for (const type of collections) {
+    const data = await getCollectionsData(lang, type);
+    Object.entries(data).forEach(([category, subcategories]) => {
+      Object.entries(subcategories).forEach(([subcategory, items]) => {
+        Object.entries(items).forEach(([itemName, details]) => {
+          const score = calculateScore({ title: itemName, company: `${category} - ${subcategory}` }, queryTerms);
+          if (score > 0) {
+            results.push({
+              title: itemName,
+              company: `${category} - ${subcategory}`,
+              description: `${dict[type.charAt(0).toUpperCase() + type.slice(1)] || type} - ${category}`,
+              type: type === 'college' ? 'page' : 'other', // Mapping to page or other
+              url: details.path,
+              score: score * 0.7
+            });
+          }
+        });
+      });
+    });
+  }
+
+  // 4. Search Individual Certificates
   const certData = await getCertificatesData(lang);
   Object.entries(certData).forEach(([category, years]) => {
     Object.entries(years).forEach(([year, certificates]) => {
@@ -234,6 +258,75 @@ export async function searchContent(query: string, lang: string): Promise<Search
         }
       });
     });
+  });
+
+  // 4. Search FAQs
+  const faqCategories = [
+    { title: dict.FAQ_Faran_Title, prefix: 'FAQ_Faran_', url: `/${lang}/identity#faq-faran` },
+    { title: dict.FAQ_Website_Title, prefix: 'FAQ_Website_', url: `/${lang}/website#faq-website` }
+  ];
+
+  faqCategories.forEach(cat => {
+    for (let i = 1; i <= 10; i++) {
+      const q = dict[`${cat.prefix}Q${i}`];
+      const a = dict[`${cat.prefix}A${i}`];
+      if (q && a) {
+        const score = calculateScore({ title: q, description: a }, queryTerms);
+        if (score > 0) {
+          results.push({
+            title: q,
+            description: a.replace(/<[^>]*>/g, ''), // Strip HTML
+            company: cat.title,
+            type: 'faq',
+            url: cat.url,
+            score: score * 1.2
+          });
+        }
+      }
+    }
+  });
+
+  // 5. Search Personal Context (Others)
+  const otherSections = [
+    { title: dict.Faran_Philosophy_Title, description: dict.Faran_Philosophy, url: `/${lang}/identity#philosophy` },
+    { title: dict.Faran_Principle_Title, description: [dict.Faran_Principle_1, dict.Faran_Principle_2, dict.Faran_Principle_3].join(' '), url: `/${lang}/identity#principles` },
+    { title: dict.Faran_Vision_Mission_Title, description: [dict.Faran_Vision_Mission_1, dict.Faran_Vision_Mission_2, dict.Faran_Vision_Mission_3].join(' '), url: `/${lang}/identity#vision-mission` },
+  ];
+
+  otherSections.forEach(section => {
+    if (section.title && section.description) {
+      const score = calculateScore({ title: section.title, description: section.description }, queryTerms);
+      if (score > 0) {
+        results.push({
+          title: section.title,
+          description: section.description.replace(/<[^>]*>/g, ''), // Strip HTML
+          type: 'other',
+          url: section.url,
+          score: score * 1.1
+        });
+      }
+    }
+  });
+
+  // 6. Search About Me content
+  const aboutMe = [
+    { title: dict.About_Me || "About Me", description: dict.Faran_About_1, url: `/${lang}/identity#about` },
+    { title: dict.About_Me || "About Me", description: dict.Faran_About_2, url: `/${lang}/identity#about` },
+  ];
+
+  aboutMe.forEach(item => {
+    if (item.description) {
+      const score = calculateScore({ title: item.title, description: item.description }, queryTerms);
+      if (score > 0) {
+        results.push({
+          title: item.title,
+          description: item.description.replace(/<[^>]*>/g, ''), // Strip HTML
+          type: 'other',
+          url: item.url,
+          score: score * 1.0
+        });
+      }
+    }
   });
 
   // Deduplicate by URL and Title

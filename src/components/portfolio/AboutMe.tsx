@@ -241,7 +241,7 @@ export function PhilosophySection(props: AboutSubSectionProps) {
     const { responsiveJustifyClass, justifyClass, titleClass, textClass, isPresentationMode } = useAboutLayout(props);
     return (
         <FadeInSection slideIndex={2} totalSlides={4}>
-        <div className={`flex flex-col-reverse xl:flex-row-reverse print:flex-row-reverse justify-center items-center gap-8 ${props.isCompact ? 'lg:gap-8' : 'lg:gap-16'} max-w-6xl mx-auto w-full`}>
+        <div id="philosophy" className={`flex flex-col-reverse xl:flex-row-reverse print:flex-row-reverse justify-center items-center gap-8 ${props.isCompact ? 'lg:gap-8' : 'lg:gap-16'} max-w-6xl mx-auto w-full`}>
           <div className={`flex-1 ${responsiveJustifyClass} max-w-prose print:max-w-none`}>
             <h2 className={`${props.isCompact ? 'text-xl md:text-2xl' : 'text-3xl md:text-4xl'} font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
               <span className="nav-active-gacor">{props.about_philosophy_title}</span>
@@ -276,7 +276,7 @@ export function PrinciplesSection(props: AboutSubSectionProps) {
     const { responsiveJustifyClass, justifyClass, titleClass, textClass, isPresentationMode } = useAboutLayout(props);
     return (
         <FadeInSection slideIndex={3} totalSlides={4}>
-        <div className={`flex flex-col-reverse xl:flex-row print:flex-row justify-center items-center gap-8 ${props.isCompact ? 'lg:gap-8' : 'lg:gap-16'} max-w-6xl mx-auto w-full`}>
+        <div id="principles" className={`flex flex-col-reverse xl:flex-row print:flex-row justify-center items-center gap-8 ${props.isCompact ? 'lg:gap-8' : 'lg:gap-16'} max-w-6xl mx-auto w-full`}>
           <div className={`flex-1 ${responsiveJustifyClass} max-w-prose print:max-w-none`}>
             <h2 className={`${props.isCompact ? 'text-xl md:text-2xl' : 'text-3xl md:text-4xl'} font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
               <span className="nav-active-gacor">{props.about_principle_title}</span>
@@ -317,7 +317,7 @@ export function VisionMissionSection(props: AboutSubSectionProps) {
     const { responsiveJustifyClass, justifyClass, titleClass, textClass, isPresentationMode } = useAboutLayout(props);
     return (
         <FadeInSection slideIndex={4} totalSlides={4}>
-        <div className={`flex flex-col-reverse xl:flex-row-reverse print:flex-row-reverse justify-center items-center gap-8 ${props.isCompact ? 'lg:gap-8' : 'lg:gap-16'} max-w-6xl mx-auto w-full`}>
+        <div id="vision-mission" className={`flex flex-col-reverse xl:flex-row-reverse print:flex-row-reverse justify-center items-center gap-8 ${props.isCompact ? 'lg:gap-8' : 'lg:gap-16'} max-w-6xl mx-auto w-full`}>
           <div className={`flex-1 ${responsiveJustifyClass} max-w-prose print:max-w-none`}>
             <h2 className={`${props.isCompact ? 'text-xl md:text-2xl' : 'text-3xl md:text-4xl'} font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
               <span className="nav-active-gacor">{props.about_vision_mission_title}</span>

@@ -125,7 +125,7 @@ export const getProjectExperiences = (dict: Dictionary) => [
           '/documents/project/Lidia_3.webp',
           '/documents/project/Lidia_4.webp',
         ],
-        tag: [dict.Data]
+        tag: [dict.Data, dict.Technology]
       },
       {
         date: `${dict.March} 2026`,
@@ -140,7 +140,7 @@ export const getProjectExperiences = (dict: Dictionary) => [
           '/documents/project/ALTH_2.webp',
           '/documents/project/ALTH_3.webp',
         ],
-        tag: [dict.Technology]
+        tag: [dict.Technology, dict.User, dict.Education]
       },
       {
         date: `${dict.February} 2026 — ${dict.Present}`,
@@ -154,7 +154,7 @@ export const getProjectExperiences = (dict: Dictionary) => [
           '/documents/project/Alkyl_2.webp',
         ],
         url: 'https://github.com/FaranAiki/alkyl',
-        tag: [dict.Technology]
+        tag: [dict.Technology, dict.Language]
       },
     ]
   },
@@ -173,7 +173,7 @@ export const getProjectExperiences = (dict: Dictionary) => [
           '/documents/project/UAS_2.webp',
         ],
         url: '/project/uas_matematika_dasar',
-        tag: [dict.Math]
+        tag: [dict.Math, dict.Technology, dict.User]
       },
       {
         date: `${dict.October} 2025 — ${dict.Present}`,
@@ -187,7 +187,7 @@ export const getProjectExperiences = (dict: Dictionary) => [
           '/documents/project/Web_2.webp',
         ],
         url: '/',
-        tag: [dict.Technology]
+        tag: [dict.Technology, dict.User]
       }
     ]
   },
@@ -206,7 +206,7 @@ export const getProjectExperiences = (dict: Dictionary) => [
           '/documents/project/Godot_Below_Below_1.webp',
           '/documents/project/Godot_Below_Below_2.webp',
         ],
-        tag: [dict.Arts]
+        tag: [dict.Arts, dict.Technology]
       },
     ]
   },
@@ -238,7 +238,7 @@ export const getProjectExperiences = (dict: Dictionary) => [
         point: 75,
         image: [],
         url: 'https://github.com/OldFaranAiki/olive-divergence/',
-        tag: [dict.Technology]
+        tag: [dict.Technology, dict.Arts]
       },
     ]
   },
@@ -253,7 +253,7 @@ export const getProjectExperiences = (dict: Dictionary) => [
         point: 60,
         image: [],
         url: 'https://www.mediafire.com/file/mbveomadf4xgov9/Jump%2521.zip/file',
-        tag: [dict.Technology]
+        tag: [dict.Technology, dict.Arts]
       },
     ]
   },
@@ -272,7 +272,7 @@ export const getOrganizationExperiences = (dict: Dictionary) => [
         image: [
           '/documents/organization/GDGoC_ITB_0.webp',
         ],
-        tag: [dict.Management]
+        tag: [dict.Management, dict.User]
       },
       {
         date: `${dict.March} 2026 — ${dict.Present}`,
@@ -284,7 +284,7 @@ export const getOrganizationExperiences = (dict: Dictionary) => [
           '/documents/organization/Impact_0.webp',
           '/documents/organization/Impact_1.webp',
         ],
-        tag: [dict.Technology]
+        tag: [dict.Technology, dict.Data, dict.User]
       },
     ],
   },
@@ -303,7 +303,7 @@ export const getOrganizationExperiences = (dict: Dictionary) => [
           '/documents/organization/Wisokto_2.webp',
           '/documents/organization/Wisokto_3.webp',
         ],
-        tag: [dict.Management]
+        tag: [dict.Management, dict.Human]
       },
       {
         date: `${dict.June} 2025 — ${dict.August} 2025`,
@@ -315,7 +315,7 @@ export const getOrganizationExperiences = (dict: Dictionary) => [
           '/documents/organization/SYNC_0.webp',
           '/documents/organization/SYNC_1.webp',
         ],
-        tag: [dict.Human]
+        tag: [dict.Human, dict.Management]
       },
       {
         date: `${dict.January} 2025 — ${dict.May} 2025`,
@@ -326,7 +326,7 @@ export const getOrganizationExperiences = (dict: Dictionary) => [
         image: [
           '/documents/organization/Renpy_0.webp',
         ],
-        tag: [dict.Management]
+        tag: [dict.Management, dict.Technology, dict.Arts]
       }
     ]
   },
@@ -344,7 +344,7 @@ export const getOrganizationExperiences = (dict: Dictionary) => [
           '/documents/organization/IT_Tutor_1.webp',
 
         ],
-        tag: [dict.Education]
+        tag: [dict.Education, dict.Technology]
       },
       {
         date: `${dict.March} 2024 — ${dict.April} 2024`,
@@ -373,7 +373,7 @@ export const getOrganizationExperiences = (dict: Dictionary) => [
           '/documents/organization/Concerto_0.webp',
           '/documents/organization/Concerto_1.webp',
         ],
-        tag: [dict.Management]
+        tag: [dict.Management, dict.Education]
       },
       {
         date: `${dict.January} 2023 — ${dict.December} 2023`,

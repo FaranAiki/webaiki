@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, X, Loader2, ArrowRight, Layout, FileCheck, Award, Briefcase, Code, Users } from 'lucide-react';
+import { Search, X, Loader2, ArrowRight, Layout, FileCheck, Award, Briefcase, Code, Users, HelpCircle, Info } from 'lucide-react';
 import { searchContent, SearchResult } from '@/app/search-actions';
 import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
@@ -172,6 +172,8 @@ export default function SearchBar({
       case 'organization': return <Users size={12} />;
       case 'award': return <Award size={12} />;
       case 'certificate': return <FileCheck size={12} />;
+      case 'faq': return <HelpCircle size={12} />;
+      case 'other': return <Info size={12} />;
       default: return <Search size={12} />;
     }
   };
@@ -227,7 +229,7 @@ export default function SearchBar({
             exit={{ opacity: 0, y: 10 }}
             data-lenis-prevent
             style={{ overscrollBehavior: 'contain' }}
-            className="absolute top-full left-0 right-0 mt-2 bg-theme-surface-strong border border-theme-border rounded-2xl shadow-theme-shadow overflow-hidden max-h-[60vh] overflow-y-auto"
+            className="absolute top-full left-0 right-0 mt-2 bg-theme-surface-strong border border-theme-border rounded-2xl shadow-theme-shadow overflow-hidden max-h-[45vh] overflow-y-auto"
           >
             {results.length > 0 ? (
               <div className="py-2">
