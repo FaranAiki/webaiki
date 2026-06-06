@@ -1,7 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
 
 const localesDir = path.join(process.cwd(), 'public/locales');
 const files = ['ar.json', 'de.json', 'el.json', 'en.json', 'es.json', 'fr.json', 'ha.json', 'he.json', 'id.json', 'jp.json', 'ko.json', 'nl.json', 'ru.json', 'zh.json'];

@@ -43,7 +43,7 @@ const nextConfig: NextConfig = {
         if (Array.isArray(currentExternals)) {
           config.externals = [...currentExternals, '@sparticuz/chromium'];
         } else if (currentExternals) {
-          config.externals = [currentExternals as string | RegExp | Record<string, any>, '@sparticuz/chromium'];
+          config.externals = [currentExternals as string | RegExp | Record<string, string | string[] | boolean>, '@sparticuz/chromium'];
         } else {
           config.externals = ['@sparticuz/chromium'];
         }
