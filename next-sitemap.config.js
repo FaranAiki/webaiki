@@ -10,7 +10,7 @@ module.exports = {
     { href: 'https://faranaiki.id/en', hreflang: 'en' },
     { href: 'https://faranaiki.id/id', hreflang: 'id' },
     { href: 'https://faranaiki.id/zh', hreflang: 'zh' },
-    { href: 'https://faranaiki.id/ja', hreflang: 'ja' },
+    { href: 'https://faranaiki.id/jp', hreflang: 'ja' },
     { href: 'https://faranaiki.id/ru', hreflang: 'ru' },
     { href: 'https://faranaiki.id/fr', hreflang: 'fr' },
     { href: 'https://faranaiki.id/ar', hreflang: 'ar' },
@@ -18,6 +18,9 @@ module.exports = {
     { href: 'https://faranaiki.id/ko', hreflang: 'ko' },
     { href: 'https://faranaiki.id/de', hreflang: 'de' },
     { href: 'https://faranaiki.id/nl', hreflang: 'nl' },
+    { href: 'https://faranaiki.id/ha', hreflang: 'ha' },
+    { href: 'https://faranaiki.id/he', hreflang: 'he' },
+    { href: 'https://faranaiki.id/el', hreflang: 'el' },
   ],
   robotsTxtOptions: {
     policies: [

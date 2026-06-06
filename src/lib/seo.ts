@@ -84,14 +84,23 @@ export function getPersonSchema(lang: string, description?: string) {
     "@type": "Person",
     "@id": `${SITE_URL}/#person`,
     "name": "Muhammad Faran Aiki",
+    "givenName": "Muhammad Faran",
+    "familyName": "Aiki",
+    "additionalName": ["Faran", "Aiki"],
     "url": SITE_URL,
     "image": `${SITE_URL}/images/og-preview.jpg`,
     "sameAs": [
       "https://github.com/faranaiki",
-      "https://linkedin.com/in/faranaiki"
+      "https://linkedin.com/in/faranaiki",
+      "https://faranaiki.site"
     ],
     "jobTitle": "Software Engineer",
-    "description": description || "Software Engineer and Computer Science Student at ITB",
+    "description": description || "Muhammad Faran Aiki is a Software Engineer and Computer Science Student at ITB, specializing in full-stack development and data analysis.",
+    "knowsAbout": ["Software Engineering", "Mathematics", "Python", "React", "Next.js", "Flutter"],
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Bandung Institute of Technology"
+    }
   };
 }
 
@@ -100,7 +109,8 @@ export function getWebsiteSchema(lang: string) {
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
     "url": SITE_URL,
-    "name": "Faran Aiki",
+    "name": "Muhammad Faran Aiki - Personal Website",
+    "alternateName": ["Faran Aiki", "Faran", "Aiki"],
     "publisher": { "@id": `${SITE_URL}/#person` },
     "inLanguage": lang,
   };

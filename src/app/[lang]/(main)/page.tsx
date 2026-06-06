@@ -1,21 +1,25 @@
 import type { Metadata } from "next";
 import { getDictionary } from '@/components/layout/Translator';
-import { getLanguageAlternates, getBaseMetadata, SITE_URL } from '@/lib/seo';
+import { getLanguageAlternates, getBaseMetadata, SITE_URL, getPersonSchema, getWebsiteSchema } from '@/lib/seo';
 import HomeClient from "./HomeClient";
+import { headers } from 'next/headers';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang);
   const baseMetadata = getBaseMetadata();
 
+  const title = `Muhammad Faran Aiki | ${dict.Software_Engineer || 'Software Engineer'} & ${dict.College || 'ITB Student'}`;
+  const description = dict.SEO_Home_Description || `Portfolio of Muhammad Faran Aiki, a Software Engineer and student at Bandung Institute of Technology. Explore projects, work experience, and insights from Faran.`;
+
   return {
     ...baseMetadata,
-    title: `${dict.Home || 'Home'} | Faran Aiki`,
-    description: dict.SEO_Home_Description || "Welcome to Muhammad Faran Aiki's personal website.",
+    title,
+    description,
     openGraph: {
       ...baseMetadata.openGraph,
-      title: `${dict.Home || 'Home'} | Faran Aiki`,
-      description: dict.SEO_Home_Description || "Welcome to Muhammad Faran Aiki's personal website.",
+      title,
+      description,
       url: `${SITE_URL}/${lang}`,
     },
     alternates: {
@@ -32,6 +36,24 @@ export default async function HomePage({
 }) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
+  const nonce = (await headers()).get('x-nonce') || undefined;
 
-  return <HomeClient lang={lang} dict={dict} />;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      getPersonSchema(lang),
+      getWebsiteSchema(lang)
+    ]
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        nonce={nonce}
+      />
+      <HomeClient lang={lang} dict={dict} />
+    </>
+  );
 }

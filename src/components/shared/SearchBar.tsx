@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, X, Command, Loader2, ArrowRight, Layout } from 'lucide-react';
+import { Search, X, Loader2, ArrowRight, Layout } from 'lucide-react';
 import { searchContent, SearchResult } from '@/app/search-actions';
 import { useParams, useRouter } from 'next/navigation';
 
