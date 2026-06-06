@@ -174,10 +174,6 @@ export default function SearchBar({
             )}
           </AnimatePresence>
 
-          <div className="hidden sm:flex items-center gap-1 px-2 py-1 rounded-md bg-theme-surface border border-theme-border text-[10px] font-bold text-theme-muted">
-            <Command size={10} />
-            <span>K</span>
-          </div>
         </div>
       </form>
 
@@ -252,17 +248,6 @@ export default function SearchBar({
         )}
       </AnimatePresence>
 
-      {/* Scope Indicator (Subtle) */}
-      <div className="mt-2 flex justify-center gap-4 text-[10px] font-bold tracking-widest text-theme-muted">
-        <span className={scope === 'all' ? 'text-theme-500' : ''}>{dict.All || 'All'}</span>
-        {scope === 'some' && (
-          <span className="text-theme-500">{dict.Some || 'Some'}</span>
-        )}
-        {scope !== 'all' && scope !== 'current' && scope !== 'some' && (
-          <span className="text-theme-500">{typeof scope === 'string' ? scope : 'Specific'}</span>
-        )}
-        <span className={scope === 'current' ? 'text-theme-500' : ''}>{dict.Current_Page || 'Current Page'}</span>
-      </div>
     </div>
   );
 }
