@@ -39,11 +39,13 @@ const nextConfig: NextConfig = {
 
       // Explicitly externalize chromium to prevent bundling its binaries
       if (isServer) {
-        config.externals = (config.externals || []) as any;
-        if (Array.isArray(config.externals)) {
-          config.externals.push('@sparticuz/chromium');
+        const currentExternals = config.externals;
+        if (Array.isArray(currentExternals)) {
+          config.externals = [...currentExternals, '@sparticuz/chromium'];
+        } else if (currentExternals) {
+          config.externals = [currentExternals as string | RegExp | Record<string, any>, '@sparticuz/chromium'];
         } else {
-          config.externals = [config.externals, '@sparticuz/chromium'];
+          config.externals = ['@sparticuz/chromium'];
         }
       }
 
@@ -113,6 +115,9 @@ images: {
       { protocol: 'https', hostname: 'placehold.co' },
       { protocol: 'https', hostname: 'upload.wikimedia.org' },
       { protocol: 'https', hostname: 'faranaiki.id' },
+      { protocol: 'https', hostname: 'cloud.umami.is' },
+      { protocol: 'https', hostname: 'api-gateway.umami.dev' },
+      { protocol: 'https', hostname: 'gateway.umami.is' },
     ],
   },
 

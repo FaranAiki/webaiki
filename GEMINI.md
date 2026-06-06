@@ -13,3 +13,5 @@
 - for i18n and locales, make sure that ALL of the locales are properly inserted. To check, use id.json as reference.
 - make sure that we use a correct TypeScript. 
 - do not use "any" as a type in TypeScript.
+- make sure to check that npm run build is proper 
+- make sure if you want to git push to the origin, use (type): (AI) (commit messages) for git best practices
