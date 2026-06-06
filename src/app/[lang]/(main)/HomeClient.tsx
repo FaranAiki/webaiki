@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import TrackingIcon, { TrackerType } from "@/components/interactive/TrackingIcon";
 import FadeInSection from "@/components/shared/FadeInSection";
 import SearchBar from "@/components/shared/SearchBar";
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 
 interface HomeClientProps {
   lang: string;
@@ -59,7 +59,7 @@ export default function HomeClient({ lang, dict }: HomeClientProps) {
   const baseText = dict.What_Do_You_Want_To_Base || "What do you want to {word}?";
   const parts = baseText.split("{word}");
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -70,18 +70,18 @@ export default function HomeClient({ lang, dict }: HomeClientProps) {
     },
   };
 
-  const partVariants = {
+  const partVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.4, ease: "easeOut" }
+      transition: { duration: 0.4, ease: [0, 0, 0.2, 1] } // standard easeOut as numeric array for strict typing
     }
   };
 
   return (
-    <main className="min-h-[85vh] flex flex-col items-center justify-center pt-12">
-      <div className="w-full max-w-6xl">
+    <main className="min-h-[85vh] flex flex-col items-center justify-center pt-12 pb-32">
+      <div className="w-full max-w-6xl overflow-visible">
         <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">
 
           {/* The Main Question Section */}
@@ -105,10 +105,10 @@ export default function HomeClient({ lang, dict }: HomeClientProps) {
                     <motion.span
                       key={wordIndex}
                       initial={{ y: 30, opacity: 0 }}
-                      animate={{ x: -10, y: 11, opacity: 1 }}
+                      animate={{ y: 0, opacity: 1 }}
                       exit={{ y: -30, opacity: 0 }}
                       transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-                      className="absolute inset-0 flex items-center justify-center text-theme-500 whitespace-nowrap nav-active-gacor lowercase"
+                      className="absolute inset-0 flex items-center justify-center text-theme-500 whitespace-nowrap nav-active-gacor"
                     >
                       {cyclingData[wordIndex].word}
                     </motion.span>

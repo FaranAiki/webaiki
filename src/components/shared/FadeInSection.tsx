@@ -63,7 +63,7 @@ export default function FadeInSection({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.6, delay: delay / 1000, ease: "easeOut" }}
-      className={`relative ${className} ${isPresentationMode ? 'presentation-section' : ''}`}
+      className={`relative overflow-visible ${className} ${isPresentationMode ? 'presentation-section' : ''}`}
     >
       {isPresentationMode ? (
         <div className="relative w-full h-full flex items-center justify-center text-black dark:text-white">
