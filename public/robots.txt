@@ -1,20 +1,5 @@
+# *
 User-agent: *
-Allow: /
-Crawl-delay: 1
-
-User-agent: Googlebot
-Allow: /
-
-User-agent: DuckDuckBot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Baiduspider
-Allow: /
-
-User-agent: YandexBot
 Allow: /
 
 # Host
@@ -22,4 +7,3 @@ Host: https://faranaiki.id
 
 # Sitemaps
 Sitemap: https://faranaiki.id/sitemap.xml
-sitemap: https://faranaiki.id/sitemap-0.xml
