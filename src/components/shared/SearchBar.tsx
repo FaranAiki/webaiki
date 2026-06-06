@@ -16,12 +16,12 @@ interface SearchBarProps {
   onSearch?: (query: string, scope: SearchScope) => void;
 }
 
-export default function SearchBar({ 
-  scope = 'all', 
-  placeholder, 
-  className = "", 
+export default function SearchBar({
+  scope = 'all',
+  placeholder,
+  className = "",
   dict,
-  onSearch 
+  onSearch
 }: SearchBarProps) {
   const [query, setQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
@@ -136,7 +136,7 @@ export default function SearchBar({
 
   return (
     <div ref={containerRef} className={`relative w-full max-w-2xl mx-auto z-[60] ${className}`}>
-      <form 
+      <form
         onSubmit={handleSearch}
         className={`
           relative flex items-center transition-all duration-300 ease-in-out
@@ -147,7 +147,7 @@ export default function SearchBar({
         <div className="pl-4 text-theme-muted group-hover:text-theme-500 transition-colors">
           {isLoading ? <Loader2 size={20} className="animate-spin" /> : <Search size={20} />}
         </div>
-        
+
         <input
           ref={inputRef}
           type="text"
@@ -173,7 +173,7 @@ export default function SearchBar({
               </motion.button>
             )}
           </AnimatePresence>
-          
+
           <div className="hidden sm:flex items-center gap-1 px-2 py-1 rounded-md bg-theme-surface border border-theme-border text-[10px] font-bold text-theme-muted">
             <Command size={10} />
             <span>K</span>
@@ -223,7 +223,7 @@ export default function SearchBar({
                           {result.title}
                         </h4>
                         {result.type === 'page' ? (
-                          <p className="text-[10px] text-theme-muted italic line-clamp-1">{result.description}</p>
+                          <p className="text-sm text-theme-muted">{result.description}</p>
                         ) : result.tags && result.tags.length > 0 && (
                           <div className="flex flex-wrap gap-1">
                             {result.tags.map((tag, i) => (
@@ -234,7 +234,7 @@ export default function SearchBar({
                           </div>
                         )}
                       </div>
-                      
+
                       <div className="flex items-center gap-2 flex-shrink-0">
                         <ArrowRight size={14} className={`transition-all ${selectedIndex === index ? 'translate-x-0 opacity-100' : '-translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100'}`} />
                       </div>
@@ -243,7 +243,7 @@ export default function SearchBar({
                 })}
               </div>
             ) : (
-              <div className="p-8 text-center text-theme-muted italic text-sm">
+              <div className="p-8 text-center text-theme-muted text-sm">
                 {isLoading ? dict.Search_Placeholder || "Searching ...." : dict.Not_Found || "No results found."}
               </div>
             )}

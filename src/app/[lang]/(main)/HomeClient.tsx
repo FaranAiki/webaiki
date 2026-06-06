@@ -80,9 +80,9 @@ export default function HomeClient({ lang, dict }: HomeClientProps) {
   };
 
   return (
-    <main className="min-h-[85vh] flex flex-col items-center justify-center pt-24 overflow-hidden">
+    <main className="min-h-[85vh] flex flex-col items-center justify-center pt-12 overflow-hidden">
       <div className="w-full max-w-6xl">
-        <div className="relative flex flex-col md:flex-row items-center justify-between gap-12">
+        <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">
 
           {/* The Main Question Section */}
           <div className="relative flex-1 z-10 text-center md:text-left">
@@ -105,10 +105,10 @@ export default function HomeClient({ lang, dict }: HomeClientProps) {
                     <motion.span
                       key={wordIndex}
                       initial={{ y: 30, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
+                      animate={{ x: -10, y: 11, opacity: 1 }}
                       exit={{ y: -30, opacity: 0 }}
                       transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-                      className="absolute inset-0 flex items-center justify-center text-theme-500 whitespace-nowrap nav-active-gacor"
+                      className="absolute inset-0 flex items-center justify-center text-theme-500 whitespace-nowrap nav-active-gacor lowercase"
                     >
                       {cyclingData[wordIndex].word}
                     </motion.span>
