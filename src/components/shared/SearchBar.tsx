@@ -188,6 +188,7 @@ export default function SearchBar({
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
+            data-lenis-prevent
             className="absolute top-full left-0 right-0 mt-2 bg-theme-surface-strong border border-theme-border rounded-2xl shadow-theme-shadow overflow-hidden max-h-[60vh] overflow-y-auto"
           >
             {results.length > 0 ? (
