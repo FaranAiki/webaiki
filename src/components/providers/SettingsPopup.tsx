@@ -16,8 +16,13 @@ import {
   RotateCcw,
   ChevronDown,
   Palette,
-  Filter
+  Filter,
+  Languages,
+  ALargeSmall,
+  ArrowLeftRight,
+  ArrowUpDown
 } from 'lucide-react';
+import Image from 'next/image';
 
 interface SettingsPopupProps {
   labels: {
@@ -52,17 +57,30 @@ interface SettingsPopupProps {
     Arts: string;
     Achievement: string;
     Language: string;
+    Select_Language?: string;
   };
+  current_lang?: string;
+  onLanguageChange?: (langCode: string) => void;
+  languages?: { code: string; name: string; flag: string }[];
   isOpen?: boolean;
   onOpenChange?: (isOpen: boolean) => void;
   inline?: boolean;
 }
 
-export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenChange, inline = false }: SettingsPopupProps) {
+export default function SettingsPopup({ 
+  labels, 
+  current_lang,
+  onLanguageChange,
+  languages,
+  isOpen: externalIsOpen, 
+  onOpenChange, 
+  inline = false 
+}: SettingsPopupProps) {
   const pathname = usePathname();
   const [internalIsOpen, setInternalIsOpen] = useState(false);
   const [isFontDropdownOpen, setIsFontDropdownOpen] = useState(false);
   const [isFilterDropdownOpen, setIsFilterDropdownOpen] = useState(false);
+  const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   const isOpen = externalIsOpen !== undefined ? externalIsOpen : internalIsOpen;
@@ -101,6 +119,7 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
   const popupRef = useRef<HTMLDivElement>(null);
   const fontDropdownRef = useRef<HTMLDivElement>(null);
   const filterDropdownRef = useRef<HTMLDivElement>(null);
+  const langDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -114,16 +133,19 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
       if (filterDropdownRef.current && !filterDropdownRef.current.contains(event.target as Node)) {
         setIsFilterDropdownOpen(false);
       }
+      if (langDropdownRef.current && !langDropdownRef.current.contains(event.target as Node)) {
+        setIsLangDropdownOpen(false);
+      }
     };
 
-    if (isOpen || isFontDropdownOpen || isFilterDropdownOpen) {
+    if (isOpen || isFontDropdownOpen || isFilterDropdownOpen || isLangDropdownOpen) {
       document.addEventListener('mousedown', handleClickOutside);
     }
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isOpen, isFontDropdownOpen, isFilterDropdownOpen, setIsOpen]);
+  }, [isOpen, isFontDropdownOpen, isFilterDropdownOpen, isLangDropdownOpen, setIsOpen]);
 
   const toggleOpen = () => setIsOpen(!isOpen);
 
@@ -177,6 +199,76 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
           {labels.Reset_Settings}
         </button>
       </div>
+
+      {/* Language Selection Section */}
+      {languages && current_lang && onLanguageChange && (
+        <div className="space-y-3">
+          <div className="flex items-center gap-2 text-xs font-bold text-theme-muted tracking-wide">
+            <Languages size={14} />
+            {labels.Select_Language || labels.Language}
+          </div>
+          
+          <div className="relative" ref={langDropdownRef}>
+            <button
+              onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
+              className={`
+                w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200
+                bg-theme-surface-strong text-foreground border-theme-border hover:bg-theme-surface-strong/80
+                border hover:border-theme-500/50
+              `}
+            >
+              <div className="flex items-center gap-3 truncate">
+                <div className="w-5 h-3.5 relative shrink-0">
+                  <Image 
+                    src={languages.find(l => l.code === current_lang)?.flag || ''} 
+                    alt={current_lang} 
+                    fill 
+                    className="object-cover rounded-sm"
+                    sizes="20px"
+                  />
+                </div>
+                <span className="truncate pr-2">{languages.find(l => l.code === current_lang)?.name || current_lang}</span>
+              </div>
+              <ChevronDown size={18} className={`shrink-0 transition-transform duration-200 ${isLangDropdownOpen ? 'rotate-180' : ''}`} />
+            </button>
+
+            {isLangDropdownOpen && (
+              <div className={`
+                absolute left-0 right-0 mt-2 max-h-60 overflow-y-auto z-[70]
+                bg-theme-surface border-theme-border shadow-xl shadow-theme-shadow
+                border rounded-xl custom-scrollbar
+              `}>
+                {languages.map((lang) => (
+                  <button
+                    key={lang.code}
+                    onClick={() => {
+                      onLanguageChange(lang.code);
+                      setIsLangDropdownOpen(false);
+                    }}
+                    className={`
+                      w-full flex items-center gap-3 text-left px-4 py-3 text-sm transition-colors
+                      ${current_lang === lang.code
+                        ? 'bg-theme-500 text-white font-bold'
+                        : 'hover:bg-theme-surface-strong text-foreground'}
+                    `}
+                  >
+                    <div className="w-5 h-3.5 relative shrink-0">
+                      <Image 
+                        src={lang.flag} 
+                        alt={lang.name} 
+                        fill 
+                        className={`object-cover rounded-sm ${current_lang === lang.code ? '' : 'grayscale-[0.2]'}`}
+                        sizes="20px"
+                      />
+                    </div>
+                    {lang.name}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Color Variant Section */}
       <div className="space-y-3">
@@ -404,7 +496,10 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
         {/* Text Scaling */}
         <div className="space-y-2">
           <div className="flex justify-between items-center">
-            <span className="text-xs font-bold text-theme-muted tracking-wide">{labels.Text_Scaling}</span>
+            <div className="flex items-center gap-2 text-xs font-bold text-theme-muted tracking-wide">
+              <ALargeSmall size={14} />
+              {labels.Text_Scaling}
+            </div>
             <span className={`text-xs font-bold text-theme-500 ${currentFontClass}`}>{textScale}%</span>
           </div>
           <div className="flex items-center gap-4">
@@ -425,7 +520,10 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
         {/* Letter Spacing */}
         <div className="space-y-2">
           <div className="flex justify-between items-center">
-            <span className="text-xs font-bold text-theme-muted tracking-wide">{labels.Letter_Spacing}</span>
+            <div className="flex items-center gap-2 text-xs font-bold text-theme-muted tracking-wide">
+              <ArrowLeftRight size={14} />
+              {labels.Letter_Spacing}
+            </div>
             <span className={`text-xs font-bold text-theme-500 ${currentFontClass}`}>{letterSpacing}px</span>
           </div>
           <div className="flex items-center gap-4">
@@ -446,7 +544,10 @@ export default function SettingsPopup({ labels, isOpen: externalIsOpen, onOpenCh
         {/* Line Height */}
         <div className="space-y-2">
           <div className="flex justify-between items-center">
-            <span className="text-xs font-bold text-theme-muted tracking-wide">{labels.Line_Height}</span>
+            <div className="flex items-center gap-2 text-xs font-bold text-theme-muted tracking-wide">
+              <ArrowUpDown size={14} />
+              {labels.Line_Height}
+            </div>
             <span className={`text-xs font-bold text-theme-500 ${currentFontClass}`}>{lineHeight}</span>
           </div>
           <div className="flex items-center gap-4">

@@ -32,6 +32,9 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# duplicates for safety
+.env
+.env.local
 
 # vercel
 .vercel
@@ -53,3 +56,6 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+# Prisma
+/src/generated/prisma

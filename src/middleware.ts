@@ -1,29 +1,33 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { updateSession } from '@/utils/supabase/middleware';
 
 const locales = ['en', 'id', 'zh', 'jp', 'ru', 'fr', 'ar', 'es', 'ko', 'de', 'nl', 'ha', 'he', 'el', 'hi', 'pt', 'bn', 'vi'];
 const defaultLocale = 'id';
 
 const base_cspHeader = `
-    default-src 'self';
+    default-src 'self' https://ndutyvnkhavzchhjmzfm.supabase.co;
     script-src 'nonce-placeholder' 'strict-dynamic' 'wasm-unsafe-eval' 'sha256-rbbnijHn7DZ6ps39myQ3cVQF1H+U/PJfHh5ei/Q2kb8=' ${
       process.env.NODE_ENV === 'development' ? "'unsafe-eval'" : ''
     };
     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-    img-src 'self' blob: data: https://static.wikia.nocookie.net https://i.ytimg.com https://placehold.co https://*.wikimedia.org https://webaiki.vercel.app https://faranaiki.id https://faranaiki.site https://storage.googleapis.com https://cloud.umami.is https://api-gateway.umami.dev https://gateway.umami.is;
+    img-src 'self' blob: data: https://static.wikia.nocookie.net https://i.ytimg.com https://placehold.co https://*.wikimedia.org https://webaiki.vercel.app https://faranaiki.id https://faranaiki.site https://storage.googleapis.com https://cloud.umami.is https://api-gateway.umami.dev https://gateway.umami.is https://ndutyvnkhavzchhjmzfm.supabase.co;
     font-src 'self' blob: data: https://fonts.gstatic.com https://unpkg.com;
     object-src 'none';
     base-uri 'none';
     form-action 'self';
     frame-ancestors 'none';
     frame-src 'self' https://analitica-graph.web.app https://analitica-graph.firebaseapp.com https://open.spotify.com https://w.soundcloud.com;
-    connect-src 'self' https://generativelanguage.googleapis.com https://cdn.jsdelivr.net https://faranaiki.id https://fonts.gstatic.com https://www.gstatic.com https://fonts.googleapis.com https://cloud.umami.is https://api-gateway.umami.dev https://gateway.umami.is https://unpkg.com;
+    connect-src 'self' https://generativelanguage.googleapis.com https://cdn.jsdelivr.net https://faranaiki.id https://fonts.gstatic.com https://www.gstatic.com https://fonts.googleapis.com https://cloud.umami.is https://api-gateway.umami.dev https://gateway.umami.is https://unpkg.com https://ndutyvnkhavzchhjmzfm.supabase.co;
     worker-src 'self' blob:;
     ${process.env.NODE_ENV === 'production' ? 'upgrade-insecure-requests;' : ''}
   `.replace(/\s{2,}/g, ' ').trim()
 
 // Security implementation for Content Security Policy and Nonce
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
+  // 1. Update Supabase session
+  const supabaseResponse = await updateSession(request);
+  
   const { pathname, searchParams } = request.nextUrl;
 
   // Capture settings from URL query parameters
@@ -47,7 +51,7 @@ export function middleware(request: NextRequest) {
     }
   });
 
-  // 1. Get the language from the cookie or Accept-Language header
+  // 2. Handle Language Detection
   const cookieLang = request.cookies.get('language')?.value;
   
   let locale = defaultLocale;
@@ -75,14 +79,8 @@ export function middleware(request: NextRequest) {
     (loc) => pathname.startsWith(`/${loc}/`) || pathname === `/${loc}`
   );
 
-  // Generate a random nonce and encode it as base64
-  const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
-
-  const cspHeader = base_cspHeader.replace("nonce-placeholder", `nonce-${nonce}`)
-
   const applySettingsCookies = (res: NextResponse) => {
     Object.entries(foundSettings).forEach(([name, value]) => {
-      // Use a special prefix to indicate these are "commands" from the URL
       res.cookies.set(`__set_${name}`, value, { 
         maxAge: 60, 
         path: '/', 
@@ -95,14 +93,16 @@ export function middleware(request: NextRequest) {
   // 4. If it doesn't have a prefix, redirect to the URL WITH the prefix
   if (!pathnameHasLocale) {
     request.nextUrl.pathname = `/${locale}${pathname}`;
-    // E.g. incoming request is /about -> redirects to /en/about
     const redirectResponse = NextResponse.redirect(request.nextUrl);
     
-    // Apply settings cookies to redirect response too!
+    // Merge Supabase cookies into redirect response
+    supabaseResponse.cookies.getAll().forEach((cookie) => {
+      redirectResponse.cookies.set(cookie.name, cookie.value, cookie);
+    });
+
     applySettingsCookies(redirectResponse);
 
     const isPythonRedirect = request.nextUrl.pathname.includes('/project/script');
-
     if (isPythonRedirect) {
       redirectResponse.headers.set('Cross-Origin-Opener-Policy', 'same-origin');
       redirectResponse.headers.set('Cross-Origin-Embedder-Policy', 'credentialless');
@@ -115,8 +115,12 @@ export function middleware(request: NextRequest) {
     return redirectResponse;
   }
 
+  // Generate a random nonce and encode it as base64
+  const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
+  const cspHeader = base_cspHeader.replace("nonce-placeholder", `nonce-${nonce}`)
+
+  // Clone headers and set security headers
   const requestHeaders = new Headers(request.headers);
-  // Pass the nonce and CSP to the request headers
   requestHeaders.set('x-nonce', nonce);
   requestHeaders.set('Content-Security-Policy', cspHeader);
   requestHeaders.set('x-locale', locale);
@@ -124,18 +128,18 @@ export function middleware(request: NextRequest) {
   const isUasProject = pathname.includes('/project/uas_matematika_dasar');
   const isPythonProject = pathname.includes('/project/script');
 
-  const response = NextResponse.next({
-    request: {
-      headers: requestHeaders,
-    },
-  });
+  // Use the response from updateSession to preserve Supabase cookies
+  const response = supabaseResponse;
+  
+  // Apply our custom headers to the response
+  response.headers.set('x-nonce', nonce);
+  response.headers.set('x-locale', locale);
 
   // Set cookies for found settings
   applySettingsCookies(response);
 
   let finalCspHeader = cspHeader;
   if (isUasProject) {
-    // Specifically allow this project to be iframed by any origin
     finalCspHeader = finalCspHeader.replace("frame-ancestors 'none'", "frame-ancestors *");
   }
 
@@ -143,12 +147,9 @@ export function middleware(request: NextRequest) {
   response.headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
   
   if (isPythonProject) {
-    // Strict isolation ONLY for the route that needs SharedArrayBuffer (Python CLI)
     response.headers.set('Cross-Origin-Opener-Policy', 'same-origin');
     response.headers.set('Cross-Origin-Embedder-Policy', 'credentialless');
   } else {
-    // Use unsafe-none for the rest of the site to avoid "security configuration mismatch" errors in Firefox
-    // and to allow the UAS project to load its cross-origin iframe (which doesn't have COEP/CORP).
     response.headers.set('Cross-Origin-Opener-Policy', 'unsafe-none');
     response.headers.set('Cross-Origin-Embedder-Policy', 'unsafe-none');
   }

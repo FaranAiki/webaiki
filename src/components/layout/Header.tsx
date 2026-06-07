@@ -15,12 +15,15 @@ import {
   Monitor,
   MonitorPlay,
   Share2,
-  Check
+  Check,
+  LogIn,
+  LogOut
 } from 'lucide-react';
 
 import { usePresentation } from '@/components/providers/PresentationContext';
 import { formatCJK } from '@/lib/utils';
 import { useAppStore } from '@/lib/store';
+import { useAuthActions } from '@/app/auth-hooks';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -56,6 +59,13 @@ interface HeaderProps {
     logo_alt: string;
     share_copied: string;
     share_description: string;
+    user?: {
+        email?: string;
+    } | null;
+    auth_labels: {
+        Login: string;
+        Logout: string;
+    };
     settings_labels: {
         Settings: string;
         Typography: string;
@@ -88,17 +98,8 @@ interface HeaderProps {
         Achievement: string;
         Language: string;
         User: string;
+        Select_Language: string;
     };
-}
-
-function GlobeIcon() {
-    return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-colors duration-300">
-            <circle cx="12" cy="12" r="10" aria-hidden="true"></circle>
-            <line x1="2" y1="12" x2="22" y2="12" aria-hidden="true"></line>
-            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" aria-hidden="true"></path>
-        </svg>
-    );
 }
 
 function MenuIcon() {
@@ -148,7 +149,6 @@ export default function Header(props: HeaderProps) {
         ha_lang,
         he_lang,
         el_lang,
-        select_lang, 
         presentation_mode,
         navigation_label,
         logo_alt,
@@ -158,7 +158,6 @@ export default function Header(props: HeaderProps) {
         } = props;
         const pathname = usePathname();
         const router = useRouter();
-        const [isLangMenuVisible, setLangMenuVisible] = useState(false);
         const [isSettingsOpen, setIsSettingsOpen] = useState(false);
         const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
         const [shouldShowHeader, setShouldShowHeader] = useState(true);
@@ -170,7 +169,6 @@ export default function Header(props: HeaderProps) {
         const [mounted, setMounted] = useState(false);
         const { isPresentationMode, togglePresentationMode } = usePresentation();
         const setScrollLocked = useAppStore((state) => state.setScrollLocked);
-        const langMenuRef = useRef<HTMLDivElement>(null);
 
         const handleShare = () => {
             const settingsParams = [
@@ -232,26 +230,6 @@ export default function Header(props: HeaderProps) {
     useEffect(() => {
         setMounted(true);
     }, []);
-
-    // Handle clicks outside of language menu
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (langMenuRef.current && !langMenuRef.current.contains(event.target as Node)) {
-                if (isLangMenuVisible) {
-                    setLangMenuVisible(false);
-                    setScrollLocked(false);
-                }
-            }
-        };
-
-        if (isLangMenuVisible) {
-            document.addEventListener('mousedown', handleClickOutside);
-        }
-        
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, [isLangMenuVisible, setScrollLocked]);
 
     // Handle body overflow and scroll locking when mobile menu is open
     useEffect(() => {
@@ -345,42 +323,10 @@ export default function Header(props: HeaderProps) {
             newPathname = `/${langCode}`;
         }
 
-        setLangMenuVisible(false);
         setMobileMenuOpen(false);
         router.push(newPathname);
         router.refresh(); 
     };
-
-    const LanguageMenu = () => (
-        <div className={`w-full md:w-56 ${dropdownBg} backdrop-blur-md md:border rounded-xl shadow-theme-shadow py-2 animate-fade-in ring-1 ring-black/5`}>
-            <ul>
-                {languages.map((lang) => {
-                    const isCurrent = lang.code === current_lang;
-                    return (
-                        <li key={lang.code}>
-                            <button
-                                onClick={() => handleLanguageChange(lang.code)}
-                                aria-label={`Change language to ${lang.name}`}
-                                className={`w-full text-left px-5 py-2.5 text-sm hover:bg-theme-surface-strong hover:${isDark? 'text-theme-400' : 'text-theme-600'} transition-[colors,transform] duration-200 ${isCurrent ? `${activeText} font-bold bg-theme-surface-strong/50` : textColor} flex items-center gap-3 group`}
-                            >
-                                <div className="w-5 h-3.5 relative shrink-0">
-                                    <Image 
-                                        src={lang.flag} 
-                                        alt={lang.name} 
-                                        fill 
-                                        className="object-cover rounded-sm grayscale-[0.2] group-hover:grayscale-0"
-                                        sizes="20px"
-                                        loading="eager"
-                                    />
-                                </div>
-                                <span>{lang.name}</span>
-                            </button>
-                        </li>
-                    );
-                })}
-            </ul>
-        </div>
-    );
 
     // Normalize Pathname by removing language prefix for internal matching
     let normalizedPathname = pathname;
@@ -410,6 +356,7 @@ export default function Header(props: HeaderProps) {
     };
 
     const activeLink = findActiveLink(navLinks);
+    const { signOut } = useAuthActions(current_lang);
 
     return (
         <>
@@ -608,44 +555,43 @@ export default function Header(props: HeaderProps) {
                                 isOpen={isSettingsOpen}
                                 onOpenChange={(open) => {
                                     setIsSettingsOpen(open);
-                                    if (open) setLangMenuVisible(false);
                                 }}
+                                current_lang={current_lang}
+                                languages={languages}
+                                onLanguageChange={handleLanguageChange}
                             />
                         </div>
 
-                        {/* --- Desktop Language Selector --- */}
-                        <div
-                            className="hidden md:flex relative cursor-pointer"
-                            ref={langMenuRef}
-                            onMouseEnter={() => setScrollLocked(true)}
-                            onMouseLeave={() => setScrollLocked(false)}
-                        >
-                            <button 
-                                onClick={() => {
-                                    const nextState = !isLangMenuVisible;
-                                    setLangMenuVisible(nextState);
-                                    if (nextState) setIsSettingsOpen(false);
-                                }}
-                                className={`group flex items-center gap-1.5 p-2 rounded-full hover:bg-theme-surface-strong transition-colors hover-gacor ${isLangMenuVisible ? 'nav-active-gacor' : ''}`}
-                                aria-label="Select language"
-                                aria-haspopup="true"
-                                aria-expanded={isLangMenuVisible}
-                            >
-                                <GlobeIcon />
-                                <div className="w-5 h-3.5 relative shrink-0">
-                                    <Image 
-                                        src={languages.find(l => l.code === current_lang)?.flag || ''} 
-                                        alt={current_lang} 
-                                        fill 
-                                        className="object-cover rounded-sm grayscale-[0.2] group-hover:grayscale-0"
-                                        sizes="20px"
-                                    />
-                                </div>
-                            </button>
-                            {isLangMenuVisible && (
-                                <div className="absolute top-full right-0 mt-2" data-lenis-prevent>
-                                    <LanguageMenu />
-                                </div>
+                        {/* Login/Logout Button (Desktop) */}
+                        <div className="hidden md:flex items-center">
+                            {props.user ? (
+                                <button
+                                    onClick={() => signOut()}
+                                    title={props.auth_labels.Logout}
+                                    className={`
+                                        flex items-center justify-center transition-all duration-300 p-2 rounded-full
+                                        ${isDark
+                                            ? 'text-theme-muted hover:text-red-400 hover:bg-theme-surface-strong'
+                                            : 'text-theme-muted hover:text-red-600 hover:bg-theme-surface-strong'
+                                        }
+                                    `}
+                                >
+                                    <LogOut size={24} strokeWidth={2} />
+                                </button>
+                            ) : (
+                                <Link
+                                    href={getLocalizedHref('/login')}
+                                    title={props.auth_labels.Login}
+                                    className={`
+                                        flex items-center justify-center transition-all duration-300 p-2 rounded-full
+                                        ${isDark
+                                            ? 'text-theme-muted hover:text-theme-400 hover:bg-theme-surface-strong'
+                                            : 'text-theme-muted hover:text-theme-600 hover:bg-theme-surface-strong'
+                                        }
+                                    `}
+                                >
+                                    <LogIn size={24} strokeWidth={2} />
+                                </Link>
                             )}
                         </div>
 
@@ -742,12 +688,38 @@ export default function Header(props: HeaderProps) {
                         <div className="flex justify-between items-center mb-6">
                             <ThemeToggle />
                         </div>
-                        <SettingsPopup labels={settings_labels} inline={true} />
-                    </div>
+                        <SettingsPopup 
+                            labels={settings_labels} 
+                            inline={true} 
+                            current_lang={current_lang}
+                            languages={languages}
+                            onLanguageChange={handleLanguageChange}
+                        />
 
-                    <div className={`mt-10 border-t border-theme-border pt-8`}>
-                        <p className={`px-0 text-sm font-bold text-theme-muted mb-4`}>{select_lang}</p>
-                        <LanguageMenu />
+                        {/* Mobile Auth */}
+                        <div className="mt-6">
+                            {props.user ? (
+                                <button
+                                    onClick={() => {
+                                        signOut();
+                                        setMobileMenuOpen(false);
+                                    }}
+                                    className={`flex items-center w-full text-lg font-semibold text-red-500 transition-colors duration-300 hover:text-red-600`}
+                                >
+                                    <LogOut size={20} className="mr-3" />
+                                    {props.auth_labels.Logout}
+                                </button>
+                            ) : (
+                                <Link
+                                    href={getLocalizedHref('/login')}
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    className={`flex items-center w-full text-lg font-semibold ${textColor} transition-colors duration-300 hover:text-theme-600`}
+                                >
+                                    <LogIn size={20} className="mr-3" />
+                                    {props.auth_labels.Login}
+                                </Link>
+                            )}
+                        </div>
                     </div>
                 </nav>
             </div>

@@ -6,6 +6,7 @@ import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 
 import { getDictionary } from '@/components/layout/Translator';
+import { createClient } from '@/utils/supabase/server';
 
 import {
   Home,
@@ -37,6 +38,9 @@ export default async function RootLayout({
   // Use the url parameter directly and load dictionary asynchronously
   const { lang } = await params;
   const dict = await getDictionary(lang);
+
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
 
   // Navigation Links with Icons
   const navLinks = [
@@ -119,6 +123,11 @@ export default async function RootLayout({
         logo_alt={dict.Logo_Alt}
         share_copied={dict.Copied_To_Clipboard}
         share_description={dict.Share_Description}
+        user={user}
+        auth_labels={{
+          Login: dict.Login,
+          Logout: dict.Logout
+        }}
         settings_labels={{
           Settings: dict.Settings,
           Typography: dict.Typography,
@@ -151,7 +160,8 @@ export default async function RootLayout({
           Arts: dict.Arts,
           Achievement: dict.Achievement,
           Language: dict.Language,
-          User: dict.User
+          User: dict.User,
+          Select_Language: dict.Select_Language
         }}
       />
       <div id="main-content">
