@@ -21,8 +21,7 @@ export function useAuthActions(lang: string) {
   };
 
   const signUp = async (formData: FormData) => {
-    const origin = window.location.origin;
-    const result = await signUpAction(formData, origin);
+    const result = await signUpAction(formData);
     
     if (result?.error) {
       return { error: result.error };

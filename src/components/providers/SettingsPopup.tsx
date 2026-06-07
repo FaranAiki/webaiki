@@ -184,7 +184,7 @@ export default function SettingsPopup({
   const currentFontClass = fonts.find(f => f.name === font)?.class || '';
 
   const renderContent = () => (
-    <div className="space-y-6 SettingsPopup_content" data-lenis-prevent>
+    <div className="space-y-6 SettingsPopup_content">
       {/* Header */}
       <div className={`flex items-center justify-between border-b pb-4 border-theme-border`}>
         <h3 className="text-lg font-bold flex items-center gap-2 nav-active-gacor">
@@ -570,7 +570,7 @@ export default function SettingsPopup({
 
   if (inline) {
     return (
-      <div className="w-full">
+      <div className="w-full max-h-[60vh] overflow-y-auto custom-scrollbar" data-lenis-prevent style={{ overscrollBehavior: 'contain' }}>
         {renderContent()}
       </div>
     );
@@ -592,6 +592,7 @@ export default function SettingsPopup({
       {isOpen && (
         <div
           data-lenis-prevent
+          style={{ overscrollBehavior: 'contain' }}
           className={`
           absolute right-0 top-full mt-3
           w-[calc(100vw-2rem)] sm:w-80
@@ -599,6 +600,7 @@ export default function SettingsPopup({
           bg-theme-surface/95 dark:bg-theme-bg-dark/95 border-theme-border dark:border-theme-border shadow-2xl shadow-theme-shadow dark:shadow-theme-shadow
           md:backdrop-blur-xl border rounded-2xl z-50 p-6
           animate-fade-in origin-top-right ring-1 ring-black/5
+          max-h-[80vh] overflow-y-auto custom-scrollbar
         `}>
           {renderContent()}
         </div>

@@ -218,10 +218,11 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
 };
 
 export type BackgroundProps = {
-  carousel: string[]
+  carousel: string[];
+  showOverlay?: boolean;
 };
 
-export default function Background({ carousel }: BackgroundProps) {
+export default function Background({ carousel, showOverlay = true }: BackgroundProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [mounted, setMounted] = useState(false);
   // Preload first few images for smoother initial experience
@@ -289,10 +290,12 @@ export default function Background({ carousel }: BackgroundProps) {
         ))}
 
         {/* Adjusted Gradient to improve text readability on all backgrounds with SLOW transition for epilepsy prevention */}
-        <div
-          className={`absolute inset-0 transition-[colors,opacity] duration-[1500ms] ease-in-out transform-gpu bg-gradient-to-b ${overlayClass}`}
-          style={{ backfaceVisibility: 'hidden' }}
-        />
+        {showOverlay && (
+          <div
+            className={`absolute inset-0 transition-[colors,opacity] duration-[1500ms] ease-in-out transform-gpu bg-gradient-to-b ${overlayClass}`}
+            style={{ backfaceVisibility: 'hidden' }}
+          />
+        )}
 
         {mounted && <GeometricPattern isDark={isDark}/>}
       </div>

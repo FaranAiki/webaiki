@@ -476,6 +476,11 @@ export default function Header(props: HeaderProps) {
                                     return (
                                         <li key={link.name} className="relative group">
                                             <button
+                                                onClick={() => {
+                                                    if (hasSubLinks) {
+                                                        router.push(getLocalizedHref(link.subLinks![0].href));
+                                                    }
+                                                }}
                                                 className={`flex items-center transition-[colors,transform] duration-200 
                                                     text-[15px] tracking-wide
                                                     ${isChildActive
@@ -547,8 +552,6 @@ export default function Header(props: HeaderProps) {
 
                         <div 
                             className="hidden md:block"
-                            onMouseEnter={() => setScrollLocked(true)}
-                            onMouseLeave={() => setScrollLocked(false)}
                         >
                             <SettingsPopup 
                                 labels={settings_labels} 
@@ -637,10 +640,16 @@ export default function Header(props: HeaderProps) {
                             if (link.subLinks && link.subLinks.length > 0) {
                                 return (
                                     <li key={link.name}>
-                                        <span className={`flex items-center text-sm font-bold text-theme-muted mb-4`}>
+                                        <button 
+                                            onClick={() => {
+                                                router.push(getLocalizedHref(link.subLinks![0].href));
+                                                setMobileMenuOpen(false);
+                                            }}
+                                            className={`flex items-center text-sm font-bold text-theme-muted mb-4 text-left w-full`}
+                                        >
                                             {link.icon && <span className="mr-2 inline-block flex-shrink-0 opacity-70">{link.icon}</span>}
                                             {formatCJK(link.name, current_lang)}
-                                        </span>
+                                        </button>
                                         <ul className="flex flex-col space-y-4 pl-4 border-l-2 border-theme-border">
                                             {link.subLinks.map(subLink => {
                                                 const isActive = normalizedPathname === subLink.href;

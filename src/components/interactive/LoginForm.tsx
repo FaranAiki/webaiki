@@ -18,10 +18,10 @@ export default function LoginForm({ dict, lang }: LoginFormProps) {
     e.preventDefault();
     setError(null);
     setLoading(true);
-    
+
     const formData = new FormData(e.currentTarget);
     const result = await signIn(formData);
-    
+
     if (result?.error) {
       setError(result.error);
       setLoading(false);

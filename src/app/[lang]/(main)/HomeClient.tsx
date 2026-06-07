@@ -56,7 +56,7 @@ export default function HomeClient({ dict }: HomeClientProps) {
     return () => clearInterval(interval);
   }, [isReady, cyclingData.length]);
 
-  const baseText = dict.What_Do_You_Want_To_Base + "?" || "What do you want to {word}?";
+  const baseText = dict.What_Do_You_Want_To_Base || "What do you want to {word}";
   const parts = baseText.split("{word}");
 
   const containerVariants: Variants = {
@@ -127,7 +127,7 @@ export default function HomeClient({ dict }: HomeClientProps) {
                     initial={{ opacity: 0, scale: 0.8, rotate: -15, filter: 'blur(10px)' }}
                     animate={{ opacity: 1, scale: 1, rotate: 0, filter: 'blur(0px)' }}
                     exit={{ opacity: 0, scale: 1.1, rotate: 15, filter: 'blur(10px)' }}
-                    transition={{ duration: 0.6, ease: "anticipate" }}
+                    transition={{ duration: 0.45, ease: [0.23, 1, 0.32, 1] }}
                     className="absolute"
                 >
                     <TrackingIcon type={cyclingData[wordIndex].type} />

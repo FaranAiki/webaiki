@@ -26,7 +26,7 @@ export default function HireMeForm({ dict }: HireMeFormProps) {
     setError(null);
     
     const formData = new FormData(e.currentTarget);
-    const result = await submitHireRequest(formData, captchaToken, ""); // expectedCaptcha not used with Google reCAPTCHA
+    const result = await submitHireRequest(formData, captchaToken);
     
     if (result?.error) {
       setError(result.error);

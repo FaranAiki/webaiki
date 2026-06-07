@@ -5,7 +5,7 @@ import { createClient } from '@/utils/supabase/server';
 import { revalidatePath } from 'next/cache';
 import { WorkLocation, JobType } from '@/generated/prisma/client';
 import { Type } from '@sinclair/typebox';
-import { Value } from '@sinclair/typebox/value';
+import { validateData } from '@/lib/validation';
 
 const HireRequestSchema = Type.Object({
   company: Type.String({ minLength: 1 }),
@@ -32,7 +32,7 @@ async function verifyRecaptcha(token: string) {
   return data.success;
 }
 
-export async function submitHireRequest(formData: FormData, captchaToken: string, _unused: string) {
+export async function submitHireRequest(formData: FormData, captchaToken: string) {
   const isCaptchaValid = await verifyRecaptcha(captchaToken);
   if (!isCaptchaValid) {
     return { error: 'Invalid captcha' };
@@ -55,9 +55,12 @@ export async function submitHireRequest(formData: FormData, captchaToken: string
   };
 
   // Validate with TypeBox
-  if (!Value.Check(HireRequestSchema, rawData)) {
-    return { error: 'Invalid input data' };
+  const validation = validateData(HireRequestSchema, rawData);
+  if (!validation.success) {
+    return { error: validation.error };
   }
+
+  const validatedData = validation.data;
 
   try {
     // Ensure user exists in our prisma database
@@ -72,7 +75,7 @@ export async function submitHireRequest(formData: FormData, captchaToken: string
 
     await prisma.hireRequest.create({
       data: {
-        ...rawData,
+        ...validatedData,
         userId: user.id,
       },
     });

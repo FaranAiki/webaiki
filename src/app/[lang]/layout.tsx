@@ -58,19 +58,6 @@ export default async function BaseLayout({
     Cancel: dict.Cancel
   };
 
-  /*
-  const geminiWaitAnswers = [
-    dict.gemini_wait1,
-    dict.gemini_wait2,
-    dict.gemini_wait3,
-    dict.gemini_wait4,
-    dict.gemini_wait5,
-    dict.gemini_wait6,
-    dict.gemini_wait7,
-    dict.gemini_wait8,
-  ];
-  */
-
   return (
     <html lang={lang} dir="ltr" suppressHydrationWarning={true} nonce={nonce}>
       <head>
@@ -88,21 +75,6 @@ export default async function BaseLayout({
           <CookieInitializer />
           <ClientOnlyWidgets backgrounds={backgrounds} />
           {children}
-          {/* 
-            CRITICAL: AskMePopup is hidden because the Gemini API Quota is EXHAUSTED. 
-            DO NOT re-enable this without checking quota/keys first. 
-            DO NOT be a "goblok" AI and accidentally break the logic or re-enable it 
-            until the user explicitly asks to restore the AI chat functionality.
-          */}
-          {/* <AskMePopup 
-            typeOfWaitingAnswer={geminiWaitAnswers}
-            ask_title={dict.Ask_About}
-            question_answer={dict.Question_Answer}
-            question_title={dict.Question_Title}
-            submit={dict.Submit}
-            waiting={dict.Waiting}
-            provide_question={dict.Provide_Question}
-          /> */}
         </Providers>
         <Script
           strategy="lazyOnload"

@@ -317,7 +317,6 @@
   "Visitor": "Pengunjung",
   "HR": "Human Resources (HR)",
   "Commenting": "Komentar",
-  "Other": "Lainnya",
   "Avatar_URL": "URL Foto Profil",
   "Invalid_Captcha": "Captcha tidak valid.",
   "Passwords_do_not_match": "Kata sandi tidak cocok.",
@@ -331,6 +330,7 @@
   "Auth_Error": "Kesalahan autentikasi.",
   "Captcha_Verification": "Verifikasi Captcha",
   "Require_Login": "Anda harus masuk terlebih dahulu untuk mengakses halaman ini.",
-  "Don_t_have_account": "Belum punya akun? Daftar",
-  "Already_have_account": "Sudah punya akun? Masuk"
+  "Don_t_have_account": "Belum punya akun?",
+  "Already_have_account": "Sudah punya akun?",
+  "Not_Found_Description": "Ups! Halaman yang Anda cari sepertinya sedang tersesat di dimensi lain."
 }

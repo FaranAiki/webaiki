@@ -54,6 +54,7 @@ export default function SearchBar({
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const params = useParams();
   const router = useRouter();
   const lang = params?.lang as string || 'id';
@@ -67,6 +68,14 @@ export default function SearchBar({
     isFocusedRef.current = isFocused;
     resultsRef.current = results;
     selectedIndexRef.current = selectedIndex;
+
+    // Scroll into view logic
+    if (isFocused && selectedIndex >= 0 && itemRefs.current[selectedIndex]) {
+      itemRefs.current[selectedIndex]?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+      });
+    }
   }, [isFocused, results, selectedIndex]);
 
   const navigateToResult = useCallback((result: SearchResult) => {
@@ -238,6 +247,7 @@ export default function SearchBar({
                   return (
                     <button
                       key={`${result.type}-${result.url}-${result.title}-${index}`}
+                      ref={el => { itemRefs.current[index] = el; }}
                       onClick={() => navigateToResult(result)}
                       onMouseEnter={() => setSelectedIndex(index)}
                       className={`w-full md:text-center lg:text-left px-4 py-3 transition-colors group border-b border-theme-border last:border-0 flex items-center justify-between gap-4

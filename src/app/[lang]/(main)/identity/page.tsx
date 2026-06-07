@@ -7,7 +7,7 @@ import { cache } from 'react';
 import fs from 'fs';
 import path from 'path';
 
-export const getFaranAikiPhoto = cache(() => {
+const getFaranAikiPhoto = cache(() => {
   const photosDir = path.join(process.cwd(), 'public', 'images', 'photo_faran_aiki');
   if (!fs.existsSync(photosDir)) return [];
   return fs.readdirSync(photosDir);

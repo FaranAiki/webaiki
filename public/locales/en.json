@@ -317,7 +317,6 @@
   "Visitor": "Visitor",
   "HR": "Human Resources (HR)",
   "Commenting": "Commenting",
-  "Other": "Other",
   "Avatar_URL": "Avatar URL",
   "Invalid_Captcha": "Invalid captcha.",
   "Passwords_do_not_match": "Passwords do not match.",
@@ -331,6 +330,7 @@
   "Auth_Error": "Authentication error.",
   "Captcha_Verification": "Captcha Verification",
   "Require_Login": "You must be logged in to access this page.",
-  "Don_t_have_account": "Don't have an account? Register",
-  "Already_have_account": "Already have an account? Login"
+  "Don_t_have_account": "Don't have an account?",
+  "Already_have_account": "Already have an account?",
+  "Not_Found_Description": "Oops! The page you're looking for seems to be lost in another dimension."
 }

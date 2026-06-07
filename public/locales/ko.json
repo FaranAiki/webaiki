@@ -317,6 +317,7 @@
   "Auth_Error": "Kesalahan autentikasi.",
   "Captcha_Verification": "Verifikasi Captcha",
   "Require_Login": "Anda harus masuk terlebih dahulu untuk mengakses halaman ini.",
-  "Don_t_have_account": "Belum punya akun? Daftar",
-  "Already_have_account": "Sudah punya akun? Masuk"
+  "Don_t_have_account": "Belum punya akun?",
+  "Already_have_account": "Sudah punya akun?",
+  "Not_Found_Description": "앗! 찾으시는 페이지가 다른 차원에서 길을 잃은 것 같습니다."
 }
