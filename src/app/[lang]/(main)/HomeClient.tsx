@@ -56,7 +56,7 @@ export default function HomeClient({ dict }: HomeClientProps) {
     return () => clearInterval(interval);
   }, [isReady, cyclingData.length]);
 
-  const baseText = dict.What_Do_You_Want_To_Base || "What do you want to {word}?";
+  const baseText = dict.What_Do_You_Want_To_Base + "?" || "What do you want to {word}?";
   const parts = baseText.split("{word}");
 
   const containerVariants: Variants = {
@@ -80,14 +80,14 @@ export default function HomeClient({ dict }: HomeClientProps) {
   };
 
   return (
-    <main className="min-h-[50vh] flex flex-col items-center justify-center pt-12 pb-12">
+    <main className="min-h-[50vh] flex flex-col items-center justify-center pt-24 md:pt-12 pb-12">
       <div className="w-full max-w-6xl overflow-visible">
         <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">
 
           {/* The Main Question Section */}
-          <div className="relative flex-1 z-10 text-center md:text-left">
+          <div className="relative flex-1 z-1 text-center lg:text-left xs:pt-12 md:pt-6 lg:pt-0">
               <motion.h1
-                className="text-4xl md:text-6xl font-black tracking-tighter"
+                className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tighter"
                 variants={containerVariants}
                 initial="hidden"
                 animate={isReady ? "visible" : "hidden"}
@@ -95,17 +95,17 @@ export default function HomeClient({ dict }: HomeClientProps) {
                 <motion.span variants={partVariants} className="inline-block whitespace-pre-wrap nav-active-gacor">{parts[0]}</motion.span>
 
                 {/* Dynamic Word Container - Using a ghost element to set width for proper expansion */}
-                <span className="inline-flex relative vertical-middle mx-[0.05em] h-[1.1em] overflow-visible">
+                <span className="inline-flex relative vertical-middle overflow-visible">
                   {/* Invisible Ghost Element to reserve horizontal space */}
-                  <span className="invisible select-none pointer-events-none whitespace-nowrap px-[0.1em] nav-active-gacor">
-                    {cyclingData[wordIndex].word}
+                  <span className="invisible select-none pointer-events-none whitespace-nowrap nav-active-gacor">
+                    {cyclingData[wordIndex].word.trim()}
                   </span>
 
                   <AnimatePresence mode="popLayout">
                     <motion.span
                       key={wordIndex}
-                      initial={{ x: -10, y: 30, opacity: 0 }}
-                      animate={{ x: -13, y: 11.5, opacity: 1 }}
+                      initial={{ x: 0, y: 30, opacity: 0 }}
+                      animate={{ x: -4, y: 0, opacity: 1 }}
                       exit={{ y: -30, opacity: 0 }}
                       transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
                       className="absolute inset-0 flex items-center justify-center text-theme-500 whitespace-nowrap nav-active-gacor lowercase"
@@ -120,7 +120,7 @@ export default function HomeClient({ dict }: HomeClientProps) {
           </div>
 
           {/* Dynamic Interactive Icon Section (Floating Right) */}
-          <div className="flex-shrink-0 relative w-48 h-48 md:w-64 md:h-64 flex items-center justify-center">
+          <div className="flex-shrink-0 relative w-24 h-24 md:w-64 md:h-64 flex items-center justify-center">
             <AnimatePresence mode="wait">
                 <motion.div
                     key={wordIndex}

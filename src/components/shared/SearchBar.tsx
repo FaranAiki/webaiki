@@ -179,7 +179,7 @@ export default function SearchBar({
   };
 
   return (
-    <div ref={containerRef} className={`relative w-full max-w-2xl mx-auto z-[60] ${className}`}>
+    <div ref={containerRef} className={`relative w-full max-w-2xl mx-auto z-1 ${className}`}>
       <form
         onSubmit={handleSearch}
         className={`
@@ -240,7 +240,7 @@ export default function SearchBar({
                       key={`${result.type}-${result.url}-${result.title}-${index}`}
                       onClick={() => navigateToResult(result)}
                       onMouseEnter={() => setSelectedIndex(index)}
-                      className={`w-full text-left px-4 py-3 transition-colors group border-b border-theme-border last:border-0 flex items-center justify-between gap-4
+                      className={`w-full md:text-center lg:text-left px-4 py-3 transition-colors group border-b border-theme-border last:border-0 flex items-center justify-between gap-4
                         ${selectedIndex === index ? 'bg-theme-surface' : 'hover:bg-theme-surface'}
                       `}
                     >
