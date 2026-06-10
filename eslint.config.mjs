@@ -20,6 +20,10 @@ const eslintConfig = [
       "next-env.d.ts",
       "public/**/*.min.mjs",
       "public/**/*.min.js",
+      "sync_locales.js",
+      "update_locales.js",
+      "next-sitemap.config.js",
+      "postcss.config.mjs",
     ],
   },
 ];

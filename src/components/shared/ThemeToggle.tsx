@@ -21,11 +21,18 @@ export default function ThemeToggle() {
   const handleThemeChange = (newTheme: string) => {
     if (typeof document === 'undefined') return;
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const doc = document as any;
+    // Proper type for View Transitions API
+    const doc = document as Document & {
+      startViewTransition?: (callback: () => Promise<void> | void) => {
+        ready: Promise<void>;
+        finished: Promise<void>;
+        updateCallbackDone: Promise<void>;
+        skipTransition: () => void;
+      };
+    };
 
     // Check if View Transitions API is supported
-    if ('startViewTransition' in doc) {
+    if (doc.startViewTransition) {
       doc.startViewTransition(() => {
         setTheme(newTheme);
       });
@@ -33,13 +40,12 @@ export default function ThemeToggle() {
       // Fallback: use the helper class for smooth transition in non-supporting browsers
       doc.documentElement.classList.add('theme-transitioning');
       setTheme(newTheme);
-      
+
       setTimeout(() => {
         doc.documentElement.classList.remove('theme-transitioning');
       }, 500);
     }
   };
-
   const cycleTheme = () => {
     if (theme === 'light') handleThemeChange('dark');
     else if (theme === 'dark') handleThemeChange('system');
