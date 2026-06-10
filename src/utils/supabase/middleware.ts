@@ -31,7 +31,12 @@ export async function updateSession(request: NextRequest) {
   // supabase.auth.getUser(). A simple mistake can make it very hard to debug
   // issues with sessions being lost.
 
-  await supabase.auth.getUser()
+  try {
+    await supabase.auth.getUser()
+  } catch (error) {
+    // If Supabase fetch fails (e.g. network issue), we don't want to crash the whole middleware
+    console.error('Supabase middleware error:', error);
+  }
 
   return supabaseResponse
 }

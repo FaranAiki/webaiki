@@ -631,7 +631,7 @@ export default function Header(props: HeaderProps) {
                                                 <button
                                                     onClick={() => {
                                                         setIsUserMenuOpen(false);
-                                                        // router.push(getLocalizedHref('/profile/edit'));
+                                                        router.push(getLocalizedHref('/edit-profile'));
                                                     }}
                                                     className={`w-full text-left px-4 py-2 text-sm ${textColor} hover:bg-theme-surface-strong transition-colors flex items-center`}
                                                 >
@@ -803,7 +803,7 @@ export default function Header(props: HeaderProps) {
                                         <button
                                             onClick={() => {
                                                 setMobileMenuOpen(false);
-                                                // router.push(getLocalizedHref('/profile/edit'));
+                                                router.push(getLocalizedHref('/edit-profile'));
                                             }}
                                             className={`flex items-center w-full text-lg font-semibold ${textColor} transition-colors duration-300 hover:text-theme-600 px-2`}
                                         >

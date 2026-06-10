@@ -334,5 +334,21 @@
   "Require_Login": "Anda harus masuk terlebih dahulu untuk mengakses halaman ini.",
   "Don_t_have_account": "Belum punya akun?",
   "Already_have_account": "Sudah punya akun?",
-  "Not_Found_Description": "Ups! Halaman yang Anda cari sepertinya sedang tersesat di dimensi lain."
+  "Not_Found_Description": "Ups! Halaman yang Anda cari sepertinya sedang tersesat di dimensi lain.",
+  "Edit_Profile": "Edit Profil",
+  "Full_Name": "Nama Lengkap",
+  "Profile_Picture_URL": "URL Foto Profil",
+  "Update_Profile": "Perbarui Profil",
+  "Profile_Updated": "Profil berhasil diperbarui!",
+  "Profile_Update_Error": "Gagal memperbarui profil.",
+  "Feedback": "Umpan Balik",
+  "News": "Berita",
+  "Send": "Kirim",
+  "Rating": "Rating",
+  "Latest_News": "Berita Terbaru",
+  "No_News": "Belum ada berita.",
+  "No_Feedback": "Belum ada umpan balik.",
+  "Post_News": "Unggah Berita",
+  "Add_Feedback": "Tambah Umpan Balik",
+  "Content": "Isi"
 }

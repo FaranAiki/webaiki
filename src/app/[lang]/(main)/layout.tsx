@@ -26,7 +26,9 @@ import {
   LayoutGrid,
   Fingerprint,
   Globe,
-  Heart
+  Heart,
+  MessageSquare,
+  Newspaper
 } from 'lucide-react';
 
 export default async function RootLayout({
@@ -54,6 +56,7 @@ export default async function RootLayout({
         { name: dict.Home, href: '/', icon: <Home size={16} /> },
         { name: dict.Identity || 'Identity', href: '/identity', icon: <Fingerprint size={16} /> },
         { name: dict.Website || 'Website', href: '/website', icon: <Globe size={16} /> },
+        { name: dict.Feedback || 'Feedback', href: '/feedback', icon: <MessageSquare size={16} /> },
       ]
     },
 
@@ -66,6 +69,7 @@ export default async function RootLayout({
         { name: dict.All || 'All', href: '/all', icon: <LayoutGrid size={16} /> },
         { name: dict.Social, href: '/social', icon: <Share2 size={16} /> },
         { name: dict.Certificate, href:'/certificate', icon: <FileCheck size={16} /> },
+        { name: dict.News || 'News', href: '/news', icon: <Newspaper size={16} /> },
       ]
     },
 

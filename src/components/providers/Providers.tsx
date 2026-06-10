@@ -1,55 +1,79 @@
 "use client";
 
 import { ThemeProvider } from "next-themes";
-import React from "react";
-import { PresentationProvider, SlideNumberFormat } from "./PresentationContext";
+import React, { createContext, useContext, useState, useEffect } from "react";
+import { PresentationProvider } from "./PresentationContext";
 import { SettingsProvider } from "./SettingsContext";
 import SultanPrint from "../interactive/SultanPrint";
-
-interface ProvidersProps {
-  children: React.ReactNode;
-  initialIsPresentationMode?: boolean;
-  initialSlideNumberFormat?: SlideNumberFormat;
-  loadingLabel?: string;
-  sultanLabels?: {
-    Creating: string;
-    Ready: string;
-    Failed: string;
-    Description: string;
-    Download: string;
-    Estimating: string;
-    Dismiss: string;
-    Cancel: string;
-  };
-}
-
 import QueryProvider from "./QueryProvider";
 import SmoothScroll from "./SmoothScroll";
 import LoadingOverlay from "../layout/LoadingOverlay";
 
-export function Providers({ 
-  children, 
-  sultanLabels,
-  loadingLabel,
-  initialIsPresentationMode,
-  initialSlideNumberFormat
-}: ProvidersProps) {
+interface SultanLabels {
+  Creating: string;
+  Ready: string;
+  Failed: string;
+  Description: string;
+  Download: string;
+  Estimating: string;
+  Dismiss: string;
+  Cancel: string;
+}
+
+interface ProvidersContextType {
+  setLoadingLabel: (label: string) => void;
+  setSultanLabels: (labels: SultanLabels) => void;
+}
+
+const ProvidersContext = createContext<ProvidersContextType | undefined>(undefined);
+
+export function useProvidersConfig() {
+  return useContext(ProvidersContext);
+}
+
+/**
+ * A stable outer provider that ensures hook execution order remains constant.
+ */
+export function Providers({ children }: { children: React.ReactNode }) {
+  const [loadingLabel, setLoadingLabel] = useState<string | undefined>(undefined);
+  const [sultanLabels, setSultanLabels] = useState<SultanLabels | undefined>(undefined);
+
   return (
-    <SettingsProvider>
-      <PresentationProvider
-        initialIsPresentationMode={initialIsPresentationMode}
-        initialSlideNumberFormat={initialSlideNumberFormat}
-      >
-        <QueryProvider>
-          <SmoothScroll>
-            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-              <LoadingOverlay label={loadingLabel} />
-              {children}
-              <SultanPrint labels={sultanLabels} />
-            </ThemeProvider>
-          </SmoothScroll>
-        </QueryProvider>
-      </PresentationProvider>
-    </SettingsProvider>
+    <ProvidersContext.Provider value={{ setLoadingLabel, setSultanLabels }}>
+      <SettingsProvider>
+        <PresentationProvider>
+          <QueryProvider>
+            <SmoothScroll>
+              <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+                <LoadingOverlay label={loadingLabel} />
+                {children}
+                <SultanPrint labels={sultanLabels} />
+              </ThemeProvider>
+            </SmoothScroll>
+          </QueryProvider>
+        </PresentationProvider>
+      </SettingsProvider>
+    </ProvidersContext.Provider>
   );
+}
+
+/**
+ * Helper component for nested layouts to inject localized labels 
+ * without re-rendering the provider tree.
+ */
+export function ProvidersConfigurator({ 
+  loadingLabel, 
+  sultanLabels
+}: { 
+  loadingLabel?: string; 
+  sultanLabels?: SultanLabels;
+}) {
+  const config = useProvidersConfig();
+  
+  useEffect(() => {
+    if (config && loadingLabel) config.setLoadingLabel(loadingLabel);
+    if (config && sultanLabels) config.setSultanLabels(sultanLabels);
+  }, [loadingLabel, sultanLabels, config]);
+
+  return null;
 }
