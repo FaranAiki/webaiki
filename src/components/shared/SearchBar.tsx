@@ -92,6 +92,10 @@ export default function SearchBar({
     e?.preventDefault();
     if (selectedIndex >= 0 && results[selectedIndex]) {
       navigateToResult(results[selectedIndex]);
+    } else if (results.length > 0) {
+      // If Enter is pressed but no item is explicitly highlighted by keyboard,
+      // but results exist, navigate to the first one (usually 0)
+      navigateToResult(results[0]);
     } else if (onSearch) {
       onSearch(query, scope);
     }
@@ -146,6 +150,9 @@ export default function SearchBar({
         if (selectedIndexRef.current >= 0 && resultsRef.current[selectedIndexRef.current]) {
           e.preventDefault();
           navigateToResult(resultsRef.current[selectedIndexRef.current]);
+        } else if (resultsRef.current.length > 0) {
+          e.preventDefault();
+          navigateToResult(resultsRef.current[0]);
         }
       } else if (e.key === 'Escape') {
         setIsFocused(false);

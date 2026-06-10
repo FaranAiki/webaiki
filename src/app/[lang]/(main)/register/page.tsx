@@ -11,7 +11,7 @@ export default async function RegisterPage({ params }: { params: Promise<{ lang:
   const { data: { user } } = await supabase.auth.getUser();
 
   if (user) {
-    redirect(`/${lang}/hire-me`);
+    redirect(`/${lang}`);
   }
 
   return (

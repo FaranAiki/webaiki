@@ -15,7 +15,7 @@ export function useAuthActions(lang: string) {
       return { error: result.error };
     }
 
-    router.push(`/${lang}/hire-me`);
+    router.push(`/${lang}`);
     router.refresh();
     return { success: true };
   };

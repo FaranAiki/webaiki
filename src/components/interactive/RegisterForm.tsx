@@ -32,7 +32,7 @@ export default function RegisterForm({ dict, lang }: RegisterFormProps) {
     const result = await signUp(formData);
     
     if (result?.error) {
-      setError(result.error);
+      setError(dict[result.error] || result.error);
       setLoading(false);
     } else {
       setSuccess(true);

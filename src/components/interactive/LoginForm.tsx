@@ -23,7 +23,7 @@ export default function LoginForm({ dict, lang }: LoginFormProps) {
     const result = await signIn(formData);
 
     if (result?.error) {
-      setError(result.error);
+      setError(dict[result.error] || result.error);
       setLoading(false);
     }
   };

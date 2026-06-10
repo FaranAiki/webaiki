@@ -34,23 +34,39 @@ export async function signInAction(formData: FormData) {
 
   const { email, password } = validation.data;
 
-  // Check if email exists in our database
-  const user = await prisma.user.findUnique({
-    where: { email },
-  });
-
-  if (!user) {
-    return { error: 'Email not found' };
-  }
-
   const supabase = await createClient();
-  const { error } = await supabase.auth.signInWithPassword({
+  const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
   });
 
   if (error) {
-    return { error: error.message };
+    return { error: 'Auth_Error' };
+  }
+
+  // Sync with Prisma after successful login to ensure user exists in our DB
+  if (data.user) {
+    try {
+      const metadata = data.user.user_metadata;
+      await prisma.user.upsert({
+        where: { id: data.user.id },
+        update: {
+          email: data.user.email!,
+          username: metadata.username || null,
+          registrationReason: (metadata.registration_reason as RegistrationReason) || 'VISITOR',
+        },
+        create: {
+          id: data.user.id,
+          email: data.user.email!,
+          username: metadata.username || null,
+          registrationReason: (metadata.registration_reason as RegistrationReason) || 'VISITOR',
+        },
+      });
+    } catch (dbError) {
+      console.error('Error syncing user on sign in:', dbError);
+      // We don't necessarily want to fail the login if sync fails, 
+      // but it might cause issues later.
+    }
   }
 
   return { success: true };
@@ -91,7 +107,7 @@ export async function signUpAction(formData: FormData) {
   });
 
   if (error) {
-    return { error: error.message };
+    return { error: 'Auth_Error' };
   }
 
   return { success: true };

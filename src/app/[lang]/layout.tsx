@@ -62,8 +62,6 @@ export default async function BaseLayout({
     <html lang={lang} dir="ltr" suppressHydrationWarning={true} nonce={nonce}>
       <head>
         <meta name="google-site-verification" content="xZMulZsvn0xj7TrxhEN8O9KLWSmNIfx6tqFtOpbgOV4" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className={`${inter.variable} ${geistMono.variable} font-sans antialiased`}>
         <Providers 

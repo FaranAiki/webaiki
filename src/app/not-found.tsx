@@ -1,5 +1,5 @@
 import Background from "@/components/layout/Background"
-import "../globals.css";
+import "./globals.css";
 import { getDictionaryFromCookie } from '@/components/layout/Translator';
 import { createClient } from '@/utils/supabase/server';
 import fs from 'fs';

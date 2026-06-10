@@ -25,7 +25,8 @@ import {
   Star,
   LayoutGrid,
   Fingerprint,
-  Globe
+  Globe,
+  Heart
 } from 'lucide-react';
 
 export default async function RootLayout({
@@ -41,6 +42,7 @@ export default async function RootLayout({
 
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
+  const registrationReason = user?.user_metadata?.registration_reason;
 
   // Navigation Links with Icons
   const navLinks = [
@@ -96,6 +98,15 @@ export default async function RootLayout({
     },
   ];
 
+  // Add Hire Me link if user is HR
+  if (registrationReason === 'HR') {
+    navLinks.push({
+      name: dict.Hire_Me,
+      href: '/hire-me',
+      icon: <Heart size={18} />
+    });
+  }
+
   return (
     <>
       <Header
@@ -126,7 +137,9 @@ export default async function RootLayout({
         user={user}
         auth_labels={{
           Login: dict.Login,
-          Logout: dict.Logout
+          Logout: dict.Logout,
+          Edit_Profile: dict.Edit_Profile,
+          View_Profile: dict.View_Profile
         }}
         settings_labels={{
           Settings: dict.Settings,

@@ -17,7 +17,19 @@ import {
   Share2,
   Check,
   LogIn,
-  LogOut
+  LogOut,
+  User,
+  ChevronDown,
+  Globe,
+  Menu,
+  X,
+  Palette,
+  Layout,
+  Settings,
+  ArrowRight,
+  Search,
+  ExternalLink,
+  ChevronRight
 } from 'lucide-react';
 
 import { usePresentation } from '@/components/providers/PresentationContext';
@@ -61,10 +73,17 @@ interface HeaderProps {
     share_description: string;
     user?: {
         email?: string;
+        user_metadata?: {
+            avatar_url?: string;
+            full_name?: string;
+            username?: string;
+        };
     } | null;
     auth_labels: {
         Login: string;
         Logout: string;
+        Edit_Profile: string;
+        View_Profile: string;
     };
     settings_labels: {
         Settings: string;
@@ -121,13 +140,7 @@ function CloseIcon() {
     );
 }
 
-function ChevronDown() {
-    return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-1 opacity-75">
-            <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-    );
-}
+
 
 export default function Header(props: HeaderProps) {
     const { 
@@ -286,6 +299,20 @@ export default function Header(props: HeaderProps) {
         window.addEventListener('scroll', onScroll, { passive: true });
         return () => window.removeEventListener('scroll', onScroll);
     }, [updateHeaderVisibility]);
+
+    const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+    const userMenuRef = useRef<HTMLDivElement>(null);
+
+    // Close user menu when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (userMenuRef.current && !userMenuRef.current.contains(event.target as Node)) {
+                setIsUserMenuOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
 
     const isDark = mounted && resolvedTheme === 'dark';
 
@@ -565,22 +592,67 @@ export default function Header(props: HeaderProps) {
                             />
                         </div>
 
-                        {/* Login/Logout Button (Desktop) */}
+                        {/* Desktop Auth Section */}
                         <div className="hidden md:flex items-center">
                             {props.user ? (
-                                <button
-                                    onClick={() => signOut()}
-                                    title={props.auth_labels.Logout}
-                                    className={`
-                                        flex items-center justify-center transition-all duration-300 p-2 rounded-full
-                                        ${isDark
-                                            ? 'text-theme-muted hover:text-red-400 hover:bg-theme-surface-strong'
-                                            : 'text-theme-muted hover:text-red-600 hover:bg-theme-surface-strong'
-                                        }
-                                    `}
-                                >
-                                    <LogOut size={24} strokeWidth={2} />
-                                </button>
+                                <div className="relative" ref={userMenuRef}>
+                                    <button
+                                        onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                                        className="flex items-center space-x-2 p-1 rounded-full hover:bg-theme-surface-strong transition-colors border border-transparent hover:border-theme-border"
+                                    >
+                                        <div className="relative w-8 h-8 rounded-full overflow-hidden border border-theme-border shadow-sm">
+                                            <Image
+                                                src={props.user.user_metadata?.avatar_url || '/images/no_photo_profile.webp'}
+                                                alt={props.user.user_metadata?.full_name || props.user.email || 'User'}
+                                                fill
+                                                className="object-cover"
+                                            />
+                                        </div>
+                                        <ChevronDown />
+                                    </button>
+
+                                    <AnimatePresence>
+                                        {isUserMenuOpen && (
+                                            <motion.div
+                                                initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                                exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                                                className={`absolute right-0 mt-2 w-48 rounded-xl shadow-xl border border-theme-border ${dropdownBg} py-2 z-50`}
+                                            >
+                                                <div className="px-4 py-2 border-b border-theme-border mb-1">
+                                                    <p className="text-sm font-bold truncate">
+                                                        {props.user.user_metadata?.full_name || props.user.user_metadata?.username || 'User'}
+                                                    </p>
+                                                    <p className="text-xs text-theme-muted truncate">
+                                                        {props.user.email}
+                                                    </p>
+                                                </div>
+                                                
+                                                <button
+                                                    onClick={() => {
+                                                        setIsUserMenuOpen(false);
+                                                        // router.push(getLocalizedHref('/profile/edit'));
+                                                    }}
+                                                    className={`w-full text-left px-4 py-2 text-sm ${textColor} hover:bg-theme-surface-strong transition-colors flex items-center`}
+                                                >
+                                                    <User size={16} className="mr-2" />
+                                                    {props.auth_labels.Edit_Profile}
+                                                </button>
+
+                                                <button
+                                                    onClick={() => {
+                                                        setIsUserMenuOpen(false);
+                                                        signOut();
+                                                    }}
+                                                    className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-500/10 transition-colors flex items-center"
+                                                >
+                                                    <LogOut size={16} className="mr-2" />
+                                                    {props.auth_labels.Logout}
+                                                </button>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
                             ) : (
                                 <Link
                                     href={getLocalizedHref('/login')}
@@ -708,21 +780,53 @@ export default function Header(props: HeaderProps) {
                         {/* Mobile Auth */}
                         <div className="mt-6">
                             {props.user ? (
-                                <button
-                                    onClick={() => {
-                                        signOut();
-                                        setMobileMenuOpen(false);
-                                    }}
-                                    className={`flex items-center w-full text-lg font-semibold text-red-500 transition-colors duration-300 hover:text-red-600`}
-                                >
-                                    <LogOut size={20} className="mr-3" />
-                                    {props.auth_labels.Logout}
-                                </button>
+                                <div className="flex flex-col space-y-4">
+                                    <div className="flex items-center space-x-3 p-3 rounded-xl bg-theme-surface-strong/30 border border-theme-border">
+                                        <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-theme-border shadow-md flex-shrink-0">
+                                            <Image
+                                                src={props.user.user_metadata?.avatar_url || '/images/no_photo_profile.webp'}
+                                                alt={props.user.user_metadata?.full_name || props.user.email || 'User'}
+                                                fill
+                                                className="object-cover"
+                                            />
+                                        </div>
+                                        <div className="flex flex-col overflow-hidden">
+                                            <span className="font-bold text-sm truncate">
+                                                {props.user.user_metadata?.full_name || props.user.user_metadata?.username || 'User'}
+                                            </span>
+                                            <span className="text-xs text-theme-muted truncate">
+                                                {props.user.email}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-col space-y-2">
+                                        <button
+                                            onClick={() => {
+                                                setMobileMenuOpen(false);
+                                                // router.push(getLocalizedHref('/profile/edit'));
+                                            }}
+                                            className={`flex items-center w-full text-lg font-semibold ${textColor} transition-colors duration-300 hover:text-theme-600 px-2`}
+                                        >
+                                            <User size={20} className="mr-3" />
+                                            {props.auth_labels.Edit_Profile}
+                                        </button>
+                                        <button
+                                            onClick={() => {
+                                                signOut();
+                                                setMobileMenuOpen(false);
+                                            }}
+                                            className={`flex items-center w-full text-lg font-semibold text-red-500 transition-colors duration-300 hover:text-red-600 px-2`}
+                                        >
+                                            <LogOut size={20} className="mr-3" />
+                                            {props.auth_labels.Logout}
+                                        </button>
+                                    </div>
+                                </div>
                             ) : (
                                 <Link
                                     href={getLocalizedHref('/login')}
                                     onClick={() => setMobileMenuOpen(false)}
-                                    className={`flex items-center w-full text-lg font-semibold ${textColor} transition-colors duration-300 hover:text-theme-600`}
+                                    className={`flex items-center w-full text-lg font-semibold ${textColor} transition-colors duration-300 hover:text-theme-600 px-2`}
                                 >
                                     <LogIn size={20} className="mr-3" />
                                     {props.auth_labels.Login}
