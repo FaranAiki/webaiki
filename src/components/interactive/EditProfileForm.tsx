@@ -23,7 +23,7 @@ export default function EditProfileForm({ dict, lang, user }: EditProfileFormPro
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
-  
+
   const [name, setName] = useState(user.user_metadata?.full_name || '');
   const [username, setUsername] = useState(user.user_metadata?.username || '');
   const [avatarUrl, setAvatarUrl] = useState(user.user_metadata?.avatar_url || '');
@@ -71,10 +71,10 @@ export default function EditProfileForm({ dict, lang, user }: EditProfileFormPro
 
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
-      transition: { 
+      transition: {
         duration: 0.6,
         ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
         staggerChildren: 0.1
@@ -84,15 +84,15 @@ export default function EditProfileForm({ dict, lang, user }: EditProfileFormPro
 
   const itemVariants = {
     hidden: { opacity: 0, x: -20 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       x: 0,
       transition: { duration: 0.5, ease: "easeOut" as const }
     }
   };
 
   return (
-    <motion.div 
+    <motion.div
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -115,10 +115,10 @@ export default function EditProfileForm({ dict, lang, user }: EditProfileFormPro
             <div className="absolute -inset-1 bg-gradient-to-r from-theme-500 to-gacor rounded-full blur opacity-20 group-hover:opacity-40 transition duration-500" />
             <label className="relative block w-full h-full rounded-full overflow-hidden border-4 border-theme-surface shadow-2xl bg-theme-surface-strong cursor-pointer group">
               {avatarUrl ? (
-                <Image 
-                  src={avatarUrl} 
-                  alt={name || 'User'} 
-                  fill 
+                <Image
+                  src={avatarUrl}
+                  alt={name || 'User'}
+                  fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
               ) : (
@@ -126,30 +126,33 @@ export default function EditProfileForm({ dict, lang, user }: EditProfileFormPro
                   <User size={80} />
                 </div>
               )}
-              
+
               {/* Hover Overlay */}
               <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <Camera className="text-white mb-2" size={32} />
-                <span className="text-white text-[10px] font-bold tracking-widest uppercase">Change</span>
+                <span className="text-white text-[10px] font-bold tracking-widest uppercase">{dict.Change}</span>
               </div>
 
               {uploading && (
                 <div className="absolute inset-0 bg-theme-bg/80 flex items-center justify-center">
-                  <div className="w-8 h-8 border-4 border-theme-500 border-t-transparent rounded-full animate-spin" />
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="w-8 h-8 border-4 border-theme-500 border-t-transparent rounded-full animate-spin" />
+                    <span className="text-[10px] font-bold text-theme-500 uppercase tracking-tighter animate-pulse">{dict.Uploading}</span>
+                  </div>
                 </div>
               )}
 
-              <input 
-                type="file" 
-                accept="image/*" 
-                className="hidden" 
+              <input
+                type="file"
+                accept="image/*"
+                className="hidden"
                 onChange={handleImageUpload}
                 disabled={uploading}
               />
             </label>
           </div>
           <p className="text-center text-xs text-theme-muted font-bold tracking-widest uppercase italic">
-            Click to upload
+            {dict.Click_To_Upload}
           </p>
         </motion.div>
 
@@ -165,7 +168,7 @@ export default function EditProfileForm({ dict, lang, user }: EditProfileFormPro
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl bg-theme-surface-strong border border-theme-border focus:border-theme-500 focus:ring-4 focus:ring-theme-500/10 outline-none transition-all duration-300"
-                placeholder="Your Name"
+                placeholder={dict.Your_Name_Placeholder}
               />
             </motion.div>
 
@@ -178,12 +181,12 @@ export default function EditProfileForm({ dict, lang, user }: EditProfileFormPro
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl bg-theme-surface-strong border border-theme-border focus:border-theme-500 focus:ring-4 focus:ring-theme-500/10 outline-none transition-all duration-300"
-                placeholder="username"
+                placeholder={dict.Username_Placeholder}
               />
             </motion.div>
 
             {error && (
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
                 className="flex items-center gap-2 text-red-500 text-sm font-medium bg-red-500/10 p-3 rounded-xl border border-red-500/20"
@@ -194,7 +197,7 @@ export default function EditProfileForm({ dict, lang, user }: EditProfileFormPro
             )}
 
             {success && (
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
                 className="flex items-center gap-2 text-green-500 text-sm font-medium bg-green-500/10 p-3 rounded-xl border border-green-500/20"

@@ -349,5 +349,10 @@
   "No_Feedback": "কোন প্রতিক্রিয়া নেই।",
   "Post_News": "খবর পোস্ট করুন",
   "Add_Feedback": "প্রতিক্রিয়া যোগ করুন",
-  "Content": "বিষয়বস্তু"
+  "Content": "বিষয়বস্তু",
+  "Change": "Ganti",
+  "Click_To_Upload": "Klik untuk unggah",
+  "Your_Name_Placeholder": "Nama Anda",
+  "Username_Placeholder": "nama_pengguna",
+  "Uploading": "Mengunggah..."
 }

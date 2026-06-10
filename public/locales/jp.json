@@ -349,5 +349,10 @@
   "No_Feedback": "フィードバックはありません。",
   "Post_News": "ニュースを投稿",
   "Add_Feedback": "フィードバックを追加",
-  "Content": "内容"
+  "Content": "内容",
+  "Change": "変更",
+  "Click_To_Upload": "クリックしてアップロード",
+  "Your_Name_Placeholder": "お名前",
+  "Username_Placeholder": "ユーザー名",
+  "Uploading": "アップロード中..."
 }

@@ -349,5 +349,10 @@
   "No_Feedback": "अभी कोई प्रतिक्रिया नहीं है।",
   "Post_News": "समाचार पोस्ट करें",
   "Add_Feedback": "प्रतिक्रिया जोड़ें",
-  "Content": "सामग्री"
+  "Content": "सामग्री",
+  "Change": "Ganti",
+  "Click_To_Upload": "Klik untuk unggah",
+  "Your_Name_Placeholder": "Nama Anda",
+  "Username_Placeholder": "nama_pengguna",
+  "Uploading": "Mengunggah..."
 }

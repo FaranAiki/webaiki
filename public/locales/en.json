@@ -361,5 +361,10 @@
   "Avatar_URL": "URL Foto Profil",
   "Invalid_Captcha": "Captcha tidak valid.",
   "View_Profile": "Lihat Profil",
-  "Login_Success": "Berhasil masuk!"
+  "Login_Success": "Berhasil masuk!",
+  "Change": "Change",
+  "Click_To_Upload": "Click to upload",
+  "Your_Name_Placeholder": "Your Name",
+  "Username_Placeholder": "username",
+  "Uploading": "Uploading..."
 }

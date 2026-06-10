@@ -349,5 +349,10 @@
   "No_Feedback": "暂无反馈。",
   "Post_News": "发布新闻",
   "Add_Feedback": "添加反馈",
-  "Content": "内容"
+  "Content": "内容",
+  "Change": "更改",
+  "Click_To_Upload": "点击上传",
+  "Your_Name_Placeholder": "您的姓名",
+  "Username_Placeholder": "用户名",
+  "Uploading": "上传中..."
 }

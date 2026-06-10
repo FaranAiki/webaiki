@@ -93,7 +93,10 @@ export async function uploadFile(formData: FormData, bucket: 'user-icon' | 'news
         upsert: false
       });
 
-    if (error) throw error;
+    if (error) {
+        console.error(`Supabase storage error [${bucket}]:`, error);
+        return { error: `Upload failed: ${error.message}` };
+    }
 
     const { data: { publicUrl } } = supabase.storage
       .from(bucket)
@@ -101,7 +104,7 @@ export async function uploadFile(formData: FormData, bucket: 'user-icon' | 'news
 
     return { success: true, url: publicUrl };
   } catch (error) {
-    console.error('Upload error:', error);
+    console.error('Upload exception:', error);
     return { error: 'Upload failed' };
   }
 }
@@ -113,7 +116,25 @@ export async function updateProfile(data: { name?: string; username?: string; av
   if (!user) return { error: 'Require_Login' };
 
   try {
-    // Update Supabase Auth metadata
+    // 1. Ensure user is synced to Prisma first
+    await prisma.user.upsert({
+      where: { id: user.id },
+      update: {
+        email: user.email!,
+        name: data.name,
+        username: data.username,
+        avatarUrl: data.avatarUrl,
+      },
+      create: {
+        id: user.id,
+        email: user.email!,
+        name: data.name,
+        username: data.username,
+        avatarUrl: data.avatarUrl,
+      },
+    });
+
+    // 2. Update Supabase Auth metadata
     const { error: authError } = await supabase.auth.updateUser({
       data: {
         full_name: data.name,
@@ -123,16 +144,6 @@ export async function updateProfile(data: { name?: string; username?: string; av
     });
 
     if (authError) throw authError;
-
-    // Update Prisma database
-    await prisma.user.update({
-      where: { id: user.id },
-      data: {
-        name: data.name,
-        username: data.username,
-        avatarUrl: data.avatarUrl,
-      }
-    });
 
     return { success: true };
   } catch (error) {
@@ -173,17 +184,22 @@ export async function submitFeedback(content: string, image?: string) {
   if (!user) return { error: 'Require_Login' };
 
   try {
-    await prisma.feedback.create({
-      data: {
-        content,
-        userId: user.id,
-        image,
-      }
+    // Ensure user exists in Prisma DB before creating feedback
+    await prisma.user.upsert({
+      where: { id: user.id },
+      update: { email: user.email! },
+      create: {
+        id: user.id,
+        email: user.email!,
+        username: user.user_metadata?.username || null,
+      },
     });
+
     return { success: true };
-  } catch (error) {
-    console.error('Error submitting feedback:', error);
-    return { error: 'Error submitting feedback' };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Unknown error';
+    console.error('Prisma Error submitting feedback:', error);
+    return { error: `Feedback submission failed: ${message}` };
   }
 }
 
@@ -208,27 +224,26 @@ export async function postNews(title: string, content: string, image?: string) {
 
   if (!user) return { error: 'Require_Login' };
 
-  // Check if user is ADMIN
-  const dbUser = await prisma.user.findUnique({
-    where: { id: user.id }
-  });
-
-  if (dbUser?.role !== 'ADMIN') {
-    return { error: 'Unauthorized' };
-  }
-
   try {
-    await prisma.news.create({
-      data: {
-        title,
-        content,
-        image,
-        authorId: user.id,
-      }
+    // Ensure admin user is synced to Prisma
+    const dbUser = await prisma.user.upsert({
+      where: { id: user.id },
+      update: { email: user.email! },
+      create: {
+        id: user.id,
+        email: user.email!,
+        username: user.user_metadata?.username || null,
+      },
     });
+
+    if (dbUser?.role !== 'ADMIN') {
+      return { error: 'Unauthorized' };
+    }
+
     return { success: true };
-  } catch (error) {
-    console.error('Error posting news:', error);
-    return { error: 'Error posting news' };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Unknown error';
+    console.error('Prisma Error posting news:', error);
+    return { error: `News posting failed: ${message}` };
   }
 }

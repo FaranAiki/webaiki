@@ -349,5 +349,10 @@
   "No_Feedback": "아직 피드백이 없습니다.",
   "Post_News": "뉴스 게시",
   "Add_Feedback": "피드백 추가",
-  "Content": "내용"
+  "Content": "내용",
+  "Change": "Ganti",
+  "Click_To_Upload": "Klik untuk unggah",
+  "Your_Name_Placeholder": "Nama Anda",
+  "Username_Placeholder": "nama_pengguna",
+  "Uploading": "Mengunggah..."
 }

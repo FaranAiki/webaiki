@@ -349,5 +349,10 @@
   "No_Feedback": "لا توجد تعليقات بعد.",
   "Post_News": "نشر خبر",
   "Add_Feedback": "إضافة تعليق",
-  "Content": "المحتوى"
+  "Content": "المحتوى",
+  "Change": "Ganti",
+  "Click_To_Upload": "Klik untuk unggah",
+  "Your_Name_Placeholder": "Nama Anda",
+  "Username_Placeholder": "nama_pengguna",
+  "Uploading": "Mengunggah..."
 }
