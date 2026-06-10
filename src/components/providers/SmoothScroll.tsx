@@ -1,14 +1,21 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Lenis from "lenis";
 import { useAppStore } from "@/lib/store";
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
+  const [mounted, setMounted] = useState(false);
   const lenisRef = useRef<Lenis | null>(null);
   const isScrollLocked = useAppStore((state) => state.isScrollLocked);
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),

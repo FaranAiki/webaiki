@@ -31,11 +31,16 @@ export default function SultanPrint({ labels }: SultanPrintProps) {
   const { slideNumberFormat } = usePresentation();
   const { font, textAlign, textScale, letterSpacing, lineHeight, isAtsMode, isExpandAll } = useSettings();
   
+  const [mounted, setMounted] = useState(false);
   const [status, setStatus] = useState<'idle' | 'printing' | 'success' | 'error'>('idle');
   const [progress, setProgress] = useState(0);
   const [errorMessage, setErrorMessage] = useState('');
   
   const abortControllerRef = useRef<AbortController | null>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Default labels if not provided
   const l = labels || {
@@ -59,6 +64,8 @@ export default function SultanPrint({ labels }: SultanPrintProps) {
   };
 
   useEffect(() => {
+    if (!mounted) return;
+
     let progressInterval: NodeJS.Timeout;
 
     const handleSultanPrint = async () => {
@@ -154,6 +161,8 @@ export default function SultanPrint({ labels }: SultanPrintProps) {
   
   // Calculate scaled font size for the popup (relative to its base sizes)
   const scale = textScale / 100;
+
+  if (!mounted) return null;
 
   return (
     <AnimatePresence>

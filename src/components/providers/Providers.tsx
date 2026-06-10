@@ -41,25 +41,6 @@ export function Providers({
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    // Return a stable structure during SSR/initial client render
-    return (
-      <SettingsProvider>
-        <PresentationProvider 
-          initialIsPresentationMode={initialIsPresentationMode}
-          initialSlideNumberFormat={initialSlideNumberFormat}
-        >
-          <QueryProvider>
-            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-                <LoadingOverlay isMounted={mounted} label={loadingLabel} />
-                {children}
-            </ThemeProvider>
-          </QueryProvider>
-        </PresentationProvider>
-      </SettingsProvider>
-    );
-  }
-
   return (
     <SettingsProvider>
       <PresentationProvider

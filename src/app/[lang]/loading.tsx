@@ -7,12 +7,13 @@ import Image from "next/image";
  * Designed to provide a beautiful, branded experience during serverless cold starts.
  */
 export default async function Loading() {
+  const nonce = (await headers()).get('x-nonce') || undefined;
   const locale = (await headers()).get("x-locale") || "id";
   const dict = await getDictionary(locale);
 
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style nonce={nonce} dangerouslySetInnerHTML={{ __html: `
         body { overflow: hidden !important; }
       `}} />
       <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background theme-transition overflow-hidden">
