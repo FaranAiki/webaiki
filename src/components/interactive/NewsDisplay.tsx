@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Newspaper, Send, User, Plus, X, Camera } from 'lucide-react';
 import { getNews, postNews, uploadFile } from '@/app/actions';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 interface NewsItem {
   id: string;
@@ -25,6 +26,7 @@ interface NewsDisplayProps {
 }
 
 export default function NewsDisplay({ dict, lang, isAdmin }: NewsDisplayProps) {
+  const router = useRouter();
   const [news, setNews] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [showPostForm, setShowPostForm] = useState(false);
@@ -86,6 +88,7 @@ export default function NewsDisplay({ dict, lang, isAdmin }: NewsDisplayProps) {
       setImageUrl('');
       setShowPostForm(false);
       fetchNews();
+      router.refresh();
     } else {
       setError(dict[result.error!] || result.error || 'Error');
     }

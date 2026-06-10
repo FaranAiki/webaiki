@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, Send, User, Camera } from 'lucide-react';
 import { getFeedbacks, submitFeedback, uploadFile } from '@/app/actions';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 interface FeedbackItem {
   id: string;
@@ -24,6 +25,7 @@ interface FeedbackDisplayProps {
 }
 
 export default function FeedbackDisplay({ dict, lang }: FeedbackDisplayProps) {
+  const router = useRouter();
   const [feedbacks, setFeedbacks] = useState<FeedbackItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
@@ -81,6 +83,7 @@ export default function FeedbackDisplay({ dict, lang }: FeedbackDisplayProps) {
       setNewFeedback('');
       setImageUrl(undefined);
       fetchFeedbacks();
+      router.refresh();
     } else {
       setError(dict[result.error!] || result.error || 'Error');
     }

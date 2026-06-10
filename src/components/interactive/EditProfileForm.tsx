@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { User, Mail, Camera, Save, AlertCircle, CheckCircle2, UserCircle } from 'lucide-react';
 import { updateProfile, uploadFile } from '@/app/actions';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 interface EditProfileFormProps {
   dict: Record<string, string>;
@@ -20,6 +21,7 @@ interface EditProfileFormProps {
 }
 
 export default function EditProfileForm({ dict, lang, user }: EditProfileFormProps) {
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
@@ -63,6 +65,7 @@ export default function EditProfileForm({ dict, lang, user }: EditProfileFormPro
 
     if (result.success) {
       setSuccess(true);
+      router.refresh();
     } else {
       setError(dict[result.error!] || result.error || 'Error');
     }

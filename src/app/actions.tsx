@@ -4,7 +4,7 @@ import { cookies, headers } from 'next/headers';
 import fs from 'fs';
 import path from 'path';
 import prisma from '@/lib/prisma';
-import { createClient } from '@/utils/supabase/server';
+import { createClient, createAdminClient } from '@/utils/supabase/server';
 
 const cookie_default : { [key: string]: string } = {
   'theme': 'system' 
@@ -86,7 +86,9 @@ export async function uploadFile(formData: FormData, bucket: 'user-icon' | 'news
   const filePath = `${fileName}`;
 
   try {
-    const { data, error } = await supabase.storage
+    // Use Admin Client to bypass RLS for uploads
+    const adminSupabase = await createAdminClient();
+    const { data, error } = await adminSupabase.storage
       .from(bucket)
       .upload(filePath, file, {
         cacheControl: '3600',
@@ -98,7 +100,7 @@ export async function uploadFile(formData: FormData, bucket: 'user-icon' | 'news
         return { error: `Upload failed: ${error.message}` };
     }
 
-    const { data: { publicUrl } } = supabase.storage
+    const { data: { publicUrl } } = adminSupabase.storage
       .from(bucket)
       .getPublicUrl(data.path);
 
@@ -116,11 +118,21 @@ export async function updateProfile(data: { name?: string; username?: string; av
   if (!user) return { error: 'Require_Login' };
 
   try {
-    // 1. Ensure user is synced to Prisma first
+    // 1. Update Supabase Auth metadata
+    const { error: authError } = await supabase.auth.updateUser({
+      data: {
+        full_name: data.name,
+        username: data.username,
+        avatar_url: data.avatarUrl,
+      }
+    });
+
+    if (authError) throw authError;
+
+    // 2. Persist to Prisma
     await prisma.user.upsert({
       where: { id: user.id },
       update: {
-        email: user.email!,
         name: data.name,
         username: data.username,
         avatarUrl: data.avatarUrl,
@@ -133,17 +145,6 @@ export async function updateProfile(data: { name?: string; username?: string; av
         avatarUrl: data.avatarUrl,
       },
     });
-
-    // 2. Update Supabase Auth metadata
-    const { error: authError } = await supabase.auth.updateUser({
-      data: {
-        full_name: data.name,
-        username: data.username,
-        avatar_url: data.avatarUrl,
-      }
-    });
-
-    if (authError) throw authError;
 
     return { success: true };
   } catch (error) {
