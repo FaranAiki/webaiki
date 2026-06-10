@@ -141,12 +141,10 @@ export default async function NotFound() {
           Select_Language: dict.Select_Language
         }}
       />
-      
+
       <main className="container mx-auto px-4 md:px-8 pt-32 pb-16 min-h-[80vh] flex flex-col items-center justify-center text-center">
         <NotFoundClient dict={dict} lang={lang} />
       </main>
-
-      <Background carousel={getBackgrounds()} showOverlay={false}/>
     </>
   );
 }

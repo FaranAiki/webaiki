@@ -154,7 +154,7 @@ export default function SultanPrint({ labels }: SultanPrintProps) {
         if (progressInterval) clearInterval(progressInterval);
         if (abortControllerRef.current) abortControllerRef.current.abort();
     };
-  }, [resolvedTheme, slideNumberFormat, font, textAlign, textScale, letterSpacing, lineHeight, isAtsMode, isExpandAll]);
+  }, [mounted, resolvedTheme, slideNumberFormat, font, textAlign, textScale, letterSpacing, lineHeight, isAtsMode, isExpandAll]);
 
   // Find active font 
   const activeFont = fonts.find(f => f.name === font);

@@ -1,7 +1,7 @@
 "use client";
 
 import { ThemeProvider } from "next-themes";
-import { useEffect, useState } from "react";
+import React from "react";
 import { PresentationProvider, SlideNumberFormat } from "./PresentationContext";
 import { SettingsProvider } from "./SettingsContext";
 import SultanPrint from "../interactive/SultanPrint";
@@ -34,13 +34,6 @@ export function Providers({
   initialIsPresentationMode,
   initialSlideNumberFormat
 }: ProvidersProps) {
-  const [mounted, setMounted] = useState(false);
-
-  // Only render the provider after mounting to prevent hydration mismatches
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   return (
     <SettingsProvider>
       <PresentationProvider
@@ -50,7 +43,7 @@ export function Providers({
         <QueryProvider>
           <SmoothScroll>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-              <LoadingOverlay isMounted={mounted} label={loadingLabel} />
+              <LoadingOverlay label={loadingLabel} />
               {children}
               <SultanPrint labels={sultanLabels} />
             </ThemeProvider>

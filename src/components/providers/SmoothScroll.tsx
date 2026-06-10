@@ -54,7 +54,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       lenis.destroy();
       document.removeEventListener("click", handleAnchorClick);
     };
-  }, []);
+  }, [mounted]);
 
   useEffect(() => {
     if (!lenisRef.current) return;
