@@ -118,6 +118,7 @@ images: {
       { protocol: 'https', hostname: 'cloud.umami.is' },
       { protocol: 'https', hostname: 'api-gateway.umami.dev' },
       { protocol: 'https', hostname: 'gateway.umami.is' },
+      { protocol: 'https', hostname: 'ndutyvnkhavzchhjmzfm.supabase.co' },
     ],
   },
 
