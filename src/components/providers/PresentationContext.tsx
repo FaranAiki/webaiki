@@ -35,9 +35,10 @@ export function PresentationProvider({
     setMounted(true);
   }, []);
 
-  // Disable presentation mode on /portfolio and /all routes
+  // Disable presentation mode on home page, /portfolio and /all routes
   useEffect(() => {
-    if (pathname?.endsWith('/portfolio') || pathname?.endsWith('/all')) {
+    const isHomePage = !pathname || pathname === '/' || /^\/[a-z]{2}$/.test(pathname) || /^\/[a-z]{2}\/$/.test(pathname);
+    if (isHomePage || pathname?.endsWith('/portfolio') || pathname?.endsWith('/all')) {
       setIsPresentationMode(false);
       if (mounted) localStorage.setItem("presentation_mode", "false");
     }
@@ -73,7 +74,8 @@ export function PresentationProvider({
       const large = window.innerWidth >= 768; // md breakpoint
       setIsLargeScreen(large);
       
-      const isPortfolioOrAll = window.location.pathname.endsWith('/portfolio') || window.location.pathname.endsWith('/all');
+      const isHomePage = !window.location.pathname || window.location.pathname === '/' || /^\/[a-z]{2}$/.test(window.location.pathname) || /^\/[a-z]{2}\/$/.test(window.location.pathname);
+      const isPortfolioOrAll = isHomePage || window.location.pathname.endsWith('/portfolio') || window.location.pathname.endsWith('/all');
 
       if (!large || isPortfolioOrAll) {
         setIsPresentationMode(false);
@@ -88,8 +90,9 @@ export function PresentationProvider({
   }, [mounted]);
 
   const togglePresentationMode = () => {
-    const isPortfolioOrAll = pathname?.endsWith('/portfolio') || pathname?.endsWith('/all');
-    if (!isLargeScreen || isPortfolioOrAll) return; // Disable toggling on small screens or portfolio/all
+    const isHomePage = !pathname || pathname === '/' || /^\/[a-z]{2}$/.test(pathname) || /^\/[a-z]{2}\/$/.test(pathname);
+    const isPortfolioOrAll = isHomePage || pathname?.endsWith('/portfolio') || pathname?.endsWith('/all');
+    if (!isLargeScreen || isPortfolioOrAll) return; // Disable toggling on small screens, home, or portfolio/all
 
     setIsPresentationMode((prev) => {
       const next = !prev;

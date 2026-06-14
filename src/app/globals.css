@@ -25,9 +25,9 @@
   --app-letter-spacing: 0px;
 }
 
-/* Smooth Theme Transitions */
-*, *::before, *::after {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, text-decoration-color 0.3s ease, fill 0.3s ease, stroke 0.3s ease;
+/* Smooth Theme Transitions - Targeted for performance */
+html, body, .presentation-background, [class*="bg-theme-"], [class*="text-theme-"], [class*="border-theme-"], .theme-pink, .theme-blue, .theme-green, .theme-purple, .theme-orange, .theme-mono {
+  transition: background-color 0.5s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out, text-decoration-color 0.3s ease-in-out, fill 0.3s ease-in-out, stroke 0.3s ease-in-out;
 }
 
 @theme inline {

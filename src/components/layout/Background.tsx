@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useTheme } from 'next-themes';
 import Image from 'next/image'
+import { motion, AnimatePresence } from 'framer-motion';
 import { useSettings } from '../providers/SettingsContext';
 
 const SLIDE_DURATION = 10000;
@@ -207,10 +208,9 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
 
   return (
     <div ref={containerRef} className="absolute inset-0 z-[-1] pointer-events-none overflow-hidden contain-strict">
-      {/* Added transition for canvas opacity to help smooth theme switches */}
       <canvas
         ref={canvasRef}
-        className="block w-full h-full opacity-65 transition-opacity duration-1000 transform-gpu"
+        className="block w-full h-full opacity-65 transform-gpu"
         style={{ backfaceVisibility: 'hidden' }}
       />
     </div>
@@ -263,37 +263,41 @@ export default function Background({ carousel, showOverlay = true }: BackgroundP
       : "from-theme-surface/85 via-theme-surface/85 to-theme-surface/85";
 
   return (
-    <div className={`presentation-background sticky top-0 left-0 w-full h-screen -mb-[100vh] z-[-1] pointer-events-none transition-colors duration-[1500ms] ease-in-out bg-theme-bg dark:bg-theme-bg-dark transform-gpu contain-strict overflow-hidden`}>
+    <div className={`presentation-background sticky top-0 left-0 w-full h-screen -mb-[100vh] z-[-1] pointer-events-none transform-gpu contain-strict overflow-hidden bg-theme-bg dark:bg-theme-bg-dark transition-colors duration-1000`}>
 
-      <div className={`transition-opacity duration-[1500ms] ease-in-out w-full h-full absolute inset-0 opacity-100 transform-gpu`} style={{ backfaceVisibility: 'hidden' }}>
-        {carousel.map((src, index) => (
-            <div
-                key={index}
-                className={`blur-sm md:blur-md absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out scale-110 transform-gpu will-change-[opacity,transform] ${
-                    index === currentIndex ? 'opacity-80 z-0' : 'opacity-0 -z-10'
-                }`}
+      <div className={`w-full h-full absolute inset-0 transform-gpu`} style={{ backfaceVisibility: 'hidden' }}>
+        <AnimatePresence mode="wait">
+            <motion.div
+                key={currentIndex}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.8 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1.5, ease: "easeInOut" }}
+                className={`blur-sm md:blur-md absolute inset-0 w-full h-full scale-110 transform-gpu will-change-[opacity,transform]`}
                 style={{ backfaceVisibility: 'hidden' }}
             >
-                {/* Only render the Image if it's in our loadedIndices set */}
-                {loadedIndices.has(index) && (
+                {loadedIndices.has(currentIndex) && (
                   <Image
                       fill={true}
-                      src={`/images/background/${src}`}
-                      alt={`Background image ${index + 1}`}
+                      src={`/images/background/${carousel[currentIndex]}`}
+                      alt={`Background image ${currentIndex + 1}`}
                       className="w-full h-full object-cover"
                       sizes="100vw"
                       quality={75}
-                      priority={index === 0}
+                      priority={true}
                   />
                 )}
-            </div>
-        ))}
+            </motion.div>
+        </AnimatePresence>
 
         {/* Adjusted Gradient to improve text readability on all backgrounds with SLOW transition for epilepsy prevention */}
         {showOverlay && (
-          <div
-            className={`absolute inset-0 transition-[colors,opacity] duration-[1500ms] ease-in-out transform-gpu bg-gradient-to-b ${overlayClass}`}
+          <motion.div
+            initial={false}
+            animate={{ opacity: 1 }}
+            className={`absolute inset-0 transform-gpu bg-gradient-to-b ${overlayClass}`}
             style={{ backfaceVisibility: 'hidden' }}
+            transition={{ duration: 1 }}
           />
         )}
 
