@@ -130,21 +130,27 @@ export async function updateProfile(data: { name?: string; username?: string; av
     if (authError) throw authError;
 
     // 2. Persist to Prisma
-    await prisma.user.upsert({
-      where: { id: user.id },
-      update: {
-        name: data.name,
-        username: data.username,
-        avatarUrl: data.avatarUrl,
-      },
-      create: {
-        id: user.id,
-        email: user.email!,
-        name: data.name,
-        username: data.username,
-        avatarUrl: data.avatarUrl,
-      },
-    });
+    try {
+      await prisma.user.upsert({
+        where: { id: user.id },
+        update: {
+          name: data.name,
+          username: data.username,
+          avatarUrl: data.avatarUrl,
+        },
+        create: {
+          id: user.id,
+          email: user.email!,
+          name: data.name,
+          username: data.username,
+          avatarUrl: data.avatarUrl,
+        },
+      });
+    } catch (prismaError) {
+      console.error('Error syncing profile to Prisma:', prismaError);
+      // We don't fail the whole action if only Prisma sync fails 
+      // since Supabase Auth already succeeded, but it's good to log.
+    }
 
     return { success: true };
   } catch (error) {
@@ -163,20 +169,25 @@ export async function setCookies(name: string, val: string) {
 }
 
 export async function getFeedbacks() {
-  return await prisma.feedback.findMany({
-    where: { isPublic: true },
-    include: {
-      user: {
-        select: {
-          id: true,
-          name: true,
-          username: true,
-          avatarUrl: true
+  try {
+    return await prisma.feedback.findMany({
+      where: { isPublic: true },
+      include: {
+        user: {
+          select: {
+            id: true,
+            name: true,
+            username: true,
+            avatarUrl: true
+          }
         }
-      }
-    },
-    orderBy: { createdAt: 'desc' }
-  });
+      },
+      orderBy: { createdAt: 'desc' }
+    });
+  } catch (error) {
+    console.error('Error in getFeedbacks:', error);
+    return [];
+  }
 }
 
 export async function deleteFeedback(feedbackId: string) {
@@ -253,19 +264,24 @@ export async function submitFeedback(content: string, image?: string) {
 }
 
 export async function getNews() {
-  return await prisma.news.findMany({
-    where: { isPublic: true },
-    include: {
-      author: {
-        select: {
-          id: true,
-          name: true,
-          avatarUrl: true
+  try {
+    return await prisma.news.findMany({
+      where: { isPublic: true },
+      include: {
+        author: {
+          select: {
+            id: true,
+            name: true,
+            avatarUrl: true
+          }
         }
-      }
-    },
-    orderBy: { createdAt: 'desc' }
-  });
+      },
+      orderBy: { createdAt: 'desc' }
+    });
+  } catch (error) {
+    console.error('Error in getNews:', error);
+    return [];
+  }
 }
 
 export async function deleteNews(newsId: string) {

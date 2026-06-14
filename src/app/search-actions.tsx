@@ -338,7 +338,13 @@ export async function searchContent(query: string, lang: string): Promise<Search
   });
 
   // 7. Search News content
-  const newsItems = await getNews() as unknown as NewsItem[];
+  let newsItems: NewsItem[] = [];
+  try {
+    newsItems = await getNews() as unknown as NewsItem[];
+  } catch (error) {
+    console.error("Error fetching news in searchContent:", error);
+  }
+  
   newsItems.forEach(item => {
     const score = calculateScore({ title: item.title, description: item.content, company: item.author.name || "Admin" }, queryTerms);
     if (score > 0) {

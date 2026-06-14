@@ -40,7 +40,12 @@ export default async function HomePage({
   const dict = await getDictionary(lang);
   const nonce = (await headers()).get('x-nonce') || undefined;
 
-  const news = await getNews() as unknown as NewsItem[];
+  let news: NewsItem[] = [];
+  try {
+    news = await getNews() as unknown as NewsItem[];
+  } catch (error) {
+    console.error("Error fetching news in HomePage:", error);
+  }
 
   const jsonLd = {
     "@context": "https://schema.org",
