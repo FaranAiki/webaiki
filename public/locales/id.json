@@ -370,5 +370,15 @@
   "Back": "Kembali",
   "Back_To_News": "Kembali ke Berita",
   "Suggestions": "Saran",
-  "Read_More": "Baca Selengkapnya"
+  "Read_More": "Baca Selengkapnya",
+  "Location_Online": "Daring (Online)",
+  "Location_Hybrid": "Hibrida (Hybrid)",
+  "Location_Offline": "Luring (Offline)",
+  "Job_Type_Full_Time": "Penuh Waktu",
+  "Job_Type_Part_Time": "Paruh Waktu",
+  "Job_Type_Contract": "Kontrak",
+  "Job_Type_Freelance": "Pekerja Lepas",
+  "Placeholder_Company": "Misal: Microsoft, Google, dsb.",
+  "Placeholder_Job_Title": "Misal: Insinyur Full Stack",
+  "Placeholder_Salary": "Misal: 10jt - 15jt / bulan"
 }

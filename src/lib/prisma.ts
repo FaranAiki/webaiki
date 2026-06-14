@@ -3,50 +3,27 @@ import { PrismaPg } from '@prisma/adapter-pg'
 import { PrismaClient } from '../generated/prisma/client'
 
 const prismaClientSingleton = (): PrismaClient => {
-  // Try all possible database connection variables
+  const isProduction = process.env.NODE_ENV === 'production';
+  
   const connectionString = process.env.DIRECT_URL || 
                            process.env.DATABASE_URL || 
                            process.env.POSTGRES_URL_NON_POOLING || 
-                           process.env.POSTGRES_PRISMA_URL ||
                            process.env.POSTGRES_URL;
 
-  const isProduction = process.env.NODE_ENV === 'production';
-
-  if (!connectionString || connectionString.trim() === '' || connectionString === 'undefined') {
+  if (!connectionString || connectionString.trim() === '' || connectionString === 'base') {
     if (isProduction) {
-      console.error("Critical: No database connection string found in environment variables.");
+      console.error("CRITICAL: Database connection string is missing or invalid ('base'). Check Vercel Env Vars.");
     }
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     return new PrismaClient({});
   }
 
-  if (connectionString.toLowerCase() === 'base' || connectionString.trim() === 'base') {
-     console.error('CRITICAL: DATABASE_URL is literally set to "base". Please check Vercel environment variables.');
-     // Do not return here, let it try and fail with a better error
-  }
-
-  if (isProduction) {
-    try {
-      const urlSource = process.env.DIRECT_URL ? 'DIRECT_URL' : 
-                        process.env.DATABASE_URL ? 'DATABASE_URL' : 
-                        process.env.POSTGRES_URL_NON_POOLING ? 'POSTGRES_URL_NON_POOLING' : 'OTHER';
-
-      console.log(`Prisma Source: ${urlSource}`);
-      const hostPart = connectionString.split('@')[1] || connectionString.split('://')[1] || connectionString;
-      const host = hostPart.split(/[:\/\?]/)[0];
-      console.log(`Prisma Host: ${host}`);
-    } catch {
-      // ignore logging error
-    }
-  }
-
-  // Try to use the adapter for better performance in serverless
   try {
     const poolConfig: PoolConfig = {
       connectionString,
       max: isProduction ? 1 : 10,
-      connectionTimeoutMillis: 10000, // Increased timeout
+      connectionTimeoutMillis: 10000,
       idleTimeoutMillis: 30000,
     };
 
@@ -55,20 +32,19 @@ const prismaClientSingleton = (): PrismaClient => {
     }
 
     const pool = new Pool(poolConfig);
-
-    pool.on('error', (err) => {
-      console.error('Unexpected error on idle pg client:', err.message);
-    });
-
     const adapter = new PrismaPg(pool);
+    
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     return new PrismaClient({ adapter });
   } catch (error) {
-    console.error('Failed to initialize Prisma with adapter:', error instanceof Error ? error.message : String(error));
+    console.error('Failed to initialize Prisma with adapter, falling back to engine:', error);
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     return new PrismaClient({});
   }
 }
+
 declare global {
   var prisma: undefined | PrismaClient
 }

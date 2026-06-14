@@ -381,5 +381,15 @@
   "Holistic_Approach_Desc": "A holistic software engineering approach combining modern web standards, rigorous type safety (TypeScript), and performance-driven design.",
   "Back": "Back",
   "Back_To_News": "Back to News",
-  "Suggestions": "Suggestions"
+  "Suggestions": "Suggestions",
+  "Location_Online": "Online",
+  "Location_Hybrid": "Hybrid",
+  "Location_Offline": "Offline",
+  "Job_Type_Full_Time": "Full Time",
+  "Job_Type_Part_Time": "Part Time",
+  "Job_Type_Contract": "Contract",
+  "Job_Type_Freelance": "Freelance",
+  "Placeholder_Company": "e.g. Microsoft, Google, etc.",
+  "Placeholder_Job_Title": "e.g. Full Stack Engineer",
+  "Placeholder_Salary": "e.g. 10M - 15M / month"
 }

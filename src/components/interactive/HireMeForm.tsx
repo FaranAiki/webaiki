@@ -58,7 +58,7 @@ export default function HireMeForm({ dict }: HireMeFormProps) {
               name="company"
               type="text"
               required
-              placeholder="Microsoft, Google, etc."
+              placeholder={dict.Placeholder_Company || "Microsoft, Google, etc."}
               className="w-full px-4 py-3 rounded-xl bg-theme-surface-strong border border-theme-border focus:border-theme-500 outline-none transition-colors"
             />
           </div>
@@ -67,7 +67,7 @@ export default function HireMeForm({ dict }: HireMeFormProps) {
             <input
               name="jobTitle"
               type="text"
-              placeholder="Full Stack Engineer"
+              placeholder={dict.Placeholder_Job_Title || "Full Stack Engineer"}
               className="w-full px-4 py-3 rounded-xl bg-theme-surface-strong border border-theme-border focus:border-theme-500 outline-none transition-colors"
             />
           </div>
@@ -80,9 +80,9 @@ export default function HireMeForm({ dict }: HireMeFormProps) {
               name="location"
               className="w-full px-4 py-3 rounded-xl bg-theme-surface-strong border border-theme-border focus:border-theme-500 outline-none transition-colors"
             >
-              <option value="ONLINE">Online</option>
-              <option value="HYBRID">Hybrid</option>
-              <option value="OFFLINE">Offline</option>
+              <option value="ONLINE">{dict.Location_Online || 'Online'}</option>
+              <option value="HYBRID">{dict.Location_Hybrid || 'Hybrid'}</option>
+              <option value="OFFLINE">{dict.Location_Offline || 'Offline'}</option>
             </select>
           </div>
           <div>
@@ -91,10 +91,10 @@ export default function HireMeForm({ dict }: HireMeFormProps) {
               name="jobType"
               className="w-full px-4 py-3 rounded-xl bg-theme-surface-strong border border-theme-border focus:border-theme-500 outline-none transition-colors"
             >
-              <option value="FULL_TIME">Full Time</option>
-              <option value="PART_TIME">Part Time</option>
-              <option value="CONTRACT">Contract</option>
-              <option value="FREELANCE">Freelance</option>
+              <option value="FULL_TIME">{dict.Job_Type_Full_Time || 'Full Time'}</option>
+              <option value="PART_TIME">{dict.Job_Type_Part_Time || 'Part Time'}</option>
+              <option value="CONTRACT">{dict.Job_Type_Contract || 'Contract'}</option>
+              <option value="FREELANCE">{dict.Job_Type_Freelance || 'Freelance'}</option>
             </select>
           </div>
         </div>
@@ -104,7 +104,7 @@ export default function HireMeForm({ dict }: HireMeFormProps) {
           <input
             name="salary"
             type="text"
-            placeholder="e.g. 10M - 15M / month"
+            placeholder={dict.Placeholder_Salary || "e.g. 10M - 15M / month"}
             className="w-full px-4 py-3 rounded-xl bg-theme-surface-strong border border-theme-border focus:border-theme-500 outline-none transition-colors"
           />
         </div>
