@@ -1,14 +1,16 @@
 "use server";
 
-import { 
-  getWorkExperiences, 
-  getProjectExperiences, 
-  getOrganizationExperiences, 
+import {
+  getWorkExperiences,
+  getProjectExperiences,
+  getOrganizationExperiences,
   getAwardExperiences,
   getCertificatesData,
   getCollectionsData
 } from '@/lib/data';
 import { getDictionary } from '@/components/layout/Translator';
+import { getNews } from './actions';
+import { NewsItem } from '@/lib/types';
 
 export interface SearchResult {
   title: string;
@@ -16,7 +18,7 @@ export interface SearchResult {
   description: string;
   year?: string;
   date?: string;
-  type: 'work' | 'project' | 'organization' | 'award' | 'page' | 'certificate' | 'faq' | 'other';
+  type: 'work' | 'project' | 'organization' | 'award' | 'page' | 'certificate' | 'faq' | 'other' | 'news';
   url: string;
   tags?: string[];
   score?: number;
@@ -74,95 +76,101 @@ export async function searchContent(query: string, lang: string): Promise<Search
 
   // 1. Search Static Pages
   const pages: (Omit<SearchResult, 'type' | 'score'> & { keywords: string[] })[] = [
-    { 
-      title: dict.Home || "Home", 
-      description: dict.What_Do_You_Want_To_Base || "Main dashboard and navigation", 
+    {
+      title: dict.Home || "Home",
+      description: dict.What_Do_You_Want_To_Base || "Main dashboard and navigation",
       url: `/${lang}`,
       keywords: ["beranda", "main", "start", "welcome", "dashboard", "home"]
     },
-    { 
-      title: dict.Identity || "Identity", 
-      description: dict.SEO_Home_Description || "About Faran Aiki, philosophy, and background", 
+    {
+      title: dict.Identity || "Identity",
+      description: dict.SEO_Home_Description || "About Faran Aiki, philosophy, and background",
       url: `/${lang}/identity`,
       keywords: ["profile", "about", "bio", "faran", "aiki", "identity", "philosophy", "who am i", "personal", "biografi"]
     },
-    { 
-      title: dict.Website || "Website", 
-      description: dict.Website_Summary || "Technical stack and performance details", 
+    {
+      title: dict.Website || "Website",
+      description: dict.Website_Summary || "Technical stack and performance details",
       url: `/${lang}/website`,
       keywords: ["tech", "stack", "performance", "lighthouse", "nextjs", "build", "coding", "website", "situs", "teknologi"]
     },
-    { 
-      title: dict.Portfolio || "Portfolio", 
-      description: dict.Preparing_Portfolio || "Selected works and highlighted professional experience", 
+    {
+      title: dict.Portfolio || "Portfolio",
+      description: dict.Preparing_Portfolio || "Selected works and highlighted professional experience",
       url: `/${lang}/portfolio`,
       keywords: ["work", "projects", "showcase", "resume", "cv", "portfolio", "experience", "highlight", "best"]
     },
-    { 
-      title: dict.College || "College", 
-      description: dict.SEO_College_Description || "Academic journey and study materials at ITB", 
+    {
+      title: dict.College || "College",
+      description: dict.SEO_College_Description || "Academic journey and study materials at ITB",
       url: `/${lang}/college`,
       keywords: ["itb", "study", "university", "academic", "courses", "notes", "education", "college", "kuliah", "mahasiswa", "sti"]
     },
-    { 
-      title: dict.Work || "Work", 
-      description: dict.Work || "Professional employment history", 
+    {
+      title: dict.Work || "Work",
+      description: dict.Work || "Professional employment history",
       url: `/${lang}/work`,
       keywords: ["job", "career", "employment", "professional", "company", "experience", "work", "kerja", "karir"]
     },
-    { 
-      title: dict.Project || "Project", 
-      description: dict.Project || "Technical and personal projects", 
+    {
+      title: dict.Project || "Project",
+      description: dict.Project || "Technical and personal projects",
       url: `/${lang}/project`,
       keywords: ["coding", "apps", "software", "development", "github", "build", "project", "proyek", "tugas"]
     },
-    { 
-      title: dict.Organization || "Organization", 
-      description: dict.Organization || "Extracurricular and leadership activities", 
+    {
+      title: dict.Organization || "Organization",
+      description: dict.Organization || "Extracurricular and leadership activities",
       url: `/${lang}/organization`,
       keywords: ["leadership", "committee", "club", "team", "organization", "organisasi", "komunitas", "gdg", "stei"]
     },
-    { 
-      title: dict.Literature || "Literature", 
-      description: dict.Literature || "Poems, essays, and creative writing", 
+    {
+      title: dict.Literature || "Literature",
+      description: dict.Literature || "Poems, essays, and creative writing",
       url: `/${lang}/literature`,
       keywords: ["writing", "poems", "essays", "creative", "stories", "literature", "sastra", "puisi", "tulisan"]
     },
-    { 
-      title: dict.Award || "Award", 
-      description: dict.Award || "Honors, scholarships, and achievements", 
+    {
+      title: dict.Award || "Award",
+      description: dict.Award || "Honors, scholarships, and achievements",
       url: `/${lang}/award`,
       keywords: ["honor", "scholarship", "competition", "achievement", "award", "penghargaan", "prestasi", "beasiswa"]
     },
-    { 
-      title: dict.Social || "Social", 
-      description: dict.Social || "Social media and contact information", 
+    {
+      title: dict.Social || "Social",
+      description: dict.Social || "Social media and contact information",
       url: `/${lang}/social`,
       keywords: ["contact", "instagram", "linkedin", "github", "twitter", "email", "links", "social", "sosial", "kontak"]
     },
-    { 
-      title: dict.Music || "Music", 
-      description: dict.Music || "Musical interests and playlists", 
+    {
+      title: dict.Music || "Music",
+      description: dict.Music || "Musical interests and playlists",
       url: `/${lang}/music`,
       keywords: ["spotify", "playlist", "songs", "hobby", "music", "musik", "lagu"]
     },
-    { 
-      title: dict.Latest || "Latest", 
-      description: dict.Latest || "Recent updates and newly added content", 
+    {
+      title: dict.Latest || "Latest",
+      description: dict.Latest || "Recent updates and newly added content",
       url: `/${lang}/latest`,
       keywords: ["new", "recent", "updates", "fresh", "latest", "terbaru", "update"]
     },
-    { 
-      title: dict.Certificates || "Certificates", 
-      description: dict.Certificates || "Professional and academic certifications", 
+    {
+      title: dict.Certificates || "Certificates",
+      description: dict.Certificates || "Professional and academic certifications",
       url: `/${lang}/certificate`,
       keywords: ["certification", "course", "diploma", "verified", "skill", "certificate", "sertifikat", "kursus"]
     },
-    { 
-      title: dict.All || "All", 
-      description: dict.All || "Comprehensive view of all content", 
+    {
+      title: dict.All || "All",
+      description: dict.All || "Comprehensive view of all content",
       url: `/${lang}/all`,
       keywords: ["everything", "complete", "full", "all", "semua", "seluruh"]
+    },
+    {
+      title: dict.News || "News",
+      description: dict.Latest_News || "Latest news and updates",
+      url: `/${lang}/news`,
+      keywords: ["berita", "news", "updates", "latest", "activity", "informasi"]
     },
   ];
 
@@ -326,6 +334,23 @@ export async function searchContent(query: string, lang: string): Promise<Search
           score: score * 1.0
         });
       }
+    }
+  });
+
+  // 7. Search News content
+  const newsItems = await getNews() as unknown as NewsItem[];
+  newsItems.forEach(item => {
+    const score = calculateScore({ title: item.title, description: item.content, company: item.author.name || "Admin" }, queryTerms);
+    if (score > 0) {
+      results.push({
+        title: item.title,
+        description: item.content,
+        company: item.author.name || "Admin",
+        type: 'news',
+        url: `/${lang}/news`,
+        image: item.image || undefined,
+        score: score * 1.3
+      });
     }
   });
 

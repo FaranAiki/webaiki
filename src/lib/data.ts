@@ -419,22 +419,42 @@ export const getOrganizationExperiences = (dict: Dictionary) => [
   },
 ];
 
-export const getAwardExperiences = (dict: Dictionary) => [{
-  year: '2025',
-  jobs: [
-    {
-      date: `${dict.November} 2025 — ${dict.Present}`,
-      title: dict.Paragon_Scholarship_Title,
-      company: dict.PT_Paragon || 'PT Paragon',
-      description: dict.Paragon_Scholarship_Desc,
-      point: 100,
-      image: [
-        '/documents/award/paragon_scholarship.webp',
-      ],
-      tag: [dict.Education]
-    },
-  ],
-}];
+export const getAwardExperiences = (dict: Dictionary) => [
+  {
+    year: '2026',
+    jobs: [
+      {
+        date: `${dict.June} 2026`,
+        title: dict.ONMIPA_Award_Title,
+        company: dict.ONMIPA_Award_Company || 'Kemendikti & Belmawa',
+        description: dict.ONMIPA_Award_Desc,
+        point: 300,
+        image: [
+          '/documents/award/onmipa_01.webp',
+          '/documents/award/onmipa_02.webp',
+          '/documents/award/onmipa_03.webp',
+        ],
+        tag: [dict.Math, dict.Achievement]
+      },
+    ],
+  },
+  {
+    year: '2025',
+    jobs: [
+      {
+        date: `${dict.November} 2025 — ${dict.Present}`,
+        title: dict.Paragon_Scholarship_Title,
+        company: dict.PT_Paragon || 'PT Paragon',
+        description: dict.Paragon_Scholarship_Desc,
+        point: 100,
+        image: [
+          '/documents/award/paragon_scholarship.webp',
+        ],
+        tag: [dict.Education]
+      },
+    ],
+  },
+];
 
 export const getCollectionsData = cache(async (lang: string, type: 'literature' | 'college') => {
   const dict = await getDictionary(lang);

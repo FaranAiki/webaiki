@@ -72,7 +72,7 @@ export default function PortfolioSummaryItem({
       </div>
 
       {!isAtsMode && (
-        <div className="flex flex-wrap items-center gap-x-3 text-[10px] md:text-xs font-medium tracking-wider portfolio-item-meta">
+        <div className="flex flex-wrap items-center gap-x-3 text-sm md:text-xs font-medium tracking-wider portfolio-item-meta">
           <span className="text-theme-500 portfolio-item-company">{company}</span>
           <span className="text-[var(--text-muted)] flex items-center gap-1 portfolio-item-date">
             <Calendar size={10} />

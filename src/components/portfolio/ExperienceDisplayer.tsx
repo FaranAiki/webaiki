@@ -200,7 +200,7 @@ const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, j
                         </div>
 
                         {/* Close hint */}
-                        <div className={`absolute top-4 right-4 text-[10px] font-medium px-2 py-1 rounded-full
+                        <div className={`absolute top-4 right-4 text-sm font-medium px-2 py-1 rounded-full
                             text-theme-muted bg-theme-surface-strong/50`}>
                             {click_to_close_text}
                         </div>
@@ -303,7 +303,7 @@ export default function ExperiencesClient({
                         {[
                             { id: 'modern', icon: <LayoutPanelLeft size={18} />, label: modern_text || 'Modern' },
                             { id: 'split', icon: <Rows size={18} />, label: cinematic_text || 'Cinematic' },
-                            { id: 'minimal', icon: <div className="w-[18px] h-[18px] border-2 border-current rounded-sm flex items-center justify-center font-bold text-[10px] leading-none">E</div>, label: editorial_text || 'Editorial' }
+                            { id: 'minimal', icon: <div className="w-[18px] h-[18px] border-2 border-current rounded-sm flex items-center justify-center font-bold text-sm leading-none">E</div>, label: editorial_text || 'Editorial' }
                         ].map((l) => (
                             <button
                                 key={l.id}

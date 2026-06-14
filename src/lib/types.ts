@@ -11,3 +11,16 @@ export enum ExperienceTag {
     User = "User"
 }
 
+export interface NewsItem {
+  id: string;
+  title: string;
+  content: string;
+  image: string | null;
+  createdAt: Date;
+  author: {
+    id: string;
+    name: string | null;
+    avatarUrl: string | null;
+  };
+}
+

@@ -336,7 +336,7 @@ export default function SearchBar({
 
       {/* Scope Indicator (Subtle) */}
       {/*
-      <div className="mt-2 flex justify-center gap-4 text-[10px] font-bold tracking-widest text-theme-muted">
+      <div className="mt-2 flex justify-center gap-4 text-sm font-bold tracking-widest text-theme-muted">
         <span className={scope === 'all' ? 'text-theme-500' : ''}>{dict.All || 'All'}</span>
         {scope === 'some' && (
           <span className="text-theme-500">{dict.Some || 'Some'}</span>

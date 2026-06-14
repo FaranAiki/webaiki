@@ -3,6 +3,8 @@ import { getDictionary } from '@/components/layout/Translator';
 import { getLanguageAlternates, getBaseMetadata, SITE_URL, getPersonSchema, getWebsiteSchema } from '@/lib/seo';
 import HomeClient from "./HomeClient";
 import { headers } from 'next/headers';
+import { getNews } from '@/app/actions';
+import { NewsItem } from '@/lib/types';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -38,6 +40,8 @@ export default async function HomePage({
   const dict = await getDictionary(lang);
   const nonce = (await headers()).get('x-nonce') || undefined;
 
+  const news = await getNews() as unknown as NewsItem[];
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -53,7 +57,7 @@ export default async function HomePage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         nonce={nonce}
       />
-      <HomeClient lang={lang} dict={dict} />
+      <HomeClient lang={lang} dict={dict} initialNews={news} />
     </>
   );
 }

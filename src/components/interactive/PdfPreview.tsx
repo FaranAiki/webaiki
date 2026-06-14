@@ -52,7 +52,7 @@ function PdfPreview({ fileUrl, width = 300, priority = false }: PdfPreviewProps)
       {!isInView ? (
         <div className="flex flex-col items-center gap-2">
           <div className="w-8 h-8 border-2 border-theme-surface/20 border-t-theme-500/80 rounded-full animate-spin" />
-          <span className="text-[10px] text-theme-muted font-black">PDF</span>
+          <span className="text-sm text-theme-muted font-black">PDF</span>
         </div>
       ) : (
         <Document
@@ -60,7 +60,7 @@ function PdfPreview({ fileUrl, width = 300, priority = false }: PdfPreviewProps)
           file={fileUrl}
           className="flex justify-center"
           options={options}
-          loading={<div className="text-theme-muted text-[10px] font-bold">...</div>}
+          loading={<div className="text-theme-muted text-sm font-bold">...</div>}
         >
           <Page
             pageNumber={1}

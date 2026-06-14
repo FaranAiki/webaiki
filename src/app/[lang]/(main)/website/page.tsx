@@ -4,6 +4,7 @@ import FAQ from '@/components/portfolio/FAQ';
 import { getDictionary } from '@/components/layout/Translator';
 import { getLanguageAlternates, getBaseMetadata, getWebsiteSchema, SITE_URL, getFaqSchema } from '@/lib/seo';
 import FadeInSection from "@/components/shared/FadeInSection";
+import { Cpu, Palette, Database, Languages, Activity } from 'lucide-react';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -70,6 +71,78 @@ export default async function WebsitePage({
             </p>
         </div>
       </FadeInSection>
+
+      <div className="mt-24">
+        <FadeInSection>
+          <div className="space-y-12">
+            <div className="flex items-center gap-4">
+              <div className="h-10 w-2 bg-theme-500 rounded-full" />
+              <h2 className="text-3xl font-black tracking-tight">{dict.Tech_Reference || "Architectural Reference"}</h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Framework */}
+              <div className="p-8 bg-theme-surface border border-theme-border rounded-3xl shadow-sm hover:shadow-xl transition-all group">
+                <div className="mb-6 p-3 bg-theme-500/10 text-theme-500 w-fit rounded-2xl group-hover:scale-110 transition-transform">
+                  <Cpu size={32} />
+                </div>
+                <h3 className="text-xl font-bold mb-3">Next.js 15 Framework</h3>
+                <p className="text-theme-muted leading-relaxed">
+                  {dict.Framework_Desc}
+                </p>
+              </div>
+
+              {/* Styling */}
+              <div className="p-8 bg-theme-surface border border-theme-border rounded-3xl shadow-sm hover:shadow-xl transition-all group">
+                <div className="mb-6 p-3 bg-theme-500/10 text-theme-500 w-fit rounded-2xl group-hover:scale-110 transition-transform">
+                  <Palette size={32} />
+                </div>
+                <h3 className="text-xl font-bold mb-3">Custom UI/UX Styling</h3>
+                <p className="text-theme-muted leading-relaxed">
+                  {dict.Styling_Desc}
+                </p>
+              </div>
+
+              {/* Database */}
+              <div className="p-8 bg-theme-surface border border-theme-border rounded-3xl shadow-sm hover:shadow-xl transition-all group">
+                <div className="mb-6 p-3 bg-theme-500/10 text-theme-500 w-fit rounded-2xl group-hover:scale-110 transition-transform">
+                  <Database size={32} />
+                </div>
+                <h3 className="text-xl font-bold mb-3">PostgreSQL & Prisma</h3>
+                <p className="text-theme-muted leading-relaxed">
+                  {dict.Database_Desc}
+                </p>
+              </div>
+
+              {/* Localization */}
+              <div className="p-8 bg-theme-surface border border-theme-border rounded-3xl shadow-sm hover:shadow-xl transition-all group">
+                <div className="mb-6 p-3 bg-theme-500/10 text-theme-500 w-fit rounded-2xl group-hover:scale-110 transition-transform">
+                  <Languages size={32} />
+                </div>
+                <h3 className="text-xl font-bold mb-3">Global Localization (i18n)</h3>
+                <p className="text-theme-muted leading-relaxed">
+                  {dict.Localization_Desc}
+                </p>
+              </div>
+
+              {/* Holistic */}
+              <div className="md:col-span-2 p-8 bg-theme-surface border border-theme-border rounded-3xl shadow-sm hover:shadow-xl transition-all group border-l-4 border-l-theme-500">
+                <div className="flex flex-col md:flex-row gap-8 items-start md:items-center">
+                  <div className="p-4 bg-theme-500 text-white w-fit rounded-3xl shadow-lg group-hover:rotate-12 transition-transform">
+                    <Activity size={40} />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-black mb-3">Holistic Engineering</h3>
+                    <p className="text-theme-muted leading-relaxed text-lg max-w-3xl">
+                      {dict.Holistic_Approach_Desc}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </FadeInSection>
+      </div>
 
       <div className="mt-24 md:mt-32">
         <FadeInSection>

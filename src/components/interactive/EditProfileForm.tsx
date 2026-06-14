@@ -133,14 +133,14 @@ export default function EditProfileForm({ dict, lang, user }: EditProfileFormPro
               {/* Hover Overlay */}
               <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <Camera className="text-white mb-2" size={32} />
-                <span className="text-white text-[10px] font-bold tracking-widest uppercase">{dict.Change}</span>
+                <span className="text-white text-sm font-bold tracking-widest">{dict.Change}</span>
               </div>
 
               {uploading && (
                 <div className="absolute inset-0 bg-theme-bg/80 flex items-center justify-center">
                   <div className="flex flex-col items-center gap-2">
                     <div className="w-8 h-8 border-4 border-theme-500 border-t-transparent rounded-full animate-spin" />
-                    <span className="text-[10px] font-bold text-theme-500 uppercase tracking-tighter animate-pulse">{dict.Uploading}</span>
+                    <span className="text-sm font-bold text-theme-500 tracking-tighter animate-pulse">{dict.Uploading}</span>
                   </div>
                 </div>
               )}
@@ -154,7 +154,7 @@ export default function EditProfileForm({ dict, lang, user }: EditProfileFormPro
               />
             </label>
           </div>
-          <p className="text-center text-xs text-theme-muted font-bold tracking-widest uppercase italic">
+          <p className="text-center text-xs text-theme-muted font-bold tracking-widest">
             {dict.Click_To_Upload}
           </p>
         </motion.div>

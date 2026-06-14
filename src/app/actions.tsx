@@ -168,6 +168,7 @@ export async function getFeedbacks() {
     include: {
       user: {
         select: {
+          id: true,
           name: true,
           username: true,
           avatarUrl: true
@@ -178,6 +179,32 @@ export async function getFeedbacks() {
   });
 }
 
+export async function deleteFeedback(feedbackId: string) {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user) return { error: 'Require_Login' };
+
+  try {
+    const feedback = await prisma.feedback.findUnique({
+      where: { id: feedbackId }
+    });
+
+    if (!feedback) return { error: 'Not_Found' };
+    if (feedback.userId !== user.id) return { error: 'Unauthorized' };
+
+    await prisma.feedback.delete({
+      where: { id: feedbackId }
+    });
+
+    return { success: true };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Unknown error';
+    console.error('Prisma Error deleting feedback:', error);
+    return { error: `Feedback deletion failed: ${message}` };
+  }
+}
+
 export async function submitFeedback(content: string, image?: string) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -185,7 +212,7 @@ export async function submitFeedback(content: string, image?: string) {
   if (!user) return { error: 'Require_Login' };
 
   try {
-    // Ensure user exists in Prisma DB before creating feedback
+    // 1. Ensure user exists in Prisma DB
     await prisma.user.upsert({
       where: { id: user.id },
       update: { email: user.email! },
@@ -193,7 +220,28 @@ export async function submitFeedback(content: string, image?: string) {
         id: user.id,
         email: user.email!,
         username: user.user_metadata?.username || null,
+        name: user.user_metadata?.full_name || null,
+        avatarUrl: user.user_metadata?.avatar_url || null,
       },
+    });
+
+    // 2. Check comment limit (max 2 per user)
+    const feedbackCount = await prisma.feedback.count({
+      where: { userId: user.id }
+    });
+
+    if (feedbackCount >= 2) {
+      return { error: 'Feedback_Limit_Reached' };
+    }
+
+    // 3. Create feedback
+    await prisma.feedback.create({
+      data: {
+        content,
+        image,
+        userId: user.id,
+        isPublic: true,
+      }
     });
 
     return { success: true };
@@ -210,6 +258,7 @@ export async function getNews() {
     include: {
       author: {
         select: {
+          id: true,
           name: true,
           avatarUrl: true
         }
@@ -219,27 +268,54 @@ export async function getNews() {
   });
 }
 
+export async function deleteNews(newsId: string) {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user || user.email !== 'faran.aiki.business@gmail.com') return { error: 'Unauthorized' };
+
+  try {
+    await prisma.news.delete({
+      where: { id: newsId }
+    });
+
+    return { success: true };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Unknown error';
+    console.error('Prisma Error deleting news:', error);
+    return { error: `News deletion failed: ${message}` };
+  }
+}
+
 export async function postNews(title: string, content: string, image?: string) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
-  if (!user) return { error: 'Require_Login' };
+  if (!user || user.email !== 'faran.aiki.business@gmail.com') return { error: 'Unauthorized' };
 
   try {
-    // Ensure admin user is synced to Prisma
-    const dbUser = await prisma.user.upsert({
+    // Ensure user is synced to Prisma
+    await prisma.user.upsert({
       where: { id: user.id },
       update: { email: user.email! },
       create: {
         id: user.id,
         email: user.email!,
         username: user.user_metadata?.username || null,
+        name: user.user_metadata?.full_name || null,
+        avatarUrl: user.user_metadata?.avatar_url || null,
       },
     });
 
-    if (dbUser?.role !== 'ADMIN') {
-      return { error: 'Unauthorized' };
-    }
+    await prisma.news.create({
+      data: {
+        title,
+        content,
+        image,
+        authorId: user.id,
+        isPublic: true,
+      }
+    });
 
     return { success: true };
   } catch (error: unknown) {
