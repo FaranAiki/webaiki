@@ -24,6 +24,7 @@ const eslintConfig = [
       "update_locales.js",
       "next-sitemap.config.js",
       "postcss.config.mjs",
+      "src/generated/prisma/**",
     ],
   },
 ];

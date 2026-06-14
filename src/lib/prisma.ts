@@ -11,10 +11,21 @@ const prismaClientSingleton = (): PrismaClient => {
   
   if (!connectionString) {
     if (process.env.NODE_ENV === 'production') {
-      console.error("Critical: No database connection string found in environment variables (DATABASE_URL, DIRECT_URL, POSTGRES_URL, etc.).");
+      console.error("Critical: No database connection string found in environment variables.");
     }
-    // @ts-expect-error - Prisma 7 requires arguments but we provide empty for fallback
+    // @ts-expect-error - Prisma 7 requires arguments
     return new PrismaClient({})
+  }
+
+  if (process.env.NODE_ENV === 'production') {
+    try {
+      const sanitized = connectionString.includes('@') 
+        ? connectionString.split('@')[1] 
+        : connectionString;
+      console.log(`Prisma initializing with host (redacted): ${sanitized.split('/')[0]}`);
+    } catch {
+      // ignore logging error
+    }
   }
 
   try {
@@ -33,8 +44,8 @@ const prismaClientSingleton = (): PrismaClient => {
     return new PrismaClient({ adapter })
   } catch (error) {
     console.error('Failed to initialize Prisma with adapter:', error)
-    // @ts-expect-error - Prisma 7 requires arguments
-    return new PrismaClient({})
+    // @ts-expect-error - Prisma 7 generated client might have incompatible types
+    return new PrismaClient({ datasources: { db: { url: connectionString } } })
   }
 }
 
