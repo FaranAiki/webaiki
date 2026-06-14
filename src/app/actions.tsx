@@ -86,11 +86,16 @@ export async function uploadFile(formData: FormData, bucket: 'user-icon' | 'news
   const filePath = `${fileName}`;
 
   try {
+    // Convert to ArrayBuffer for better compatibility in server actions
+    const arrayBuffer = await file.arrayBuffer();
+    const fileBuffer = Buffer.from(arrayBuffer);
+
     // Use Admin Client to bypass RLS for uploads
     const adminSupabase = await createAdminClient();
     const { data, error } = await adminSupabase.storage
       .from(bucket)
-      .upload(filePath, file, {
+      .upload(filePath, fileBuffer, {
+        contentType: file.type,
         cacheControl: '3600',
         upsert: false
       });
@@ -281,6 +286,26 @@ export async function getNews() {
   } catch (error) {
     console.error('Error in getNews:', error);
     return [];
+  }
+}
+
+export async function getNewsItem(id: string) {
+  try {
+    return await prisma.news.findUnique({
+      where: { id },
+      include: {
+        author: {
+          select: {
+            id: true,
+            name: true,
+            avatarUrl: true
+          }
+        }
+      }
+    });
+  } catch (error) {
+    console.error('Error in getNewsItem:', error);
+    return null;
   }
 }
 

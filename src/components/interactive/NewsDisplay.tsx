@@ -8,6 +8,8 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { usePresentation } from '../providers/PresentationContext';
 import FadeInSection from '../shared/FadeInSection';
+import { getNewsArticleSchema } from '@/lib/seo';
+import Link from 'next/link';
 
 interface NewsItem {
   id: string;
@@ -26,13 +28,14 @@ interface NewsDisplayProps {
   dict: Record<string, string>;
   lang: string;
   isAdmin: boolean;
+  initialNews?: NewsItem[];
 }
 
-export default function NewsDisplay({ dict, lang, isAdmin }: NewsDisplayProps) {
+export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: NewsDisplayProps) {
   const router = useRouter();
   const { isPresentationMode } = usePresentation();
-  const [news, setNews] = useState<NewsItem[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [news, setNews] = useState<NewsItem[]>(initialNews);
+  const [loading, setLoading] = useState(initialNews.length === 0);
   const [showPostForm, setShowPostForm] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [title, setTitle] = useState('');
@@ -42,8 +45,15 @@ export default function NewsDisplay({ dict, lang, isAdmin }: NewsDisplayProps) {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetchNews();
-  }, []);
+    if (initialNews.length === 0) {
+      fetchNews();
+    }
+  }, [initialNews]);
+
+  // Generate JSON-LD for News Articles
+  const jsonLd = useMemo(() => {
+    return news.map(item => getNewsArticleSchema(item));
+  }, [news]);
 
   const newsChunks = useMemo(() => {
     if (!isPresentationMode) return [];
@@ -126,6 +136,15 @@ export default function NewsDisplay({ dict, lang, isAdmin }: NewsDisplayProps) {
 
   return (
     <div className={`${isPresentationMode ? 'presentation-container' : 'max-w-4xl mx-auto space-y-12 pb-20'}`}>
+      {/* Schema.org NewsArticle markup */}
+      {jsonLd.map((ld, i) => (
+        <script
+          key={`news-ld-${i}`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }}
+        />
+      ))}
+
       {!isPresentationMode && (
         <section className="flex items-center justify-between flex-wrap gap-4">
           <h1 className="text-4xl md:text-5xl font-black nav-active-gacor flex items-center gap-4">
@@ -244,20 +263,22 @@ export default function NewsDisplay({ dict, lang, isAdmin }: NewsDisplayProps) {
                   key={item.id}
                   className="bg-theme-surface border border-theme-border rounded-3xl overflow-hidden flex flex-col shadow-xl"
                 >
-                  {item.image ? (
-                    <div className="relative w-full h-48 overflow-hidden">
-                      <Image
-                        src={item.image}
-                        alt={item.title}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                  ) : (
-                    <div className="w-full h-48 bg-theme-surface-strong flex items-center justify-center text-theme-muted">
-                      <Newspaper size={48} />
-                    </div>
-                  )}
+                  <Link href={`/${lang}/news/${item.id}`} className="block">
+                    {item.image ? (
+                      <div className="relative w-full h-48 overflow-hidden">
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    ) : (
+                      <div className="w-full h-48 bg-theme-surface-strong flex items-center justify-center text-theme-muted">
+                        <Newspaper size={48} />
+                      </div>
+                    )}
+                  </Link>
                   <div className="p-6 space-y-4 flex-1 flex flex-col">
                     <div className="flex items-center gap-3">
                       <span className="text-sm font-bold text-theme-500">
@@ -268,9 +289,11 @@ export default function NewsDisplay({ dict, lang, isAdmin }: NewsDisplayProps) {
                         })}
                       </span>
                     </div>
-                    <h3 className="text-xl font-black text-foreground line-clamp-2">
-                      {item.title}
-                    </h3>
+                    <Link href={`/${lang}/news/${item.id}`}>
+                      <h3 className="text-xl font-black text-foreground line-clamp-2 hover:text-theme-500 transition-colors">
+                        {item.title}
+                      </h3>
+                    </Link>
                     <p className="text-theme-muted text-sm line-clamp-4 leading-relaxed flex-1">
                       {item.content}
                     </p>
@@ -302,17 +325,19 @@ export default function NewsDisplay({ dict, lang, isAdmin }: NewsDisplayProps) {
                   transition={{ delay: idx * 0.1 }}
                   className="group relative bg-theme-surface/30 rounded-3xl border border-theme-border overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-1"
                 >
-                  {item.image && (
-                    <div className="relative w-full h-64 md:h-96 overflow-hidden">
-                      <Image
-                        src={item.image}
-                        alt={item.title}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-theme-bg via-transparent to-transparent opacity-60" />
-                    </div>
-                  )}
+                  <Link href={`/${lang}/news/${item.id}`} className="block">
+                    {item.image && (
+                      <div className="relative w-full h-64 md:h-96 overflow-hidden">
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          fill
+                          className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-theme-bg via-transparent to-transparent opacity-60" />
+                      </div>
+                    )}
+                  </Link>
                   
                   <div className="p-8 space-y-4">
                     <div className="flex items-center justify-between">
@@ -353,13 +378,23 @@ export default function NewsDisplay({ dict, lang, isAdmin }: NewsDisplayProps) {
                       )}
                     </div>
                     
-                    <h3 className="text-2xl md:text-3xl font-black text-foreground group-hover:text-theme-500 transition-colors">
-                      {item.title}
-                    </h3>
+                    <Link href={`/${lang}/news/${item.id}`}>
+                      <h3 className="text-2xl md:text-3xl font-black text-foreground group-hover:text-theme-500 transition-colors">
+                        {item.title}
+                      </h3>
+                    </Link>
                     
-                    <p className="text-theme-muted leading-relaxed whitespace-pre-wrap">
+                    <p className="text-theme-muted leading-relaxed whitespace-pre-wrap line-clamp-6">
                       {item.content}
                     </p>
+
+                    <Link 
+                      href={`/${lang}/news/${item.id}`}
+                      className="inline-flex items-center gap-2 text-theme-500 font-bold hover:gap-3 transition-all"
+                    >
+                      {dict.Read_More || 'Read More'}
+                      <Plus size={18} />
+                    </Link>
                   </div>
                 </motion.article>
               ))}

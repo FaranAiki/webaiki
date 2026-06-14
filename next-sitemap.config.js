@@ -29,6 +29,9 @@ module.exports = {
         allow: '/',
       },
     ],
+    additionalSitemaps: [
+      'https://faranaiki.id/sitemap-news.xml',
+    ],
   },
   transform: async (config, path) => {
     // Custom logic for priority and changefreq based on path

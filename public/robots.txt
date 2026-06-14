@@ -7,3 +7,4 @@ Host: https://faranaiki.id
 
 # Sitemaps
 Sitemap: https://faranaiki.id/sitemap.xml
+Sitemap: https://faranaiki.id/sitemap-news.xml

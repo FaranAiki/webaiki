@@ -41,6 +41,30 @@ export function getLanguageAlternates(path: string) {
   return languages;
 }
 
+export function getNewsArticleSchema(news: { title: string; image?: string | null; createdAt: Date; author: { name: string | null } }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "headline": news.title,
+    "image": news.image ? [news.image] : [],
+    "datePublished": new Date(news.createdAt).toISOString(),
+    "dateModified": new Date(news.createdAt).toISOString(),
+    "author": [{
+      "@type": "Person",
+      "name": news.author.name || "Muhammad Faran Aiki",
+      "url": SITE_URL
+    }],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Muhammad Faran Aiki",
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${SITE_URL}/images/og-preview.jpg`
+      }
+    }
+  };
+}
+
 export function getBaseMetadata(): Metadata {
   return {
     metadataBase: new URL(SITE_URL),
