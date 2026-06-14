@@ -366,5 +366,7 @@
   "Styling_Desc": "Phong cách tùy chỉnh sử dụng Vanilla CSS và Tailwind CSS, tập trung vào thẩm mỹ độc đáo với hỗ trợ đa chủ đề (Modern, Cinematic, Editorial).",
   "Database_Desc": "Quản lý cơ sở dữ liệu serverless sử dụng Prisma ORM với PostgreSQL được lưu trữ trên Supabase, đảm bảo tính toàn vẹn và khả năng mở rộng dữ liệu.",
   "Localization_Desc": "Hỗ trợ i18n toàn diện cho hơn 18 ngữ, đảm bảo khả năng tiếp cận và trải nghiệm liền mạch cho khán giả toàn cầu.",
-  "Holistic_Approach_Desc": "Một phương pháp kỹ thuật phần mềm toàn diện kết hợp các tiêu chuẩn web hiện đại, tính an toàn kiểu nghiêm ngặt (TypeScript) và thiết kế định hướng hiệu suất."
+  "Holistic_Approach_Desc": "Một phương pháp kỹ thuật phần mềm toàn diện kết hợp các tiêu chuẩn web hiện đại, tính an toàn kiểu nghiêm ngặt (TypeScript) và thiết kế định hướng hiệu suất.",
+  "Suggestions": "Gợi ý",
+  "Read_More": "Đọc thêm"
 }

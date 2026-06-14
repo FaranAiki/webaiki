@@ -256,7 +256,7 @@ export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientP
                           href={`/${lang}/news`}
                           className="text-sm font-black tracking-widest text-theme-muted group-hover:text-theme-500 transition-colors"
                         >
-                          Read More
+                          {dict.Read_More || "Read More"}
                         </Link>
                       </div>
                     </div>

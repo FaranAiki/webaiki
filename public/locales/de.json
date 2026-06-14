@@ -366,5 +366,7 @@
   "Styling_Desc": "Benutzerdefinierte Stile mit Vanilla CSS und Tailwind CSS, mit Fokus auf eine einzigartige Ästhetik und Multi-Theme-Unterstützung (Modern, Cinematic, Editorial).",
   "Database_Desc": "Serverlose Datenbankverwaltung mit Prisma ORM und PostgreSQL auf Supabase, um Datenintegrität und Skalierbarkeit zu gewährleisten.",
   "Localization_Desc": "Umfassende i18n-Unterstützung für über 18 Sprachen, die Barrierefreiheit und ein nahtloses Erlebnis für ein globales Publikum gewährleistet.",
-  "Holistic_Approach_Desc": "Ein ganzheitlicher Software-Engineering-Ansatz, der moderne Webstandards, strenge Typsicherheit (TypeScript) und leistungsorientiertes Design kombiniert."
+  "Holistic_Approach_Desc": "Ein ganzheitlicher Software-Engineering-Ansatz, der moderne Webstandards, strenge Typsicherheit (TypeScript) und leistungsorientiertes Design kombiniert.",
+  "Suggestions": "Vorschläge",
+  "Read_More": "Weiterlesen"
 }

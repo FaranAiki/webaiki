@@ -21,16 +21,18 @@ const prismaClientSingleton = (): PrismaClient => {
     return new PrismaClient({});
   }
 
-  // Diagnostic for the "at base" error
-  if (connectionString.toLowerCase() === 'base') {
-     console.error('Critical: Connection string is literally the word "base". Check your Vercel Environment Variables.');
-  } else if (connectionString.toLowerCase().includes('base') && !connectionString.includes('.')) {
-     console.error(`Warning: Connection string "${connectionString}" looks like a placeholder. Host detected as "base".`);
+  if (connectionString.toLowerCase() === 'base' || connectionString.trim() === 'base') {
+     console.error('CRITICAL: DATABASE_URL is literally set to "base". Please check Vercel environment variables.');
+     // Do not return here, let it try and fail with a better error
   }
 
   if (isProduction) {
     try {
-      console.log(`Prisma Source: ${process.env.DIRECT_URL ? 'DIRECT_URL' : process.env.DATABASE_URL ? 'DATABASE_URL' : 'OTHER'}`);
+      const urlSource = process.env.DIRECT_URL ? 'DIRECT_URL' : 
+                        process.env.DATABASE_URL ? 'DATABASE_URL' : 
+                        process.env.POSTGRES_URL_NON_POOLING ? 'POSTGRES_URL_NON_POOLING' : 'OTHER';
+
+      console.log(`Prisma Source: ${urlSource}`);
       const hostPart = connectionString.split('@')[1] || connectionString.split('://')[1] || connectionString;
       const host = hostPart.split(/[:\/\?]/)[0];
       console.log(`Prisma Host: ${host}`);
@@ -39,16 +41,17 @@ const prismaClientSingleton = (): PrismaClient => {
     }
   }
 
+  // PRISMA 7: Try standard initialization FIRST if we suspect the adapter is the issue,
+  // OR strictly follow the adapter pattern. Let's stick to the adapter but make it more robust.
   try {
     const poolConfig: PoolConfig = {
       connectionString,
       max: isProduction ? 1 : 10,
-      connectionTimeoutMillis: 5000,
+      connectionTimeoutMillis: 10000, // Increased timeout
       idleTimeoutMillis: 30000,
     };
 
-    // Supabase and many cloud providers require SSL in production
-    if (isProduction || connectionString.includes('supabase.co') || connectionString.includes('pooler.supabase.com')) {
+    if (isProduction || connectionString.includes('supabase') || connectionString.includes('pooler')) {
       poolConfig.ssl = { rejectUnauthorized: false };
     }
 
@@ -62,13 +65,10 @@ const prismaClientSingleton = (): PrismaClient => {
     return new PrismaClient({ adapter });
   } catch (error) {
     console.error('Failed to initialize Prisma with adapter:', error instanceof Error ? error.message : String(error));
-    // Fallback to standard Prisma connection if adapter fails to even initialize
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore - Prisma 7 generated client might have incompatible types
-    return new PrismaClient({ datasources: { db: { url: connectionString } } });
+    // @ts-expect-error - Prisma 7 requires arguments in some cases but not others depending on schema
+    return new PrismaClient({});
   }
 }
-
 declare global {
   var prisma: undefined | PrismaClient
 }

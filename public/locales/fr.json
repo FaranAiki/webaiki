@@ -366,5 +366,7 @@
   "Styling_Desc": "Styles personnalisés utilisant Vanilla CSS et Tailwind CSS, axés sur une esthétique unique avec un support multi-thème (Moderne, Cinématographique, Éditorial).",
   "Database_Desc": "Gestion de base de données sans serveur utilisant l'ORM Prisma avec PostgreSQL hébergé sur Supabase, garantissant l'intégrité et l'évolutivité des données.",
   "Localization_Desc": "Prise en charge complète de l'i18n pour plus de 18 langues, garantissant l'accessibilité et une expérience fluide pour un public mondial.",
-  "Holistic_Approach_Desc": "Une approche holistique de l'ingénierie logicielle combinant les standards web modernes, une sécurité de type rigoureuse (TypeScript) et une conception axée sur la performance."
+  "Holistic_Approach_Desc": "Une approche holistique de l'ingénierie logicielle combinant les standards web modernes, une sécurité de type rigoureuse (TypeScript) et une conception axée sur la performance.",
+  "Suggestions": "Suggestions",
+  "Read_More": "Lire la suite"
 }

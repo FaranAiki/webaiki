@@ -316,7 +316,8 @@ export async function deleteNews(newsId: string) {
   if (!user || user.email !== 'faran.aiki.business@gmail.com') return { error: 'Unauthorized' };
 
   try {
-    await prisma.news.delete({
+    // Use deleteMany to avoid 404 error if record already deleted
+    await prisma.news.deleteMany({
       where: { id: newsId }
     });
 

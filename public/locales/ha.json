@@ -366,5 +366,7 @@
   "Styling_Desc": "Salo na musamman ta amfani da Vanilla CSS da Tailwind CSS, tare da mai da hankali kan kyawu na musamman tare da tallafin jigogi da yawa (Modern, Cinematic, Editorial).",
   "Database_Desc": "Gudanar da bayanan uwar garken ta amfani da Prisma ORM tare da PostgreSQL da aka shirya akan Supabase, tabbatar da amincin bayanai da haɓaka.",
   "Localization_Desc": "Cikakken tallafin i18n don harsuna 18+, tabbatar da sauƙin shiga da ƙwarewa mara kyau ga masu sauraro na duniya.",
-  "Holistic_Approach_Desc": "Hanyar injiniyan software gaba ɗaya wacce ta haɗa da ka'idodin yanar gizo na zamani, amincin nau'in TypeScript (TypeScript), da ƙira mai amfani da aiki."
+  "Holistic_Approach_Desc": "Hanyar injiniyan software gaba ɗaya wacce ta haɗa da ka'idodin yanar gizo na zamani, amincin nau'in TypeScript (TypeScript), da ƙira mai amfani da aiki.",
+  "Suggestions": "Shawarwari",
+  "Read_More": "Kara Karanta"
 }

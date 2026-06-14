@@ -366,5 +366,7 @@
   "Styling_Desc": "Vanilla CSS와 Tailwind CSS를 사용한 커스텀 스타일로, 멀티 테마 지원(모던, 시네마틱, 에디토리얼)과 독특한 미학에 중점을 둡니다.",
   "Database_Desc": "Supabase에서 호스팅되는 PostgreSQL과 Prisma ORM을 사용한 서버리스 데이터베이스 관리로 데이터 무결성과 확장성을 보장합니다.",
   "Localization_Desc": "18개 이상의 언어에 대한 포괄적인 i18n 지원으로 전 세계 청중에게 접근성과 원활한 경험을 보장합니다.",
-  "Holistic_Approach_Desc": "현대적인 웹 표준, 엄격한 타입 안정성(TypeScript) 및 성능 중심 설계를 결합한 총체적인 소프트웨어 엔지니어링 접근 방식입니다."
+  "Holistic_Approach_Desc": "현대적인 웹 표준, 엄격한 타입 안정성(TypeScript) 및 성능 중심 설계를 결합한 총체적인 소프트웨어 엔지니어링 접근 방식입니다.",
+  "Suggestions": "제안",
+  "Read_More": "더 읽어보기"
 }

@@ -41,6 +41,61 @@ interface YearGroup {
   jobs: ExperienceItem[];
 }
 
+export async function getSuggestions(lang: string, count: number = 5): Promise<SearchResult[]> {
+  const dict = await getDictionary(lang);
+  
+  // Use a simple LCG for deterministic "randomness" based on date
+  const now = new Date();
+  const seed = now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate();
+  
+  const lcg = (s: number) => {
+    return (s * 1664525 + 1013904223) % 4294967296;
+  };
+
+  const suggestions: SearchResult[] = [];
+  let currentSeed = seed;
+
+  // 1. Static pages as high-priority suggestions
+  const basePages: SearchResult[] = [
+    { title: dict.Identity || "Identity", description: dict.SEO_Home_Description || "About Faran Aiki", type: 'page', url: `/${lang}/identity` },
+    { title: dict.Portfolio || "Portfolio", description: dict.Preparing_Portfolio || "Selected works", type: 'page', url: `/${lang}/portfolio` },
+    { title: dict.Project || "Project", description: dict.Project || "Technical projects", type: 'page', url: `/${lang}/project` },
+    { title: dict.College || "College", description: dict.SEO_College_Description || "Academic journey", type: 'page', url: `/${lang}/college` },
+    { title: dict.News || "News", description: dict.Latest_News || "Latest news", type: 'page', url: `/${lang}/news` },
+  ];
+
+  // 2. Add some dynamic items from experiences if possible
+  const dynamicPool: SearchResult[] = [];
+  
+  try {
+    const work = getWorkExperiences(dict) as YearGroup[];
+    work.forEach(y => y.jobs.forEach(j => dynamicPool.push({
+      title: j.title, company: j.company, description: j.description, type: 'work', url: `/${lang}/work#exp-${j.title.toLowerCase().replace(/\s+/g, '-')}`
+    })));
+
+    const projects = getProjectExperiences(dict) as YearGroup[];
+    projects.forEach(y => y.jobs.forEach(j => dynamicPool.push({
+      title: j.title, company: j.company, description: j.description, type: 'project', url: `/${lang}/project#exp-${j.title.toLowerCase().replace(/\s+/g, '-')}`
+    })));
+  } catch {
+    // Fallback if data fetching fails
+  }
+
+  const fullPool = [...basePages, ...dynamicPool];
+  const usedIndices = new Set<number>();
+
+  while (suggestions.length < Math.min(count, fullPool.length)) {
+    currentSeed = lcg(currentSeed);
+    const index = currentSeed % fullPool.length;
+    if (!usedIndices.has(index)) {
+      suggestions.push(fullPool[index]);
+      usedIndices.add(index);
+    }
+  }
+
+  return suggestions;
+}
+
 export async function searchContent(query: string, lang: string): Promise<SearchResult[]> {
   if (!query || query.trim().length < 2) return [];
 

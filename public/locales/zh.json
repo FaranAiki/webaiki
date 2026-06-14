@@ -366,5 +366,7 @@
   "Styling_Desc": "使用 Vanilla CSS 和 Tailwind CSS 的自定义样式，专注于独特的审美，并支持多主题（现代、电影、社论）。",
   "Database_Desc": "使用 Prisma ORM 和托管在 Supabase 上的 PostgreSQL 进行无服务器数据库管理，确保数据完整性和可扩展性。",
   "Localization_Desc": "对 18 多种语言的全面 i18n 支持，确保全球观众的可访问性和无缝体验。",
-  "Holistic_Approach_Desc": "一种整体的软件工程方法，结合了现代 Web 标准、严格的类型安全 (TypeScript) 和性能驱动的设计。"
+  "Holistic_Approach_Desc": "一种整体的软件工程方法，结合了现代 Web 标准、严格的类型安全 (TypeScript) 和性能驱动的设计。",
+  "Suggestions": "建议",
+  "Read_More": "阅读更多"
 }
