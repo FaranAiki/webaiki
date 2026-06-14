@@ -336,17 +336,22 @@ export async function postNews(title: string, content: string, image?: string) {
 
   try {
     // Ensure user is synced to Prisma
-    await prisma.user.upsert({
-      where: { id: user.id },
-      update: { email: user.email! },
-      create: {
-        id: user.id,
-        email: user.email!,
-        username: user.user_metadata?.username || null,
-        name: user.user_metadata?.full_name || null,
-        avatarUrl: user.user_metadata?.avatar_url || null,
-      },
-    });
+    try {
+      await prisma.user.upsert({
+        where: { id: user.id },
+        update: { email: user.email! },
+        create: {
+          id: user.id,
+          email: user.email!,
+          username: user.user_metadata?.username || null,
+          name: user.user_metadata?.full_name || null,
+          avatarUrl: user.user_metadata?.avatar_url || null,
+        },
+      });
+    } catch (pe) {
+      console.error('Prisma sync failed during postNews:', pe);
+      throw pe; // Re-throw to be caught by the outer catch
+    }
 
     await prisma.news.create({
       data: {

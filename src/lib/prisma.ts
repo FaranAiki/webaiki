@@ -3,10 +3,14 @@ import { PrismaPg } from '@prisma/adapter-pg'
 import { PrismaClient } from '../generated/prisma/client'
 
 const prismaClientSingleton = (): PrismaClient => {
-  const connectionString = process.env.DATABASE_URL || 'postgresql://dummy:dummy@localhost:5432/dummy'
+  const connectionString = process.env.DIRECT_URL || process.env.DATABASE_URL
   
-  if (!process.env.DATABASE_URL && process.env.NODE_ENV === 'production') {
-    console.warn("DATABASE_URL is not set. Prisma operations will fail at runtime.");
+  if (!connectionString) {
+    if (process.env.NODE_ENV === 'production') {
+      console.warn("DATABASE_URL or DIRECT_URL is not set. Prisma operations will fail at runtime.");
+    }
+    // @ts-expect-error - Prisma 7 requires arguments but we provide empty for fallback
+    return new PrismaClient({})
   }
 
   const pool = new Pool({ 
