@@ -17,7 +17,7 @@ const prismaClientSingleton = (): PrismaClient => {
       console.error("Critical: No database connection string found in environment variables.");
     }
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore - Prisma 7 requires arguments that might not be visible to TS in all environments
+    // @ts-ignore
     return new PrismaClient({});
   }
 
@@ -41,8 +41,7 @@ const prismaClientSingleton = (): PrismaClient => {
     }
   }
 
-  // PRISMA 7: Try standard initialization FIRST if we suspect the adapter is the issue,
-  // OR strictly follow the adapter pattern. Let's stick to the adapter but make it more robust.
+  // Try to use the adapter for better performance in serverless
   try {
     const poolConfig: PoolConfig = {
       connectionString,
@@ -65,7 +64,8 @@ const prismaClientSingleton = (): PrismaClient => {
     return new PrismaClient({ adapter });
   } catch (error) {
     console.error('Failed to initialize Prisma with adapter:', error instanceof Error ? error.message : String(error));
-    // @ts-expect-error - Prisma 7 requires arguments in some cases but not others depending on schema
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     return new PrismaClient({});
   }
 }
@@ -78,4 +78,3 @@ const prisma = globalThis.prisma ?? prismaClientSingleton()
 export default prisma
 
 if (process.env.NODE_ENV !== 'production') globalThis.prisma = prisma
-
