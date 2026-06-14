@@ -16,21 +16,24 @@ const prismaClientSingleton = (): PrismaClient => {
     if (isProduction) {
       console.error("Critical: No database connection string found in environment variables.");
     }
-    // @ts-expect-error - Prisma 7 requires arguments
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore - Prisma 7 requires arguments that might not be visible to TS in all environments
     return new PrismaClient({});
   }
 
   // Diagnostic for the "at base" error
-  if (connectionString.toLowerCase().includes('base') && !connectionString.includes('.')) {
-     console.error(`Warning: Connection string looks suspicious: "${connectionString}". This might be the cause of the "at base" error.`);
+  if (connectionString.toLowerCase() === 'base') {
+     console.error('Critical: Connection string is literally the word "base". Check your Vercel Environment Variables.');
+  } else if (connectionString.toLowerCase().includes('base') && !connectionString.includes('.')) {
+     console.error(`Warning: Connection string "${connectionString}" looks like a placeholder. Host detected as "base".`);
   }
 
   if (isProduction) {
     try {
-      // Redacted logging of the host
+      console.log(`Prisma Source: ${process.env.DIRECT_URL ? 'DIRECT_URL' : process.env.DATABASE_URL ? 'DATABASE_URL' : 'OTHER'}`);
       const hostPart = connectionString.split('@')[1] || connectionString.split('://')[1] || connectionString;
       const host = hostPart.split(/[:\/\?]/)[0];
-      console.log(`Prisma initializing connection to host: ${host}`);
+      console.log(`Prisma Host: ${host}`);
     } catch {
       // ignore logging error
     }
@@ -60,7 +63,8 @@ const prismaClientSingleton = (): PrismaClient => {
   } catch (error) {
     console.error('Failed to initialize Prisma with adapter:', error instanceof Error ? error.message : String(error));
     // Fallback to standard Prisma connection if adapter fails to even initialize
-    // @ts-expect-error - Prisma 7 generated client might have incompatible types
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore - Prisma 7 generated client might have incompatible types
     return new PrismaClient({ datasources: { db: { url: connectionString } } });
   }
 }
