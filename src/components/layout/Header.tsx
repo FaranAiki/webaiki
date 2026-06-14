@@ -19,17 +19,7 @@ import {
   LogIn,
   LogOut,
   User,
-  ChevronDown,
-  Globe,
-  Menu,
-  X,
-  Palette,
-  Layout,
-  Settings,
-  ArrowRight,
-  Search,
-  ExternalLink,
-  ChevronRight
+  ChevronDown
 } from 'lucide-react';
 
 import { usePresentation } from '@/components/providers/PresentationContext';

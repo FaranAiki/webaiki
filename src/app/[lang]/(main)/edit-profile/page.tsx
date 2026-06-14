@@ -35,7 +35,7 @@ export default async function EditProfilePage({ params }: { params: Promise<{ la
 
   return (
     <main className="container mx-auto px-4 md:px-8 pt-32 pb-16 min-h-screen">
-      <EditProfileForm dict={dict} lang={lang} user={user} />
+      <EditProfileForm dict={dict} user={user} />
     </main>
   );
 }

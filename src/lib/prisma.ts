@@ -13,7 +13,7 @@ const prismaClientSingleton = (): PrismaClient => {
     if (process.env.NODE_ENV === 'production') {
       console.error("Critical: No database connection string found in environment variables.");
     }
-    // @ts-expect-error - Prisma 7 requires arguments
+    // @ts-expect-error - Prisma 7 requires specific arguments that we don't have in fallback
     return new PrismaClient({})
   }
 

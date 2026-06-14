@@ -9,7 +9,6 @@ import { useRouter } from 'next/navigation';
 
 interface EditProfileFormProps {
   dict: Record<string, string>;
-  lang: string;
   user: {
     email?: string;
     user_metadata?: {
@@ -20,7 +19,7 @@ interface EditProfileFormProps {
   };
 }
 
-export default function EditProfileForm({ dict, lang, user }: EditProfileFormProps) {
+export default function EditProfileForm({ dict, user }: EditProfileFormProps) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
