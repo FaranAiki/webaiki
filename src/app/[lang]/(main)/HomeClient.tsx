@@ -43,7 +43,7 @@ export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientP
         const fallback = setTimeout(() => {
           setIsReady(true);
           observer.disconnect();
-        }, 3000);
+        }, 1500); // Reduced from 3000ms for faster interaction
         return () => {
           observer.disconnect();
           clearTimeout(fallback);

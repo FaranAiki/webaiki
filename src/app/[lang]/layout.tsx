@@ -1,21 +1,6 @@
-import { Inter, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import { headers } from 'next/headers';
 import Script from 'next/script'
-
-// Keep font configurations for nested specificity if needed, 
-// though they are currently provided by RootLayout.
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: 'swap',
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: 'swap',
-});
 
 import { ProvidersConfigurator } from "@/components/providers/Providers";
 import { getDictionary } from "@/components/layout/Translator";
@@ -52,7 +37,7 @@ export default async function BaseLayout({
   };
 
   return (
-    <div className={`${inter.variable} ${geistMono.variable}`}>
+    <div>
       <ProvidersConfigurator 
         loadingLabel={dict.Preparing_Portfolio}
         sultanLabels={sultanLabels}

@@ -33,6 +33,11 @@ export default async function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning nonce={nonce}>
       <head>
+        <link rel="preconnect" href="https://www.google.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.gstatic.com" crossOrigin="anonymous" />
+        {process.env.NEXT_PUBLIC_SUPABASE_URL && (
+          <link rel="preconnect" href={process.env.NEXT_PUBLIC_SUPABASE_URL} crossOrigin="anonymous" />
+        )}
         <script
           async
           defer
