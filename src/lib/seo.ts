@@ -76,7 +76,9 @@ export function getBaseMetadata(): Metadata {
     keywords: [
       "Muhammad Faran Aiki", "Faran Aiki", "Faran", "Aiki", "faranaiki",
       "Software Engineer", "Web Developer", "ITB Student", "STI ITB",
-      "Bandung Institute of Technology", "Portfolio", "Indonesia"
+      "Bandung Institute of Technology", "Portfolio", "Indonesia",
+      "Full Stack Developer", "Data Analyst", "SAT Tutor", "ONMIPA Matematika",
+      "Next.js Developer", "React Developer", "TypeScript", "Hire Muhammad Faran Aiki"
     ],
     authors: [{ name: "Muhammad Faran Aiki", url: SITE_URL }],
     creator: "Muhammad Faran Aiki",

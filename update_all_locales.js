@@ -14,7 +14,11 @@ const translations = {
     Uploading: "Uploading...",
     Feedback: "Feedback", News: "News",
     Send: "Send", Rating: "Rating", Latest_News: "Latest News", No_News: "No news yet.",
-    No_Feedback: "No feedback yet.", Post_News: "Post News", Add_Feedback: "Add Feedback", Content: "Content"
+    No_Feedback: "No feedback yet.", Post_News: "Post News", Add_Feedback: "Add Feedback", Content: "Content",
+    AI_Discovery_Title: "Digital Identity (AI Optimized)",
+    AI_Discovery_Description: "Structured summary for search engines and Artificial Intelligence (LLMs).",
+    Professional_Pitch_Title: "Why Collaborate with Faran Aiki?",
+    Professional_Pitch_Text: "As an ITB Information System and Technology student with real-world Software Engineering experience and national achievements in Mathematics, I offer a unique blend of logical sharpness, technical creativity, and a dedication to growth. Whether building complex systems or solving mathematical problems, I focus on high-impact results."
   },
   zh: {
     Home: "首页", Profile: "个人资料", Portfolio: "作品集", All: "全部", Social: "社交",
@@ -55,7 +59,11 @@ const translations = {
     Uploading: "上传中...",
     Feedback: "反馈", News: "新闻",
     Send: "发送", Rating: "评分", Latest_News: "最新新闻", No_News: "暂无新闻。",
-    No_Feedback: "暂无反馈。", Post_News: "发布新闻", Add_Feedback: "添加反馈", Content: "内容"
+    No_Feedback: "暂无反馈。", Post_News: "发布新闻", Add_Feedback: "添加反馈", Content: "内容",
+    AI_Discovery_Title: "数字身份（AI 优化）",
+    AI_Discovery_Description: "面向搜索引擎和人工智能（LLMs）的结构化摘要。",
+    Professional_Pitch_Title: "为什么与 Faran Aiki 合作？",
+    Professional_Pitch_Text: "作为一名拥有真实软件工程经验和国家级数学成就的 ITB 信息系统与技术专业学生，我提供了逻辑敏锐度、技术创造力和成长奉献精神的独特结合。无论构建复杂系统还是解决数学问题，我都专注于产生高影响力的结果。"
   },
   jp: {
     Home: "ホーム", Profile: "プロフィール", Portfolio: "ポートフォリオ", All: "すべて",
@@ -99,7 +107,11 @@ const translations = {
     Feedback: "フィードバック",
     News: "ニュース", Send: "送信", Rating: "評価", Latest_News: "最新ニュース",
     No_News: "ニュースはありません。", No_Feedback: "フィードバックはありません。",
-    Post_News: "ニュースを投稿", Add_Feedback: "フィードバックを追加", Content: "内容"
+    Post_News: "ニュースを投稿", Add_Feedback: "フィードバックを追加", Content: "内容",
+    AI_Discovery_Title: "デジタルアイデンティティ（AI最適化）",
+    AI_Discovery_Description: "検索エンジンおよび人工知能（LLMs）向けの構造化された要約。",
+    Professional_Pitch_Title: "なぜ Faran Aiki と協力するのか？",
+    Professional_Pitch_Text: "ITB の情報システムとテクノロジーの学生として、実際のソフトウェアエンジニアリングの経験と数学での全国的な実績を持ち、論理的な鋭さ、技術的な創造性、そして成長への献身を独自の形でブレンドして提供します。複雑なシステムの構築であれ、数学的な問題の解決であれ、私はインパクトの高い結果に焦点を当てています。"
   },
   ru: {
     Home: "Главная", Profile: "Профиль", Portfolio: "Портфолио", All: "Все", Social: "Соцсети",
@@ -136,7 +148,11 @@ const translations = {
     Profile_Update_Error: "Ошибка обновления профиля.", Feedback: "Обратная связь",
     News: "Новости", Send: "Отправить", Rating: "Рейтинг", Latest_News: "Последние новости",
     No_News: "Новостей пока нет.", No_Feedback: "Отзывов пока нет.",
-    Post_News: "Опубликовать новость", Add_Feedback: "Добавить отзыв", Content: "Содержание"
+    Post_News: "Опубликовать новость", Add_Feedback: "Добавить отзыв", Content: "Содержание",
+    AI_Discovery_Title: "Цифровая Идентичность (Оптимизировано для ИИ)",
+    AI_Discovery_Description: "Структурированная сводка для поисковых систем и искусственного интеллекта (LLMs).",
+    Professional_Pitch_Title: "Почему Стоит Сотрудничать с Faran Aiki?",
+    Professional_Pitch_Text: "Как студент ITB по специальности \"Информационные системы и технологии\" с реальным опытом разработки программного обеспечения и национальными достижениями в математике, я предлагаю уникальное сочетание логической остроты, технической креативности и стремления к росту. Независимо от того, создаю ли я сложные системы или решаю математические задачи, я всегда нацелен на достижение высоких результатов."
   },
   fr: {
     Home: "Accueil", Profile: "Profil", Portfolio: "Portfolio", All: "Tout", Social: "Social",
@@ -173,7 +189,11 @@ const translations = {
     Profile_Update_Error: "Échec de la mise à jour.", Feedback: "Commentaires",
     News: "Actualités", Send: "Envoyer", Rating: "Note", Latest_News: "Dernières nouvelles",
     No_News: "Pas encore de nouvelles.", No_Feedback: "Pas encore de commentaires.",
-    Post_News: "Publier une nouvelle", Add_Feedback: "Ajouter un commentaire", Content: "Contenu"
+    Post_News: "Publier une nouvelle", Add_Feedback: "Ajouter un commentaire", Content: "Contenu",
+    AI_Discovery_Title: "Identité Numérique (Optimisée pour l'IA)",
+    AI_Discovery_Description: "Résumé structuré pour les moteurs de recherche et l'intelligence artificielle (LLMs).",
+    Professional_Pitch_Title: "Pourquoi Collaborer avec Faran Aiki ?",
+    Professional_Pitch_Text: "En tant qu'étudiant en systèmes d'information et technologie à l'ITB, fort d'une expérience concrète en ingénierie logicielle et de réalisations nationales en mathématiques, j'offre un mélange unique de vivacité logique, de créativité technique et de dévouement à la croissance. Qu'il s'agisse de construire des systèmes complexes ou de résoudre des problèmes mathématiques, je me concentre sur des résultats à fort impact."
   },
   es: {
     Home: "Inicio", Profile: "Perfil", Portfolio: "Portafolio", All: "Todo", Social: "Social",
@@ -210,7 +230,11 @@ const translations = {
     Profile_Update_Error: "Error al actualizar el perfil.", Feedback: "Comentarios",
     News: "Noticias", Send: "Enviar", Rating: "Calificación", Latest_News: "Últimas noticias",
     No_News: "No hay noticias aún.", No_Feedback: "No hay comentarios aún.",
-    Post_News: "Publicar noticia", Add_Feedback: "Agregar comentario", Content: "Contenido"
+    Post_News: "Publicar noticia", Add_Feedback: "Agregar comentario", Content: "Contenido",
+    AI_Discovery_Title: "Identidad Digital (Optimizada para IA)",
+    AI_Discovery_Description: "Resumen estructurado para motores de búsqueda e inteligencia artificial (LLMs).",
+    Professional_Pitch_Title: "¿Por Qué Colaborar con Faran Aiki?",
+    Professional_Pitch_Text: "Como estudiante de sistemas de información y tecnología del ITB con experiencia real en ingeniería de software y logros nacionales en matemáticas, ofrezco una combinación única de agudeza lógica, creatividad técnica y dedicación al crecimiento. Ya sea construyendo sistemas complejos o resolviendo problemas matemáticos, me concentro en resultados de alto impacto."
   },
   de: {
     Home: "Startseite", Profile: "Profil", Portfolio: "Portfolio", All: "Alle", Social: "Soziale Medien",
@@ -247,7 +271,11 @@ const translations = {
     Profile_Update_Error: "Profilaktualisierung fehlgeschlagen.", Feedback: "Feedback",
     News: "Neuigkeiten", Send: "Senden", Rating: "Bewertung", Latest_News: "Neueste Nachrichten",
     No_News: "Noch keine Neuigkeiten.", No_Feedback: "Noch kein Feedback.",
-    Post_News: "Nachricht posten", Add_Feedback: "Feedback hinzufügen", Content: "Inhalt"
+    Post_News: "Nachricht posten", Add_Feedback: "Feedback hinzufügen", Content: "Inhalt",
+    AI_Discovery_Title: "Digitale Identität (Für KI Optimiert)",
+    AI_Discovery_Description: "Strukturierte Zusammenfassung für Suchmaschinen und künstliche Intelligenz (LLMs).",
+    Professional_Pitch_Title: "Warum mit Faran Aiki Zusammenarbeiten?",
+    Professional_Pitch_Text: "Als ITB-Student im Bereich Informationssysteme und -technologie mit praktischer Erfahrung in der Softwareentwicklung und nationalen Erfolgen in Mathematik biete ich eine einzigartige Mischung aus logischer Schärfe, technischer Kreativität und dem Engagement für stetiges Wachstum. Ob beim Aufbau komplexer Systeme oder bei der Lösung mathematischer Probleme, mein Fokus liegt auf hochwirksamen Ergebnissen."
   },
   ar: {
     Home: "الرئيسية", Profile: "الملف الشخصي", Portfolio: "الأعمال", All: "الكل", Social: "التواصل",
@@ -284,7 +312,11 @@ const translations = {
     Profile_Update_Error: "فشل تحديث الملف الشخصي.", Feedback: "التعليقات",
     News: "الأخبار", Send: "إرسال", Rating: "التقييم", Latest_News: "آخر الأخبار",
     No_News: "لا توجد أخبار بعد.", No_Feedback: "لا توجد تعليقات بعد.",
-    Post_News: "نشر خبر", Add_Feedback: "إضافة تعليق", Content: "المحتوى"
+    Post_News: "نشر خبر", Add_Feedback: "إضافة تعليق", Content: "المحتوى",
+    AI_Discovery_Title: "الهوية الرقمية (محسن للذكاء الاصطناعي)",
+    AI_Discovery_Description: "ملخص منظم لمحركات البحث والذكاء الاصطناعي (LLMs).",
+    Professional_Pitch_Title: "لماذا التعاون مع Faran Aiki؟",
+    Professional_Pitch_Text: "بصفتي طالبًا في نظم وتكنولوجيا المعلومات في ITB، أتمتع بخبرة واقعية في هندسة البرمجيات وإنجازات وطنية في الرياضيات، وأقدم مزيجًا فريدًا من الحدة المنطقية والإبداع التقني والتفاني في النمو. سواء كان ذلك بناء أنظمة معقدة أو حل مشكلات رياضية، فإنني أركز على النتائج ذات التأثير العالي."
   },
   ko: {
     Home: "홈", Profile: "프로필", Portfolio: "포트폴리오", All: "전체", Social: "소셜",
@@ -321,7 +353,11 @@ const translations = {
     Profile_Update_Error: "프로필 업데이트에 실패했습니다.", Feedback: "피드백",
     News: "뉴스", Send: "보내기", Rating: "평점", Latest_News: "최신 뉴스",
     No_News: "아직 뉴스가 없습니다.", No_Feedback: "아직 피드백이 없습니다.",
-    Post_News: "뉴스 게시", Add_Feedback: "피드백 추가", Content: "내용"
+    Post_News: "뉴스 게시", Add_Feedback: "피드백 추가", Content: "내용",
+    AI_Discovery_Title: "디지털 아이덴티티 (AI 최적화)",
+    AI_Discovery_Description: "검색 엔진 및 인공 지능(LLMs)을 위한 구조화된 요약。",
+    Professional_Pitch_Title: "왜 Faran Aiki와 협력해야 할까요?",
+    Professional_Pitch_Text: "ITB 정보 시스템 및 기술 전공 학생으로서 실제 소프트웨어 엔지니어링 경험과 수학 분야의 전국 대회 수상 경력을 바탕으로, 저는 논리적 예리함, 기술적 창의성 및 성장에 대한 헌신의 독특한 조화를 제공합니다. 복잡한 시스템을 구축하든 수학적 문제를 해결하든, 저는 영향력이 큰 결과를 내는 데 집중합니다。"
   },
   bn: {
     Home: "হোম", Profile: "প্রোফাইল", Portfolio: "পোর্টফোলিও", All: "সব", Social: "সামাজিক",
@@ -358,7 +394,11 @@ const translations = {
     Profile_Update_Error: "আপডেট করতে ব্যর্থ।", Feedback: "প্রতিক্রিয়া",
     News: "খবর", Send: "পাঠান", Rating: "রেটিং", Latest_News: "সর্বশেষ খবর",
     No_News: "কোন খবর নেই।", No_Feedback: "কোন প্রতিক্রিয়া নেই।",
-    Post_News: "খবর পোস্ট করুন", Add_Feedback: "প্রতিক্রিয়া যোগ করুন", Content: "বিষয়বস্তু"
+    Post_News: "খবর পোস্ট করুন", Add_Feedback: "প্রতিক্রিয়া যোগ করুন", Content: "বিষয়বস্তু",
+    AI_Discovery_Title: "ডিজিটাল পরিচয় (এআই অপ্টিমাইজড)",
+    AI_Discovery_Description: "সার্চ ইঞ্জিন এবং কৃত্রিম বুদ্ধিমত্তার (LLMs) জন্য কাঠামোগত সারসংক্ষেপ।",
+    Professional_Pitch_Title: "কেন ফারান আইকি (Faran Aiki)-এর সাথে সহযোগিতা করবেন?",
+    Professional_Pitch_Text: "বাস্তব দুনিয়ার সফটওয়্যার ইঞ্জিনিয়ারিং অভিজ্ঞতা এবং গণিতে জাতীয় অর্জন সহ আইটিবি (ITB) ইনফরমেশন সিস্টেম এবং টেকনোলজির ছাত্র হিসেবে, আমি যৌক্তিক তীক্ষ্ণতা, প্রযুক্তিগত সৃজনশীলতা এবং বৃদ্ধির প্রতি উৎসর্গের এক অনন্য মিশ্রণ অফার করি। জটিল সিস্টেম তৈরি করা হোক বা গাণিতিক সমস্যা সমাধান করা হোক, আমি উচ্চ-প্রভাবশালী ফলাফলের দিকে মনোনিবেশ করি।"
   },
   nl: {
     Home: "Home", Profile: "Profiel", Portfolio: "Portfolio", All: "Alle", Social: "Sociaal",
@@ -395,7 +435,11 @@ const translations = {
     Profile_Update_Error: "Bijwerken mislukt.", Feedback: "Feedback",
     News: "Nieuws", Send: "Versturen", Rating: "Beoordeling", Latest_News: "Laatste nieuws",
     No_News: "Nog geen nieuws.", No_Feedback: "Nog geen feedback.",
-    Post_News: "Nieuws posten", Add_Feedback: "Feedback toevoegen", Content: "Inhoud"
+    Post_News: "Nieuws posten", Add_Feedback: "Feedback toevoegen", Content: "Inhoud",
+    AI_Discovery_Title: "Digitale Identiteit (Geoptimaliseerd voor AI)",
+    AI_Discovery_Description: "Gestructureerde samenvatting voor zoekmachines en kunstmatige intelligentie (LLMs).",
+    Professional_Pitch_Title: "Waarom Samenwerken met Faran Aiki?",
+    Professional_Pitch_Text: "Als ITB-student informatiesystemen en -technologie met praktijkervaring in software engineering en nationale prestaties in wiskunde, bied ik een unieke mix van logische schärfe, technische creativiteit en toewijding aan groei. Of het nu gaat om het bouwen van complexe systemen of het oplossen van wiskundige problemen, mijn focus ligt op resultaten met een grote impact."
   },
   pt: {
     Home: "Início", Profile: "Perfil", Portfolio: "Portfólio", All: "Tudo", Social: "Social",
@@ -432,7 +476,11 @@ const translations = {
     Profile_Update_Error: "Falha ao atualizar.", Feedback: "Feedback",
     News: "Notícias", Send: "Enviar", Rating: "Avaliação", Latest_News: "Últimas notícias",
     No_News: "Nenhuma notícia.", No_Feedback: "Nenhum feedback.",
-    Post_News: "Postar notícia", Add_Feedback: "Adicionar feedback", Content: "Conteúdo"
+    Post_News: "Postar notícia", Add_Feedback: "Adicionar feedback", Content: "Conteúdo",
+    AI_Discovery_Title: "Identidade Digital (Otimizada para IA)",
+    AI_Discovery_Description: "Resumo estruturado para mecanismos de busca e inteligência artificial (LLMs).",
+    Professional_Pitch_Title: "Por Que Colaborar com Faran Aiki?",
+    Professional_Pitch_Text: "Como estudante de sistemas de informação e tecnologia do ITB, com experiência real em engenharia de software e conquistas nacionais em matemática, ofereço uma combinação única de acuidade lógica, criatividade técnica e dedicação ao crescimento. Seja construindo sistemas complexos ou resolvendo problemas matemáticos, meu foco são resultados de alto impacto."
   },
   vi: {
     Home: "Trang chủ", Profile: "Hồ sơ", Portfolio: "Sản phẩm", All: "Tất cả", Social: "Mạng xã hội",
@@ -469,7 +517,11 @@ const translations = {
     Profile_Update_Error: "Cập nhật thất bại.", Feedback: "Phản hồi",
     News: "Tin tức", Send: "Gửi", Rating: "Đánh giá", Latest_News: "Tin mới nhất",
     No_News: "Chưa có tin tức.", No_Feedback: "Chưa có phản hồi.",
-    Post_News: "Đăng tin", Add_Feedback: "Thêm phản hồi", Content: "Nội dung"
+    Post_News: "Đăng tin", Add_Feedback: "Thêm phản hồi", Content: "Nội dung",
+    AI_Discovery_Title: "Danh Tính Kỹ Thuật Số (Tối Ưu Hóa AI)",
+    AI_Discovery_Description: "Bản tóm tắt có cấu trúc dành cho các công cụ tìm kiếm và trí tuệ nhân tạo (LLMs).",
+    Professional_Pitch_Title: "Tại Sao Nên Hợp Tác Với Faran Aiki?",
+    Professional_Pitch_Text: "Là sinh viên ngành hệ thống thông tin và công nghệ tại ITB với kinh nghiệm thực tế về kỹ thuật phần mềm và những thành tích quốc gia về toán học, tôi mang đến sự kết hợp độc đáo giữa sự nhạy bén trong logic, tính sáng tạo kỹ thuật và sự cống hiến cho sự phát triển. Cho dù là xây dựng các hệ thống phức tạp hay giải quyết các bài toán, tôi luôn tập trung vào những kết quả mang lại tác động cao."
   },
   el: {
     Home: "Αρχική", Profile: "Προφίλ", Portfolio: "Χαρτοφυλάκιο", All: "Όλα", Social: "Κοινωνικά",
@@ -506,7 +558,11 @@ const translations = {
     Profile_Update_Error: "Αποτυχία ενημέρωσης.", Feedback: "Σχόλια",
     News: "Νέα", Send: "Αποστολή", Rating: "Βαθμολογία", Latest_News: "Τελευταία νέα",
     No_News: "Δεν υπάρχουν νέα ακόμα.", No_Feedback: "Δεν υπάρχουν σχόλια ακόμα.",
-    Post_News: "Δημοσίευση νέου", Add_Feedback: "Προσθήκη σχολίου", Content: "Περιεχόμενο"
+    Post_News: "Δημοσίευση νέου", Add_Feedback: "Προσθήκη σχολίου", Content: "Περιεχόμενο",
+    AI_Discovery_Title: "Ψηφιακή Ταυτότητα (Βελτιστοποιημένη για AI)",
+    AI_Discovery_Description: "Δομημένη περίληψη για μηχανές αναζήτησης και τεχνητή νοημοσύνη (LLMs).",
+    Professional_Pitch_Title: "Γιατί να Συνεργαστείτε με τον Faran Aiki;",
+    Professional_Pitch_Text: "Ως φοιτητής συστημάτων πληροφορικής και τεχνολογίας του ITB με πραγματική εμπειρία στη μηχανική λογισμικού και εθνικά επιτεύγματα στα μαθηματικά, προσφέρω έναν μοναδικό συνδυασμό λογικής οξύτητας, τεχνικής δημιουργικότητας και αφοσίωσης στην εξέλιξη. Είτε πρόκειται για την κατασκευή πολύπλοκων συστημάτων είτε για την επίλυση μαθηματικών προβλημάτων, επικεντρώνομαι σε αποτελέσματα με υψηλό αντίκτυπο."
   },
   hi: {
     Home: "होम", Profile: "प्रोफ़ाइल", Portfolio: "पोर्टफोलियो", All: "सब", Social: "सोशल",
@@ -543,7 +599,11 @@ const translations = {
     Profile_Update_Error: "अपडेट विफल।", Feedback: "प्रतिक्रिया",
     News: "समाचार", Send: "भेजें", Rating: "रेटिंग", Latest_News: "नवीनतम समाचार",
     No_News: "अभी कोई समाचार नहीं है।", No_Feedback: "अभी कोई प्रतिक्रिया नहीं है।",
-    Post_News: "समाचार पोस्ट करें", Add_Feedback: "प्रतिक्रिया जोड़ें", Content: "सामग्री"
+    Post_News: "समाचार पोस्ट करें", Add_Feedback: "प्रतिक्रिया जोड़ें", Content: "सामग्री",
+    AI_Discovery_Title: "डिजिटल पहचान (एआई अनुकूलित)",
+    AI_Discovery_Description: "खोज इंजनों और कृत्रिम बुद्धिमत्ता (LLMs) के लिए संरचित सारांश।",
+    Professional_Pitch_Title: "Faran Aiki के साथ सहयोग क्यों करें?",
+    Professional_Pitch_Text: "सॉफ्टवेयर इंजीनियरिंग में वास्तविक दुनिया के अनुभव और गणित में राष्ट्रीय उपलब्धियों के साथ एक आईटीबी (ITB) सूचना प्रणाली और प्रौद्योगिकी के छात्र के रूप में, मैं तार्किक तीक्ष्णता, तकनीकी रचनात्मकता और विकास के प्रति समर्पण का एक अनूठा मिश्रण प्रदान करता हूं। चाहे जटिल सिस्टम बनाना हो या गणितीय समस्याओं को हल करना हो, मेरा ध्यान उच्च-प्रभाव वाले परिणामों पर रहता है।"
   },
   he: {
     Home: "בית", Profile: "פרופיל", Portfolio: "תיק עבודות", All: "הכל", Social: "חברתי",
@@ -554,7 +614,7 @@ const translations = {
     Alignment: "יישור", Text_Scaling: "קנה מידה של טקסט", Letter_Spacing: "מרווח אותיות",
     Line_Height: "גובה שורה", Font_Default: "ברירת מחדל", Reset_Settings: "איפוס",
     Color_Variant: "גרסת צבע", Color_Blue: "כחול", Color_Pink: "ורוד",
-    Color_Green: "ירוק", Color_Purple: "סגול", Color_Orange: "כתום",
+    Color_Green: "ירוק", Color_Purple: "סוגל", Color_Orange: "כתום",
     Color_Mono: "מונו", Advanced_Section: "מתקדם", ATS_Friendly: "ידידותי ל-ATS",
     Expand_All: "הרחב הכל", Portfolio_Filter: "מסנן", Filter_All: "הכל",
     Filter_Top: "רק מובילים", Language: "שפה", User: "משתמש", Select_Language: "בחר שפה",
@@ -580,7 +640,11 @@ const translations = {
     Profile_Update_Error: "עדכון הפרופיל נכשל.", Feedback: "משוב",
     News: "חדשות", Send: "שלח", Rating: "דירוג", Latest_News: "חדשות אחרונות",
     No_News: "אין חדשות עדיין.", No_Feedback: "אין משוב עדיין.",
-    Post_News: "פרסם חדשות", Add_Feedback: "הוסף משוב", Content: "תוכן"
+    Post_News: "פרסם חדשות", Add_Feedback: "הוסף משוב", Content: "תוכן",
+    AI_Discovery_Title: "זהות דיגיטלית (מותאם ל-AI)",
+    AI_Discovery_Description: "תקציר מובנה עבור מנועי חיפוש ובינה מלאכותית (LLMs).",
+    Professional_Pitch_Title: "למה לשתף פעולה עם Faran Aiki?",
+    Professional_Pitch_Text: "כסטודנט למערכות מידע וטכנולוגיה ב-ITB, עם ניסיון מעשי בהנדסת תוכנה והישגים לאומיים במתמטיקה, אני מציע שילוב ייחודי של חדות לוגית, יצירתיות טכנית ומסירות לצמיחה. בין אם מדובר בבניית מערכות מורכבות או בפתרון בעיות מתמטיות, אני מתמקד בתוצאות בעלות השפעה רבה."
   },
   ha: {
     Home: "Gida", Profile: "Bayanan Mutum", Portfolio: "Ayyuka", All: "Duka", Social: "Sada Zumunta",
@@ -617,7 +681,11 @@ const translations = {
     Profile_Update_Error: "An gaza sabunta bayani.", Feedback: "Ra'ayoyi",
     News: "Labarai", Send: "Aika", Rating: "Kima", Latest_News: "Labaran Baya-bayan nan",
     No_News: "Babu labarai tukuna.", No_Feedback: "Babu ra'ayoyi tukuna.",
-    Post_News: "Wallafa Labari", Add_Feedback: "Kara Ra'ayi", Content: "Abinda ke ciki"
+    Post_News: "Wallafa Labari", Add_Feedback: "Kara Ra'ayi", Content: "Abinda ke ciki",
+    AI_Discovery_Title: "Sani na Dijital (An Inganta don AI)",
+    AI_Discovery_Description: "Takaitaccen tsari don injunan bincike da fasahar leken asiri ta wucin gadi (LLMs).",
+    Professional_Pitch_Title: "Me Yasa Zaku yi Aiki da Faran Aiki?",
+    Professional_Pitch_Text: "A matsayina na dalibin tsarin bayanai da fasaha na ITB tare da gogewar aikin injiniyan software na zahiri da nasarorin kasa a fannin lissafi, ina bayar da kwarewa ta musamman wajen kaifin hankali, kirkire-kirkire na fasaha, da sadaukarwa ga ci gaba. Ko wajen gina tsare-tsare masu sarkakiya ko warware matsalolin lissafi, na fi mayar da hankali kan sakamako masu tasiri mai inganci."
   }
 };
 
@@ -633,7 +701,7 @@ files.forEach(file => {
   
   let updated = false;
   Object.keys(idContent).forEach(key => {
-    // If the language has a specific translation defined above, use it.
+    // If the language has a specific translation defined above, use it and update it.
     if (translations[lang] && translations[lang][key]) {
         content[key] = translations[lang][key];
         updated = true;

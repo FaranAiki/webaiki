@@ -598,7 +598,7 @@ export default function SettingsPopup({
           w-[calc(100vw-2rem)] sm:w-80
           max-w-[320px] sm:max-w-none
           bg-theme-surface/95 dark:bg-theme-bg-dark/95 border-theme-border dark:border-theme-border shadow-2xl shadow-theme-shadow dark:shadow-theme-shadow
-          md:backdrop-blur-xl border rounded-2xl z-50 p-6
+          md:backdrop-blur-md bg-theme-surface/95 border rounded-2xl z-50 p-6
           animate-fade-in origin-top-right ring-1 ring-black/5
           max-h-[80vh] overflow-y-auto custom-scrollbar
         `}>

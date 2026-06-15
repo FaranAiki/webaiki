@@ -378,5 +378,12 @@
   "Job_Type_Freelance": "Фриланс",
   "Placeholder_Company": "e.g. Microsoft, Google, etc.",
   "Placeholder_Job_Title": "e.g. Full Stack Engineer",
-  "Placeholder_Salary": "e.g. 10M - 15M / month"
+  "Placeholder_Salary": "e.g. 10M - 15M / month",
+  "Back": "Kembali",
+  "Back_To_News": "Kembali ke Berita",
+  "Business_Requests": "Permintaan Bisnis",
+  "AI_Discovery_Title": "Цифровая Идентичность (Оптимизировано для ИИ)",
+  "AI_Discovery_Description": "Структурированная сводка для поисковых систем и искусственного интеллекта (LLMs).",
+  "Professional_Pitch_Title": "Почему Стоит Сотрудничать с Faran Aiki?",
+  "Professional_Pitch_Text": "Как студент ITB по специальности \"Информационные системы и технологии\" с реальным опытом разработки программного обеспечения и национальными достижениями в математике, я предлагаю уникальное сочетание логической остроты, технической креативности и стремления к росту. Независимо от того, создаю ли я сложные системы или решаю математические задачи, я всегда нацелен на достижение высоких результатов."
 }

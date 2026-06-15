@@ -380,5 +380,10 @@
   "Job_Type_Freelance": "Pekerja Lepas",
   "Placeholder_Company": "Misal: Microsoft, Google, dsb.",
   "Placeholder_Job_Title": "Misal: Insinyur Full Stack",
-  "Placeholder_Salary": "Misal: 10jt - 15jt / bulan"
+  "Placeholder_Salary": "Misal: 10jt - 15jt / bulan",
+  "Business_Requests": "Permintaan Bisnis",
+  "AI_Discovery_Title": "Identitas Digital (Optimasi AI)",
+  "AI_Discovery_Description": "Ringkasan terstruktur untuk mesin pencari dan kecerdasan buatan (LLM).",
+  "Professional_Pitch_Title": "Mengapa Berkolaborasi dengan Faran Aiki?",
+  "Professional_Pitch_Text": "Sebagai mahasiswa STI ITB dengan pengalaman kerja nyata sebagai Software Engineer dan prestasi nasional di bidang Matematika, saya menawarkan perpaduan unik antara ketajaman logika, kreativitas teknis, dan dedikasi untuk tumbuh. Baik itu membangun sistem yang kompleks atau menyelesaikan masalah matematis, saya berfokus pada hasil yang berdampak tinggi."
 }

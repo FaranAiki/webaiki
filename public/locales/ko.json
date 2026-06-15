@@ -301,7 +301,7 @@
   "Search_Placeholder": "검색 중 ....",
   "Faq": "FAQ",
   "Other": "기타",
-  "Hire_Me": "채용 문의",
+  "Hire_Me": "채용하기",
   "Hire_Me_Description": "귀하의 프로젝트를 위해 Muhammad Faran Aiki와 협력하거나 고용하십시오.",
   "Company": "회사",
   "Reason_Hiring": "채용 사유",
@@ -368,7 +368,7 @@
   "Localization_Desc": "18개 이상의 언어에 대한 포괄적인 i18n 지원으로 전 세계 청중에게 접근성과 원활한 경험을 보장합니다.",
   "Holistic_Approach_Desc": "현대적인 웹 표준, 엄격한 타입 안정성(TypeScript) 및 성능 중심 설계를 결합한 총체적인 소프트웨어 엔지니어링 접근 방식입니다.",
   "Suggestions": "제안",
-  "Read_More": "더 읽어보기",
+  "Read_More": "더 보기",
   "Location_Online": "온라인",
   "Location_Hybrid": "하이브리드",
   "Location_Offline": "오프라인",
@@ -378,5 +378,12 @@
   "Job_Type_Freelance": "프리랜서",
   "Placeholder_Company": "e.g. Microsoft, Google, etc.",
   "Placeholder_Job_Title": "e.g. Full Stack Engineer",
-  "Placeholder_Salary": "e.g. 10M - 15M / month"
+  "Placeholder_Salary": "e.g. 10M - 15M / month",
+  "Back": "Kembali",
+  "Back_To_News": "Kembali ke Berita",
+  "Business_Requests": "Permintaan Bisnis",
+  "AI_Discovery_Title": "디지털 아이덴티티 (AI 최적화)",
+  "AI_Discovery_Description": "검색 엔진 및 인공 지능(LLMs)을 위한 구조화된 요약。",
+  "Professional_Pitch_Title": "왜 Faran Aiki와 협력해야 할까요?",
+  "Professional_Pitch_Text": "ITB 정보 시스템 및 기술 전공 학생으로서 실제 소프트웨어 엔지니어링 경험과 수학 분야의 전국 대회 수상 경력을 바탕으로, 저는 논리적 예리함, 기술적 창의성 및 성장에 대한 헌신의 독특한 조화를 제공합니다. 복잡한 시스템을 구축하든 수학적 문제를 해결하든, 저는 영향력이 큰 결과를 내는 데 집중합니다。"
 }

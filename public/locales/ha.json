@@ -378,5 +378,12 @@
   "Job_Type_Freelance": "Freelance",
   "Placeholder_Company": "e.g. Microsoft, Google, etc.",
   "Placeholder_Job_Title": "e.g. Full Stack Engineer",
-  "Placeholder_Salary": "e.g. 10M - 15M / month"
+  "Placeholder_Salary": "e.g. 10M - 15M / month",
+  "Back": "Kembali",
+  "Back_To_News": "Kembali ke Berita",
+  "Business_Requests": "Permintaan Bisnis",
+  "AI_Discovery_Title": "Sani na Dijital (An Inganta don AI)",
+  "AI_Discovery_Description": "Takaitaccen tsari don injunan bincike da fasahar leken asiri ta wucin gadi (LLMs).",
+  "Professional_Pitch_Title": "Me Yasa Zaku yi Aiki da Faran Aiki?",
+  "Professional_Pitch_Text": "A matsayina na dalibin tsarin bayanai da fasaha na ITB tare da gogewar aikin injiniyan software na zahiri da nasarorin kasa a fannin lissafi, ina bayar da kwarewa ta musamman wajen kaifin hankali, kirkire-kirkire na fasaha, da sadaukarwa ga ci gaba. Ko wajen gina tsare-tsare masu sarkakiya ko warware matsalolin lissafi, na fi mayar da hankali kan sakamako masu tasiri mai inganci."
 }

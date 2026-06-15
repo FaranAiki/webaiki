@@ -301,7 +301,7 @@
   "Search_Placeholder": "Zoeken ....",
   "Faq": "FAQ",
   "Other": "Anders",
-  "Hire_Me": "Huur mij in",
+  "Hire_Me": "Huur me in",
   "Hire_Me_Description": "Werk samen met of huur Muhammad Faran Aiki in voor uw project.",
   "Company": "Bedrijf",
   "Reason_Hiring": "Reden voor inhuur",
@@ -378,5 +378,12 @@
   "Job_Type_Freelance": "Freelance",
   "Placeholder_Company": "e.g. Microsoft, Google, etc.",
   "Placeholder_Job_Title": "e.g. Full Stack Engineer",
-  "Placeholder_Salary": "e.g. 10M - 15M / month"
+  "Placeholder_Salary": "e.g. 10M - 15M / month",
+  "Back": "Kembali",
+  "Back_To_News": "Kembali ke Berita",
+  "Business_Requests": "Permintaan Bisnis",
+  "AI_Discovery_Title": "Digitale Identiteit (Geoptimaliseerd voor AI)",
+  "AI_Discovery_Description": "Gestructureerde samenvatting voor zoekmachines en kunstmatige intelligentie (LLMs).",
+  "Professional_Pitch_Title": "Waarom Samenwerken met Faran Aiki?",
+  "Professional_Pitch_Text": "Als ITB-student informatiesystemen en -technologie met praktijkervaring in software engineering en nationale prestaties in wiskunde, bied ik een unieke mix van logische schärfe, technische creativiteit en toewijding aan groei. Of het nu gaat om het bouwen van complexe systemen of het oplossen van wiskundige problemen, mijn focus ligt op resultaten met een grote impact."
 }

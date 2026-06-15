@@ -10,7 +10,7 @@ import {
   getOrganizationExperiences,
   getAwardExperiences
 } from '@/lib/data';
-import { Github, Linkedin, Instagram, Twitter, Star } from 'lucide-react';
+import { Github, Linkedin, Instagram, Twitter, Star, Briefcase } from 'lucide-react';
 import Link from 'next/link';
 import PortfolioHeader from '@/components/portfolio/PortfolioHeader';
 import PortfolioClientWrapper from '@/components/portfolio/PortfolioClientWrapper';
@@ -125,6 +125,31 @@ export default async function PortfolioSummaryPage({ params }: { params: Promise
               Filter_Top: dict.Filter_Top
             }}
           />
+
+          {/* Professional Pitch / Sales Closing (Strategy #13) */}
+          <section className="bg-theme-surface/30 border border-theme-border rounded-2xl p-6 md:p-8 mt-12 mb-8 relative overflow-hidden group">
+              <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                  <Briefcase size={80} />
+              </div>
+              <h3 className="text-xl font-black mb-4 nav-active-gacor">{dict.Professional_Pitch_Title}</h3>
+              <p className="text-sm md:text-base text-[var(--text-muted)] leading-relaxed font-medium">
+                  {dict.Professional_Pitch_Text}
+              </p>
+              <div className="mt-6 flex flex-wrap gap-4">
+                  <Link 
+                      href={`/${lang}/hire-me`}
+                      className="px-6 py-2 rounded-xl bg-theme-500 text-white font-bold text-sm hover:scale-105 transition-transform shadow-lg shadow-theme-500/20"
+                  >
+                      {dict.Hire_Me}
+                  </Link>
+                  <Link 
+                      href={`/${lang}/social`}
+                      className="px-6 py-2 rounded-xl bg-theme-surface-strong border border-theme-border font-bold text-sm hover:bg-theme-surface transition-colors"
+                  >
+                      {dict.Social}
+                  </Link>
+              </div>
+          </section>
 
           {/* Footer Actions */}
           <div className="pt-4 space-y-6 no-print">

@@ -301,7 +301,7 @@
   "Search_Placeholder": "Suchen ....",
   "Faq": "FAQ",
   "Other": "Andere",
-  "Hire_Me": "Engagiere mich",
+  "Hire_Me": "Mich anheuern",
   "Hire_Me_Description": "Arbeiten Sie mit Muhammad Faran Aiki zusammen oder engagieren Sie ihn für Ihr Projekt.",
   "Company": "Unternehmen",
   "Reason_Hiring": "Grund für die Einstellung",
@@ -378,5 +378,12 @@
   "Job_Type_Freelance": "Freiberuflich",
   "Placeholder_Company": "e.g. Microsoft, Google, etc.",
   "Placeholder_Job_Title": "e.g. Full Stack Engineer",
-  "Placeholder_Salary": "e.g. 10M - 15M / month"
+  "Placeholder_Salary": "e.g. 10M - 15M / month",
+  "Back": "Kembali",
+  "Back_To_News": "Kembali ke Berita",
+  "Business_Requests": "Permintaan Bisnis",
+  "AI_Discovery_Title": "Digitale Identität (Für KI Optimiert)",
+  "AI_Discovery_Description": "Strukturierte Zusammenfassung für Suchmaschinen und künstliche Intelligenz (LLMs).",
+  "Professional_Pitch_Title": "Warum mit Faran Aiki Zusammenarbeiten?",
+  "Professional_Pitch_Text": "Als ITB-Student im Bereich Informationssysteme und -technologie mit praktischer Erfahrung in der Softwareentwicklung und nationalen Erfolgen in Mathematik biete ich eine einzigartige Mischung aus logischer Schärfe, technischer Kreativität und dem Engagement für stetiges Wachstum. Ob beim Aufbau komplexer Systeme oder bei der Lösung mathematischer Probleme, mein Fokus liegt auf hochwirksamen Ergebnissen."
 }

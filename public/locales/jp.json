@@ -301,7 +301,7 @@
   "Search_Placeholder": "検索中 ....",
   "Faq": "FAQ",
   "Other": "その他",
-  "Hire_Me": "採用情報",
+  "Hire_Me": "採用する",
   "Hire_Me_Description": "プロジェクトのために、ムハンマド・ファラン・アイキと協力、または彼を採用しましょう。",
   "Company": "企業名",
   "Reason_Hiring": "採用理由",
@@ -378,5 +378,12 @@
   "Job_Type_Freelance": "フリーランス",
   "Placeholder_Company": "e.g. Microsoft, Google, etc.",
   "Placeholder_Job_Title": "e.g. Full Stack Engineer",
-  "Placeholder_Salary": "e.g. 10M - 15M / month"
+  "Placeholder_Salary": "e.g. 10M - 15M / month",
+  "Back": "Kembali",
+  "Back_To_News": "Kembali ke Berita",
+  "Business_Requests": "Permintaan Bisnis",
+  "AI_Discovery_Title": "デジタルアイデンティティ（AI最適化）",
+  "AI_Discovery_Description": "検索エンジンおよび人工知能（LLMs）向けの構造化された要約。",
+  "Professional_Pitch_Title": "なぜ Faran Aiki と協力するのか？",
+  "Professional_Pitch_Text": "ITB の情報システムとテクノロジーの学生として、実際のソフトウェアエンジニアリングの経験と数学での全国的な実績を持ち、論理的な鋭さ、技術的な創造性、そして成長への献身を独自の形でブレンドして提供します。複雑なシステムの構築であれ、数学的な問題の解決であれ、私はインパクトの高い結果に焦点を当てています。"
 }

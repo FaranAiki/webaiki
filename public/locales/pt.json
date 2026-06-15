@@ -368,7 +368,7 @@
   "Localization_Desc": "Suporte abrangente a i18n para mais de 18 idiomas, garantindo acessibilidade e uma experiência perfeita para um público global.",
   "Holistic_Approach_Desc": "Uma abordagem holística de engenharia de software que combina padrões web modernos, segurança de tipo rigorosa (TypeScript) e design voltado para o desempenho.",
   "Suggestions": "Sugestões",
-  "Read_More": "Leia mais",
+  "Read_More": "Ler mais",
   "Location_Online": "Online",
   "Location_Hybrid": "Híbrido",
   "Location_Offline": "Offline",
@@ -378,5 +378,12 @@
   "Job_Type_Freelance": "Freelance",
   "Placeholder_Company": "e.g. Microsoft, Google, etc.",
   "Placeholder_Job_Title": "e.g. Full Stack Engineer",
-  "Placeholder_Salary": "e.g. 10M - 15M / month"
+  "Placeholder_Salary": "e.g. 10M - 15M / month",
+  "Back": "Kembali",
+  "Back_To_News": "Kembali ke Berita",
+  "Business_Requests": "Permintaan Bisnis",
+  "AI_Discovery_Title": "Identidade Digital (Otimizada para IA)",
+  "AI_Discovery_Description": "Resumo estruturado para mecanismos de busca e inteligência artificial (LLMs).",
+  "Professional_Pitch_Title": "Por Que Colaborar com Faran Aiki?",
+  "Professional_Pitch_Text": "Como estudante de sistemas de informação e tecnologia do ITB, com experiência real em engenharia de software e conquistas nacionais em matemática, ofereço uma combinação única de acuidade lógica, criatividade técnica e dedicação ao crescimento. Seja construindo sistemas complexos ou resolvendo problemas matemáticos, meu foco são resultados de alto impacto."
 }

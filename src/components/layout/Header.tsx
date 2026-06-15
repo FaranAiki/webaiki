@@ -263,18 +263,20 @@ export default function Header(props: HeaderProps) {
 
     const updateHeaderVisibility = useCallback(() => {
         const currentYPos = window.scrollY;
-        if (Math.abs(currentYPos - lastYPosRef.current) < 10) {
-            tickingRef.current = false;
-            return;
-        }
-
+        
+        // Use a larger threshold and only update if state actually changes
         const isScrollingUp = currentYPos < lastYPosRef.current;
         const nextShouldShow = isScrollingUp || currentYPos < 50;
         
-        if (nextShouldShow !== shouldShowHeader) {
+        if (nextShouldShow !== shouldShowHeader && Math.abs(currentYPos - lastYPosRef.current) > 20) {
             setShouldShowHeader(nextShouldShow);
+            lastYPosRef.current = currentYPos;
+        } else if (Math.abs(currentYPos - lastYPosRef.current) > 100) {
+            // Keep updating last position even if we don't toggle, 
+            // but only at larger intervals to track direction
+            lastYPosRef.current = currentYPos;
         }
-        lastYPosRef.current = currentYPos;
+        
         tickingRef.current = false;
     }, [shouldShowHeader]);
 
@@ -377,13 +379,14 @@ export default function Header(props: HeaderProps) {
 
     return (
         <>
-            <header
+            <motion.header
+                initial={{ y: 0 }}
+                animate={{ y: shouldShowHeader ? 0 : -100 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
                 className={`
                     w-full fixed top-0 left-0 right-0 z-40 
                     ${headerBg} md:backdrop-blur-md 
                     border-b shadow-theme-shadow
-                    transition-transform duration-300 ease-in-out
-                    ${shouldShowHeader ? 'translate-y-0' : '-translate-y-full'}
                 `}
             >
                 <div className="w-full flex items-center justify-between mx-auto px-4 sm:px-8 py-4">
@@ -674,7 +677,7 @@ export default function Header(props: HeaderProps) {
                         </div>
                     </div>
                 </div>
-            </header>
+            </motion.header>
 
             {/* --- Mobile Sidebar Navigation --- */}
             <div 

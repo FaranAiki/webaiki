@@ -301,7 +301,7 @@
   "Search_Placeholder": "Đang tìm kiếm ....",
   "Faq": "FAQ",
   "Other": "Khác",
-  "Hire_Me": "Tuyển dụng tôi",
+  "Hire_Me": "Tuyển dụng",
   "Hire_Me_Description": "Hợp tác hoặc thuê Muhammad Faran Aiki cho dự án của bạn.",
   "Company": "Công ty",
   "Reason_Hiring": "Lý do tuyển dụng",
@@ -368,7 +368,7 @@
   "Localization_Desc": "Hỗ trợ i18n toàn diện cho hơn 18 ngữ, đảm bảo khả năng tiếp cận và trải nghiệm liền mạch cho khán giả toàn cầu.",
   "Holistic_Approach_Desc": "Một phương pháp kỹ thuật phần mềm toàn diện kết hợp các tiêu chuẩn web hiện đại, tính an toàn kiểu nghiêm ngặt (TypeScript) và thiết kế định hướng hiệu suất.",
   "Suggestions": "Gợi ý",
-  "Read_More": "Đọc thêm",
+  "Read_More": "Xem thêm",
   "Location_Online": "Trực tuyến",
   "Location_Hybrid": "Hybride",
   "Location_Offline": "Ngoại tuyến",
@@ -378,5 +378,12 @@
   "Job_Type_Freelance": "Tự do",
   "Placeholder_Company": "e.g. Microsoft, Google, etc.",
   "Placeholder_Job_Title": "e.g. Full Stack Engineer",
-  "Placeholder_Salary": "e.g. 10M - 15M / month"
+  "Placeholder_Salary": "e.g. 10M - 15M / month",
+  "Back": "Kembali",
+  "Back_To_News": "Kembali ke Berita",
+  "Business_Requests": "Permintaan Bisnis",
+  "AI_Discovery_Title": "Danh Tính Kỹ Thuật Số (Tối Ưu Hóa AI)",
+  "AI_Discovery_Description": "Bản tóm tắt có cấu trúc dành cho các công cụ tìm kiếm và trí tuệ nhân tạo (LLMs).",
+  "Professional_Pitch_Title": "Tại Sao Nên Hợp Tác Với Faran Aiki?",
+  "Professional_Pitch_Text": "Là sinh viên ngành hệ thống thông tin và công nghệ tại ITB với kinh nghiệm thực tế về kỹ thuật phần mềm và những thành tích quốc gia về toán học, tôi mang đến sự kết hợp độc đáo giữa sự nhạy bén trong logic, tính sáng tạo kỹ thuật và sự cống hiến cho sự phát triển. Cho dù là xây dựng các hệ thống phức tạp hay giải quyết các bài toán, tôi luôn tập trung vào những kết quả mang lại tác động cao."
 }

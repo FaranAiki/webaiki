@@ -2,9 +2,6 @@ import Header from "@/components/layout/Header";
 import "../../globals.css";
 // Replace React's per-request cache with Next.js's global cross-request cache
 
-import 'react-pdf/dist/Page/AnnotationLayer.css';
-import 'react-pdf/dist/Page/TextLayer.css';
-
 import { getDictionary } from '@/components/layout/Translator';
 import { createClient } from '@/utils/supabase/server';
 
@@ -108,6 +105,15 @@ export default async function RootLayout({
       name: dict.Hire_Me,
       href: '/hire-me',
       icon: <Heart size={18} />
+    });
+  }
+
+  // Add Business Requests link for the owner
+  if (user?.email === 'faran.aiki.business@gmail.com') {
+    navLinks.push({
+      name: dict.Business_Requests || 'Business Requests',
+      href: '/business-requests',
+      icon: <Briefcase size={18} />
     });
   }
 

@@ -301,7 +301,7 @@
   "Search_Placeholder": "অনুসন্ধান করা হচ্ছে ....",
   "Faq": "FAQ",
   "Other": "অন্যান্য",
-  "Hire_Me": "আমাকে নিয়োগ দিন",
+  "Hire_Me": "আমাকে নিয়োগ করুন",
   "Hire_Me_Description": "Collaborate with or hire Muhammad Faran Aiki for your project.",
   "Company": "Company",
   "Reason_Hiring": "Reason for Hiring",
@@ -368,7 +368,7 @@
   "Localization_Desc": "১৮টিরও বেশি ভাষার জন্য ব্যাপক i18n সাপোর্ট, বিশ্বব্যাপী দর্শকদের জন্য অ্যাক্সেসিবিলিটি এবং একটি বিরামহীন অভিজ্ঞতা নিশ্চিত করে।",
   "Holistic_Approach_Desc": "একটি সামগ্রিক সফটওয়্যার ইঞ্জিনিয়ারিং পদ্ধতি যা আধুনিক ওয়েব স্ট্যান্ডার্ড, কঠোর টাইপ সেফটি (TypeScript) এবং পারফরম্যান্স-চালিত ডিজাইনকে একত্রিত করে।",
   "Suggestions": "পরামর্শ",
-  "Read_More": "আরও পড়ুন",
+  "Read_More": "আরও পড়ুন",
   "Location_Online": "অনলাইন",
   "Location_Hybrid": "হাইব্রিড",
   "Location_Offline": "অফলাইন",
@@ -378,5 +378,12 @@
   "Job_Type_Freelance": "ফ্রিল্যান্স",
   "Placeholder_Company": "e.g. Microsoft, Google, etc.",
   "Placeholder_Job_Title": "e.g. Full Stack Engineer",
-  "Placeholder_Salary": "e.g. 10M - 15M / month"
+  "Placeholder_Salary": "e.g. 10M - 15M / month",
+  "Back": "Kembali",
+  "Back_To_News": "Kembali ke Berita",
+  "Business_Requests": "Permintaan Bisnis",
+  "AI_Discovery_Title": "ডিজিটাল পরিচয় (এআই অপ্টিমাইজড)",
+  "AI_Discovery_Description": "সার্চ ইঞ্জিন এবং কৃত্রিম বুদ্ধিমত্তার (LLMs) জন্য কাঠামোগত সারসংক্ষেপ।",
+  "Professional_Pitch_Title": "কেন ফারান আইকি (Faran Aiki)-এর সাথে সহযোগিতা করবেন?",
+  "Professional_Pitch_Text": "বাস্তব দুনিয়ার সফটওয়্যার ইঞ্জিনিয়ারিং অভিজ্ঞতা এবং গণিতে জাতীয় অর্জন সহ আইটিবি (ITB) ইনফরমেশন সিস্টেম এবং টেকনোলজির ছাত্র হিসেবে, আমি যৌক্তিক তীক্ষ্ণতা, প্রযুক্তিগত সৃজনশীলতা এবং বৃদ্ধির প্রতি উৎসর্গের এক অনন্য মিশ্রণ অফার করি। জটিল সিস্টেম তৈরি করা হোক বা গাণিতিক সমস্যা সমাধান করা হোক, আমি উচ্চ-প্রভাবশালী ফলাফলের দিকে মনোনিবেশ করি।"
 }

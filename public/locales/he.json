@@ -260,7 +260,7 @@
   "Color_Blue": "כחול",
   "Color_Pink": "ורוד",
   "Color_Green": "ירוק",
-  "Color_Purple": "סגול",
+  "Color_Purple": "סוגל",
   "Color_Orange": "כתום",
   "Color_Mono": "מונו",
   "Advanced_Section": "מתקדם",
@@ -301,7 +301,7 @@
   "Search_Placeholder": "חיפוש ....",
   "Faq": "FAQ",
   "Other": "אחר",
-  "Hire_Me": "שכור אותי",
+  "Hire_Me": "גייס אותי",
   "Hire_Me_Description": "Collaborate with or hire Muhammad Faran Aiki for your project.",
   "Company": "Company",
   "Reason_Hiring": "Reason for Hiring",
@@ -378,5 +378,12 @@
   "Job_Type_Freelance": "פרילנס",
   "Placeholder_Company": "e.g. Microsoft, Google, etc.",
   "Placeholder_Job_Title": "e.g. Full Stack Engineer",
-  "Placeholder_Salary": "e.g. 10M - 15M / month"
+  "Placeholder_Salary": "e.g. 10M - 15M / month",
+  "Back": "Kembali",
+  "Back_To_News": "Kembali ke Berita",
+  "Business_Requests": "Permintaan Bisnis",
+  "AI_Discovery_Title": "זהות דיגיטלית (מותאם ל-AI)",
+  "AI_Discovery_Description": "תקציר מובנה עבור מנועי חיפוש ובינה מלאכותית (LLMs).",
+  "Professional_Pitch_Title": "למה לשתף פעולה עם Faran Aiki?",
+  "Professional_Pitch_Text": "כסטודנט למערכות מידע וטכנולוגיה ב-ITB, עם ניסיון מעשי בהנדסת תוכנה והישגים לאומיים במתמטיקה, אני מציע שילוב ייחודי של חדות לוגית, יצירתיות טכנית ומסירות לצמיחה. בין אם מדובר בבניית מערכות מורכבות או בפתרון בעיות מתמטיות, אני מתמקד בתוצאות בעלות השפעה רבה."
 }

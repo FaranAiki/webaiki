@@ -301,7 +301,7 @@
   "Search_Placeholder": "Αναζήτηση ....",
   "Faq": "FAQ",
   "Other": "Άλλο",
-  "Hire_Me": "Προσλάβετέ με",
+  "Hire_Me": "Προσλάβετε με",
   "Hire_Me_Description": "Collaborate with or hire Muhammad Faran Aiki for your project.",
   "Company": "Company",
   "Reason_Hiring": "Reason for Hiring",
@@ -378,5 +378,12 @@
   "Job_Type_Freelance": "Ελεύθερος επαγγελματίας",
   "Placeholder_Company": "e.g. Microsoft, Google, etc.",
   "Placeholder_Job_Title": "e.g. Full Stack Engineer",
-  "Placeholder_Salary": "e.g. 10M - 15M / month"
+  "Placeholder_Salary": "e.g. 10M - 15M / month",
+  "Back": "Kembali",
+  "Back_To_News": "Kembali ke Berita",
+  "Business_Requests": "Permintaan Bisnis",
+  "AI_Discovery_Title": "Ψηφιακή Ταυτότητα (Βελτιστοποιημένη για AI)",
+  "AI_Discovery_Description": "Δομημένη περίληψη για μηχανές αναζήτησης και τεχνητή νοημοσύνη (LLMs).",
+  "Professional_Pitch_Title": "Γιατί να Συνεργαστείτε με τον Faran Aiki;",
+  "Professional_Pitch_Text": "Ως φοιτητής συστημάτων πληροφορικής και τεχνολογίας του ITB με πραγματική εμπειρία στη μηχανική λογισμικού και εθνικά επιτεύγματα στα μαθηματικά, προσφέρω έναν μοναδικό συνδυασμό λογικής οξύτητας, τεχνικής δημιουργικότητας και αφοσίωσης στην εξέλιξη. Είτε πρόκειται για την κατασκευή πολύπλοκων συστημάτων είτε για την επίλυση μαθηματικών προβλημάτων, επικεντρώνομαι σε αποτελέσματα με υψηλό αντίκτυπο."
 }

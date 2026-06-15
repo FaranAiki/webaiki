@@ -39,9 +39,11 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
 
     let animationFrameId: number;
     let particles: Particle[] = [];
+    let lastTime = 0;
+    const FPS_INTERVAL = 1000 / 30; // Throttle to 30 FPS
 
-    const PARTICLE_COUNT = 80;
-    const CONNECTION_DISTANCE = 150;
+    const PARTICLE_COUNT = 50; 
+    const CONNECTION_DISTANCE = 120; 
     const MOUSE_RADIUS = 100;
 
     class Particle {
@@ -120,38 +122,45 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
         }
     };
 
-    const animate = () => {
+    const animate = (currentTime: number) => {
       if (!ctx || !canvas) return;
 
-      if (document.visibilityState === 'visible') {
-        const width = canvas.width / (window.devicePixelRatio || 1);
-        const height = canvas.height / (window.devicePixelRatio || 1);
-
-        // Determine color based on current theme ref and selected color variant
-        // In dark mode, we make it slightly more vibrant/lighter
-        const BASE_COLOR = isDarkRef.current
-          ? {
-              r: Math.min(255, colorRGBRef.current.r + 50),
-              g: Math.min(255, colorRGBRef.current.g + 50),
-              b: Math.min(255, colorRGBRef.current.b + 50)
-            }
-          : colorRGBRef.current;
-
-        ctx.clearRect(0, 0, width, height);
-
-        const isMobile = width < 768;
-
-        particles.forEach((particle) => {
-          // Disable mouse interaction on mobile to save CPU
-          particle.update(width, height, isMobile);
-          particle.draw(BASE_COLOR);
-        });
-
-        connectParticles(width, height, BASE_COLOR);
-
-      }
-
       animationFrameId = requestAnimationFrame(animate);
+
+      // Throttle FPS
+      const deltaTime = currentTime - lastTime;
+      if (deltaTime < FPS_INTERVAL) return;
+      lastTime = currentTime - (deltaTime % FPS_INTERVAL);
+
+      const width = canvas.width / (window.devicePixelRatio || 1);
+      const height = canvas.height / (window.devicePixelRatio || 1);
+
+      const BASE_COLOR = isDarkRef.current
+        ? {
+            r: Math.min(255, colorRGBRef.current.r + 50),
+            g: Math.min(255, colorRGBRef.current.g + 50),
+            b: Math.min(255, colorRGBRef.current.b + 50)
+          }
+        : colorRGBRef.current;
+
+      ctx.clearRect(0, 0, width, height);
+
+      const isMobile = width < 768;
+
+      particles.forEach((particle) => {
+        particle.update(width, height, isMobile);
+      });
+
+      // Batch drawing particles
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(${BASE_COLOR.r}, ${BASE_COLOR.g}, ${BASE_COLOR.b}, 0.6)`;
+      particles.forEach(p => {
+        ctx.moveTo(p.x + p.size, p.y);
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      });
+      ctx.fill();
+
+      connectParticles(width, height, BASE_COLOR);
     };
 
     const connectParticles = (w: number, h: number, color: {r: number, g: number, b: number}) => {
@@ -169,8 +178,8 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
 
           if (distSq < maxDistanceSq) {
             const distance = Math.sqrt(distSq);
-            const opacity = 1 - distance / maxDistance;
-            ctx.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity * 0.3})`;
+            const opacity = (1 - distance / maxDistance) * 0.3;
+            ctx.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity})`;
             ctx.beginPath();
             ctx.moveTo(particles[a].x, particles[a].y);
             ctx.lineTo(particles[b].x, particles[b].y);
@@ -193,15 +202,26 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
         init();
     };
 
+    const handleVisibilityChange = () => {
+        if (document.visibilityState === 'visible') {
+            lastTime = performance.now();
+            animationFrameId = requestAnimationFrame(animate);
+        } else {
+            cancelAnimationFrame(animationFrameId);
+        }
+    };
+
     window.addEventListener('resize', handleResize);
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    document.addEventListener('visibilitychange', handleVisibilityChange);
 
     init();
-    animate();
+    animationFrameId = requestAnimationFrame(animate);
 
     return () => {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       cancelAnimationFrame(animationFrameId);
     };
   }, []); // Run once, but use Ref for isDark updates
@@ -273,7 +293,7 @@ export default function Background({ carousel, showOverlay = true }: BackgroundP
                 animate={{ opacity: 0.8 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 1.5, ease: "easeInOut" }}
-                className={`blur-sm md:blur-md absolute inset-0 w-full h-full scale-110 transform-gpu will-change-[opacity,transform]`}
+                className={`blur-[4px] absolute inset-0 w-full h-full scale-105 transform-gpu will-change-[opacity]`}
                 style={{ backfaceVisibility: 'hidden' }}
             >
                 {loadedIndices.has(currentIndex) && (

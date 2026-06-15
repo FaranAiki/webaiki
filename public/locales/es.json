@@ -378,5 +378,12 @@
   "Job_Type_Freelance": "Freelance",
   "Placeholder_Company": "e.g. Microsoft, Google, etc.",
   "Placeholder_Job_Title": "e.g. Full Stack Engineer",
-  "Placeholder_Salary": "e.g. 10M - 15M / month"
+  "Placeholder_Salary": "e.g. 10M - 15M / month",
+  "Back": "Kembali",
+  "Back_To_News": "Kembali ke Berita",
+  "Business_Requests": "Permintaan Bisnis",
+  "AI_Discovery_Title": "Identidad Digital (Optimizada para IA)",
+  "AI_Discovery_Description": "Resumen estructurado para motores de búsqueda e inteligencia artificial (LLMs).",
+  "Professional_Pitch_Title": "¿Por Qué Colaborar con Faran Aiki?",
+  "Professional_Pitch_Text": "Como estudiante de sistemas de información y tecnología del ITB con experiencia real en ingeniería de software y logros nacionales en matemáticas, ofrezco una combinación única de agudeza lógica, creatividad técnica y dedicación al crecimiento. Ya sea construyendo sistemas complejos o resolviendo problemas matemáticos, me concentro en resultados de alto impacto."
 }

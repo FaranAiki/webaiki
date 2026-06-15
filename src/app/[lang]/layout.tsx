@@ -3,9 +3,6 @@ import "../globals.css";
 import { headers } from 'next/headers';
 import Script from 'next/script'
 
-import 'react-pdf/dist/Page/AnnotationLayer.css';
-import 'react-pdf/dist/Page/TextLayer.css';
-
 // Keep font configurations for nested specificity if needed, 
 // though they are currently provided by RootLayout.
 const inter = Inter({
