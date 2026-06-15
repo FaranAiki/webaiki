@@ -75,6 +75,7 @@ export function getBaseMetadata(): Metadata {
     description: "Official personal website of Muhammad Faran Aiki - Software Engineer, Computer Science Student at ITB, and SAT Tutor.",
     keywords: [
       "Muhammad Faran Aiki", "Faran Aiki", "Faran", "Aiki", "faranaiki",
+      "webaiki", "web aiki", "webaiki faran aiki",
       "Software Engineer", "Web Developer", "ITB Student", "STI ITB",
       "Bandung Institute of Technology", "Portfolio", "Indonesia",
       "Full Stack Developer", "Data Analyst", "SAT Tutor", "ONMIPA Matematika",
@@ -168,7 +169,7 @@ export function getWebsiteSchema(lang: string) {
     "@id": `${SITE_URL}/#website`,
     "url": SITE_URL,
     "name": "Muhammad Faran Aiki - Personal Website",
-    "alternateName": ["Faran Aiki", "Faran", "Aiki"],
+    "alternateName": ["Faran Aiki", "Faran", "Aiki", "webaiki", "web aiki"],
     "publisher": { "@id": `${SITE_URL}/#person` },
     "inLanguage": lang,
   };
