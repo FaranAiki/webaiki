@@ -4,7 +4,7 @@ export default defineConfig({
   e2e: {
     baseUrl: "http://localhost:3000",
     supportFile: false,
-    setupNodeEvents(_on, _config) {
+    setupNodeEvents() {
       // implement node event listeners here
     },
     viewportWidth: 1280,

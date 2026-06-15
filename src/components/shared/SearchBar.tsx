@@ -208,7 +208,7 @@ export default function SearchBar({
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [navigateToResult]);
+  }, [navigateToResult, query]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
