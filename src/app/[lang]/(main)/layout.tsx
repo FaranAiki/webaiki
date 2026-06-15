@@ -79,6 +79,7 @@ export default async function RootLayout({
         { name: dict.Project, href: '/project', icon: <Code size={16} /> },
         { name: dict.Organization, href: '/organization', icon: <Users size={16} /> },
         { name: dict.Award, href: '/award', icon: <Trophy size={16} /> },
+        { name: dict.Hire_Me, href: '/hire-me', icon: <Heart size={16} /> },
       ]
     },
 
@@ -99,22 +100,28 @@ export default async function RootLayout({
     },
   ];
 
-  // Add Hire Me link if user is HR
+  // Nest Hire Me link for HR
   if (registrationReason === 'HR') {
-    navLinks.push({
-      name: dict.Hire_Me,
-      href: '/hire-me',
-      icon: <Heart size={18} />
-    });
+    const homeLink = navLinks[0];
+    if (homeLink.subLinks) {
+      homeLink.subLinks.push({
+        name: dict.Hire_Me,
+        href: '/hire-me',
+        icon: <Heart size={16} />
+      });
+    }
   }
 
-  // Add Business Requests link for the owner
+  // Nest Business Requests link for the owner
   if (user?.email === 'faran.aiki.business@gmail.com') {
-    navLinks.push({
-      name: dict.Business_Requests || 'Business Requests',
-      href: '/business-requests',
-      icon: <Briefcase size={18} />
-    });
+    const homeLink = navLinks[0];
+    if (homeLink.subLinks) {
+      homeLink.subLinks.push({
+        name: dict.Business_Requests || 'Business Requests',
+        href: '/business-requests',
+        icon: <Briefcase size={16} />
+      });
+    }
   }
 
   return (

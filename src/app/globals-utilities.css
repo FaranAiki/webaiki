@@ -107,9 +107,15 @@
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+
+  /* Hide reCAPTCHA v3 Badge */
+  .grecaptcha-badge { 
+    visibility: hidden !important; 
   }
 
   .no-select {

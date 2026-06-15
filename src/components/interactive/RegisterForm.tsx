@@ -5,6 +5,7 @@ import { useAuthActions } from '@/app/auth-hooks';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { UserPlus, Mail, Lock, User, Info, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { executeCaptcha } from './CaptchaValidator';
 
 interface RegisterFormProps {
   dict: Record<string, string>;
@@ -19,19 +20,28 @@ export default function RegisterForm({ dict, lang }: RegisterFormProps) {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget;
     setError(null);
+    setLoading(true);
+
+    const token = await executeCaptcha('register');
+    if (!token) {
+      setError(dict.Invalid_Captcha || "Captcha verification failed");
+      setLoading(false);
+      return;
+    }
     
-    const formData = new FormData(e.currentTarget);
+    const formData = new FormData(form);
     const password = formData.get('password') as string;
     const confirmPassword = formData.get('confirmPassword') as string;
 
     if (password !== confirmPassword) {
       setError(dict.Passwords_do_not_match);
+      setLoading(false);
       return;
     }
 
-    setLoading(true);
-    const result = await signUp(formData);
+    const result = await signUp(formData, token);
     
     if (result?.error) {
       setError(dict[result.error] || result.error);
@@ -205,6 +215,10 @@ export default function RegisterForm({ dict, lang }: RegisterFormProps) {
             </span>
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-shimmer" />
           </motion.button>
+
+          <p className="text-[10px] text-center text-theme-muted mt-2 opacity-50">
+            Protected by reCAPTCHA. <a href="https://policies.google.com/privacy" className="underline">Privacy</a> & <a href="https://policies.google.com/terms" className="underline">Terms</a> apply.
+          </p>
         </form>
 
         <motion.p variants={itemVariants} className="mt-8 text-center text-sm text-theme-muted font-medium">

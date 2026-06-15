@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { usePresentation } from '../providers/PresentationContext';
 import FadeInSection from '../shared/FadeInSection';
+import { executeCaptcha } from './CaptchaValidator';
 
 interface FeedbackItem {
   id: string;
@@ -107,7 +108,14 @@ export default function FeedbackDisplay({ dict, lang, currentUserId }: FeedbackD
     setSubmitting(true);
     setError(null);
 
-    const result = await submitFeedback(newFeedback, imageUrl);
+    const token = await executeCaptcha('feedback');
+    if (!token) {
+      setError(dict.Invalid_Captcha || "Captcha verification failed");
+      setSubmitting(false);
+      return;
+    }
+
+    const result = await submitFeedback(newFeedback, imageUrl, token);
 
     if (result.success) {
       setNewFeedback('');
@@ -200,6 +208,10 @@ export default function FeedbackDisplay({ dict, lang, currentUserId }: FeedbackD
                     )}
                   </button>
                 </div>
+
+                <p className="text-[10px] text-center text-theme-muted mt-2 opacity-50">
+                  Protected by reCAPTCHA. <a href="https://policies.google.com/privacy" className="underline">Privacy</a> & <a href="https://policies.google.com/terms" className="underline">Terms</a> apply.
+                </p>
 
                 {error && (
                   <p className="text-red-500 text-sm font-medium animate-shake">

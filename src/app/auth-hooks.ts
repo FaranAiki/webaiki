@@ -20,8 +20,8 @@ export function useAuthActions(lang: string) {
     return { success: true };
   };
 
-  const signUp = async (formData: FormData) => {
-    const result = await signUpAction(formData);
+  const signUp = async (formData: FormData, captchaToken?: string) => {
+    const result = await signUpAction(formData, captchaToken);
     
     if (result?.error) {
       return { error: result.error };

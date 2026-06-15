@@ -32,6 +32,14 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning nonce={nonce}>
+      <head>
+        <script
+          async
+          defer
+          nonce={nonce}
+          src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
+        />
+      </head>
       <body className={`${inter.variable} ${geistMono.variable} font-sans antialiased`}>
         <Providers>
           {children}

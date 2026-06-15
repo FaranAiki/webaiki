@@ -1,8 +1,18 @@
 'use client';
 
-import { ReactNode, useRef } from 'react';
-import ReCAPTCHA from 'react-google-recaptcha';
-import { useTheme } from 'next-themes';
+import { ReactNode } from 'react';
+
+/**
+ * Global grecaptcha type for v3
+ */
+declare global {
+  interface Window {
+    grecaptcha: {
+      ready: (cb: () => void) => void;
+      execute: (siteKey: string, options: { action: string }) => Promise<string>;
+    };
+  }
+}
 
 interface CaptchaValidatorProps {
   onValidate: (token: string | null) => void;
@@ -11,37 +21,38 @@ interface CaptchaValidatorProps {
 }
 
 /**
- * Modular Captcha Validator using Google reCAPTCHA v2
+ * v3 Implementation: This component now acts as a utility provider.
+ * v3 is invisible, so we don't render a checkbox anymore.
  */
-export default function CaptchaValidator({ onValidate, children, active = true }: CaptchaValidatorProps) {
-  const { resolvedTheme } = useTheme();
-  const recaptchaRef = useRef<ReCAPTCHA>(null);
-  
+export default function CaptchaValidator({ children }: CaptchaValidatorProps) {
+  // We keep the children but v3 doesn't need a visible container.
+  return <>{children}</>;
+}
+
+/**
+ * Utility to execute captcha right before form submission
+ */
+export async function executeCaptcha(action: string): Promise<string | null> {
   const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
-
-  if (!active) return <>{children}</>;
-
+  
   if (!siteKey) {
-    console.warn("reCAPTCHA site key is missing. Set NEXT_PUBLIC_RECAPTCHA_SITE_KEY in your .env");
-    return <>{children}</>;
+    console.warn("reCAPTCHA site key is missing. Bypassing.");
+    return "BYPASSED";
   }
 
-  const onChange = (token: string | null) => {
-    onValidate(token);
-  };
-
-  return (
-    <div className="space-y-4">
-      {children}
-      
-      <div className="flex justify-center p-4 bg-theme-surface-strong rounded-xl border border-theme-border overflow-hidden">
-        <ReCAPTCHA
-          ref={recaptchaRef}
-          sitekey={siteKey}
-          onChange={onChange}
-          theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
-        />
-      </div>
-    </div>
-  );
+  return new Promise((resolve) => {
+    if (typeof window !== 'undefined' && window.grecaptcha) {
+      window.grecaptcha.ready(() => {
+        window.grecaptcha.execute(siteKey, { action })
+          .then((token) => resolve(token))
+          .catch((err) => {
+            console.error("reCAPTCHA execution failed", err);
+            resolve(null);
+          });
+      });
+    } else {
+      console.error("reCAPTCHA library not loaded");
+      resolve(null);
+    }
+  });
 }

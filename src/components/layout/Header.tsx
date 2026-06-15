@@ -172,6 +172,7 @@ export default function Header(props: HeaderProps) {
         const [mounted, setMounted] = useState(false);
         const { isPresentationMode, togglePresentationMode } = usePresentation();
         const setScrollLocked = useAppStore((state) => state.setScrollLocked);
+        const setGlobalLoading = useAppStore((state) => state.setGlobalLoading);
 
         const handleShare = () => {
             const settingsParams = [
@@ -333,6 +334,7 @@ export default function Header(props: HeaderProps) {
     ];
 
     const handleLanguageChange = async (langCode: string) => {
+        setGlobalLoading(true);
         await setCookies("language", langCode);
         
         let newPathname = pathname;

@@ -8,6 +8,8 @@ import SultanPrint from "../interactive/SultanPrint";
 import QueryProvider from "./QueryProvider";
 import SmoothScroll from "./SmoothScroll";
 import LoadingOverlay from "../layout/LoadingOverlay";
+import { usePathname, useSearchParams } from "next/navigation";
+import { useAppStore } from "@/lib/store";
 
 interface SultanLabels {
   Creating: string;
@@ -32,6 +34,25 @@ export function useProvidersConfig() {
 }
 
 /**
+ * Handles resetting global loading state on route changes
+ */
+function GlobalLoadingReset() {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const setGlobalLoading = useAppStore((state) => state.setGlobalLoading);
+
+  useEffect(() => {
+    // Small delay to ensure the new page content has started rendering
+    const timer = setTimeout(() => {
+      setGlobalLoading(false);
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [pathname, searchParams, setGlobalLoading]);
+
+  return null;
+}
+
+/**
  * A stable outer provider that ensures hook execution order remains constant.
  */
 export function Providers({ children }: { children: React.ReactNode }) {
@@ -45,6 +66,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
           <QueryProvider>
             <SmoothScroll>
               <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+                <GlobalLoadingReset />
                 <LoadingOverlay label={loadingLabel} />
                 {children}
                 <SultanPrint labels={sultanLabels} />

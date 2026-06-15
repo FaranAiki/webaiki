@@ -12,9 +12,13 @@ interface LoadingOverlayProps {
 // Trigger HMR update
 export default function LoadingOverlay({ label }: LoadingOverlayProps) {
   const [mounted, setMounted] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
+  const [internalVisible, setInternalVisible] = useState(true);
   const [hasStarted, setHasStarted] = useState(false);
+  
+  const isGlobalLoading = useAppStore((state) => state.isGlobalLoading);
   const setScrollLocked = useAppStore((state) => state.setScrollLocked);
+
+  const isVisible = internalVisible || isGlobalLoading;
 
   const EULER_MASCHERONI = 0.577;
 
@@ -69,7 +73,7 @@ export default function LoadingOverlay({ label }: LoadingOverlayProps) {
       const exitDelay = EULER_MASCHERONI * 1000;
       // We wait for the signature animation (roughly 2.5s) to mostly finish,
       // then add the 0.577s "aesthetic pause"
-      const exitTimer = setTimeout(() => setIsVisible(false), 2500 + exitDelay);
+      const exitTimer = setTimeout(() => setInternalVisible(false), 2500 + exitDelay);
 
       return () => {
         clearTimeout(startTimer);
@@ -78,6 +82,12 @@ export default function LoadingOverlay({ label }: LoadingOverlayProps) {
     }
     return () => clearTimeout(startTimer);
   }, [mounted, hasStarted]);
+
+  useEffect(() => {
+    if (isGlobalLoading) {
+      setHasStarted(true);
+    }
+  }, [isGlobalLoading]);
 
   // Human-like writing easing: starts slow, speeds up in middle, slows down at ends of strokes
   const humanWritingEase = [0.45, 0.05, 0.55, 0.95] as const;

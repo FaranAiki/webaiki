@@ -1,32 +1,67 @@
 'use client';
 
-import { useState } from 'react';
-import { submitHireRequest } from '@/app/hire-actions';
-import CaptchaValidator from './CaptchaValidator';
+import { useState, useEffect } from 'react';
+import { submitHireRequest, getExistingHireRequest } from '@/app/hire-actions';
+import { executeCaptcha } from './CaptchaValidator';
+import { WorkLocation, JobType } from '@/generated/prisma/client';
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
 
 interface HireMeFormProps {
   dict: Record<string, string>;
 }
 
+interface ExistingHireRequest {
+  company: string;
+  jobTitle: string | null;
+  location: WorkLocation;
+  jobType: JobType;
+  salary: string | null;
+  reason: string;
+}
+
 export default function HireMeForm({ dict }: HireMeFormProps) {
+  const params = useParams();
+  const lang = params?.lang as string || 'en';
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [initialLoading, setInitialLoading] = useState(true);
+  const [existingData, setExistingData] = useState<ExistingHireRequest | null>(null);
+
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const data = await getExistingHireRequest();
+        if (data) {
+          setExistingData(data);
+        }
+      } catch (err) {
+        console.error("Failed to load existing request", err);
+      } finally {
+        setInitialLoading(false);
+      }
+    }
+    loadData();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
-    if (!captchaToken) {
-      setError(dict.Invalid_Captcha || "Please complete the CAPTCHA");
-      return;
-    }
-
+    const form = e.currentTarget;
     setLoading(true);
     setError(null);
+
+    // Execute v3 captcha
+    const token = await executeCaptcha('hire_me');
     
-    const formData = new FormData(e.currentTarget);
-    const result = await submitHireRequest(formData, captchaToken);
+    if (!token) {
+      setError(dict.Invalid_Captcha || "Captcha verification failed");
+      setLoading(false);
+      return;
+    }
+    
+    const formData = new FormData(form);
+    const result = await submitHireRequest(formData, token);
     
     if (result?.error) {
       setError(result.error);
@@ -37,18 +72,36 @@ export default function HireMeForm({ dict }: HireMeFormProps) {
     }
   };
 
+  if (initialLoading) {
+    return (
+      <div className="max-w-2xl mx-auto mt-10 p-8 flex justify-center items-center h-64">
+        <div className="w-10 h-10 border-4 border-theme-500 border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
+
   if (success) {
     return (
       <div className="max-w-2xl mx-auto mt-10 p-8 bg-theme-surface rounded-2xl border border-theme-border shadow-theme-shadow text-center">
-        <h2 className="text-2xl font-bold text-theme-500 mb-4">{dict.Hire_Success}</h2>
+        <h2 className="text-2xl font-bold text-theme-500 mb-6">{dict.Hire_Success}</h2>
+        <Link
+          href={`/${lang}`}
+          className="inline-block px-8 py-3 rounded-xl bg-theme-500 text-white font-bold hover:bg-theme-400 transition-all active:scale-[0.98]"
+        >
+          {dict.Home}
+        </Link>
       </div>
     );
   }
 
   return (
     <div className="max-w-2xl mx-auto mt-10 p-8 bg-theme-surface rounded-2xl border border-theme-border shadow-theme-shadow">
-      <h1 className="text-3xl font-bold mb-2 nav-active-gacor">{dict.Hire_Me}</h1>
-      <p className="text-theme-muted mb-8">{dict.Hire_Me_Description}</p>
+      <h1 className="text-3xl font-bold mb-2 nav-active-gacor">
+        {existingData ? (dict.Edit_Profile || 'Edit Request') : dict.Hire_Me}
+      </h1>
+      <p className="text-theme-muted mb-8">
+        {existingData ? 'You have already submitted a request. You can edit it below.' : dict.Hire_Me_Description}
+      </p>
       
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -58,6 +111,7 @@ export default function HireMeForm({ dict }: HireMeFormProps) {
               name="company"
               type="text"
               required
+              defaultValue={existingData?.company || ''}
               placeholder={dict.Placeholder_Company || "Microsoft, Google, etc."}
               className="w-full px-4 py-3 rounded-xl bg-theme-surface-strong border border-theme-border focus:border-theme-500 outline-none transition-colors"
             />
@@ -67,6 +121,7 @@ export default function HireMeForm({ dict }: HireMeFormProps) {
             <input
               name="jobTitle"
               type="text"
+              defaultValue={existingData?.jobTitle || ''}
               placeholder={dict.Placeholder_Job_Title || "Full Stack Engineer"}
               className="w-full px-4 py-3 rounded-xl bg-theme-surface-strong border border-theme-border focus:border-theme-500 outline-none transition-colors"
             />
@@ -78,6 +133,7 @@ export default function HireMeForm({ dict }: HireMeFormProps) {
             <label className="block text-sm font-bold text-theme-muted mb-2">{dict.Location || 'Location'}</label>
             <select
               name="location"
+              defaultValue={existingData?.location || 'ONLINE'}
               className="w-full px-4 py-3 rounded-xl bg-theme-surface-strong border border-theme-border focus:border-theme-500 outline-none transition-colors"
             >
               <option value="ONLINE">{dict.Location_Online || 'Online'}</option>
@@ -89,6 +145,7 @@ export default function HireMeForm({ dict }: HireMeFormProps) {
             <label className="block text-sm font-bold text-theme-muted mb-2">{dict.Job_Type || 'Job Type'}</label>
             <select
               name="jobType"
+              defaultValue={existingData?.jobType || 'FULL_TIME'}
               className="w-full px-4 py-3 rounded-xl bg-theme-surface-strong border border-theme-border focus:border-theme-500 outline-none transition-colors"
             >
               <option value="FULL_TIME">{dict.Job_Type_Full_Time || 'Full Time'}</option>
@@ -104,6 +161,7 @@ export default function HireMeForm({ dict }: HireMeFormProps) {
           <input
             name="salary"
             type="text"
+            defaultValue={existingData?.salary || ''}
             placeholder={dict.Placeholder_Salary || "e.g. 10M - 15M / month"}
             className="w-full px-4 py-3 rounded-xl bg-theme-surface-strong border border-theme-border focus:border-theme-500 outline-none transition-colors"
           />
@@ -115,23 +173,24 @@ export default function HireMeForm({ dict }: HireMeFormProps) {
             name="reason"
             required
             rows={4}
-            className="w-full px-4 py-3 rounded-xl bg-theme-surface-strong border border-theme-border focus:border-theme-500 outline-none transition-colors resize-none"
+            defaultValue={existingData?.reason || ''}
+            className="w-full px-4 py-3 rounded-xl bg-theme-surface-strong border border-theme-border focus:border-theme-500 outline-none transition-all resize-none"
           />
         </div>
-
-        <CaptchaValidator onValidate={(token) => setCaptchaToken(token)}>
-           <div className="hidden">Captcha Required</div>
-        </CaptchaValidator>
 
         {error && <p className="text-red-500 text-sm font-medium">{error}</p>}
         
         <button
           type="submit"
-          disabled={loading || !captchaToken}
+          disabled={loading}
           className="w-full py-4 rounded-xl bg-theme-500 text-white font-bold text-lg hover:bg-theme-400 transition-all active:scale-[0.98] disabled:opacity-50"
         >
-          {loading ? dict.Waiting : dict.Submit}
+          {loading ? dict.Waiting : (existingData ? (dict.Update_Profile || 'Update Request') : dict.Submit)}
         </button>
+
+        <p className="text-[10px] text-center text-theme-muted mt-4 opacity-50">
+          This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy" className="underline">Privacy Policy</a> and <a href="https://policies.google.com/terms" className="underline">Terms of Service</a> apply.
+        </p>
       </form>
     </div>
   );

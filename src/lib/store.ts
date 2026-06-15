@@ -7,6 +7,8 @@ interface AppState {
   setAskMeOpen: (isOpen: boolean) => void;
   isScrollLocked: boolean;
   setScrollLocked: (isLocked: boolean) => void;
+  isGlobalLoading: boolean;
+  setGlobalLoading: (isLoading: boolean) => void;
 }
 
 export const useAppStore = create<AppState>((set) => ({
@@ -16,4 +18,6 @@ export const useAppStore = create<AppState>((set) => ({
   setAskMeOpen: (isOpen) => set({ isAskMeOpen: isOpen }),
   isScrollLocked: false,
   setScrollLocked: (isLocked) => set({ isScrollLocked: isLocked }),
+  isGlobalLoading: false,
+  setGlobalLoading: (isLoading) => set({ isGlobalLoading: isLoading }),
 }));
