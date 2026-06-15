@@ -29,7 +29,19 @@ async function verifyRecaptcha(token: string) {
   );
 
   const data = await response.json();
-  return data.success;
+  // v3 returns a score (0.0 - 1.0). 0.5 is the recommended default threshold.
+  return data.success && data.score >= 0.5;
+}
+
+export async function getExistingHireRequest() {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user) return null;
+
+  return await prisma.hireRequest.findFirst({
+    where: { userId: user.id },
+  });
 }
 
 export async function submitHireRequest(formData: FormData, captchaToken: string) {
@@ -73,17 +85,30 @@ export async function submitHireRequest(formData: FormData, captchaToken: string
       },
     });
 
-    await prisma.hireRequest.create({
-      data: {
-        ...validatedData,
-        userId: user.id,
-      },
+    const existingRequest = await prisma.hireRequest.findFirst({
+      where: { userId: user.id },
     });
+
+    if (existingRequest) {
+      await prisma.hireRequest.update({
+        where: { id: existingRequest.id },
+        data: {
+          ...validatedData,
+        },
+      });
+    } else {
+      await prisma.hireRequest.create({
+        data: {
+          ...validatedData,
+          userId: user.id,
+        },
+      });
+    }
 
     revalidatePath('/hire-me');
     return { success: true };
-  } catch (err) {
-    console.error(err);
-    return { error: 'Database error' };
+  } catch (error) {
+    console.error('Error submitting hire request:', error);
+    return { error: 'Failed to submit request' };
   }
 }
