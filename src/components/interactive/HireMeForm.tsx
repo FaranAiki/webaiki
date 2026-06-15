@@ -100,7 +100,7 @@ export default function HireMeForm({ dict }: HireMeFormProps) {
         {existingData ? (dict.Edit_Profile || 'Edit Request') : dict.Hire_Me}
       </h1>
       <p className="text-theme-muted mb-8">
-        {existingData ? 'You have already submitted a request. You can edit it below.' : dict.Hire_Me_Description}
+        {existingData ? (dict.Hire_Already_Submitted || 'You have already submitted a request. You can edit it below.') : dict.Hire_Me_Description}
       </p>
       
       <form onSubmit={handleSubmit} className="space-y-6">
