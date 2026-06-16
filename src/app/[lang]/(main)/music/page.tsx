@@ -66,7 +66,7 @@ export default async function MusicPage({ params }: { params: Promise<{ lang: st
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
         nonce={nonce}
       />
-      <MusicDisplay youtubeItems={youtubeItems} error={errorString} lang={lang} />
+      <MusicDisplay youtubeItems={youtubeItems} error={errorString} lang={lang} dict={dict} />
     </main>
   );
 }

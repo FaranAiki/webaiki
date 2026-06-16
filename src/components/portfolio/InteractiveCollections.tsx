@@ -22,6 +22,7 @@ export type InteractiveCollectionsProps = {
   original_text?: string;
   timeline_text?: string;
   grid_text?: string;
+  dict?: Record<string, string>;
 };
 
 const getPath = (data: string | { path: string; point: number }): string => {
@@ -35,7 +36,8 @@ export default function InteractiveCollections( {
   lang = 'en',
   original_text = 'Original',
   timeline_text = 'Timeline',
-  grid_text = 'Grid'
+  grid_text = 'Grid',
+  dict = {}
 }: InteractiveCollectionsProps ) {
   const [currentLayout, setCurrentLayout] = useState<CollectionLayoutType>('original');
   const [activeHeadingOne, setActiveHeadingOne] = useState<string | null>(null);
@@ -144,7 +146,7 @@ export default function InteractiveCollections( {
                           rel="noopener noreferrer"
                           className="bg-theme-500 text-white px-4 py-1.5 rounded-full font-bold text-sm hover:bg-theme-600 transition-colors shadow-md shrink-0"
                         >
-                          Open
+                          {dict.Open || 'Open'}
                         </a>
                       )}
                     </div>
@@ -234,14 +236,14 @@ export default function InteractiveCollections( {
                                                       ) : (
                                                           <span className="flex items-center text-theme-muted cursor-not-allowed">
                                                           <XCircle size={16} className="mr-2 flex-shrink-0" />
-                                                          <span>{formatCJK(docName, lang)} (Not available)</span>
+                                                          <span>{formatCJK(docName, lang)} ({dict.Not_Available || 'Not available'})</span>
                                                           </span>
                                                       )}
                                                   </FadeInSection>
                                               );})}
                                               </div>
                                           ) : (
-                                              <p className="pl-6 mt-1 text-sm text-theme-muted italic animate-fade-in">No documents available.</p>
+                                              <p className="pl-6 mt-1 text-sm text-theme-muted italic animate-fade-in">{dict.No_Documents_Available || 'No documents available.'}</p>
                                           )
                                           )}
                                       </div>
@@ -321,10 +323,10 @@ export default function InteractiveCollections( {
                                       rel="noopener noreferrer"
                                       className="inline-flex items-center gap-2 text-theme-500 font-bold hover:underline"
                                   >
-                                      View Document <LinkIcon size={14} />
+                                      {dict.View_Document || 'View Document'} <LinkIcon size={14} />
                                   </a>
                               ) : (
-                                  <span className="text-theme-muted text-sm italic">Not available</span>
+                                  <span className="text-theme-muted text-sm italic">{dict.Not_Available || 'Not available'}</span>
                               )}
                           </motion.div>
                       );})}

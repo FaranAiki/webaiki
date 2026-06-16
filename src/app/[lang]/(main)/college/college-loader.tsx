@@ -19,6 +19,7 @@ export type CollegeLoaderProps = {
   original_text?: string;
   timeline_text?: string;
   grid_text?: string;
+  dict?: Record<string, string>;
 };
 
 // Use dynamic import for the component that needs browser APIs
@@ -30,7 +31,7 @@ const CollegeDisplay = dynamic(
 );
 
 // This component receives the server-fetched data as props
-export default function CollegeLoader({ data, force_click, lang, original_text, timeline_text, grid_text }: CollegeLoaderProps) {
+export default function CollegeLoader({ data, force_click, lang, original_text, timeline_text, grid_text, dict }: CollegeLoaderProps) {
   return <CollegeDisplay 
     data={data} 
     force_click={force_click} 
@@ -38,5 +39,6 @@ export default function CollegeLoader({ data, force_click, lang, original_text, 
     original_text={original_text}
     timeline_text={timeline_text}
     grid_text={grid_text}
+    dict={dict}
   />;
 }

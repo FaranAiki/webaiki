@@ -185,7 +185,7 @@ export default function FeedbackDisplay({ dict, lang, currentUserId }: FeedbackD
                         ) : (
                           <Camera size={18} className="text-theme-muted" />
                         )}
-                        <span className="text-xs font-bold text-theme-muted">Image</span>
+                        <span className="text-xs font-bold text-theme-muted">{dict.Image || 'Image'}</span>
                         <input type="file" accept="image/*" className="hidden" onChange={handleImageUpload} disabled={uploading} />
                       </label>
                       {imageUrl && (

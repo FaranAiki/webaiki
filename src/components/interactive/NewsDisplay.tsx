@@ -176,7 +176,7 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
               <div className="p-6 bg-theme-surface rounded-2xl border border-theme-border shadow-theme-shadow mb-12">
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-sm font-bold text-theme-muted mb-1">Title</label>
+                    <label className="block text-sm font-bold text-theme-muted mb-1">{dict.Title || 'Title'}</label>
                     <input
                       type="text"
                       value={title}
@@ -186,7 +186,7 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-bold text-theme-muted mb-1">Image (Optional)</label>
+                    <label className="block text-sm font-bold text-theme-muted mb-1">{dict.Image_Optional || 'Image (Optional)'}</label>
                     <div className="flex items-center gap-4">
                       <label className="flex items-center gap-2 px-4 py-2 rounded-xl bg-theme-surface-strong border border-theme-border hover:border-theme-500 cursor-pointer transition-all">
                         {uploading ? (
@@ -194,7 +194,7 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
                         ) : (
                           <Camera size={18} className="text-theme-muted" />
                         )}
-                        <span className="text-xs font-bold text-theme-muted">Upload Photo</span>
+                        <span className="text-xs font-bold text-theme-muted">{dict.Upload_Photo || 'Upload Photo'}</span>
                         <input type="file" accept="image/*" className="hidden" onChange={handleImageUpload} disabled={uploading} />
                       </label>
                       

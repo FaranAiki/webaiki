@@ -19,6 +19,7 @@ export type LiteratureLoaderProps = {
   original_text?: string;
   timeline_text?: string;
   grid_text?: string;
+  dict?: Record<string, string>;
 };
 
 // Use dynamic import for the component that needs browser APIs
@@ -30,7 +31,7 @@ const LiteratureDisplay = dynamic(
 );
 
 // This component receives the server-fetched data as props
-export default function LiteratureLoader({ data, force_click, lang, original_text, timeline_text, grid_text }: LiteratureLoaderProps) {
+export default function LiteratureLoader({ data, force_click, lang, original_text, timeline_text, grid_text, dict }: LiteratureLoaderProps) {
   return <LiteratureDisplay 
     data={data} 
     force_click={force_click} 
@@ -38,5 +39,6 @@ export default function LiteratureLoader({ data, force_click, lang, original_tex
     original_text={original_text}
     timeline_text={timeline_text}
     grid_text={grid_text}
+    dict={dict}
   />;
 }

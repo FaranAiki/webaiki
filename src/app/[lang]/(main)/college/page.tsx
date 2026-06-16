@@ -56,6 +56,7 @@ export default async function CollegePage({ params }: { params: Promise<{ lang: 
           original_text={dict.Original}
           timeline_text={dict.Timeline}
           grid_text={dict.Grid}
+          dict={dict}
         />
      </React.Suspense>
     </main>

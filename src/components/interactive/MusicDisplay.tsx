@@ -30,9 +30,10 @@ interface MusicDisplayProps {
   youtubeItems?: PlaylistItem[]; 
   error?: string;
   lang?: string;
+  dict?: Record<string, string>;
 }
 
-export default function MusicDisplay({ youtubeItems = [], error, lang }: MusicDisplayProps) {
+export default function MusicDisplay({ youtubeItems = [], error, lang, dict = {} }: MusicDisplayProps) {
   // GTMetrix Optimization: Delay loading of heavy iframes to significantly improve Time to Interactive (TTI) and Speed Index.
   const [iframesLoaded, setIframesLoaded] = useState(false);
   const { isPresentationMode } = usePresentation();
@@ -177,7 +178,7 @@ export default function MusicDisplay({ youtubeItems = [], error, lang }: MusicDi
         ) : (
             <FadeInSection slideIndex={3} totalSlides={totalSlides} className="w-full h-full flex-shrink-0">
                 <div className="flex flex-col items-center justify-center w-full max-w-4xl mx-auto p-4 pt-20 pb-10">
-                    <h2 className="text-3xl font-bold text-red-500">YouTube Playlist Empty</h2>
+                    <h2 className="text-3xl font-bold text-red-500">{dict.YouTube_Playlist_Empty || 'YouTube Playlist Empty'}</h2>
                 </div>
             </FadeInSection>
         )}
@@ -198,7 +199,7 @@ export default function MusicDisplay({ youtubeItems = [], error, lang }: MusicDi
             <div className="w-full h-[352px] relative rounded-[12px] bg-theme-surface-strong overflow-hidden mb-8">
               {!iframesLoaded && (
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-theme-muted text-sm animate-pulse">Loading Spotify Player...</span>
+                  <span className="text-theme-muted text-sm animate-pulse">{dict.Loading_Spotify || 'Loading Spotify Player...'}</span>
                 </div>
               )}
               {iframesLoaded && (
@@ -225,7 +226,7 @@ export default function MusicDisplay({ youtubeItems = [], error, lang }: MusicDi
               <div className="w-full h-[300px] relative bg-theme-surface-strong overflow-hidden mb-8 rounded-lg">
                 {!iframesLoaded && (
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-theme-muted text-sm animate-pulse">Loading SoundCloud Player...</span>
+                    <span className="text-theme-muted text-sm animate-pulse">{dict.Loading_SoundCloud || 'Loading SoundCloud Player...'}</span>
                   </div>
                 )}
                 {iframesLoaded && (
@@ -276,7 +277,7 @@ export default function MusicDisplay({ youtubeItems = [], error, lang }: MusicDi
                   ))}
                 </ul>
               ) : (
-                <p className="text-theme-muted">Cannot load video or playlist is empty.</p>
+                <p className="text-theme-muted">{dict.Cannot_Load_Video || 'Cannot load video or playlist is empty.'}</p>
               )}
             </section>
           </div>

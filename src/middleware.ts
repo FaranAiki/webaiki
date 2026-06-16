@@ -7,7 +7,7 @@ const defaultLocale = 'id';
 
 const base_cspHeader = `
     default-src 'self' https://ndutyvnkhavzchhjmzfm.supabase.co;
-    script-src 'nonce-placeholder' 'strict-dynamic' 'wasm-unsafe-eval' 'sha256-rbbnijHn7DZ6ps39myQ3cVQF1H+U/PJfHh5ei/Q2kb8=' 'sha256-n46vPwSWuMC0W703pBofImv82Z26xo4LXymv0E9caPk=' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/ ${
+    script-src 'nonce-placeholder' 'strict-dynamic' 'wasm-unsafe-eval' 'sha256-rbbnijHn7DZ6ps39myQ3cVQF1H+U/PJfHh5ei/Q2kb8=' 'sha256-n46vPwSWuMC0W703pBofImv82Z26xo4LXymv0E9caPk=' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/ https://cloud.umami.is ${
       process.env.NODE_ENV === 'development' ? "'unsafe-eval'" : ''
     };
     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
@@ -18,7 +18,7 @@ const base_cspHeader = `
     form-action 'self';
     frame-ancestors 'none';
     frame-src 'self' https://analitica-graph.web.app https://analitica-graph.firebaseapp.com https://open.spotify.com https://w.soundcloud.com https://www.google.com/recaptcha/ https://recaptcha.google.com/;
-    connect-src 'self' https://generativelanguage.googleapis.com https://cdn.jsdelivr.net https://faranaiki.id https://fonts.gstatic.com https://www.gstatic.com https://fonts.googleapis.com https://cloud.umami.is https://api-gateway.umami.dev https://gateway.umami.is https://unpkg.com https://ndutyvnkhavzchhjmzfm.supabase.co https://www.google.com/recaptcha/;
+    connect-src 'self' https://generativelanguage.googleapis.com https://cdn.jsdelivr.net https://faranaiki.id https://fonts.gstatic.com https://www.gstatic.com https://fonts.googleapis.com https://cloud.umami.is https://api-gateway.umami.dev https://gateway.umami.is https://unpkg.com https://ndutyvnkhavzchhjmzfm.supabase.co https://www.google.com/recaptcha/ https://www.google.com;
     worker-src 'self' blob:;
     ${process.env.NODE_ENV === 'production' ? 'upgrade-insecure-requests;' : ''}
   `.replace(/\s{2,}/g, ' ').trim()
@@ -162,20 +162,15 @@ export async function middleware(request: NextRequest) {
 // Ensure middleware runs on all routes except static assets
 export const config = {
   matcher: [
-    {
-      /*
-       * Match all request paths except for the ones starting with:
-       * - api (API routes)
-       * - _next (internal Next.js paths)
-       * - any path with a dot (e.g. favicon.ico, pdf.worker.min.mjs, etc.)
-       * - images (public images)
-       * - documents (public documents)
-       */
-      source: '/((?!api|_next|.*\\..*|images|documents).*)',
-      missing: [
-        { type: 'header', key: 'next-router-prefetch' },
-        { type: 'header', key: 'purpose', value: 'prefetch' },
-      ],
-    },
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     * - images, documents, locales (public assets)
+     * - any path with a dot (file extensions)
+     */
+    '/((?!api|_next/static|_next/image|favicon.ico|images|documents|locales|.*\\..*).*)',
   ],
 };

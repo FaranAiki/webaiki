@@ -110,10 +110,10 @@ export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientP
                     <motion.span
                       key={wordIndex}
                       initial={{ x: 0, y: 30, opacity: 0 }}
-                      animate={{ x: -4, y: 0, opacity: 1 }}
+                      animate={{ x: 0, y: 0, opacity: 1 }}
                       exit={{ y: -30, opacity: 0 }}
                       transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-                      className="absolute inset-0 flex items-center justify-center text-theme-500 whitespace-nowrap nav-active-gacor lowercase"
+                      className="absolute inset-0 flex items-center justify-center lg:justify-start text-theme-500 whitespace-nowrap nav-active-gacor lowercase"
                     >
                       {cyclingData[wordIndex].word}
                     </motion.span>

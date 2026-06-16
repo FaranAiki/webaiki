@@ -115,6 +115,7 @@ export const getProjectExperiences = (dict: Dictionary) => [
         date: `${dict.June} 2026`,
         title: dict.National_Statistics_Competition_Prep,
         company: 'Probability & Statistics, SARIMAX, MANOVA, Python, Jupyter',
+        url: 'https://github.com/FaranAiki/belajar_nsc',
         description: dict.National_Statistics_Competition_Prep_Description,
         point: 85,
         image: [

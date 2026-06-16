@@ -54,6 +54,7 @@ export default async function LiteraturePage({ params }: { params: Promise<{ lan
         original_text={dict.Original}
         timeline_text={dict.Timeline}
         grid_text={dict.Grid}
+        dict={dict}
       />
     </main>
   );
