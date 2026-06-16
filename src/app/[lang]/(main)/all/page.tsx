@@ -13,6 +13,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { getLanguageAlternates, getBaseMetadata, getPersonSchema, getBreadcrumbSchema, getFaqSchema, SITE_URL } from '@/lib/seo';
+import PageEntrance from "@/components/shared/PageEntrance";
 
 import {
   getWorkExperiences,
@@ -185,175 +186,177 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         nonce={nonce}
       />
-      {/* Refined Portfolio Header */}
-      <section id="about" className="container mx-auto px-4 sm:px-8">
-        <div className="flex justify-end mb-4">
-            <Link 
-                href={`/${lang}/portfolio`}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-theme-surface-strong border border-theme-border hover:border-theme-500 transition-all font-bold text-xs text-[var(--text-muted)] hover:text-theme-500 group"
-            >
-                <Star size={14} className="group-hover:animate-spin-slow" />
-                {dict.Summary || 'Summary'}
-            </Link>
-        </div>
-        <PortfolioAboutHeader
-          lang={lang}
-          carouselPhotos={faranPhotos}
-          faran_photo={dict.Faran_Photo}
-          about_philosophy_title={dict.Faran_Philosophy_Title}
-          about_philosophy={dict.Faran_Philosophy}
-          about_principle_title={dict.Faran_Principle_Title}
-          about_principle_1={dict.Faran_Principle_1}
-          about_principle_2={dict.Faran_Principle_2}
-          about_principle_3=""
-          about_vision_mission_title={dict.Faran_Vision_Mission_Title}
-          about_vision_mission_1={dict.Faran_Vision_Mission_1}
-          about_vision_mission_2={dict.Faran_Vision_Mission_2}
-          about_vision_mission_3={dict.Faran_Vision_Mission_3}
-          about_title={dict.About_Me}
-          about_text_1={dict.Faran_About_1}
-          about_text_2={dict.Faran_About_2}
-        />
-      </section>
-
-      {/* Professional Content - High Point Highlights */}
-      <div className="space-y-6">
-        {/* Work & Projects - High Impact Full Width */}
-        {importantWork.length > 0 && (
-          <section id="work" className="space-y-2">
-            <div className="container mx-auto px-4 sm:px-8">
-                <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
-                    <Briefcase size={18} className="text-theme-500" />
-                    <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Work}</h2>
-                </div>
-            </div>
-            <ExperiencesClient
-              experiences={importantWork}
-              lang={lang}
-              layout="bento"
-              canChange={false}
-              click_to_close_text={dict.Click_To_Close}
-              modern_text={dict.Presentation_Modern}
-              cinematic_text={dict.Presentation_Cinematic}
-              editorial_text={dict.Presentation_Editorial}
-            />
-          </section>
-        )}
-
-        {importantProjects.length > 0 && (
-          <section id="projects" className="space-y-2">
-            <div className="container mx-auto px-4 sm:px-8">
-                <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
-                    <Code size={18} className="text-theme-500" />
-                    <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Project}</h2>
-                </div>
-            </div>
-            <ExperiencesClient
-              experiences={importantProjects}
-              lang={lang}
-              layout="original"
-              canChange={false}
-              click_to_close_text={dict.Click_To_Close}
-              modern_text={dict.Presentation_Modern}
-              cinematic_text={dict.Presentation_Cinematic}
-              editorial_text={dict.Presentation_Editorial}
-            />
-          </section>
-        )}
-
-        {/* Side-by-Side Organizations and Awards on Desktop */}
-        {(importantOrg.length > 0 || importantAwards.length > 0) && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 container mx-auto px-4 sm:px-8">
-            {importantOrg.length > 0 && (
-              <section id="organizations" className="space-y-2">
-                <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
-                    <Users size={18} className="text-theme-500" />
-                    <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Organization}</h2>
-                </div>
-                <div className="lg:contents">
-                   <ExperiencesClient
-                     experiences={importantOrg}
-                     lang={lang}
-                     layout="timeline"
-                     canChange={false}
-                     click_to_close_text={dict.Click_To_Close}
-                     modern_text={dict.Presentation_Modern}
-                     cinematic_text={dict.Presentation_Cinematic}
-                     editorial_text={dict.Presentation_Editorial}
-                   />
-                </div>
-              </section>
-            )}
-
-            {importantAwards.length > 0 && (
-              <section id="awards" className="space-y-2">
-                <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
-                    <Trophy size={18} className="text-theme-500" />
-                    <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Award}</h2>
-                </div>
-                <div className="lg:contents">
-                  <ExperiencesClient
-                    experiences={importantAwards}
-                    lang={lang}
-                    layout="timeline"
-                    canChange={false}
-                    click_to_close_text={dict.Click_To_Close}
-                    modern_text={dict.Presentation_Modern}
-                    cinematic_text={dict.Presentation_Cinematic}
-                    editorial_text={dict.Presentation_Editorial}
-                  />
-                </div>
-              </section>
-            )}
+      <PageEntrance className="space-y-6">
+        {/* Refined Portfolio Header */}
+        <section id="about" className="container mx-auto px-4 sm:px-8">
+          <div className="flex justify-end mb-4">
+              <Link 
+                  href={`/${lang}/portfolio`}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-theme-surface-strong border border-theme-border hover:border-theme-500 transition-all font-bold text-xs text-[var(--text-muted)] hover:text-theme-500 group"
+              >
+                  <Star size={14} className="group-hover:animate-spin-slow" />
+                  {dict.Summary || 'Summary'}
+              </Link>
           </div>
-        )}
-
-        {/* Certificates - Visual Grid */}
-        {Object.keys(importantCerts).length > 0 && (
-          <section id="certificates" className="space-y-4">
-            <div className="container mx-auto px-4 sm:px-8">
-                <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
-                    <FileCheck size={18} className="text-theme-500" />
-                    <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Certificate}</h2>
-                </div>
-            </div>
-            <CertificatesDisplay certificates={importantCerts} lang={lang} allTranslation={dict.All} click_to_close_text={dict.Click_To_Close} />
-          </section>
-        )}
-
-        {/* Highlighted Materials - Side-by-Side on Desktop */}
-        {(Object.keys(importantCollege).length > 0 || Object.keys(importantLiterature).length > 0) && (
-          <section id="highlights" className="space-y-4 container mx-auto px-4 sm:px-8">
-            <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
-                <Star size={18} className="text-theme-500" />
-                <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Important_Highlights}</h2>
-            </div>            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {Object.keys(importantCollege).length > 0 && (
-                    <InteractiveCollections data={importantCollege} lang={lang} force_click={true} />
-                )}
-                {Object.keys(importantLiterature).length > 0 && (
-                    <InteractiveCollections data={importantLiterature} lang={lang} force_click={true} />
-                )}
-            </div>
-          </section>
-        )}
-
-        {/* Social Media Section */}
-        <section id="social" className="space-y-4 container mx-auto px-4 sm:px-8 pb-12">
-            <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
-                <Share2 size={18} className="text-theme-500" />
-                <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Social}</h2>
-            </div>
-            <div className="bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-3xl overflow-hidden">
-                <SocialDisplay customLinks={importantSocialLinks} hidePresentation={true} />
-            </div>
+          <PortfolioAboutHeader
+            lang={lang}
+            carouselPhotos={faranPhotos}
+            faran_photo={dict.Faran_Photo}
+            about_philosophy_title={dict.Faran_Philosophy_Title}
+            about_philosophy={dict.Faran_Philosophy}
+            about_principle_title={dict.Faran_Principle_Title}
+            about_principle_1={dict.Faran_Principle_1}
+            about_principle_2={dict.Faran_Principle_2}
+            about_principle_3=""
+            about_vision_mission_title={dict.Faran_Vision_Mission_Title}
+            about_vision_mission_1={dict.Faran_Vision_Mission_1}
+            about_vision_mission_2={dict.Faran_Vision_Mission_2}
+            about_vision_mission_3={dict.Faran_Vision_Mission_3}
+            about_title={dict.About_Me}
+            about_text_1={dict.Faran_About_1}
+            about_text_2={dict.Faran_About_2}
+          />
         </section>
 
-        {/* FAQ Section */}
-        <section className="container mx-auto px-4 sm:px-8 pb-20">
-            <FAQ title={dict.FAQ_Faran_Title} items={faranFaqs} />
-        </section>
-      </div>
-    </main>
-  );
-}
+        {/* Professional Content - High Point Highlights */}
+        <div className="space-y-6">
+          {/* Work & Projects - High Impact Full Width */}
+          {importantWork.length > 0 && (
+            <section id="work" className="space-y-2">
+              <div className="container mx-auto px-4 sm:px-8">
+                  <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
+                      <Briefcase size={18} className="text-theme-500" />
+                      <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Work}</h2>
+                  </div>
+              </div>
+              <ExperiencesClient
+                experiences={importantWork}
+                lang={lang}
+                layout="bento"
+                canChange={false}
+                click_to_close_text={dict.Click_To_Close}
+                modern_text={dict.Presentation_Modern}
+                cinematic_text={dict.Presentation_Cinematic}
+                editorial_text={dict.Presentation_Editorial}
+              />
+            </section>
+          )}
+
+          {importantProjects.length > 0 && (
+            <section id="projects" className="space-y-2">
+              <div className="container mx-auto px-4 sm:px-8">
+                  <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
+                      <Code size={18} className="text-theme-500" />
+                      <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Project}</h2>
+                  </div>
+              </div>
+              <ExperiencesClient
+                experiences={importantProjects}
+                lang={lang}
+                layout="original"
+                canChange={false}
+                click_to_close_text={dict.Click_To_Close}
+                modern_text={dict.Presentation_Modern}
+                cinematic_text={dict.Presentation_Cinematic}
+                editorial_text={dict.Presentation_Editorial}
+              />
+            </section>
+          )}
+
+          {/* Side-by-Side Organizations and Awards on Desktop */}
+          {(importantOrg.length > 0 || importantAwards.length > 0) && (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 container mx-auto px-4 sm:px-8">
+              {importantOrg.length > 0 && (
+                <section id="organizations" className="space-y-2">
+                  <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
+                      <Users size={18} className="text-theme-500" />
+                      <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Organization}</h2>
+                  </div>
+                  <div className="lg:contents">
+                    <ExperiencesClient
+                      experiences={importantOrg}
+                      lang={lang}
+                      layout="timeline"
+                      canChange={false}
+                      click_to_close_text={dict.Click_To_Close}
+                      modern_text={dict.Presentation_Modern}
+                      cinematic_text={dict.Presentation_Cinematic}
+                      editorial_text={dict.Presentation_Editorial}
+                    />
+                  </div>
+                </section>
+              )}
+
+              {importantAwards.length > 0 && (
+                <section id="awards" className="space-y-2">
+                  <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
+                      <Trophy size={18} className="text-theme-500" />
+                      <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Award}</h2>
+                  </div>
+                  <div className="lg:contents">
+                    <ExperiencesClient
+                      experiences={importantAwards}
+                      lang={lang}
+                      layout="timeline"
+                      canChange={false}
+                      click_to_close_text={dict.Click_To_Close}
+                      modern_text={dict.Presentation_Modern}
+                      cinematic_text={dict.Presentation_Cinematic}
+                      editorial_text={dict.Presentation_Editorial}
+                    />
+                  </div>
+                </section>
+              )}
+            </div>
+          )}
+
+          {/* Certificates - Visual Grid */}
+          {Object.keys(importantCerts).length > 0 && (
+            <section id="certificates" className="space-y-4">
+              <div className="container mx-auto px-4 sm:px-8">
+                  <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
+                      <FileCheck size={18} className="text-theme-500" />
+                      <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Certificate}</h2>
+                  </div>
+              </div>
+              <CertificatesDisplay certificates={importantCerts} lang={lang} allTranslation={dict.All} click_to_close_text={dict.Click_To_Close} />
+            </section>
+          )}
+
+          {/* Highlighted Materials - Side-by-Side on Desktop */}
+          {(Object.keys(importantCollege).length > 0 || Object.keys(importantLiterature).length > 0) && (
+            <section id="highlights" className="space-y-4 container mx-auto px-4 sm:px-8">
+              <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
+                  <Star size={18} className="text-theme-500" />
+                  <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Important_Highlights}</h2>
+              </div>            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  {Object.keys(importantCollege).length > 0 && (
+                      <InteractiveCollections data={importantCollege} lang={lang} force_click={true} />
+                  )}
+                  {Object.keys(importantLiterature).length > 0 && (
+                      <InteractiveCollections data={importantLiterature} lang={lang} force_click={true} />
+                  )}
+              </div>
+            </section>
+          )}
+
+          {/* Social Media Section */}
+          <section id="social" className="space-y-4 container mx-auto px-4 sm:px-8 pb-12">
+              <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
+                  <Share2 size={18} className="text-theme-500" />
+                  <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Social}</h2>
+              </div>
+              <div className="bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-3xl overflow-hidden">
+                  <SocialDisplay customLinks={importantSocialLinks} hidePresentation={true} />
+              </div>
+          </section>
+
+          {/* FAQ Section */}
+          <section className="container mx-auto px-4 sm:px-8 pb-20">
+              <FAQ title={dict.FAQ_Faran_Title} items={faranFaqs} />
+          </section>
+          </div>
+          </PageEntrance>
+          </main>
+          );
+          }

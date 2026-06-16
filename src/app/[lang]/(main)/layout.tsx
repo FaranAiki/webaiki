@@ -152,13 +152,11 @@ export default async function RootLayout({
         share_copied={dict.Copied_To_Clipboard}
         share_description={dict.Share_Description}
         user={user}
-        auth_labels={{
-          Login: dict.Login,
-          Logout: dict.Logout,
-          Register: dict.Register,
-          Edit_Profile: dict.Edit_Profile,
-          View_Profile: dict.View_Profile
-        }}
+        login_label={dict.Login}
+        logout_label={dict.Logout}
+        register_label={dict.Register}
+        edit_profile_label={dict.Edit_Profile}
+        view_profile_label={dict.View_Profile}
         settings_labels={{
           Settings: dict.Settings,
           Typography: dict.Typography,

@@ -23,126 +23,73 @@ const base_cspHeader = `
     ${process.env.NODE_ENV === 'production' ? 'upgrade-insecure-requests;' : ''}
   `.replace(/\s{2,}/g, ' ').trim()
 
-// Security implementation for Content Security Policy and Nonce
 export async function middleware(request: NextRequest) {
-  // 1. Update Supabase session
-  const supabaseResponse = await updateSession(request);
-  
   const { pathname, searchParams } = request.nextUrl;
 
-  // Capture settings from URL query parameters
-  const settingsParams = [
-    'theme',
-    'color',
-    'presentation_mode',
-    'presentation_slide_format',
-    'settings-font',
-    'settings-align',
-    'settings-scale',
-    'settings-spacing',
-    'settings-lineheight'
-  ];
-
-  const foundSettings: Record<string, string> = {};
-  settingsParams.forEach(param => {
-    const value = searchParams.get(param);
-    if (value !== null) {
-      foundSettings[param] = value;
-    }
-  });
-
-  // 2. Handle Language Detection
-  const cookieLang = request.cookies.get('language')?.value;
-  
-  let locale = defaultLocale;
-  if (cookieLang && locales.includes(cookieLang)) {
-    locale = cookieLang;
-  } else {
-    // Detect browser language
-    const acceptLanguage = request.headers.get('accept-language');
-    if (acceptLanguage) {
-      const preferredLocales = acceptLanguage.split(',').map(lang => {
-        const [code] = lang.split(';')[0].split('-');
-        return code.trim().toLowerCase();
-      });
-      for (const code of preferredLocales) {
-        if (locales.includes(code)) {
-          locale = code;
-          break;
-        }
-      }
-    }
-  }
-
-  // 3. Check if the current URL already has a language prefix
+  // 1. Check if the current URL already has a language prefix
   const pathnameHasLocale = locales.some(
     (loc) => pathname.startsWith(`/${loc}/`) || pathname === `/${loc}`
   );
 
-  const applySettingsCookies = (res: NextResponse) => {
-    Object.entries(foundSettings).forEach(([name, value]) => {
-      res.cookies.set(`__set_${name}`, value, { 
-        maxAge: 60, 
-        path: '/', 
-        httpOnly: false,
-        sameSite: 'lax'
-      });
-    });
-  };
-
-  // 4. If it doesn't have a prefix, redirect to the URL WITH the prefix
+  // 2. Optimized Redirection Logic
   if (!pathnameHasLocale) {
+    // Detect Language
+    const cookieLang = request.cookies.get('language')?.value;
+    let locale = defaultLocale;
+    
+    if (cookieLang && locales.includes(cookieLang)) {
+      locale = cookieLang;
+    } else {
+      const acceptLanguage = request.headers.get('accept-language');
+      if (acceptLanguage) {
+        const preferredLocales = acceptLanguage.split(',').map(lang => {
+          const [code] = lang.split(';')[0].split('-');
+          return code.trim().toLowerCase();
+        });
+        for (const code of preferredLocales) {
+          if (locales.includes(code)) {
+            locale = code;
+            break;
+          }
+        }
+      }
+    }
+
     request.nextUrl.pathname = `/${locale}${pathname}`;
     const redirectResponse = NextResponse.redirect(request.nextUrl);
     
-    // Merge Supabase cookies into redirect response
-    supabaseResponse.cookies.getAll().forEach((cookie) => {
-      redirectResponse.cookies.set(cookie.name, cookie.value, cookie);
+    // Minimal cookie handling for redirect
+    const settingsParams = ['theme', 'color', 'presentation_mode', 'presentation_slide_format', 'settings-font', 'settings-align', 'settings-scale', 'settings-spacing', 'settings-lineheight'];
+    settingsParams.forEach(param => {
+      const value = searchParams.get(param);
+      if (value !== null) {
+        redirectResponse.cookies.set(`__set_${param}`, value, { maxAge: 60, path: '/', sameSite: 'lax' });
+      }
     });
 
-    applySettingsCookies(redirectResponse);
-
-    const isPythonRedirect = request.nextUrl.pathname.includes('/project/script');
-    if (isPythonRedirect) {
-      redirectResponse.headers.set('Cross-Origin-Opener-Policy', 'same-origin');
-      redirectResponse.headers.set('Cross-Origin-Embedder-Policy', 'credentialless');
-    } else {
-      redirectResponse.headers.set('Cross-Origin-Opener-Policy', 'unsafe-none');
-      redirectResponse.headers.set('Cross-Origin-Embedder-Policy', 'unsafe-none');
-    }
-    
-    redirectResponse.headers.set('Cross-Origin-Resource-Policy', 'cross-origin');
     return redirectResponse;
   }
 
-  // Generate a random nonce and encode it as base64
-  const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
-  const cspHeader = base_cspHeader.replace("nonce-placeholder", `nonce-${nonce}`)
-
-  // Clone headers and set security headers
-  const requestHeaders = new Headers(request.headers);
-  requestHeaders.set('x-nonce', nonce);
-  requestHeaders.set('Content-Security-Policy', cspHeader);
-  requestHeaders.set('x-locale', locale);
-
-  const isUasProject = pathname.includes('/project/uas_matematika_dasar');
-  const isPythonProject = pathname.includes('/project/script');
-
-  // Use the response from updateSession to preserve Supabase cookies
-  const response = supabaseResponse;
+  // 3. For non-redirected requests, handle session and security
+  // Optimasi: Hanya update session jika ada cookie supabase (mengurangi latensi untuk guest)
+  const hasAuthCookie = request.cookies.getAll().some(c => c.name.startsWith('sb-'));
   
-  // Apply our custom headers to the response
-  response.headers.set('x-nonce', nonce);
-  response.headers.set('x-locale', locale);
+  let response = NextResponse.next({ request });
+  if (hasAuthCookie) {
+    response = await updateSession(request);
+  }
 
-  // Set cookies for found settings
-  applySettingsCookies(response);
-
-  let finalCspHeader = cspHeader;
-  if (isUasProject) {
+  // Security headers (CSP, Nonce)
+  const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
+  let finalCspHeader = base_cspHeader.replace("nonce-placeholder", `nonce-${nonce}`);
+  
+  if (pathname.includes('/project/uas_matematika_dasar')) {
     finalCspHeader = finalCspHeader.replace("frame-ancestors 'none'", "frame-ancestors *");
   }
 
+  const isPythonProject = pathname.includes('/project/script');
+  
+  response.headers.set('x-nonce', nonce);
   response.headers.set('Content-Security-Policy', finalCspHeader);
   response.headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
   
@@ -153,24 +100,22 @@ export async function middleware(request: NextRequest) {
     response.headers.set('Cross-Origin-Opener-Policy', 'unsafe-none');
     response.headers.set('Cross-Origin-Embedder-Policy', 'unsafe-none');
   }
-
   response.headers.set('Cross-Origin-Resource-Policy', 'cross-origin');
+
+  // Sync settings from URL to cookies
+  const settingsParams = ['theme', 'color', 'presentation_mode', 'presentation_slide_format', 'settings-font', 'settings-align', 'settings-scale', 'settings-spacing', 'settings-lineheight'];
+  settingsParams.forEach(param => {
+    const value = searchParams.get(param);
+    if (value !== null) {
+      response.cookies.set(`__set_${param}`, value, { maxAge: 60, path: '/', sameSite: 'lax' });
+    }
+  });
 
   return response;
 }
 
-// Ensure middleware runs on all routes except static assets
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - api (API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * - images, documents, locales (public assets)
-     * - any path with a dot (file extensions)
-     */
     '/((?!api|_next/static|_next/image|favicon.ico|images|documents|locales|.*\\..*).*)',
   ],
 };

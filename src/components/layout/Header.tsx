@@ -6,12 +6,12 @@ import Image from 'next/image';
 import { setCookies } from '@/app/actions';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Inter } from "next/font/google";
-import ThemeToggle from '@/components/shared/ThemeToggle'; 
+import ThemeToggle from '@/components/shared/ThemeToggle';
 import { useTheme } from 'next-themes';
 import SettingsPopup from '@/components/providers/SettingsPopup';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import { 
+import {
   Monitor,
   MonitorPlay,
   Share2,
@@ -41,6 +41,11 @@ interface HeaderProps {
     current_lang: string;
     portfolio_label: string;
     all_label: string;
+    login_label: string;
+    register_label: string;
+    logout_label: string;
+    edit_profile_label: string;
+    view_profile_label: string;
     en_lang: string;
     zh_lang: string;
     id_lang: string;
@@ -69,13 +74,6 @@ interface HeaderProps {
             username?: string;
         };
     } | null;
-    auth_labels: {
-        Login: string;
-        Logout: string;
-        Register: string;
-        Edit_Profile: string;
-        View_Profile: string;
-    };
     settings_labels: {
         Settings: string;
         Typography: string;
@@ -134,22 +132,27 @@ function CloseIcon() {
 
 
 export default function Header(props: HeaderProps) {
-    const { 
-        navLinks, 
-        current_lang, 
+    const {
+        navLinks,
+        current_lang,
         portfolio_label,
         all_label,
-        en_lang, 
-        zh_lang, 
-        id_lang, 
-        jp_lang, 
-        ru_lang, 
-        fr_lang, 
-        ar_lang, 
-        es_lang, 
-        ko_lang, 
-        de_lang, 
-        nl_lang, 
+        login_label,
+        register_label,
+        logout_label,
+        edit_profile_label,
+        view_profile_label,
+        en_lang,
+        zh_lang,
+        id_lang,
+        jp_lang,
+        ru_lang,
+        fr_lang,
+        ar_lang,
+        es_lang,
+        ko_lang,
+        de_lang,
+        nl_lang,
         ha_lang,
         he_lang,
         el_lang,
@@ -266,20 +269,20 @@ export default function Header(props: HeaderProps) {
 
     const updateHeaderVisibility = useCallback(() => {
         const currentYPos = window.scrollY;
-        
+
         // Use a larger threshold and only update if state actually changes
         const isScrollingUp = currentYPos < lastYPosRef.current;
-        
+
         // Logic: Show if scrolling up, or if near top, OR if the header is currently being hovered
         const nextShouldShow = isScrollingUp || currentYPos < 50 || isHeaderHoveredRef.current;
-        
+
         if (nextShouldShow !== shouldShowHeader && Math.abs(currentYPos - lastYPosRef.current) > 20) {
             setShouldShowHeader(nextShouldShow);
             lastYPosRef.current = currentYPos;
         } else if (Math.abs(currentYPos - lastYPosRef.current) > 100) {
             lastYPosRef.current = currentYPos;
         }
-        
+
         tickingRef.current = false;
     }, [shouldShowHeader]);
 
@@ -338,7 +341,7 @@ export default function Header(props: HeaderProps) {
     const handleLanguageChange = async (langCode: string) => {
         setGlobalLoading(true);
         await setCookies("language", langCode);
-        
+
         let newPathname = pathname;
         if (pathname.startsWith(`/${current_lang}/`)) {
             newPathname = pathname.replace(`/${current_lang}/`, `/${langCode}/`);
@@ -348,7 +351,7 @@ export default function Header(props: HeaderProps) {
 
         setMobileMenuOpen(false);
         router.push(newPathname);
-        router.refresh(); 
+        router.refresh();
     };
 
     // Normalize Pathname by removing language prefix for internal matching
@@ -381,6 +384,16 @@ export default function Header(props: HeaderProps) {
     const activeLink = findActiveLink(navLinks);
     const { signOut } = useAuthActions(current_lang);
 
+    const getMobileTitle = () => {
+        if (normalizedPathname === '/portfolio') return portfolio_label;
+        if (normalizedPathname === '/all') return all_label;
+        if (normalizedPathname === '/login') return login_label;
+        if (normalizedPathname === '/register') return register_label;
+        return null;
+    };
+
+    const mobileTitle = getMobileTitle();
+
     return (
         <>
             <motion.header
@@ -390,15 +403,15 @@ export default function Header(props: HeaderProps) {
                 onMouseEnter={() => { isHeaderHoveredRef.current = true; }}
                 onMouseLeave={() => { isHeaderHoveredRef.current = false; }}
                 className={`
-                    w-full fixed top-0 left-0 right-0 z-40 
-                    ${headerBg} md:backdrop-blur-md 
+                    w-full fixed top-0 left-0 right-0 z-40
+                    ${headerBg} md:backdrop-blur-md
                     border-b shadow-theme-shadow
                 `}
             >
                 <div className="w-full flex items-center justify-between mx-auto px-4 sm:px-8 py-4">
 
                     {/* Left section (Logo + Presentation Toggle) */}
-                    <div 
+                    <div
                         className="flex-1 flex items-center gap-4"
                     >
                     <div className={`transition-[colors,transform,opacity] shadow-md border border-theme-border opacity-100 hover:opacity-80 scale-100 hover:scale-110 cursor-pointer rounded-full overflow-hidden transform-gpu`}>
@@ -421,8 +434,8 @@ export default function Header(props: HeaderProps) {
                                 title="Share this page with current settings"
                                 className={`
                                     flex items-center justify-center transition-all duration-300 p-2 rounded-full
-                                    ${showShareSuccess 
-                                        ? 'text-green-500 bg-green-500/10 scale-110' 
+                                    ${showShareSuccess
+                                        ? 'text-green-500 bg-green-500/10 scale-110'
                                         : isDark
                                             ? 'text-theme-muted hover:text-theme-400'
                                             : 'text-theme-muted hover:text-theme-600'
@@ -441,8 +454,8 @@ export default function Header(props: HeaderProps) {
                                     title={presentation_mode}
                                     className={`
                                         flex items-center justify-center transition-all duration-300 p-2 rounded-full
-                                        ${(mounted && isPresentationMode) 
-                                            ? 'text-theme-500 bg-theme-500/10 scale-110 drop-shadow-[0_0_8px_rgba(6,182,212,0.4)]' 
+                                        ${(mounted && isPresentationMode)
+                                            ? 'text-theme-500 bg-theme-500/10 scale-110 drop-shadow-[0_0_8px_rgba(6,182,212,0.4)]'
                                             : isDark
                                                 ? 'text-theme-muted hover:text-theme-400 hover:bg-theme-surface-strong'
                                                 : 'text-theme-muted hover:text-theme-600 hover:bg-theme-surface-strong'
@@ -461,8 +474,8 @@ export default function Header(props: HeaderProps) {
                                 title="Share this page with current settings"
                                 className={`
                                     flex items-center justify-center transition-all duration-300 p-2 rounded-full
-                                    ${showShareSuccess 
-                                        ? 'text-green-500 bg-green-500/10 scale-110' 
+                                    ${showShareSuccess
+                                        ? 'text-green-500 bg-green-500/10 scale-110'
                                         : isDark
                                             ? 'text-theme-muted hover:text-theme-400 hover:bg-theme-surface-strong'
                                             : 'text-theme-muted hover:text-theme-600 hover:bg-theme-surface-strong'
@@ -476,9 +489,9 @@ export default function Header(props: HeaderProps) {
 
                     {/* --- Mobile Title (Center) --- */}
                     <div className={`md:hidden ${inter.className}`} >
-                        {(normalizedPathname === '/portfolio' || normalizedPathname === '/all') ? (
+                        {mobileTitle ? (
                             <h1 className={`flex items-center justify-center transition-[colors,transform] duration-200 text-lg font-black nav-active-gacor whitespace-nowrap cursor-pointer opacity-95`}>
-                                {formatCJK(normalizedPathname === '/portfolio' ? portfolio_label : all_label, current_lang)}
+                                {formatCJK(mobileTitle, current_lang)}
                             </h1>
                         ) : activeLink && (
                             <h1 className={`flex items-center justify-center transition-[colors,transform] duration-200 text-lg font-black nav-active-gacor whitespace-nowrap cursor-pointer opacity-95`}>
@@ -489,7 +502,7 @@ export default function Header(props: HeaderProps) {
                     </div>
 
                     {/* --- Desktop Navigation (Center) --- */}
-                    <nav 
+                    <nav
                         className="hidden md:flex flex-shrink-0"
                     >
                         <ul className="flex items-center space-x-8">
@@ -507,7 +520,7 @@ export default function Header(props: HeaderProps) {
                                                         router.push(getLocalizedHref(link.subLinks![0].href));
                                                     }
                                                 }}
-                                                className={`flex items-center transition-[colors,transform] duration-200 
+                                                className={`flex items-center transition-[colors,transform] duration-200
                                                     text-[15px] tracking-wide
                                                     ${isChildActive
                                                         ? `nav-active-gacor font-bold`
@@ -551,7 +564,7 @@ export default function Header(props: HeaderProps) {
                                     <li key={link.href}>
                                         <Link
                                             href={getLocalizedHref(link.href)}
-                                            className={`flex items-center transition-colors duration-200 
+                                            className={`flex items-center transition-colors duration-200
                                                 text-[15px] tracking-wide
                                                 ${isActive
                                                     ? `nav-active-gacor font-bold`
@@ -569,18 +582,18 @@ export default function Header(props: HeaderProps) {
 
                     {/* Right section */}
                     <div className="flex-1 flex justify-end items-center space-x-2 md:space-x-4">
-                        
-                        <div 
+
+                        <div
                             className="hidden md:block"
                         >
                             <ThemeToggle />
                         </div>
 
-                        <div 
+                        <div
                             className="hidden md:block"
                         >
-                            <SettingsPopup 
-                                labels={settings_labels} 
+                            <SettingsPopup
+                                labels={settings_labels}
                                 isOpen={isSettingsOpen}
                                 onOpenChange={(open) => {
                                     setIsSettingsOpen(open);
@@ -626,7 +639,7 @@ export default function Header(props: HeaderProps) {
                                                         {props.user.email}
                                                     </p>
                                                 </div>
-                                                
+
                                                 <button
                                                     onClick={() => {
                                                         setIsUserMenuOpen(false);
@@ -635,7 +648,7 @@ export default function Header(props: HeaderProps) {
                                                     className={`w-full text-left px-4 py-2 text-sm ${textColor} hover:bg-theme-surface-strong transition-colors flex items-center`}
                                                 >
                                                     <User size={16} className="mr-2" />
-                                                    {props.auth_labels.Edit_Profile}
+                                                    {edit_profile_label}
                                                 </button>
 
                                                 <button
@@ -646,7 +659,7 @@ export default function Header(props: HeaderProps) {
                                                     className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-500/10 transition-colors flex items-center"
                                                 >
                                                     <LogOut size={16} className="mr-2" />
-                                                    {props.auth_labels.Logout}
+                                                    {logout_label}
                                                 </button>
                                             </motion.div>
                                         )}
@@ -655,7 +668,7 @@ export default function Header(props: HeaderProps) {
                             ) : (
                                 <Link
                                     href={getLocalizedHref('/login')}
-                                    title={props.auth_labels.Login}
+                                    title={login_label}
                                     className={`
                                         flex items-center justify-center transition-all duration-300 p-2 rounded-full
                                         ${isDark
@@ -697,9 +710,9 @@ export default function Header(props: HeaderProps) {
                             onClick={() => setMobileMenuOpen(false)}
                             className="md:hidden fixed inset-0 bg-black/40 z-[50] backdrop-blur-sm"
                         />
-                        
+
                         {/* Sidebar */}
-                        <motion.div 
+                        <motion.div
                             data-lenis-prevent
                             initial={{ x: "100%" }}
                             animate={{ x: 0 }}
@@ -728,7 +741,7 @@ export default function Header(props: HeaderProps) {
                                         if (link.subLinks && link.subLinks.length > 0) {
                                             return (
                                                 <li key={link.name}>
-                                                    <button 
+                                                    <button
                                                         onClick={() => {
                                                             router.push(getLocalizedHref(link.subLinks![0].href));
                                                             setMobileMenuOpen(false);
@@ -785,9 +798,9 @@ export default function Header(props: HeaderProps) {
                                     <div className="flex justify-between items-center mb-6">
                                         <ThemeToggle />
                                     </div>
-                                    <SettingsPopup 
-                                        labels={settings_labels} 
-                                        inline={true} 
+                                    <SettingsPopup
+                                        labels={settings_labels}
+                                        inline={true}
                                         current_lang={current_lang}
                                         languages={languages}
                                         onLanguageChange={handleLanguageChange}
@@ -824,7 +837,7 @@ export default function Header(props: HeaderProps) {
                                                         className={`flex items-center w-full text-lg font-semibold ${textColor} transition-colors duration-300 hover:text-theme-600 px-2`}
                                                     >
                                                         <User size={20} className="mr-3" />
-                                                        {props.auth_labels.Edit_Profile}
+                                                        {edit_profile_label}
                                                     </button>
                                                     <button
                                                         onClick={() => {
@@ -834,7 +847,7 @@ export default function Header(props: HeaderProps) {
                                                         className={`flex items-center w-full text-lg font-semibold text-red-500 transition-colors duration-300 hover:text-red-600 px-2`}
                                                     >
                                                         <LogOut size={20} className="mr-3" />
-                                                        {props.auth_labels.Logout}
+                                                        {logout_label}
                                                     </button>
                                                 </div>
                                             </div>
@@ -846,7 +859,7 @@ export default function Header(props: HeaderProps) {
                                                     className={`flex items-center w-full text-lg font-bold ${textColor} transition-colors duration-300 hover:text-theme-600`}
                                                 >
                                                     <LogIn size={20} className="mr-3 text-theme-500" />
-                                                    {props.auth_labels.Login}
+                                                    {login_label}
                                                 </Link>
                                                 <Link
                                                     href={getLocalizedHref('/register')}
@@ -854,7 +867,7 @@ export default function Header(props: HeaderProps) {
                                                     className={`flex items-center w-full text-lg font-bold ${textColor} transition-colors duration-300 hover:text-theme-600`}
                                                 >
                                                     <User size={20} className="mr-3 text-theme-500" />
-                                                    {props.auth_labels.Register}
+                                                    {register_label}
                                                 </Link>
                                             </div>
                                         )}
@@ -874,7 +887,7 @@ export default function Header(props: HeaderProps) {
                         animate={{ opacity: 1, y: 0, scale: 1, x: '-50%' }}
                         exit={{ opacity: 0, y: 20, scale: 0.9, x: '-50%' }}
                         className="fixed bottom-8 left-1/2 z-[100] px-6 py-3 rounded-2xl bg-theme-surface shadow-theme-shadow border border-transparent"
-                        style={{ 
+                        style={{
                             boxShadow: '0 10px 40px -10px var(--accent-shadow)',
                         }}
                     >
