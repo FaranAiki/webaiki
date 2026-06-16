@@ -107,7 +107,11 @@ export function getBaseMetadata(): Metadata {
     },
     verification: {
       google: 'xZMulZsvn0xj7TrxhEN8O9KLWSmNIfx6tqFtOpbgOV4',
-      // Add other verifications if you have them (Bing, Yandex, etc)
+      yandex: '19e93e9065247166',
+      other: {
+        'msvalidate.01': '2EB0055DF3DBEDEFD420F081B721CF01',
+        'bing-site-verification': '769fffac4599a44b95e49e6e0142599',
+      },
     },
     openGraph: {
       type: 'profile',

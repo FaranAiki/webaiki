@@ -15,11 +15,10 @@ const geistMono = Geist_Mono({
   display: 'swap',
 });
 
-export const metadata = {
-  verification: {
-    google: 'xZMulZsvn0xj7TrxhEN8O9KLWSmNIfx6tqFtOpbgOV4',
-  },
-};
+import { getBaseMetadata } from "@/lib/seo";
+
+export const metadata = getBaseMetadata();
+
 
 export default async function RootLayout({
   children,

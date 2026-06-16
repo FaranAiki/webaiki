@@ -21,6 +21,10 @@ module.exports = {
     { href: 'https://faranaiki.id/ha', hreflang: 'ha' },
     { href: 'https://faranaiki.id/he', hreflang: 'he' },
     { href: 'https://faranaiki.id/el', hreflang: 'el' },
+    { href: 'https://faranaiki.id/hi', hreflang: 'hi' },
+    { href: 'https://faranaiki.id/pt', hreflang: 'pt' },
+    { href: 'https://faranaiki.id/bn', hreflang: 'bn' },
+    { href: 'https://faranaiki.id/vi', hreflang: 'vi' },
   ],
   robotsTxtOptions: {
     policies: [
