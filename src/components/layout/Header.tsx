@@ -163,6 +163,7 @@ export default function Header(props: HeaderProps) {
         const router = useRouter();
         const [isSettingsOpen, setIsSettingsOpen] = useState(false);
         const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+        const [isHeaderHovered, setIsHeaderHovered] = useState(false);
         const [shouldShowHeader, setShouldShowHeader] = useState(true);
         const [showShareSuccess, setShowShareSuccess] = useState(false);
         const lastYPosRef = useRef(0);
@@ -235,9 +236,9 @@ export default function Header(props: HeaderProps) {
         setMounted(true);
     }, []);
 
-    // Handle body overflow and scroll locking when mobile menu is open
+    // Handle body overflow and scroll locking when mobile menu is open or header is hovered
     useEffect(() => {
-        if (isMobileMenuOpen) {
+        if (isMobileMenuOpen || isHeaderHovered) {
             document.body.style.overflow = 'hidden';
             setScrollLocked(true);
         } else {
@@ -248,7 +249,7 @@ export default function Header(props: HeaderProps) {
             document.body.style.overflow = '';
             setScrollLocked(false);
         };
-    }, [isMobileMenuOpen, setScrollLocked]);
+    }, [isMobileMenuOpen, isHeaderHovered, setScrollLocked]);
 
     // Close mobile menu on window resize
     useEffect(() => {
@@ -385,6 +386,8 @@ export default function Header(props: HeaderProps) {
                 initial={{ y: 0 }}
                 animate={{ y: shouldShowHeader ? 0 : -100 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
+                onMouseEnter={() => setIsHeaderHovered(true)}
+                onMouseLeave={() => setIsHeaderHovered(false)}
                 className={`
                     w-full fixed top-0 left-0 right-0 z-40 
                     ${headerBg} md:backdrop-blur-md 

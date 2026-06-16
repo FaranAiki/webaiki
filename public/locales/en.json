@@ -397,5 +397,8 @@
   "AI_Discovery_Description": "Structured summary for search engines and Artificial Intelligence (LLMs).",
   "Professional_Pitch_Title": "Why Collaborate with Faran Aiki?",
   "Professional_Pitch_Text": "As an ITB Information System and Technology student with real-world Software Engineering experience and national achievements in Mathematics, I offer a unique blend of logical sharpness, technical creativity, and a dedication to growth. Whether building complex systems or solving mathematical problems, I focus on high-impact results.",
-  "Hire_Already_Submitted": "You have already submitted a request. You can edit it below."
+  "Hire_Already_Submitted": "You have already submitted a request. You can edit it below.",
+  "Recaptcha_Protected": "Protected by reCAPTCHA. {privacy} & {terms} apply.",
+  "Privacy": "Privacy",
+  "Terms": "Terms"
 }

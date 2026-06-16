@@ -6,6 +6,7 @@ import { executeCaptcha } from './CaptchaValidator';
 import { WorkLocation, JobType } from '@/generated/prisma/client';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import RecaptchaNotice from '../shared/RecaptchaNotice';
 
 interface HireMeFormProps {
   dict: Record<string, string>;
@@ -188,9 +189,7 @@ export default function HireMeForm({ dict }: HireMeFormProps) {
           {loading ? dict.Waiting : (existingData ? (dict.Update_Profile || 'Update Request') : dict.Submit)}
         </button>
 
-        <p className="text-[10px] text-center text-theme-muted mt-4 opacity-50">
-          This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy" className="underline">Privacy Policy</a> and <a href="https://policies.google.com/terms" className="underline">Terms of Service</a> apply.
-        </p>
+        <RecaptchaNotice dict={dict} className="mt-4" />
       </form>
     </div>
   );

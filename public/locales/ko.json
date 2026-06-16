@@ -386,5 +386,8 @@
   "AI_Discovery_Description": "검색 엔진 및 인공 지능(LLMs)을 위한 구조화된 요약。",
   "Professional_Pitch_Title": "왜 Faran Aiki와 협력해야 할까요?",
   "Professional_Pitch_Text": "ITB 정보 시스템 및 기술 전공 학생으로서 실제 소프트웨어 엔지니어링 경험과 수학 분야의 전국 대회 수상 경력을 바탕으로, 저는 논리적 예리함, 기술적 창의성 및 성장에 대한 헌신의 독특한 조화를 제공합니다. 복잡한 시스템을 구축하든 수학적 문제를 해결하든, 저는 영향력이 큰 결과를 내는 데 집중합니다。",
-  "Hire_Already_Submitted": "이미 요청을 제출했습니다. 아래에서 수정할 수 있습니다."
+  "Hire_Already_Submitted": "이미 요청을 제출했습니다. 아래에서 수정할 수 있습니다.",
+  "Recaptcha_Protected": "reCAPTCHA로 보호됩니다. {privacy} 및 {terms}이 적용됩니다.",
+  "Privacy": "개인정보",
+  "Terms": "약관"
 }

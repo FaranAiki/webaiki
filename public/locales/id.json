@@ -386,5 +386,8 @@
   "AI_Discovery_Description": "Ringkasan terstruktur untuk mesin pencari dan kecerdasan buatan (LLM).",
   "Professional_Pitch_Title": "Mengapa Berkolaborasi dengan Faran Aiki?",
   "Professional_Pitch_Text": "Sebagai mahasiswa STI ITB dengan pengalaman kerja nyata sebagai Software Engineer dan prestasi nasional di bidang Matematika, saya menawarkan perpaduan unik antara ketajaman logika, kreativitas teknis, dan dedikasi untuk tumbuh. Baik itu membangun sistem yang kompleks atau menyelesaikan masalah matematis, saya berfokus pada hasil yang berdampak tinggi.",
-  "Hire_Already_Submitted": "Anda telah mengirimkan permintaan. Anda dapat mengeditnya di bawah ini."
+  "Hire_Already_Submitted": "Anda telah mengirimkan permintaan. Anda dapat mengeditnya di bawah ini.",
+  "Recaptcha_Protected": "Dilindungi oleh reCAPTCHA. {privacy} & {terms} berlaku.",
+  "Privacy": "Privasi",
+  "Terms": "Ketentuan"
 }

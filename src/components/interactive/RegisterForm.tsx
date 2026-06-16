@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { UserPlus, Mail, Lock, User, Info, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { executeCaptcha } from './CaptchaValidator';
+import RecaptchaNotice from '../shared/RecaptchaNotice';
 
 interface RegisterFormProps {
   dict: Record<string, string>;
@@ -30,7 +31,7 @@ export default function RegisterForm({ dict, lang }: RegisterFormProps) {
       setLoading(false);
       return;
     }
-    
+
     const formData = new FormData(form);
     const password = formData.get('password') as string;
     const confirmPassword = formData.get('confirmPassword') as string;
@@ -42,7 +43,7 @@ export default function RegisterForm({ dict, lang }: RegisterFormProps) {
     }
 
     const result = await signUp(formData, token);
-    
+
     if (result?.error) {
       setError(dict[result.error] || result.error);
       setLoading(false);
@@ -54,10 +55,10 @@ export default function RegisterForm({ dict, lang }: RegisterFormProps) {
 
   const containerVariants = {
     hidden: { opacity: 0, x: 20 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       x: 0,
-      transition: { 
+      transition: {
         duration: 0.6,
         ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
         staggerChildren: 0.08
@@ -67,8 +68,8 @@ export default function RegisterForm({ dict, lang }: RegisterFormProps) {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 10 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: { duration: 0.4, ease: "easeOut" as const }
     }
@@ -76,7 +77,7 @@ export default function RegisterForm({ dict, lang }: RegisterFormProps) {
 
   if (success) {
     return (
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         className="max-w-md mx-auto mt-10 p-10 bg-theme-surface rounded-3xl border border-theme-border shadow-2xl text-center space-y-6"
@@ -87,8 +88,8 @@ export default function RegisterForm({ dict, lang }: RegisterFormProps) {
           </div>
         </div>
         <h2 className="text-2xl font-black text-foreground tracking-tight">{dict.Register_Success}</h2>
-        <Link 
-          href={`/${lang}/login`} 
+        <Link
+          href={`/${lang}/login`}
           className="inline-block px-8 py-3 rounded-xl bg-theme-500 text-white font-bold hover:bg-theme-400 transition-all hover:scale-105"
         >
           {dict.Login}
@@ -98,14 +99,14 @@ export default function RegisterForm({ dict, lang }: RegisterFormProps) {
   }
 
   return (
-    <motion.div 
+    <motion.div
       variants={containerVariants}
       initial="hidden"
       animate="visible"
       className="relative max-w-md mx-auto mt-10"
     >
-      <div className="absolute -inset-1 bg-gradient-to-tr from-gacor via-theme-500 to-purple-500 rounded-3xl blur-xl opacity-10 animate-pulse" />
-      
+      <div className="absolute -inset-1 bg-gradient-to-tr from-gacor via-theme-500 to-gacor-500 rounded-3xl blur-xl opacity-10 animate-pulse" />
+
       <div className="relative p-8 bg-theme-surface/90 backdrop-blur-xl rounded-2xl border border-theme-border shadow-2xl overflow-hidden">
         <motion.div variants={itemVariants} className="flex items-center gap-3 mb-8">
           <div className="p-3 bg-theme-500/10 rounded-xl">
@@ -190,7 +191,7 @@ export default function RegisterForm({ dict, lang }: RegisterFormProps) {
           </motion.div>
 
           {error && (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               className="flex items-center gap-2 text-red-500 text-sm font-medium bg-red-500/10 p-3 rounded-xl border border-red-500/20"
@@ -216,9 +217,7 @@ export default function RegisterForm({ dict, lang }: RegisterFormProps) {
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-shimmer" />
           </motion.button>
 
-          <p className="text-[10px] text-center text-theme-muted mt-2 opacity-50">
-            Protected by reCAPTCHA. <a href="https://policies.google.com/privacy" className="underline">Privacy</a> & <a href="https://policies.google.com/terms" className="underline">Terms</a> apply.
-          </p>
+          <RecaptchaNotice dict={dict} className="mt-2" />
         </form>
 
         <motion.p variants={itemVariants} className="mt-8 text-center text-sm text-theme-muted font-medium">

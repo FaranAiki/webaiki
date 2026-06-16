@@ -386,5 +386,8 @@
   "AI_Discovery_Description": "Resumo estruturado para mecanismos de busca e inteligência artificial (LLMs).",
   "Professional_Pitch_Title": "Por Que Colaborar com Faran Aiki?",
   "Professional_Pitch_Text": "Como estudante de sistemas de informação e tecnologia do ITB, com experiência real em engenharia de software e conquistas nacionais em matemática, ofereço uma combinação única de acuidade lógica, criatividade técnica e dedicação ao crescimento. Seja construindo sistemas complexos ou resolvendo problemas matemáticos, meu foco são resultados de alto impacto.",
-  "Hire_Already_Submitted": "Você já enviou uma solicitação. Você pode editá-la abaixo."
+  "Hire_Already_Submitted": "Você já enviou uma solicitação. Você pode editá-la abaixo.",
+  "Recaptcha_Protected": "Protegido por reCAPTCHA. A {privacy} e os {terms} aplicam-se.",
+  "Privacy": "Privacidade",
+  "Terms": "Termos"
 }
