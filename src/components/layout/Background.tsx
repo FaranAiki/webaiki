@@ -40,10 +40,10 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
     let animationFrameId: number;
     let particles: Particle[] = [];
     let lastTime = 0;
-    const FPS_INTERVAL = 1000 / 30; // Throttle to 30 FPS
+    const FPS_INTERVAL = 1000 / 20; // Throttle to 20 FPS to save GPU/CPU
 
-    const PARTICLE_COUNT = 50; 
-    const CONNECTION_DISTANCE = 120; 
+    const PARTICLE_COUNT = 40; 
+    const CONNECTION_DISTANCE = 100; 
     const MOUSE_RADIUS = 100;
 
     class Particle {
@@ -100,7 +100,7 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
     }
 
     const init = () => {
-        const dpr = Math.min(window.devicePixelRatio || 1, 2); // Cap DPR for performance
+        const dpr = 1; // Cap DPR to 1 to save GPU
         const rect = container.getBoundingClientRect();
 
         canvas.width = rect.width * dpr;
@@ -114,8 +114,8 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
         particles = [];
         // Significant reduction for mobile performance
         let particleCount = PARTICLE_COUNT;
-        if (rect.width < 480) particleCount = 12; // Lowered from 20
-        else if (rect.width < 768) particleCount = 25; // Lowered from 40
+        if (rect.width < 480) particleCount = 8; 
+        else if (rect.width < 768) particleCount = 15; 
 
         for (let i = 0; i < particleCount; i++) {
           particles.push(new Particle(rect.width, rect.height));
@@ -304,7 +304,8 @@ export default function Background({ carousel, showOverlay = true }: BackgroundP
                       className="w-full h-full object-cover"
                       sizes="100vw"
                       quality={75}
-                      priority={true}
+                      priority={currentIndex === 0}
+                      loading={currentIndex === 0 ? "eager" : "lazy"}
                   />
                 )}
             </motion.div>

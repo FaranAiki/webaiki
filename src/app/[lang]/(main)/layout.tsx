@@ -155,6 +155,7 @@ export default async function RootLayout({
         auth_labels={{
           Login: dict.Login,
           Logout: dict.Logout,
+          Register: dict.Register,
           Edit_Profile: dict.Edit_Profile,
           View_Profile: dict.View_Profile
         }}

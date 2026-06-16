@@ -72,6 +72,7 @@ interface HeaderProps {
     auth_labels: {
         Login: string;
         Logout: string;
+        Register: string;
         Edit_Profile: string;
         View_Profile: string;
     };
@@ -163,9 +164,9 @@ export default function Header(props: HeaderProps) {
         const router = useRouter();
         const [isSettingsOpen, setIsSettingsOpen] = useState(false);
         const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-        const [isHeaderHovered, setIsHeaderHovered] = useState(false);
         const [shouldShowHeader, setShouldShowHeader] = useState(true);
         const [showShareSuccess, setShowShareSuccess] = useState(false);
+        const isHeaderHoveredRef = useRef(false);
         const lastYPosRef = useRef(0);
         const tickingRef = useRef(false);
 
@@ -236,9 +237,9 @@ export default function Header(props: HeaderProps) {
         setMounted(true);
     }, []);
 
-    // Handle body overflow and scroll locking when mobile menu is open or header is hovered
+    // Handle body overflow and scroll locking when mobile menu is open
     useEffect(() => {
-        if (isMobileMenuOpen || isHeaderHovered) {
+        if (isMobileMenuOpen) {
             document.body.style.overflow = 'hidden';
             setScrollLocked(true);
         } else {
@@ -249,7 +250,7 @@ export default function Header(props: HeaderProps) {
             document.body.style.overflow = '';
             setScrollLocked(false);
         };
-    }, [isMobileMenuOpen, isHeaderHovered, setScrollLocked]);
+    }, [isMobileMenuOpen, setScrollLocked]);
 
     // Close mobile menu on window resize
     useEffect(() => {
@@ -268,14 +269,14 @@ export default function Header(props: HeaderProps) {
         
         // Use a larger threshold and only update if state actually changes
         const isScrollingUp = currentYPos < lastYPosRef.current;
-        const nextShouldShow = isScrollingUp || currentYPos < 50;
+        
+        // Logic: Show if scrolling up, or if near top, OR if the header is currently being hovered
+        const nextShouldShow = isScrollingUp || currentYPos < 50 || isHeaderHoveredRef.current;
         
         if (nextShouldShow !== shouldShowHeader && Math.abs(currentYPos - lastYPosRef.current) > 20) {
             setShouldShowHeader(nextShouldShow);
             lastYPosRef.current = currentYPos;
         } else if (Math.abs(currentYPos - lastYPosRef.current) > 100) {
-            // Keep updating last position even if we don't toggle, 
-            // but only at larger intervals to track direction
             lastYPosRef.current = currentYPos;
         }
         
@@ -386,8 +387,8 @@ export default function Header(props: HeaderProps) {
                 initial={{ y: 0 }}
                 animate={{ y: shouldShowHeader ? 0 : -100 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
-                onMouseEnter={() => setIsHeaderHovered(true)}
-                onMouseLeave={() => setIsHeaderHovered(false)}
+                onMouseEnter={() => { isHeaderHoveredRef.current = true; }}
+                onMouseLeave={() => { isHeaderHoveredRef.current = false; }}
                 className={`
                     w-full fixed top-0 left-0 right-0 z-40 
                     ${headerBg} md:backdrop-blur-md 
@@ -821,14 +822,24 @@ export default function Header(props: HeaderProps) {
                                     </div>
                                 </div>
                             ) : (
-                                <Link
-                                    href={getLocalizedHref('/login')}
-                                    onClick={() => setMobileMenuOpen(false)}
-                                    className={`flex items-center w-full text-lg font-semibold ${textColor} transition-colors duration-300 hover:text-theme-600 px-2`}
-                                >
-                                    <LogIn size={20} className="mr-3" />
-                                    {props.auth_labels.Login}
-                                </Link>
+                                <div className="flex flex-col space-y-4 px-2">
+                                    <Link
+                                        href={getLocalizedHref('/login')}
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className={`flex items-center w-full text-lg font-bold ${textColor} transition-colors duration-300 hover:text-theme-600`}
+                                    >
+                                        <LogIn size={20} className="mr-3 text-theme-500" />
+                                        {props.auth_labels.Login}
+                                    </Link>
+                                    <Link
+                                        href={getLocalizedHref('/register')}
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className={`flex items-center w-full text-lg font-bold ${textColor} transition-colors duration-300 hover:text-theme-600`}
+                                    >
+                                        <User size={20} className="mr-3 text-theme-500" />
+                                        {props.auth_labels.Register}
+                                    </Link>
+                                </div>
                             )}
                         </div>
                     </div>
