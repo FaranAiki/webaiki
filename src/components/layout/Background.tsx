@@ -40,7 +40,9 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
     let animationFrameId: number;
     let particles: Particle[] = [];
     let lastTime = 0;
-    const FPS_INTERVAL = 1000 / 20; // Throttle to 20 FPS to save GPU/CPU
+    let lastMouseMoveTime = Date.now();
+    const FULL_FPS_INTERVAL = 1000 / 20; 
+    const IDLE_FPS_INTERVAL = 1000 / 5; // Drop to 5 FPS when idle
 
     const PARTICLE_COUNT = 40; 
     const CONNECTION_DISTANCE = 100; 
@@ -127,10 +129,14 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
 
       animationFrameId = requestAnimationFrame(animate);
 
+      // Determine if we are idle (no mouse movement for 5 seconds)
+      const isIdle = Date.now() - lastMouseMoveTime > 5000;
+      const currentInterval = isIdle ? IDLE_FPS_INTERVAL : FULL_FPS_INTERVAL;
+
       // Throttle FPS
       const deltaTime = currentTime - lastTime;
-      if (deltaTime < FPS_INTERVAL) return;
-      lastTime = currentTime - (deltaTime % FPS_INTERVAL);
+      if (deltaTime < currentInterval) return;
+      lastTime = currentTime - (deltaTime % currentInterval);
 
       const width = canvas.width / (window.devicePixelRatio || 1);
       const height = canvas.height / (window.devicePixelRatio || 1);
@@ -190,6 +196,7 @@ function GeometricPattern({isDark}: GeometricPatternProps) {
     };
 
     const handleMouseMove = (e: MouseEvent) => {
+      lastMouseMoveTime = Date.now();
       const rect = canvas.getBoundingClientRect();
       mouseRef.current = {
         x: e.clientX - rect.left,

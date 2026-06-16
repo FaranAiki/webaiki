@@ -686,172 +686,185 @@ export default function Header(props: HeaderProps) {
             </motion.header>
 
             {/* --- Mobile Sidebar Navigation --- */}
-            <div 
-                data-lenis-prevent
-                className={`no-scrollbar fixed top-0 right-0 h-full w-[80%] max-w-sm ${mobileMenuBg} md:backdrop-blur-xl shadow-2xl z-[60] transform transition-transform duration-300 ease-out ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} md:hidden overflow-y-auto`}
-            >
-                <div className="absolute top-4 right-4 z-[70]">
-                    <button
-                        onClick={() => setMobileMenuOpen(false)}
-                        className={`p-2 rounded-lg hover:bg-theme-surface-strong transition-colors hover-gacor ${textColor}`}
-                        aria-label="Close menu"
-                    >
-                        <CloseIcon />
-                    </button>
-                </div>
-                <nav className="mt-20 px-8 pb-12">
-                    <div className="mb-8 border-b border-theme-border pb-4">
-                        <span className={`text-xl font-black tracking-tight nav-active-gacor`}>
-                            {formatCJK(navigation_label, current_lang)}
-                        </span>
-                    </div>
-
-                    <ul className="flex flex-col space-y-6 mb-10">
-                        {navLinks.map((link) => {
-                            if (link.subLinks && link.subLinks.length > 0) {
-                                return (
-                                    <li key={link.name}>
-                                        <button 
-                                            onClick={() => {
-                                                router.push(getLocalizedHref(link.subLinks![0].href));
-                                                setMobileMenuOpen(false);
-                                            }}
-                                            className={`flex items-center text-sm font-bold text-theme-muted mb-4 text-left w-full`}
-                                        >
-                                            {link.icon && <span className="mr-2 inline-block flex-shrink-0 opacity-70">{link.icon}</span>}
-                                            {formatCJK(link.name, current_lang)}
-                                        </button>
-                                        <ul className="flex flex-col space-y-4 pl-4 border-l-2 border-theme-border">
-                                            {link.subLinks.map(subLink => {
-                                                const isActive = normalizedPathname === subLink.href;
-                                                return (
-                                                    <li key={subLink.href}>
-                                                        <Link
-                                                            href={getLocalizedHref(subLink.href)}
-                                                            onClick={() => setMobileMenuOpen(false)}
-                                                            className={`flex items-center text-[16px] transition-[colors,transform] duration-300 ${isActive
-                                                                    ? `${activeText} font-bold`
-                                                                    : `${textColor} font-medium hover:text-theme-600 hover:translate-x-1`
-                                                                }`}
-                                                        >
-                                                            {subLink.icon && <span className="mr-3 scale-90 inline-block flex-shrink-0 opacity-70">{subLink.icon}</span>}
-                                                            {formatCJK(subLink.name, current_lang)}
-                                                        </Link>
-                                                    </li>
-                                                )
-                                            })}
-                                        </ul>
-                                    </li>
-                                );
-                            }
-
-                            const isActive = normalizedPathname === link.href;
-                            return (
-                                <li key={link.href}>
-                                    <Link
-                                        href={getLocalizedHref(link.href)}
-                                        onClick={() => setMobileMenuOpen(false)}
-                                        className={`flex items-center text-lg transition-[colors,transform] duration-300 ${isActive
-                                                ? `${activeText} font-bold`
-                                                : `${textColor} font-semibold hover:text-theme-600`
-                                            }`}
-                                    >
-                                        {link.icon && <span className="mr-3 inline-block flex-shrink-0 opacity-80">{link.icon}</span>}
-                                        {formatCJK(link.name, current_lang)}
-                                    </Link>
-                                </li>
-                            );
-                        })}
-                    </ul>
-
-                    <div className={`mt-10 mb-8 border-t border-theme-border pt-8`}>
-                        <div className="flex justify-between items-center mb-6">
-                            <ThemeToggle />
-                        </div>
-                        <SettingsPopup 
-                            labels={settings_labels} 
-                            inline={true} 
-                            current_lang={current_lang}
-                            languages={languages}
-                            onLanguageChange={handleLanguageChange}
+            <AnimatePresence>
+                {isMobileMenuOpen && (
+                    <>
+                        {/* Backdrop */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="md:hidden fixed inset-0 bg-black/40 z-[50] backdrop-blur-sm"
                         />
+                        
+                        {/* Sidebar */}
+                        <motion.div 
+                            data-lenis-prevent
+                            initial={{ x: "100%" }}
+                            animate={{ x: 0 }}
+                            exit={{ x: "100%" }}
+                            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                            className={`no-scrollbar fixed top-0 right-0 h-full w-[85%] max-w-sm ${mobileMenuBg} md:backdrop-blur-xl shadow-2xl z-[60] md:hidden overflow-y-auto`}
+                        >
+                            <div className="absolute top-4 right-4 z-[70]">
+                                <button
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    className={`p-2 rounded-lg hover:bg-theme-surface-strong transition-colors hover-gacor ${textColor}`}
+                                    aria-label="Close menu"
+                                >
+                                    <CloseIcon />
+                                </button>
+                            </div>
+                            <nav className="mt-20 px-8 pb-12">
+                                <div className="mb-8 border-b border-theme-border pb-4">
+                                    <span className={`text-xl font-black tracking-tight nav-active-gacor`}>
+                                        {formatCJK(navigation_label, current_lang)}
+                                    </span>
+                                </div>
 
-                        {/* Mobile Auth */}
-                        <div className="mt-6">
-                            {props.user ? (
-                                <div className="flex flex-col space-y-4">
-                                    <div className="flex items-center space-x-3 p-3 rounded-xl bg-theme-surface-strong/30 border border-theme-border">
-                                        <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-theme-border shadow-md flex-shrink-0">
-                                            <Image
-                                                src={props.user.user_metadata?.avatar_url || '/images/no_photo_profile.webp'}
-                                                alt={props.user.user_metadata?.full_name || props.user.email || 'User'}
-                                                fill
-                                                className="object-cover"
-                                            />
-                                        </div>
-                                        <div className="flex flex-col overflow-hidden">
-                                            <span className="font-bold text-sm truncate">
-                                                {props.user.user_metadata?.full_name || props.user.user_metadata?.username || 'User'}
-                                            </span>
-                                            <span className="text-xs text-theme-muted truncate">
-                                                {props.user.email}
-                                            </span>
-                                        </div>
+                                <ul className="flex flex-col space-y-6 mb-10">
+                                    {navLinks.map((link) => {
+                                        if (link.subLinks && link.subLinks.length > 0) {
+                                            return (
+                                                <li key={link.name}>
+                                                    <button 
+                                                        onClick={() => {
+                                                            router.push(getLocalizedHref(link.subLinks![0].href));
+                                                            setMobileMenuOpen(false);
+                                                        }}
+                                                        className={`flex items-center text-sm font-bold text-theme-muted mb-4 text-left w-full`}
+                                                    >
+                                                        {link.icon && <span className="mr-2 inline-block flex-shrink-0 opacity-70">{link.icon}</span>}
+                                                        {formatCJK(link.name, current_lang)}
+                                                    </button>
+                                                    <ul className="flex flex-col space-y-4 pl-4 border-l-2 border-theme-border">
+                                                        {link.subLinks.map(subLink => {
+                                                            const isActive = normalizedPathname === subLink.href;
+                                                            return (
+                                                                <li key={subLink.href}>
+                                                                    <Link
+                                                                        href={getLocalizedHref(subLink.href)}
+                                                                        onClick={() => setMobileMenuOpen(false)}
+                                                                        className={`flex items-center text-[16px] transition-[colors,transform] duration-300 ${isActive
+                                                                                ? `${activeText} font-bold`
+                                                                                : `${textColor} font-medium hover:text-theme-600 hover:translate-x-1`
+                                                                            }`}
+                                                                    >
+                                                                        {subLink.icon && <span className="mr-3 scale-90 inline-block flex-shrink-0 opacity-70">{subLink.icon}</span>}
+                                                                        {formatCJK(subLink.name, current_lang)}
+                                                                    </Link>
+                                                                </li>
+                                                            )
+                                                        })}
+                                                    </ul>
+                                                </li>
+                                            );
+                                        }
+
+                                        const isActive = normalizedPathname === link.href;
+                                        return (
+                                            <li key={link.href}>
+                                                <Link
+                                                    href={getLocalizedHref(link.href)}
+                                                    onClick={() => setMobileMenuOpen(false)}
+                                                    className={`flex items-center text-lg transition-[colors,transform] duration-300 ${isActive
+                                                            ? `${activeText} font-bold`
+                                                            : `${textColor} font-semibold hover:text-theme-600`
+                                                        }`}
+                                                >
+                                                    {link.icon && <span className="mr-3 inline-block flex-shrink-0 opacity-80">{link.icon}</span>}
+                                                    {formatCJK(link.name, current_lang)}
+                                                </Link>
+                                            </li>
+                                        );
+                                    })}
+                                </ul>
+
+                                <div className={`mt-10 mb-8 border-t border-theme-border pt-8`}>
+                                    <div className="flex justify-between items-center mb-6">
+                                        <ThemeToggle />
                                     </div>
-                                    <div className="flex flex-col space-y-2">
-                                        <button
-                                            onClick={() => {
-                                                setMobileMenuOpen(false);
-                                                router.push(getLocalizedHref('/edit-profile'));
-                                            }}
-                                            className={`flex items-center w-full text-lg font-semibold ${textColor} transition-colors duration-300 hover:text-theme-600 px-2`}
-                                        >
-                                            <User size={20} className="mr-3" />
-                                            {props.auth_labels.Edit_Profile}
-                                        </button>
-                                        <button
-                                            onClick={() => {
-                                                signOut();
-                                                setMobileMenuOpen(false);
-                                            }}
-                                            className={`flex items-center w-full text-lg font-semibold text-red-500 transition-colors duration-300 hover:text-red-600 px-2`}
-                                        >
-                                            <LogOut size={20} className="mr-3" />
-                                            {props.auth_labels.Logout}
-                                        </button>
+                                    <SettingsPopup 
+                                        labels={settings_labels} 
+                                        inline={true} 
+                                        current_lang={current_lang}
+                                        languages={languages}
+                                        onLanguageChange={handleLanguageChange}
+                                    />
+
+                                    {/* Mobile Auth */}
+                                    <div className="mt-6">
+                                        {props.user ? (
+                                            <div className="flex flex-col space-y-4">
+                                                <div className="flex items-center space-x-3 p-3 rounded-xl bg-theme-surface-strong/30 border border-theme-border">
+                                                    <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-theme-border shadow-md flex-shrink-0">
+                                                        <Image
+                                                            src={props.user.user_metadata?.avatar_url || '/images/no_photo_profile.webp'}
+                                                            alt={props.user.user_metadata?.full_name || props.user.email || 'User'}
+                                                            fill
+                                                            className="object-cover"
+                                                        />
+                                                    </div>
+                                                    <div className="flex flex-col overflow-hidden">
+                                                        <span className="font-bold text-sm truncate">
+                                                            {props.user.user_metadata?.full_name || props.user.user_metadata?.username || 'User'}
+                                                        </span>
+                                                        <span className="text-xs text-theme-muted truncate">
+                                                            {props.user.email}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div className="flex flex-col space-y-2">
+                                                    <button
+                                                        onClick={() => {
+                                                            setMobileMenuOpen(false);
+                                                            router.push(getLocalizedHref('/edit-profile'));
+                                                        }}
+                                                        className={`flex items-center w-full text-lg font-semibold ${textColor} transition-colors duration-300 hover:text-theme-600 px-2`}
+                                                    >
+                                                        <User size={20} className="mr-3" />
+                                                        {props.auth_labels.Edit_Profile}
+                                                    </button>
+                                                    <button
+                                                        onClick={() => {
+                                                            signOut();
+                                                            setMobileMenuOpen(false);
+                                                        }}
+                                                        className={`flex items-center w-full text-lg font-semibold text-red-500 transition-colors duration-300 hover:text-red-600 px-2`}
+                                                    >
+                                                        <LogOut size={20} className="mr-3" />
+                                                        {props.auth_labels.Logout}
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        ) : (
+                                            <div className="flex flex-col space-y-4 px-2">
+                                                <Link
+                                                    href={getLocalizedHref('/login')}
+                                                    onClick={() => setMobileMenuOpen(false)}
+                                                    className={`flex items-center w-full text-lg font-bold ${textColor} transition-colors duration-300 hover:text-theme-600`}
+                                                >
+                                                    <LogIn size={20} className="mr-3 text-theme-500" />
+                                                    {props.auth_labels.Login}
+                                                </Link>
+                                                <Link
+                                                    href={getLocalizedHref('/register')}
+                                                    onClick={() => setMobileMenuOpen(false)}
+                                                    className={`flex items-center w-full text-lg font-bold ${textColor} transition-colors duration-300 hover:text-theme-600`}
+                                                >
+                                                    <User size={20} className="mr-3 text-theme-500" />
+                                                    {props.auth_labels.Register}
+                                                </Link>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
-                            ) : (
-                                <div className="flex flex-col space-y-4 px-2">
-                                    <Link
-                                        href={getLocalizedHref('/login')}
-                                        onClick={() => setMobileMenuOpen(false)}
-                                        className={`flex items-center w-full text-lg font-bold ${textColor} transition-colors duration-300 hover:text-theme-600`}
-                                    >
-                                        <LogIn size={20} className="mr-3 text-theme-500" />
-                                        {props.auth_labels.Login}
-                                    </Link>
-                                    <Link
-                                        href={getLocalizedHref('/register')}
-                                        onClick={() => setMobileMenuOpen(false)}
-                                        className={`flex items-center w-full text-lg font-bold ${textColor} transition-colors duration-300 hover:text-theme-600`}
-                                    >
-                                        <User size={20} className="mr-3 text-theme-500" />
-                                        {props.auth_labels.Register}
-                                    </Link>
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                </nav>
-            </div>
-
-            {isMobileMenuOpen && (
-                <div
-                    className="md:hidden fixed inset-0 bg-black/40 z-[50] backdrop-blur-sm transition-opacity duration-300"
-                    onClick={() => setMobileMenuOpen(false)}
-                ></div>
-            )}
+                            </nav>
+                        </motion.div>
+                    </>
+                )}
+            </AnimatePresence>
 
             {/* Toast Notification */}
             <AnimatePresence>
