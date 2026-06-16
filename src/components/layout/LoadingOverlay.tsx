@@ -75,9 +75,11 @@ export default function LoadingOverlay({ label }: LoadingOverlayProps) {
     const startTimer = setTimeout(() => setHasStarted(true), 100);
 
     if (mounted && hasStarted) {
-      // Optimization: Significantly reduced wait time for faster page access
-      // and better performance scores while maintaining aesthetic.
-      const exitTimer = setTimeout(() => setInternalVisible(false), 1200);
+      // Handwriting animation total duration:
+      // (signatures.length - 1) * 0.05 [delay] + 0.15 [duration] = 2.15 + 0.15 = 2.3s
+      // Plus Euler-Mascheroni constant delay: 0.577s (γ ≈ 0.5772156649)
+      // Total: 2.3 + 0.577 = 2.877s
+      const exitTimer = setTimeout(() => setInternalVisible(false), 2877);
 
       return () => {
         clearTimeout(startTimer);

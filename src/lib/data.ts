@@ -112,6 +112,18 @@ export const getProjectExperiences = (dict: Dictionary) => [
     year: '2026',
     jobs: [
       {
+        date: `${dict.June} 2026`,
+        title: dict.National_Statistics_Competition_Prep,
+        company: 'Probability & Statistics, SARIMAX, MANOVA, Python, Jupyter',
+        description: dict.National_Statistics_Competition_Prep_Description,
+        point: 85,
+        image: [
+          '/documents/project/Stats_01.webp',
+          '/documents/project/Stats_02.webp',
+        ],
+        tag: [dict.Data, dict.Math]
+      },
+      {
         date: `${dict.May} 2026`,
         title: dict.Lidia_Project,
         company: 'Python, Pandas, Gemini-CLI, Jupyter Notebook, ETL',
