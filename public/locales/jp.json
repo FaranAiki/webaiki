@@ -402,5 +402,7 @@
   "Hire_Already_Submitted": "すでにリクエストを送信しています。以下で編集できます。",
   "Recaptcha_Protected": "reCAPTCHAで保護されています。{privacy}と{terms}が適用されます。",
   "Privacy": "プライバシー",
-  "Terms": "利用規約"
+  "Terms": "利用規約",
+  "Superskill_Project": "Superskill",
+  "Superskill_Description": "Superskillは、Flutterを使用して開発された、論理力、思考力、数値能力などを鍛える脳トレゲームです。"
 }

@@ -402,5 +402,7 @@
   "Hire_Already_Submitted": "Kun riga kun aika da bukata. Kuna iya gyara ta a ƙasa.",
   "Recaptcha_Protected": "An kiyaye ta reCAPTCHA. {privacy} da {terms} sun shafi.",
   "Privacy": "Sirri",
-  "Terms": "Sharuɗɗa"
+  "Terms": "Sharuɗɗa",
+  "Superskill_Project": "Superskill",
+  "Superskill_Description": "Superskill wasa ne da aka tsara shi don horar da dabaru, tunani, ilimin lissafi da sauran su, wanda aka gina ta amfani da Flutter."
 }

@@ -402,5 +402,7 @@
   "Hire_Already_Submitted": "您已经提交了请求。您可以在下方进行编辑。",
   "Recaptcha_Protected": "受 reCAPTCHA 保护。{privacy} 和 {terms} 适用。",
   "Privacy": "隐私",
-  "Terms": "条款"
+  "Terms": "条款",
+  "Superskill_Project": "Superskill",
+  "Superskill_Description": "Superskill 是一款使用 Flutter 开发的游戏，旨在训练逻辑、思维能力、数学能力等。"
 }

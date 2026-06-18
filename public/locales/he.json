@@ -402,5 +402,7 @@
   "Hire_Already_Submitted": "כבר שלחת בקשה. אתה יכול לערוך אותה למטה.",
   "Recaptcha_Protected": "מוגן על-יดี reCAPTCHA. ה{privacy} וה{terms} חלים.",
   "Privacy": "פרטיות",
-  "Terms": "תנאים"
+  "Terms": "תנאים",
+  "Superskill_Project": "סופר-סקיל",
+  "Superskill_Description": "Superskill הוא משחק שפותח באמצעות Flutter ומיועד לאימון היגיון, כישوري חשיבה, מיומנויות מספריות ועוד."
 }

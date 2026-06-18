@@ -402,5 +402,7 @@
   "Hire_Already_Submitted": "لقد أرسلت طلباً بالفعل. يمكنك تعديله أدناه.",
   "Recaptcha_Protected": "محمي بواسطة reCAPTCHA. تنطبق {privacy} و{terms}.",
   "Privacy": "الخصوصية",
-  "Terms": "الشروط"
+  "Terms": "الشروط",
+  "Superskill_Project": "سوبر سكيل",
+  "Superskill_Description": "Superskill هي لعبة لتدريب المنطق ومهارات التفكير والمهارات العددية والمزيد، تم تطويرها باستخدام Flutter."
 }

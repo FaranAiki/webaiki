@@ -402,5 +402,7 @@
   "Hire_Already_Submitted": "আপনি ইতিমধ্যে একটি অনুরোধ জমা দিয়েছেন। আপনি নিচে এটি সম্পাদনা করতে পারেন।",
   "Recaptcha_Protected": "reCAPTCHA দ্বারা সুরক্ষিত। {privacy} এবং {terms} প্রযোজ্য।",
   "Privacy": "গোপনীয়তা",
-  "Terms": "শর্তাবলী"
+  "Terms": "শর্তাবলী",
+  "Superskill_Project": "সুপারস্কিল",
+  "Superskill_Description": "Superskill হল ফ্ল্যাটার (Flutter) ব্যবহার করে তৈরি একটি গেম যা যুক্তি, চিন্তাভাবনা, সংখ্যাসূচক দক্ষতা এবং আরও অনেক কিছু বিকাশে সাহায্য করে।"
 }

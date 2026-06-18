@@ -402,5 +402,7 @@
   "Hire_Already_Submitted": "이미 요청을 제출했습니다. 아래에서 수정할 수 있습니다.",
   "Recaptcha_Protected": "reCAPTCHA로 보호됩니다. {privacy} 및 {terms}이 적용됩니다.",
   "Privacy": "개인정보",
-  "Terms": "약관"
+  "Terms": "약관",
+  "Superskill_Project": "슈퍼스킬",
+  "Superskill_Description": "Superskill은 Flutter를 사용하여 개발된 논리력, 사고력, 수리 능력 등을 훈련하는 두뇌 트레이닝 게임입니다."
 }

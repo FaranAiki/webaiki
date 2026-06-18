@@ -402,5 +402,7 @@
   "Hire_Already_Submitted": "Je hebt al een verzoek ingediend. Je kunt het hieronder bewerken.",
   "Recaptcha_Protected": "Beveiligd door reCAPTCHA. {privacy} en {terms} zijn van toepassing.",
   "Privacy": "Privacy",
-  "Terms": "Voorwaarden"
+  "Terms": "Voorwaarden",
+  "Superskill_Project": "Superskill",
+  "Superskill_Description": "Superskill is een met Flutter ontwikkeld spel dat is ontworpen om logica, denkvermogen, numerieke vaardigheden en meer te trainen."
 }

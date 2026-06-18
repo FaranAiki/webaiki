@@ -113,6 +113,21 @@ export const getProjectExperiences = (dict: Dictionary) => [
     jobs: [
       {
         date: `${dict.June} 2026`,
+        title: dict.Superskill_Project,
+        company: 'Flutter, Dart',
+        description: dict.Superskill_Description,
+        point: 90,
+        image: [
+          '/documents/project/Superskill_01.webp',
+          '/documents/project/Superskill_02.webp',
+          '/documents/project/Superskill_03.webp',
+          '/documents/project/Superskill_04.webp',
+        ],
+        url: 'https://github.com/FaranAiki/superskill',
+        tag: [dict.Technology, dict.Math, dict.Education]
+      },
+      {
+        date: `${dict.June} 2026`,
         title: dict.National_Statistics_Competition_Prep,
         company: 'Probability & Statistics, SARIMAX, MANOVA, Python, Jupyter',
         url: 'https://github.com/FaranAiki/belajar_nsc',

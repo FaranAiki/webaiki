@@ -402,5 +402,7 @@
   "Hire_Already_Submitted": "Ya has enviado una solicitud. Puedes editarla a continuación.",
   "Recaptcha_Protected": "Protegido por reCAPTCHA. Se aplican la {privacy} y los {terms}.",
   "Privacy": "Privacidad",
-  "Terms": "Términos"
+  "Terms": "Términos",
+  "Superskill_Project": "Superskill",
+  "Superskill_Description": "Superskill es un juego diseñado para entrenar la lógica, el pensamiento, las habilidades numéricas y más, desarrollado con Flutter."
 }

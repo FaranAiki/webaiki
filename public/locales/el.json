@@ -402,5 +402,7 @@
   "Hire_Already_Submitted": "Έχετε ήδη υποβάλει ένα αίτημα. Μπορείτε να το επεξεργαστείτε παρακάτω.",
   "Recaptcha_Protected": "Προστατεύεται από το reCAPTCHA. Ισχύουν οι {privacy} και οι {terms}.",
   "Privacy": "Απόρρητο",
-  "Terms": "Όροι"
+  "Terms": "Όροι",
+  "Superskill_Project": "Superskill",
+  "Superskill_Description": "Το Superskill είναι ένα παιχνίδι που εκπαιδεύει τη λογική, τις δεξιότητες σκέψης, τις αριθμητικές ικανότητες και άλλα, κατασκευασμένο με Flutter."
 }

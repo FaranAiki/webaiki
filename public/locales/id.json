@@ -402,5 +402,7 @@
   "Hire_Already_Submitted": "Anda telah mengirimkan permintaan. Anda dapat mengeditnya di bawah ini.",
   "Recaptcha_Protected": "Dilindungi oleh reCAPTCHA. {privacy} & {terms} berlaku.",
   "Privacy": "Privasi",
-  "Terms": "Ketentuan"
+  "Terms": "Ketentuan",
+  "Superskill_Project": "Superskill",
+  "Superskill_Description": "Superskill adalah game yang melatih logika, kemampuan berpikir, kemampuan numerik, dan sebagainya menggunakan Flutter."
 }

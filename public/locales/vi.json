@@ -402,5 +402,7 @@
   "Hire_Already_Submitted": "Bạn đã gửi một yêu cầu. Bạn có thể chỉnh sửa nó bên dưới.",
   "Recaptcha_Protected": "Được bảo vệ bởi reCAPTCHA. Áp dụng {privacy} & {terms}.",
   "Privacy": "Quyền riêng tư",
-  "Terms": "Điều khoản"
+  "Terms": "Điều khoản",
+  "Superskill_Project": "Superskill",
+  "Superskill_Description": "Superskill là một trò chơi được phát triển bằng Flutter giúp rèn luyện logic, khả năng tư duy, kỹ năng tính toán và nhiều khả năng khác."
 }
