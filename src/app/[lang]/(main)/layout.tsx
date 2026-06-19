@@ -137,6 +137,43 @@ export default async function RootLayout({
     }
   }
 
+  // Derive page routes for the terminal from navLinks (single source of truth)
+  // Each navLink or subLink with a real href becomes a terminal page route.
+  const terminalPageRoutes: { slug: string; label: string }[] = [
+    { slug: '', label: dict.Home || 'Home' } // root/home always first
+  ];
+
+  navLinks.forEach(link => {
+    if (link.subLinks) {
+      link.subLinks.forEach(sub => {
+        // href is '/' for home (already added) or '/slug' for other pages
+        const slug = sub.href === '/' ? '' : sub.href.replace(/^\//, '');
+        if (slug && !terminalPageRoutes.some(r => r.slug === slug)) {
+          terminalPageRoutes.push({ slug, label: sub.name });
+        }
+      });
+    } else if (link.href && link.href !== '#') {
+      const slug = link.href.replace(/^\//, '');
+      if (slug && !terminalPageRoutes.some(r => r.slug === slug)) {
+        terminalPageRoutes.push({ slug, label: link.name });
+      }
+    }
+  });
+
+  // Add auth/utility pages that exist as real app directories but are not in navLinks
+  const utilityPages: { slug: string; label: string }[] = [
+    { slug: 'login',        label: dict.Login        || 'Login'        },
+    { slug: 'register',     label: dict.Register      || 'Register'     },
+    { slug: 'edit-profile', label: dict.Edit_Profile  || 'Edit Profile' },
+    { slug: 'latest',       label: dict.Latest        || 'Latest'       },
+  ];
+
+  utilityPages.forEach(p => {
+    if (!terminalPageRoutes.some(r => r.slug === p.slug)) {
+      terminalPageRoutes.push(p);
+    }
+  });
+
   return (
     <>
       <Header
@@ -216,6 +253,7 @@ export default async function RootLayout({
         projectExperiences={projectExp}
         organizationExperiences={orgExp}
         awardExperiences={awardExp}
+        pageRoutes={terminalPageRoutes}
       />
     </>
   );

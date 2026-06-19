@@ -22,6 +22,9 @@ const nextConfig: NextConfig = {
     removeConsole: process.env.NODE_ENV === 'production',
   },
 
+  // Optimization: Enable gzip/brotli compression for server responses
+  compress: true,
+
     webpack: (
       config: WebpackConfiguration,
       { dev, isServer }: { dev: boolean; isServer: boolean }
@@ -110,6 +113,8 @@ images: {
   // Optimization: Support modern image formats
   formats: ['image/avif', 'image/webp'],
   qualities: [75, 80, 85, 90],
+  // Optimization: Cache optimized images at the edge for a week
+  minimumCacheTTL: 604800,
   remotePatterns: [
     { protocol: 'https', hostname: 'static.wikia.nocookie.net' },      { protocol: 'https', hostname: 'i.ytimg.com', pathname: '/vi/**' },
       { protocol: 'https', hostname: 'placehold.co' },

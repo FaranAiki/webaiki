@@ -13,7 +13,8 @@ const basic = Buffer.from(`${client_id}:${client_secret}`).toString('base64');
 const NOW_PLAYING_ENDPOINT = `https://api.spotify.com/v1/me/player/currently-playing`;
 const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
 
-// This function gets an access token from Spotify using the refresh token
+// This function gets an access token from Spotify using the refresh token.
+// The token is cached for 55 minutes (Spotify tokens expire in 60 min) at the server edge.
 const getAccessToken = async () => {
   const response = await fetch(TOKEN_ENDPOINT, {
     method: 'POST',
@@ -25,11 +26,14 @@ const getAccessToken = async () => {
       grant_type: 'refresh_token',
       refresh_token,
     }),
-    cache: 'no-store', // Important: ensure we always get a fresh token
+    next: { revalidate: 3300 }, // 55 minutes: re-use the same token across requests
   });
 
   return response.json();
 };
+
+// Add a short cache header so the edge/CDN can serve this without hammering Spotify
+export const revalidate = 30;
 
 // The main GET handler for our API route
 export async function GET() {
@@ -43,7 +47,7 @@ export async function GET() {
     headers: {
       Authorization: `Bearer ${access_token}`,
     },
-    cache: 'no-store', // Important: ensure we always fetch the latest data
+    next: { revalidate: 30 }, // Cache at the Next.js fetch level for 30 seconds
   });
 
   // If nothing is playing, Spotify returns a 204 No Content status

@@ -101,6 +101,7 @@ function AskMePopup({
   return (
     <div className={displayClass}>
       <Button
+        id="gemini-chatbot-button"
         onClick={handleOpenPopup}
         variant="outline"
         size="icon"

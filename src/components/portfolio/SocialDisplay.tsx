@@ -46,16 +46,7 @@ const itemVariants: Variants = {
   }
 };
 
-export default function SocialDisplay({ customLinks, hidePresentation = false }: SocialDisplayProps) {
-  const { isPresentationMode } = usePresentation();
-
-  // Static/CSS-variable based styles to prevent flicker
-  const containerClass = "text-foreground";
-  const cardBg = "bg-[var(--card-bg)] border-[var(--card-border)] backdrop-blur-sm shadow-sm hover:shadow-lg";
-  const usernameClass = "text-[var(--text-muted)] group-hover:text-foreground";
-  const nameClass = "text-foreground";
-  
-  const defaultSocialLinks: SocialLink[] = [
+export const defaultSocialLinks: SocialLink[] = [
     {
       name: "GitHub",
       username: "FaranAiki",
@@ -169,6 +160,15 @@ export default function SocialDisplay({ customLinks, hidePresentation = false }:
       color: "hover:border-blue-300"
     },
   ];
+
+export default function SocialDisplay({ customLinks, hidePresentation = false }: SocialDisplayProps) {
+  const { isPresentationMode } = usePresentation();
+
+  // Static/CSS-variable based styles to prevent flicker
+  const containerClass = "text-foreground";
+  const cardBg = "bg-[var(--card-bg)] border-[var(--card-border)] backdrop-blur-sm shadow-sm hover:shadow-lg";
+  const usernameClass = "text-[var(--text-muted)] group-hover:text-foreground";
+  const nameClass = "text-foreground";
 
   const socialLinks = customLinks || defaultSocialLinks;
 

@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef, KeyboardEvent, ChangeEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Terminal as TerminalIcon, X, Maximize2, Minimize2 } from 'lucide-react';
+import { defaultSocialLinks } from '../portfolio/SocialDisplay';
 
 interface JobItem {
   title: string;
@@ -14,6 +15,11 @@ interface JobItem {
   tag?: string[];
 }
 
+interface TerminalPageRoute {
+  slug: string;
+  label: string;
+}
+
 interface TerminalOverlayProps {
   lang: string;
   dict: Record<string, string>;
@@ -22,6 +28,7 @@ interface TerminalOverlayProps {
   projectExperiences: JobItem[];
   organizationExperiences: JobItem[];
   awardExperiences: JobItem[];
+  pageRoutes: TerminalPageRoute[];
 }
 
 interface HistoryItem {
@@ -43,7 +50,8 @@ export default function TerminalOverlay({
   workExperiences,
   projectExperiences,
   organizationExperiences,
-  awardExperiences
+  awardExperiences,
+  pageRoutes
 }: TerminalOverlayProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isMaximized, setIsMaximized] = useState<boolean>(false);
@@ -54,6 +62,38 @@ export default function TerminalOverlay({
   const [historyIdx, setHistoryIdx] = useState<number>(-1);
   const [terminalTheme, setTerminalTheme] = useState<'default' | 'hacker' | 'light' | 'dark'>('default');
   const [sessionStartTime] = useState<number>(Date.now());
+  const [hasChatbot, setHasChatbot] = useState<boolean>(false);
+
+  useEffect(() => {
+    const checkChatbot = () => {
+      const btn = document.getElementById('gemini-chatbot-button');
+      if (btn) {
+        const isHidden = btn.classList.contains('hidden') || 
+                        window.getComputedStyle(btn).display === 'none' ||
+                        btn.closest('.hidden') !== null;
+        setHasChatbot(!isHidden);
+      } else {
+        setHasChatbot(false);
+      }
+    };
+
+    checkChatbot();
+
+    const observer = new MutationObserver(checkChatbot);
+    observer.observe(document.body, { 
+      childList: true, 
+      subtree: true, 
+      attributes: true, 
+      attributeFilter: ['class', 'style'] 
+    });
+
+    window.addEventListener('resize', checkChatbot);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('resize', checkChatbot);
+    };
+  }, []);
 
   const inputRef = useRef<HTMLInputElement | null>(null);
   const consoleBottomRef = useRef<HTMLDivElement | null>(null);
@@ -62,10 +102,15 @@ export default function TerminalOverlay({
 
   // Dynamic File System populated from layout data
   const fileSystem = React.useMemo(() => {
+    const rootSlugs = pageRoutes
+      .map(route => route.slug)
+      .filter(slug => slug !== ''); // exclude home
+    const rootChildren = [...rootSlugs, 'bio.txt', 'resume.txt'];
+
     const fs: Record<string, FSEntry> = {
       '/': {
         type: 'dir',
-        children: ['work', 'projects', 'organizations', 'awards', 'bio.txt', 'resume.txt']
+        children: rootChildren
       },
       '/bio.txt': {
         type: 'file',
@@ -92,80 +137,101 @@ ${workExperiences.map(w => `- ${w.title} @ ${w.company} (${w.date})\n  ${w.descr
 [ AWARDS ]
 ${awardExperiences.map(a => `- ${a.title} @ ${a.company} (${a.date})\n  ${a.description}`).join('\n\n')}
 `
-      },
-      '/work': {
-        type: 'dir',
-        children: Array.from(new Set(workExperiences.map(w => `${w.company.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${w.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.txt`)))
-      },
-      '/projects': {
-        type: 'dir',
-        children: Array.from(new Set(projectExperiences.map(p => `${p.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.txt`)))
-      },
-      '/organizations': {
-        type: 'dir',
-        children: Array.from(new Set(organizationExperiences.map(o => `${o.company.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${o.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.txt`)))
-      },
-      '/awards': {
-        type: 'dir',
-        children: Array.from(new Set(awardExperiences.map(a => `${a.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.txt`)))
       }
     };
 
-    // Populate work files
-    workExperiences.forEach(w => {
-      const fileName = `${w.company.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${w.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.txt`;
-      fs[`/work/${fileName}`] = {
-        type: 'file',
-        content: `${w.title} (${w.date})
+    // Populate each page slug dynamically
+    pageRoutes.forEach(route => {
+      if (route.slug === '') return;
+
+      if (route.slug === 'work') {
+        const fileNames = workExperiences.map(w => `${w.company.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${w.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.txt`);
+        fs['/work'] = {
+          type: 'dir',
+          children: Array.from(new Set(fileNames))
+        };
+        workExperiences.forEach(w => {
+          const fileName = `${w.company.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${w.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.txt`;
+          fs[`/work/${fileName}`] = {
+            type: 'file',
+            content: `${w.title} (${w.date})
 Company/Institution: ${w.company}
 ---------------------------------------------
 Description: ${w.description}
 Tags: ${w.tag?.join(', ') || ''}`
-      };
-    });
-
-    // Populate project files
-    projectExperiences.forEach(p => {
-      const fileName = `${p.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.txt`;
-      fs[`/projects/${fileName}`] = {
-        type: 'file',
-        content: `${p.title} (${p.date})
+          };
+        });
+      } else if (route.slug === 'project') {
+        const fileNames = projectExperiences.map(p => `${p.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.txt`);
+        fs['/project'] = {
+          type: 'dir',
+          children: Array.from(new Set(fileNames))
+        };
+        projectExperiences.forEach(p => {
+          const fileName = `${p.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.txt`;
+          fs[`/project/${fileName}`] = {
+            type: 'file',
+            content: `${p.title} (${p.date})
 Stack/Technologies: ${p.company}
 --------------------------------------
 Description: ${p.description}
 Link: ${p.url || 'N/A'}
 Tags: ${p.tag?.join(', ') || ''}`
-      };
-    });
-
-    // Populate organization files
-    organizationExperiences.forEach(o => {
-      const fileName = `${o.company.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${o.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.txt`;
-      fs[`/organizations/${fileName}`] = {
-        type: 'file',
-        content: `${o.title} (${o.date})
+          };
+        });
+      } else if (route.slug === 'organization') {
+        const fileNames = organizationExperiences.map(o => `${o.company.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${o.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.txt`);
+        fs['/organization'] = {
+          type: 'dir',
+          children: Array.from(new Set(fileNames))
+        };
+        organizationExperiences.forEach(o => {
+          const fileName = `${o.company.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${o.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.txt`;
+          fs[`/organization/${fileName}`] = {
+            type: 'file',
+            content: `${o.title} (${o.date})
 Organization: ${o.company}
 ---------------------------------------
 Description: ${o.description}
 Tags: ${o.tag?.join(', ') || ''}`
-      };
-    });
-
-    // Populate award files
-    awardExperiences.forEach(a => {
-      const fileName = `${a.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.txt`;
-      fs[`/awards/${fileName}`] = {
-        type: 'file',
-        content: `${a.title} (${a.date})
+          };
+        });
+      } else if (route.slug === 'award') {
+        const fileNames = awardExperiences.map(a => `${a.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.txt`);
+        fs['/award'] = {
+          type: 'dir',
+          children: Array.from(new Set(fileNames))
+        };
+        awardExperiences.forEach(a => {
+          const fileName = `${a.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.txt`;
+          fs[`/award/${fileName}`] = {
+            type: 'file',
+            content: `${a.title} (${a.date})
 Issuer/Organizer: ${a.company}
 ------------------------------
 Description: ${a.description}
 Tags: ${a.tag?.join(', ') || ''}`
-      };
+          };
+        });
+      } else {
+        // All other dynamically derived page routes get a descriptive info file
+        fs[`/${route.slug}`] = {
+          type: 'dir',
+          children: ['info.txt']
+        };
+        fs[`/${route.slug}/info.txt`] = {
+          type: 'file',
+          content: `${route.label} Page
+---------------------------------------------
+This folder represents the ${route.label} page of the portfolio website.
+To navigate to this page in your browser, type:
+  goto ${route.slug} or open ${route.slug}`
+        };
+      }
     });
 
     return fs;
-  }, [dict, workExperiences, projectExperiences, organizationExperiences, awardExperiences]);
+  }, [dict, workExperiences, projectExperiences, organizationExperiences, awardExperiences, pageRoutes]);
 
   // Focus input helper
   const focusInput = () => {
@@ -203,11 +269,16 @@ Tags: ${a.tag?.join(', ') || ''}`
         {
           output: (
             <div className="space-y-1">
-              <p className="text-theme-500 font-bold">Muhammad Faran Aiki - Terminal Shell [v1.2.0]</p>
+              <p className="text-theme-500 font-bold">Muhammad Faran Aiki - Terminal Shell [v3.0.0]</p>
               <p className="text-theme-muted text-xs">
                 {lang === 'id' 
                   ? "Ketik 'help' untuk melihat daftar perintah. Tekan '`' (backtick) atau 'Ctrl + \\' untuk menutup." 
-                  : "Type 'help' to see available commands. Press '`' (backtick) or 'Ctrl + \\' to close."}
+                  : "Type 'help' to see commands. Press '`' (backtick) or 'Ctrl + \\' to close."}
+              </p>
+              <p className="text-theme-muted text-xs">
+                {lang === 'id'
+                  ? "Tip: Gunakan 'goto <halaman>' untuk navigasi cepat. Ketik 'pages' untuk melihat daftar halaman."
+                  : "Tip: Use 'goto <page>' for quick navigation. Type 'pages' to see all available pages."}
               </p>
             </div>
           )
@@ -244,26 +315,44 @@ Tags: ${a.tag?.join(', ') || ''}`
     let newCwd = cwd;
 
     switch (command) {
-      case 'help':
+      case 'help': {
         outputNode = (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1 text-xs">
-            <div><span className="text-theme-500 font-bold">help</span> - {lang === 'id' ? 'Tampilkan menu bantuan' : 'Show help menu'}</div>
-            <div><span className="text-theme-500 font-bold">ls [folder]</span> - {lang === 'id' ? 'List file atau folder' : 'List files or folders'}</div>
-            <div><span className="text-theme-500 font-bold">cd [folder]</span> - {lang === 'id' ? 'Pindah folder' : 'Change directory'}</div>
-            <div><span className="text-theme-500 font-bold">cat [file]</span> - {lang === 'id' ? 'Tampilkan isi file' : 'Display file content'}</div>
-            <div><span className="text-theme-500 font-bold">whoami</span> - {lang === 'id' ? 'Tampilkan status login user' : 'Display user login details'}</div>
-            <div><span className="text-theme-500 font-bold">login</span> - {lang === 'id' ? 'Mengarahkan ke halaman login' : 'Redirect to login page'}</div>
-            <div><span className="text-theme-500 font-bold">neofetch</span> - {lang === 'id' ? 'Tampilkan informasi sistem web' : 'Display web system info'}</div>
-            <div><span className="text-theme-500 font-bold">skills</span> - {lang === 'id' ? 'Tampilkan keahlian teknis' : 'Display technical skills'}</div>
-            <div><span className="text-theme-500 font-bold">education</span> - {lang === 'id' ? 'Riwayat pendidikan' : 'Educational history'}</div>
-            <div><span className="text-theme-500 font-bold">projects</span> - {lang === 'id' ? 'Daftar projek penting' : 'List highlight projects'}</div>
-            <div><span className="text-theme-500 font-bold">social</span> - {lang === 'id' ? 'Tampilkan tautan sosial' : 'Display social links'}</div>
-            <div><span className="text-theme-500 font-bold">theme [hacker|light|dark|default]</span> - {lang === 'id' ? 'Ubah tema konsol' : 'Change console theme'}</div>
-            <div><span className="text-theme-500 font-bold">clear</span> - {lang === 'id' ? 'Bersihkan layar' : 'Clear terminal screen'}</div>
-            <div><span className="text-theme-500 font-bold">exit</span> - {lang === 'id' ? 'Keluar dari shell' : 'Exit the terminal overlay'}</div>
+          <div className="space-y-3 text-xs">
+            <p className="text-theme-500 font-bold">[ Navigation ]</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1">
+              <div><span className="text-theme-500 font-bold">goto &lt;page&gt;</span> - {lang === 'id' ? 'Pergi ke halaman situs' : 'Navigate to a site page'}</div>
+              <div><span className="text-theme-500 font-bold">pages</span> - {lang === 'id' ? 'Tampilkan daftar halaman' : 'List all navigable pages'}</div>
+              <div><span className="text-theme-500 font-bold">open &lt;page&gt;</span> - {lang === 'id' ? 'Alias untuk goto' : 'Alias for goto'}</div>
+              <div><span className="text-theme-500 font-bold">pwd</span> - {lang === 'id' ? 'Tampilkan URL halaman saat ini' : 'Show current page URL'}</div>
+              <div><span className="text-theme-500 font-bold">lang &lt;code&gt;</span> - {lang === 'id' ? 'Ganti bahasa (en/id/zh/jp...)' : 'Switch language (en/id/zh/jp...)'}</div>
+            </div>
+            <p className="text-theme-500 font-bold">[ Filesystem ]</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1">
+              <div><span className="text-theme-500 font-bold">ls [folder]</span> - {lang === 'id' ? 'List file atau folder' : 'List files or folders'}</div>
+              <div><span className="text-theme-500 font-bold">cd [folder]</span> - {lang === 'id' ? 'Pindah folder' : 'Change directory'}</div>
+              <div><span className="text-theme-500 font-bold">cat [file]</span> - {lang === 'id' ? 'Tampilkan isi file' : 'Display file content'}</div>
+            </div>
+            <p className="text-theme-500 font-bold">[ Info & Profile ]</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1">
+              <div><span className="text-theme-500 font-bold">whoami</span> - {lang === 'id' ? 'Tampilkan status login user' : 'Display user login details'}</div>
+              <div><span className="text-theme-500 font-bold">neofetch</span> - {lang === 'id' ? 'Tampilkan informasi sistem web' : 'Display web system info'}</div>
+              <div><span className="text-theme-500 font-bold">projects</span> - {lang === 'id' ? 'Daftar projek penting' : 'List highlight projects'}</div>
+              <div><span className="text-theme-500 font-bold">social</span> - {lang === 'id' ? 'Tampilkan tautan sosial' : 'Display social links'}</div>
+              <div><span className="text-theme-500 font-bold">uptime</span> - {lang === 'id' ? 'Durasi sesi saat ini' : 'Current session duration'}</div>
+              <div><span className="text-theme-500 font-bold">history</span> - {lang === 'id' ? 'Tampilkan riwayat perintah' : 'Show command history'}</div>
+            </div>
+            <p className="text-theme-500 font-bold">[ Shell ]</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1">
+              <div><span className="text-theme-500 font-bold">login</span> - {lang === 'id' ? 'Mengarahkan ke halaman login' : 'Redirect to login page'}</div>
+              <div><span className="text-theme-500 font-bold">theme [hacker|light|dark|default]</span> - {lang === 'id' ? 'Ubah tema konsol' : 'Change console theme'}</div>
+              <div><span className="text-theme-500 font-bold">echo &lt;text&gt;</span> - {lang === 'id' ? 'Tampilkan teks' : 'Print text'}</div>
+              <div><span className="text-theme-500 font-bold">clear</span> - {lang === 'id' ? 'Bersihkan layar' : 'Clear terminal screen'}</div>
+              <div><span className="text-theme-500 font-bold">exit</span> - {lang === 'id' ? 'Keluar dari shell' : 'Exit the terminal overlay'}</div>
+            </div>
           </div>
         );
         break;
+      }
 
       case 'clear':
         setHistory([]);
@@ -346,7 +435,7 @@ Tags: ${a.tag?.join(', ') || ''}`
               <p><span className="text-theme-500 font-bold">Host:</span> https://faranaiki.id</p>
               <p><span className="text-theme-500 font-bold">Kernel:</span> Next.js 15 / React 19</p>
               <p><span className="text-theme-500 font-bold">Uptime:</span> {uptimeStr}</p>
-              <p><span className="text-theme-500 font-bold">Shell:</span> webaiki-sh v2.0</p>
+              <p><span className="text-theme-500 font-bold">Shell:</span> webaiki-sh v3.0</p>
               <p><span className="text-theme-500 font-bold">Theme:</span> {terminalTheme}</p>
               <p><span className="text-theme-500 font-bold">Platform:</span> Web Browser Canvas</p>
             </div>
@@ -354,50 +443,22 @@ Tags: ${a.tag?.join(', ') || ''}`
         );
         break;
 
-      case 'skills':
-        outputNode = (
-          <div className="space-y-3 text-xs font-mono">
-            <div>
-              <p className="text-theme-500 font-bold mb-1">[ Languages ]</p>
-              <p>TypeScript/JS  <span className="text-theme-500 font-bold">[████████░░]</span> 80%</p>
-              <p>Python         <span className="text-theme-500 font-bold">[█████████░]</span> 90%</p>
-              <p>C/C++          <span className="text-theme-500 font-bold">[███████░░░]</span> 70%</p>
-              <p>C# (Unity)     <span className="text-theme-500 font-bold">[██████░░░░]</span> 60%</p>
-            </div>
-            <div>
-              <p className="text-theme-500 font-bold mb-1">[ Frameworks & Tools ]</p>
-              <p>Next.js/React  <span className="text-theme-500 font-bold">[████████░░]</span> 80%</p>
-              <p>Godot Engine   <span className="text-theme-500 font-bold">[███████░░░]</span> 70%</p>
-              <p>Prisma / SQL   <span className="text-theme-500 font-bold">[████████░░]</span> 80%</p>
-            </div>
-          </div>
-        );
-        break;
 
-      case 'education':
+
+      case 'work':
         outputNode = (
           <div className="space-y-2 text-xs">
-            <div>
-              <p className="text-theme-500 font-bold">{dict.ITB || 'Bandung Institute of Technology'}</p>
-              <p className="text-theme-muted">
-                {lang === 'id'
-                  ? 'Sekolah Teknik Elektro dan Informatika - Sistem dan Teknologi Informasi (2025 - Sekarang)'
-                  : 'School of Electrical Engineering and Informatics - Information Systems and Technology (2025 - Present)'}
-              </p>
-              <p className="text-xxs italic text-theme-muted/80">• {dict.Paragon_Scholarship_Title || 'Paragon Scholarship Program Excellence 2025 Recipient'}</p>
-            </div>
-            <div>
-              <p className="text-theme-500 font-bold">SMAN 1 Kota Depok</p>
-              <p className="text-theme-muted">
-                {lang === 'id'
-                  ? 'Sekolah Menengah Atas - Jurusan MIPA (2022 - 2025)'
-                  : 'High School Diploma in Natural Sciences (2022 - 2025)'}
-              </p>
-            </div>
+            {workExperiences.map((w, index) => (
+              <div key={index}>
+                <p className="text-theme-500 font-bold">{w.title} @ {w.company} ({w.date})</p>
+                <p className="text-theme-muted">{w.description}</p>
+              </div>
+            ))}
           </div>
         );
         break;
 
+      case 'project':
       case 'projects':
         outputNode = (
           <div className="space-y-2 text-xs">
@@ -411,13 +472,48 @@ Tags: ${a.tag?.join(', ') || ''}`
         );
         break;
 
+      case 'organization':
+      case 'organizations':
+        outputNode = (
+          <div className="space-y-2 text-xs">
+            {organizationExperiences.map((o, index) => (
+              <div key={index}>
+                <p className="text-theme-500 font-bold">{o.title} @ {o.company} ({o.date})</p>
+                <p className="text-theme-muted">{o.description}</p>
+              </div>
+            ))}
+          </div>
+        );
+        break;
+
+      case 'award':
+      case 'awards':
+        outputNode = (
+          <div className="space-y-2 text-xs">
+            {awardExperiences.map((a, index) => (
+              <div key={index}>
+                <p className="text-theme-500 font-bold">{a.title} @ {a.company} ({a.date})</p>
+                <p className="text-theme-muted">{a.description}</p>
+              </div>
+            ))}
+          </div>
+        );
+        break;
+
       case 'social':
         outputNode = (
-          <div className="flex flex-col gap-1 text-xs">
-            <p>GitHub: <a href="https://github.com/FaranAiki" target="_blank" rel="noopener noreferrer" className="text-theme-500 underline">github.com/FaranAiki</a></p>
-            <p>LinkedIn: <a href="https://www.linkedin.com/in/muhammad-faran-aiki-8a6305343/" target="_blank" rel="noopener noreferrer" className="text-theme-500 underline">linkedin.com/in/muhammad-faran-aiki-8a6305343/</a></p>
-            <p>Instagram: <a href="https://www.instagram.com/mfaranaiki/" target="_blank" rel="noopener noreferrer" className="text-theme-500 underline">instagram.com/mfaranaiki/</a></p>
-            <p>X / Twitter: <a href="https://x.com/FaranAiki" target="_blank" rel="noopener noreferrer" className="text-theme-500 underline">x.com/FaranAiki</a></p>
+          <div className="flex flex-col gap-1.5 text-xs">
+            {defaultSocialLinks.map((link, idx) => {
+              const displayUrl = link.url.replace(/^(https?:\/\/)?(www\.)?/, '').replace(/^mailto:/, '');
+              return (
+                <p key={idx}>
+                  <span className="text-theme-500 font-bold">{link.name} ({link.username}):</span>{' '}
+                  <a href={link.url} target="_blank" rel="noopener noreferrer" className="underline hover:text-theme-400">
+                    {displayUrl}
+                  </a>
+                </p>
+              );
+            })}
           </div>
         );
         break;
@@ -516,6 +612,118 @@ Tags: ${a.tag?.join(', ') || ''}`
         }
         break;
 
+      case 'pwd': {
+        const currentUrl = typeof window !== 'undefined' ? window.location.pathname : `/${lang}`;
+        outputNode = <p className="text-xs font-mono text-foreground">{currentUrl}</p>;
+        break;
+      }
+
+      case 'pages': {
+        outputNode = (
+          <div className="space-y-1 text-xs">
+            <p className="text-theme-500 font-bold mb-2">{lang === 'id' ? 'Halaman tersedia (gunakan: goto <slug>)' : 'Available pages (use: goto <slug>)'}</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-0.5 font-mono">
+              {pageRoutes.map(p => (
+                <div key={p.slug}>
+                  <span className="text-theme-500">{p.slug || '(home)'}</span>
+                  <span className="text-theme-muted"> → /{lang}{p.slug ? `/${p.slug}` : ''}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+        break;
+      }
+
+      case 'goto':
+      case 'open':
+      case 'navigate': {
+        const pageSlug = args[0]?.toLowerCase();
+        const validSlugs = pageRoutes.map(p => p.slug);
+
+        if (pageSlug === undefined) {
+          outputNode = <p className="text-xs text-red-500">{lang === 'id' ? `Sintaks: goto <halaman>. Ketik 'pages' untuk daftar halaman.` : `Usage: goto <page>. Type 'pages' to list all pages.`}</p>;
+        } else if (!validSlugs.includes(pageSlug)) {
+          outputNode = <p className="text-xs text-red-500">{lang === 'id' ? `Halaman tidak ditemukan: '${pageSlug}'. Ketik 'pages' untuk daftar halaman.` : `Page not found: '${pageSlug}'. Type 'pages' to list all pages.`}</p>;
+        } else {
+          const targetHref = pageSlug ? `/${lang}/${pageSlug}` : `/${lang}`;
+          outputNode = (
+            <p className="text-xs text-theme-500 animate-pulse">
+              {lang === 'id' ? `Navigasi ke ${targetHref}...` : `Navigating to ${targetHref}...`}
+            </p>
+          );
+          setTimeout(() => {
+            window.location.href = targetHref;
+          }, 600);
+        }
+        break;
+      }
+
+      case 'lang': {
+        const langArg = args[0]?.toLowerCase();
+        const supportedLangs = ['en', 'id', 'zh', 'jp', 'ru', 'fr', 'ar', 'es', 'ko', 'de', 'nl', 'ha', 'he', 'el', 'hi', 'pt', 'bn', 'vi'];
+        if (!langArg) {
+          outputNode = (
+            <div className="text-xs space-y-1">
+              <p>{lang === 'id' ? `Bahasa saat ini: ${lang}` : `Current language: ${lang}`}</p>
+              <p className="text-theme-muted">{lang === 'id' ? `Tersedia: ${supportedLangs.join(', ')}` : `Available: ${supportedLangs.join(', ')}`}</p>
+              <p className="text-theme-muted">{lang === 'id' ? `Gunakan: lang <kode>` : `Usage: lang <code>`}</p>
+            </div>
+          );
+        } else if (!supportedLangs.includes(langArg)) {
+          outputNode = <p className="text-xs text-red-500">{lang === 'id' ? `Bahasa tidak didukung: ${langArg}` : `Unsupported language: ${langArg}`}</p>;
+        } else {
+          const currentPath = typeof window !== 'undefined' ? window.location.pathname : `/${lang}`;
+          const newPath = currentPath.replace(/^\/[a-z]{2}/, `/${langArg}`);
+          outputNode = (
+            <p className="text-xs text-theme-500 animate-pulse">
+              {lang === 'id' ? `Beralih ke bahasa ${langArg}...` : `Switching to language ${langArg}...`}
+            </p>
+          );
+          setTimeout(() => {
+            window.location.href = newPath;
+          }, 600);
+        }
+        break;
+      }
+
+      case 'uptime': {
+        const uptimeSec2 = Math.floor((Date.now() - sessionStartTime) / 1000);
+        const uptimeMins = Math.floor(uptimeSec2 / 60);
+        const uptimeSecs = uptimeSec2 % 60;
+        const uptimeStr2 = uptimeSec2 < 60 ? `${uptimeSec2}s` : `${uptimeMins}m ${uptimeSecs}s`;
+        outputNode = (
+          <p className="text-xs">
+            <span className="text-theme-500 font-bold">{lang === 'id' ? 'Durasi sesi' : 'Session uptime'}:</span> {uptimeStr2}
+          </p>
+        );
+        break;
+      }
+
+      case 'history': {
+        if (commandHistory.length === 0) {
+          outputNode = <p className="text-xs text-theme-muted">{lang === 'id' ? 'Belum ada riwayat perintah.' : 'No command history yet.'}</p>;
+        } else {
+          outputNode = (
+            <div className="text-xs font-mono space-y-0.5">
+              {commandHistory.map((cmd, i) => (
+                <div key={i}>
+                  <span className="text-theme-muted select-none">{String(i + 1).padStart(3, ' ')}  </span>
+                  <span className="text-foreground">{cmd}</span>
+                </div>
+              ))}
+            </div>
+          );
+        }
+        break;
+      }
+
+      case 'echo': {
+        const echoText = args.join(' ');
+        outputNode = <p className="text-xs font-mono text-foreground">{echoText || ''}</p>;
+        break;
+      }
+
       default:
         outputNode = (
           <p className="text-xs text-red-500">
@@ -558,19 +766,41 @@ Tags: ${a.tag?.join(', ') || ''}`
       e.preventDefault();
       const tokens = input.trim().split(/\s+/);
       const cmd = tokens[0]?.toLowerCase();
-      
-      // Auto-completes ls, cd, or cat arguments
-      if (['ls', 'cd', 'cat'].includes(cmd) && tokens.length <= 2) {
+
+      // All available top-level commands for autocomplete
+      const allCommands = [
+        'help', 'ls', 'cd', 'cat', 'whoami', 'login', 'sudo', 'neofetch',
+        'projects', 'project', 'work', 'organization', 'organizations',
+        'award', 'awards', 'social', 'theme', 'clear', 'exit', 'goto', 'open',
+        'navigate', 'pages', 'pwd', 'lang', 'uptime', 'history', 'echo'
+      ];
+      const allPageSlugs = pageRoutes.map(p => p.slug);
+      const supportedLangCodes = ['en', 'id', 'zh', 'jp', 'ru', 'fr', 'ar', 'es', 'ko', 'de', 'nl', 'ha', 'he', 'el', 'hi', 'pt', 'bn', 'vi'];
+
+      if (tokens.length === 1) {
+        // Autocomplete command name
+        const partial = cmd || '';
+        const matches = allCommands.filter(c => c.startsWith(partial));
+        if (matches.length === 1) {
+          setInput(matches[0]);
+        } else if (matches.length > 1) {
+          const listOutput = (
+            <div className="flex flex-wrap gap-4 text-xxs font-mono text-theme-muted">
+              {matches.map(m => <span key={m}>{m}</span>)}
+            </div>
+          );
+          setHistory(prev => [...prev, { input: input, output: listOutput }]);
+        }
+      } else if (['ls', 'cd', 'cat'].includes(cmd) && tokens.length <= 2) {
+        // Auto-completes ls, cd, or cat arguments
         const partialName = tokens[1] || '';
         const parentEntry = fileSystem[cwd];
         if (parentEntry && parentEntry.children) {
           const matches = parentEntry.children.filter(child => child.toLowerCase().startsWith(partialName.toLowerCase()));
           
           if (matches.length === 1) {
-            // Unique match found, complete the name
             setInput(`${cmd} ${matches[0]}`);
           } else if (matches.length > 1) {
-            // Multiple matches, list options below
             const listOutput = (
               <div className="flex gap-4 text-xxs font-mono text-theme-muted">
                 {matches.map(m => <span key={m}>{m}</span>)}
@@ -578,6 +808,48 @@ Tags: ${a.tag?.join(', ') || ''}`
             );
             setHistory(prev => [...prev, { input: input, output: listOutput }]);
           }
+        }
+      } else if (['goto', 'open', 'navigate'].includes(cmd) && tokens.length <= 2) {
+        // Autocomplete page slug for navigation commands
+        const partial = tokens[1] || '';
+        const matches = allPageSlugs.filter(s => s.startsWith(partial) && s !== '');
+        if (matches.length === 1) {
+          setInput(`${cmd} ${matches[0]}`);
+        } else if (matches.length > 1) {
+          const listOutput = (
+            <div className="flex flex-wrap gap-4 text-xxs font-mono text-theme-muted">
+              {matches.map(m => <span key={m}>{m}</span>)}
+            </div>
+          );
+          setHistory(prev => [...prev, { input: input, output: listOutput }]);
+        }
+      } else if (cmd === 'lang' && tokens.length <= 2) {
+        // Autocomplete language code
+        const partial = tokens[1] || '';
+        const matches = supportedLangCodes.filter(l => l.startsWith(partial));
+        if (matches.length === 1) {
+          setInput(`lang ${matches[0]}`);
+        } else if (matches.length > 1) {
+          const listOutput = (
+            <div className="flex flex-wrap gap-4 text-xxs font-mono text-theme-muted">
+              {matches.map(m => <span key={m}>{m}</span>)}
+            </div>
+          );
+          setHistory(prev => [...prev, { input: input, output: listOutput }]);
+        }
+      } else if (cmd === 'theme' && tokens.length <= 2) {
+        const partial = tokens[1] || '';
+        const themeOpts = ['hacker', 'light', 'dark', 'default'];
+        const matches = themeOpts.filter(t => t.startsWith(partial));
+        if (matches.length === 1) {
+          setInput(`theme ${matches[0]}`);
+        } else if (matches.length > 1) {
+          const listOutput = (
+            <div className="flex gap-4 text-xxs font-mono text-theme-muted">
+              {matches.map(m => <span key={m}>{m}</span>)}
+            </div>
+          );
+          setHistory(prev => [...prev, { input: input, output: listOutput }]);
         }
       }
     }
@@ -602,7 +874,7 @@ Tags: ${a.tag?.join(', ') || ''}`
       {/* Floating terminal trigger button */}
       <button
         onClick={toggleTerminal}
-        className="fixed bottom-6 right-6 p-4 rounded-full bg-theme-surface-strong border border-theme-border text-theme-500 hover:border-theme-500 hover:text-theme-400 hover:scale-105 active:scale-95 shadow-xl transition-all duration-300 z-50 flex items-center justify-center cursor-pointer group no-print"
+        className={`fixed ${hasChatbot ? 'bottom-24' : 'bottom-6'} left-6 p-4 rounded-full bg-theme-surface-strong border border-theme-border text-theme-500 hover:border-theme-500 hover:text-theme-400 hover:scale-105 active:scale-95 shadow-xl transition-all duration-300 z-50 flex items-center justify-center cursor-pointer group no-print`}
         title={lang === 'id' ? "Buka Terminal Portofolio (`)" : "Open Portfolio Terminal (`)"}
         aria-label="Toggle terminal mode"
       >

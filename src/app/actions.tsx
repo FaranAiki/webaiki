@@ -1,6 +1,7 @@
 "use server";
 
 import { cookies, headers } from 'next/headers';
+import { unstable_cache, revalidateTag } from 'next/cache';
 import fs from 'fs';
 import path from 'path';
 import prisma from '@/lib/prisma';
@@ -173,27 +174,31 @@ export async function setCookies(name: string, val: string) {
   });
 }
 
-export async function getFeedbacks() {
-  try {
-    return await prisma.feedback.findMany({
-      where: { isPublic: true },
-      include: {
-        user: {
-          select: {
-            id: true,
-            name: true,
-            username: true,
-            avatarUrl: true
+export const getFeedbacks = unstable_cache(
+  async () => {
+    try {
+      return await prisma.feedback.findMany({
+        where: { isPublic: true },
+        include: {
+          user: {
+            select: {
+              id: true,
+              name: true,
+              username: true,
+              avatarUrl: true
+            }
           }
-        }
-      },
-      orderBy: { createdAt: 'desc' }
-    });
-  } catch (error) {
-    console.error('Error in getFeedbacks:', error);
-    return [];
-  }
-}
+        },
+        orderBy: { createdAt: 'desc' }
+      });
+    } catch (error) {
+      console.error('Error in getFeedbacks:', error);
+      return [];
+    }
+  },
+  ['feedbacks'],
+  { revalidate: 60, tags: ['feedbacks'] }
+);
 
 export async function deleteFeedback(feedbackId: string) {
   const supabase = await createClient();
@@ -285,6 +290,9 @@ export async function submitFeedback(content: string, image?: string, captchaTok
       }
     });
 
+    // Invalidate the feedbacks cache so new feedback appears immediately
+    revalidateTag('feedbacks');
+
     return { success: true };
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'Unknown error';
@@ -293,26 +301,30 @@ export async function submitFeedback(content: string, image?: string, captchaTok
   }
 }
 
-export async function getNews() {
-  try {
-    return await prisma.news.findMany({
-      where: { isPublic: true },
-      include: {
-        author: {
-          select: {
-            id: true,
-            name: true,
-            avatarUrl: true
+export const getNews = unstable_cache(
+  async () => {
+    try {
+      return await prisma.news.findMany({
+        where: { isPublic: true },
+        include: {
+          author: {
+            select: {
+              id: true,
+              name: true,
+              avatarUrl: true
+            }
           }
-        }
-      },
-      orderBy: { createdAt: 'desc' }
-    });
-  } catch (error) {
-    console.error('Error in getNews:', error);
-    return [];
-  }
-}
+        },
+        orderBy: { createdAt: 'desc' }
+      });
+    } catch (error) {
+      console.error('Error in getNews:', error);
+      return [];
+    }
+  },
+  ['news'],
+  { revalidate: 30, tags: ['news'] }
+);
 
 export async function getNewsItem(id: string) {
   try {
@@ -345,6 +357,9 @@ export async function deleteNews(newsId: string) {
     await prisma.news.deleteMany({
       where: { id: newsId }
     });
+
+    // Invalidate the news cache so deletion appears immediately
+    revalidateTag('news');
 
     return { success: true };
   } catch (error: unknown) {
@@ -388,6 +403,9 @@ export async function postNews(title: string, content: string, image?: string) {
         isPublic: true,
       }
     });
+
+    // Invalidate the news cache so newly posted news appears immediately
+    revalidateTag('news');
 
     return { success: true };
   } catch (error: unknown) {
