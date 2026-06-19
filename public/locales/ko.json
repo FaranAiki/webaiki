@@ -404,5 +404,6 @@
   "Privacy": "개인정보",
   "Terms": "약관",
   "Superskill_Project": "슈퍼스킬",
-  "Superskill_Description": "Superskill은 Flutter를 사용하여 개발된 논리력, 사고력, 수리 능력 등을 훈련하는 두뇌 트레이닝 게임입니다."
+  "Superskill_Description": "Superskill은 Flutter를 사용하여 개발된 논리력, 사고력, 수리 능력 등을 훈련하는 두뇌 트레이닝 게임입니다.",
+  "Terminal_Title": "Konsol Terminal"
 }

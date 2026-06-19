@@ -404,5 +404,6 @@
   "Privacy": "Конфиденциальность",
   "Terms": "Условия",
   "Superskill_Project": "Superskill",
-  "Superskill_Description": "Superskill — это игра на базе Flutter, предназначенная для тренировки логики, мышления, математических способностей и многого другого."
+  "Superskill_Description": "Superskill — это игра на базе Flutter, предназначенная для тренировки логики, мышления, математических способностей и многого другого.",
+  "Terminal_Title": "Konsol Terminal"
 }

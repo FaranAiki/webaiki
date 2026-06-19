@@ -415,5 +415,6 @@
   "Privacy": "Privacy",
   "Terms": "Terms",
   "Superskill_Project": "Superskill",
-  "Superskill_Description": "Superskill is a game designed to train logic, thinking skills, numerical skills, and more, built using Flutter."
+  "Superskill_Description": "Superskill is a game designed to train logic, thinking skills, numerical skills, and more, built using Flutter.",
+  "Terminal_Title": "Terminal Shell"
 }

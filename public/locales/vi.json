@@ -404,5 +404,6 @@
   "Privacy": "Quyền riêng tư",
   "Terms": "Điều khoản",
   "Superskill_Project": "Superskill",
-  "Superskill_Description": "Superskill là một trò chơi được phát triển bằng Flutter giúp rèn luyện logic, khả năng tư duy, kỹ năng tính toán và nhiều khả năng khác."
+  "Superskill_Description": "Superskill là một trò chơi được phát triển bằng Flutter giúp rèn luyện logic, khả năng tư duy, kỹ năng tính toán và nhiều khả năng khác.",
+  "Terminal_Title": "Konsol Terminal"
 }

@@ -404,5 +404,6 @@
   "Privacy": "Απόρρητο",
   "Terms": "Όροι",
   "Superskill_Project": "Superskill",
-  "Superskill_Description": "Το Superskill είναι ένα παιχνίδι που εκπαιδεύει τη λογική, τις δεξιότητες σκέψης, τις αριθμητικές ικανότητες και άλλα, κατασκευασμένο με Flutter."
+  "Superskill_Description": "Το Superskill είναι ένα παιχνίδι που εκπαιδεύει τη λογική, τις δεξιότητες σκέψης, τις αριθμητικές ικανότητες και άλλα, κατασκευασμένο με Flutter.",
+  "Terminal_Title": "Konsol Terminal"
 }

@@ -404,5 +404,6 @@
   "Privacy": "الخصوصية",
   "Terms": "الشروط",
   "Superskill_Project": "سوبر سكيل",
-  "Superskill_Description": "Superskill هي لعبة لتدريب المنطق ومهارات التفكير والمهارات العددية والمزيد، تم تطويرها باستخدام Flutter."
+  "Superskill_Description": "Superskill هي لعبة لتدريب المنطق ومهارات التفكير والمهارات العددية والمزيد، تم تطويرها باستخدام Flutter.",
+  "Terminal_Title": "Konsol Terminal"
 }

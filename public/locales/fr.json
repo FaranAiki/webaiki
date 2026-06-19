@@ -404,5 +404,6 @@
   "Privacy": "Confidentialité",
   "Terms": "Conditions",
   "Superskill_Project": "Superskill",
-  "Superskill_Description": "Superskill est un jeu conçu pour entraîner la logique, la réflexion, les compétences numériques et plus encore, développé avec Flutter."
+  "Superskill_Description": "Superskill est un jeu conçu pour entraîner la logique, la réflexion, les compétences numériques et plus encore, développé avec Flutter.",
+  "Terminal_Title": "Konsol Terminal"
 }

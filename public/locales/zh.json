@@ -404,5 +404,6 @@
   "Privacy": "隐私",
   "Terms": "条款",
   "Superskill_Project": "Superskill",
-  "Superskill_Description": "Superskill 是一款使用 Flutter 开发的游戏，旨在训练逻辑、思维能力、数学能力等。"
+  "Superskill_Description": "Superskill 是一款使用 Flutter 开发的游戏，旨在训练逻辑、思维能力、数学能力等。",
+  "Terminal_Title": "Konsol Terminal"
 }

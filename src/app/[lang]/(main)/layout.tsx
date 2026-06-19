@@ -4,6 +4,13 @@ import "../../globals.css";
 
 import { getDictionary } from '@/components/layout/Translator';
 import { createClient } from '@/utils/supabase/server';
+import TerminalOverlay from "@/components/interactive/TerminalOverlay";
+import {
+  getWorkExperiences,
+  getProjectExperiences,
+  getOrganizationExperiences,
+  getAwardExperiences
+} from '@/lib/data';
 
 import {
   Home,
@@ -39,9 +46,15 @@ export default async function RootLayout({
   const { lang } = await params;
   const dict = await getDictionary(lang);
 
+  const workExp = getWorkExperiences(dict).flatMap(y => y.jobs);
+  const projectExp = getProjectExperiences(dict).flatMap(y => y.jobs);
+  const orgExp = getOrganizationExperiences(dict).flatMap(y => y.jobs);
+  const awardExp = getAwardExperiences(dict).flatMap(y => y.jobs);
+
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   const registrationReason = user?.user_metadata?.registration_reason;
+  const username = user?.user_metadata?.username || user?.email?.split('@')[0] || null;
 
   // Navigation Links with Icons
   const navLinks = [
@@ -195,6 +208,15 @@ export default async function RootLayout({
       <div id="main-content">
         {children}
       </div>
+      <TerminalOverlay 
+        lang={lang} 
+        username={username} 
+        dict={dict} 
+        workExperiences={workExp}
+        projectExperiences={projectExp}
+        organizationExperiences={orgExp}
+        awardExperiences={awardExp}
+      />
     </>
   );
 }

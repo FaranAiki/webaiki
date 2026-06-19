@@ -404,5 +404,6 @@
   "Privacy": "Datenschutz",
   "Terms": "Nutzungsbedingungen",
   "Superskill_Project": "Superskill",
-  "Superskill_Description": "Superskill ist ein mit Flutter entwickeltes Spiel, das Logik, Denkvermögen, numerische Fähigkeiten und mehr trainiert."
+  "Superskill_Description": "Superskill ist ein mit Flutter entwickeltes Spiel, das Logik, Denkvermögen, numerische Fähigkeiten und mehr trainiert.",
+  "Terminal_Title": "Konsol Terminal"
 }
