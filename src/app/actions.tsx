@@ -239,11 +239,12 @@ async function verifyRecaptcha(token: string) {
 }
 
 export async function submitFeedback(content: string, image?: string, captchaToken?: string) {
-  if (captchaToken) {
-    const isCaptchaValid = await verifyRecaptcha(captchaToken);
-    if (!isCaptchaValid) {
-      return { error: 'Invalid captcha' };
-    }
+  if (!captchaToken) {
+    return { error: 'Captcha token is required' };
+  }
+  const isCaptchaValid = await verifyRecaptcha(captchaToken);
+  if (!isCaptchaValid) {
+    return { error: 'Invalid captcha' };
   }
 
   const supabase = await createClient();

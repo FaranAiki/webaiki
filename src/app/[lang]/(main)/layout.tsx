@@ -156,7 +156,6 @@ export default async function RootLayout({
         logout_label={dict.Logout}
         register_label={dict.Register}
         edit_profile_label={dict.Edit_Profile}
-        view_profile_label={dict.View_Profile}
         settings_labels={{
           Settings: dict.Settings,
           Typography: dict.Typography,

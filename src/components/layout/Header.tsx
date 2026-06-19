@@ -45,7 +45,6 @@ interface HeaderProps {
     register_label: string;
     logout_label: string;
     edit_profile_label: string;
-    view_profile_label: string;
     en_lang: string;
     zh_lang: string;
     id_lang: string;
@@ -141,7 +140,6 @@ export default function Header(props: HeaderProps) {
         register_label,
         logout_label,
         edit_profile_label,
-        view_profile_label,
         en_lang,
         zh_lang,
         id_lang,

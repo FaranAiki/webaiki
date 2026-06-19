@@ -90,11 +90,12 @@ export async function signInAction(formData: FormData) {
 }
 
 export async function signUpAction(formData: FormData, captchaToken?: string) {
-  if (captchaToken) {
-    const isCaptchaValid = await verifyRecaptcha(captchaToken);
-    if (!isCaptchaValid) {
-      return { error: 'Invalid captcha' };
-    }
+  if (!captchaToken) {
+    return { error: 'Captcha token is required' };
+  }
+  const isCaptchaValid = await verifyRecaptcha(captchaToken);
+  if (!isCaptchaValid) {
+    return { error: 'Invalid captcha' };
   }
 
   const rawData = {
