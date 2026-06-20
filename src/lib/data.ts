@@ -569,3 +569,72 @@ export const getCertificatesData = cache(async (lang: string) => {
 
   return allCertificatesData;
 });
+
+export interface SkillCategory {
+  category: string;
+  items: string[];
+}
+
+export const getSkills = (dict: Dictionary): SkillCategory[] => [
+  {
+    category: dict.Skills_Languages || 'Programming Languages',
+    items: [
+      'Dart',
+      'TypeScript',
+      'JavaScript',
+      'Python',
+      'C',
+      'C++',
+      'C#',
+      'GDScript',
+      'Haskell',
+      'SQL',
+      'HTML',
+      'CSS'
+    ]
+  },
+  {
+    category: dict.Skills_Frameworks || 'Frameworks & Libraries',
+    items: [
+      'Flutter',
+      'Next.js',
+      'React',
+      'Node.js',
+      'Tailwind CSS',
+      'Prisma',
+      'Framer Motion',
+      'Pandas',
+      'Qt',
+      'Godot'
+    ]
+  },
+  {
+    category: dict.Skills_Tools || 'Tools & Technologies',
+    items: [
+      'Git',
+      'LLVM',
+      'Valgrind',
+      'GDB',
+      'Burp Suite',
+      'PostgreSQL',
+      'SQLite',
+      'Jupyter Notebook',
+      'Vercel',
+      'Docker',
+      'Linux',
+      'Bash'
+    ]
+  },
+  {
+    category: dict.Skills_Concepts || 'Core Competencies',
+    items: [
+      dict.Math || 'Mathematics',
+      dict.Data_Science || 'Data Science',
+      dict.Software_Engineering || 'Software Engineering',
+      dict.Game_Development || 'Game Development',
+      dict.Compilers || 'Compiler Design',
+      dict.Algorithms || 'Algorithms & Data Structures'
+    ]
+  }
+];
+

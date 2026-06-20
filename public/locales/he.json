@@ -405,5 +405,12 @@
   "Terms": "תנאים",
   "Superskill_Project": "סופר-סקיל",
   "Superskill_Description": "Superskill הוא משחק שפותח באמצעות Flutter ומיועד לאימון היגיון, כישوري חשיבה, מיומנויות מספריות ועוד.",
-  "Terminal_Title": "Konsol Terminal"
+  "Terminal_Title": "Konsol Terminal",
+  "Skills_Languages": "Bahasa Pemrograman",
+  "Skills_Frameworks": "Kerangka Kerja & Pustaka",
+  "Skills_Tools": "Perangkat & Teknologi",
+  "Skills_Concepts": "Kompetensi Inti",
+  "Data_Science": "Sains Data",
+  "Compilers": "Desain Kompilator",
+  "Algorithms": "Algoritma & Struktur Data"
 }

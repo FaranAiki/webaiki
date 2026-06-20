@@ -8,13 +8,15 @@ import {
   getWorkExperiences,
   getProjectExperiences,
   getOrganizationExperiences,
-  getAwardExperiences
+  getAwardExperiences,
+  getSkills
 } from '@/lib/data';
 import { Github, Linkedin, Instagram, Twitter, Star, Briefcase } from 'lucide-react';
 import Link from 'next/link';
 import PortfolioHeader from '@/components/portfolio/PortfolioHeader';
 import PortfolioClientWrapper from '@/components/portfolio/PortfolioClientWrapper';
 import PortfolioExperienceList from '@/components/portfolio/PortfolioExperienceList';
+import PortfolioSkills from '@/components/portfolio/PortfolioSkills';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -47,6 +49,7 @@ export default async function PortfolioSummaryPage({ params }: { params: Promise
   const projectExp = getProjectExperiences(dict).flatMap(y => y.jobs);
   const orgExp = getOrganizationExperiences(dict).flatMap(y => y.jobs);
   const awardExp = getAwardExperiences(dict).flatMap(y => y.jobs);
+  const skills = getSkills(dict);
 
   const socialLinks = [
     { icon: <Github size={18} />, url: "https://github.com/FaranAiki", label: "GitHub" },
@@ -95,7 +98,7 @@ export default async function PortfolioSummaryPage({ params }: { params: Promise
         <div className="space-y-6 portfolio-content-wrapper">
           <PortfolioHeader 
             title={dict.Portfolio || 'Portfolio'}
-            resumeLabel={dict.Resume || 'Resume'}
+            resumeLabel={`${dict.Resume || 'Resume'} Muhammad Faran Aiki`}
             subtitle={`Muhammad Faran Aiki | ${dict.STI}, ${dict.ITB}, ${dict.Indonesia}`}
             about={dict.Faran_About_2}
             socialLinks={socialLinks}
@@ -125,6 +128,9 @@ export default async function PortfolioSummaryPage({ params }: { params: Promise
               Filter_Top: dict.Filter_Top
             }}
           />
+
+          {/* Skills Section */}
+          <PortfolioSkills skills={skills} title={dict['03Skill'] || 'Skills'} />
 
           {/* Professional Pitch / Sales Closing (Strategy #13) */}
           <section className="bg-theme-surface/30 border border-theme-border rounded-2xl p-6 md:p-8 mt-12 mb-8 relative overflow-hidden group no-print">

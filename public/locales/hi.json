@@ -405,5 +405,12 @@
   "Terms": "शर्तें",
   "Superskill_Project": "सुपरस्कিল",
   "Superskill_Description": "Superskill फ़्लटर (Flutter) का उपयोग करके बनाया गया एक गेम है जो तर्कशक्ति, सोचने की क्षमता, संख्यात्मक कौशल और बहुत कुछ को प्रशिक्षित करने के लिए डिज़ाइन किया गया है।",
-  "Terminal_Title": "Konsol Terminal"
+  "Terminal_Title": "Konsol Terminal",
+  "Skills_Languages": "Bahasa Pemrograman",
+  "Skills_Frameworks": "Kerangka Kerja & Pustaka",
+  "Skills_Tools": "Perangkat & Teknologi",
+  "Skills_Concepts": "Kompetensi Inti",
+  "Data_Science": "Sains Data",
+  "Compilers": "Desain Kompilator",
+  "Algorithms": "Algoritma & Struktur Data"
 }

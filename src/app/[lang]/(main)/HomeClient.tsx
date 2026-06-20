@@ -27,9 +27,6 @@ export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientP
     { word: dict.Word_Search || "Search", type: 'search' }
   ];
 
-  const longestWord = cyclingData.reduce((longest, current) => 
-    current.word.length > longest.word.length ? current : longest
-  , cyclingData[0]).word;
 
   useEffect(() => {
     const checkLoading = () => {
@@ -107,16 +104,16 @@ export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientP
                 <span className="inline-flex relative align-middle overflow-visible">
                   {/* Invisible Ghost Element to reserve horizontal space */}
                   <span className="invisible select-none pointer-events-none whitespace-nowrap nav-active-gacor">
-                    {longestWord.trim()}
+                    {cyclingData[wordIndex].word.trim()}
                   </span>
 
                   <AnimatePresence mode="popLayout">
                     <motion.span
                       key={wordIndex}
-                      initial={{ x: 0, y: 30, opacity: 0 }}
-                      animate={{ x: 0, y: 0, opacity: 1 }}
-                      exit={{ y: -30, opacity: 0 }}
-                      transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+                      initial={{ y: 20, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      exit={{ y: -20, opacity: 0 }}
+                      transition={{ type: "spring", stiffness: 200, damping: 18 }}
                       className="absolute inset-0 flex items-center justify-center lg:justify-start text-theme-500 whitespace-nowrap nav-active-gacor lowercase"
                     >
                       {cyclingData[wordIndex].word}
@@ -133,10 +130,10 @@ export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientP
             <AnimatePresence mode="wait">
                 <motion.div
                     key={wordIndex}
-                    initial={{ opacity: 0, scale: 0.8, rotate: -15, filter: 'blur(10px)' }}
-                    animate={{ opacity: 1, scale: 1, rotate: 0, filter: 'blur(0px)' }}
-                    exit={{ opacity: 0, scale: 1.1, rotate: 15, filter: 'blur(10px)' }}
-                    transition={{ duration: 0.45, ease: [0.23, 1, 0.32, 1] }}
+                    initial={{ opacity: 0, scale: 0.8, y: 15 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 1.1, y: -15 }}
+                    transition={{ type: "spring", stiffness: 220, damping: 20 }}
                     className="absolute"
                 >
                     <TrackingIcon type={cyclingData[wordIndex].type} />

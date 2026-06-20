@@ -405,5 +405,12 @@
   "Terms": "Условия",
   "Superskill_Project": "Superskill",
   "Superskill_Description": "Superskill — это игра на базе Flutter, предназначенная для тренировки логики, мышления, математических способностей и многого другого.",
-  "Terminal_Title": "Konsol Terminal"
+  "Terminal_Title": "Konsol Terminal",
+  "Skills_Languages": "Bahasa Pemrograman",
+  "Skills_Frameworks": "Kerangka Kerja & Pustaka",
+  "Skills_Tools": "Perangkat & Teknologi",
+  "Skills_Concepts": "Kompetensi Inti",
+  "Data_Science": "Sains Data",
+  "Compilers": "Desain Kompilator",
+  "Algorithms": "Algoritma & Struktur Data"
 }
