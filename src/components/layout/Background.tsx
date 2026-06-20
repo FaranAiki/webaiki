@@ -329,7 +329,7 @@ export default function Background({ carousel, showOverlay = true }: BackgroundP
           />
         )}
 
-        {mounted && <GeometricPattern isDark={isDark}/>}
+        {/* mounted && <GeometricPattern isDark={isDark}/> */}
       </div>
     </div>
   );

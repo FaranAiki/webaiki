@@ -134,8 +134,9 @@ body.ats-mode .SettingsPopup_content .nav-active-gacor {
 }
 
 body.ats-mode header {
-  position: static !important;
+  position: relative !important;
   transform: none !important;
+  z-index: 99999 !important;
 }
 
 /* Only hide non-essential content area elements */

@@ -41,7 +41,7 @@ export default function PortfolioHeader({ title, resumeLabel, subtitle, about, s
     return (
       <section className="flex flex-col items-center text-center gap-1 border-b border-theme-border pb-1 portfolio-header-section ats-header">
         <h1 className="text-3xl font-black tracking-tighter">
-          {cleanResumeLabel}
+          Muhammad Faran Aiki
         </h1>
 
         <div className="w-full border-t border-theme-border my-0.5"></div>
@@ -62,13 +62,12 @@ export default function PortfolioHeader({ title, resumeLabel, subtitle, about, s
           {groupedSocialLinks.map((group, idx) => (
             <div key={idx} className="flex justify-center items-center gap-6 w-full">
               {group.map((link, i) => (
-                <a
+                <div
                   key={i}
-                  href={link.url}
-                  className="flex items-center gap-1.5 text-theme-600 font-bold underline text-[11px]"
+                  className="flex items-center gap-1.5 text-theme-600 font-bold text-[12px]"
                 >
-                  {link.label}: {link.url.replace('https://', '').replace('mailto:', '')}
-                </a>
+                  {link.url.replace('https://www.', '').replace('https://', '').replace('mailto:', '')}
+                </div>
               ))}
             </div>
           ))}

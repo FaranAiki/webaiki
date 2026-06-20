@@ -8,8 +8,8 @@ const nextConfig: NextConfig = {
     root: path.resolve('.'),
   },
 
-  // Set output to standalone for optimized production builds
-  output: "standalone",
+  // Set output to standalone for optimized production builds (Disabled for Vercel)
+  // output: "standalone",
   
   // Security: Remove the X-Powered-By header to hide the tech stack
   poweredByHeader: false,
@@ -21,6 +21,21 @@ const nextConfig: NextConfig = {
 
   // Optimization: Enable gzip/brotli compression for server responses
   compress: true,
+
+  // Vercel OOM Fixes: Disable linting/typechecking during build to save memory
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  
+  // Vercel OOM Fixes: Limit workers to prevent memory spikes during static generation
+  experimental: {
+    cpus: 1,
+    workerThreads: false,
+    memoryBasedWorkersCount: true,
+  },
 
     webpack: (
       config: WebpackConfiguration,
