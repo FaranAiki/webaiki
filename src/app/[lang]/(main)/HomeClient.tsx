@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import TrackingIcon, { TrackerType } from "@/components/interactive/TrackingIcon";
+import TrackingIcon, { TrackerType } from "../../../components/interactive/TrackingIcon";
 import FadeInSection from "@/components/shared/FadeInSection";
 import SearchBar from "@/components/shared/SearchBar";
 import { motion, AnimatePresence, Variants } from 'framer-motion';
@@ -26,6 +26,10 @@ export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientP
     { word: dict.Word_Know || "Know", type: 'know' },
     { word: dict.Word_Search || "Search", type: 'search' }
   ];
+
+  const longestWord = cyclingData.reduce((longest, current) => 
+    current.word.length > longest.word.length ? current : longest
+  , cyclingData[0]).word;
 
   useEffect(() => {
     const checkLoading = () => {
@@ -85,7 +89,7 @@ export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientP
   };
 
   return (
-    <main className="min-h-[50vh] flex flex-col items-center justify-center pt-24 md:pt-12 pb-12">
+    <main className="min-h-[50vh] flex flex-col items-center justify-center px-4 md:px-8 pt-24 md:pt-12 pb-12">
       <div className="w-full max-w-6xl overflow-visible">
         <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">
 
@@ -100,10 +104,10 @@ export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientP
                 <motion.span variants={partVariants} className="inline-block whitespace-pre-wrap nav-active-gacor">{parts[0]}</motion.span>
 
                 {/* Dynamic Word Container - Using a ghost element to set width for proper expansion */}
-                <span className="inline-flex relative vertical-middle overflow-visible">
+                <span className="inline-flex relative align-middle overflow-visible">
                   {/* Invisible Ghost Element to reserve horizontal space */}
                   <span className="invisible select-none pointer-events-none whitespace-nowrap nav-active-gacor">
-                    {cyclingData[wordIndex].word.trim()}
+                    {longestWord.trim()}
                   </span>
 
                   <AnimatePresence mode="popLayout">
@@ -125,7 +129,7 @@ export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientP
           </div>
 
           {/* Dynamic Interactive Icon Section (Floating Right) */}
-          <div className="flex-shrink-0 relative w-24 h-24 md:w-64 md:h-64 flex items-center justify-center">
+          <div className="hidden md:flex flex-shrink-0 relative md:w-64 md:h-64 items-center justify-center">
             <AnimatePresence mode="wait">
                 <motion.div
                     key={wordIndex}
@@ -177,7 +181,7 @@ export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientP
 
         {/* Latest Activity Section */}
         <FadeInSection delay={isReady ? 1.6 : 0}>
-          <section className="mt-20 w-full no-print">
+          <section className="mt-8 md:mt-20 w-full no-print">
             <div className="flex items-center justify-between mb-8">
               <div className="flex items-center gap-3">
                 <div className="p-2.5 rounded-2xl bg-theme-500/10 text-theme-500 shadow-sm border border-theme-500/20">
@@ -224,7 +228,7 @@ export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientP
                       </div>
                     )}
 
-                    <div className="p-6 flex flex-col flex-1">
+                    <div className="p-5 md:p-6 flex flex-col flex-1">
                       <div className="flex items-center gap-2 mb-3 text-sm font-bold tracking-widest text-theme-muted opacity-70">
                         <Calendar size={12} />
                         {new Date(item.createdAt).toLocaleDateString(lang, {

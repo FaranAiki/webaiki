@@ -74,13 +74,15 @@ export async function middleware(request: NextRequest) {
   // Optimasi: Hanya update session jika ada cookie supabase (mengurangi latensi untuk guest)
   const hasAuthCookie = request.cookies.getAll().some(c => c.name.startsWith('sb-'));
   
+  const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
+  request.headers.set('x-nonce', nonce);
+
   let response = NextResponse.next({ request });
   if (hasAuthCookie) {
     response = await updateSession(request);
   }
 
   // Security headers (CSP, Nonce)
-  const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
   let finalCspHeader = base_cspHeader.replace("nonce-placeholder", `nonce-${nonce}`);
   
   if (pathname.includes('/project/uas_matematika_dasar')) {
@@ -89,7 +91,6 @@ export async function middleware(request: NextRequest) {
 
   const isPythonProject = pathname.includes('/project/script');
   
-  response.headers.set('x-nonce', nonce);
   response.headers.set('Content-Security-Policy', finalCspHeader);
   response.headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
   

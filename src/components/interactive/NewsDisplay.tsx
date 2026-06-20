@@ -173,7 +173,7 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
               exit={{ opacity: 0, height: 0 }}
               className="overflow-hidden"
             >
-              <div className="p-6 bg-theme-surface rounded-2xl border border-theme-border shadow-theme-shadow mb-12">
+              <div className="p-5 md:p-6 bg-theme-surface rounded-2xl border border-theme-border shadow-theme-shadow mb-12">
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
                     <label className="block text-sm font-bold text-theme-muted mb-1">{dict.Title || 'Title'}</label>
@@ -279,7 +279,7 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
                       </div>
                     )}
                   </Link>
-                  <div className="p-6 space-y-4 flex-1 flex flex-col">
+                  <div className="p-5 md:p-6 space-y-4 flex-1 flex flex-col">
                     <div className="flex items-center gap-3">
                       <span className="text-sm font-bold text-theme-500">
                         {new Date(item.createdAt).toLocaleDateString(lang, { 
@@ -339,7 +339,7 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
                     )}
                   </Link>
                   
-                  <div className="p-8 space-y-4">
+                  <div className="p-5 md:p-8 space-y-4">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <div className="relative w-8 h-8 rounded-full overflow-hidden border border-theme-border">

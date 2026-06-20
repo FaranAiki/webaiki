@@ -58,12 +58,12 @@ export default function Loading() {
   return (
     <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background theme-transition overflow-hidden">
       {/* Dynamic Background Accents */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gacor blur-[150px] opacity-15 animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gacor blur-[150px] opacity-15 animate-pulse delay-1000" />
+      <div className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full bg-theme-500/10 blur-3xl opacity-20" />
+      <div className="absolute bottom-1/4 right-1/4 w-72 h-72 rounded-full bg-theme-500/10 blur-3xl opacity-20" />
 
       <div className="relative mb-12 flex flex-col items-center">
         {/* Radiant Glow behind the logo */}
-        <div className="absolute inset-0 blur-3xl opacity-40 bg-gacor rounded-full scale-150 animate-pulse" />
+        <div className="absolute inset-0 blur-2xl opacity-20 bg-theme-500 rounded-full scale-125" />
 
         {/* Floating Logo Container */}
         <div className="relative p-6 bg-theme-surface/80 rounded-full shadow-2xl border border-theme-border animate-float backdrop-blur-xl ring-4 ring-white/5">

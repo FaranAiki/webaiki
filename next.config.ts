@@ -97,6 +97,46 @@ async headers() {
       ],
     },
     {
+      // Optimization: Cache documents heavily
+      source: '/documents/:path*',
+      headers: [
+        {
+          key: 'Cache-Control',
+          value: 'public, max-age=31536000, immutable',
+        },
+      ],
+    },
+    {
+      // Optimization: Cache projects heavily
+      source: '/projects/:path*',
+      headers: [
+        {
+          key: 'Cache-Control',
+          value: 'public, max-age=31536000, immutable',
+        },
+      ],
+    },
+    {
+      // Optimization: Cache signatures heavily
+      source: '/signature/:path*',
+      headers: [
+        {
+          key: 'Cache-Control',
+          value: 'public, max-age=31536000, immutable',
+        },
+      ],
+    },
+    {
+      // Optimization: Cache PDF worker script heavily
+      source: '/pdf.worker.min.mjs',
+      headers: [
+        {
+          key: 'Cache-Control',
+          value: 'public, max-age=31536000, immutable',
+        },
+      ],
+    },
+    {
       // Optimization: Cache fonts heavily
       source: '/_next/static/media/:path*',
       headers: [

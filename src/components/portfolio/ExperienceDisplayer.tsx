@@ -65,7 +65,7 @@ const TagBadge = ({ labels }: { labels?: string[] }) => {
     if (!labels || labels.length === 0) return null;
     const limitedLabels = labels.slice(0, 3);
     return (
-        <div className="inline-flex flex-wrap gap-1 ml-2 vertical-middle">
+        <div className="inline-flex flex-wrap gap-1 ml-2 align-middle">
             {limitedLabels.map((label, idx) => (
                 <span key={idx} className="inline-block px-1.5 py-0.5 text-[9px] font-black rounded-md bg-theme-500/10 text-theme-500 border border-theme-500/20 tracking-wider">
                     {label}

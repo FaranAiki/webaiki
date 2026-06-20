@@ -12,7 +12,7 @@ interface TrackerProps {
 
 export default function TrackingIcon({ type }: TrackerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -29,9 +29,9 @@ export default function TrackingIcon({ type }: TrackerProps) {
       const centerY = rect.top + rect.height / 2;
 
       const angle = Math.atan2(e.clientY - centerY, e.clientX - centerX);
-      
+
       // Limit movement within the icon
-      const limit = type === 'see' ? 18 : 10; 
+      const limit = type === 'see' ? 18 : 10;
       const moveX = Math.cos(angle) * limit;
       const moveY = Math.sin(angle) * limit;
 

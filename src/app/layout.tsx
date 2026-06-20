@@ -34,15 +34,12 @@ export default async function RootLayout({
       <head>
         <link rel="preconnect" href="https://www.google.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://www.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://cloud.umami.is" crossOrigin="anonymous" />
         {process.env.NEXT_PUBLIC_SUPABASE_URL && (
           <link rel="preconnect" href={process.env.NEXT_PUBLIC_SUPABASE_URL} crossOrigin="anonymous" />
         )}
-        <script
-          async
-          defer
-          nonce={nonce}
-          src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
-        />
       </head>
       <body className={`${inter.variable} ${geistMono.variable} font-sans antialiased`}>
         <Providers>

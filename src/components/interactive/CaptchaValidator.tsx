@@ -40,6 +40,29 @@ export async function executeCaptcha(action: string): Promise<string | null> {
     return "BYPASSED";
   }
 
+  // Dynamically load reCAPTCHA script if not already present
+  if (typeof window !== 'undefined' && !window.grecaptcha) {
+    await new Promise<void>((resolve) => {
+      const script = document.createElement('script');
+      script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
+      script.async = true;
+      script.defer = true;
+      
+      // Inject the nonce from any existing script tag to satisfy strict CSP
+      const existingNonce = document.querySelector('script[nonce]')?.getAttribute('nonce');
+      if (existingNonce) {
+        script.setAttribute('nonce', existingNonce);
+      }
+      
+      script.onload = () => resolve();
+      script.onerror = () => {
+        console.error("Failed to dynamically load reCAPTCHA script");
+        resolve();
+      };
+      document.head.appendChild(script);
+    });
+  }
+
   return new Promise((resolve) => {
     if (typeof window !== 'undefined' && window.grecaptcha) {
       window.grecaptcha.ready(() => {
