@@ -62,7 +62,7 @@
     "@types/react-google-recaptcha": "^2.1.9",
     "@types/webpack": "^5.28.5",
     "cypress": "^15.16.0",
-    "eslint": "^9",
+    "eslint": "^10",
     "eslint-config-next": "15.5.3",
     "prisma": "^7.8.0",
     "tailwindcss": "^4",
