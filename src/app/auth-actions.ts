@@ -1,9 +1,9 @@
 'use server';
 
 import { Type } from '@sinclair/typebox';
-import prisma from '@/lib/prisma';
+import { db } from '@/lib/db';
+import { users, RegistrationReason } from '@/lib/schema';
 import { createClient } from '@/utils/supabase/server';
-import { RegistrationReason } from '@/generated/prisma/client';
 import { validateData } from '@/lib/validation';
 import { headers } from 'next/headers';
 
@@ -65,19 +65,19 @@ export async function signInAction(formData: FormData) {
   if (data.user) {
     try {
       const metadata = data.user.user_metadata;
-      await prisma.user.upsert({
-        where: { id: data.user.id },
-        update: {
+      await db.insert(users).values({
+        id: data.user.id,
+        email: data.user.email!,
+        username: metadata.username || null,
+        registrationReason: metadata.registration_reason || 'VISITOR',
+      }).onConflictDoUpdate({
+        target: users.id,
+        set: {
           email: data.user.email!,
           username: metadata.username || null,
-          registrationReason: (metadata.registration_reason as RegistrationReason) || 'VISITOR',
-        },
-        create: {
-          id: data.user.id,
-          email: data.user.email!,
-          username: metadata.username || null,
-          registrationReason: (metadata.registration_reason as RegistrationReason) || 'VISITOR',
-        },
+          registrationReason: metadata.registration_reason || 'VISITOR',
+          updatedAt: new Date(),
+        }
       });
     } catch (dbError) {
       console.error('Error syncing user on sign in:', dbError);

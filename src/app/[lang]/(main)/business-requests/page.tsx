@@ -1,7 +1,7 @@
 import { getDictionary } from '@/components/layout/Translator';
 import { createClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
-import prisma from '@/lib/prisma';
+import { db } from '@/lib/db';
 import BusinessRequestsClient from './BusinessRequestsClient';
 import { Metadata } from 'next';
 
@@ -24,13 +24,11 @@ export default async function BusinessRequestsPage({ params }: { params: Promise
     redirect(`/${lang}`);
   }
 
-  const requests = await prisma.hireRequest.findMany({
-    include: {
+  const requests = await db.query.hireRequests.findMany({
+    with: {
       user: true,
     },
-    orderBy: {
-      createdAt: 'desc',
-    },
+    orderBy: (hireRequests, { desc }) => [desc(hireRequests.createdAt)],
   });
 
   return (

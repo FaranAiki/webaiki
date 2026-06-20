@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server'
 // The client you created from the Server-Side Auth instructions
 import { createClient } from '@/utils/supabase/server'
-import prisma from '@/lib/prisma'
-import { RegistrationReason } from '@/generated/prisma/client'
+import { db } from '@/lib/db'
+import { users } from '@/lib/schema'
 
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url)
@@ -18,19 +18,19 @@ export async function GET(request: Request) {
       // Sync user to Prisma database
       try {
         const metadata = data.user.user_metadata;
-        await prisma.user.upsert({
-          where: { id: data.user.id },
-          update: {
+        await db.insert(users).values({
+          id: data.user.id,
+          email: data.user.email!,
+          username: metadata.username || null,
+          registrationReason: metadata.registration_reason || 'VISITOR',
+        }).onConflictDoUpdate({
+          target: users.id,
+          set: {
             email: data.user.email!,
             username: metadata.username || null,
-            registrationReason: (metadata.registration_reason as RegistrationReason) || 'VISITOR',
-          },
-          create: {
-            id: data.user.id,
-            email: data.user.email!,
-            username: metadata.username || null,
-            registrationReason: (metadata.registration_reason as RegistrationReason) || 'VISITOR',
-          },
+            registrationReason: metadata.registration_reason || 'VISITOR',
+            updatedAt: new Date(),
+          }
         });
       } catch (dbError) {
         console.error('Error syncing user to database:', dbError);

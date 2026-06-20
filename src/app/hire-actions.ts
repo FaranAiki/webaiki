@@ -1,9 +1,10 @@
 'use server';
 
-import prisma from '@/lib/prisma';
+import { db } from '@/lib/db';
+import { users, hireRequests, WorkLocation, JobType } from '@/lib/schema';
+import { eq } from 'drizzle-orm';
 import { createClient } from '@/utils/supabase/server';
 import { revalidatePath } from 'next/cache';
-import { WorkLocation, JobType } from '@/generated/prisma/client';
 import { Type } from '@sinclair/typebox';
 import { validateData } from '@/lib/validation';
 
@@ -39,8 +40,8 @@ export async function getExistingHireRequest() {
 
   if (!user) return null;
 
-  return await prisma.hireRequest.findFirst({
-    where: { userId: user.id },
+  return await db.query.hireRequests.findFirst({
+    where: (hireRequests, { eq }) => eq(hireRequests.userId, user.id),
   });
 }
 
@@ -75,33 +76,29 @@ export async function submitHireRequest(formData: FormData, captchaToken: string
   const validatedData = validation.data;
 
   try {
-    // Ensure user exists in our prisma database
-    await prisma.user.upsert({
-      where: { id: user.id },
-      update: { email: user.email! },
-      create: {
-        id: user.id,
-        email: user.email!,
-      },
+    // Ensure user exists in our DB
+    await db.insert(users).values({
+      id: user.id,
+      email: user.email!,
+    }).onConflictDoUpdate({
+      target: users.id,
+      set: { email: user.email! }
     });
 
-    const existingRequest = await prisma.hireRequest.findFirst({
-      where: { userId: user.id },
+    const existingRequest = await db.query.hireRequests.findFirst({
+      where: (hireRequests, { eq }) => eq(hireRequests.userId, user.id),
     });
 
     if (existingRequest) {
-      await prisma.hireRequest.update({
-        where: { id: existingRequest.id },
-        data: {
-          ...validatedData,
-        },
-      });
+      await db.update(hireRequests).set({
+        ...validatedData,
+        updatedAt: new Date(),
+      }).where(eq(hireRequests.id, existingRequest.id));
     } else {
-      await prisma.hireRequest.create({
-        data: {
-          ...validatedData,
-          userId: user.id,
-        },
+      await db.insert(hireRequests).values({
+        id: crypto.randomUUID(),
+        ...validatedData,
+        userId: user.id,
       });
     }
 

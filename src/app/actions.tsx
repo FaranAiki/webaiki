@@ -4,7 +4,9 @@ import { cookies, headers } from 'next/headers';
 import { unstable_cache, revalidateTag } from 'next/cache';
 import fs from 'fs';
 import path from 'path';
-import prisma from '@/lib/prisma';
+import { db } from '@/lib/db';
+import { users, feedbacks, news } from '@/lib/schema';
+import { eq, sql, desc } from 'drizzle-orm';
 import { createClient, createAdminClient } from '@/utils/supabase/server';
 
 const cookie_default : { [key: string]: string } = {
@@ -135,27 +137,25 @@ export async function updateProfile(data: { name?: string; username?: string; av
 
     if (authError) throw authError;
 
-    // 2. Persist to Prisma
+    // 2. Persist to DB
     try {
-      await prisma.user.upsert({
-        where: { id: user.id },
-        update: {
-          name: data.name,
-          username: data.username,
-          avatarUrl: data.avatarUrl,
-        },
-        create: {
-          id: user.id,
-          email: user.email!,
-          name: data.name,
-          username: data.username,
-          avatarUrl: data.avatarUrl,
-        },
+      await db.insert(users).values({
+        id: user.id,
+        email: user.email!,
+        name: data.name || null,
+        username: data.username || null,
+        avatarUrl: data.avatarUrl || null,
+      }).onConflictDoUpdate({
+        target: users.id,
+        set: {
+          name: data.name || null,
+          username: data.username || null,
+          avatarUrl: data.avatarUrl || null,
+          updatedAt: new Date(),
+        }
       });
-    } catch (prismaError) {
-      console.error('Error syncing profile to Prisma:', prismaError);
-      // We don't fail the whole action if only Prisma sync fails 
-      // since Supabase Auth already succeeded, but it's good to log.
+    } catch (dbError) {
+      console.error('Error syncing profile to DB:', dbError);
     }
 
     return { success: true };
@@ -177,11 +177,11 @@ export async function setCookies(name: string, val: string) {
 export const getFeedbacks = unstable_cache(
   async () => {
     try {
-      return await prisma.feedback.findMany({
-        where: { isPublic: true },
-        include: {
+      return await db.query.feedbacks.findMany({
+        where: (feedbacks, { eq }) => eq(feedbacks.isPublic, true),
+        with: {
           user: {
-            select: {
+            columns: {
               id: true,
               name: true,
               username: true,
@@ -189,7 +189,7 @@ export const getFeedbacks = unstable_cache(
             }
           }
         },
-        orderBy: { createdAt: 'desc' }
+        orderBy: (feedbacks, { desc }) => [desc(feedbacks.createdAt)]
       });
     } catch (error) {
       console.error('Error in getFeedbacks:', error);
@@ -207,21 +207,19 @@ export async function deleteFeedback(feedbackId: string) {
   if (!user) return { error: 'Require_Login' };
 
   try {
-    const feedback = await prisma.feedback.findUnique({
-      where: { id: feedbackId }
+    const feedback = await db.query.feedbacks.findFirst({
+      where: (feedbacks, { eq }) => eq(feedbacks.id, feedbackId)
     });
 
     if (!feedback) return { error: 'Not_Found' };
     if (feedback.userId !== user.id) return { error: 'Unauthorized' };
 
-    await prisma.feedback.delete({
-      where: { id: feedbackId }
-    });
+    await db.delete(feedbacks).where(eq(feedbacks.id, feedbackId));
 
     return { success: true };
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'Unknown error';
-    console.error('Prisma Error deleting feedback:', error);
+    console.error('Error deleting feedback:', error);
     return { error: `Feedback deletion failed: ${message}` };
   }
 }
@@ -258,36 +256,36 @@ export async function submitFeedback(content: string, image?: string, captchaTok
   if (!user) return { error: 'Require_Login' };
 
   try {
-    // 1. Ensure user exists in Prisma DB
-    await prisma.user.upsert({
-      where: { id: user.id },
-      update: { email: user.email! },
-      create: {
-        id: user.id,
+    // 1. Ensure user exists in DB
+    await db.insert(users).values({
+      id: user.id,
+      email: user.email!,
+      username: user.user_metadata?.username || null,
+      name: user.user_metadata?.full_name || null,
+      avatarUrl: user.user_metadata?.avatar_url || null,
+    }).onConflictDoUpdate({
+      target: users.id,
+      set: {
         email: user.email!,
-        username: user.user_metadata?.username || null,
-        name: user.user_metadata?.full_name || null,
-        avatarUrl: user.user_metadata?.avatar_url || null,
-      },
+        updatedAt: new Date(),
+      }
     });
 
     // 2. Check comment limit (max 2 per user)
-    const feedbackCount = await prisma.feedback.count({
-      where: { userId: user.id }
-    });
+    const [result] = await db.select({ count: sql<number>`count(*)` }).from(feedbacks).where(eq(feedbacks.userId, user.id));
+    const feedbackCount = Number(result?.count || 0);
 
     if (feedbackCount >= 2) {
       return { error: 'Feedback_Limit_Reached' };
     }
 
     // 3. Create feedback
-    await prisma.feedback.create({
-      data: {
-        content,
-        image,
-        userId: user.id,
-        isPublic: true,
-      }
+    await db.insert(feedbacks).values({
+      id: crypto.randomUUID(),
+      content,
+      image: image || null,
+      userId: user.id,
+      isPublic: true,
     });
 
     // Invalidate the feedbacks cache so new feedback appears immediately
@@ -296,7 +294,7 @@ export async function submitFeedback(content: string, image?: string, captchaTok
     return { success: true };
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'Unknown error';
-    console.error('Prisma Error submitting feedback:', error);
+    console.error('Error submitting feedback:', error);
     return { error: `Feedback submission failed: ${message}` };
   }
 }
@@ -304,18 +302,18 @@ export async function submitFeedback(content: string, image?: string, captchaTok
 export const getNews = unstable_cache(
   async () => {
     try {
-      return await prisma.news.findMany({
-        where: { isPublic: true },
-        include: {
+      return await db.query.news.findMany({
+        where: (news, { eq }) => eq(news.isPublic, true),
+        with: {
           author: {
-            select: {
+            columns: {
               id: true,
               name: true,
               avatarUrl: true
             }
           }
         },
-        orderBy: { createdAt: 'desc' }
+        orderBy: (news, { desc }) => [desc(news.createdAt)]
       });
     } catch (error) {
       console.error('Error in getNews:', error);
@@ -328,11 +326,11 @@ export const getNews = unstable_cache(
 
 export async function getNewsItem(id: string) {
   try {
-    return await prisma.news.findUnique({
-      where: { id },
-      include: {
+    return await db.query.news.findFirst({
+      where: (news, { eq }) => eq(news.id, id),
+      with: {
         author: {
-          select: {
+          columns: {
             id: true,
             name: true,
             avatarUrl: true
@@ -353,10 +351,7 @@ export async function deleteNews(newsId: string) {
   if (!user || user.email !== 'faran.aiki.business@gmail.com') return { error: 'Unauthorized' };
 
   try {
-    // Use deleteMany to avoid 404 error if record already deleted
-    await prisma.news.deleteMany({
-      where: { id: newsId }
-    });
+    await db.delete(news).where(eq(news.id, newsId));
 
     // Invalidate the news cache so deletion appears immediately
     revalidateTag('news');
@@ -364,7 +359,7 @@ export async function deleteNews(newsId: string) {
     return { success: true };
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'Unknown error';
-    console.error('Prisma Error deleting news:', error);
+    console.error('Error deleting news:', error);
     return { error: `News deletion failed: ${message}` };
   }
 }
@@ -376,32 +371,33 @@ export async function postNews(title: string, content: string, image?: string) {
   if (!user || user.email !== 'faran.aiki.business@gmail.com') return { error: 'Unauthorized' };
 
   try {
-    // Ensure user is synced to Prisma
+    // Ensure user is synced to DB
     try {
-      await prisma.user.upsert({
-        where: { id: user.id },
-        update: { email: user.email! },
-        create: {
-          id: user.id,
+      await db.insert(users).values({
+        id: user.id,
+        email: user.email!,
+        username: user.user_metadata?.username || null,
+        name: user.user_metadata?.full_name || null,
+        avatarUrl: user.user_metadata?.avatar_url || null,
+      }).onConflictDoUpdate({
+        target: users.id,
+        set: {
           email: user.email!,
-          username: user.user_metadata?.username || null,
-          name: user.user_metadata?.full_name || null,
-          avatarUrl: user.user_metadata?.avatar_url || null,
-        },
+          updatedAt: new Date(),
+        }
       });
     } catch (pe) {
-      console.error('Prisma sync failed during postNews:', pe);
+      console.error('DB sync failed during postNews:', pe);
       throw pe; // Re-throw to be caught by the outer catch
     }
 
-    await prisma.news.create({
-      data: {
-        title,
-        content,
-        image,
-        authorId: user.id,
-        isPublic: true,
-      }
+    await db.insert(news).values({
+      id: crypto.randomUUID(),
+      title,
+      content,
+      image: image || null,
+      authorId: user.id,
+      isPublic: true,
     });
 
     // Invalidate the news cache so newly posted news appears immediately
@@ -410,7 +406,7 @@ export async function postNews(title: string, content: string, image?: string) {
     return { success: true };
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'Unknown error';
-    console.error('Prisma Error posting news:', error);
+    console.error('Error posting news:', error);
     return { error: `News posting failed: ${message}` };
   }
 }
