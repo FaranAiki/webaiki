@@ -10,7 +10,6 @@ This is the high-performance personal ecosystem and technical portfolio of Muham
 ### Technical Highlights
 - AI-Integrated User Experience: Custom Gemini-powered chat agent for interactive system inquiries.
 - Advanced Presentation Mode: Horizontal slide-based navigation with scroll-snap, keyboard shortcuts, and wheel-to-horizontal translation.
-- Sultan PDF Engine: Server-side high-fidelity PDF generation utilizing Puppeteer and Chromium for exact layout replication and vector-based output.
 - Internationalization: Full support for over 12 languages including RTL (Arabic) and CJK (Chinese, Japanese, Korean) formatting optimizations.
 - Responsive Background System: Site-wide sticky background architecture ensuring aesthetic consistency across all routes and layout variations.
 
@@ -27,7 +26,6 @@ This is the high-performance personal ecosystem and technical portfolio of Muham
 
 ### Backend and API
 - AI Engine: Google Gemini Pro API integration
-- PDF Generation: Node.js serverless functions running puppeteer-core with @sparticuz/chromium
 - Data Management: Incremental Static Regeneration (ISR) for dynamic content fetching (YouTube, Spotify)
 - Middleware: Custom routing logic for locale detection and presentation mode state management
 
@@ -60,12 +58,6 @@ A custom context-driven system that transforms the standard vertical portfolio i
 - Scroll Interception: Translating vertical wheel input into horizontal movement
 - Slide Numbering: Dynamic numbering supporting Decimal, Hexadecimal, and Binary formats
 - Format Cycling: Interactive numbering UI allowing users to switch between numeric bases on the fly
-
-### Sultan PDF Generator (Experimental)
-A high-fidelity export tool designed to bypass standard browser print limitations:
-- Server-side Rendering: Ensures consistent output regardless of user browser or OS
-- State Injection: Forces the application into a specialized print state via localStorage injection before capture
-- Asset Preloading: Robust image and font detection to ensure zero layout shift during generation
 
 ---
 

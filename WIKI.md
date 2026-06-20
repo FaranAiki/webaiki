@@ -7,10 +7,9 @@ Welcome to the comprehensive technical documentation for **webaiki** (faranaiki.
 ## 📋 Table of Contents
 1. [Introduction](#introduction)
 2. [Architecture & Tech Stack](#architecture--tech-stack)
-3. [Sultan PDF Engine](#sultan-pdf-engine)
-4. [Internationalization (i18n)](#internationalization-i18n)
-5. [DevOps & CI/CD](#devops--ci-cd)
-6. [Development Standards](#development-standards)
+3. [Internationalization (i18n)](#internationalization-i18n)
+4. [DevOps & CI/CD](#devops--ci-cd)
+5. [Development Standards](#development-standards)
 
 ---
 
@@ -38,7 +37,7 @@ The project follows a modern "App Router" architecture designed for speed and SE
 ### 📁 Directory Structure
 - `src/app/`: Next.js App Router pages and API routes.
 - `src/components/`:
-  - `interactive/`: Complex client-side components (SultanPrint, MusicDisplay).
+  - `interactive/`: Complex client-side components (MusicDisplay).
   - `layout/`: Global layout components (Header, Background).
   - `providers/`: Context providers (Settings, Presentation).
 - `src/lib/`: Core logic, data structures, and SEO utilities.
@@ -46,23 +45,7 @@ The project follows a modern "App Router" architecture designed for speed and SE
 
 ---
 
-## 3. Sultan PDF Engine
-The **Sultan Print Engine** is a specialized serverless Puppeteer-based tool designed to generate high-fidelity, vector-based PDF exports of the website.
-
-### 🧠 How it Works
-1. **Request**: The client sends user preferences (font, scale, theme, ATS mode) to `/api/pdf`.
-2. **Launch**: A Puppeteer instance launches via `@sparticuz/chromium`.
-3. **Injection**: The server injects `localStorage` states and forces specific "Sultan Print" CSS.
-4. **Capture**: The engine waits for animations and images before generating a pixel-perfect A4 PDF.
-
-### 📑 Printing Modes
-- **High-Fidelity**: Replicates "Presentation Mode" in landscape orientation.
-- **ATS-Friendly**: A portrait-oriented, text-only layout designed for automated resume parsers.
-- **Expand All**: Automatically expands all collapsible portfolio items before rendering.
-
----
-
-## 4. Internationalization (i18n)
+## 3. Internationalization (i18n)
 The project supports a global audience with localized content for over 12 languages.
 
 ### 🌍 Implementation
@@ -72,7 +55,7 @@ The project supports a global audience with localized content for over 12 langua
 
 ---
 
-## 5. DevOps & CI/CD
+## 4. DevOps & CI/CD
 Professional engineering standards are enforced through automated workflows.
 
 ### 🤖 Automation
@@ -85,7 +68,7 @@ A multi-stage `Dockerfile` is provided for environment parity, allowing the exac
 
 ---
 
-## 6. Development Standards
+## 5. Development Standards
 To maintain the high quality of the codebase:
 - **Conventional Commits**: Use `feat:`, `fix:`, `docs:`, etc.
 - **EditorConfig**: Follow the indent and spacing rules defined in `.editorconfig`.

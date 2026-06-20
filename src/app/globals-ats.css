@@ -4,6 +4,7 @@ body.ats-mode * {
   -moz-user-select: text !important;
   -ms-user-select: text !important;
   user-select: text !important;
+  pointer-events: auto !important;
 }
 
 body.ats-mode main.portfolio-main {
@@ -122,13 +123,19 @@ body.ats-mode .portfolio-item-meta-ats {
   font-size: 11px !important;
 }
 
-/* Prevent ATS mode from stripping 'gacor' styles from the navbar/settings */
+/* Ensure nav-gacor and header can be properly highlighted and scanned in ATS mode */
 body.ats-mode header .nav-active-gacor,
 body.ats-mode .SettingsPopup_content .nav-active-gacor {
-  background: linear-gradient(90deg, var(--gacor-1), var(--gacor-2), var(--gacor-3), var(--gacor-1)) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: currentcolor !important;
+  background-clip: unset !important;
+  color: var(--theme-color-800) !important;
+}
+
+body.ats-mode header {
+  position: static !important;
+  transform: none !important;
 }
 
 /* Only hide non-essential content area elements */

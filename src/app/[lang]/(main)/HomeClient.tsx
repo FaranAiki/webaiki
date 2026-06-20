@@ -110,9 +110,9 @@ export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientP
                   <AnimatePresence mode="popLayout">
                     <motion.span
                       key={wordIndex}
-                      initial={{ y: 20, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      exit={{ y: -20, opacity: 0 }}
+                      initial={{ y: 30, opacity: 0 }}
+                      animate={{ y: -3.5, opacity: 1 }}
+                      exit={{ y: -30, opacity: 0 }}
                       transition={{ type: "spring", stiffness: 200, damping: 18 }}
                       className="absolute inset-0 flex items-center justify-center lg:justify-start text-theme-500 whitespace-nowrap nav-active-gacor lowercase"
                     >
