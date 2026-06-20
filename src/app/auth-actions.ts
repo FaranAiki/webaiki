@@ -3,6 +3,7 @@
 import { Type } from '@sinclair/typebox';
 import { db } from '@/lib/db';
 import { users, RegistrationReason } from '@/lib/schema';
+import { sql } from 'drizzle-orm';
 import { createClient } from '@/utils/supabase/server';
 import { validateData } from '@/lib/validation';
 import { headers } from 'next/headers';
@@ -72,6 +73,8 @@ export async function signInAction(formData: FormData) {
         username: metadata.username || null,
         role: data.user.email === 'faran.aiki.business@gmail.com' ? 'ADMIN' : 'USER',
         registrationReason: metadata.registration_reason || 'VISITOR',
+        updatedAt: sql`now()`,
+        createdAt: sql`now()`,
       }).onConflictDoUpdate({
         target: users.id,
         set: {
@@ -79,7 +82,7 @@ export async function signInAction(formData: FormData) {
           username: metadata.username || null,
         role: data.user.email === 'faran.aiki.business@gmail.com' ? 'ADMIN' : 'USER',
           registrationReason: metadata.registration_reason || 'VISITOR',
-          updatedAt: new Date(),
+          updatedAt: sql`now()`,
         }
       });
     } catch (dbError) {

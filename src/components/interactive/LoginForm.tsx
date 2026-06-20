@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { LogIn, Mail, Lock, AlertCircle } from 'lucide-react';
 import { getErrorMessage } from '@/lib/errors';
+import OAuthButtons from './OAuthButtons';
 
 interface LoginFormProps {
   dict: Record<string, string>;
@@ -128,6 +129,10 @@ export default function LoginForm({ dict, lang }: LoginFormProps) {
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-shimmer" />
           </motion.button>
         </form>
+
+        <motion.div variants={itemVariants}>
+          <OAuthButtons dict={dict} lang={lang} />
+        </motion.div>
 
         <motion.p variants={itemVariants} className="mt-8 text-center text-sm text-theme-muted font-medium">
           {dict.Don_t_have_account}{' '}

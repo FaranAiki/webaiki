@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server'
 import { createClient } from '@/utils/supabase/server'
 import { db } from '@/lib/db'
 import { users } from '@/lib/schema'
+import { sql } from 'drizzle-orm'
 
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url)
@@ -23,13 +24,15 @@ export async function GET(request: Request) {
           email: data.user.email!,
           username: metadata.username || null,
           registrationReason: metadata.registration_reason || 'VISITOR',
+          updatedAt: sql`now()`,
+          createdAt: sql`now()`,
         }).onConflictDoUpdate({
           target: users.id,
           set: {
             email: data.user.email!,
             username: metadata.username || null,
             registrationReason: metadata.registration_reason || 'VISITOR',
-            updatedAt: new Date(),
+            updatedAt: sql`now()`,
           }
         });
       } catch (dbError) {

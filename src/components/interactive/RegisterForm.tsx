@@ -8,6 +8,7 @@ import { UserPlus, Mail, Lock, User, Info, AlertCircle, CheckCircle2 } from 'luc
 import { executeCaptcha } from './CaptchaValidator';
 import RecaptchaNotice from '../shared/RecaptchaNotice';
 import { getErrorMessage } from '@/lib/errors';
+import OAuthButtons from './OAuthButtons';
 
 interface RegisterFormProps {
   dict: Record<string, string>;
@@ -220,6 +221,10 @@ export default function RegisterForm({ dict, lang }: RegisterFormProps) {
 
           <RecaptchaNotice dict={dict} className="mt-2" />
         </form>
+
+        <motion.div variants={itemVariants}>
+          <OAuthButtons dict={dict} lang={lang} />
+        </motion.div>
 
         <motion.p variants={itemVariants} className="mt-8 text-center text-sm text-theme-muted font-medium">
           {dict.Already_have_account}{' '}

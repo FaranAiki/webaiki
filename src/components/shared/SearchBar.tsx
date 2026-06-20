@@ -319,7 +319,7 @@ export default function SearchBar({
                               setSelectedIndex(index);
                             }
                           }}
-                          className={`w-full md:text-center lg:text-left px-4 py-3 transition-colors group border-b border-theme-border last:border-0 flex items-center justify-between gap-4
+                          className={`w-full text-left px-4 py-3 transition-colors group border-b border-theme-border last:border-0 flex items-center justify-between gap-4
                             ${selectedIndex === index ? 'bg-theme-surface' : 'hover:bg-theme-surface'}
                           `}
                         >

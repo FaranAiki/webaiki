@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef, KeyboardEvent, ChangeEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Terminal as TerminalIcon, X, Maximize2, Minimize2 } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 import { defaultSocialLinks } from '../portfolio/SocialDisplay';
 
 interface JobItem {
@@ -58,6 +59,7 @@ export default function TerminalOverlay({
   const [cwd, setCwd] = useState<string>('/');
   const [input, setInput] = useState<string>('');
   const [history, setHistory] = useState<HistoryItem[]>([]);
+  const pathname = usePathname();
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIdx, setHistoryIdx] = useState<number>(-1);
   const [terminalTheme, setTerminalTheme] = useState<'default' | 'hacker' | 'light' | 'dark'>('default');
@@ -868,6 +870,9 @@ To navigate to this page in your browser, type:
     // Default theme (inherits theme vars - glassmorphic matching dark/white modes)
     return 'bg-theme-surface-strong/95 dark:bg-theme-surface/95 border-theme-border shadow-xl backdrop-blur-md';
   };
+
+  const isHiddenPage = ['/login', '/register', '/hire-me'].some(p => pathname?.includes(p));
+  if (isHiddenPage) return null;
 
   return (
     <>

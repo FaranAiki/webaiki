@@ -123,7 +123,7 @@ export function getBaseMetadata(): Metadata {
       url: SITE_URL,
       images: [
         {
-          url: `${SITE_URL}/images/og-preview.jpg`,
+          url: `${SITE_URL}/api/og?title=Muhammad Faran Aiki`,
           width: 1200,
           height: 630,
           alt: 'Muhammad Faran Aiki - Software Engineer Portfolio',
@@ -136,7 +136,7 @@ export function getBaseMetadata(): Metadata {
       title: 'Muhammad Faran Aiki',
       description: 'Software Engineer and ITB Student Portfolio',
       creator: '@faranaiki',
-      images: [`${SITE_URL}/images/og-preview.jpg`],
+      images: [`${SITE_URL}/api/og?title=Muhammad Faran Aiki`],
     },
     category: 'technology',
     manifest: '/manifest.json',

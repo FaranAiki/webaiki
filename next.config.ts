@@ -1,6 +1,13 @@
 import type { NextConfig } from "next";
 import type { Configuration as WebpackConfiguration } from 'webpack';
 import path from 'path';
+import withPWAInit from "@ducanh2912/next-pwa";
+
+const withPWA = withPWAInit({
+  dest: "public",
+  disable: process.env.NODE_ENV === "development",
+  register: true,
+});
 
 const nextConfig: NextConfig = {
   // Turbopack configuration to resolve root directory issues
@@ -164,6 +171,8 @@ images: {
       { protocol: 'https', hostname: 'api-gateway.umami.dev' },
       { protocol: 'https', hostname: 'gateway.umami.is' },
       { protocol: 'https', hostname: 'ndutyvnkhavzchhjmzfm.supabase.co' },
+      { protocol: 'https', hostname: 'lh3.googleusercontent.com' },
+      { protocol: 'https', hostname: 'avatars.githubusercontent.com' },
     ],
   },
 
@@ -213,4 +222,4 @@ images: {
   },
 };
 
-export default nextConfig;
+export default withPWA(nextConfig);

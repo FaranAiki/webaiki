@@ -14,8 +14,8 @@ const EnvSchema = Type.Object({
   DIRECT_URL: Type.String({ minLength: 1, description: 'Direct connection string for migrations' }),
   
   // Supabase Configuration
-  NEXT_PUBLIC_SUPABASE_URL: Type.String({ minLength: 1, format: 'uri', description: 'Public URL for Supabase API' }),
-  NEXT_PUBLIC_SUPABASE_ANON_KEY: Type.String({ minLength: 1, description: 'Public anonymous key for Supabase' }),
+  NEXT_PUBLIC_SUPABASE_URL: Type.Optional(Type.String({ description: 'Public URL for Supabase API' })),
+  NEXT_PUBLIC_SUPABASE_ANON_KEY: Type.Optional(Type.String({ description: 'Public anonymous key for Supabase' })),
   SUPABASE_SERVICE_ROLE_KEY: Type.Optional(Type.String({ description: 'Service role key for admin tasks' })),
   
   // Security & Third Party

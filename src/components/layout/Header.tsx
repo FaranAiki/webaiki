@@ -10,6 +10,7 @@ import ThemeToggle from '@/components/shared/ThemeToggle';
 import { useTheme } from 'next-themes';
 import SettingsPopup from '@/components/providers/SettingsPopup';
 import { motion, AnimatePresence } from 'framer-motion';
+import { CommandPalette } from '@/components/interactive/CommandPalette';
 
 import {
   Monitor,
@@ -445,7 +446,7 @@ export default function Header(props: HeaderProps) {
                         </div>
 
                         {/* Presentation Mode Toggle */}
-                        {(normalizedPathname !== '/' && normalizedPathname !== '/portfolio' && normalizedPathname !== '/all') && (
+                        {(normalizedPathname !== '/' && normalizedPathname !== '/portfolio' && normalizedPathname !== '/all' && normalizedPathname !== '/login' && normalizedPathname !== '/register' && normalizedPathname !== '/hire-me') && (
                             <div className="hidden md:flex items-center justify-center ml-4 self-center">
                                 <button
                                     onClick={togglePresentationMode}
@@ -580,6 +581,12 @@ export default function Header(props: HeaderProps) {
 
                     {/* Right section */}
                     <div className="flex-1 flex justify-end items-center space-x-2 md:space-x-4">
+
+                        <div
+                            className="hidden md:block"
+                        >
+                            <CommandPalette lang={current_lang} />
+                        </div>
 
                         <div
                             className="hidden md:block"
