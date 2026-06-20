@@ -8,6 +8,7 @@ import { db } from '@/lib/db';
 import { users, feedbacks, news } from '@/lib/schema';
 import { eq, sql, desc } from 'drizzle-orm';
 import { createClient, createAdminClient } from '@/utils/supabase/server';
+import { AppError } from '@/lib/errors';
 
 const cookie_default : { [key: string]: string } = {
   'theme': 'system' 
@@ -73,16 +74,16 @@ export async function uploadFile(formData: FormData, bucket: 'user-icon' | 'news
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
-  if (!user) return { error: 'Require_Login' };
+  if (!user) return AppError.unauthorized('Require_Login').toJSON();
 
   const file = formData.get('file') as File;
-  if (!file) return { error: 'No file provided' };
+  if (!file) return new AppError('APP_ERROR', 400, 'No file provided' ).toJSON();
 
   // Validate size (5MB)
-  if (file.size > 5 * 1024 * 1024) return { error: 'File too large (max 5MB)' };
+  if (file.size > 5 * 1024 * 1024) return new AppError('APP_ERROR', 400, 'File too large (max 5MB)' ).toJSON();
   
   // Validate type
-  if (!file.type.startsWith('image/')) return { error: 'Invalid file type (images only)' };
+  if (!file.type.startsWith('image/')) return new AppError('APP_ERROR', 400, 'Invalid file type (images only)' ).toJSON();
 
   const fileExt = file.name.split('.').pop();
   const fileName = `${user.id}-${Math.random().toString(36).substring(2)}.${fileExt}`;
@@ -105,7 +106,7 @@ export async function uploadFile(formData: FormData, bucket: 'user-icon' | 'news
 
     if (error) {
         console.error(`Supabase storage error [${bucket}]:`, error);
-        return { error: `Upload failed: ${error.message}` };
+        return new AppError('APP_ERROR', 400, `Upload failed: ${error.message}`).toJSON();
     }
 
     const { data: { publicUrl } } = adminSupabase.storage
@@ -115,7 +116,7 @@ export async function uploadFile(formData: FormData, bucket: 'user-icon' | 'news
     return { success: true, url: publicUrl };
   } catch (error) {
     console.error('Upload exception:', error);
-    return { error: 'Upload failed' };
+    return new AppError('APP_ERROR', 400, 'Upload failed' ).toJSON();
   }
 }
 
@@ -123,7 +124,7 @@ export async function updateProfile(data: { name?: string; username?: string; av
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
-  if (!user) return { error: 'Require_Login' };
+  if (!user) return AppError.unauthorized('Require_Login').toJSON();
 
   try {
     // 1. Update Supabase Auth metadata
@@ -161,7 +162,7 @@ export async function updateProfile(data: { name?: string; username?: string; av
     return { success: true };
   } catch (error) {
     console.error('Error updating profile:', error);
-    return { error: 'Profile_Update_Error' };
+    return new AppError('APP_ERROR', 400, 'Profile_Update_Error' ).toJSON();
   }
 }
 
@@ -204,15 +205,15 @@ export async function deleteFeedback(feedbackId: string) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
-  if (!user) return { error: 'Require_Login' };
+  if (!user) return AppError.unauthorized('Require_Login').toJSON();
 
   try {
     const feedback = await db.query.feedbacks.findFirst({
       where: (feedbacks, { eq }) => eq(feedbacks.id, feedbackId)
     });
 
-    if (!feedback) return { error: 'Not_Found' };
-    if (feedback.userId !== user.id) return { error: 'Unauthorized' };
+    if (!feedback) return AppError.notFound('Not_Found').toJSON();
+    if (feedback.userId !== user.id) return AppError.forbidden('Unauthorized').toJSON();
 
     await db.delete(feedbacks).where(eq(feedbacks.id, feedbackId));
 
@@ -220,7 +221,7 @@ export async function deleteFeedback(feedbackId: string) {
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'Unknown error';
     console.error('Error deleting feedback:', error);
-    return { error: `Feedback deletion failed: ${message}` };
+    return new AppError('APP_ERROR', 500, `Feedback deletion failed: ${message}`).toJSON();
   }
 }
 
@@ -243,17 +244,17 @@ async function verifyRecaptcha(token: string) {
 
 export async function submitFeedback(content: string, image?: string, captchaToken?: string) {
   if (!captchaToken) {
-    return { error: 'Captcha token is required' };
+    return AppError.badRequest('Captcha_Required').toJSON();
   }
   const isCaptchaValid = await verifyRecaptcha(captchaToken);
   if (!isCaptchaValid) {
-    return { error: 'Invalid captcha' };
+    return AppError.badRequest('Invalid_Captcha').toJSON();
   }
 
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
-  if (!user) return { error: 'Require_Login' };
+  if (!user) return AppError.unauthorized('Require_Login').toJSON();
 
   try {
     // 1. Ensure user exists in DB
@@ -276,7 +277,7 @@ export async function submitFeedback(content: string, image?: string, captchaTok
     const feedbackCount = Number(result?.count || 0);
 
     if (feedbackCount >= 2) {
-      return { error: 'Feedback_Limit_Reached' };
+      return new AppError('APP_ERROR', 400, 'Feedback_Limit_Reached' ).toJSON();
     }
 
     // 3. Create feedback
@@ -295,7 +296,7 @@ export async function submitFeedback(content: string, image?: string, captchaTok
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'Unknown error';
     console.error('Error submitting feedback:', error);
-    return { error: `Feedback submission failed: ${message}` };
+    return new AppError('APP_ERROR', 500, `Feedback submission failed: ${message}`).toJSON();
   }
 }
 
@@ -348,7 +349,10 @@ export async function deleteNews(newsId: string) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
-  if (!user || user.email !== 'faran.aiki.business@gmail.com') return { error: 'Unauthorized' };
+  
+  const dbUser = await db.query.users.findFirst({ where: (users, { eq }) => eq(users.id, user.id) });
+  if (!dbUser || dbUser.role !== 'ADMIN') return AppError.forbidden('Unauthorized_Admin').toJSON();
+
 
   try {
     await db.delete(news).where(eq(news.id, newsId));
@@ -360,7 +364,7 @@ export async function deleteNews(newsId: string) {
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'Unknown error';
     console.error('Error deleting news:', error);
-    return { error: `News deletion failed: ${message}` };
+    return new AppError('APP_ERROR', 500, `News deletion failed: ${message}`).toJSON();
   }
 }
 
@@ -368,7 +372,10 @@ export async function postNews(title: string, content: string, image?: string) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
-  if (!user || user.email !== 'faran.aiki.business@gmail.com') return { error: 'Unauthorized' };
+  
+  const dbUser = await db.query.users.findFirst({ where: (users, { eq }) => eq(users.id, user.id) });
+  if (!dbUser || dbUser.role !== 'ADMIN') return AppError.forbidden('Unauthorized_Admin').toJSON();
+
 
   try {
     // Ensure user is synced to DB
@@ -407,6 +414,6 @@ export async function postNews(title: string, content: string, image?: string) {
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'Unknown error';
     console.error('Error posting news:', error);
-    return { error: `News posting failed: ${message}` };
+    return new AppError('APP_ERROR', 500, `News posting failed: ${message}`).toJSON();
   }
 }

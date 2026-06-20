@@ -7,6 +7,7 @@ import { WorkLocation, JobType } from '@/lib/schema';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import RecaptchaNotice from '../shared/RecaptchaNotice';
+import { getErrorMessage } from '@/lib/errors';
 
 interface HireMeFormProps {
   dict: Record<string, string>;
@@ -65,7 +66,7 @@ export default function HireMeForm({ dict }: HireMeFormProps) {
     const result = await submitHireRequest(formData, token);
     
     if (result?.error) {
-      setError(result.error);
+      setError(getErrorMessage(result.error, dict));
       setLoading(false);
     } else {
       setSuccess(true);

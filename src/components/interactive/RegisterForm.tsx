@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import { UserPlus, Mail, Lock, User, Info, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { executeCaptcha } from './CaptchaValidator';
 import RecaptchaNotice from '../shared/RecaptchaNotice';
+import { getErrorMessage } from '@/lib/errors';
 
 interface RegisterFormProps {
   dict: Record<string, string>;
@@ -45,7 +46,7 @@ export default function RegisterForm({ dict, lang }: RegisterFormProps) {
     const result = await signUp(formData, token);
 
     if (result?.error) {
-      setError(dict[result.error] || result.error);
+      setError(getErrorMessage(result.error, dict));
       setLoading(false);
     } else {
       setSuccess(true);

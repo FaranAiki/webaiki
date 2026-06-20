@@ -1,8 +1,10 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Github, Linkedin, Instagram, Twitter, Mail, Youtube } from 'lucide-react';
 import Image from 'next/image';
+import Script from 'next/script';
+import { useTheme } from 'next-themes';
 import { usePresentation } from '../providers/PresentationContext';
 import { motion, Variants } from 'framer-motion';
 
@@ -57,7 +59,7 @@ export const defaultSocialLinks: SocialLink[] = [
     {
       name: "LinkedIn",
       username: "Muhammad Faran Aiki",
-      url: "https://www.linkedin.com/in/muhammad-faran-aiki-8a6305343/",
+      url: "https://www.linkedin.com/in/faranaiki/",
       icon: <Linkedin size={48} className="text-theme-500" />,
       color: "hover:border-theme-500"
     },
@@ -163,6 +165,14 @@ export const defaultSocialLinks: SocialLink[] = [
 
 export default function SocialDisplay({ customLinks, hidePresentation = false }: SocialDisplayProps) {
   const { isPresentationMode } = usePresentation();
+  const { theme, systemTheme } = useTheme();
+  
+  // Need mounted state for next-themes to avoid hydration mismatch
+  const [mounted, setMounted] = React.useState(false);
+  useEffect(() => setMounted(true), []);
+
+  const currentTheme = theme === 'system' ? systemTheme : theme;
+  const badgeTheme = mounted && currentTheme === 'dark' ? 'dark' : 'light';
 
   // Static/CSS-variable based styles to prevent flicker
   const containerClass = "text-foreground";
@@ -181,8 +191,42 @@ export default function SocialDisplay({ customLinks, hidePresentation = false }:
   const socialChunks = chunkArray(socialLinks, 4);
   const showPresentation = isPresentationMode && !hidePresentation;
 
+  const renderCard = (link: SocialLink, presentationMode: boolean) => {
+    if (link.name === 'LinkedIn') {
+      return (
+        <div className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-8' : 'rounded-lg p-6'} flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 h-full shadow-sm hover:shadow-lg min-h-[200px]`}>
+          <div className="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme={badgeTheme} data-type="VERTICAL" data-vanity="faranaiki" data-version="v1">
+            <a className="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/faranaiki?trk=profile-badge">Muhammad Faran Aiki</a>
+          </div>
+        </div>
+      );
+    }
+    
+    return (
+      <a
+          href={link.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-8' : 'rounded-lg p-6'} flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-2 ${presentationMode ? 'hover:scale-[1.02]' : ''} ${link.color} h-full ${presentationMode ? 'min-h-[200px]' : ''} shadow-sm hover:shadow-lg`}
+      >
+          <div className={`text-${presentationMode ? 'base' : 'sm'} ${usernameClass} mb-4 transition-colors`}>
+          {link.username}
+          </div>
+
+          <div className={`mb-${presentationMode ? '6' : '4'} transition-transform group-hover:scale-110 duration-300`}>
+          {link.icon}
+          </div>
+
+          <div className={`text-${presentationMode ? '2xl' : 'lg'} font-${presentationMode ? 'bold' : 'semibold'} ${nameClass}`}>
+          {link.name}
+          </div>
+      </a>
+    );
+  };
+
   return (
     <div className="w-full h-full">
+      <Script src="https://platform.linkedin.com/badges/js/profile.js" async defer strategy="lazyOnload" />
       {showPresentation && (
         <div className="presentation-container">
           {socialChunks.map((chunk, chunkIdx) => (
@@ -198,24 +242,7 @@ export default function SocialDisplay({ customLinks, hidePresentation = false }:
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-center justify-center">
                   {chunk.map((link) => (
                     <motion.div key={link.name} className="h-full" variants={itemVariants}>
-                      <a
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`group ${cardBg} border rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02] ${link.color} h-full min-h-[200px]`}
-                      >
-                          <div className={`text-base ${usernameClass} mb-4 transition-colors`}>
-                          {link.username}
-                          </div>
-
-                          <div className="mb-6 transition-transform group-hover:scale-110 duration-300">
-                              {link.icon}
-                          </div>
-
-                          <div className={`text-2xl font-bold ${nameClass}`}>
-                          {link.name}
-                          </div>
-                      </a>
+                      {renderCard(link, true)}
                     </motion.div>
                   ))}
                 </div>
@@ -237,24 +264,7 @@ export default function SocialDisplay({ customLinks, hidePresentation = false }:
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
               {socialLinks.map((link) => (
                 <motion.div key={link.name} className="h-full" variants={itemVariants}>
-                  <a
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`group ${cardBg} border rounded-lg p-6 flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-2 ${link.color} h-full shadow-sm hover:shadow-lg`}
-                  >
-                      <div className={`text-sm ${usernameClass} mb-4 transition-colors`}>
-                      {link.username}
-                      </div>
-
-                      <div className="mb-4 transition-transform group-hover:scale-110 duration-300">
-                      {link.icon}
-                      </div>
-
-                      <div className={`text-lg font-semibold ${nameClass}`}>
-                      {link.name}
-                      </div>
-                  </a>
+                  {renderCard(link, false)}
                 </motion.div>
               ))}
             </div>

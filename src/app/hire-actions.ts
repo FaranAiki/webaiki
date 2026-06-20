@@ -7,6 +7,7 @@ import { createClient } from '@/utils/supabase/server';
 import { revalidatePath } from 'next/cache';
 import { Type } from '@sinclair/typebox';
 import { validateData } from '@/lib/validation';
+import { AppError } from '@/lib/errors';
 
 const HireRequestSchema = Type.Object({
   company: Type.String({ minLength: 1 }),
@@ -48,14 +49,14 @@ export async function getExistingHireRequest() {
 export async function submitHireRequest(formData: FormData, captchaToken: string) {
   const isCaptchaValid = await verifyRecaptcha(captchaToken);
   if (!isCaptchaValid) {
-    return { error: 'Invalid captcha' };
+    return AppError.badRequest('Invalid_Captcha').toJSON();
   }
 
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
   if (!user) {
-    return { error: 'Not authenticated' };
+    return AppError.unauthorized('Not_Authenticated').toJSON();
   }
 
   const rawData = {
@@ -70,7 +71,7 @@ export async function submitHireRequest(formData: FormData, captchaToken: string
   // Validate with TypeBox
   const validation = validateData(HireRequestSchema, rawData);
   if (!validation.success) {
-    return { error: validation.error };
+    return AppError.badRequest(validation.error  || 'Validation Error').toJSON();
   }
 
   const validatedData = validation.data;
@@ -106,6 +107,6 @@ export async function submitHireRequest(formData: FormData, captchaToken: string
     return { success: true };
   } catch (error) {
     console.error('Error submitting hire request:', error);
-    return { error: 'Failed to submit request' };
+    return new AppError('APP_ERROR', 400, 'Failed to submit request' ).toJSON();
   }
 }

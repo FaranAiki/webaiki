@@ -19,7 +19,7 @@ export const socialLinks: SocialLink[] = [
   {
     name: "LinkedIn",
     username: "Muhammad Faran Aiki",
-    url: "https://www.linkedin.com/in/muhammad-faran-aiki-8a6305343/",
+    url: "https://www.linkedin.com/in/faranaiki/",
     iconName: 'Linkedin',
     color: "hover:border-theme-500",
     keywords: ["linkedin", "professional", "work", "job", "career"]

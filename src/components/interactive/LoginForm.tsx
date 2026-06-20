@@ -5,6 +5,7 @@ import { useAuthActions } from '@/app/auth-hooks';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { LogIn, Mail, Lock, AlertCircle } from 'lucide-react';
+import { getErrorMessage } from '@/lib/errors';
 
 interface LoginFormProps {
   dict: Record<string, string>;
@@ -25,7 +26,7 @@ export default function LoginForm({ dict, lang }: LoginFormProps) {
     const result = await signIn(formData);
 
     if (result?.error) {
-      setError(dict[result.error] || result.error);
+      setError(getErrorMessage(result.error, dict));
       setLoading(false);
     }
   };

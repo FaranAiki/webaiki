@@ -8,6 +8,11 @@ export enum RegistrationReason {
   OTHER = 'OTHER'
 }
 
+export enum UserRole {
+  USER = 'USER',
+  ADMIN = 'ADMIN'
+}
+
 export enum WorkLocation {
   HYBRID = 'HYBRID',
   ONLINE = 'ONLINE',

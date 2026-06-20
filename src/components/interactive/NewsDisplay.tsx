@@ -10,6 +10,7 @@ import { usePresentation } from '../providers/PresentationContext';
 import FadeInSection from '../shared/FadeInSection';
 import { getNewsArticleSchema } from '@/lib/seo';
 import Link from 'next/link';
+import { getErrorMessage } from '@/lib/errors';
 
 interface NewsItem {
   id: string;
@@ -85,7 +86,7 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
         setNews(news.filter(n => n.id !== id));
         router.refresh();
       } else {
-        alert(dict[result.error!] || result.error);
+        alert(getErrorMessage(result.error, dict));
       }
     } catch (err) {
       console.error('Error deleting news:', err);
@@ -107,7 +108,7 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
     if (result.success) {
       setImageUrl(result.url!);
     } else {
-      setError(dict[result.error!] || result.error || 'Upload failed');
+      setError(getErrorMessage(result.error, dict));
     }
     setUploading(false);
   };
@@ -129,7 +130,7 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
       fetchNews();
       router.refresh();
     } else {
-      setError(dict[result.error!] || result.error || 'Error');
+      setError(getErrorMessage(result.error, dict));
     }
     setSubmitting(false);
   };

@@ -11,6 +11,7 @@ import { usePresentation } from '../providers/PresentationContext';
 import FadeInSection from '../shared/FadeInSection';
 import { executeCaptcha } from './CaptchaValidator';
 import RecaptchaNotice from '../shared/RecaptchaNotice';
+import { getErrorMessage } from '@/lib/errors';
 
 interface FeedbackItem {
   id: string;
@@ -75,7 +76,7 @@ export default function FeedbackDisplay({ dict, lang, currentUserId }: FeedbackD
         setFeedbacks(feedbacks.filter(f => f.id !== id));
         router.refresh();
       } else {
-        alert(dict[result.error!] || result.error);
+        alert(getErrorMessage(result.error, dict));
       }
     } catch (err) {
       console.error('Error deleting feedback:', err);
@@ -97,7 +98,7 @@ export default function FeedbackDisplay({ dict, lang, currentUserId }: FeedbackD
     if (result.success) {
       setImageUrl(result.url!);
     } else {
-      setError(dict[result.error!] || result.error || 'Upload failed');
+      setError(getErrorMessage(result.error, dict));
     }
     setUploading(false);
   };
@@ -124,7 +125,7 @@ export default function FeedbackDisplay({ dict, lang, currentUserId }: FeedbackD
       fetchFeedbacks();
       router.refresh();
     } else {
-      setError(dict[result.error!] || result.error || 'Error');
+      setError(getErrorMessage(result.error, dict));
     }
     setSubmitting(false);
   };

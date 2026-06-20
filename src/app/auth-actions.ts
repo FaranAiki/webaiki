@@ -6,6 +6,7 @@ import { users, RegistrationReason } from '@/lib/schema';
 import { createClient } from '@/utils/supabase/server';
 import { validateData } from '@/lib/validation';
 import { headers } from 'next/headers';
+import { AppError } from '@/lib/errors';
 
 // Schemas
 const LoginSchema = Type.Object({
@@ -46,7 +47,7 @@ export async function signInAction(formData: FormData) {
   // Validate with TypeBox
   const validation = validateData(LoginSchema, rawData);
   if (!validation.success) {
-    return { error: validation.error };
+    return AppError.badRequest(validation.error  || 'Validation Error').toJSON();
   }
 
   const { email, password } = validation.data;
@@ -58,7 +59,7 @@ export async function signInAction(formData: FormData) {
   });
 
   if (error) {
-    return { error: 'Auth_Error' };
+    return new AppError('APP_ERROR', 400, 'Auth_Error' ).toJSON();
   }
 
   // Sync with Prisma after successful login to ensure user exists in our DB
@@ -69,12 +70,14 @@ export async function signInAction(formData: FormData) {
         id: data.user.id,
         email: data.user.email!,
         username: metadata.username || null,
+        role: data.user.email === 'faran.aiki.business@gmail.com' ? 'ADMIN' : 'USER',
         registrationReason: metadata.registration_reason || 'VISITOR',
       }).onConflictDoUpdate({
         target: users.id,
         set: {
           email: data.user.email!,
           username: metadata.username || null,
+        role: data.user.email === 'faran.aiki.business@gmail.com' ? 'ADMIN' : 'USER',
           registrationReason: metadata.registration_reason || 'VISITOR',
           updatedAt: new Date(),
         }
@@ -91,11 +94,11 @@ export async function signInAction(formData: FormData) {
 
 export async function signUpAction(formData: FormData, captchaToken?: string) {
   if (!captchaToken) {
-    return { error: 'Captcha token is required' };
+    return AppError.badRequest('Captcha_Required').toJSON();
   }
   const isCaptchaValid = await verifyRecaptcha(captchaToken);
   if (!isCaptchaValid) {
-    return { error: 'Invalid captcha' };
+    return AppError.badRequest('Invalid_Captcha').toJSON();
   }
 
   const rawData = {
@@ -108,7 +111,7 @@ export async function signUpAction(formData: FormData, captchaToken?: string) {
   // Validate with TypeBox
   const validation = validateData(RegisterSchema, rawData);
   if (!validation.success) {
-    return { error: validation.error };
+    return AppError.badRequest(validation.error  || 'Validation Error').toJSON();
   }
 
   const { email, password, username, reason } = validation.data;
@@ -132,7 +135,7 @@ export async function signUpAction(formData: FormData, captchaToken?: string) {
   });
 
   if (error) {
-    return { error: 'Auth_Error' };
+    return new AppError('APP_ERROR', 400, 'Auth_Error' ).toJSON();
   }
 
   return { success: true };

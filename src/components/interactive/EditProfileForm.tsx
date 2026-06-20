@@ -6,6 +6,7 @@ import { User, Mail, Camera, Save, AlertCircle, CheckCircle2, UserCircle } from 
 import { updateProfile, uploadFile } from '@/app/actions';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { getErrorMessage } from '@/lib/errors';
 
 interface EditProfileFormProps {
   dict: Record<string, string>;
@@ -45,7 +46,7 @@ export default function EditProfileForm({ dict, user }: EditProfileFormProps) {
     if (result.success) {
       setAvatarUrl(result.url!);
     } else {
-      setError(dict[result.error!] || result.error || 'Upload failed');
+      setError(getErrorMessage(result.error, dict));
     }
     setUploading(false);
   };
@@ -66,7 +67,7 @@ export default function EditProfileForm({ dict, user }: EditProfileFormProps) {
       setSuccess(true);
       router.refresh();
     } else {
-      setError(dict[result.error!] || result.error || 'Error');
+      setError(getErrorMessage(result.error, dict));
     }
     setLoading(false);
   };

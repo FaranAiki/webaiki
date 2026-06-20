@@ -62,7 +62,7 @@ A custom context-driven system that transforms the standard vertical portfolio i
 ---
 
 ## Connection Information
-- LinkedIn: [Muhammad Faran Aiki](https://www.linkedin.com/in/muhammad-faran-aiki-8a6305343/)
+- LinkedIn: [Muhammad Faran Aiki](https://www.linkedin.com/in/faranaiki/)
 - GitHub: [FaranAiki](https://github.com/FaranAiki)
 - Portfolio Website: [faranaiki.id](https://faranaiki.id)
 

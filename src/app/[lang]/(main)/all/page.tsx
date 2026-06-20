@@ -126,7 +126,7 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
     {
       name: "LinkedIn",
       username: "Muhammad Faran Aiki",
-      url: "https://www.linkedin.com/in/muhammad-faran-aiki-8a6305343/",
+      url: "https://www.linkedin.com/in/faranaiki/",
       icon: <Linkedin size={32} className="text-theme-500" />,
       color: "hover:border-theme-500"
     },

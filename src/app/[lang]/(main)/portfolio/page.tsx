@@ -57,7 +57,7 @@ export default async function PortfolioSummaryPage({ params }: { params: Promise
   const socialLinks = [
     { icon: <Mail size={18} />, url: "mailto:faran.aiki.business@gmail.com", label: "Email" },
     { icon: <Github size={18} />, url: "https://github.com/FaranAiki", label: "GitHub" },
-    { icon: <Linkedin size={18} />, url: "https://www.linkedin.com/in/muhammad-faran-aiki-8a6305343/", label: "LinkedIn" },
+    { icon: <Linkedin size={18} />, url: "https://www.linkedin.com/in/faranaiki/", label: "LinkedIn" },
     { icon: <Instagram size={18} />, url: "https://www.instagram.com/mfaranaiki/", label: "Instagram" },
     { icon: <Twitter size={18} />, url: "https://x.com/FaranAiki", label: "Twitter" },
   ];

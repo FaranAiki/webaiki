@@ -170,7 +170,7 @@ images: {
   async redirects() {
     const socials = [
       { slug: 'github', url: 'https://github.com/FaranAiki' },
-      { slug: 'linkedin', url: 'https://www.linkedin.com/in/muhammad-faran-aiki-8a6305343/' },
+      { slug: 'linkedin', url: 'https://www.linkedin.com/in/faranaiki/' },
       { slug: 'instagram', url: 'https://www.instagram.com/mfaranaiki/' },
       { slug: 'twitter', url: 'https://x.com/FaranAiki' },
       { slug: 'x', url: 'https://x.com/FaranAiki' },

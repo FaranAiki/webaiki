@@ -1,9 +1,11 @@
+import 'server-only';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { Pool } from 'pg';
 import * as schema from './schema';
+import { env } from './env';
 
 const isProduction = process.env.NODE_ENV === 'production';
-const connectionString = process.env.DIRECT_URL || process.env.DATABASE_URL || 'postgresql://invalid_placeholder';
+const connectionString = env.DIRECT_URL || env.DATABASE_URL;
 
 const pool = new Pool({
   connectionString,
