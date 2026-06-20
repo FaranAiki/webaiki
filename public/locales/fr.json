@@ -24,7 +24,7 @@
   "Present": "Présent",
   "Not_Found": "Cette page n'a pas été trouvée.",
   "Faran_About_1": "Salut ! <b>Muhammad Faran Aiki</b> (8 avril 2007), étudiant en <i>Systèmes et Technologies de l'Information (STI)</i> à l'<i>École d'Électrotechnique et d'Informatique - Calcul (SEEI-C)</i>, <b>Institut de Technologie de Bandung</b>, est là !",
-  "Faran_About_2": "Dedicated Information Systems and Technology student at ITB with hands-on software engineering experience at Analitica, SAT Tutoring at Kobi Education, an ONMIPA-PT 2026 silver medal in Mathematics at Airlangga University, and the Paragon Scholarship Program Excellence 2025 award. Possesses strong analytical foundations and technical software development expertise.",
+  "Faran_About_2": "Étudiant dévoué en Systèmes d'Information et Technologie à l'ITB avec une expérience pratique en ingénierie logicielle chez Analitica, du tutorat SAT chez Kobi Education, une médaille d'argent ONMIPA-PT 2026 en Mathématiques à l'Université Airlangga et le prix d'Excellence du Programme de Bourses Paragon 2025. Possède de solides bases analytiques et une expertise technique en développement de logiciels.",
   "Faran_Photo": "Collections de photos de Faran Aiki",
   "Faran_Philosophy_Title": "Philosophie de Vie",
   "Faran_Philosophy": "Le nom Faran Aiki vient du mot Faran « avance », tandis que le nom Aiki vient des mots japonais « ai » (愛) et « ki » (気) qui signifient « l'énergie de l'amour ». Ainsi, « Faran Aiki » signifie « (celui qui) aime l'avancement et le progrès ».",
@@ -413,6 +413,6 @@
   "Data_Science": "Sains Data",
   "Compilers": "Desain Kompilator",
   "Algorithms": "Algoritma & Struktur Data",
-  "Education_ITB_Description": "Menempuh gelar Sarjana di program studi Sistem dan Teknologi Informasi.",
+  "Education_ITB_Description": "Poursuit une licence en Systèmes d'Information et Technologie.",
   "Education_SMA_Description": "Diplômé avec une spécialisation en Kurikulum Merdeka: Informatika."
 }

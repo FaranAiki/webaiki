@@ -24,7 +24,7 @@
   "Present": "現在",
   "Not_Found": "このページは見つかりませんでした。",
   "Faran_About_1": "こんにちは！<b>ムハンマド・ファラン・アイキ</b>（2007年4月8日生まれ）です。<b>バンドン工科大学</b>の<i>電気工学・情報学部 - コンピューテーション（SEEI-C）</i>の<i>情報システム・テクノロジー（STI）</i>専攻の学生です！",
-  "Faran_About_2": "Dedicated Information Systems and Technology student at ITB with hands-on software engineering experience at Analitica, SAT Tutoring at Kobi Education, an ONMIPA-PT 2026 silver medal in Mathematics at Airlangga University, and the Paragon Scholarship Program Excellence 2025 award. Possesses strong analytical foundations and technical software development expertise.",
+  "Faran_About_2": "ITB（バンドン工科大学）の情報システム・テクノロジー専攻の熱心な学生。Analiticaでのソフトウェアエンジニアリングの実務経験、Kobi EducationでのSATチューター、アイルランガ大学でのONMIPA-PT 2026数学銀メダル、および2025年パラゴンスカラシップ優秀賞を受賞。強固な分析基盤と専門的なソフトウェア開発の専門知識を持つ。",
   "Faran_Photo": "ファラン・アイキのフォトコレクション",
   "Faran_Philosophy_Title": "人生の哲学",
   "Faran_Philosophy": "ファラン・アイキという名前は、ファラン（Faran）が「前進」を意味し、アイキ（Aiki）は日本語の「愛」（ai）と「気」（ki）に由来し、「愛のエネルギー」を意味します。したがって、「ファラン・アイキ」は「前進と進歩を愛する（者）」という意味になります。",
@@ -413,6 +413,6 @@
   "Data_Science": "Sains Data",
   "Compilers": "Desain Kompilator",
   "Algorithms": "Algoritma & Struktur Data",
-  "Education_ITB_Description": "Menempuh gelar Sarjana di program studi Sistem dan Teknologi Informasi.",
+  "Education_ITB_Description": "情報システムとテクノロジーの学士号を取得中。",
   "Education_SMA_Description": "Kurikulum Merdeka: Informatika を専攻して卒業。"
 }

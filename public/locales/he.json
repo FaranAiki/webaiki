@@ -24,7 +24,7 @@
   "Present": "כיום",
   "Not_Found": "דף זה לא נמצא.",
   "Faran_About_1": "היי! <b>מוחמד פארן אייקי</b> (8 באפריל, 2007), סטודנט למערכות מידע וטכנולוגיה (IST) ב<i>בית הספר להנדסת חשמל ומידע - חישוב (SEEI-C)</i>, <b>מכון הטכנולוגיה של באנדונג</b>, נמצא כאן!",
-  "Faran_About_2": "Dedicated Information Systems and Technology student at ITB with hands-on software engineering experience at Analitica, SAT Tutoring at Kobi Education, an ONMIPA-PT 2026 silver medal in Mathematics at Airlangga University, and the Paragon Scholarship Program Excellence 2025 award. Possesses strong analytical foundations and technical software development expertise.",
+  "Faran_About_2": "סטודנט מסור למערכות מידע וטכנולוגיה ב-ITB עם ניסיון מעשי בהנדסת תוכנה ב-Analitica, הוראת SAT ב-Kobi Education, מדליית כסף ב-ONMIPA-PT 2026 במתמטיקה באוניברסיטת אירלנגה, ופרס הצטיינות של תוכנית המלגות Paragon לשנת 2025. בעל יסודות אנליטיים חזקים ומומחיות טכנית בפיתוח תוכנה.",
   "Faran_Photo": "אוספי התמונות של פארן אייקי",
   "Faran_Philosophy_Title": "פילוסופיית חיים",
   "Faran_Philosophy": "השם פארן אייקי מגיע מהמילה פארן \"להתקדם\", בעוד שהשם אייקי מגיע מהמילים היפניות \"איי\" (愛) ו-\"קי\" (気) שמשמעותן 'אנרגיית האהבה'. לפיכך, \"פארן אייקי\" פירושו '(מי ש)אוהב התקדמות וקדמה'.",
@@ -413,6 +413,6 @@
   "Data_Science": "Sains Data",
   "Compilers": "Desain Kompilator",
   "Algorithms": "Algoritma & Struktur Data",
-  "Education_ITB_Description": "Menempuh gelar Sarjana di program studi Sistem dan Teknologi Informasi.",
+  "Education_ITB_Description": "לומד לתואר ראשון במערכות מידע וטכנולוגיה.",
   "Education_SMA_Description": "בוגר עם התמחות ב-Kurikulum Merdeka: Informatika."
 }
