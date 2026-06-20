@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useCallback } from 'react';
+import React, { useMemo, useCallback, useState } from 'react';
 import { useSettings } from '../providers/SettingsContext';
 import { Briefcase, Code, Users, Trophy } from 'lucide-react';
 import PortfolioSummaryItem from './PortfolioSummaryItem';
@@ -62,17 +62,26 @@ export default function PortfolioExperienceList({
   awardExperiences,
   labels
 }: PortfolioExperienceListProps) {
-  const { portfolioFilter } = useSettings();
+  const { portfolioFilter, isAtsMode } = useSettings();
 
-  const filterJobs = useCallback((jobs: Job[]) => {
-    let filtered = jobs;
+  const [removedKeys, setRemovedKeys] = useState<string[]>([]);
+
+  const handleRemove = useCallback((category: string, job: Job) => {
+    const key = `${category}-${job.title}-${job.company}-${job.date}`;
+    setRemovedKeys((prev) => [...prev, key]);
+  }, []);
+
+  const filterJobs = useCallback((jobs: Job[], category: string) => {
+    let filtered = jobs.filter(
+      (j) => !removedKeys.includes(`${category}-${j.title}-${j.company}-${j.date}`)
+    );
     
     if (portfolioFilter === 'top') {
-      filtered = jobs.filter(j => (j.point || 0) >= 80);
+      filtered = filtered.filter(j => (j.point || 0) >= 80);
     } else if (portfolioFilter !== 'all') {
       // Filter by tag - comparing untranslated enum key to translated tag strings in the data
       const targetLabel = labels[portfolioFilter as keyof typeof labels];
-      filtered = jobs.filter(j => j.tag?.includes(targetLabel));
+      filtered = filtered.filter(j => j.tag?.includes(targetLabel));
     }
     
     return filtered.sort((a, b) => {
@@ -96,12 +105,12 @@ export default function PortfolioExperienceList({
       
       return (b.point || 0) - (a.point || 0);
     });
-  }, [portfolioFilter, labels]);
+  }, [portfolioFilter, labels, removedKeys]);
 
-  const filteredWork = useMemo(() => filterJobs(workExperiences), [workExperiences, filterJobs]);
-  const filteredProject = useMemo(() => filterJobs(projectExperiences), [projectExperiences, filterJobs]);
-  const filteredOrg = useMemo(() => filterJobs(organizationExperiences), [organizationExperiences, filterJobs]);
-  const filteredAward = useMemo(() => filterJobs(awardExperiences), [awardExperiences, filterJobs]);
+  const filteredWork = useMemo(() => filterJobs(workExperiences, 'work'), [workExperiences, filterJobs]);
+  const filteredProject = useMemo(() => filterJobs(projectExperiences, 'project'), [projectExperiences, filterJobs]);
+  const filteredOrg = useMemo(() => filterJobs(organizationExperiences, 'org'), [organizationExperiences, filterJobs]);
+  const filteredAward = useMemo(() => filterJobs(awardExperiences, 'award'), [awardExperiences, filterJobs]);
 
   const hasAnyExperience = filteredWork.length > 0 || filteredProject.length > 0 || filteredOrg.length > 0 || filteredAward.length > 0;
 
@@ -119,17 +128,19 @@ export default function PortfolioExperienceList({
       {filteredWork.length > 0 && (
         <section className="space-y-1">
           <div className="flex items-center gap-2 border-b border-theme-border/50 pb-0.5">
-            <Briefcase size={12} className="text-theme-500" />
+            {!isAtsMode && <Briefcase size={12} className="text-theme-500" />}
             <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">{labels.Work}</h2>
           </div>
           <div className="space-y-1">
             {filteredWork.map((job, i) => (
               <PortfolioSummaryItem
-                key={i}
+                key={`${job.title}-${job.company}-${job.date}`}
                 title={`${i + 1}. ${job.title}`}
                 company={job.company}
                 date={job.date}
                 description={job.description}
+                url={job.url}
+                onRemove={() => handleRemove('work', job)}
               />
             ))}
           </div>
@@ -140,18 +151,19 @@ export default function PortfolioExperienceList({
       {filteredProject.length > 0 && (
         <section className="space-y-1">
           <div className="flex items-center gap-2 border-b border-theme-border/50 pb-0.5">
-            <Code size={12} className="text-theme-500" />
+            {!isAtsMode && <Code size={12} className="text-theme-500" />}
             <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">{labels.Project}</h2>
           </div>
           <div className="space-y-1">
             {filteredProject.map((job, i) => (
               <PortfolioSummaryItem
-                key={i}
+                key={`${job.title}-${job.company}-${job.date}`}
                 title={`${i + 1}. ${job.title}`}
                 company={job.company}
                 date={job.date}
                 description={job.description}
                 url={job.url}
+                onRemove={() => handleRemove('project', job)}
               />
             ))}
           </div>
@@ -162,17 +174,19 @@ export default function PortfolioExperienceList({
       {filteredOrg.length > 0 && (
         <section className="space-y-1">
           <div className="flex items-center gap-2 border-b border-theme-border/50 pb-0.5">
-            <Users size={12} className="text-theme-500" />
+            {!isAtsMode && <Users size={12} className="text-theme-500" />}
             <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">{labels.Organization}</h2>
           </div>
           <div className="space-y-1">
             {filteredOrg.map((job, i) => (
               <PortfolioSummaryItem
-                key={i}
+                key={`${job.title}-${job.company}-${job.date}`}
                 title={`${i + 1}. ${job.title}`}
                 company={job.company}
                 date={job.date}
                 description={job.description}
+                url={job.url}
+                onRemove={() => handleRemove('org', job)}
               />
             ))}
           </div>
@@ -183,17 +197,19 @@ export default function PortfolioExperienceList({
       {filteredAward.length > 0 && (
         <section className="space-y-1">
           <div className="flex items-center gap-2 border-b border-theme-border/50 pb-0.5">
-            <Trophy size={12} className="text-theme-500" />
+            {!isAtsMode && <Trophy size={12} className="text-theme-500" />}
             <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">{labels.Award}</h2>
           </div>
           <div className="space-y-1">
             {filteredAward.map((job, i) => (
               <PortfolioSummaryItem
-                key={i}
+                key={`${job.title}-${job.company}-${job.date}`}
                 title={`${i + 1}. ${job.title}`}
                 company={job.company}
                 date={job.date}
                 description={job.description}
+                url={job.url}
+                onRemove={() => handleRemove('award', job)}
               />
             ))}
           </div>

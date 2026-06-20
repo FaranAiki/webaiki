@@ -638,3 +638,33 @@ export const getSkills = (dict: Dictionary): SkillCategory[] => [
   }
 ];
 
+export const getEducationExperiences = (dict: Dictionary) => [
+  {
+    year: '2025',
+    jobs: [
+      {
+        date: `${dict.August || 'August'} 2025 — ${dict.Present || 'Present'}`,
+        title: dict.STI || 'Sistem dan Teknologi Informasi',
+        company: dict.ITB || 'Institut Teknologi Bandung',
+        description: dict.Education_ITB_Description || 'Currently pursuing a Bachelor\'s degree in Information Systems and Technology.',
+        point: 90,
+        tag: [dict.Education]
+      }
+    ]
+  },
+  {
+    year: '2022',
+    jobs: [
+      {
+        date: `${dict.July || 'July'} 2022 — ${dict.June || 'June'} 2025`,
+        title: 'Kurikulum Merdeka: Informatika',
+        company: 'SMA Negeri 1 Kota Depok',
+        description: dict.Education_SMA_Description || 'Graduated with a focus on Kurikulum Merdeka: Informatika.',
+        point: 80,
+        tag: [dict.Education]
+      }
+    ]
+  }
+];
+
+

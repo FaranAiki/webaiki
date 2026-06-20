@@ -24,7 +24,7 @@
   "Present": "現在",
   "Not_Found": "このページは見つかりませんでした。",
   "Faran_About_1": "こんにちは！<b>ムハンマド・ファラン・アイキ</b>（2007年4月8日生まれ）です。<b>バンドン工科大学</b>の<i>電気工学・情報学部 - コンピューテーション（SEEI-C）</i>の<i>情報システム・テクノロジー（STI）</i>専攻の学生です！",
-  "Faran_About_2": "現在、私は <b>Kobi Education</b> で SAT チューター（言語・数学）を務めています。また、アイルランガ大学で開催された ONMIPA-PT 2026 の数学部門で銀メダルを獲得しました。さらに、以前は <b>Analitica</b> でソフトウェアエンジニアとしてインターンシップに参加し、勤務していました。奨学金については、<b>Paragon Scholarship Program Excellence 2025</b> の受給者です。",
+  "Faran_About_2": "Dedicated Information Systems and Technology student at ITB with hands-on software engineering experience at Analitica, SAT Tutoring at Kobi Education, an ONMIPA-PT 2026 silver medal in Mathematics at Airlangga University, and the Paragon Scholarship Program Excellence 2025 award. Possesses strong analytical foundations and technical software development expertise.",
   "Faran_Photo": "ファラン・アイキのフォトコレクション",
   "Faran_Philosophy_Title": "人生の哲学",
   "Faran_Philosophy": "ファラン・アイキという名前は、ファラン（Faran）が「前進」を意味し、アイキ（Aiki）は日本語の「愛」（ai）と「気」（ki）に由来し、「愛のエネルギー」を意味します。したがって、「ファラン・アイキ」は「前進と進歩を愛する（者）」という意味になります。",
@@ -412,5 +412,7 @@
   "Skills_Concepts": "Kompetensi Inti",
   "Data_Science": "Sains Data",
   "Compilers": "Desain Kompilator",
-  "Algorithms": "Algoritma & Struktur Data"
+  "Algorithms": "Algoritma & Struktur Data",
+  "Education_ITB_Description": "Menempuh gelar Sarjana di program studi Sistem dan Teknologi Informasi.",
+  "Education_SMA_Description": "Kurikulum Merdeka: Informatika を専攻して卒業。"
 }

@@ -24,7 +24,7 @@
   "Present": "Present",
   "Not_Found": "This page was not found.",
   "Faran_About_1": "Hi! <b>Muhammad Faran Aiki</b> (April 8th, 2007), an Information System and Technology (IST) student (<i>Information System and Technology</i>) at the <i>School of Electrical Engineering and Informatics - Computation (SEEI-C)</i>, <b>Bandung Institute of Technology</b>, is here!",
-  "Faran_About_2": "Hiện tại, tôi đang là gia sư SAT (Ngôn ngữ và Toán học) tại <b>Kobi Education</b>. Ngoài ra, tôi cũng đã giành được huy chương bạc tại ONMIPA-PT 2026 trong lĩnh vực Toán học tại Đại học Airlangga. Hơn nữa, trước đây tôi đã từng thực tập và làm việc với tư cách là Kỹ sư phần mềm tại <b>Analitica</b>. Về học bổng, tôi là người nhận được học bổng <b>Paragon Scholarship Program Excellence 2025</b>.",
+  "Faran_About_2": "Dedicated Information Systems and Technology student at ITB with hands-on software engineering experience at Analitica, SAT Tutoring at Kobi Education, an ONMIPA-PT 2026 silver medal in Mathematics at Airlangga University, and the Paragon Scholarship Program Excellence 2025 award. Possesses strong analytical foundations and technical software development expertise.",
   "Faran_Photo": "Faran Aiki's photo collections",
   "Faran_Philosophy_Title": "Philosophy of Life",
   "Faran_Philosophy": "The name Faran Aiki comes from the word Faran \"advance\", while the name Aiki comes from the Japanese words \"ai\" (愛) and \"ki\" (気) which mean 'the energy of love'. Thus, \"Faran Aiki\" means '(one who) loves advancement and progress'.",
@@ -412,5 +412,7 @@
   "Skills_Concepts": "Kompetensi Inti",
   "Data_Science": "Sains Data",
   "Compilers": "Desain Kompilator",
-  "Algorithms": "Algoritma & Struktur Data"
+  "Algorithms": "Algoritma & Struktur Data",
+  "Education_ITB_Description": "Menempuh gelar Sarjana di program studi Sistem dan Teknologi Informasi.",
+  "Education_SMA_Description": "Tốt nghiệp với trọng tâm là Kurikulum Merdeka: Informatika."
 }

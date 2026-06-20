@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSettings } from '../providers/SettingsContext';
 
 export type HoverableWordsProps = {
   children?: string; // Make children optional to handle undefined gracefully
@@ -7,8 +8,8 @@ export type HoverableWordsProps = {
 };
 
 // Helper function to process the word splitting logic
-const processWords = (text: string, separatorRegex: RegExp, hoverClass: string, isMobile: boolean) => {
-  if (isMobile) {
+const processWords = (text: string, separatorRegex: RegExp, hoverClass: string, skipSplitting: boolean) => {
+  if (skipSplitting) {
     return <React.Fragment>{text}</React.Fragment>;
   }
 
@@ -27,6 +28,7 @@ const processWords = (text: string, separatorRegex: RegExp, hoverClass: string, 
 
 export default function HoverableWords({ children, className, prophover }: HoverableWordsProps) {
   const [isMobile, setIsMobile] = useState(false);
+  const { isAtsMode } = useSettings();
   const finalClassName = className || '';
 
   useEffect(() => {
@@ -42,6 +44,8 @@ export default function HoverableWords({ children, className, prophover }: Hover
   if (!children) {
     return <p className={finalClassName}></p>;
   }
+
+  const skipSplitting = isMobile || isAtsMode;
 
   // The "gacor" effect: gradient text on hover with smooth transition
   const gacorHover = 'transition-all inline-block duration-700 ease-in-out hover:scale-105 hover:font-bold cursor-pointer hover:nav-active-gacor';
@@ -64,7 +68,7 @@ export default function HoverableWords({ children, className, prophover }: Hover
           const content = segment.slice(3, -4); // Remove tags
           return (
             <span key={i} className="font-bold">
-              {processWords(content, separatorRegex, finalPropHover, isMobile)}
+              {processWords(content, separatorRegex, finalPropHover, skipSplitting)}
             </span>
           );
         }
@@ -72,12 +76,12 @@ export default function HoverableWords({ children, className, prophover }: Hover
           const content = segment.slice(3, -4); // Remove tags
           return (
             <span key={i} className="italic">
-              {processWords(content, separatorRegex, finalPropHover, isMobile)}
+              {processWords(content, separatorRegex, finalPropHover, skipSplitting)}
             </span>
           );
         }
         // Plain text segment
-        return <React.Fragment key={i}>{processWords(segment, separatorRegex, finalPropHover, isMobile)}</React.Fragment>;
+        return <React.Fragment key={i}>{processWords(segment, separatorRegex, finalPropHover, skipSplitting)}</React.Fragment>;
       })}
     </p>
   );

@@ -17,8 +17,15 @@ interface PortfolioHeaderProps {
   socialLinks: SocialLink[];
 }
 
+const cleanText = (text: string) => {
+  if (!text) return "";
+  return text.replace(/\r?\n|\r|\t/g, ' ').replace(/\s+/g, ' ').trim();
+};
+
 export default function PortfolioHeader({ title, resumeLabel, subtitle, about, socialLinks }: PortfolioHeaderProps) {
   const { isAtsMode } = useSettings();
+
+  const displaySubtitle = isAtsMode ? subtitle.replace('Muhammad Faran Aiki | ', '') : subtitle;
 
   // Group social links into pairs for ATS mode (2 per row)
   const groupedSocialLinks = [];
@@ -27,21 +34,25 @@ export default function PortfolioHeader({ title, resumeLabel, subtitle, about, s
   }
 
   if (isAtsMode) {
+    const cleanResumeLabel = cleanText(resumeLabel);
+    const cleanSubtitle = cleanText(displaySubtitle);
+    const cleanAbout = cleanText(about);
+
     return (
       <section className="flex flex-col items-center text-center gap-1 border-b border-theme-border pb-1 portfolio-header-section ats-header">
         <h1 className="text-3xl font-black tracking-tighter">
-          {resumeLabel}
+          {cleanResumeLabel}
         </h1>
 
         <div className="w-full border-t border-theme-border my-0.5"></div>
 
         <div className="portfolio-subtitle-container">
           <p className="text-sm font-bold text-foreground">
-            {subtitle}
+            {cleanSubtitle}
           </p>
           <p
             className="text-xs text-[var(--text-muted)] max-w-2xl leading-relaxed mt-1"
-            dangerouslySetInnerHTML={{ __html: about }}
+            dangerouslySetInnerHTML={{ __html: cleanAbout }}
           />
         </div>
 
@@ -54,10 +65,9 @@ export default function PortfolioHeader({ title, resumeLabel, subtitle, about, s
                 <a
                   key={i}
                   href={link.url}
-                  className="flex items-center gap-2 text-theme-600 font-bold underline text-[11px]"
+                  className="flex items-center gap-1.5 text-theme-600 font-bold underline text-[11px]"
                 >
-                  <span className="scale-75 origin-center">{link.icon}</span>
-                  {link.label}: {link.url.replace('https://', '')}
+                  {link.label}: {link.url.replace('https://', '').replace('mailto:', '')}
                 </a>
               ))}
             </div>

@@ -9,14 +9,16 @@ import {
   getProjectExperiences,
   getOrganizationExperiences,
   getAwardExperiences,
-  getSkills
+  getSkills,
+  getEducationExperiences
 } from '@/lib/data';
-import { Github, Linkedin, Instagram, Twitter, Star, Briefcase } from 'lucide-react';
+import { Github, Linkedin, Instagram, Twitter, Star, Briefcase, Mail } from 'lucide-react';
 import Link from 'next/link';
 import PortfolioHeader from '@/components/portfolio/PortfolioHeader';
 import PortfolioClientWrapper from '@/components/portfolio/PortfolioClientWrapper';
 import PortfolioExperienceList from '@/components/portfolio/PortfolioExperienceList';
 import PortfolioSkills from '@/components/portfolio/PortfolioSkills';
+import PortfolioEducation from '@/components/portfolio/PortfolioEducation';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -50,8 +52,10 @@ export default async function PortfolioSummaryPage({ params }: { params: Promise
   const orgExp = getOrganizationExperiences(dict).flatMap(y => y.jobs);
   const awardExp = getAwardExperiences(dict).flatMap(y => y.jobs);
   const skills = getSkills(dict);
+  const education = getEducationExperiences(dict).flatMap(y => y.jobs);
 
   const socialLinks = [
+    { icon: <Mail size={18} />, url: "mailto:faran.aiki.business@gmail.com", label: "Email" },
     { icon: <Github size={18} />, url: "https://github.com/FaranAiki", label: "GitHub" },
     { icon: <Linkedin size={18} />, url: "https://www.linkedin.com/in/muhammad-faran-aiki-8a6305343/", label: "LinkedIn" },
     { icon: <Instagram size={18} />, url: "https://www.instagram.com/mfaranaiki/", label: "Instagram" },
@@ -103,6 +107,9 @@ export default async function PortfolioSummaryPage({ params }: { params: Promise
             about={dict.Faran_About_2}
             socialLinks={socialLinks}
           />
+
+          {/* Education Section */}
+          <PortfolioEducation education={education} title={dict.Education || 'Education'} />
 
           {/* Experience Sections */}
           <PortfolioExperienceList 

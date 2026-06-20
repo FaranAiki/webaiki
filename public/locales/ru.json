@@ -24,7 +24,7 @@
   "Present": "Настоящее время",
   "Not_Found": "Эта страница не найдена.",
   "Faran_About_1": "Привет! Я <b>Мухаммад Фаран Айки</b> (родился 8 апреля 2007 г.), студент специальности <i>«Информационные системы и технологии» (STI)</i> в <i>Школе электротехники и информатики - вычисления (SEEI-C)</i> <b>Бандунгского технологического института</b>!",
-  "Faran_About_2": "В настоящее время я являюсь репетитором SAT (Verbal и Mathematics) в <b>Kobi Education</b>. Кроме того, я получил серебряную медаль на ONMIPA-PT 2026 в области математики в Университете Айрланга. Более того, ранее я проходил стажировку и работал инженером-программистом в <b>Analitica</b>. Что касается стипендий, я являюсь стипендиатом программы <b>Paragon Scholarship Program Excellence 2025</b>.",
+  "Faran_About_2": "Dedicated Information Systems and Technology student at ITB with hands-on software engineering experience at Analitica, SAT Tutoring at Kobi Education, an ONMIPA-PT 2026 silver medal in Mathematics at Airlangga University, and the Paragon Scholarship Program Excellence 2025 award. Possesses strong analytical foundations and technical software development expertise.",
   "Faran_Photo": "Фотоколлекции Фарана Айки",
   "Faran_Philosophy_Title": "Философия жизни",
   "Faran_Philosophy": "Имя Фаран Айки происходит от слова Фаран «вперед», а имя Айки происходит от японских слов «ай» (愛) и «ки» (気), что означает «энергия любви». Таким образом, «Фаран Айки» означает «(тот, кто) любит движение вперед и прогресс».",
@@ -412,5 +412,7 @@
   "Skills_Concepts": "Kompetensi Inti",
   "Data_Science": "Sains Data",
   "Compilers": "Desain Kompilator",
-  "Algorithms": "Algoritma & Struktur Data"
+  "Algorithms": "Algoritma & Struktur Data",
+  "Education_ITB_Description": "Menempuh gelar Sarjana di program studi Sistem dan Teknologi Informasi.",
+  "Education_SMA_Description": "Окончил с упором на Kurikulum Merdeka: Informatika."
 }

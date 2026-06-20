@@ -50,9 +50,14 @@ const prismaClientSingleton = (): PrismaClient => {
       return new PrismaClient({ adapter: fallbackAdapter });
     } catch (fallbackError) {
       console.error('Failed to initialize fallback Prisma adapter:', fallbackError);
+      const mockAdapter = {
+        provider: 'postgres',
+        queryRaw: async () => ({ columns: [], rows: [] }),
+        executeRaw: async () => 0,
+      };
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      return new PrismaClient({});
+      return new PrismaClient({ adapter: mockAdapter });
     }
   }
 }

@@ -17,12 +17,11 @@ export default function PortfolioSkills({ skills, title }: PortfolioSkillsProps)
     return (
       <section className="mt-4 border-b border-theme-border pb-2 w-full portfolio-skills-section-ats">
         <div className="flex items-center gap-2 border-b border-theme-border/50 pb-0.5 mb-1.5">
-          <Wrench size={10} className="text-theme-500 shrink-0" />
-          <h2 className="text-xs font-bold tracking-wider text-theme-muted">
+          <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">
             {title}
           </h2>
         </div>
-        <div className="flex flex-col gap-1 text-[11px] text-[var(--text-muted)]">
+        <div className="flex flex-col gap-0.5 text-xs text-[var(--text-muted)] mt-1.5">
           {skills.map((cat, idx) => (
             <div key={idx} className="leading-relaxed">
               <span className="font-bold text-foreground">{cat.category}: </span>
