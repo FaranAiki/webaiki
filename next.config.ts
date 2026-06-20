@@ -8,8 +8,8 @@ const nextConfig: NextConfig = {
     root: path.resolve('.'),
   },
 
-  // Set output to standalone for optimized production builds (Disabled for Vercel)
-  // output: "standalone",
+  // Set output to standalone for optimized production builds
+  output: "standalone",
   
   // Security: Remove the X-Powered-By header to hide the tech stack
   poweredByHeader: false,
