@@ -169,14 +169,6 @@ export function PresentationProvider({
           return;
         }
 
-        // Ctrl + Alt + P: High Quality "Sultan" Print
-        if (e.ctrlKey && e.altKey && e.key.toLowerCase() === 'p') {
-          e.preventDefault();
-          // Dispatch a custom event that components can listen to
-          window.dispatchEvent(new CustomEvent('sultan-print'));
-          return;
-        }
-
         if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
           main.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
           e.preventDefault();

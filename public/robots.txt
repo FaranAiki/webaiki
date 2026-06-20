@@ -2,6 +2,34 @@
 User-agent: *
 Allow: /
 
+# Google-Extended
+User-agent: Google-Extended
+Allow: /
+
+# GPTBot
+User-agent: GPTBot
+Allow: /
+
+# ChatGPT-User
+User-agent: ChatGPT-User
+Allow: /
+
+# OAI-SearchBot
+User-agent: OAI-SearchBot
+Allow: /
+
+# Anthropic-ai
+User-agent: Anthropic-ai
+Allow: /
+
+# Claude-Web
+User-agent: Claude-Web
+Allow: /
+
+# PerplexityBot
+User-agent: PerplexityBot
+Allow: /
+
 # Host
 Host: https://faranaiki.id
 

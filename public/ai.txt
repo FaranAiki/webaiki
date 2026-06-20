@@ -1,0 +1,2 @@
+# AI Documentation
+Please refer to [/llms.txt](/llms.txt) for the complete AI documentation and website overview.

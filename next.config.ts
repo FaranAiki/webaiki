@@ -3,9 +3,6 @@ import type { Configuration as WebpackConfiguration } from 'webpack';
 import path from 'path';
 
 const nextConfig: NextConfig = {
-  // Opt-out of bundling for packages that don't play well with it (like Puppeteer)
-  serverExternalPackages: ["puppeteer-core", "@sparticuz/chromium"],
-
   // Turbopack configuration to resolve root directory issues
   turbopack: {
     root: path.resolve('.'),
@@ -37,18 +34,6 @@ const nextConfig: NextConfig = {
           if (options.terserOptions?.format) {
             options.terserOptions.format.comments = false;
           }
-        }
-      }
-
-      // Explicitly externalize chromium to prevent bundling its binaries
-      if (isServer) {
-        const currentExternals = config.externals;
-        if (Array.isArray(currentExternals)) {
-          config.externals = [...currentExternals, '@sparticuz/chromium'];
-        } else if (currentExternals) {
-          config.externals = [currentExternals as string | RegExp | Record<string, string | string[] | boolean>, '@sparticuz/chromium'];
-        } else {
-          config.externals = ['@sparticuz/chromium'];
         }
       }
 

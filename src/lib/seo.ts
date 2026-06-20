@@ -139,6 +139,22 @@ export function getBaseMetadata(): Metadata {
       images: [`${SITE_URL}/images/og-preview.jpg`],
     },
     category: 'technology',
+    manifest: '/manifest.json',
+    icons: {
+      icon: [
+        { url: '/icon.ico' },
+        { url: '/favicon.ico' },
+      ],
+      shortcut: ['/favicon.ico'],
+      apple: [
+        { url: '/icon.ico' },
+      ],
+    },
+    appleWebApp: {
+      capable: true,
+      statusBarStyle: 'default',
+      title: 'Muhammad Faran Aiki',
+    },
   };
 }
 

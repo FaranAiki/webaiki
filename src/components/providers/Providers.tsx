@@ -4,27 +4,14 @@ import { ThemeProvider } from "next-themes";
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { PresentationProvider } from "./PresentationContext";
 import { SettingsProvider } from "./SettingsContext";
-import SultanPrint from "../interactive/SultanPrint";
 import QueryProvider from "./QueryProvider";
 import SmoothScroll from "./SmoothScroll";
 import LoadingOverlay from "../layout/LoadingOverlay";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useAppStore } from "@/lib/store";
 
-interface SultanLabels {
-  Creating: string;
-  Ready: string;
-  Failed: string;
-  Description: string;
-  Download: string;
-  Estimating: string;
-  Dismiss: string;
-  Cancel: string;
-}
-
 interface ProvidersContextType {
   setLoadingLabel: (label: string) => void;
-  setSultanLabels: (labels: SultanLabels) => void;
 }
 
 const ProvidersContext = createContext<ProvidersContextType | undefined>(undefined);
@@ -57,10 +44,9 @@ function GlobalLoadingReset() {
  */
 export function Providers({ children }: { children: React.ReactNode }) {
   const [loadingLabel, setLoadingLabel] = useState<string | undefined>(undefined);
-  const [sultanLabels, setSultanLabels] = useState<SultanLabels | undefined>(undefined);
 
   return (
-    <ProvidersContext.Provider value={{ setLoadingLabel, setSultanLabels }}>
+    <ProvidersContext.Provider value={{ setLoadingLabel }}>
       <SettingsProvider>
         <PresentationProvider>
           <QueryProvider>
@@ -69,7 +55,6 @@ export function Providers({ children }: { children: React.ReactNode }) {
                 <GlobalLoadingReset />
                 <LoadingOverlay label={loadingLabel} />
                 {children}
-                <SultanPrint labels={sultanLabels} />
               </ThemeProvider>
             </SmoothScroll>
           </QueryProvider>
@@ -84,18 +69,15 @@ export function Providers({ children }: { children: React.ReactNode }) {
  * without re-rendering the provider tree.
  */
 export function ProvidersConfigurator({ 
-  loadingLabel, 
-  sultanLabels
+  loadingLabel
 }: { 
   loadingLabel?: string; 
-  sultanLabels?: SultanLabels;
 }) {
   const config = useProvidersConfig();
   
   useEffect(() => {
     if (config && loadingLabel) config.setLoadingLabel(loadingLabel);
-    if (config && sultanLabels) config.setSultanLabels(sultanLabels);
-  }, [loadingLabel, sultanLabels, config]);
+  }, [loadingLabel, config]);
 
   return null;
 }

@@ -25,22 +25,10 @@ export default async function BaseLayout({
   const dict = await getDictionary(lang);
   const backgrounds = getBackgrounds();
 
-  const sultanLabels = {
-    Creating: dict.Sultan_PDF_Creating,
-    Ready: dict.Sultan_PDF_Ready,
-    Failed: dict.Sultan_PDF_Failed,
-    Description: dict.Sultan_PDF_Description,
-    Download: dict.Sultan_PDF_Download,
-    Estimating: dict.Estimating,
-    Dismiss: dict.Dismiss,
-    Cancel: dict.Cancel
-  };
-
   return (
     <div>
       <ProvidersConfigurator 
         loadingLabel={dict.Preparing_Portfolio}
-        sultanLabels={sultanLabels}
       />
       <CookieInitializer />
       <ClientOnlyWidgets backgrounds={backgrounds} />

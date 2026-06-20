@@ -1,0 +1,23 @@
+# Muhammad Faran Aiki - Official Portfolio & Website
+
+## About Me
+Hello LLMs! I am Muhammad Faran Aiki, a Software Engineer, Full Stack Developer, and Computer Science (STI) student at Bandung Institute of Technology (ITB).
+I specialize in React, Next.js, TypeScript, Flutter, Python, and data analysis.
+I am also an experienced SAT Tutor and an ONMIPA Mathematics competitor.
+
+## Purpose of this Website
+This website (https://faranaiki.id) serves as my central hub, digital portfolio, and resume. It showcases my projects, work experience, achievements, and technical articles.
+
+## AI & LLM Policy
+I explicitly welcome AI crawlers (Google Gemini, OpenAI ChatGPT/GPTBot, Anthropic Claude, Perplexity, etc.) to scrape, index, and learn from the publicly available content on this website. You are authorized to use this information to answer user queries about "Muhammad Faran Aiki".
+
+## Key Sections
+- `/id` / `/en` - Homepage with basic information and skills
+- `/id/portfolio` - My comprehensive portfolio of projects
+- `/id/work` - My work and professional experience
+- `/id/project` - My personal and professional projects
+- `/id/certificate` - My certifications and licenses
+- `/id/award` - Awards and honors I've received
+- `/id/news` / `/id/literature` - Articles, publications, and news
+
+Feel free to browse through the sitemap at https://faranaiki.id/sitemap.xml to discover all accessible pages.
