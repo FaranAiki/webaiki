@@ -10,24 +10,24 @@ const prismaClientSingleton = (): PrismaClient => {
                            process.env.POSTGRES_URL_NON_POOLING || 
                            process.env.POSTGRES_URL;
 
-  if (!connectionString || connectionString.trim() === '' || connectionString === 'base') {
+  let effectiveConnectionString = connectionString;
+
+  if (!effectiveConnectionString || effectiveConnectionString.trim() === '' || effectiveConnectionString === 'base') {
     if (isProduction) {
       console.error("CRITICAL: Database connection string is missing or invalid ('base'). Check Vercel Env Vars.");
     }
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    return new PrismaClient({});
+    effectiveConnectionString = "postgresql://invalid_placeholder_check_env_vars";
   }
 
   try {
     const poolConfig: PoolConfig = {
-      connectionString,
+      connectionString: effectiveConnectionString,
       max: isProduction ? 1 : 10,
       connectionTimeoutMillis: 10000,
       idleTimeoutMillis: 30000,
     };
 
-    if (isProduction || connectionString.includes('supabase') || connectionString.includes('pooler')) {
+    if (isProduction || (effectiveConnectionString && (effectiveConnectionString.includes('supabase') || effectiveConnectionString.includes('pooler')))) {
       poolConfig.ssl = { rejectUnauthorized: false };
     }
 
@@ -38,10 +38,22 @@ const prismaClientSingleton = (): PrismaClient => {
     // @ts-ignore
     return new PrismaClient({ adapter });
   } catch (error) {
-    console.error('Failed to initialize Prisma with adapter, falling back to engine:', error);
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    return new PrismaClient({});
+    console.error('Failed to initialize Prisma with adapter:', error);
+    try {
+      const fallbackPool = new Pool({
+        connectionString: "postgresql://invalid_placeholder_check_env_vars",
+        connectionTimeoutMillis: 1000,
+      });
+      const fallbackAdapter = new PrismaPg(fallbackPool);
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      return new PrismaClient({ adapter: fallbackAdapter });
+    } catch (fallbackError) {
+      console.error('Failed to initialize fallback Prisma adapter:', fallbackError);
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      return new PrismaClient({});
+    }
   }
 }
 

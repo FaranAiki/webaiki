@@ -24,14 +24,9 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
-export default async function LatestPage({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default async function LatestPage() {
   return (
     <main className="container mx-auto px-8 pt-24 pb-16">
-      {children}
     </main>
   );
 }
