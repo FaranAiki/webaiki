@@ -43,7 +43,6 @@ export default async function SocialPage({ params }: { params: Promise<{ lang: s
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-        nonce={nonce}
       />
       <SocialDisplay />
     </main>

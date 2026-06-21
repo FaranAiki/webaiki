@@ -8,6 +8,7 @@ import { LOCALES } from "@/lib/seo";
 import { getBackgrounds } from "@/lib/data";
 import ClientOnlyWidgets from "@/components/providers/ClientOnlyWidgets";
 import { CookieInitializer } from "@/components/providers/CookieInitialize";
+import PageTransitionLoader from "@/components/layout/PageTransitionLoader";
 
 export function generateStaticParams() {
   return LOCALES.map((lang) => ({ lang }));
@@ -32,6 +33,7 @@ export default async function BaseLayout({
       />
       <CookieInitializer />
       <ClientOnlyWidgets backgrounds={backgrounds} />
+      <PageTransitionLoader label={dict.Loading} />
       {children}
       <Script
         strategy="lazyOnload"

@@ -415,5 +415,7 @@
   "Algorithms": "Algoritma & Struktur Data",
   "Education_ITB_Description": "ইনফরমেশন সিস্টেম এবং টেকনোলজিতে স্নাতক ডিগ্রির জন্য অধ্যয়নরত।",
   "Education_SMA_Description": "Kurikulum Merdeka: Informatika এর ওপর বিশেষ মনোযোগ দিয়ে স্নাতক হয়েছেন।",
-  "Or_Continue_With": "অথবা চালিয়ে যান"
+  "Or_Continue_With": "অথবা চালিয়ে যান",
+  "Loading": "লোড হচ্ছে...",
+  "Full_Description_Portfolio": "Full Description (Portfolio)"
 }

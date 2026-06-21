@@ -44,6 +44,7 @@ interface SettingsPopupProps {
     Advanced_Section: string;
     ATS_Friendly: string;
     Expand_All: string;
+    Full_Description_Portfolio: string;
     Portfolio_Filter: string;
     Filter_All: string;
     Filter_Top: string;
@@ -101,6 +102,7 @@ export default function SettingsPopup({
     color, setColor,
     isAtsMode, setIsAtsMode,
     isExpandAll, setIsExpandAll,
+    isFullDescription, setIsFullDescription,
     portfolioFilter, setPortfolioFilter,
     resetSettings
   } = useSettings();
@@ -485,6 +487,22 @@ export default function SettingsPopup({
               </div>
               <span className="text-sm font-medium text-foreground group-hover:text-theme-500 transition-colors">
                 {labels.Expand_All}
+              </span>
+            </label>
+
+            <label className="flex items-center gap-3 cursor-pointer group">
+              <div className="relative">
+                <input
+                  type="checkbox"
+                  checked={isFullDescription}
+                  onChange={(e) => setIsFullDescription(e.target.checked)}
+                  className="sr-only"
+                />
+                <div className={`w-10 h-5 rounded-full transition-colors duration-200 ${isFullDescription ? 'bg-theme-500' : 'bg-theme-surface-strong border border-theme-border'}`} />
+                <div className={`absolute top-1 left-1 w-3 h-3 rounded-full bg-white transition-transform duration-200 ${isFullDescription ? 'translate-x-5' : 'translate-x-0'}`} />
+              </div>
+              <span className="text-sm font-medium text-foreground group-hover:text-theme-500 transition-colors">
+                {labels.Full_Description_Portfolio}
               </span>
             </label>
           </div>

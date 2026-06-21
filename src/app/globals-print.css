@@ -10,12 +10,17 @@
     background-image: none !important;
     background-clip: border-box !important;
     -webkit-background-clip: border-box !important;
-    -webkit-text-fill-color: currentcolor !important;
-    text-fill-color: currentcolor !important;
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+    text-fill-color: #000000 !important;
     box-shadow: none !important;
     text-shadow: none !important;
     filter: none !important;
     backdrop-filter: none !important;
+    transform: none !important;
+    will-change: auto !important;
+    transition: none !important;
+    animation: none !important;
     -webkit-user-select: text !important;
     -moz-user-select: text !important;
     -ms-user-select: text !important;
@@ -50,6 +55,13 @@
     overflow: visible !important;
   }
 
+  /* Prevent text fragmentation in Firefox PDFs caused by inline-block words */
+  .portfolio-summary-item p span,
+  .portfolio-summary-item div > span[class*="transition"],
+  .portfolio-summary-item div > span[class*="duration"] {
+    display: inline !important;
+  }
+
   /* Hide Backgrounds and UI */
   header, nav, footer:not(.print\:block), .no-print,
   canvas, [class*="Background_"], .presentation-background,
@@ -78,6 +90,17 @@
     display: flex !important;
     align-items: center !important;
     gap: 8px !important;
+  }
+
+  /* Fix nav-active-gacor Firefox printing (gradient text to solid color) */
+  .nav-active-gacor, .hover-gacor, .logo-gacor {
+    background: none !important;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+    color: var(--theme-color-600) !important;
+    -webkit-text-fill-color: var(--theme-color-600) !important;
+    text-fill-color: var(--theme-color-600) !important;
+    filter: none !important;
   }
 
   /* Page Break Logic */

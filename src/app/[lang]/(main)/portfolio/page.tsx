@@ -96,7 +96,6 @@ export default async function PortfolioSummaryPage({ params }: { params: Promise
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        nonce={nonce}
       />
       <PortfolioClientWrapper>
         <div className="space-y-6 portfolio-content-wrapper">

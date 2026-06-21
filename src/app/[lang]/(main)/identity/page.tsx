@@ -67,7 +67,6 @@ export default async function IdentityPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        nonce={nonce}
       />
 
       {/* AI Discovery Block - Optimized for LLM Scraping (Strategy #15) */}

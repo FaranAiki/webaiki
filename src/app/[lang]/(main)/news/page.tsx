@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { getDictionary } from '@/components/layout/Translator';
 import NewsDisplay from '@/components/interactive/NewsDisplay';
 import { getBaseMetadata, getLanguageAlternates, SITE_URL } from '@/lib/seo';
-import { createClient } from '@/utils/supabase/server';
 import { getNews } from '@/app/actions';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
@@ -25,13 +24,10 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 export default async function NewsPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
-
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-
-  const isAdmin = user?.email === 'faran.aiki.business@gmail.com';
   
-  // Fetch news on the server for better SEO/Google News indexing
+  // Fetch news on the server for better SEO/Google News indexing.
+  // We removed server-side supabase.auth.getUser() to prevent blocking TTFB
+  // and allow the page to load instantly. Admin check is moved to client.
   const news = await getNews();
 
   return (
@@ -39,7 +35,7 @@ export default async function NewsPage({ params }: { params: Promise<{ lang: str
       <NewsDisplay 
         dict={dict} 
         lang={lang} 
-        isAdmin={isAdmin} 
+        isAdmin={false} 
         initialNews={JSON.parse(JSON.stringify(news))} 
       />
     </main>

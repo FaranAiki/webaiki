@@ -46,7 +46,6 @@ export default async function CollegePage({ params }: { params: Promise<{ lang: 
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-        nonce={nonce}
       />
       <React.Suspense fallback={<h2 className="text-center">{dict.Loading_College}</h2>}>
         <CollegeLoader 

@@ -126,14 +126,14 @@ const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, j
             role="button"
             tabIndex={0}
             transition={{ duration: 0.4 }}
-            className={`${spanClass} relative rounded-3xl overflow-hidden group border ${cardBorder} ${inactiveCardBg} shadow-sm hover:shadow-xl cursor-pointer transform-gpu will-change-transform`}
+            className={`${spanClass} relative rounded-3xl overflow-hidden group border ${cardBorder} ${inactiveCardBg} shadow-sm hover:shadow-xl cursor-pointer transform-gpu`}
         >
             {hasImage ? (
                 <Image
                     src={job.image[0]}
                     alt={job.company}
                     fill
-                    className={`object-cover transition-transform duration-700 will-change-transform
+                    className={`object-cover transition-transform duration-700
                         ${isExpanded
                             ? (isDark ? 'scale-110 blur-sm brightness-[0.2]' : 'scale-110 blur-md opacity-20')
                             : 'group-hover:scale-105 opacity-60 group-hover:opacity-100'}`}
@@ -174,7 +174,7 @@ const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, j
                         exit={{ opacity: 0, y: 10 }}
                         transition={{ duration: 0.3 }}
                         className={`absolute inset-0 z-10 p-6 flex flex-col justify-center backdrop-blur-md
-                            bg-theme-surface/90 will-change-transform`}
+                            bg-theme-surface/90`}
                         onClick={(e) => {
                             e.stopPropagation();
                             setIsExpanded(false);
@@ -379,7 +379,7 @@ export default function ExperiencesClient({
                                 <div className="w-full h-full relative overflow-hidden flex items-end bg-theme-bg/30">
                                     {job.image && job.image.length > 0 ? (
                                         <div className="absolute inset-0 z-0">
-                                            <Image src={job.image[0]} alt={job.company} fill className={`object-cover transition-all duration-1000 dark:brightness-[0.35] brightness-[1.1] grayscale-[0.2] opacity-20`} priority={true} loading="eager" />
+                                            <Image src={job.image[0]} alt={job.company} fill sizes="100vw" className={`object-cover transition-all duration-1000 dark:brightness-[0.35] brightness-[1.1] grayscale-[0.2] opacity-20`} priority={true} loading="eager" />
                                             <div className={`absolute inset-0 bg-gradient-to-t from-theme-bg-dark via-transparent to-transparent`} />
                                         </div>
                                     ) : (
@@ -456,7 +456,7 @@ export default function ExperiencesClient({
                                         <div className="md:col-span-5 relative group">
                                             <div className="aspect-[4/5] relative rounded-2xl overflow-hidden shadow-theme-shadow transition-all duration-700 group-hover:rotate-0 rotate-3 group-hover:scale-105">
                                                 {job.image && job.image.length > 0 ? (
-                                                    <Image src={job.image[0]} alt={job.company} fill className="object-cover" />
+                                                    <Image src={job.image[0]} alt={job.company} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
                                                 ) : (
                                                     <PlaceholderIcon company={job.company} />
                                                 )}
@@ -503,7 +503,7 @@ export default function ExperiencesClient({
                                                         onMouseEnter={() => handleJobChange(job)}
                                                         role={job.url ? "button" : "article"}
                                                         tabIndex={job.url ? 0 : undefined}
-                                                        className={`p-6 rounded-lg border-2 shadow-sm group transform-gpu will-change-transform ${job.url ? 'cursor-pointer' : ''}
+                                                        className={`p-6 rounded-lg border-2 shadow-sm group transform-gpu ${job.url ? 'cursor-pointer' : ''}
                                                             ${activeJob.title === job.title && activeJob.company === job.company
                                                                 ? `${activeCardBg}`
                                                                 : `${inactiveCardBg} ${cardBorder} hover:border-theme-500/50`
@@ -538,7 +538,7 @@ export default function ExperiencesClient({
                                                         className="w-full h-full relative"
                                                     >
                                                         {hasValidImage ? (
-                                                            <Image fill src={activeImageSrc!} placeholder="blur" blurDataURL={shimmer600x400} alt={`${activeJob.company}`} className="object-cover" priority />
+                                                            <Image fill sizes="(max-width: 768px) 100vw, 50vw" src={activeImageSrc!} placeholder="blur" blurDataURL={shimmer600x400} alt={`${activeJob.company}`} className="object-cover" priority />
                                                         ) : (
                                                             <PlaceholderIcon company={activeJob.company} />
                                                         )}
@@ -583,12 +583,12 @@ export default function ExperiencesClient({
                                                     onKeyDown={(e) => e.key === 'Enter' && job.url && window.open(job.url, '_blank', 'noopener,noreferrer')}
                                                     role={job.url ? "button" : "article"}
                                                     tabIndex={job.url ? 0 : undefined}
-                                                    className={`flex flex-col md:flex-row gap-6 group transform-gpu will-change-transform ${job.url ? 'cursor-pointer' : ''}`}
+                                                    className={`flex flex-col md:flex-row gap-6 group transform-gpu ${job.url ? 'cursor-pointer' : ''}`}
                                                 >
                                                     <div className="w-full md:w-1/3 shrink-0">
                                                         <div className="relative aspect-video rounded-xl overflow-hidden shadow-lg border border-theme-border bg-theme-surface-strong">
                                                             {job.image && job.image.length > 0 ? (
-                                                                <Image src={job.image[0]} alt={job.company} fill className="object-cover transition-transform group-hover:scale-105" placeholder="blur" blurDataURL={shimmer400x225} />
+                                                                <Image src={job.image[0]} alt={job.company} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform group-hover:scale-105" placeholder="blur" blurDataURL={shimmer400x225} />
                                                             ) : (
                                                                 <PlaceholderIcon company={job.company} />
                                                             )}
@@ -636,11 +636,11 @@ export default function ExperiencesClient({
                                         onKeyDown={(e) => e.key === 'Enter' && job.url && window.open(job.url, '_blank', 'noopener,noreferrer')}
                                         role={job.url ? "button" : "article"}
                                         tabIndex={job.url ? 0 : undefined}
-                                        className={`flex flex-col p-6 rounded-2xl border ${cardBorder} ${inactiveCardBg} group shadow-sm hover:shadow-2xl transition-shadow duration-300 transform-gpu will-change-transform ${job.url ? 'cursor-pointer' : ''}`}
+                                        className={`flex flex-col p-6 rounded-2xl border ${cardBorder} ${inactiveCardBg} group shadow-sm hover:shadow-2xl transition-shadow duration-300 transform-gpu ${job.url ? 'cursor-pointer' : ''}`}
                                     >
                                         <div className="relative aspect-video mb-6 rounded-xl overflow-hidden bg-theme-surface-strong">
                                             {job.image && job.image.length > 0 ? (
-                                                <Image src={job.image[0]} alt={job.company} fill className="object-cover transition-transform group-hover:scale-105" placeholder="blur" blurDataURL={shimmer400x225} />
+                                                <Image src={job.image[0]} alt={job.company} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform group-hover:scale-105" placeholder="blur" blurDataURL={shimmer400x225} />
                                             ) : (
                                                 <PlaceholderIcon company={job.company} />
                                             )}
@@ -700,7 +700,7 @@ export default function ExperiencesClient({
                                         onKeyDown={(e) => e.key === 'Enter' && job.url && window.open(job.url, '_blank', 'noopener,noreferrer')}
                                         role={job.url ? "button" : "article"}
                                         tabIndex={job.url ? 0 : undefined}
-                                        className={`group transform-gpu will-change-transform ${job.url ? 'cursor-pointer' : ''}`}
+                                        className={`group transform-gpu ${job.url ? 'cursor-pointer' : ''}`}
                                     >
                                         <div className="flex flex-col md:flex-row gap-8 items-center">
                                             <div className="w-full md:w-1/2 space-y-4">
@@ -720,7 +720,7 @@ export default function ExperiencesClient({
                                             <div className="w-full md:w-1/2">
                                                 <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl transition-transform duration-700 group-hover:scale-[1.02] bg-theme-surface-strong">
                                                     {job.image && job.image.length > 0 ? (
-                                                        <Image src={job.image[0]} alt={job.company} fill className="object-cover" />
+                                                        <Image src={job.image[0]} alt={job.company} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
                                                     ) : (
                                                         <PlaceholderIcon company={job.company} />
                                                     )}

@@ -415,5 +415,7 @@
   "Algorithms": "Algoritma & Struktur Data",
   "Education_ITB_Description": "לומד לתואר ראשון במערכות מידע וטכנולוגיה.",
   "Education_SMA_Description": "בוגר עם התמחות ב-Kurikulum Merdeka: Informatika.",
-  "Or_Continue_With": "או המשך עם"
+  "Or_Continue_With": "או המשך עם",
+  "Loading": "טוען...",
+  "Full_Description_Portfolio": "תיאור מלא (תיק עבודות)"
 }

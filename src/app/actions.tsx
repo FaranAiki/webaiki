@@ -325,30 +325,37 @@ export const getNews = unstable_cache(
   { revalidate: 30, tags: ['news'] }
 );
 
-export async function getNewsItem(id: string) {
-  try {
-    return await db.query.news.findFirst({
-      where: (news, { eq }) => eq(news.id, id),
-      with: {
-        author: {
-          columns: {
-            id: true,
-            name: true,
-            avatarUrl: true
+export const getNewsItem = async (id: string) => {
+  return unstable_cache(
+    async (newsId: string) => {
+      try {
+        return await db.query.news.findFirst({
+          where: (news, { eq }) => eq(news.id, newsId),
+          with: {
+            author: {
+              columns: {
+                id: true,
+                name: true,
+                avatarUrl: true
+              }
+            }
           }
-        }
+        });
+      } catch (error) {
+        console.error('Error in getNewsItem:', error);
+        return null;
       }
-    });
-  } catch (error) {
-    console.error('Error in getNewsItem:', error);
-    return null;
-  }
+    },
+    [`news-${id}`],
+    { revalidate: 30, tags: ['news', `news-${id}`] }
+  )(id);
 }
 
 export async function deleteNews(newsId: string) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
+  if (!user) return AppError.unauthorized('Require_Login').toJSON();
   
   const dbUser = await db.query.users.findFirst({ where: (users, { eq }) => eq(users.id, user.id) });
   if (!dbUser || dbUser.role !== 'ADMIN') return AppError.forbidden('Unauthorized_Admin').toJSON();
@@ -372,6 +379,7 @@ export async function postNews(title: string, content: string, image?: string) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
+  if (!user) return AppError.unauthorized('Require_Login').toJSON();
   
   const dbUser = await db.query.users.findFirst({ where: (users, { eq }) => eq(users.id, user.id) });
   if (!dbUser || dbUser.role !== 'ADMIN') return AppError.forbidden('Unauthorized_Admin').toJSON();

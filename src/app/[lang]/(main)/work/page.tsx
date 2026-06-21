@@ -60,7 +60,6 @@ export default async function WorkExperiencesPage({ params }: { params: Promise<
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        nonce={nonce}
       />
       <ExperiencesClient 
         experiences={workExperiences} 

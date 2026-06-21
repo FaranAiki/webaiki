@@ -184,7 +184,6 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        nonce={nonce}
       />
       <PageEntrance className="space-y-6">
         {/* Refined Portfolio Header */}

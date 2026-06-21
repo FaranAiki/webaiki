@@ -51,7 +51,7 @@ export default function PortfolioHeader({ title, resumeLabel, subtitle, about, s
             {cleanSubtitle}
           </p>
           <p
-            className="text-xs text-[var(--text-muted)] max-w-2xl leading-relaxed mt-1"
+            className="text-xs text-[var(--text-muted)] max-w-2xl leading-relaxed mt-1 text-justify sm:text-left"
             dangerouslySetInnerHTML={{ __html: cleanAbout }}
           />
         </div>

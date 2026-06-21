@@ -45,7 +45,6 @@ export default async function LiteraturePage({ params }: { params: Promise<{ lan
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-        nonce={nonce}
       />
       <LiteratureLoader 
         data={literature_data} 

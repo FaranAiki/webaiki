@@ -225,6 +225,7 @@ export default async function RootLayout({
           Advanced_Section: dict.Advanced_Section,
           ATS_Friendly: dict.ATS_Friendly,
           Expand_All: dict.Expand_All,
+          Full_Description_Portfolio: dict.Full_Description_Portfolio || 'Full Description (Portfolio)',
           Portfolio_Filter: dict.Portfolio_Filter,
           Filter_All: dict.All,
           Filter_Top: dict.Top,

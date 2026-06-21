@@ -415,5 +415,7 @@
   "Algorithms": "Algoritma & Struktur Data",
   "Education_ITB_Description": "يسعى للحصول على درجة البكالوريوس في نظم وتكنولوجيا المعلومات.",
   "Education_SMA_Description": "تخرج مع التركيز على Kurikulum Merdeka: Informatika.",
-  "Or_Continue_With": "أو الاستمرار مع"
+  "Or_Continue_With": "أو الاستمرار مع",
+  "Loading": "جاري التحميل...",
+  "Full_Description_Portfolio": "الوصف الكامل (المحفظة)"
 }

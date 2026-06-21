@@ -23,7 +23,7 @@ const cleanText = (text: string) => {
 };
 
 export default function PortfolioEducation({ education, title }: PortfolioEducationProps) {
-  const { isAtsMode } = useSettings();
+  const { isAtsMode, isFullDescription } = useSettings();
   const [removedKeys, setRemovedKeys] = useState<string[]>([]);
 
   const visibleEducation = education.filter(
@@ -44,12 +44,12 @@ export default function PortfolioEducation({ education, title }: PortfolioEducat
             const cleanTitle = cleanText(edu.title);
             const cleanCompany = cleanText(edu.company);
             const cleanDate = cleanText(edu.date);
-            const cleanDescription = cleanText(edu.description);
+            const cleanDescription = cleanText(isFullDescription ? edu.description : (edu.brief || edu.description));
 
             return (
               <div key={`${edu.title}-${edu.company}-${edu.date}`} className="portfolio-summary-item py-0 relative group">
                 <div className="flex flex-wrap items-baseline gap-x-1 portfolio-item-header">
-                  <span className="font-bold text-foreground text-xs portfolio-item-title">
+                  <h3 className="font-bold text-foreground text-xs portfolio-item-title m-0">
                     {edu.url ? (
                       <a
                         href={edu.url}
@@ -62,7 +62,7 @@ export default function PortfolioEducation({ education, title }: PortfolioEducat
                     ) : (
                       cleanTitle
                     )}
-                  </span>
+                  </h3>
                   <span className="text-[var(--text-muted)] text-[11px] select-none">|</span>
                   <span className="text-foreground text-[11px] font-medium tracking-tight portfolio-item-company">{cleanCompany}</span>
                   <span className="text-[var(--text-muted)] text-[11px] select-none">|</span>

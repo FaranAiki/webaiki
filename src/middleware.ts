@@ -74,11 +74,16 @@ export async function middleware(request: NextRequest) {
   // Optimasi: Hanya update session jika ada cookie supabase (mengurangi latensi untuk guest)
   const hasAuthCookie = request.cookies.getAll().some(c => c.name.startsWith('sb-'));
   
+  // Optimasi Algoritma: Skip updateSession untuk navigasi client-side (RSC)
+  // karena Next.js memanggil middleware pada setiap klik link (RSC request).
+  // Memanggil Supabase API di setiap klik akan membuat transisi halaman lemot (+300ms).
+  const isClientNavigation = request.headers.get('rsc') === '1' || request.headers.get('next-router-prefetch') === '1';
+  
   const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
   request.headers.set('x-nonce', nonce);
 
   let response = NextResponse.next({ request });
-  if (hasAuthCookie) {
+  if (hasAuthCookie && !isClientNavigation) {
     response = await updateSession(request);
   }
 

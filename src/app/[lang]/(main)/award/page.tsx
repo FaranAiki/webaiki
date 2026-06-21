@@ -47,7 +47,6 @@ export default async function AwardPage({ params }: { params: Promise<{ lang: st
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-        nonce={nonce}
       />
       <ExperiencesClient 
         experiences={awards} 

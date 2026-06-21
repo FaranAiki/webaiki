@@ -37,6 +37,7 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
   const { isPresentationMode } = usePresentation();
   const [news, setNews] = useState<NewsItem[]>(initialNews);
   const [loading, setLoading] = useState(initialNews.length === 0);
+  const [isAdminState, setIsAdminState] = useState(isAdmin);
   const [showPostForm, setShowPostForm] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [title, setTitle] = useState('');
@@ -44,6 +45,24 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
   const [imageUrl, setImageUrl] = useState('');
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Check admin status on client side asynchronously
+    // so it doesn't block the server-side rendering
+    const checkAdmin = async () => {
+      try {
+        const { createClient } = await import('@/utils/supabase/client');
+        const supabase = createClient();
+        const { data: { user } } = await supabase.auth.getUser();
+        if (user?.email === 'faran.aiki.business@gmail.com') {
+          setIsAdminState(true);
+        }
+      } catch (e) {
+        console.error("Failed to check admin status", e);
+      }
+    };
+    checkAdmin();
+  }, []);
 
   useEffect(() => {
     if (initialNews.length === 0) {
@@ -153,7 +172,7 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
             {dict.News}
           </h1>
           
-          {isAdmin && (
+          {isAdminState && (
             <button
               onClick={() => setShowPostForm(!showPostForm)}
               className="flex items-center gap-2 px-6 py-2.5 rounded-full bg-theme-500 text-white font-bold hover:bg-theme-400 transition-all hover:scale-105"
@@ -201,7 +220,7 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
                       
                       {imageUrl && (
                         <div className="relative w-20 h-20 rounded-xl overflow-hidden border border-theme-border">
-                          <Image src={imageUrl} alt="News" fill className="object-cover" />
+                          <Image src={imageUrl} alt="News" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
                           <button 
                             type="button"
                             onClick={() => setImageUrl('')}
@@ -368,7 +387,7 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
                         </span>
                       </div>
 
-                      {isAdmin && (
+                      {isAdminState && (
                         <button
                           onClick={() => handleDelete(item.id)}
                           className="p-2 text-theme-muted hover:text-red-500 hover:bg-red-500/10 rounded-full transition-all"

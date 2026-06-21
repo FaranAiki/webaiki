@@ -45,7 +45,7 @@ export default function UasHeader() {
                 <Image 
                   src="/images/donation.webp" 
                   alt="Donasi QRIS" 
-                  fill 
+                  fill sizes="300px" 
                   className="object-contain" 
                 /> 
               </div>

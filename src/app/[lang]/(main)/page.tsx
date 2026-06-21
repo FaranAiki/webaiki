@@ -60,7 +60,6 @@ export default async function HomePage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        nonce={nonce}
       />
       <HomeClient lang={lang} dict={dict} initialNews={news} />
     </>

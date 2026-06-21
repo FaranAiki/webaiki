@@ -90,6 +90,8 @@ interface SettingsContextType {
   setIsAtsMode: (ats: boolean) => void;
   isExpandAll: boolean;
   setIsExpandAll: (expand: boolean) => void;
+  isFullDescription: boolean;
+  setIsFullDescription: (full: boolean) => void;
   portfolioFilter: PortfolioFilter;
   setPortfolioFilter: (filter: PortfolioFilter) => void;
   colorRGB: { r: number, g: number, b: number };
@@ -107,6 +109,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [color, setColor] = useState('blue');
   const [isAtsMode, setIsAtsMode] = useState(false);
   const [isExpandAll, setIsExpandAll] = useState(false);
+  const [isFullDescription, setIsFullDescription] = useState(false);
   const [portfolioFilter, setPortfolioFilter] = useState<PortfolioFilter>('top');
   const [mounted, setMounted] = useState(false);
 
@@ -119,6 +122,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     setColor('blue');
     setIsAtsMode(false);
     setIsExpandAll(false);
+    setIsFullDescription(false);
     setPortfolioFilter('top');
   };
 
@@ -163,6 +167,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     const savedColor = getSetting('color');
     const savedAts = getSetting('settings-ats');
     const savedExpand = getSetting('settings-expand-all');
+    const savedFullDesc = getSetting('settings-full-desc');
     const savedFilter = getSetting('settings-portfolio-filter');
 
     if (savedFont) setFont(savedFont);
@@ -173,6 +178,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     if (savedColor) setColor(savedColor);
     if (savedAts) setIsAtsMode(savedAts === 'true');
     if (savedExpand) setIsExpandAll(savedExpand === 'true');
+    if (savedFullDesc) setIsFullDescription(savedFullDesc === 'true');
     if (savedFilter) setPortfolioFilter(savedFilter as PortfolioFilter);
     
     setMounted(true);
@@ -188,6 +194,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     localStorage.setItem('color', color);
     localStorage.setItem('settings-ats', isAtsMode.toString());
     localStorage.setItem('settings-expand-all', isExpandAll.toString());
+    localStorage.setItem('settings-full-desc', isFullDescription.toString());
     localStorage.setItem('settings-portfolio-filter', portfolioFilter);
 
     const root = document.documentElement;
@@ -221,7 +228,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     if (isExpandAll) body.classList.add('expand-all');
     else body.classList.remove('expand-all');
 
-  }, [font, textAlign, textScale, letterSpacing, lineHeight, color, isAtsMode, isExpandAll, portfolioFilter, mounted]);
+  }, [font, textAlign, textScale, letterSpacing, lineHeight, color, isAtsMode, isExpandAll, isFullDescription, portfolioFilter, mounted]);
 
   return (
   <SettingsContext.Provider value={{ 
@@ -233,6 +240,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     color, setColor,
     isAtsMode, setIsAtsMode,
     isExpandAll, setIsExpandAll,
+    isFullDescription, setIsFullDescription,
     portfolioFilter, setPortfolioFilter,
     colorRGB,
     resetSettings

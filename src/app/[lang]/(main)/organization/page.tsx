@@ -47,7 +47,6 @@ export default async function OrganizationExperiencesPage({ params }: { params: 
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-        nonce={nonce}
       />
       <ExperiencesClient 
         experiences={organizationExperiences} 

@@ -45,7 +45,6 @@ export default async function CertificatePage({ params }: { params: Promise<{ la
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-        nonce={nonce}
       />
       <CertificatesDisplay 
         certificates={certificates_data} 

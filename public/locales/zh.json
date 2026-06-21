@@ -415,5 +415,7 @@
   "Algorithms": "Algoritma & Struktur Data",
   "Education_ITB_Description": "正在攻读信息系统与技术学士学位。",
   "Education_SMA_Description": "毕业于 Kurikulum Merdeka: Informatika 方向。",
-  "Or_Continue_With": "或继续使用"
+  "Or_Continue_With": "或继续使用",
+  "Loading": "加载中...",
+  "Full_Description_Portfolio": "完整描述（作品集）"
 }

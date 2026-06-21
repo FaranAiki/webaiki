@@ -59,7 +59,6 @@ export default async function ProjectPage({ params }: { params: Promise<{ lang: 
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        nonce={nonce}
       />
       <ExperiencesClient 
         experiences={projectExperiences} 

@@ -29,7 +29,7 @@ export default function PortfolioSummaryItem({
   onRemove
 }: PortfolioSummaryItemProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const { isExpandAll, isAtsMode } = useSettings();
+  const { isExpandAll, isAtsMode, isFullDescription } = useSettings();
 
   const getBrief = (text: string) => {
     if (!text) return "";
@@ -44,12 +44,12 @@ export default function PortfolioSummaryItem({
     const cleanTitle = cleanText(title);
     const cleanCompany = cleanText(company);
     const cleanDate = cleanText(date);
-    const cleanBrief = cleanText(brief);
+    const cleanBrief = cleanText(isFullDescription ? description : brief);
 
     return (
       <div className="portfolio-summary-item py-0 relative group">
         <div className="flex flex-wrap items-baseline gap-x-1 portfolio-item-header">
-          <span className="font-bold text-foreground text-xs portfolio-item-title">
+          <h3 className="font-bold text-foreground text-xs portfolio-item-title m-0">
             {url ? (
               <a
                 href={url}
@@ -62,7 +62,7 @@ export default function PortfolioSummaryItem({
             ) : (
               cleanTitle
             )}
-          </span>
+          </h3>
           <span className="text-[var(--text-muted)] text-[11px] select-none">|</span>
           <span className="text-foreground text-[11px] font-medium tracking-tight portfolio-item-company">{cleanCompany}</span>
           <span className="text-[var(--text-muted)] text-[11px] select-none">|</span>
@@ -139,7 +139,7 @@ export default function PortfolioSummaryItem({
           >
             <div className="pt-1.5 pb-1">
                 <HoverableWords className="text-xs md:text-sm text-[var(--text-muted)] leading-relaxed">
-                  {brief}
+                  {isFullDescription ? description : brief}
                 </HoverableWords>
             </div>
           </motion.div>

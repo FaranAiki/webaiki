@@ -622,6 +622,7 @@ export default function Header(props: HeaderProps) {
                                                 src={props.user.user_metadata?.avatar_url || '/images/no_photo_profile.webp'}
                                                 alt={props.user.user_metadata?.full_name || props.user.email || 'User'}
                                                 fill
+                                                sizes="32px"
                                                 className="object-cover"
                                             />
                                         </div>
@@ -821,6 +822,7 @@ export default function Header(props: HeaderProps) {
                                                             src={props.user.user_metadata?.avatar_url || '/images/no_photo_profile.webp'}
                                                             alt={props.user.user_metadata?.full_name || props.user.email || 'User'}
                                                             fill
+                                                            sizes="48px"
                                                             className="object-cover"
                                                         />
                                                     </div>

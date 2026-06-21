@@ -191,7 +191,7 @@ export default function FeedbackDisplay({ dict, lang, currentUserId }: FeedbackD
                       </label>
                       {imageUrl && (
                         <div className="relative w-10 h-10 rounded-lg overflow-hidden border border-theme-border">
-                          <Image src={imageUrl} alt="Feedback" fill className="object-cover" />
+                          <Image src={imageUrl} alt="Feedback" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
                         </div>
                       )}
                     </div>
@@ -269,7 +269,7 @@ export default function FeedbackDisplay({ dict, lang, currentUserId }: FeedbackD
                   </p>
                   {item.image && (
                     <div className="relative w-full aspect-video rounded-2xl overflow-hidden border border-theme-border">
-                      <Image src={item.image} alt="Feedback" fill className="object-cover" />
+                      <Image src={item.image} alt="Feedback" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
                     </div>
                   )}
                 </div>
@@ -355,7 +355,7 @@ export default function FeedbackDisplay({ dict, lang, currentUserId }: FeedbackD
 
                         {item.image && (
                           <div className="relative w-full max-w-sm aspect-video rounded-xl overflow-hidden border border-theme-border mt-4">
-                            <Image src={item.image} alt="Feedback" fill className="object-cover" />
+                            <Image src={item.image} alt="Feedback" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
                           </div>
                         )}
                       </div>

@@ -38,15 +38,14 @@ export default async function NewsDetailPage({ params }: { params: Promise<{ lan
 
   if (!news) notFound();
 
-  const jsonLd = getNewsArticleSchema(news);
+  const newsArticleSchema = getNewsArticleSchema(news);
 
   return (
     <main className="container mx-auto px-4 md:px-8 pt-32 pb-16 min-h-screen max-w-4xl">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(newsArticleSchema) }}
       />
-
       <Link 
         href={`/${lang}/news`}
         className="inline-flex items-center gap-2 text-theme-muted hover:text-theme-500 transition-colors mb-8 group"
