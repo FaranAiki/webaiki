@@ -81,7 +81,7 @@ const BentoCertificateCard = ({
                 transition={{ duration: 0.4, ease: "circOut" }}
                 className={`absolute inset-0 z-10 p-6 flex flex-col justify-center backdrop-blur-md md:backdrop-blur-xl ${isDark ? 'bg-theme-bg-dark/60' : 'bg-theme-surface/80'} ${isExpanded ? 'pointer-events-auto' : 'pointer-events-none'}`}
             >
-                <div className="overflow-y-auto max-h-full flex flex-col items-center justify-center text-center">
+                <div className="overflow-y-auto max-h-full flex flex-col items-center justify-center text-center" data-lenis-prevent>
                     <p className="text-theme-500 text-xs font-bold mb-2 tracking-widest">{year}</p>
                     <h3 className={`text-xl font-black mb-2 ${titleColor}`}>{formatCJK(fileName, lang)}</h3>
                     <p className={`text-sm italic mb-6 text-gacor-smooth`}>{formatCJK(category, lang)}</p>

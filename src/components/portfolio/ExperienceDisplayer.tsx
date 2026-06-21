@@ -117,20 +117,23 @@ const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, j
     return (
         <motion.div
             id={itemId}
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-20px" }}
+            variants={{
+                hidden: { opacity: 0, y: 20 },
+                show: { opacity: 1, y: 0 }
+            }}
             onClick={handleBoxClick}
+            onKeyDown={(e) => e.key === 'Enter' && handleBoxClick()}
+            role="button"
+            tabIndex={0}
             transition={{ duration: 0.4 }}
-            // REMOVED transition-all to prevent Framer Motion conflicts
-            className={`${spanClass} relative rounded-3xl overflow-hidden group border ${cardBorder} ${inactiveCardBg} shadow-sm hover:shadow-xl cursor-pointer transform-gpu`}
+            className={`${spanClass} relative rounded-3xl overflow-hidden group border ${cardBorder} ${inactiveCardBg} shadow-sm hover:shadow-xl cursor-pointer transform-gpu will-change-transform`}
         >
             {hasImage ? (
                 <Image
                     src={job.image[0]}
                     alt={job.company}
                     fill
-                    className={`object-cover transition-transform duration-700
+                    className={`object-cover transition-transform duration-700 will-change-transform
                         ${isExpanded
                             ? (isDark ? 'scale-110 blur-sm brightness-[0.2]' : 'scale-110 blur-md opacity-20')
                             : 'group-hover:scale-105 opacity-60 group-hover:opacity-100'}`}
@@ -171,13 +174,19 @@ const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, j
                         exit={{ opacity: 0, y: 10 }}
                         transition={{ duration: 0.3 }}
                         className={`absolute inset-0 z-10 p-6 flex flex-col justify-center backdrop-blur-md
-                            bg-theme-surface/90`}
+                            bg-theme-surface/90 will-change-transform`}
                         onClick={(e) => {
                             e.stopPropagation();
                             setIsExpanded(false);
                         }}
+                        onKeyDown={(e) => {
+                            if (e.key === 'Escape') {
+                                e.stopPropagation();
+                                setIsExpanded(false);
+                            }
+                        }}
                     >
-                        <div className="overflow-y-auto max-h-full pr-2 custom-scrollbar">
+                        <div className="overflow-y-auto max-h-full pr-2 custom-scrollbar" data-lenis-prevent>
                             <p className="text-theme-500 text-xs font-bold mb-2">{job.date}</p>
                             <h3 className="text-xl font-black mb-1 nav-active-gacor">{job.title}<TagBadge labels={job.tag} /></h3>
                             <p className={`text-sm italic mb-4 ${isDark ? 'text-theme-300' : 'text-theme-600'}`}>{job.company}</p>
@@ -471,18 +480,30 @@ export default function ExperiencesClient({
                                             <h2 className={`transition-transform duration-300 hover:scale-105 text-2xl font-bold text-theme-600 dark:text-theme-400 mb-6 py-2 cursor-pointer`}>
                                                 {experience.year}
                                             </h2>
-                                            <div className="space-y-4">
+                                            <motion.div 
+                                                className="space-y-4"
+                                                initial="hidden"
+                                                whileInView="show"
+                                                viewport={{ once: true, margin: "-50px" }}
+                                                variants={{
+                                                    hidden: {},
+                                                    show: { transition: { staggerChildren: 0.1 } }
+                                                }}
+                                            >
                                                 {experience.jobs.map((job, index) => (
                                                     <motion.div
                                                         key={`${experience.year}-${index}`}
                                                         id={`exp-${job.title.toLowerCase().replace(/\s+/g, '-')}`}
-                                                        initial={{ opacity: 0, y: 10 }}
-                                                        whileInView={{ opacity: 1, y: 0 }}
-                                                        viewport={{ once: true }}
+                                                        variants={{
+                                                            hidden: { opacity: 0, y: 15 },
+                                                            show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100 } }
+                                                        }}
                                                         onClick={() => job.url && window.open(job.url, '_blank', 'noopener,noreferrer')}
+                                                        onKeyDown={(e) => e.key === 'Enter' && job.url && window.open(job.url, '_blank', 'noopener,noreferrer')}
                                                         onMouseEnter={() => handleJobChange(job)}
-                                                        // REMOVED transition-all to prevent Framer Motion conflicts
-                                                        className={`p-6 rounded-lg cursor-pointer border-2 shadow-sm group
+                                                        role={job.url ? "button" : "article"}
+                                                        tabIndex={job.url ? 0 : undefined}
+                                                        className={`p-6 rounded-lg border-2 shadow-sm group transform-gpu will-change-transform ${job.url ? 'cursor-pointer' : ''}
                                                             ${activeJob.title === job.title && activeJob.company === job.company
                                                                 ? `${activeCardBg}`
                                                                 : `${inactiveCardBg} ${cardBorder} hover:border-theme-500/50`
@@ -499,7 +520,7 @@ export default function ExperiencesClient({
                                                         </HoverableWords>
                                                     </motion.div>
                                                 ))}
-                                            </div>
+                                            </motion.div>
                                         </div>
                                     ))}
                                 </div>
@@ -540,16 +561,29 @@ export default function ExperiencesClient({
                                     <div key={experience.year} className="relative pl-8">
                                         <div className="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-theme-500 border-4 border-theme-surface dark:border-theme-bg-dark shadow-sm" />
                                         <h2 className="text-3xl font-black text-theme-600 dark:text-theme-400 mb-8">{experience.year}</h2>
-                                        <div className="space-y-12">
+                                        <motion.div 
+                                            className="space-y-12"
+                                            initial="hidden"
+                                            whileInView="show"
+                                            viewport={{ once: true, margin: "-50px" }}
+                                            variants={{
+                                                hidden: {},
+                                                show: { transition: { staggerChildren: 0.15 } }
+                                            }}
+                                        >
                                             {experience.jobs.map((job, index) => (
                                                 <motion.div
                                                     key={`${experience.year}-${index}`}
                                                     id={`exp-${job.title.toLowerCase().replace(/\s+/g, '-')}`}
-                                                    initial={{ opacity: 0, x: -10 }}
-                                                    whileInView={{ opacity: 1, x: 0 }}
-                                                    viewport={{ once: true }}
+                                                    variants={{
+                                                        hidden: { opacity: 0, x: -20 },
+                                                        show: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 100 } }
+                                                    }}
                                                     onClick={() => job.url && window.open(job.url, '_blank', 'noopener,noreferrer')}
-                                                    className={`flex flex-col md:flex-row gap-6 group ${job.url ? 'cursor-pointer' : ''}`}
+                                                    onKeyDown={(e) => e.key === 'Enter' && job.url && window.open(job.url, '_blank', 'noopener,noreferrer')}
+                                                    role={job.url ? "button" : "article"}
+                                                    tabIndex={job.url ? 0 : undefined}
+                                                    className={`flex flex-col md:flex-row gap-6 group transform-gpu will-change-transform ${job.url ? 'cursor-pointer' : ''}`}
                                                 >
                                                     <div className="w-full md:w-1/3 shrink-0">
                                                         <div className="relative aspect-video rounded-xl overflow-hidden shadow-lg border border-theme-border bg-theme-surface-strong">
@@ -573,23 +607,36 @@ export default function ExperiencesClient({
                                                     </div>
                                                 </motion.div>
                                             ))}
-                                        </div>
+                                        </motion.div>
                                     </div>
                                 ))}
                             </div>
                         )}
 
                         {currentLayout === 'grid' && (
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <motion.div 
+                                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                                initial="hidden"
+                                whileInView="show"
+                                viewport={{ once: true, margin: "-50px" }}
+                                variants={{
+                                    hidden: {},
+                                    show: { transition: { staggerChildren: 0.1 } }
+                                }}
+                            >
                                 {allJobs.map((job, idx) => (
                                     <motion.div
                                         key={`${job.year}-${idx}`}
                                         id={`exp-${job.title.toLowerCase().replace(/\s+/g, '-')}`}
-                                        initial={{ opacity: 0, y: 10 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
+                                        variants={{
+                                            hidden: { opacity: 0, y: 20, scale: 0.95 },
+                                            show: { opacity: 1, y: 0, scale: 1, transition: { type: "spring", stiffness: 100 } }
+                                        }}
                                         onClick={() => job.url && window.open(job.url, '_blank', 'noopener,noreferrer')}
-                                        className={`flex flex-col p-6 rounded-2xl border ${cardBorder} ${inactiveCardBg} group shadow-sm hover:shadow-2xl transition-shadow duration-300 ${job.url ? 'cursor-pointer' : ''}`}
+                                        onKeyDown={(e) => e.key === 'Enter' && job.url && window.open(job.url, '_blank', 'noopener,noreferrer')}
+                                        role={job.url ? "button" : "article"}
+                                        tabIndex={job.url ? 0 : undefined}
+                                        className={`flex flex-col p-6 rounded-2xl border ${cardBorder} ${inactiveCardBg} group shadow-sm hover:shadow-2xl transition-shadow duration-300 transform-gpu will-change-transform ${job.url ? 'cursor-pointer' : ''}`}
                                     >
                                         <div className="relative aspect-video mb-6 rounded-xl overflow-hidden bg-theme-surface-strong">
                                             {job.image && job.image.length > 0 ? (
@@ -606,11 +653,20 @@ export default function ExperiencesClient({
                                         <p className="text-sm italic text-theme-600 dark:text-theme-400 mb-4">{job.company}</p>
                                     </motion.div>
                                 ))}
-                            </div>
+                            </motion.div>
                         )}
 
                         {currentLayout === 'bento' && (
-                            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[300px]">
+                            <motion.div 
+                                className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[300px]"
+                                initial="hidden"
+                                whileInView="show"
+                                viewport={{ once: true, margin: "-50px" }}
+                                variants={{
+                                    hidden: {},
+                                    show: { transition: { staggerChildren: 0.08 } }
+                                }}
+                            >
                                 {allJobs.map((job, idx) => {
                                     const spans = ["md:col-span-2 md:row-span-2", "md:col-span-2 md:row-span-1", "md:col-span-1 md:row-span-1", "md:col-span-1 md:row-span-1", "md:col-span-1 md:row-span-1", "md:col-span-3 md:row-span-1", "md:col-span-2 md:row-span-1", "md:col-span-2 md:row-span-2"];
                                     const spanClass = spans[idx % spans.length];
@@ -618,20 +674,33 @@ export default function ExperiencesClient({
                                         <BentoCard key={`${job.year}-${idx}`} job={job} spanClass={spanClass} cardBorder={cardBorder} inactiveCardBg={inactiveCardBg} isDark={isDark} lang={lang} justifyClass={justifyClass} click_to_close_text={click_to_close_text} />
                                     );
                                 })}
-                            </div>
+                            </motion.div>
                         )}
 
                         {currentLayout === 'smooth' && (
-                            <div className="space-y-24 max-w-4xl mx-auto">
+                            <motion.div 
+                                className="space-y-24 max-w-4xl mx-auto"
+                                initial="hidden"
+                                whileInView="show"
+                                viewport={{ once: true, margin: "-50px" }}
+                                variants={{
+                                    hidden: {},
+                                    show: { transition: { staggerChildren: 0.15 } }
+                                }}
+                            >
                                 {allJobs.map((job, idx) => (
                                     <motion.div
                                         key={`${job.year}-${idx}`}
                                         id={`exp-${job.title.toLowerCase().replace(/\s+/g, '-')}`}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true, margin: "-50px" }}
+                                        variants={{
+                                            hidden: { opacity: 0, y: 30 },
+                                            show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+                                        }}
                                         onClick={() => job.url && window.open(job.url, '_blank', 'noopener,noreferrer')}
-                                        className={`group ${job.url ? 'cursor-pointer' : ''}`}
+                                        onKeyDown={(e) => e.key === 'Enter' && job.url && window.open(job.url, '_blank', 'noopener,noreferrer')}
+                                        role={job.url ? "button" : "article"}
+                                        tabIndex={job.url ? 0 : undefined}
+                                        className={`group transform-gpu will-change-transform ${job.url ? 'cursor-pointer' : ''}`}
                                     >
                                         <div className="flex flex-col md:flex-row gap-8 items-center">
                                             <div className="w-full md:w-1/2 space-y-4">
@@ -660,7 +729,7 @@ export default function ExperiencesClient({
                                         </div>
                                     </motion.div>
                                 ))}
-                            </div>
+                            </motion.div>
                         )}
                     </div>
                 </div>

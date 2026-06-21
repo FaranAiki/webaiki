@@ -237,7 +237,7 @@ export default function SettingsPopup({
                 absolute left-0 right-0 mt-2 max-h-60 overflow-y-auto z-[70]
                 bg-theme-surface border-theme-border shadow-xl shadow-theme-shadow
                 border rounded-xl custom-scrollbar
-              `}>
+              `} data-lenis-prevent>
                 {languages.map((lang) => (
                   <button
                     key={lang.code}
@@ -319,7 +319,7 @@ export default function SettingsPopup({
               absolute left-0 right-0 mt-2 max-h-60 overflow-y-auto z-[70]
               bg-theme-surface border-theme-border shadow-xl shadow-theme-shadow
               border rounded-xl custom-scrollbar
-            `}>
+            `} data-lenis-prevent>
               {fonts.map((f) => (
                 <button
                   key={f.name}
@@ -404,7 +404,7 @@ export default function SettingsPopup({
                   absolute left-0 right-0 mt-2 max-h-48 overflow-y-auto z-[70]
                   bg-theme-surface border-theme-border shadow-xl shadow-theme-shadow
                   border rounded-xl custom-scrollbar
-                `}>
+                `} data-lenis-prevent>
                   <button
                     onClick={() => {
                       setPortfolioFilter('all');
@@ -601,7 +601,7 @@ export default function SettingsPopup({
           md:backdrop-blur-md bg-theme-surface/95 border rounded-2xl z-50 p-6
           animate-fade-in origin-top-right ring-1 ring-black/5
           max-h-[80vh] overflow-y-auto custom-scrollbar
-        `}>
+        `} data-lenis-prevent>
           {renderContent()}
         </div>
       )}

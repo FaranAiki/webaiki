@@ -144,7 +144,7 @@ function AskMePopup({
                   </div>
                   <div>
                     <h3 className="text-sm font-medium opacity-75 mb-1.5">{question_answer}</h3>
-                    <div className="min-h-43 max-h-43 p-2 bg-muted/50 border rounded-md overflow-y-auto no-scrollbar text-sm">
+                    <div className="min-h-43 max-h-43 p-2 bg-muted/50 border rounded-md overflow-y-auto no-scrollbar text-sm" data-lenis-prevent>
                       {mutation.isPending && (
                         <div className="flex items-center text-muted-foreground">
                           <LoaderCircle className="animate-spin mr-2 size-4" />

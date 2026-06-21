@@ -361,7 +361,7 @@ while True:
 
         <div 
           ref={terminalContainerRef} 
-          className="flex-1 p-4 font-mono text-sm overflow-y-auto cursor-text scroll-smooth bg-opacity-80"
+          className="flex-1 p-4 font-mono text-sm overflow-y-auto cursor-text scroll-smooth bg-opacity-80" data-lenis-prevent
           onClick={handleTerminalClick}
         >
           <div className="whitespace-pre-wrap break-words font-mono no-scrollbar">

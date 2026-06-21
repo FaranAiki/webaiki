@@ -48,7 +48,7 @@ export function CommandPalette({ lang }: { lang: string }) {
               className="flex h-12 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-[var(--text-muted)] text-[var(--text-main)]"
             />
           </div>
-          <Command.List className="max-h-[300px] overflow-y-auto p-2">
+          <Command.List className="max-h-[300px] overflow-y-auto p-2" data-lenis-prevent>
             <Command.Empty className="py-6 text-center text-sm text-[var(--text-muted)]">
               No results found.
             </Command.Empty>
