@@ -619,7 +619,7 @@ export default function SettingsPopup({
           md:backdrop-blur-md bg-theme-surface/95 border rounded-2xl z-50 p-6
           animate-fade-in origin-top-right ring-1 ring-black/5
           max-h-[80vh] overflow-y-auto custom-scrollbar
-        `} data-lenis-prevent>
+        `}>
           {renderContent()}
         </div>
       )}

@@ -83,10 +83,15 @@ export default function FeedbackDisplay({ dict, lang, currentUserId }: FeedbackD
     }
   };
 
+  const [isDragging, setIsDragging] = useState(false);
+
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
+    await uploadImageFile(file);
+  };
 
+  const uploadImageFile = async (file: File) => {
     setUploading(true);
     setError(null);
 
@@ -101,6 +106,29 @@ export default function FeedbackDisplay({ dict, lang, currentUserId }: FeedbackD
       setError(getErrorMessage(result.error, dict));
     }
     setUploading(false);
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+  };
+
+  const handleDragEnter = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(false);
+  };
+
+  const handleDrop = async (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(false);
+    const file = e.dataTransfer.files?.[0];
+    if (!file) return;
+    if (!file.type.startsWith('image/')) return;
+    await uploadImageFile(file);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -164,7 +192,32 @@ export default function FeedbackDisplay({ dict, lang, currentUserId }: FeedbackD
               </p>
             </div>
           ) : (
-            <div className="p-6 bg-theme-surface rounded-2xl border border-theme-border shadow-theme-shadow">
+            <div 
+              onDragOver={handleDragOver}
+              onDragEnter={handleDragEnter}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+              className={`relative p-6 bg-theme-surface rounded-2xl border transition-all duration-300 shadow-theme-shadow ${
+                isDragging ? 'border-dashed border-theme-500 scale-[1.01] bg-theme-surface-strong/50' : 'border-theme-border'
+              }`}
+            >
+              <AnimatePresence>
+                {isDragging && (
+                  <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="absolute inset-0 bg-theme-bg/85 backdrop-blur-sm rounded-2xl flex flex-col items-center justify-center z-50 pointer-events-none"
+                  >
+                    <div className="flex flex-col items-center gap-2 animate-bounce">
+                      <Camera size={36} className="text-theme-500" />
+                      <span className="text-sm font-black text-theme-500 tracking-wider">
+                        {dict.Drop_Here || "Drop Your Image Here"}
+                      </span>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label className="block text-sm font-bold text-theme-muted mb-2">{dict.Add_Feedback}</label>

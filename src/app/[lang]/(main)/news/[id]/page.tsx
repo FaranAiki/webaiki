@@ -33,8 +33,10 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
 export default async function NewsDetailPage({ params }: { params: Promise<{ lang: string, id: string }> }) {
   const { lang, id } = await params;
-  const dict = await getDictionary(lang);
-  const news = await getNewsItem(id);
+  const [dict, news] = await Promise.all([
+    getDictionary(lang),
+    getNewsItem(id)
+  ]);
 
   if (!news) notFound();
 

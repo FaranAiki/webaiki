@@ -18,18 +18,22 @@ export default async function BusinessRequestsPage({ params }: { params: Promise
   const dict = await getDictionary(lang);
   
   const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  
+  const [userResult, requests] = await Promise.all([
+    supabase.auth.getUser(),
+    db.query.hireRequests.findMany({
+      with: {
+        user: true,
+      },
+      orderBy: (hireRequests, { desc }) => [desc(hireRequests.createdAt)],
+    })
+  ]);
+
+  const user = userResult.data.user;
 
   if (!user || user.email !== 'faran.aiki.business@gmail.com') {
     redirect(`/${lang}`);
   }
-
-  const requests = await db.query.hireRequests.findMany({
-    with: {
-      user: true,
-    },
-    orderBy: (hireRequests, { desc }) => [desc(hireRequests.createdAt)],
-  });
 
   return (
     <div className="container mx-auto px-4 py-24 min-h-screen">

@@ -34,7 +34,7 @@ export default function PortfolioHeader({ title, resumeLabel, subtitle, about, s
   }
 
   if (isAtsMode) {
-    const cleanResumeLabel = cleanText(resumeLabel);
+    const _cleanResumeLabel = cleanText(resumeLabel);
     const cleanSubtitle = cleanText(displaySubtitle);
     const cleanAbout = cleanText(about);
 

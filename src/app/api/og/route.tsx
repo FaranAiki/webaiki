@@ -102,8 +102,9 @@ export async function GET(req: NextRequest) {
         height: 630,
       }
     );
-  } catch (e: any) {
-    console.log(`${e.message}`);
+  } catch (e: unknown) {
+    const err = e as Error;
+    console.log(`${err.message}`);
     return new Response(`Failed to generate the image`, {
       status: 500,
     });

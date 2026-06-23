@@ -29,7 +29,7 @@ export default function PageTransitionLoader({ label }: { label: string }) {
       
       return () => clearTimeout(timer);
     }
-  }, [pathname, searchParams]);
+  }, [pathname, searchParams, isNavigating]);
 
   // Handle progressive fake loading
   useEffect(() => {

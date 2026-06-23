@@ -194,10 +194,88 @@ export default function SocialDisplay({ customLinks, hidePresentation = false }:
   const renderCard = (link: SocialLink, presentationMode: boolean) => {
     if (link.name === 'LinkedIn') {
       return (
-        <div className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-8' : 'rounded-lg p-6'} flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 h-full shadow-sm hover:shadow-lg min-h-[200px]`}>
-          <div className="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme={badgeTheme} data-type="VERTICAL" data-vanity="faranaiki" data-version="v1">
-            <a className="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/faranaiki?trk=profile-badge">Muhammad Faran Aiki</a>
+        <a
+          href={link.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-8' : 'rounded-lg p-6'} flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-2 ${presentationMode ? 'hover:scale-[1.02]' : ''} h-full ${presentationMode ? 'min-h-[200px]' : ''} shadow-sm hover:shadow-lg relative overflow-hidden`}
+        >
+          {/* Top Banner Gradient matching the theme */}
+          <div className="absolute top-0 inset-x-0 h-12 bg-gradient-to-r from-theme-500/20 to-theme-600/30 border-b border-theme-border/50" />
+          
+          {/* Profile Photo */}
+          <div className="relative mt-4 mb-3 z-10">
+            <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-theme-surface bg-theme-surface-strong relative shadow-md">
+              <Image 
+                src="/images/photo_faran_aiki/1_fa_photo_linkedin.webp" 
+                alt="Muhammad Faran Aiki" 
+                fill 
+                className="object-cover" 
+              />
+            </div>
+            {/* LinkedIn Badge Overlay Icon */}
+            <div className="absolute -bottom-1 -right-1 bg-theme-surface rounded-full p-1 border border-theme-border shadow-sm flex items-center justify-center">
+              <Linkedin size={12} className="text-theme-500" />
+            </div>
           </div>
+
+          <h3 className={`text-base font-black text-foreground mb-0.5 line-clamp-1`}>
+            Muhammad Faran Aiki
+          </h3>
+
+          <p className="text-[10px] md:text-xs text-theme-muted mb-4 line-clamp-1 font-bold tracking-tight">
+            Software Engineer & ITB Student
+          </p>
+
+          <span className="mt-auto px-4 py-1.5 rounded-full border border-theme-border text-[10px] md:text-xs font-black tracking-wider text-theme-500 group-hover:bg-theme-500 group-hover:text-white group-hover:border-theme-500 transition-all">
+            View Profile
+          </span>
+        </a>
+      );
+    }
+
+    if (link.name === 'Twitter / X') {
+      return (
+        <div className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-4' : 'rounded-lg p-3'} flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 h-full shadow-sm hover:shadow-lg min-h-[250px] overflow-hidden w-full`}>
+          <div className="w-full h-[230px] overflow-y-auto overflow-x-hidden relative flex flex-col items-center justify-center">
+            <a 
+              className="twitter-timeline w-full text-center text-xs font-bold text-theme-500" 
+              href="https://x.com/FaranAiki?ref_src=twsrc%5Etfw"
+              data-height="220"
+              data-theme={badgeTheme}
+              data-chrome="nofooter noborders noheader transparent"
+            >
+              Posts by @FaranAiki
+            </a>
+          </div>
+        </div>
+      );
+    }
+
+    if (link.name === 'Instagram') {
+      return (
+        <div className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-4' : 'rounded-lg p-3'} flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 h-full shadow-sm hover:shadow-lg min-h-[250px] overflow-hidden w-full`}>
+          <iframe 
+            src="https://www.instagram.com/kapanairi/embed/" 
+            className="w-full h-[220px] rounded-lg border-0 bg-transparent"
+            allowTransparency={true}
+            scrolling="no"
+            frameBorder="0"
+          />
+        </div>
+      );
+    }
+
+    if (link.name === 'TikTok') {
+      return (
+        <div className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-4' : 'rounded-lg p-3'} flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 h-full shadow-sm hover:shadow-lg min-h-[250px] overflow-hidden w-full`}>
+          <iframe 
+            src="https://www.tiktok.com/embed/@faranaiki07" 
+            className="w-full h-[220px] rounded-lg border-0 bg-transparent"
+            allow="fullscreen"
+            scrolling="no"
+            frameBorder="0"
+          />
         </div>
       );
     }
@@ -226,7 +304,7 @@ export default function SocialDisplay({ customLinks, hidePresentation = false }:
 
   return (
     <div className="w-full h-full">
-      <Script src="https://platform.linkedin.com/badges/js/profile.js" async defer strategy="lazyOnload" />
+      <Script src="https://platform.twitter.com/widgets.js" strategy="lazyOnload" />
       {showPresentation && (
         <div className="presentation-container">
           {socialChunks.map((chunk, chunkIdx) => (

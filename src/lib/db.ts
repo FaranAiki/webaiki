@@ -9,7 +9,7 @@ const connectionString = env.DIRECT_URL || env.DATABASE_URL;
 
 const pool = new Pool({
   connectionString,
-  max: isProduction ? 1 : 10,
+  max: isProduction ? 5 : 10,
   connectionTimeoutMillis: 10000,
   idleTimeoutMillis: 30000,
   ssl: (isProduction || (connectionString && (connectionString.includes('supabase') || connectionString.includes('pooler')))) 

@@ -30,11 +30,15 @@ export default function EditProfileForm({ dict, user }: EditProfileFormProps) {
   const [username, setUsername] = useState(user.user_metadata?.username || '');
   const [avatarUrl, setAvatarUrl] = useState(user.user_metadata?.avatar_url || '');
   const [uploading, setUploading] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
+    await uploadImageFile(file);
+  };
 
+  const uploadImageFile = async (file: File) => {
     setUploading(true);
     setError(null);
 
@@ -49,6 +53,29 @@ export default function EditProfileForm({ dict, user }: EditProfileFormProps) {
       setError(getErrorMessage(result.error, dict));
     }
     setUploading(false);
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+  };
+
+  const handleDragEnter = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(false);
+  };
+
+  const handleDrop = async (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(false);
+    const file = e.dataTransfer.files?.[0];
+    if (!file) return;
+    if (!file.type.startsWith('image/')) return;
+    await uploadImageFile(file);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -115,8 +142,14 @@ export default function EditProfileForm({ dict, user }: EditProfileFormProps) {
         {/* Profile Preview */}
         <motion.div variants={itemVariants} className="space-y-4">
           <div className="relative group mx-auto w-48 h-48">
-            <div className="absolute -inset-1 bg-gradient-to-r from-theme-500 to-gacor rounded-full blur opacity-20 group-hover:opacity-40 transition duration-500" />
-            <label className="relative block w-full h-full rounded-full overflow-hidden border-4 border-theme-surface shadow-2xl bg-theme-surface-strong cursor-pointer group">
+            <div className={`absolute -inset-2 bg-gradient-to-r from-theme-500 to-gacor rounded-full blur transition duration-500 ${isDragging ? 'opacity-80 scale-105 animate-pulse' : 'opacity-20 group-hover:opacity-40'}`} />
+            <label 
+              onDragOver={handleDragOver}
+              onDragEnter={handleDragEnter}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+              className={`relative block w-full h-full rounded-full overflow-hidden border-4 shadow-2xl bg-theme-surface-strong cursor-pointer transition-all duration-300 ${isDragging ? 'border-theme-500 scale-105' : 'border-theme-surface'}`}
+            >
               {avatarUrl ? (
                 <Image
                   src={avatarUrl}
@@ -135,6 +168,16 @@ export default function EditProfileForm({ dict, user }: EditProfileFormProps) {
                 <Camera className="text-white mb-2" size={32} />
                 <span className="text-white text-sm font-bold tracking-widest">{dict.Change}</span>
               </div>
+
+              {/* Drag & Drop Overlay */}
+              {isDragging && (
+                <div className="absolute inset-0 bg-theme-500/20 backdrop-blur-sm flex flex-col items-center justify-center pointer-events-none">
+                  <Camera className="text-theme-500 animate-bounce mb-2" size={32} />
+                  <span className="text-theme-500 text-xs font-bold tracking-widest text-center px-2">
+                    {dict.Drop_Here || "Drop here"}
+                  </span>
+                </div>
+              )}
 
               {uploading && (
                 <div className="absolute inset-0 bg-theme-bg/80 flex items-center justify-center">

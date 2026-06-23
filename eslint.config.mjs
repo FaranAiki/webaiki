@@ -10,7 +10,6 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
     ignores: [
       "node_modules/**",
@@ -18,15 +17,31 @@ const eslintConfig = [
       "out/**",
       "build/**",
       "next-env.d.ts",
-      "public/**/*.min.mjs",
-      "public/**/*.min.js",
+      "public/**",
       "sync_locales.js",
       "update_locales.js",
       "next-sitemap.config.js",
       "postcss.config.mjs",
       "src/generated/prisma/**",
+      "add_loading.js",
+      "localize_oauth.js",
+      "dump-cols.js",
+      "update_all_locales.js",
     ],
   },
+  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  {
+    rules: {
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        {
+          varsIgnorePattern: "^(nonce|_.*)$",
+          argsIgnorePattern: "^_",
+          caughtErrorsIgnorePattern: "^_"
+        }
+      ]
+    }
+  }
 ];
 
 export default eslintConfig;

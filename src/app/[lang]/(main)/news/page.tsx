@@ -23,12 +23,10 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
 export default async function NewsPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang);
-  
-  // Fetch news on the server for better SEO/Google News indexing.
-  // We removed server-side supabase.auth.getUser() to prevent blocking TTFB
-  // and allow the page to load instantly. Admin check is moved to client.
-  const news = await getNews();
+  const [dict, news] = await Promise.all([
+    getDictionary(lang),
+    getNews()
+  ]);
 
   return (
     <main className="container mx-auto px-4 md:px-8 pt-32 pb-16 min-h-screen">

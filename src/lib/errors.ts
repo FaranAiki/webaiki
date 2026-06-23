@@ -10,10 +10,28 @@ export type ActionResponse<T = void> =
   | { success: true; data?: T; url?: string }
   | ErrorResponse;
 
-export function getErrorMessage(error: any, dict?: Record<string, string>): string {
+export function getErrorMessage(error: unknown, dict?: Record<string, string>): string {
   if (!error) return 'Unknown error';
-  const code = typeof error === 'object' ? error.code : error;
-  const message = typeof error === 'object' ? error.message : error;
+  
+  let code = '';
+  let message = '';
+  
+  if (typeof error === 'object' && error !== null) {
+    const errObj = error as Record<string, unknown>;
+    // Support nested ErrorResponse format: { error: { code, message } }
+    if ('error' in errObj && typeof errObj.error === 'object' && errObj.error !== null) {
+      const nestedErr = errObj.error as Record<string, unknown>;
+      code = String(nestedErr.code || '');
+      message = String(nestedErr.message || '');
+    } else {
+      code = String(errObj.code || '');
+      message = String(errObj.message || '');
+    }
+  } else {
+    code = String(error);
+    message = String(error);
+  }
+
   if (dict && dict[code]) return dict[code];
   return message || 'Unknown error';
 }

@@ -6,7 +6,7 @@ import fs from 'fs';
 import path from 'path';
 import { db } from '@/lib/db';
 import { users, feedbacks, news } from '@/lib/schema';
-import { eq, sql, desc } from 'drizzle-orm';
+import { eq, sql } from 'drizzle-orm';
 import { createClient, createAdminClient } from '@/utils/supabase/server';
 import { AppError } from '@/lib/errors';
 
@@ -175,31 +175,35 @@ export async function setCookies(name: string, val: string) {
   });
 }
 
-export const getFeedbacks = unstable_cache(
+const fetchFeedbacksFromDb = unstable_cache(
   async () => {
-    try {
-      return await db.query.feedbacks.findMany({
-        where: (feedbacks, { eq }) => eq(feedbacks.isPublic, true),
-        with: {
-          user: {
-            columns: {
-              id: true,
-              name: true,
-              username: true,
-              avatarUrl: true
-            }
+    return await db.query.feedbacks.findMany({
+      where: (feedbacks, { eq }) => eq(feedbacks.isPublic, true),
+      with: {
+        user: {
+          columns: {
+            id: true,
+            name: true,
+            username: true,
+            avatarUrl: true
           }
-        },
-        orderBy: (feedbacks, { desc }) => [desc(feedbacks.createdAt)]
-      });
-    } catch (error) {
-      console.error('Error in getFeedbacks:', error);
-      return [];
-    }
+        }
+      },
+      orderBy: (feedbacks, { desc }) => [desc(feedbacks.createdAt)]
+    });
   },
   ['feedbacks'],
   { revalidate: 60, tags: ['feedbacks'] }
 );
+
+export const getFeedbacks = async () => {
+  try {
+    return await fetchFeedbacksFromDb();
+  } catch (error) {
+    console.error('Error in getFeedbacks:', error);
+    return [];
+  }
+};
 
 export async function deleteFeedback(feedbackId: string) {
   const supabase = await createClient();
@@ -300,35 +304,39 @@ export async function submitFeedback(content: string, image?: string, captchaTok
   }
 }
 
-export const getNews = unstable_cache(
+const fetchNewsFromDb = unstable_cache(
   async () => {
-    try {
-      return await db.query.news.findMany({
-        where: (news, { eq }) => eq(news.isPublic, true),
-        with: {
-          author: {
-            columns: {
-              id: true,
-              name: true,
-              avatarUrl: true
-            }
+    return await db.query.news.findMany({
+      where: (news, { eq }) => eq(news.isPublic, true),
+      with: {
+        author: {
+          columns: {
+            id: true,
+            name: true,
+            avatarUrl: true
           }
-        },
-        orderBy: (news, { desc }) => [desc(news.createdAt)]
-      });
-    } catch (error) {
-      console.error('Error in getNews:', error);
-      return [];
-    }
+        }
+      },
+      orderBy: (news, { desc }) => [desc(news.createdAt)]
+    });
   },
   ['news'],
   { revalidate: 30, tags: ['news'] }
 );
 
+export const getNews = async () => {
+  try {
+    return await fetchNewsFromDb();
+  } catch (error) {
+    console.error('Error in getNews:', error);
+    return [];
+  }
+};
+
 export const getNewsItem = async (id: string) => {
-  return unstable_cache(
-    async (newsId: string) => {
-      try {
+  try {
+    const cachedFn = unstable_cache(
+      async (newsId: string) => {
         return await db.query.news.findFirst({
           where: (news, { eq }) => eq(news.id, newsId),
           with: {
@@ -341,15 +349,16 @@ export const getNewsItem = async (id: string) => {
             }
           }
         });
-      } catch (error) {
-        console.error('Error in getNewsItem:', error);
-        return null;
-      }
-    },
-    [`news-${id}`],
-    { revalidate: 30, tags: ['news', `news-${id}`] }
-  )(id);
-}
+      },
+      [`news-${id}`],
+      { revalidate: 30, tags: ['news', `news-${id}`] }
+    );
+    return await cachedFn(id);
+  } catch (error) {
+    console.error('Error in getNewsItem:', error);
+    return null;
+  }
+};
 
 export async function deleteNews(newsId: string) {
   const supabase = await createClient();

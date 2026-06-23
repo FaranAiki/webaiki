@@ -6,13 +6,13 @@ import { Command } from "cmdk";
 import { useTheme } from "next-themes";
 import { 
   Search, Moon, Sun, Monitor, Home, Briefcase, Code, Award, 
-  GraduationCap, Mail, Newspaper, FileText, Globe
+  GraduationCap, Mail, Newspaper, Globe
 } from "lucide-react";
 
 export function CommandPalette({ lang }: { lang: string }) {
   const [open, setOpen] = React.useState(false);
   const router = useRouter();
-  const pathname = usePathname();
+  const _pathname = usePathname();
   const { setTheme } = useTheme();
 
   React.useEffect(() => {

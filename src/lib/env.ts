@@ -34,7 +34,7 @@ export const validateEnv = () => {
 
   // We only run this on the server (or during build if possible)
   if (typeof window !== 'undefined') {
-    return envVars as any;
+    return envVars as Record<string, string | undefined>;
   }
 
   const errors = [...Value.Errors(EnvSchema, envVars)];

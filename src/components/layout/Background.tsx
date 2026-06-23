@@ -12,6 +12,7 @@ interface GeometricPatternProps {
   isDark: boolean;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function GeometricPattern({isDark}: GeometricPatternProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);

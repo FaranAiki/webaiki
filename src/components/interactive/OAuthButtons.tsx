@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
-import { Github, Twitter, Linkedin, Mail } from 'lucide-react';
+import { Github, Mail } from 'lucide-react';
 import { Provider } from '@supabase/supabase-js';
 
 interface OAuthButtonsProps {

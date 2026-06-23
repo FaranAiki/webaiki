@@ -1,4 +1,4 @@
-import { pgTable, text, boolean, timestamp, integer } from 'drizzle-orm/pg-core';
+import { pgTable, text, boolean, timestamp, integer, index } from 'drizzle-orm/pg-core';
 import { relations } from 'drizzle-orm';
 
 export enum RegistrationReason {
@@ -54,7 +54,9 @@ export const feedbacks = pgTable('Feedback', {
   isPublic: boolean('isPublic').default(true).notNull(),
   createdAt: timestamp('createdAt', { mode: 'date' }).defaultNow().notNull(),
   updatedAt: timestamp('updatedAt', { mode: 'date' }).defaultNow().notNull(),
-});
+}, (table) => [
+  index('Feedback_userId_idx').on(table.userId)
+]);
 
 export const news = pgTable('News', {
   id: text('id').primaryKey(),
@@ -65,7 +67,9 @@ export const news = pgTable('News', {
   isPublic: boolean('isPublic').default(true).notNull(),
   createdAt: timestamp('createdAt', { mode: 'date' }).defaultNow().notNull(),
   updatedAt: timestamp('updatedAt', { mode: 'date' }).defaultNow().notNull(),
-});
+}, (table) => [
+  index('News_authorId_idx').on(table.authorId)
+]);
 
 export const usersRelations = relations(users, ({ many }) => ({
   feedbacks: many(feedbacks),
@@ -99,7 +103,9 @@ export const hireRequests = pgTable('HireRequest', {
   userId: text('userId').notNull().unique().references(() => users.id, { onDelete: 'cascade' }),
   createdAt: timestamp('createdAt', { mode: 'date' }).defaultNow().notNull(),
   updatedAt: timestamp('updatedAt', { mode: 'date' }).defaultNow().notNull(),
-});
+}, (table) => [
+  index('HireRequest_userId_idx').on(table.userId)
+]);
 
 export const hireRequestsRelations = relations(hireRequests, ({ one }) => ({
   user: one(users, {

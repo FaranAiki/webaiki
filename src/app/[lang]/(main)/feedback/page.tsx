@@ -23,10 +23,12 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
 export default async function FeedbackPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang);
+  const [dict, userResult] = await Promise.all([
+    getDictionary(lang),
+    createClient().then(supabase => supabase.auth.getUser())
+  ]);
 
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const user = userResult.data.user;
 
   return (
     <main className="container mx-auto px-4 md:px-8 pt-32 pb-16 min-h-screen">
