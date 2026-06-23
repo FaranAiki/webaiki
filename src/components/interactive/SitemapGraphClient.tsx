@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState, useRef, useMemo } from 'react';
 import dynamic from 'next/dynamic';
-import { useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
 
 // Dynamically import react-force-graph-2d since it relies on window/canvas
@@ -30,7 +29,6 @@ interface ForceGraphMethods {
 }
 
 export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientProps) {
-  const router = useRouter();
   const { theme, systemTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const graphRef = useRef<ForceGraphMethods>();
@@ -129,6 +127,15 @@ export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientPro
   return (
     <div className="w-full h-full flex flex-col md:flex-row bg-theme-surface">
       <div ref={containerRef} className="w-full md:w-[65%] h-[400px] md:h-full cursor-move relative border-b md:border-b-0 md:border-r border-theme-border">
+        {/* Accessibility support for screen readers */}
+        <ul className="sr-only">
+          {graphData.nodes.map(node => (
+            <li key={node.id}>
+              <a href={`/${lang}${node.id === '/' ? '' : node.id}`}>{node.name}</a>
+            </li>
+          ))}
+        </ul>
+
         <ForceGraph2D
           ref={graphRef as never}
           width={dimensions.width}

@@ -27,6 +27,7 @@ const eslintConfig = [
       "localize_oauth.js",
       "dump-cols.js",
       "update_all_locales.js",
+      "scripts/**"
     ],
   },
   ...compat.extends("next/core-web-vitals", "next/typescript"),

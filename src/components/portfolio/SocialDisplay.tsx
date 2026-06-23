@@ -8,6 +8,16 @@ import { useTheme } from 'next-themes';
 import { usePresentation } from '../providers/PresentationContext';
 import { motion, Variants } from 'framer-motion';
 
+declare global {
+  interface Window {
+    twttr?: {
+      widgets?: {
+        load: () => void;
+      };
+    };
+  }
+}
+
 export interface SocialLink {
   name: string;
   username: string;
@@ -19,7 +29,7 @@ export interface SocialLink {
 interface SocialDisplayProps {
   customLinks?: SocialLink[];
   hidePresentation?: boolean;
-  dict?: any;
+  dict?: Record<string, string>;
 }
 
 // Professional animation variants
@@ -178,9 +188,9 @@ export default function SocialDisplay({ customLinks, hidePresentation = false, d
   useEffect(() => {
     // Force Twitter widget to rescan the DOM and render the timeline
     // This handles both client-side navigation and theme toggling
-    if (mounted && typeof window !== 'undefined' && (window as any).twttr && (window as any).twttr.widgets) {
+    if (mounted && typeof window !== 'undefined' && window.twttr && window.twttr.widgets) {
       setTimeout(() => {
-        (window as any).twttr.widgets.load();
+        window.twttr?.widgets?.load();
       }, 100);
     }
   }, [mounted, theme, systemTheme]);
@@ -348,6 +358,7 @@ export default function SocialDisplay({ customLinks, hidePresentation = false, d
           
           <div className="flex flex-col gap-3 w-full">
             {/* Profile & Overall Stats */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 
               src={`https://github-readme-stats.vercel.app/api?username=FaranAiki&show_icons=true&theme=${badgeTheme === 'dark' ? 'tokyonight' : 'default'}&hide_border=true&bg_color=00000000`}
               alt="GitHub Profile Stats"
@@ -355,6 +366,7 @@ export default function SocialDisplay({ customLinks, hidePresentation = false, d
             />
             
             {/* Top Languages */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 
               src={`https://github-readme-stats.vercel.app/api/top-langs/?username=FaranAiki&layout=compact&theme=${badgeTheme === 'dark' ? 'tokyonight' : 'default'}&hide_border=true&bg_color=00000000`}
               alt="GitHub Top Languages"
@@ -362,6 +374,7 @@ export default function SocialDisplay({ customLinks, hidePresentation = false, d
             />
 
             {/* Commits / Activity Graph */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 
               src={`https://github-readme-activity-graph.vercel.app/graph?username=FaranAiki&theme=${badgeTheme === 'dark' ? 'tokyonight' : 'default'}&hide_border=true&bg_color=00000000&line=theme-500`}
               alt="GitHub Commits Graph"
