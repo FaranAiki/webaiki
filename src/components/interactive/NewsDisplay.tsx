@@ -101,7 +101,8 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
     
     try {
       const result = await deleteNews(id);
-      if (result.success) {
+      if ('success' in result) {
+        alert(dict.News_Deleted || "News deleted successfully");
         setNews(news.filter(n => n.id !== id));
         router.refresh();
       } else {
@@ -129,8 +130,8 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
 
     const result = await uploadFile(formData, 'news-image');
 
-    if (result.success) {
-      setImageUrl(result.url!);
+    if ('success' in result) {
+      setImageUrl(result.url || '');
     } else {
       setError(getErrorMessage(result.error, dict));
     }
@@ -169,7 +170,8 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
 
     const result = await postNews(title, content, imageUrl || undefined);
 
-    if (result.success) {
+    if ('success' in result) {
+      alert(dict.News_Submitted || "News submitted successfully");
       setTitle('');
       setContent('');
       setImageUrl('');

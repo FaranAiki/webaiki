@@ -9,6 +9,7 @@ interface EducationJob {
   company: string;
   date: string;
   description: string;
+  brief?: string;
   url?: string;
 }
 

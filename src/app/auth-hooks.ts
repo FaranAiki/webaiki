@@ -11,7 +11,7 @@ export function useAuthActions(lang: string) {
   const signIn = async (formData: FormData) => {
     const result = await signInAction(formData);
 
-    if (result?.error) {
+    if (result && 'error' in result) {
       return { error: result.error };
     }
 
@@ -23,7 +23,7 @@ export function useAuthActions(lang: string) {
   const signUp = async (formData: FormData, captchaToken?: string) => {
     const result = await signUpAction(formData, captchaToken);
     
-    if (result?.error) {
+    if (result && 'error' in result) {
       return { error: result.error };
     }
 

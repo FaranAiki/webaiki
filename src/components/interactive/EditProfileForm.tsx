@@ -47,7 +47,7 @@ export default function EditProfileForm({ dict, user }: EditProfileFormProps) {
 
     const result = await uploadFile(formData, 'user-icon');
 
-    if (result.success) {
+    if ('success' in result) {
       setAvatarUrl(result.url!);
     } else {
       setError(getErrorMessage(result.error, dict));
@@ -90,7 +90,7 @@ export default function EditProfileForm({ dict, user }: EditProfileFormProps) {
       avatarUrl
     });
 
-    if (result.success) {
+    if ('success' in result) {
       setSuccess(true);
       router.refresh();
     } else {

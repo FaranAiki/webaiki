@@ -60,3 +60,13 @@ node_modules/
 
 # Prisma
 /src/generated/prisma
+
+# PWA files
+**/public/sw.js
+**/public/workbox-*.js
+**/public/worker-*.js
+**/public/sw.js.map
+**/public/workbox-*.js.map
+**/public/worker-*.js.map
+**/public/swe-worker-*.js
+**/public/swe-worker-*.js.map

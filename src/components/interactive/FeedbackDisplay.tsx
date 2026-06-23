@@ -72,7 +72,8 @@ export default function FeedbackDisplay({ dict, lang, currentUserId }: FeedbackD
 
     try {
       const result = await deleteFeedback(id);
-      if (result.success) {
+      if ('success' in result) {
+        alert(dict.Feedback_Deleted || "Feedback deleted successfully");
         setFeedbacks(feedbacks.filter(f => f.id !== id));
         router.refresh();
       } else {
@@ -100,8 +101,8 @@ export default function FeedbackDisplay({ dict, lang, currentUserId }: FeedbackD
 
     const result = await uploadFile(formData, 'feedback-image');
 
-    if (result.success) {
-      setImageUrl(result.url!);
+    if ('success' in result) {
+      setImageUrl(result.url || undefined);
     } else {
       setError(getErrorMessage(result.error, dict));
     }
@@ -147,7 +148,8 @@ export default function FeedbackDisplay({ dict, lang, currentUserId }: FeedbackD
 
     const result = await submitFeedback(newFeedback, imageUrl, token);
 
-    if (result.success) {
+    if ('success' in result) {
+      alert(dict.Feedback_Submitted || "Feedback submitted successfully");
       setNewFeedback('');
       setImageUrl(undefined);
       fetchFeedbacks();

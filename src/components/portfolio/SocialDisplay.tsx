@@ -236,12 +236,11 @@ export default function SocialDisplay({ customLinks, hidePresentation = false }:
 
     if (link.name === 'Twitter / X') {
       return (
-        <div className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-4' : 'rounded-lg p-3'} flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 h-full shadow-sm hover:shadow-lg min-h-[250px] overflow-hidden w-full`}>
-          <div className="w-full h-[230px] overflow-y-auto overflow-x-hidden relative flex flex-col items-center justify-center">
+        <div className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-4' : 'rounded-lg p-3'} flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 w-full shadow-sm hover:shadow-lg overflow-hidden`}>
+          <div className="w-full relative flex flex-col items-center justify-center">
             <a 
               className="twitter-timeline w-full text-center text-xs font-bold text-theme-500" 
               href="https://x.com/FaranAiki?ref_src=twsrc%5Etfw"
-              data-height="220"
               data-theme={badgeTheme}
               data-chrome="nofooter noborders noheader transparent"
             >
@@ -254,10 +253,10 @@ export default function SocialDisplay({ customLinks, hidePresentation = false }:
 
     if (link.name === 'Instagram') {
       return (
-        <div className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-4' : 'rounded-lg p-3'} flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 h-full shadow-sm hover:shadow-lg min-h-[250px] overflow-hidden w-full`}>
+        <div className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-4' : 'rounded-lg p-3'} flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 w-full shadow-sm hover:shadow-lg overflow-hidden`}>
           <iframe 
             src="https://www.instagram.com/kapanairi/embed/" 
-            className="w-full h-[220px] rounded-lg border-0 bg-transparent"
+            className="w-full h-[500px] sm:h-[600px] rounded-lg border-0 bg-transparent"
             allowTransparency={true}
             scrolling="no"
             frameBorder="0"
@@ -268,15 +267,32 @@ export default function SocialDisplay({ customLinks, hidePresentation = false }:
 
     if (link.name === 'TikTok') {
       return (
-        <div className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-4' : 'rounded-lg p-3'} flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 h-full shadow-sm hover:shadow-lg min-h-[250px] overflow-hidden w-full`}>
+        <div className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-4' : 'rounded-lg p-3'} flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 w-full shadow-sm hover:shadow-lg overflow-hidden`}>
           <iframe 
             src="https://www.tiktok.com/embed/@faranaiki07" 
-            className="w-full h-[220px] rounded-lg border-0 bg-transparent"
+            className="w-full h-[600px] sm:h-[700px] rounded-lg border-0 bg-transparent"
             allow="fullscreen"
             scrolling="no"
             frameBorder="0"
           />
         </div>
+      );
+    }
+
+    if (link.name === 'GitHub') {
+      return (
+        <a 
+          href={link.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-4' : 'rounded-lg p-4'} flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 w-full shadow-sm hover:shadow-lg overflow-hidden`}
+        >
+          <img 
+            src={`https://github-readme-stats.vercel.app/api?username=FaranAiki&show_icons=true&theme=${badgeTheme === 'dark' ? 'tokyonight' : 'default'}&hide_border=true&bg_color=00000000`}
+            alt="GitHub Stats"
+            className="w-full h-auto object-contain"
+          />
+        </a>
       );
     }
     
@@ -285,7 +301,7 @@ export default function SocialDisplay({ customLinks, hidePresentation = false }:
           href={link.url}
           target="_blank"
           rel="noopener noreferrer"
-          className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-8' : 'rounded-lg p-6'} flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-2 ${presentationMode ? 'hover:scale-[1.02]' : ''} ${link.color} h-full ${presentationMode ? 'min-h-[200px]' : ''} shadow-sm hover:shadow-lg`}
+          className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-8' : 'rounded-lg p-6'} flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-2 ${presentationMode ? 'hover:scale-[1.02]' : ''} ${link.color} w-full shadow-sm hover:shadow-lg`}
       >
           <div className={`text-${presentationMode ? 'base' : 'sm'} ${usernameClass} mb-4 transition-colors`}>
           {link.username}
@@ -339,7 +355,7 @@ export default function SocialDisplay({ customLinks, hidePresentation = false }:
           viewport={{ once: true, amount: 0.05 }}
         >
           <div className={`container mx-auto max-w-5xl ${containerClass}`}>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4 items-start">
               {socialLinks.map((link) => (
                 <motion.div key={link.name} className="h-full" variants={itemVariants}>
                   {renderCard(link, false)}

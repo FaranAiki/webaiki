@@ -93,6 +93,7 @@ interface HeaderProps {
         Advanced_Section: string;
         ATS_Friendly: string;
         Expand_All: string;
+        Full_Description_Portfolio: string;
         Portfolio_Filter: string;
         Filter_All: string;
         Filter_Top: string;

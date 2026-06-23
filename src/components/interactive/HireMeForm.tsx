@@ -5,7 +5,7 @@ import { submitHireRequest, getExistingHireRequest } from '@/app/hire-actions';
 import { executeCaptcha } from './CaptchaValidator';
 import { WorkLocation, JobType } from '@/lib/schema';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import RecaptchaNotice from '../shared/RecaptchaNotice';
 import { getErrorMessage } from '@/lib/errors';
 
@@ -16,14 +16,15 @@ interface HireMeFormProps {
 interface ExistingHireRequest {
   company: string;
   jobTitle: string | null;
-  location: WorkLocation;
-  jobType: JobType;
+  location: string;
+  jobType: string;
   salary: string | null;
   reason: string;
 }
 
 export default function HireMeForm({ dict }: HireMeFormProps) {
   const params = useParams();
+  const router = useRouter();
   const lang = params?.lang as string || 'en';
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
@@ -65,13 +66,13 @@ export default function HireMeForm({ dict }: HireMeFormProps) {
     const formData = new FormData(form);
     const result = await submitHireRequest(formData, token);
     
-    if (result?.error) {
-      setError(getErrorMessage(result.error, dict));
-      setLoading(false);
-    } else {
+    if (result && 'success' in result) {
       setSuccess(true);
-      setLoading(false);
+      router.refresh();
+    } else if (result?.error) {
+      setError(getErrorMessage(result.error, dict));
     }
+    setLoading(false);
   };
 
   if (initialLoading) {
