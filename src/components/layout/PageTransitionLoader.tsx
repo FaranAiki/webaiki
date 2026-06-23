@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
@@ -12,9 +12,16 @@ export default function PageTransitionLoader({ label }: { label: string }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
+  const prevPathnameRef = useRef(pathname);
+  const prevSearchParamsRef = useRef(searchParams?.toString());
+
   // Handle route change completion
   useEffect(() => {
-    if (isNavigating) {
+    const currentSearch = searchParams?.toString();
+    const hasPathChanged = pathname !== prevPathnameRef.current;
+    const hasSearchChanged = currentSearch !== prevSearchParamsRef.current;
+
+    if (isNavigating && (hasPathChanged || hasSearchChanged)) {
       setProgress(100);
       setIsFinished(true);
       
@@ -27,7 +34,15 @@ export default function PageTransitionLoader({ label }: { label: string }) {
         }, 200);
       }, 300); // 300ms to let the user see it hit 100%
       
+      prevPathnameRef.current = pathname;
+      prevSearchParamsRef.current = currentSearch;
+      
       return () => clearTimeout(timer);
+    }
+    
+    if (!isNavigating) {
+      prevPathnameRef.current = pathname;
+      prevSearchParamsRef.current = currentSearch;
     }
   }, [pathname, searchParams, isNavigating]);
 

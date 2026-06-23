@@ -41,6 +41,12 @@ export default async function BaseLayout({
         data-website-id="a418298f-fdca-4df0-a3bf-be453b48eeaf"
         nonce={nonce}
       />
+      <Script
+        strategy="lazyOnload"
+        src="https://platform.twitter.com/widgets.js"
+        charSet="utf-8"
+        nonce={nonce}
+      />
     </div>
   );
 }

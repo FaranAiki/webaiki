@@ -32,7 +32,9 @@ import {
   Globe,
   Heart,
   MessageSquare,
-  Newspaper
+  Newspaper,
+  MoreHorizontal,
+  Network
 } from 'lucide-react';
 
 export default async function RootLayout({
@@ -107,9 +109,13 @@ export default async function RootLayout({
     },
 
     {
-      name: dict.College,
-      href: '/college',
-      icon: <GraduationCap size={18} />
+      name: dict.Nav_Other || 'Other',
+      href: '#',
+      icon: <MoreHorizontal size={18} />,
+      subLinks: [
+        { name: dict.College, href: '/college', icon: <GraduationCap size={16} /> },
+        { name: dict.Sitemap_Graph || 'Sitemap Graph', href: '/sitemap-graph', icon: <Network size={16} /> }
+      ]
     },
   ];
 

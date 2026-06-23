@@ -21,11 +21,19 @@ export default function PortfolioSkills({ skills, title }: PortfolioSkillsProps)
             {title}
           </h2>
         </div>
-        <div className="flex flex-col gap-0.5 text-xs text-[var(--text-muted)] mt-1.5">
+        <div className="flex flex-col gap-2 text-xs text-[var(--text-muted)] mt-1.5">
           {skills.map((cat, idx) => (
             <div key={idx} className="leading-relaxed">
-              <span className="font-bold text-foreground">{cat.category}: </span>
-              <span>{cat.items.join(', ')}</span>
+              <div className="font-bold text-foreground">{cat.category}:</div>
+              {cat.subcategories ? (
+                <div className="pl-4 flex flex-col gap-0.5">
+                  {cat.subcategories.map((sub, sIdx) => (
+                    <div key={sIdx}>* {sub.title}: {sub.items.join(', ')}</div>
+                  ))}
+                </div>
+              ) : (
+                <div className="pl-4">* {cat.items?.join(', ')}</div>
+              )}
             </div>
           ))}
         </div>
@@ -45,21 +53,41 @@ export default function PortfolioSkills({ skills, title }: PortfolioSkillsProps)
         {skills.map((cat, idx) => (
           <div
             key={idx}
-            className="p-4 rounded-xl border border-theme-border bg-theme-surface/10 hover:border-theme-500/30 transition-all duration-300"
+            className={`p-4 rounded-xl border border-theme-border bg-theme-surface/10 hover:border-theme-500/30 transition-all duration-300 ${cat.subcategories ? 'sm:col-span-2' : ''}`}
           >
-            <h3 className="text-sm font-bold text-foreground mb-2.5">
+            <h3 className="text-sm font-bold text-foreground mb-3">
               {cat.category}
             </h3>
-            <div className="flex flex-wrap gap-1.5">
-              {cat.items.map((item, iIdx) => (
-                <span
-                  key={iIdx}
-                  className="px-2.5 py-0.5 rounded-md text-[11px] font-medium bg-theme-surface-strong border border-theme-border text-[var(--text-muted)] hover:border-theme-500 hover:text-theme-500 hover:scale-105 transition-all duration-200 select-none cursor-default"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
+            {cat.subcategories ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {cat.subcategories.map((sub, sIdx) => (
+                  <div key={sIdx}>
+                    <h4 className="text-[12px] font-bold text-theme-muted tracking-wider mb-1.5">{sub.title}</h4>
+                    <div className="flex flex-wrap gap-1.5">
+                      {sub.items.map((item, iIdx) => (
+                        <span
+                          key={iIdx}
+                          className="px-2.5 py-0.5 rounded-md text-[11px] font-medium bg-theme-surface-strong border border-theme-border text-[var(--text-muted)] hover:border-theme-500 hover:text-theme-500 hover:scale-105 transition-all duration-200 select-none cursor-default"
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="flex flex-wrap gap-1.5">
+                {cat.items?.map((item, iIdx) => (
+                  <span
+                    key={iIdx}
+                    className="px-2.5 py-0.5 rounded-md text-[11px] font-medium bg-theme-surface-strong border border-theme-border text-[var(--text-muted)] hover:border-theme-500 hover:text-theme-500 hover:scale-105 transition-all duration-200 select-none cursor-default"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
         ))}
       </div>

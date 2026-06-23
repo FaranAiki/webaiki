@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 /**
  * Loading component for localized routes.
@@ -56,7 +57,13 @@ export default function Loading() {
   }, []);
 
   return (
-    <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background theme-transition overflow-hidden">
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.4, ease: "easeInOut" }}
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background theme-transition overflow-hidden"
+    >
       {/* Dynamic Background Accents */}
       <div className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full bg-theme-500/10 blur-3xl opacity-20" />
       <div className="absolute bottom-1/4 right-1/4 w-72 h-72 rounded-full bg-theme-500/10 blur-3xl opacity-20" />
@@ -112,6 +119,6 @@ export default function Loading() {
             Faran Aiki &copy; 2026
          </span>
       </div>
-    </div>
+    </motion.div>
   );
 }

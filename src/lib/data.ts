@@ -570,70 +570,121 @@ export const getCertificatesData = cache(async (lang: string) => {
   return allCertificatesData;
 });
 
+export interface SkillSubcategory {
+  title: string;
+  items: string[];
+}
+
 export interface SkillCategory {
   category: string;
-  items: string[];
+  items?: string[];
+  subcategories?: SkillSubcategory[];
 }
 
 export const getSkills = (dict: Dictionary): SkillCategory[] => [
   {
     category: dict.Skills_Languages || 'Programming Languages',
-    items: [
-      'Dart',
-      'TypeScript',
-      'JavaScript',
-      'Python',
-      'C',
-      'C++',
-      'C#',
-      'GDScript',
-      'Haskell',
-      'SQL',
-      'HTML',
-      'CSS'
+    subcategories: [
+      {
+        title: dict.Skills_Sub_HighLevel || 'High-level',
+        items: ['Dart', 'TypeScript', 'JavaScript', 'Python', 'C#', 'GDScript', 'Haskell']
+      },
+      {
+        title: dict.Skills_Sub_LowLevel || 'Low-level & Scripting',
+        items: ['C', 'C++', 'Bash']
+      },
+      {
+        title: dict.Skills_Sub_DataMarkup || 'Data & Markup',
+        items: ['SQL', 'HTML', 'CSS']
+      }
     ]
   },
   {
     category: dict.Skills_Frameworks || 'Frameworks & Libraries',
-    items: [
-      'Flutter',
-      'Next.js',
-      'React',
-      'Node.js',
-      'Tailwind CSS',
-      'Prisma',
-      'Framer Motion',
-      'Pandas',
-      'Qt',
-      'Godot'
+    subcategories: [
+      {
+        title: dict.Skills_Sub_Frontend || 'Frontend & UI',
+        items: ['Next.js', 'React', 'Flutter', 'Tailwind CSS', 'Framer Motion', 'Qt']
+      },
+      {
+        title: dict.Skills_Sub_Backend || 'Backend & Data',
+        items: ['Node.js', 'Pandas']
+      }
     ]
   },
   {
-    category: dict.Skills_Tools || 'Tools & Technologies',
-    items: [
-      'Git',
-      'LLVM',
-      'Valgrind',
-      'GDB',
-      'Burp Suite',
-      'PostgreSQL',
-      'SQLite',
-      'Jupyter Notebook',
-      'Vercel',
-      'Docker',
-      'Linux',
-      'Bash'
+    category: dict.Skills_Databases || 'Databases & ORMs',
+    subcategories: [
+      {
+        title: dict.Skills_Sub_Relational || 'Relational & NoSQL',
+        items: ['PostgreSQL', 'SQLite']
+      },
+      {
+        title: dict.Skills_Sub_ORMs || 'ORMs',
+        items: ['Prisma']
+      }
+    ]
+  },
+  {
+    category: dict.Skills_Tools || 'Developer Tools & Cloud',
+    subcategories: [
+      {
+        title: dict.Skills_Sub_VersionControl || 'Version Control & OS',
+        items: ['Git', 'Linux']
+      },
+      {
+        title: dict.Skills_Sub_Deployment || 'Deployment & Cloud',
+        items: ['Docker', 'Vercel']
+      },
+      {
+        title: dict.Skills_Sub_Engines || 'Engines & Software',
+        items: ['Godot Engine', 'Jupyter Notebook', 'Burp Suite']
+      },
+      {
+        title: dict.Skills_Sub_Debugging || 'Debugging & Low-Level',
+        items: ['LLVM', 'Valgrind', 'GDB']
+      }
     ]
   },
   {
     category: dict.Skills_Concepts || 'Core Competencies',
-    items: [
-      dict.Math || 'Mathematics',
-      dict.Data_Science || 'Data Science',
-      dict.Software_Engineering || 'Software Engineering',
-      dict.Game_Development || 'Game Development',
-      dict.Compilers || 'Compiler Design',
-      dict.Algorithms || 'Algorithms & Data Structures'
+    subcategories: [
+      {
+        title: dict.Skills_Sub_Theoretical || 'Theoretical',
+        items: [
+          dict.Algorithms || 'Algorithms & Data Structures',
+          dict.Compilers || 'Compiler Design',
+          dict.Math || 'Mathematics'
+        ]
+      },
+      {
+        title: dict.Skills_Sub_Applied || 'Applied',
+        items: [
+          dict.Software_Engineering || 'Software Engineering',
+          dict.Data_Science || 'Data Science',
+          dict.Game_Development || 'Game Development'
+        ]
+      }
+    ]
+  },
+  {
+    category: dict.Education_Tutoring || 'Education & Tutoring',
+    subcategories: [
+      {
+        title: dict.Skills_Sub_Mathematics || 'Mathematics',
+        items: [
+          dict.Tutoring_SAT || 'Tutoring in SAT Math',
+          dict.Tutoring_Olympiad || 'Tutoring in Olympiad Mathematics',
+          dict.Tutoring_Math || 'Tutoring in Mathematics'
+        ]
+      },
+      {
+        title: dict.Skills_Sub_Technology || 'Technology',
+        items: [
+          dict.Tutoring_Python || 'Tutoring in Programming (Python)',
+          dict.Tutoring_Web || 'Tutoring in Web Development'
+        ]
+      }
     ]
   }
 ];

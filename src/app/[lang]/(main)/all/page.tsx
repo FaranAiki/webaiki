@@ -346,7 +346,7 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
                   <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Social}</h2>
               </div>
               <div className="bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-3xl overflow-hidden">
-                  <SocialDisplay customLinks={importantSocialLinks} hidePresentation={true} />
+                  <SocialDisplay customLinks={importantSocialLinks} hidePresentation={true} dict={dict} />
               </div>
           </section>
 

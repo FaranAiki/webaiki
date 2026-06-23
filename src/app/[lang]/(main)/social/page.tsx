@@ -44,7 +44,7 @@ export default async function SocialPage({ params }: { params: Promise<{ lang: s
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <SocialDisplay />
+      <SocialDisplay dict={dict} />
     </main>
   );
 }

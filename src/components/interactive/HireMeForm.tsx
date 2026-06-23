@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { submitHireRequest, getExistingHireRequest } from '@/app/hire-actions';
 import { executeCaptcha } from './CaptchaValidator';
-import { WorkLocation, JobType } from '@/lib/schema';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import RecaptchaNotice from '../shared/RecaptchaNotice';

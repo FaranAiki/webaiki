@@ -19,6 +19,7 @@ export interface SocialLink {
 interface SocialDisplayProps {
   customLinks?: SocialLink[];
   hidePresentation?: boolean;
+  dict?: any;
 }
 
 // Professional animation variants
@@ -163,13 +164,26 @@ export const defaultSocialLinks: SocialLink[] = [
     },
   ];
 
-export default function SocialDisplay({ customLinks, hidePresentation = false }: SocialDisplayProps) {
+export default function SocialDisplay({ customLinks, hidePresentation = false, dict = {} }: SocialDisplayProps) {
   const { isPresentationMode } = usePresentation();
   const { theme, systemTheme } = useTheme();
   
   // Need mounted state for next-themes to avoid hydration mismatch
   const [mounted, setMounted] = React.useState(false);
-  useEffect(() => setMounted(true), []);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    // Force Twitter widget to rescan the DOM and render the timeline
+    // This handles both client-side navigation and theme toggling
+    if (mounted && typeof window !== 'undefined' && (window as any).twttr && (window as any).twttr.widgets) {
+      setTimeout(() => {
+        (window as any).twttr.widgets.load();
+      }, 100);
+    }
+  }, [mounted, theme, systemTheme]);
 
   const currentTheme = theme === 'system' ? systemTheme : theme;
   const badgeTheme = mounted && currentTheme === 'dark' ? 'dark' : 'light';
@@ -228,7 +242,7 @@ export default function SocialDisplay({ customLinks, hidePresentation = false }:
           </p>
 
           <span className="mt-auto px-4 py-1.5 rounded-full border border-theme-border text-[10px] md:text-xs font-black tracking-wider text-theme-500 group-hover:bg-theme-500 group-hover:text-white group-hover:border-theme-500 transition-all">
-            View Profile
+            {dict.View_Profile || "View Profile"}
           </span>
         </a>
       );
@@ -236,18 +250,29 @@ export default function SocialDisplay({ customLinks, hidePresentation = false }:
 
     if (link.name === 'Twitter / X') {
       return (
-        <div className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-4' : 'rounded-lg p-3'} flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 w-full shadow-sm hover:shadow-lg overflow-hidden`}>
-          <div className="w-full relative flex flex-col items-center justify-center">
-            <a 
-              className="twitter-timeline w-full text-center text-xs font-bold text-theme-500" 
-              href="https://x.com/FaranAiki?ref_src=twsrc%5Etfw"
-              data-theme={badgeTheme}
-              data-chrome="nofooter noborders noheader transparent"
-            >
-              Posts by @FaranAiki
-            </a>
+        <a 
+          href={link.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-6' : 'rounded-lg p-5'} flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 w-full shadow-sm hover:shadow-lg overflow-hidden relative min-h-[300px]`}
+        >
+          {/* Accent Header */}
+          <div className="absolute top-0 inset-x-0 h-16 bg-blue-500/10 dark:bg-zinc-800/50 border-b border-blue-500/20 dark:border-zinc-700/50" />
+          
+          <div className="relative mt-2 mb-4 z-10 bg-theme-surface rounded-full p-4 border-4 border-theme-surface shadow-md group-hover:scale-110 transition-transform duration-300">
+             <Twitter size={48} className="text-blue-500 dark:text-zinc-100" />
           </div>
-        </div>
+
+          <h3 className="text-xl font-black text-foreground mb-1 relative z-10">Faran Aiki</h3>
+          <p className="text-xs text-theme-muted font-bold tracking-tight mb-6 relative z-10">
+            @FaranAiki
+          </p>
+
+          <span className="mt-auto px-6 py-2.5 rounded-full bg-blue-500 dark:bg-zinc-800 text-white text-xs font-black tracking-wider shadow-sm group-hover:bg-blue-600 dark:group-hover:bg-zinc-700 group-hover:shadow-md transition-all flex items-center gap-2">
+            <Twitter size={16} />
+            {dict.View_Profile || "View Profile"}
+          </span>
+        </a>
       );
     }
 
@@ -255,9 +280,9 @@ export default function SocialDisplay({ customLinks, hidePresentation = false }:
       return (
         <div className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-4' : 'rounded-lg p-3'} flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 w-full shadow-sm hover:shadow-lg overflow-hidden`}>
           <iframe 
-            src="https://www.instagram.com/kapanairi/embed/" 
-            className="w-full h-[500px] sm:h-[600px] rounded-lg border-0 bg-transparent"
-            allowTransparency={true}
+            src="https://www.instagram.com/mfaranaiki/embed/" 
+            className="w-full h-[400px] sm:h-[450px] rounded-lg border-0 bg-transparent"
+            allowtransparency="true"
             scrolling="no"
             frameBorder="0"
           />
@@ -270,12 +295,39 @@ export default function SocialDisplay({ customLinks, hidePresentation = false }:
         <div className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-4' : 'rounded-lg p-3'} flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 w-full shadow-sm hover:shadow-lg overflow-hidden`}>
           <iframe 
             src="https://www.tiktok.com/embed/@faranaiki07" 
-            className="w-full h-[600px] sm:h-[700px] rounded-lg border-0 bg-transparent"
+            className="w-full h-[400px] sm:h-[450px] rounded-lg border-0 bg-transparent"
             allow="fullscreen"
             scrolling="no"
             frameBorder="0"
           />
         </div>
+      );
+    }
+
+    if (link.name === 'YouTube') {
+      return (
+        <a 
+          href={link.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-6' : 'rounded-lg p-5'} flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 w-full shadow-sm hover:shadow-lg overflow-hidden relative min-h-[300px]`}
+        >
+          <div className="absolute top-0 inset-x-0 h-16 bg-red-600/10 border-b border-red-500/20" />
+          
+          <div className="relative mt-2 mb-4 z-10 bg-theme-surface rounded-full p-4 border-4 border-theme-surface shadow-md group-hover:scale-110 transition-transform duration-300">
+             <Youtube size={48} className="text-red-500" />
+          </div>
+
+          <h3 className="text-xl font-black text-foreground mb-1 relative z-10">Faran Aiki</h3>
+          <p className="text-xs text-theme-muted font-bold tracking-tight mb-6 relative z-10">
+            {dict.Official_YouTube_Channel || "Official YouTube Channel"}
+          </p>
+
+          <span className="mt-auto px-6 py-2.5 rounded-full bg-red-600 text-white text-xs font-black tracking-wider shadow-sm group-hover:bg-red-700 group-hover:shadow-md transition-all flex items-center gap-2">
+            <Youtube size={16} />
+            {dict.Subscribe || "SUBSCRIBE"}
+          </span>
+        </a>
       );
     }
 
@@ -285,13 +337,41 @@ export default function SocialDisplay({ customLinks, hidePresentation = false }:
           href={link.url}
           target="_blank"
           rel="noopener noreferrer"
-          className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-4' : 'rounded-lg p-4'} flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 w-full shadow-sm hover:shadow-lg overflow-hidden`}
+          className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-6' : 'rounded-lg p-4'} flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 w-full shadow-sm hover:shadow-lg overflow-hidden gap-4 min-h-[300px]`}
         >
-          <img 
-            src={`https://github-readme-stats.vercel.app/api?username=FaranAiki&show_icons=true&theme=${badgeTheme === 'dark' ? 'tokyonight' : 'default'}&hide_border=true&bg_color=00000000`}
-            alt="GitHub Stats"
-            className="w-full h-auto object-contain"
-          />
+          <div className="w-full flex justify-center mb-2">
+            <div className="flex items-center gap-2">
+              <Github size={24} className="text-foreground" />
+              <span className="font-bold text-foreground">@FaranAiki on GitHub</span>
+            </div>
+          </div>
+          
+          <div className="flex flex-col gap-3 w-full">
+            {/* Profile & Overall Stats */}
+            <img 
+              src={`https://github-readme-stats.vercel.app/api?username=FaranAiki&show_icons=true&theme=${badgeTheme === 'dark' ? 'tokyonight' : 'default'}&hide_border=true&bg_color=00000000`}
+              alt="GitHub Profile Stats"
+              className="w-full h-auto object-contain hover:scale-[1.02] transition-transform duration-500"
+            />
+            
+            {/* Top Languages */}
+            <img 
+              src={`https://github-readme-stats.vercel.app/api/top-langs/?username=FaranAiki&layout=compact&theme=${badgeTheme === 'dark' ? 'tokyonight' : 'default'}&hide_border=true&bg_color=00000000`}
+              alt="GitHub Top Languages"
+              className="w-full h-auto object-contain hover:scale-[1.02] transition-transform duration-500 delay-75"
+            />
+
+            {/* Commits / Activity Graph */}
+            <img 
+              src={`https://github-readme-activity-graph.vercel.app/graph?username=FaranAiki&theme=${badgeTheme === 'dark' ? 'tokyonight' : 'default'}&hide_border=true&bg_color=00000000&line=theme-500`}
+              alt="GitHub Commits Graph"
+              className="w-full h-auto object-contain hover:scale-[1.02] transition-transform duration-500 delay-150"
+            />
+          </div>
+
+          <span className="mt-2 text-xs font-bold text-theme-500 opacity-0 group-hover:opacity-100 transition-opacity">
+            {dict.View_Full_Profile || "View Full Profile →"}
+          </span>
         </a>
       );
     }
@@ -355,9 +435,9 @@ export default function SocialDisplay({ customLinks, hidePresentation = false }:
           viewport={{ once: true, amount: 0.05 }}
         >
           <div className={`container mx-auto max-w-5xl ${containerClass}`}>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4 items-start">
+            <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-6 p-4 space-y-6">
               {socialLinks.map((link) => (
-                <motion.div key={link.name} className="h-full" variants={itemVariants}>
+                <motion.div key={link.name} className="break-inside-avoid w-full" variants={itemVariants}>
                   {renderCard(link, false)}
                 </motion.div>
               ))}
