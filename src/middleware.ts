@@ -23,6 +23,19 @@ const base_cspHeader = `
     ${process.env.NODE_ENV === 'production' ? 'upgrade-insecure-requests;' : ''}
   `.replace(/\s{2,}/g, ' ').trim()
 
+/**
+ * Intercepts incoming HTTP requests to handle internationalization (i18n) routing, 
+ * session state updates, and dynamic security headers.
+ *
+ * I.S.: An incoming HTTP request is received. The request may lack a localized URL prefix, 
+ *       an updated authentication session, or necessary security headers.
+ * F.S.: The request is either redirected to a properly localized URL prefix, or it is passed 
+ *       to the application router with injected Content-Security-Policy headers and updated 
+ *       Supabase session cookies.
+ *
+ * @param request The incoming Next.js request object.
+ * @returns The resulting Next.js response, potentially containing redirection or modified headers.
+ */
 export async function middleware(request: NextRequest) {
   const { pathname, searchParams } = request.nextUrl;
 

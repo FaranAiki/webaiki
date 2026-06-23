@@ -7,6 +7,14 @@ import { env } from './env';
 const isProduction = process.env.NODE_ENV === 'production';
 const connectionString = env.DIRECT_URL || env.DATABASE_URL;
 
+/**
+ * Initializes the PostgreSQL Connection Pool (Supabase).
+ * 
+ * I.S.: The module is invoked for the first time on the server, requiring a Pool configuration 
+ *       to prevent connection leakage (opening too many connections).
+ * F.S.: A dynamic `pool` is established where the maximum limit (`max`) is adjusted 
+ *       based on the environment (production or development) to prevent query blockages.
+ */
 const pool = new Pool({
   connectionString,
   max: isProduction ? 5 : 10,

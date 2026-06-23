@@ -14,6 +14,15 @@ const cookie_default : { [key: string]: string } = {
   'theme': 'system' 
 };
 
+/**
+ * Initializes user preference cookies (such as theme and language).
+ * The language is determined based on priority: Existing cookie -> Vercel Geo-IP Header -> Default 'en'.
+ *
+ * I.S.: The application requires user preferences, but the cookies might be uninitialized 
+ *       or missing on the client side.
+ * F.S.: Default cookies for theme and a dynamically resolved language are set in the 
+ *       Next.js cookie store if they do not already exist.
+ */
 export async function initializeCookies() {
   const cookieStore = await cookies();
   
@@ -246,6 +255,20 @@ async function verifyRecaptcha(token: string) {
   return data.success && data.score >= 0.5;
 }
 
+/**
+ * Submits user feedback with reCAPTCHA validation and rate limiting.
+ *
+ * I.S.: A user attempts to submit feedback containing content, an optional image, and a captcha token.
+ *       The submission is not yet validated against security rules or database constraints.
+ * F.S.: If valid and the user has not reached the submission limit, the feedback is securely 
+ *       inserted into the database, the user's profile is synchronized, and the feedback cache is invalidated.
+ *       Otherwise, an appropriate error response is returned.
+ *
+ * @param content The text content of the feedback.
+ * @param image An optional URL of an uploaded image.
+ * @param captchaToken The reCAPTCHA v3 token provided by the client.
+ * @returns An object indicating success, or an error response in JSON format upon failure.
+ */
 export async function submitFeedback(content: string, image?: string, captchaToken?: string) {
   if (!captchaToken) {
     return AppError.badRequest('Captcha_Required').toJSON();
