@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getDictionary } from '@/components/layout/Translator';
-import { getBaseMetadata, getLanguageAlternates, SITE_URL, getNewsArticleSchema } from '@/lib/seo';
+import { getBaseMetadata, getLanguageAlternates, SITE_URL, getNewsArticleSchema, extractKeywords } from '@/lib/seo';
 import { getNewsItem } from '@/app/actions';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
@@ -14,12 +14,15 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   if (!news) return getBaseMetadata();
 
   const baseMetadata = getBaseMetadata();
+  const lsiKeywords = extractKeywords(news.content, 15);
+  const existingKeywords = Array.isArray(baseMetadata.keywords) ? baseMetadata.keywords : [];
 
   return {
     ...baseMetadata,
     title: news.title,
     description: news.content.substring(0, 160),
-    alternates: getLanguageAlternates(`${SITE_URL}/${lang}/news/${id}`),
+    keywords: [...existingKeywords, news.title, ...lsiKeywords],
+    alternates: getLanguageAlternates(`/news/${id}`),
     openGraph: {
       ...baseMetadata.openGraph,
       title: news.title,

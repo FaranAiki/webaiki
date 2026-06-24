@@ -20,11 +20,9 @@ import {
 
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { LayoutSwitcher } from '../shared/LayoutSwitcher';
-import { pdfjs, Document, Page } from 'react-pdf';
-import 'react-pdf/dist/Page/AnnotationLayer.css';
-import 'react-pdf/dist/Page/TextLayer.css';
+import dynamic from 'next/dynamic';
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+const PdfPreview = dynamic(() => import('@/components/interactive/PdfPreview'), { ssr: false });
 
 export type Job = {
     date: string;
@@ -135,7 +133,7 @@ const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, j
         >
             {hasImage ? (
                 job.image[0].toLowerCase().endsWith('.pdf') ? (
-                    <PdfRenderer url={job.image[0]} isExpanded={isExpanded} lang={lang} />
+                    <PdfRenderer url={job.image[0]} isExpanded={isExpanded} />
                 ) : (
                     <Image
                         src={job.image[0]}
@@ -230,40 +228,14 @@ const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, j
 };
 BentoCard.displayName = 'BentoCard';
 
-const PdfRenderer = ({ url, isExpanded, lang = 'en' }: { url: string, isExpanded?: boolean, lang?: string }) => {
+const PdfRenderer = ({ url, isExpanded }: { url: string, isExpanded?: boolean }) => {
     const ref = React.useRef(null);
     const isInView = useInView(ref, { once: true, margin: "400px" });
-
-    const getLoadingText = () => {
-        switch (lang) {
-            case 'id': return 'Memuat PDF...';
-            case 'jp': return 'PDFを読み込み中...';
-            case 'zh': return '正在加载PDF...';
-            case 'ko': return 'PDF 로드 중...';
-            case 'fr': return 'Chargement du PDF...';
-            case 'es': return 'Cargando PDF...';
-            default: return 'Loading PDF...';
-        }
-    };
-
-    const getFailedText = () => {
-        switch (lang) {
-            case 'id': return 'Gagal memuat PDF';
-            case 'jp': return 'PDFの読み込みに失敗しました';
-            case 'zh': return '无法加载PDF';
-            case 'ko': return 'PDF 로드 실패';
-            case 'fr': return 'Échec du chargement du PDF';
-            case 'es': return 'Error al cargar el PDF';
-            default: return 'Failed to load PDF';
-        }
-    };
 
     return (
         <div ref={ref} className={`w-full h-full flex justify-center items-center overflow-hidden bg-theme-surface-strong ${isExpanded ? 'scale-110 blur-sm brightness-[0.3]' : 'group-hover:scale-105 transition-transform duration-700'}`}>
             {isInView ? (
-                <Document file={url} loading={<PlaceholderIcon company={getLoadingText()} />} error={<PlaceholderIcon company={getFailedText()} />}>
-                    <Page pageNumber={1} width={300} renderTextLayer={false} renderAnnotationLayer={false} />
-                </Document>
+                <PdfPreview fileUrl={url} width={300} priority={true} />
             ) : (
                 <PlaceholderIcon company="..." />
             )}
@@ -416,7 +388,7 @@ export default function ExperiencesClient({
                                         <div className="relative w-full h-full max-w-[400px] max-h-[400px] aspect-square flex justify-center items-center overflow-hidden transform-gpu rounded-3xl">
                                             {job.image && job.image.length > 0 ? (
                                                 job.image[0].toLowerCase().endsWith('.pdf') ? (
-                                                    <PdfRenderer url={job.image[0]} lang={lang} />
+                                                    <PdfRenderer url={job.image[0]} />
                                                 ) : (
                                                     <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill className="object-contain transition-transform duration-700 hover:scale-[1.03] scale-[1.01]" sizes="(max-width: 768px) 100vw, 400px" priority={true} loading="eager" />
                                                 )
@@ -435,7 +407,7 @@ export default function ExperiencesClient({
                                         <div className="absolute inset-0 z-0">
                                             {job.image[0].toLowerCase().endsWith('.pdf') ? (
                                                 <div className="w-full h-full opacity-20 dark:brightness-[0.35] brightness-[1.1] grayscale-[0.2]">
-                                                    <PdfRenderer url={job.image[0]} isExpanded={true} lang={lang} />
+                                                    <PdfRenderer url={job.image[0]} isExpanded={true} />
                                                 </div>
                                             ) : (
                                                 <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="100vw" className={`object-cover transition-all duration-1000 dark:brightness-[0.35] brightness-[1.1] grayscale-[0.2] opacity-20`} priority={true} loading="eager" />
@@ -517,7 +489,7 @@ export default function ExperiencesClient({
                                             <div className="aspect-[4/5] relative rounded-2xl overflow-hidden shadow-theme-shadow transition-all duration-700 group-hover:rotate-0 rotate-3 group-hover:scale-105">
                                                 {job.image && job.image.length > 0 ? (
                                                     job.image[0].toLowerCase().endsWith('.pdf') ? (
-                                                        <PdfRenderer url={job.image[0]} lang={lang} />
+                                                        <PdfRenderer url={job.image[0]} />
                                                     ) : (
                                                         <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
                                                     )
@@ -603,7 +575,7 @@ export default function ExperiencesClient({
                                                     >
                                                         {hasValidImage ? (
                                                             activeImageSrc!.toLowerCase().endsWith('.pdf') ? (
-                                                                <PdfRenderer url={activeImageSrc!} isExpanded={true} lang={lang} />
+                                                                <PdfRenderer url={activeImageSrc!} isExpanded={true} />
                                                             ) : (
                                                                 <Image fill sizes="(max-width: 768px) 100vw, 50vw" src={activeImageSrc!} placeholder="blur" blurDataURL={shimmer600x400} alt={`${activeJob.title} at ${activeJob.company} - Muhammad Faran Aiki Portfolio`} className="object-cover" priority />
                                                             )
@@ -663,7 +635,7 @@ export default function ExperiencesClient({
                                                                     {job.image && job.image.length > 0 && (
                                                                         <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-4 bg-theme-surface-strong">
                                                                             {isPdf ? (
-                                                                                <PdfRenderer url={job.image[0]} lang={lang} />
+                                                                                <PdfRenderer url={job.image[0]} />
                                                                             ) : (
                                                                                 <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="300px" className="object-cover group-hover:scale-110 transition-transform duration-700" />
                                                                             )}
@@ -714,7 +686,7 @@ export default function ExperiencesClient({
                                                                 {job.image && job.image.length > 0 && (
                                                                     <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-4 bg-theme-surface-strong">
                                                                         {job.image[0].toLowerCase().endsWith('.pdf') ? (
-                                                                            <PdfRenderer url={job.image[0]} lang={lang} />
+                                                                            <PdfRenderer url={job.image[0]} />
                                                                         ) : (
                                                                             <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="400px" className="object-cover group-hover:scale-110 transition-transform duration-700" />
                                                                         )}
@@ -748,7 +720,7 @@ export default function ExperiencesClient({
                                                     {job.image && job.image.length > 0 && (
                                                         <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-3 bg-theme-surface-strong">
                                                             {job.image[0].toLowerCase().endsWith('.pdf') ? (
-                                                                <PdfRenderer url={job.image[0]} lang={lang} />
+                                                                <PdfRenderer url={job.image[0]} />
                                                             ) : (
                                                                 <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="100vw" className="object-cover" />
                                                             )}
@@ -794,7 +766,7 @@ export default function ExperiencesClient({
                                         <div className="relative aspect-video mb-6 rounded-xl overflow-hidden bg-theme-surface-strong">
                                             {job.image && job.image.length > 0 ? (
                                                 job.image[0].toLowerCase().endsWith('.pdf') ? (
-                                                    <PdfRenderer url={job.image[0]} lang={lang} />
+                                                    <PdfRenderer url={job.image[0]} />
                                                 ) : (
                                                     <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform group-hover:scale-105" placeholder="blur" blurDataURL={shimmer400x225} />
                                                 )
@@ -878,7 +850,7 @@ export default function ExperiencesClient({
                                                 <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl transition-transform duration-700 group-hover:scale-[1.02] bg-theme-surface-strong">
                                                     {job.image && job.image.length > 0 ? (
                                                         job.image[0].toLowerCase().endsWith('.pdf') ? (
-                                                            <PdfRenderer url={job.image[0]} isExpanded lang={lang} />
+                                                            <PdfRenderer url={job.image[0]} isExpanded />
                                                         ) : (
                                                             <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
                                                         )

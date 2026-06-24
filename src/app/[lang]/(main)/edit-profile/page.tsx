@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getDictionary } from '@/components/layout/Translator';
 import EditProfileForm from '@/components/interactive/EditProfileForm';
-import { getBaseMetadata, getLanguageAlternates, SITE_URL } from '@/lib/seo';
+import { getBaseMetadata, getLanguageAlternates } from '@/lib/seo';
 import { createClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
 
@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     ...baseMetadata,
     title,
     description,
-    alternates: getLanguageAlternates(`${SITE_URL}/${lang}/edit-profile`),
+    alternates: getLanguageAlternates('/edit-profile'),
   };
 }
 

@@ -344,7 +344,7 @@ export function VisionMissionSection(props: AboutSubSectionProps) {
           <div className="flex-shrink-0 transform-gpu">
             <div className={`relative ${props.isCompact ? 'w-32 h-32 md:w-40 md:h-40' : 'w-56 h-56 md:w-72 md:h-72'} transform-gpu`}>
               <Image
-                src="/images/background/bg_aboutme_light.webp"
+                src="/images/photo_faran_aiki/1_fa_photo_linkedin.webp"
                 alt="Muhammad Faran Aiki Software Engineer ITB - Portrait Profile"
                 fill
                 placeholder="blur"

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getDictionary } from '@/components/layout/Translator';
 import FeedbackDisplay from '@/components/interactive/FeedbackDisplay';
-import { getBaseMetadata, getLanguageAlternates, SITE_URL } from '@/lib/seo';
+import { getBaseMetadata, getLanguageAlternates } from '@/lib/seo';
 import { createClient } from '@/utils/supabase/server';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     ...baseMetadata,
     title,
     description,
-    alternates: getLanguageAlternates(`${SITE_URL}/${lang}/feedback`),
+    alternates: getLanguageAlternates('/feedback'),
   };
 }
 

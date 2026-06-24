@@ -1,5 +1,14 @@
 import { Metadata } from "next";
 
+export function extractKeywords(text: string, limit: number = 10): string[] {
+  if (!text) return [];
+  // Basic keyword extraction: remove common stop words and return most frequent words
+  const stopWords = new Set(['the', 'is', 'at', 'which', 'on', 'and', 'a', 'an', 'to', 'in', 'for', 'of', 'with', 'that', 'this', 'it', 'as', 'by', 'are', 'be', 'or', 'from', 'can', 'we', 'you', 'your', 'our', 'all', 'any', 'have', 'has', 'was', 'were', 'been', 'will', 'would', 'should', 'could', 'but', 'not', 'if', 'then', 'than', 'more', 'less', 'about', 'some', 'many', 'much', 'very', 'how', 'what', 'when', 'where', 'who', 'why', 'there', 'their', 'they', 'them', 'these', 'those']);
+  const words = text.toLowerCase().replace(/[^a-z0-9\s]/g, '').split(/\s+/).filter(w => w.length > 3 && !stopWords.has(w));
+  const counts = words.reduce((acc, w) => { acc[w] = (acc[w] || 0) + 1; return acc; }, {} as Record<string, number>);
+  return Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, limit).map(e => e[0]);
+}
+
 export const LOCALES = ['en', 'id', 'zh', 'jp', 'ru', 'fr', 'ar', 'es', 'ko', 'de', 'nl', 'ha', 'he', 'el', 'hi', 'pt', 'bn', 'vi'];
 
 // Map locale codes to hreflang codes (Next.js Metadata alternates.languages keys)

@@ -1,4 +1,5 @@
 import { Inter, Roboto_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { Providers } from "@/components/providers/Providers";
 import { headers } from "next/headers";
@@ -41,7 +42,13 @@ export default async function RootLayout({
         {process.env.NEXT_PUBLIC_SUPABASE_URL && (
           <link rel="preconnect" href={process.env.NEXT_PUBLIC_SUPABASE_URL} crossOrigin="anonymous" />
         )}
-        <script
+      </head>
+      <body className={`${inter.variable} ${robotoMono.variable} font-sans antialiased`}>
+        <Providers>
+          {children}
+        </Providers>
+        <Script
+          id="faq-schema"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(getFaqSchema([
@@ -61,11 +68,6 @@ export default async function RootLayout({
           }}
           nonce={nonce}
         />
-      </head>
-      <body className={`${inter.variable} ${robotoMono.variable} font-sans antialiased`}>
-        <Providers>
-          {children}
-        </Providers>
       </body>
     </html>
   );
