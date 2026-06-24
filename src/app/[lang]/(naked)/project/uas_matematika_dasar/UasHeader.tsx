@@ -44,7 +44,7 @@ export default function UasHeader() {
               <div className="text-center p-4">
                 <Image 
                   src="/images/donation.webp" 
-                  alt="Donasi QRIS" 
+                  alt="Donasi QRIS Faran Aiki Matematika Dasar" 
                   fill sizes="300px" 
                   className="object-contain" 
                 /> 

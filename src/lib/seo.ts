@@ -65,21 +65,30 @@ export function getNewsArticleSchema(news: { title: string; image?: string | nul
   };
 }
 
-export function getBaseMetadata(): Metadata {
+export function getBaseMetadata(dict: Record<string, string> = {}): Metadata {
   return {
     metadataBase: new URL(SITE_URL),
     title: {
       default: 'Muhammad Faran Aiki',
       template: '%s | Muhammad Faran Aiki',
     },
-    description: "Official personal website of Muhammad Faran Aiki - Software Engineer, Computer Science Student at ITB, and SAT Tutor.",
+    description: dict.SEO_Description || "Official personal website of Muhammad Faran Aiki - Software Engineer, Computer Science Student at ITB, and SAT Tutor.",
     keywords: [
       "Muhammad Faran Aiki", "Faran Aiki", "Faran", "Aiki", "faranaiki",
+      "muhammad faran", "muhammad aiki", "faran itb", "faran onmipa", "faran aiki itb", "muhammad faran itb",
+      "software engineer faran", "faran software engineer", "matematika faran", "mtk faran", "faran mtk",
+      "faran aiki olimpiade matematika", "muhammad faran olimpiade", "faran olimpiade matematika",
+      "tutor matematika faran", "sat tutor faran aiki", "guru privat matematika", "penulis modul utbk",
+      "analitica software engineer", "gdg itb faran", "paragon scholarship faran", "alkyl compiler faran",
+      "osn matematika faran", "faran osn", "hackerrank faran", "kmnr faran", "eduversal faran",
+      "faran kangaroo math", "faran hackvidia", "kompetisi literasi numerasi faran", "sertifikat faran aiki",
       "webaiki", "web aiki", "webaiki faran aiki",
+      "who is muhammad faran aiki", "faran aiki linkedin", "faran aiki github", "hire next.js developer indonesia",
       "Software Engineer", "Web Developer", "ITB Student", "STI ITB",
-      "Bandung Institute of Technology", "Portfolio", "Indonesia",
-      "Full Stack Developer", "Data Analyst", "SAT Tutor", "ONMIPA Matematika",
-      "Next.js Developer", "React Developer", "TypeScript", "Hire Muhammad Faran Aiki"
+      "Bandung Institute of Technology", "Institut Teknologi Bandung", "Portfolio", "Indonesia",
+      "Full Stack Developer", "Data Analyst", "SAT Tutor", "ONMIPA Matematika", "ONMIPA PT",
+      "Next.js Developer", "React Developer", "TypeScript", "Hire Muhammad Faran Aiki", "Best Software Engineer Indonesia",
+      dict.Software_Engineer || "Software Engineer", dict.Mathematics || "Mathematics"
     ],
     authors: [{ name: "Muhammad Faran Aiki", url: SITE_URL }],
     creator: "Muhammad Faran Aiki",
@@ -165,21 +174,32 @@ export function getPersonSchema(lang: string, description?: string) {
     "name": "Muhammad Faran Aiki",
     "givenName": "Muhammad Faran",
     "familyName": "Aiki",
-    "additionalName": ["Faran", "Aiki"],
+    "additionalName": ["Faran", "Aiki", "Muhammad Aiki"],
+    "alternateName": ["Faran ITB", "Faran ONMIPA", "FaranAiki", "mfaranaiki"],
     "url": SITE_URL,
     "image": `${SITE_URL}/images/og-preview.jpg`,
     "sameAs": [
-      "https://github.com/faranaiki",
-      "https://linkedin.com/in/faranaiki",
-      "https://faranaiki.site"
+      "https://github.com/FaranAiki",
+      "https://www.linkedin.com/in/faranaiki/",
+      "https://www.instagram.com/mfaranaiki/",
+      "https://x.com/FaranAiki",
+      "https://linktr.ee/FaranAiki",
+      "https://www.youtube.com/@FaranAiki",
+      "https://myanimelist.net/profile/FaranAiki"
     ],
     "jobTitle": "Software Engineer",
-    "description": description || "Muhammad Faran Aiki is a Software Engineer and Computer Science Student at ITB, specializing in full-stack development and data analysis.",
-    "knowsAbout": ["Software Engineering", "Mathematics", "Python", "React", "Next.js", "Flutter"],
-    "alumniOf": {
-      "@type": "CollegeOrUniversity",
-      "name": "Bandung Institute of Technology"
-    }
+    "description": description || "Muhammad Faran Aiki is a Software Engineer, Mathematics Enthusiast, ONMIPA Medalist, and Computer Science Student at ITB (Institut Teknologi Bandung). He specializes in full-stack web development and data analysis.",
+    "knowsAbout": ["Software Engineering", "Mathematics", "ONMIPA", "Python", "React", "Next.js", "Flutter", "Web Development"],
+    "alumniOf": [
+      {
+        "@type": "CollegeOrUniversity",
+        "name": "Bandung Institute of Technology",
+        "alternateName": ["ITB", "Institut Teknologi Bandung"]
+      }
+    ],
+    "award": [
+      "ONMIPA Matematika Medalist"
+    ]
   };
 }
 

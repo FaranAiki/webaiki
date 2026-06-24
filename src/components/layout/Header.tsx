@@ -28,7 +28,7 @@ import { formatCJK } from '@/lib/utils';
 import { useAppStore } from '@/lib/store';
 import { useAuthActions } from '@/app/auth-hooks';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], preload: false });
 
 export interface NavLink {
     name: string;
@@ -621,7 +621,7 @@ export default function Header(props: HeaderProps) {
                                         <div className="relative w-8 h-8 rounded-full overflow-hidden border border-theme-border shadow-sm">
                                             <Image
                                                 src={props.user.user_metadata?.avatar_url || '/images/no_photo_profile.webp'}
-                                                alt={props.user.user_metadata?.full_name || props.user.email || 'User'}
+                                                alt={`${props.user.user_metadata?.full_name || props.user.email || 'User'} - Faran Aiki Portfolio Profile`}
                                                 fill
                                                 sizes="32px"
                                                 className="object-cover"
@@ -821,7 +821,7 @@ export default function Header(props: HeaderProps) {
                                                     <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-theme-border shadow-md flex-shrink-0">
                                                         <Image
                                                             src={props.user.user_metadata?.avatar_url || '/images/no_photo_profile.webp'}
-                                                            alt={props.user.user_metadata?.full_name || props.user.email || 'User'}
+                                                            alt={`${props.user.user_metadata?.full_name || props.user.email || 'User'} - Faran Aiki Portfolio Profile`}
                                                             fill
                                                             sizes="48px"
                                                             className="object-cover"

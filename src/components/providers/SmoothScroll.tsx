@@ -17,15 +17,15 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     if (!mounted) return;
 
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 1,
+      wheelMultiplier: 1.15,
       // Fix for mobile and desktop lag: let native touch handle scroll, or sync it correctly.
       syncTouch: true,
-      touchMultiplier: 2,
+      touchMultiplier: 2.5,
       autoRaf: true, // Let Lenis handle RAF natively (v1.1+)
     });
 

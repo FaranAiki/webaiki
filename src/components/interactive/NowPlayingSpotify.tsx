@@ -65,7 +65,7 @@ export default function NowPlaying() {
         <Link href={data.songUrl} target="_blank" rel="noopener noreferrer" className="group flex items-center space-x-3">
           {data.albumImageUrl && (
             <div className="w-10 h-10 relative flex-shrink-0">
-              <Image src={data.albumImageUrl} alt={data.title} fill sizes="64px" className="rounded-md object-cover"/>
+              <Image src={data.albumImageUrl} alt={`${data.title} - Faran Aiki Spotify`} fill sizes="64px" className="rounded-md object-cover"/>
             </div>
           )}
           <div className="overflow-hidden">

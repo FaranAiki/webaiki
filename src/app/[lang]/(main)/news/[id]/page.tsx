@@ -68,7 +68,7 @@ export default async function NewsDetailPage({ params }: { params: Promise<{ lan
                 {news.author.avatarUrl ? (
                   <Image
                     src={news.author.avatarUrl}
-                    alt={news.author.name || 'Author'}
+                    alt={`${news.author.name || 'Author'} - Muhammad Faran Aiki News Portfolio`}
                     fill
                     className="object-cover"
                   />
@@ -98,7 +98,7 @@ export default async function NewsDetailPage({ params }: { params: Promise<{ lan
           <div className="relative w-full aspect-video rounded-3xl overflow-hidden border border-theme-border shadow-2xl">
             <Image
               src={news.image}
-              alt={news.title}
+              alt={`${news.title} - Muhammad Faran Aiki News Portfolio`}
               fill
               className="object-cover"
               priority

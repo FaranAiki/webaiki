@@ -10,7 +10,7 @@ import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema }
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang);
-  const baseMetadata = getBaseMetadata();
+  const baseMetadata = getBaseMetadata(dict);
 
   return {
     ...baseMetadata,

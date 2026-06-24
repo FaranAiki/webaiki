@@ -60,7 +60,7 @@ const BentoCertificateCard = ({
                 ) : (
                     <Image
                         src={filePath}
-                        alt={fileName}
+                        alt={`${fileName} Certificate Faran Aiki`}
                         fill
                         className={`object-cover transition-all duration-700 ${isExpanded ? 'scale-110 blur-sm brightness-[0.3]' : 'opacity-80 group-hover:opacity-100'}`}
                         sizes="(max-width: 768px) 50vw, 33vw"
@@ -256,7 +256,7 @@ export default function CertificatesDisplay({
                       ) : (
                         <Image
                           src={filePath}
-                          alt={fileName}
+                          alt={`${fileName} Certificate Faran Aiki`}
                           fill
                           className="object-contain scale-[1.01]"
                           sizes="(max-width: 768px) 100vw, 33vw"
@@ -374,7 +374,7 @@ export default function CertificatesDisplay({
                                 ) : (
                                     <Image
                                     src={filePath}
-                                    alt={fileName}
+                                    alt={`${fileName} Certificate Faran Aiki`}
                                     fill
                                     className="object-cover scale-[1.01]"
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -425,7 +425,7 @@ export default function CertificatesDisplay({
                                                 <PdfPreview fileUrl={filePath} />
                                             </div>
                                         ) : (
-                                            <Image src={filePath} alt={fileName} fill className="object-cover transition-transform group-hover:scale-105" sizes="(max-width: 768px) 100vw, 33vw" />
+                                            <Image src={filePath} alt={`${fileName} Certificate - Muhammad Faran Aiki Portfolio`} fill className="object-cover transition-transform group-hover:scale-105" sizes="(max-width: 768px) 100vw, 33vw" />
                                         )}
                                     </a>
                                     <div className="p-3">
@@ -462,7 +462,7 @@ export default function CertificatesDisplay({
                                   <PdfPreview fileUrl={filePath} />
                               </div>
                           ) : (
-                              <Image src={filePath} alt={item.fileName} fill className="object-cover" sizes="(max-width: 768px) 100vw, 25vw" />
+                              <Image src={filePath} alt={`${item.fileName} Certificate - Muhammad Faran Aiki Portfolio`} fill className="object-cover" sizes="(max-width: 768px) 100vw, 25vw" />
                           )}
                         </a>
                         <div className="p-4">

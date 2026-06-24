@@ -153,7 +153,7 @@ export default function EditProfileForm({ dict, user }: EditProfileFormProps) {
               {avatarUrl ? (
                 <Image
                   src={avatarUrl}
-                  alt={name || 'User'}
+                  alt={`${name || 'User'} - Faran Aiki Portfolio Profile`}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />

@@ -308,7 +308,7 @@ export default function Background({ carousel, showOverlay = true }: BackgroundP
                   <Image
                       fill={true}
                       src={`/images/background/${carousel[currentIndex]}`}
-                      alt={`Background image ${currentIndex + 1}`}
+                      alt={`Background image ${currentIndex + 1} - Muhammad Faran Aiki Portfolio`}
                       className="w-full h-full object-cover"
                       sizes="100vw"
                       quality={75}

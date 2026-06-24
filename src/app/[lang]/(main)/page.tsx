@@ -9,7 +9,7 @@ import { NewsItem } from '@/lib/types';
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang);
-  const baseMetadata = getBaseMetadata();
+  const baseMetadata = getBaseMetadata(dict);
 
   const title = `Muhammad Faran Aiki | ${dict.Software_Engineer || 'Software Engineer'} & ${dict.College || 'ITB Student'}`;
   const description = dict.SEO_Home_Description || `Portfolio of Muhammad Faran Aiki, a Software Engineer and student at Bandung Institute of Technology. Explore projects, work experience, and insights from Faran.`;

@@ -28,7 +28,7 @@ export default function NotFoundClient({ dict, lang }: NotFoundClientProps) {
            <div className="w-32 h-32 md:w-48 md:h-48 relative rounded-full overflow-hidden border-4 border-theme-500/50 shadow-2xl">
               <Image
                 src="/images/photo_faran_aiki/1_fa_photo_linkedin.webp"
-                alt="404"
+                alt="404 Not Found Faran Aiki Portfolio"
                 fill
                 className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
               />

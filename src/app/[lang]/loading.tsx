@@ -76,7 +76,7 @@ export default function Loading() {
         <div className="relative p-6 bg-theme-surface/80 rounded-full shadow-2xl border border-theme-border animate-float backdrop-blur-xl ring-4 ring-white/5">
           <Image
             src="/icon.ico"
-            alt="Faran Aiki"
+            alt="Muhammad Faran Aiki Loading Screen Portfolio"
             width={110}
             height={110}
             className="rounded-full shadow-lg"

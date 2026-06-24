@@ -275,7 +275,7 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
                       
                       {imageUrl && (
                         <div className="relative w-20 h-20 rounded-xl overflow-hidden border border-theme-border">
-                          <Image src={imageUrl} alt="News" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
+                          <Image src={imageUrl} alt={`${title || 'News Preview'} - News Muhammad Faran Aiki Portfolio`} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
                           <button 
                             type="button"
                             onClick={() => setImageUrl('')}
@@ -343,7 +343,7 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
                       <div className="relative w-full h-48 overflow-hidden">
                         <Image
                           src={item.image}
-                          alt={item.title}
+                          alt={`${item.title} - Muhammad Faran Aiki News Portfolio`}
                           fill
                           className="object-cover"
                         />
@@ -405,7 +405,7 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
                       <div className="relative w-full h-64 md:h-96 overflow-hidden">
                         <Image
                           src={item.image}
-                          alt={item.title}
+                          alt={`${item.title} - Muhammad Faran Aiki News Portfolio`}
                           fill
                           className="object-cover transition-transform duration-700 group-hover:scale-110"
                         />
@@ -421,7 +421,7 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
                           {item.author.avatarUrl ? (
                             <Image
                               src={item.author.avatarUrl}
-                              alt={item.author.name || 'Author'}
+                              alt={`${item.author.name || 'Author'} - Muhammad Faran Aiki News Portfolio`}
                               fill
                               className="object-cover"
                             />

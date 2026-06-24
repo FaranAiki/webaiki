@@ -211,7 +211,7 @@ export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientP
                       <div className="relative h-48 overflow-hidden">
                         <Image
                           src={item.image}
-                          alt={item.title}
+                          alt={`${item.title} - Highlight Muhammad Faran Aiki Portfolio`}
                           fill
                           sizes="(max-width: 768px) 100vw, 33vw"
                           loading="lazy"
@@ -247,7 +247,7 @@ export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientP
                         <div className="flex items-center gap-2">
                           <div className="w-6 h-6 rounded-full overflow-hidden border border-theme-border bg-theme-surface-strong flex items-center justify-center">
                             {item.author.avatarUrl ? (
-                              <Image src={item.author.avatarUrl} alt="author" width={24} height={24} />
+                              <Image src={item.author.avatarUrl} alt="Author Faran Aiki Portfolio" width={24} height={24} />
                             ) : (
                               <User size={12} className="text-theme-muted" />
                             )}

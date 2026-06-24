@@ -21,7 +21,7 @@ import {
   Comfortaa
 } from 'next/font/google';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter', preload: false });
 const roboto = Roboto({ weight: ['400', '700'], subsets: ['latin'], variable: '--font-roboto', preload: false });
 const openSans = Open_Sans({ subsets: ['latin'], variable: '--font-open-sans', preload: false });
 const lato = Lato({ weight: ['400', '700'], subsets: ['latin'], variable: '--font-lato', preload: false });

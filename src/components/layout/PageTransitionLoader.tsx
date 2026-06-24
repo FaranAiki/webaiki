@@ -121,7 +121,7 @@ export default function PageTransitionLoader({ label }: { label: string }) {
             <div className="relative flex items-center justify-center w-16 h-16">
               {/* Center Logo */}
               <div className="absolute inset-0 flex items-center justify-center animate-pulse">
-                 <Image src="/icon.ico" alt="Loading" width={24} height={24} className="opacity-80" priority />
+                 <Image src="/icon.ico" alt="Loading Page Muhammad Faran Aiki Portfolio" width={24} height={24} className="opacity-80" priority />
               </div>
 
               {/* Progress SVG */}

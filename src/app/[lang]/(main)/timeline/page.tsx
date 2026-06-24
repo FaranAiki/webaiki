@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
 import "../../../globals.css";
 import { getDictionary } from '@/components/layout/Translator';
 import ExperiencesClient from '@/components/portfolio/ExperienceDisplayer';

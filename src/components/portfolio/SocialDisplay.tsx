@@ -122,7 +122,7 @@ export const defaultSocialLinks: SocialLink[] = [
       name: "TikTok",
       username: "@faranaiki07",
       url: "https://www.tiktok.com/@faranaiki07",
-      icon: <Image alt="Tiktok icon" width="48" height="48" src="/images/social/tiktok.webp" className="dark:brightness-0 dark:invert" />,
+      icon: <Image alt="TikTok Faran Aiki Social Link" width="48" height="48" src="/images/social/tiktok.webp" className="dark:brightness-0 dark:invert" />,
       color: "hover:border-black"
     },
     {
@@ -143,7 +143,7 @@ export const defaultSocialLinks: SocialLink[] = [
       name: "Lichess",
       username: "FaranAiki",
       url: "https://lichess.org/@/FaranAiki",
-      icon: <Image alt='Lichess icon' width="48" height="48" src="/images/social/lichess.webp" className="dark:brightness-0 dark:invert" />,
+      icon: <Image alt="Lichess Faran Aiki Social Link" width="48" height="48" src="/images/social/lichess.webp" className="dark:brightness-0 dark:invert" />,
       color: "hover:border-white"
     },
     {
@@ -308,7 +308,7 @@ export default function SocialDisplay({ customLinks, hidePresentation = false, d
           <iframe 
             src="https://www.instagram.com/mfaranaiki/embed/" 
             className="w-full h-[400px] sm:h-[450px] rounded-lg border-0 bg-transparent"
-            allowtransparency="true"
+            allowTransparency={true}
             scrolling="no"
             frameBorder="0"
           />

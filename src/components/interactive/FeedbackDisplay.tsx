@@ -246,7 +246,7 @@ export default function FeedbackDisplay({ dict, lang, currentUserId }: FeedbackD
                       </label>
                       {imageUrl && (
                         <div className="relative w-10 h-10 rounded-lg overflow-hidden border border-theme-border">
-                          <Image src={imageUrl} alt="Feedback" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
+                          <Image src={imageUrl} alt="Uploaded Preview - Muhammad Faran Aiki Testimonial" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
                         </div>
                       )}
                     </div>
@@ -298,7 +298,7 @@ export default function FeedbackDisplay({ dict, lang, currentUserId }: FeedbackD
                       {item.user.avatarUrl ? (
                         <Image
                           src={item.user.avatarUrl}
-                          alt={item.user.name || 'User'}
+                          alt={`${item.user.name || 'User'} - Faran Aiki Reviewer`}
                           fill
                           className="object-cover"
                         />
@@ -324,7 +324,7 @@ export default function FeedbackDisplay({ dict, lang, currentUserId }: FeedbackD
                   </p>
                   {item.image && (
                     <div className="relative w-full aspect-video rounded-2xl overflow-hidden border border-theme-border">
-                      <Image src={item.image} alt="Feedback" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
+                      <Image src={item.image} alt={`${item.user.name || 'User'} Testimonial - Muhammad Faran Aiki`} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
                     </div>
                   )}
                 </div>
@@ -360,7 +360,7 @@ export default function FeedbackDisplay({ dict, lang, currentUserId }: FeedbackD
                         {item.user.avatarUrl ? (
                           <Image
                             src={item.user.avatarUrl}
-                            alt={item.user.name || 'User'}
+                            alt={`${item.user.name || 'User'} - Faran Aiki Reviewer`}
                             fill
                             className="object-cover"
                           />
@@ -410,7 +410,7 @@ export default function FeedbackDisplay({ dict, lang, currentUserId }: FeedbackD
 
                         {item.image && (
                           <div className="relative w-full max-w-sm aspect-video rounded-xl overflow-hidden border border-theme-border mt-4">
-                            <Image src={item.image} alt="Feedback" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
+                            <Image src={item.image} alt={`${item.user.name || 'User'} Testimonial - Muhammad Faran Aiki`} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
                           </div>
                         )}
                       </div>

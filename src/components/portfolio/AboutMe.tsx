@@ -257,7 +257,7 @@ export function PhilosophySection(props: AboutSubSectionProps) {
             <div className={`relative ${props.isCompact ? 'w-32 h-32 md:w-40 md:h-40' : 'w-56 h-56 md:w-72 md:h-72'} transform-gpu`}>
             <Image
             src={`/images/move_forward.webp`}
-            alt="Move Forward Philosophy"
+            alt="Move Forward Philosophy - Muhammad Faran Aiki Software Engineer"
             fill
             placeholder="blur"
             blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(288, 288))}`}
@@ -297,7 +297,7 @@ export function PrinciplesSection(props: AboutSubSectionProps) {
             <div className={`relative ${props.isCompact ? 'w-32 h-32 md:w-40 md:h-40' : 'w-56 h-56 md:w-72 md:h-72'} transform-gpu`}>
               <Image
                 src={`/images/tree.webp`}
-                alt="Guiding Principles Tree"
+                alt="Guiding Principles Tree - Muhammad Faran Aiki Portfolio"
                 fill
                 placeholder="blur"
                 blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(288, 288))}`}
@@ -344,8 +344,8 @@ export function VisionMissionSection(props: AboutSubSectionProps) {
           <div className="flex-shrink-0 transform-gpu">
             <div className={`relative ${props.isCompact ? 'w-32 h-32 md:w-40 md:h-40' : 'w-56 h-56 md:w-72 md:h-72'} transform-gpu`}>
               <Image
-                src={`/images/vission_mission.webp`}
-                alt="Vision and Mission"
+                src="/images/background/bg_aboutme_light.webp"
+                alt="Muhammad Faran Aiki Software Engineer ITB - Portrait Profile"
                 fill
                 placeholder="blur"
                 blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(288, 288))}`}

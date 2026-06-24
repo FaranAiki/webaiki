@@ -5,7 +5,13 @@ const SITE_URL = 'https://faranaiki.id';
 const locales = ['en', 'id', 'zh', 'jp', 'ru', 'fr', 'ar', 'es', 'ko', 'de', 'nl', 'ha', 'he', 'el', 'hi', 'pt', 'bn', 'vi'];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const routes = ['', '/portfolio', '/news', '/feedback'];
+  const routes = [
+    '', '/portfolio', '/news', '/feedback', 
+    '/all', '/timeline', '/work', '/college',
+    '/project', '/organization', '/award', '/certificate',
+    '/hire-me', '/identity', '/latest', '/literature', 
+    '/music', '/social', '/website'
+  ];
   const sitemapEntries: MetadataRoute.Sitemap = [];
 
   // Static Routes

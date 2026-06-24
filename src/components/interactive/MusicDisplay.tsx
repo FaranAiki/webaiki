@@ -161,7 +161,7 @@ export default function MusicDisplay({ youtubeItems = [], error, lang, dict = {}
                                 width={item.snippet.thumbnails.medium.width} 
                                 height={item.snippet.thumbnails.medium.height} 
                                 src={item.snippet.thumbnails.medium.url} 
-                                alt={item.snippet.title}
+                                alt={`${item.snippet.title} - Music Faran Aiki`}
                                 className="w-full h-full object-cover scale-[1.01]"
                                 />
                             </a>
@@ -264,7 +264,7 @@ export default function MusicDisplay({ youtubeItems = [], error, lang, dict = {}
                             width={item.snippet.thumbnails.medium.width} 
                             height={item.snippet.thumbnails.medium.height} 
                             src={item.snippet.thumbnails.medium.url} 
-                            alt={item.snippet.title}
+                            alt={`${item.snippet.title} - Music Faran Aiki`}
                             className="w-full h-auto object-cover scale-[1.01]"
                             loading="lazy"
                           />

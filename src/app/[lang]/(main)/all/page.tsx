@@ -148,7 +148,7 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
       name: "Link Tree",
       username: "Faran Aiki",
       url: "https://linktr.ee/FaranAiki",
-      icon: <Image alt="LinkTree icon" width="32" height="32" src="/images/social/linktree.webp" className="brightness-0 invert-[0.5] sepia-[1] hue-rotate-[70deg] saturate-[3]" />,
+      icon: <Image alt="LinkTree Muhammad Faran Aiki Social Link" width="32" height="32" src="/images/social/linktree.webp" className="brightness-0 invert-[0.5] sepia-[1] hue-rotate-[70deg] saturate-[3]" />,
       color: "hover:border-green-200"
     },
     {
