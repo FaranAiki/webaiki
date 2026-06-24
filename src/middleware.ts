@@ -37,7 +37,7 @@ const base_cspHeader = `
  * @returns The resulting Next.js response, potentially containing redirection or modified headers.
  */
 export async function middleware(request: NextRequest) {
-  const { pathname, searchParams } = request.nextUrl;
+  const { pathname } = request.nextUrl;
 
   // 1. Check if the current URL already has a language prefix
   const pathnameHasLocale = locales.some(
@@ -69,18 +69,7 @@ export async function middleware(request: NextRequest) {
     }
 
     request.nextUrl.pathname = `/${locale}${pathname}`;
-    const redirectResponse = NextResponse.redirect(request.nextUrl);
-    
-    // Minimal cookie handling for redirect
-    const settingsParams = ['theme', 'color', 'presentation_mode', 'presentation_slide_format', 'settings-font', 'settings-align', 'settings-scale', 'settings-spacing', 'settings-lineheight'];
-    settingsParams.forEach(param => {
-      const value = searchParams.get(param);
-      if (value !== null) {
-        redirectResponse.cookies.set(`__set_${param}`, value, { maxAge: 60, path: '/', sameSite: 'lax' });
-      }
-    });
-
-    return redirectResponse;
+    return NextResponse.redirect(request.nextUrl);
   }
 
   // 3. For non-redirected requests, handle session and security
@@ -110,7 +99,6 @@ export async function middleware(request: NextRequest) {
   const isPythonProject = pathname.includes('/project/script');
   
   response.headers.set('Content-Security-Policy', finalCspHeader);
-  response.headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
   
   if (isPythonProject) {
     response.headers.set('Cross-Origin-Opener-Policy', 'same-origin');
@@ -119,16 +107,6 @@ export async function middleware(request: NextRequest) {
     response.headers.set('Cross-Origin-Opener-Policy', 'unsafe-none');
     response.headers.set('Cross-Origin-Embedder-Policy', 'unsafe-none');
   }
-  response.headers.set('Cross-Origin-Resource-Policy', 'cross-origin');
-
-  // Sync settings from URL to cookies
-  const settingsParams = ['theme', 'color', 'presentation_mode', 'presentation_slide_format', 'settings-font', 'settings-align', 'settings-scale', 'settings-spacing', 'settings-lineheight'];
-  settingsParams.forEach(param => {
-    const value = searchParams.get(param);
-    if (value !== null) {
-      response.cookies.set(`__set_${param}`, value, { maxAge: 60, path: '/', sameSite: 'lax' });
-    }
-  });
 
   return response;
 }

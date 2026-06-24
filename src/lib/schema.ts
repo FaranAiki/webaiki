@@ -1,4 +1,4 @@
-import { pgTable, text, boolean, timestamp, integer, index } from 'drizzle-orm/pg-core';
+import { pgTable, text, boolean, timestamp, integer, index, pgEnum } from 'drizzle-orm/pg-core';
 import { relations } from 'drizzle-orm';
 
 export enum RegistrationReason {
@@ -33,14 +33,20 @@ export enum RequestStatus {
   REJECTED = 'REJECTED'
 }
 
+export const registrationReasonEnum = pgEnum('RegistrationReason', ['VISITOR', 'HR', 'COMMENTING', 'OTHER']);
+export const userRoleEnum = pgEnum('UserRole', ['USER', 'ADMIN']);
+export const workLocationEnum = pgEnum('WorkLocation', ['HYBRID', 'ONLINE', 'OFFLINE']);
+export const jobTypeEnum = pgEnum('JobType', ['FULL_TIME', 'PART_TIME', 'CONTRACT', 'FREELANCE']);
+export const requestStatusEnum = pgEnum('RequestStatus', ['PENDING', 'REVIEWED', 'ACCEPTED', 'REJECTED']);
+
 export const users = pgTable('User', {
   id: text('id').primaryKey(),
   email: text('email').notNull().unique(),
   username: text('username').unique(),
   name: text('name'),
   avatarUrl: text('avatarUrl'),
-  role: text('role').default('USER').notNull(),
-  registrationReason: text('registrationReason').default('VISITOR').notNull(),
+  role: userRoleEnum('role').default('USER').notNull(),
+  registrationReason: registrationReasonEnum('registrationReason').default('VISITOR').notNull(),
   createdAt: timestamp('createdAt', { mode: 'date' }).defaultNow().notNull(),
   updatedAt: timestamp('updatedAt', { mode: 'date' }).defaultNow().notNull(),
 });
@@ -96,9 +102,9 @@ export const hireRequests = pgTable('HireRequest', {
   jobTitle: text('jobTitle'),
   reason: text('reason').notNull(),
   salary: text('salary'),
-  location: text('location').default('ONLINE').notNull(),
-  jobType: text('jobType').default('FULL_TIME').notNull(),
-  status: text('status').default('PENDING').notNull(),
+  location: workLocationEnum('location').default('ONLINE').notNull(),
+  jobType: jobTypeEnum('jobType').default('FULL_TIME').notNull(),
+  status: requestStatusEnum('status').default('PENDING').notNull(),
   attachmentUrl: text('attachmentUrl'),
   userId: text('userId').notNull().unique().references(() => users.id, { onDelete: 'cascade' }),
   createdAt: timestamp('createdAt', { mode: 'date' }).defaultNow().notNull(),

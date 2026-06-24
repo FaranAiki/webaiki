@@ -15,7 +15,9 @@ const connectionString = env.DIRECT_URL || env.DATABASE_URL;
  * F.S.: A dynamic `pool` is established where the maximum limit (`max`) is adjusted 
  *       based on the environment (production or development) to prevent query blockages.
  */
-const pool = new Pool({
+const globalForDb = globalThis as unknown as { conn: Pool | undefined };
+
+const pool = globalForDb.conn ?? new Pool({
   connectionString,
   max: isProduction ? 5 : 10,
   connectionTimeoutMillis: 10000,
@@ -24,5 +26,7 @@ const pool = new Pool({
     ? { rejectUnauthorized: false } 
     : undefined
 });
+
+if (!isProduction) globalForDb.conn = pool;
 
 export const db = drizzle(pool, { schema });

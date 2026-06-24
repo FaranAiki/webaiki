@@ -15,3 +15,4 @@
 - do not use "any" as a type in TypeScript.
 - make sure to check that npm run build is proper 
 - make sure if you want to git push to the origin, use (type): (AI) (commit messages) for git best practices
+- before concluding work or pushing, run `./scripts/check-ci.sh` to check for CI/CD errors locally. If the script reports any failures (types, lint, or docker build), you must fix them.

@@ -292,7 +292,7 @@ export default function SocialDisplay({ customLinks, hidePresentation = false, d
           <iframe 
             src="https://www.instagram.com/mfaranaiki/embed/" 
             className="w-full h-[400px] sm:h-[450px] rounded-lg border-0 bg-transparent"
-            allowtransparency="true"
+            allowTransparency={true}
             scrolling="no"
             frameBorder="0"
           />

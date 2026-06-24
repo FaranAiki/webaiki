@@ -9,6 +9,8 @@ import { users, feedbacks, news } from '@/lib/schema';
 import { eq, sql } from 'drizzle-orm';
 import { createClient, createAdminClient } from '@/utils/supabase/server';
 import { AppError } from '@/lib/errors';
+import { Type } from '@sinclair/typebox';
+import { validateData } from '@/lib/validation';
 
 const cookie_default : { [key: string]: string } = {
   'theme': 'system' 
@@ -94,6 +96,12 @@ export async function uploadFile(formData: FormData, bucket: 'user-icon' | 'news
   // Validate type
   if (!file.type.startsWith('image/')) return new AppError('APP_ERROR', 400, 'Invalid file type (images only)' ).toJSON();
 
+  // Security: Validate bucket parameter
+  const ALLOWED_BUCKETS = ['user-icon', 'news-image', 'feedback-image'];
+  if (!ALLOWED_BUCKETS.includes(bucket)) {
+    return new AppError('APP_ERROR', 403, 'Invalid bucket specified').toJSON();
+  }
+
   const fileExt = file.name.split('.').pop();
   const fileName = `${user.id}-${Math.random().toString(36).substring(2)}.${fileExt}`;
   const filePath = `${fileName}`;
@@ -129,7 +137,18 @@ export async function uploadFile(formData: FormData, bucket: 'user-icon' | 'news
   }
 }
 
+const updateProfileSchema = Type.Object({
+  name: Type.Optional(Type.String({ maxLength: 100 })),
+  username: Type.Optional(Type.String({ maxLength: 50 })),
+  avatarUrl: Type.Optional(Type.String()),
+});
+
 export async function updateProfile(data: { name?: string; username?: string; avatarUrl?: string }) {
+  const validation = validateData(updateProfileSchema, data);
+  if (!validation.success) {
+    return new AppError('APP_ERROR', 400, validation.error).toJSON();
+  }
+
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
@@ -245,14 +264,18 @@ async function verifyRecaptcha(token: string) {
     return true; // Bypassed if not configured
   }
 
-  const response = await fetch(
-    `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${token}`,
-    { method: 'POST' }
-  );
-
-  const data = await response.json();
-  // v3 returns a score (0.0 - 1.0). 0.5 is the recommended default threshold.
-  return data.success && data.score >= 0.5;
+  try {
+    const response = await fetch(
+      `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${token}`,
+      { method: 'POST' }
+    );
+    const data = await response.json();
+    // v3 returns a score (0.0 - 1.0). 0.5 is the recommended default threshold.
+    return data.success && data.score >= 0.5;
+  } catch (error) {
+    console.error("Recaptcha verification request failed:", error);
+    return false;
+  }
 }
 
 /**
@@ -269,7 +292,18 @@ async function verifyRecaptcha(token: string) {
  * @param captchaToken The reCAPTCHA v3 token provided by the client.
  * @returns An object indicating success, or an error response in JSON format upon failure.
  */
+const submitFeedbackSchema = Type.Object({
+  content: Type.String({ minLength: 1, maxLength: 5000 }),
+  image: Type.Optional(Type.String()),
+  captchaToken: Type.Optional(Type.String())
+});
+
 export async function submitFeedback(content: string, image?: string, captchaToken?: string) {
+  const validation = validateData(submitFeedbackSchema, { content, image, captchaToken });
+  if (!validation.success) {
+    return new AppError('APP_ERROR', 400, validation.error).toJSON();
+  }
+
   if (!captchaToken) {
     return AppError.badRequest('Captcha_Required').toJSON();
   }
@@ -407,7 +441,18 @@ export async function deleteNews(newsId: string) {
   }
 }
 
+const postNewsSchema = Type.Object({
+  title: Type.String({ minLength: 1, maxLength: 255 }),
+  content: Type.String({ minLength: 1 }),
+  image: Type.Optional(Type.String())
+});
+
 export async function postNews(title: string, content: string, image?: string) {
+  const validation = validateData(postNewsSchema, { title, content, image });
+  if (!validation.success) {
+    return new AppError('APP_ERROR', 400, validation.error).toJSON();
+  }
+
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 

@@ -31,7 +31,7 @@ interface ForceGraphMethods {
 export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientProps) {
   const { theme, systemTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const graphRef = useRef<ForceGraphMethods>();
+  const graphRef = useRef<ForceGraphMethods | undefined>(undefined);
   const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
   const containerRef = useRef<HTMLDivElement>(null);
   const [hoveredNode, setHoveredNode] = useState<GraphNode | null>(null);
@@ -142,34 +142,36 @@ export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientPro
           height={dimensions.height}
           graphData={graphData}
           nodeLabel="name"
-          nodeColor={(node: GraphNode) => node.color}
+          nodeColor={(node) => (node as GraphNode).color}
           nodeRelSize={6}
           linkColor={() => isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)'}
           linkWidth={1.5}
           linkDirectionalArrowLength={3.5}
           linkDirectionalArrowRelPos={1}
-          onNodeHover={(node: GraphNode | null) => {
-            setHoveredNode(node);
+          onNodeHover={(node) => {
+            setHoveredNode(node as GraphNode | null);
             if (containerRef.current) {
               containerRef.current.style.cursor = node ? 'pointer' : 'move';
             }
           }}
-          onNodeClick={(node: GraphNode) => {
+          onNodeClick={(node) => {
+            const gNode = node as GraphNode;
             // Toggle lock on click
-            setLockedNode(prev => prev?.id === node.id ? null : node);
+            setLockedNode(prev => prev?.id === gNode.id ? null : gNode);
             
-            if (node.x !== undefined && node.y !== undefined && graphRef.current) {
+            if (gNode.x !== undefined && gNode.y !== undefined && graphRef.current) {
               // Center on node and zoom in slightly
-              graphRef.current.centerAt(node.x, node.y, 1000);
+              graphRef.current.centerAt(gNode.x, gNode.y, 1000);
               graphRef.current.zoom(1.5, 2000);
             }
           }}
           onBackgroundClick={() => {
             setLockedNode(null);
           }}
-          nodeCanvasObject={(node: GraphNode, ctx, globalScale) => {
-            if (node.x === undefined || node.y === undefined) return;
-            const label = node.name;
+          nodeCanvasObject={(node, ctx, globalScale) => {
+            const gNode = node as GraphNode;
+            if (gNode.x === undefined || gNode.y === undefined) return;
+            const label = gNode.name;
             const fontSize = 12 / globalScale;
             ctx.font = `${fontSize}px Sans-Serif`;
             const textWidth = ctx.measureText(label).width;
@@ -177,19 +179,19 @@ export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientPro
 
             // Draw node circle
             ctx.beginPath();
-            ctx.arc(node.x, node.y, node.val / 2, 0, 2 * Math.PI, false);
-            ctx.fillStyle = node.color;
+            ctx.arc(gNode.x, gNode.y, gNode.val / 2, 0, 2 * Math.PI, false);
+            ctx.fillStyle = gNode.color;
             ctx.fill();
             
             // Draw text background
             ctx.fillStyle = isDark ? 'rgba(0,0,0,0.8)' : 'rgba(255,255,255,0.8)';
-            ctx.fillRect(node.x - bckgDimensions[0] / 2, node.y + node.val / 2 + 2, bckgDimensions[0], bckgDimensions[1]);
+            ctx.fillRect(gNode.x - bckgDimensions[0] / 2, gNode.y + gNode.val / 2 + 2, bckgDimensions[0], bckgDimensions[1]);
 
             // Draw text
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillStyle = isDark ? '#ffffff' : '#000000';
-            ctx.fillText(label, node.x, node.y + node.val / 2 + 2 + bckgDimensions[1] / 2);
+            ctx.fillText(label, gNode.x, gNode.y + gNode.val / 2 + 2 + bckgDimensions[1] / 2);
           }}
         />
       </div>
