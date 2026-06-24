@@ -70,3 +70,7 @@ node_modules/
 **/public/worker-*.js.map
 **/public/swe-worker-*.js
 **/public/swe-worker-*.js.map
+
+# Cypress
+cypress/videos/
+cypress/screenshots/
