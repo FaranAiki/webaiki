@@ -18,8 +18,13 @@ import {
     Briefcase
 } from 'lucide-react';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { LayoutSwitcher } from '../shared/LayoutSwitcher';
+import { pdfjs, Document, Page } from 'react-pdf';
+import 'react-pdf/dist/Page/AnnotationLayer.css';
+import 'react-pdf/dist/Page/TextLayer.css';
+
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 export type Job = {
     date: string;
@@ -129,15 +134,19 @@ const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, j
             className={`${spanClass} relative rounded-3xl overflow-hidden group border ${cardBorder} ${inactiveCardBg} shadow-sm hover:shadow-xl cursor-pointer transform-gpu`}
         >
             {hasImage ? (
-                <Image
-                    src={job.image[0]}
-                    alt={job.company}
-                    fill
-                    className={`object-cover transition-transform duration-700
-                        ${isExpanded
-                            ? (isDark ? 'scale-110 blur-sm brightness-[0.2]' : 'scale-110 blur-md opacity-20')
-                            : 'group-hover:scale-105 opacity-60 group-hover:opacity-100'}`}
-                />
+                job.image[0].toLowerCase().endsWith('.pdf') ? (
+                    <PdfRenderer url={job.image[0]} isExpanded={isExpanded} lang={lang} />
+                ) : (
+                    <Image
+                        src={job.image[0]}
+                        alt={job.company}
+                        fill
+                        className={`object-cover transition-transform duration-700
+                            ${isExpanded
+                                ? (isDark ? 'scale-110 blur-sm brightness-[0.2]' : 'scale-110 blur-md opacity-20')
+                                : 'group-hover:scale-105 opacity-60 group-hover:opacity-100'}`}
+                    />
+                )
             ) : (
                 <div className={`absolute inset-0 transition-opacity duration-700 ${isExpanded ? 'blur-sm brightness-[0.3]' : 'opacity-40 group-hover:opacity-80'}`}>
                     <PlaceholderIcon company={job.company} />
@@ -220,6 +229,47 @@ const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, j
     );
 };
 BentoCard.displayName = 'BentoCard';
+
+const PdfRenderer = ({ url, isExpanded, lang = 'en' }: { url: string, isExpanded?: boolean, lang?: string }) => {
+    const ref = React.useRef(null);
+    const isInView = useInView(ref, { once: true, margin: "400px" });
+
+    const getLoadingText = () => {
+        switch (lang) {
+            case 'id': return 'Memuat PDF...';
+            case 'jp': return 'PDFを読み込み中...';
+            case 'zh': return '正在加载PDF...';
+            case 'ko': return 'PDF 로드 중...';
+            case 'fr': return 'Chargement du PDF...';
+            case 'es': return 'Cargando PDF...';
+            default: return 'Loading PDF...';
+        }
+    };
+
+    const getFailedText = () => {
+        switch (lang) {
+            case 'id': return 'Gagal memuat PDF';
+            case 'jp': return 'PDFの読み込みに失敗しました';
+            case 'zh': return '无法加载PDF';
+            case 'ko': return 'PDF 로드 실패';
+            case 'fr': return 'Échec du chargement du PDF';
+            case 'es': return 'Error al cargar el PDF';
+            default: return 'Failed to load PDF';
+        }
+    };
+
+    return (
+        <div ref={ref} className={`w-full h-full flex justify-center items-center overflow-hidden bg-theme-surface-strong ${isExpanded ? 'scale-110 blur-sm brightness-[0.3]' : 'group-hover:scale-105 transition-transform duration-700'}`}>
+            {isInView ? (
+                <Document file={url} loading={<PlaceholderIcon company={getLoadingText()} />} error={<PlaceholderIcon company={getFailedText()} />}>
+                    <Page pageNumber={1} width={300} renderTextLayer={false} renderAnnotationLayer={false} />
+                </Document>
+            ) : (
+                <PlaceholderIcon company="..." />
+            )}
+        </div>
+    );
+};
 
 export default function ExperiencesClient({
     experiences,
@@ -365,7 +415,11 @@ export default function ExperiencesClient({
                                     <div className="flex-[0.8] flex justify-center items-center w-full h-full transform-gpu">
                                         <div className="relative w-full h-full max-w-[400px] max-h-[400px] aspect-square flex justify-center items-center overflow-hidden transform-gpu rounded-3xl">
                                             {job.image && job.image.length > 0 ? (
-                                                <Image src={job.image[0]} alt={job.company} fill className="object-contain transition-transform duration-700 hover:scale-[1.03] scale-[1.01]" sizes="(max-width: 768px) 100vw, 400px" priority={true} loading="eager" />
+                                                job.image[0].toLowerCase().endsWith('.pdf') ? (
+                                                    <PdfRenderer url={job.image[0]} lang={lang} />
+                                                ) : (
+                                                    <Image src={job.image[0]} alt={job.company} fill className="object-contain transition-transform duration-700 hover:scale-[1.03] scale-[1.01]" sizes="(max-width: 768px) 100vw, 400px" priority={true} loading="eager" />
+                                                )
                                             ) : (
                                                 <PlaceholderIcon company={job.company} />
                                             )}
@@ -379,7 +433,13 @@ export default function ExperiencesClient({
                                 <div className="w-full h-full relative overflow-hidden flex items-end bg-theme-bg/30">
                                     {job.image && job.image.length > 0 ? (
                                         <div className="absolute inset-0 z-0">
-                                            <Image src={job.image[0]} alt={job.company} fill sizes="100vw" className={`object-cover transition-all duration-1000 dark:brightness-[0.35] brightness-[1.1] grayscale-[0.2] opacity-20`} priority={true} loading="eager" />
+                                            {job.image[0].toLowerCase().endsWith('.pdf') ? (
+                                                <div className="w-full h-full opacity-20 dark:brightness-[0.35] brightness-[1.1] grayscale-[0.2]">
+                                                    <PdfRenderer url={job.image[0]} isExpanded={true} lang={lang} />
+                                                </div>
+                                            ) : (
+                                                <Image src={job.image[0]} alt={job.company} fill sizes="100vw" className={`object-cover transition-all duration-1000 dark:brightness-[0.35] brightness-[1.1] grayscale-[0.2] opacity-20`} priority={true} loading="eager" />
+                                            )}
                                             <div className={`absolute inset-0 bg-gradient-to-t from-theme-bg-dark via-transparent to-transparent`} />
                                         </div>
                                     ) : (
@@ -456,7 +516,11 @@ export default function ExperiencesClient({
                                         <div className="md:col-span-5 relative group">
                                             <div className="aspect-[4/5] relative rounded-2xl overflow-hidden shadow-theme-shadow transition-all duration-700 group-hover:rotate-0 rotate-3 group-hover:scale-105">
                                                 {job.image && job.image.length > 0 ? (
-                                                    <Image src={job.image[0]} alt={job.company} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+                                                    job.image[0].toLowerCase().endsWith('.pdf') ? (
+                                                        <PdfRenderer url={job.image[0]} lang={lang} />
+                                                    ) : (
+                                                        <Image src={job.image[0]} alt={job.company} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+                                                    )
                                                 ) : (
                                                     <PlaceholderIcon company={job.company} />
                                                 )}
@@ -538,7 +602,11 @@ export default function ExperiencesClient({
                                                         className="w-full h-full relative"
                                                     >
                                                         {hasValidImage ? (
-                                                            <Image fill sizes="(max-width: 768px) 100vw, 50vw" src={activeImageSrc!} placeholder="blur" blurDataURL={shimmer600x400} alt={`${activeJob.company}`} className="object-cover" priority />
+                                                            activeImageSrc!.toLowerCase().endsWith('.pdf') ? (
+                                                                <PdfRenderer url={activeImageSrc!} isExpanded={true} lang={lang} />
+                                                            ) : (
+                                                                <Image fill sizes="(max-width: 768px) 100vw, 50vw" src={activeImageSrc!} placeholder="blur" blurDataURL={shimmer600x400} alt={`${activeJob.company}`} className="object-cover" priority />
+                                                            )
                                                         ) : (
                                                             <PlaceholderIcon company={activeJob.company} />
                                                         )}
@@ -556,60 +624,145 @@ export default function ExperiencesClient({
                         )}
 
                         {currentLayout === 'timeline' && (
-                            <div className="relative border-l-2 border-theme-500/30 ml-4 md:ml-8 space-y-12">
-                                {experiences.map((experience) => (
-                                    <div key={experience.year} className="relative pl-8">
-                                        <div className="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-theme-500 border-4 border-theme-surface dark:border-theme-bg-dark shadow-sm" />
-                                        <h2 className="text-3xl font-black text-theme-600 dark:text-theme-400 mb-8">{experience.year}</h2>
-                                        <motion.div 
-                                            className="space-y-12"
-                                            initial="hidden"
-                                            whileInView="show"
-                                            viewport={{ once: true, margin: "-50px" }}
-                                            variants={{
-                                                hidden: {},
-                                                show: { transition: { staggerChildren: 0.15 } }
-                                            }}
-                                        >
-                                            {experience.jobs.map((job, index) => (
-                                                <motion.div
-                                                    key={`${experience.year}-${index}`}
-                                                    id={`exp-${job.title.toLowerCase().replace(/\s+/g, '-')}`}
-                                                    variants={{
-                                                        hidden: { opacity: 0, x: -20 },
-                                                        show: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 100 } }
-                                                    }}
-                                                    onClick={() => job.url && window.open(job.url, '_blank', 'noopener,noreferrer')}
-                                                    onKeyDown={(e) => e.key === 'Enter' && job.url && window.open(job.url, '_blank', 'noopener,noreferrer')}
-                                                    role={job.url ? "button" : "article"}
-                                                    tabIndex={job.url ? 0 : undefined}
-                                                    className={`flex flex-col md:flex-row gap-6 group transform-gpu ${job.url ? 'cursor-pointer' : ''}`}
-                                                >
-                                                    <div className="w-full md:w-1/3 shrink-0">
-                                                        <div className="relative aspect-video rounded-xl overflow-hidden shadow-lg border border-theme-border bg-theme-surface-strong">
-                                                            {job.image && job.image.length > 0 ? (
-                                                                <Image src={job.image[0]} alt={job.company} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform group-hover:scale-105" placeholder="blur" blurDataURL={shimmer400x225} />
+                            <div className="relative w-full py-10 overflow-hidden font-sans">
+                                {/* DESKTOP: 3-column Snake Path */}
+                                <div className="hidden lg:flex flex-col w-full max-w-7xl mx-auto">
+                                    {(() => {
+                                        const chunks = [];
+                                        let i = 0;
+                                        const sizes = [3, 4, 5, 4, 3, 5];
+                                        let sizeIter = 0;
+                                        while (i < allJobs.length) {
+                                            const size = sizes[sizeIter % sizes.length];
+                                            chunks.push(allJobs.slice(i, i + size));
+                                            i += size;
+                                            sizeIter++;
+                                        }
+                                        return chunks.map((row, rowIdx) => {
+                                            const isEvenRow = rowIdx % 2 === 0;
+                                            const isLastRow = rowIdx === chunks.length - 1;
+                                            return (
+                                                <div key={`lg-${rowIdx}`} className={`flex w-full items-stretch ${isEvenRow ? 'flex-row' : 'flex-row-reverse'}`}>
+                                                    {row.map((job, idx) => {
+                                                        const isLastInRow = idx === row.length - 1;
+                                                        const isPdf = job.image && job.image.length > 0 && job.image[0].toLowerCase().endsWith('.pdf');
+                                                        return (
+                                                            <div key={`lg-item-${idx}`} className="relative flex flex-col items-center px-2 pb-12" style={{ width: `${100 / row.length}%` }}>
+                                                                {isLastInRow && !isLastRow && (
+                                                                    <div className="absolute left-1/2 -translate-x-1/2 w-1.5 bg-theme-500/40 z-0" style={{ top: '2.5rem', height: '100%' }} />
+                                                                )}
+                                                                <div className="h-20 flex items-center justify-center w-full relative">
+                                                                    {!isLastInRow && (
+                                                                        <div className={`absolute top-1/2 -translate-y-1/2 h-1.5 bg-theme-500/40 w-full z-0 ${isEvenRow ? 'left-1/2' : 'right-1/2'}`} />
+                                                                    )}
+                                                                    <div className="w-10 h-10 rounded-full bg-theme-surface border-4 border-theme-500 flex items-center justify-center z-10 shadow-[0_0_15px_rgba(var(--color-theme-500),0.6)]">
+                                                                        <div className="w-3 h-3 rounded-full bg-theme-500 animate-pulse" />
+                                                                    </div>
+                                                                </div>
+                                                                <div className="w-full mt-4 flex-grow bg-theme-surface/90 backdrop-blur-md border border-theme-border rounded-3xl p-4 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group text-left cursor-pointer" onClick={() => job.url && window.open(job.url, '_blank')}>
+                                                                    {job.image && job.image.length > 0 && (
+                                                                        <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-4 bg-theme-surface-strong">
+                                                                            {isPdf ? (
+                                                                                <PdfRenderer url={job.image[0]} lang={lang} />
+                                                                            ) : (
+                                                                                <Image src={job.image[0]} alt={job.title} fill sizes="300px" className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                                                                            )}
+                                                                        </div>
+                                                                    )}
+                                                                    <div className="flex flex-wrap gap-2 mb-2 items-center">
+                                                                        <span className="px-2 py-1 bg-theme-500/10 text-theme-500 rounded-md text-[10px] font-black uppercase border border-theme-500/20">{job.year}</span>
+                                                                        <span className="text-[10px] font-bold text-theme-muted">{job.date}</span>
+                                                                    </div>
+                                                                    <h3 className="text-base lg:text-lg font-black mb-1 group-hover:text-theme-500 transition-colors leading-tight">{job.title}</h3>
+                                                                    <div className="mb-2"><TagBadge labels={job.tag} /></div>
+                                                                    <p className="text-theme-600 dark:text-theme-400 font-bold italic text-xs mb-2">{job.company}</p>
+                                                                    <p className="text-xs text-foreground/80 line-clamp-3 group-hover:line-clamp-none transition-all duration-500">{job.description}</p>
+                                                                </div>
+                                                            </div>
+                                                        )
+                                                    })}
+                                                </div>
+                                            )
+                                        })
+                                    })()}
+                                </div>
+
+                                {/* TABLET: 2-column Snake Path */}
+                                <div className="hidden md:flex lg:hidden flex-col w-full max-w-4xl mx-auto">
+                                    {Array.from({ length: Math.ceil(allJobs.length / 2) }).map((_, rowIdx) => {
+                                        const row = allJobs.slice(rowIdx * 2, rowIdx * 2 + 2);
+                                        const isEvenRow = rowIdx % 2 === 0;
+                                        const isLastRow = rowIdx === Math.ceil(allJobs.length / 2) - 1;
+                                        return (
+                                            <div key={`md-${rowIdx}`} className={`flex w-full items-stretch ${isEvenRow ? 'flex-row' : 'flex-row-reverse'}`}>
+                                                {row.map((job, idx) => {
+                                                    const isLastInRow = idx === row.length - 1;
+                                                    return (
+                                                        <div key={`md-item-${idx}`} className="w-1/2 relative flex flex-col items-center px-4 pb-12">
+                                                            {isLastInRow && !isLastRow && (
+                                                                <div className="absolute left-1/2 -translate-x-1/2 w-1.5 bg-theme-500/40 z-0" style={{ top: '2.5rem', height: '100%' }} />
+                                                            )}
+                                                            <div className="h-20 flex items-center justify-center w-full relative">
+                                                                {!isLastInRow && (
+                                                                    <div className={`absolute top-1/2 -translate-y-1/2 h-1.5 bg-theme-500/40 w-full z-0 ${isEvenRow ? 'left-1/2' : 'right-1/2'}`} />
+                                                                )}
+                                                                <div className="w-10 h-10 rounded-full bg-theme-surface border-4 border-theme-500 flex items-center justify-center z-10 shadow-[0_0_15px_rgba(var(--color-theme-500),0.6)]">
+                                                                    <div className="w-3 h-3 rounded-full bg-theme-500 animate-pulse" />
+                                                                </div>
+                                                            </div>
+                                                            <div className="w-full mt-4 flex-grow bg-theme-surface/90 backdrop-blur-md border border-theme-border rounded-3xl p-5 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group text-left cursor-pointer" onClick={() => job.url && window.open(job.url, '_blank')}>
+                                                                {job.image && job.image.length > 0 && (
+                                                                    <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-4 bg-theme-surface-strong">
+                                                                        {job.image[0].toLowerCase().endsWith('.pdf') ? (
+                                                                            <PdfRenderer url={job.image[0]} lang={lang} />
+                                                                        ) : (
+                                                                            <Image src={job.image[0]} alt={job.title} fill sizes="400px" className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                                                                        )}
+                                                                    </div>
+                                                                )}
+                                                                <div className="flex flex-wrap gap-2 mb-2 items-center">
+                                                                    <span className="px-2 py-1 bg-theme-500/10 text-theme-500 rounded-md text-[10px] font-black uppercase border border-theme-500/20">{job.year}</span>
+                                                                    <span className="text-[10px] font-bold text-theme-muted">{job.date}</span>
+                                                                </div>
+                                                                <h3 className="text-lg font-black mb-1 group-hover:text-theme-500 transition-colors leading-tight">{job.title}</h3>
+                                                                <div className="mb-2"><TagBadge labels={job.tag} /></div>
+                                                                <p className="text-theme-600 dark:text-theme-400 font-bold italic text-sm mb-2">{job.company}</p>
+                                                                <p className="text-xs text-foreground/80 line-clamp-3 group-hover:line-clamp-none transition-all duration-500">{job.description}</p>
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                })}
+                                            </div>
+                                        )
+                                    })}
+                                </div>
+
+                                {/* MOBILE: 1-column Vertical Line */}
+                                <div className="block md:hidden relative w-full px-2">
+                                    <div className="absolute left-7 top-10 bottom-10 w-1 bg-theme-500/30 z-0" />
+                                    <div className="space-y-8">
+                                        {allJobs.map((job, idx) => (
+                                            <div key={`mob-${idx}`} className="relative pl-12 pr-2 flex flex-col w-full cursor-pointer group" onClick={() => job.url && window.open(job.url, '_blank')}>
+                                                <div className="absolute left-5 top-5 w-5 h-5 rounded-full bg-theme-surface border-4 border-theme-500 shadow-[0_0_10px_rgba(var(--color-theme-500),0.5)] z-10" />
+                                                <div className="w-full bg-theme-surface/90 backdrop-blur-md border border-theme-border rounded-2xl p-4 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:-translate-y-1 text-left">
+                                                    {job.image && job.image.length > 0 && (
+                                                        <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-3 bg-theme-surface-strong">
+                                                            {job.image[0].toLowerCase().endsWith('.pdf') ? (
+                                                                <PdfRenderer url={job.image[0]} lang={lang} />
                                                             ) : (
-                                                                <PlaceholderIcon company={job.company} />
+                                                                <Image src={job.image[0]} alt={job.title} fill sizes="100vw" className="object-cover" />
                                                             )}
                                                         </div>
-                                                    </div>
-                                                    <div className="flex-1">
-                                                        <p className="text-xs mb-1 text-muted-foreground">{job.date}</p>
-                                                        <div className="flex items-center gap-2 mb-1">
-                                                            <h3 className={`text-2xl font-bold ${mainText} group-hover:text-theme-500`}>{job.title}<TagBadge labels={job.tag} /></h3>
-                                                            {job.url && <ExternalLink size={16} className="text-theme-500 opacity-0 group-hover:opacity-100 transition-all" />}
-                                                        </div>
-                                                        <p className="text-lg font-semibold italic text-theme-600 dark:text-theme-400 mb-4">{job.company}</p>
-                                                        <HoverableWords className={`${justifyClass} ${descText} text-sm`}>
-                                                            {formatCJK(job.description, lang)}
-                                                        </HoverableWords>
-                                                    </div>
-                                                </motion.div>
-                                            ))}
-                                        </motion.div>
+                                                    )}
+                                                    <span className="inline-block px-2 py-0.5 bg-theme-500/10 text-theme-500 rounded-md text-[10px] font-black uppercase mb-2">{job.year}</span>
+                                                    <h3 className="text-sm font-black mb-1 text-foreground group-hover:text-theme-500 leading-tight">{job.title}</h3>
+                                                    <p className="text-theme-600 dark:text-theme-400 font-bold italic text-xs mb-2">{job.company}</p>
+                                                    <p className="text-xs text-foreground/80 line-clamp-2">{job.description}</p>
+                                                </div>
+                                            </div>
+                                        ))}
                                     </div>
-                                ))}
+                                </div>
                             </div>
                         )}
 
@@ -640,7 +793,11 @@ export default function ExperiencesClient({
                                     >
                                         <div className="relative aspect-video mb-6 rounded-xl overflow-hidden bg-theme-surface-strong">
                                             {job.image && job.image.length > 0 ? (
-                                                <Image src={job.image[0]} alt={job.company} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform group-hover:scale-105" placeholder="blur" blurDataURL={shimmer400x225} />
+                                                job.image[0].toLowerCase().endsWith('.pdf') ? (
+                                                    <PdfRenderer url={job.image[0]} lang={lang} />
+                                                ) : (
+                                                    <Image src={job.image[0]} alt={job.company} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform group-hover:scale-105" placeholder="blur" blurDataURL={shimmer400x225} />
+                                                )
                                             ) : (
                                                 <PlaceholderIcon company={job.company} />
                                             )}
@@ -720,7 +877,11 @@ export default function ExperiencesClient({
                                             <div className="w-full md:w-1/2">
                                                 <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl transition-transform duration-700 group-hover:scale-[1.02] bg-theme-surface-strong">
                                                     {job.image && job.image.length > 0 ? (
-                                                        <Image src={job.image[0]} alt={job.company} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+                                                        job.image[0].toLowerCase().endsWith('.pdf') ? (
+                                                            <PdfRenderer url={job.image[0]} isExpanded lang={lang} />
+                                                        ) : (
+                                                            <Image src={job.image[0]} alt={job.company} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+                                                        )
                                                     ) : (
                                                         <PlaceholderIcon company={job.company} />
                                                     )}

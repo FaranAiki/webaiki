@@ -112,7 +112,7 @@ export const getProjectExperiences = (dict: Dictionary) => [
     year: '2026',
     jobs: [
       {
-        date: `${dict.June} 2026`,
+        date: `${dict.June} 2026 — ${dict.Present}`,
         title: dict.Superskill_Project,
         company: 'Flutter, Dart',
         description: dict.Superskill_Description,

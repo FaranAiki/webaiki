@@ -59,6 +59,22 @@ const itemVariants: Variants = {
   }
 };
 
+const MaskIcon = ({ src, colorClass }: { src: string, colorClass: string }) => (
+  <div 
+    className={`w-[48px] h-[48px] ${colorClass} transition-colors duration-300`} 
+    style={{ 
+      WebkitMaskImage: `url('${src}')`, 
+      WebkitMaskSize: 'contain', 
+      WebkitMaskRepeat: 'no-repeat', 
+      WebkitMaskPosition: 'center',
+      maskImage: `url('${src}')`,
+      maskSize: 'contain',
+      maskRepeat: 'no-repeat',
+      maskPosition: 'center'
+    }} 
+  />
+);
+
 export const defaultSocialLinks: SocialLink[] = [
     {
       name: "GitHub",
@@ -92,7 +108,7 @@ export const defaultSocialLinks: SocialLink[] = [
       name: "Link Tree",
       username: "Faran Aiki",
       url: "https://linktr.ee/FaranAiki",
-      icon: <Image alt="LinkTree icon" width="48" height="48" src="/images/social/linktree.webp" className="brightness-0 invert-[0.5] sepia-[1] hue-rotate-[70deg] saturate-[3]" />,
+      icon: <MaskIcon src="/images/social/linktree.webp" colorClass="bg-green-600 dark:bg-green-400" />,
       color: "hover:border-green-200"
     },
     {
@@ -120,7 +136,7 @@ export const defaultSocialLinks: SocialLink[] = [
       name: "My Anime List",
       username: "FaranAiki",
       url: "https://myanimelist.net/profile/FaranAiki",
-      icon: <Image alt='My Anime List icon' width="48" height="48" src="/images/social/myanimelist.webp" className="brightness-0 invert-[0.3] sepia-[1] hue-rotate-[190deg] saturate-[5]" />,
+      icon: <MaskIcon src="/images/social/myanimelist.webp" colorClass="bg-blue-600 dark:bg-blue-400" />,
       color: "hover:border-blue-600"
     },
     {
@@ -134,42 +150,42 @@ export const defaultSocialLinks: SocialLink[] = [
       name: "Quora",
       username: "Muhammad Faran Aiki",
       url: "https://id.quora.com/profile/Muhammad-Faran-Aiki-4",
-      icon: <Image alt='Quora icon' width="48" height="48" src="/images/social/quora.webp" className="brightness-0 invert-[0.2] sepia-[1] hue-rotate-[330deg] saturate-[10]" />,
+      icon: <MaskIcon src="/images/social/quora.webp" colorClass="bg-red-600 dark:bg-red-500" />,
       color: "hover:border-red-600"
     },
     {
       name: "Reddit",
       username: "FaranAiki",
       url: "https://www.reddit.com/user/FaranAiki/",
-      icon: <Image alt='Reddit icon' width="48" height="48" src="/images/social/reddit.webp" className="brightness-0 invert-[0.5] sepia-[1] hue-rotate-[350deg] saturate-[5]" />,
+      icon: <MaskIcon src="/images/social/reddit.webp" colorClass="bg-orange-600 dark:bg-orange-500" />,
       color: "hover:border-red-300"
     },
     {
       name: "SlideShare",
       username: "Faran Aiki",
       url: "https://www.slideshare.net/MuhammadFaranAiki",
-      icon: <Image alt='Slideshare icon' width="48" height="48" src="/images/social/slideshare.webp" className="brightness-0 invert-[0.5] sepia-[1] hue-rotate-[10deg] saturate-[5]" />,
+      icon: <MaskIcon src="/images/social/slideshare.webp" colorClass="bg-blue-500 dark:bg-blue-400" />,
       color: "hover:border-orange-300"
     },
     {
       name: "Scribd",
       username: "Muhammad Faran Aiki",
       url: "https://id.scribd.com/user/530310522/Muhammad-Faran-Aiki",
-      icon: <Image alt='Scribd icon' width="48" height="48" src="/images/social/scribd.webp" className="brightness-0 invert-[0.4] sepia-[1] hue-rotate-[160deg] saturate-[5]" />,
+      icon: <MaskIcon src="/images/social/scribd.webp" colorClass="bg-teal-600 dark:bg-teal-400" />,
       color: "hover:border-green-300"
     },
     {
       name: "Line",
       username: "@faranaiki_",
       url: "https://line.me/ti/p/8ZF2kENUEj",
-      icon: <Image alt='Line icon' width="48" height="48" src="/images/social/line.webp" className="brightness-0 invert-[0.4] sepia-[1] hue-rotate-[80deg] saturate-[5]" />,
+      icon: <MaskIcon src="/images/social/line.webp" colorClass="bg-green-500 dark:bg-green-400" />,
       color: "hover:border-green-400"
     },
     {
       name: "Telegram",
       username: "@FaranAiki",
       url: "https://t.me/FaranAiki",
-      icon: <Image alt='Telegram icon' width="48" height="48" src="/images/social/telegram.webp" className="brightness-0 invert-[0.5] sepia-[1] hue-rotate-[180deg] saturate-[5]" />,
+      icon: <MaskIcon src="/images/social/telegram.webp" colorClass="bg-blue-500 dark:bg-blue-400" />,
       color: "hover:border-blue-300"
     },
   ];
@@ -292,7 +308,7 @@ export default function SocialDisplay({ customLinks, hidePresentation = false, d
           <iframe 
             src="https://www.instagram.com/mfaranaiki/embed/" 
             className="w-full h-[400px] sm:h-[450px] rounded-lg border-0 bg-transparent"
-            allowTransparency={true}
+            allowtransparency="true"
             scrolling="no"
             frameBorder="0"
           />

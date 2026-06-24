@@ -34,7 +34,8 @@ import {
   MessageSquare,
   Newspaper,
   MoreHorizontal,
-  Network
+  Network,
+  History
 } from 'lucide-react';
 
 export default async function RootLayout({
@@ -113,6 +114,7 @@ export default async function RootLayout({
       href: '#',
       icon: <MoreHorizontal size={18} />,
       subLinks: [
+        { name: dict.Timeline || 'Timeline', href: '/timeline', icon: <History size={16} /> },
         { name: dict.College, href: '/college', icon: <GraduationCap size={16} /> },
         { name: dict.Sitemap_Graph || 'Sitemap Graph', href: '/sitemap-graph', icon: <Network size={16} /> }
       ]

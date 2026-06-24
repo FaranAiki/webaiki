@@ -23,18 +23,13 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       gestureOrientation: "vertical",
       smoothWheel: true,
       wheelMultiplier: 1,
+      // Fix for mobile and desktop lag: let native touch handle scroll, or sync it correctly.
+      syncTouch: true,
       touchMultiplier: 2,
+      autoRaf: true, // Let Lenis handle RAF natively (v1.1+)
     });
 
     lenisRef.current = lenis;
-
-    let rafId: number;
-    function raf(time: number) {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
-    }
-
-    rafId = requestAnimationFrame(raf);
 
     // Handle anchor links
     const handleAnchorClick = (e: MouseEvent) => {
@@ -53,7 +48,6 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
     return () => {
       lenis.destroy();
-      cancelAnimationFrame(rafId);
       document.removeEventListener("click", handleAnchorClick);
     };
   }, [mounted]);
