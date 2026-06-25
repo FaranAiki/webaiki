@@ -10,10 +10,10 @@ echo "Converting images to WebP in directory: $TARGET_DIR"
 
 # Check if cwebp is installed
 if ! command -v cwebp &> /dev/null; then
-    echo "❌ cwebp is not installed. Please install webp package."
+    echo "⚠️ cwebp is not installed. Skipping WebP conversion."
     echo "For Ubuntu/Debian: sudo apt-get install webp"
     echo "For Arch Linux: sudo pacman -S libwebp"
-    exit 1
+    exit 0
 fi
 
 # Find all PNG and JPG/JPEG files

@@ -8,6 +8,12 @@ TARGET_DIR="${1:-public}"
 
 echo "Compressing PDFs in directory: $TARGET_DIR"
 
+# Check if ghostscript is installed
+if ! command -v gs &> /dev/null; then
+    echo "⚠️ Ghostscript (gs) is not installed. Skipping PDF compression."
+    exit 0
+fi
+
 # Find all PDF files in the target directory
 find "$TARGET_DIR" -type f -name "*.pdf" | while read -r pdf_file; do
     echo "Processing: $pdf_file"
