@@ -9,7 +9,7 @@ TARGET_DIR="${1:-public}"
 echo "Converting images to WebP in directory: $TARGET_DIR"
 
 # Check if cwebp is installed
-if ! command -v cwebp &> /dev/null; then
+if ! command -v cwebp > /dev/null 2>&1; then
     echo "⚠️ cwebp is not installed. Skipping WebP conversion."
     echo "For Ubuntu/Debian: sudo apt-get install webp"
     echo "For Arch Linux: sudo pacman -S libwebp"
