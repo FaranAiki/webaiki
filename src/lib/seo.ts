@@ -9,6 +9,25 @@ export function extractKeywords(text: string, limit: number = 10): string[] {
   return Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, limit).map(e => e[0]);
 }
 
+export function generateKeywordScrambles(phrase: string): string[] {
+  const words = phrase.toLowerCase().split(' ').filter(Boolean);
+  const results = new Set<string>();
+  
+  const permute = (arr: string[], m: string[] = []) => {
+    if (arr.length === 0) {
+      results.add(m.join(' '));
+    } else {
+      for (let i = 0; i < arr.length; i++) {
+        const curr = arr.slice();
+        const next = curr.splice(i, 1);
+        permute(curr, m.concat(next));
+      }
+    }
+  }
+  
+  permute(words);
+  return Array.from(results);
+}
 export const LOCALES = ['en', 'id', 'zh', 'jp', 'ru', 'fr', 'ar', 'es', 'ko', 'de', 'nl', 'ha', 'he', 'el', 'hi', 'pt', 'bn', 'vi'];
 
 // Map locale codes to hreflang codes (Next.js Metadata alternates.languages keys)
@@ -100,6 +119,8 @@ export function getBaseMetadata(dict: Record<string, string> = {}): Metadata {
       "Full Stack Developer", "Data Analyst", "SAT Tutor", "ONMIPA Matematika", "ONMIPA PT",
       "Next.js Developer", "React Developer", "TypeScript", "Hire Muhammad Faran Aiki", "Best Software Engineer Indonesia",
       dict.Software_Engineer || "Software Engineer", dict.Mathematics || "Mathematics",
+      ...generateKeywordScrambles("Muhammad Faran Aiki"),
+      ...generateKeywordScrambles("Software Engineer ITB"),
       ...Object.values(dict)
     ],
     authors: [{ name: "Muhammad Faran Aiki", url: SITE_URL }],
