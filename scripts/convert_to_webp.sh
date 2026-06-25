@@ -11,7 +11,8 @@ echo "Converting images to WebP in directory: $TARGET_DIR"
 # Check if cwebp is installed
 if ! command -v cwebp &> /dev/null; then
     echo "❌ cwebp is not installed. Please install webp package."
-    echo "Run: sudo apt-get install webp"
+    echo "For Ubuntu/Debian: sudo apt-get install webp"
+    echo "For Arch Linux: sudo pacman -S libwebp"
     exit 1
 fi
 
