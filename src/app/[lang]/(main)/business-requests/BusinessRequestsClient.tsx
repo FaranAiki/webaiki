@@ -61,7 +61,7 @@ export default function BusinessRequestsClient({ requests }: BusinessRequestsCli
                 <Building2 size={24} />
               </div>
               <div>
-                <h3 className="text-xl font-bold">{request.company}</h3>
+                <h2 className="text-xl font-bold">{request.company}</h2>
                 <p className="text-theme-muted flex items-center gap-2 text-sm">
                   <Briefcase size={14} />
                   {request.jobTitle || 'N/A'}

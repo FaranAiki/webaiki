@@ -20,11 +20,16 @@ const globalForDb = globalThis as unknown as { conn: Pool | undefined };
 const pool = globalForDb.conn ?? new Pool({
   connectionString,
   max: isProduction ? 5 : 10,
-  connectionTimeoutMillis: 10000,
+  connectionTimeoutMillis: 20000,
   idleTimeoutMillis: 30000,
+  allowExitOnIdle: true,
   ssl: (isProduction || (connectionString && (connectionString.includes('supabase') || connectionString.includes('pooler')))) 
     ? { rejectUnauthorized: false } 
     : undefined
+});
+
+pool.on('error', (err) => {
+  console.error('Unexpected error on idle client', err);
 });
 
 if (!isProduction) globalForDb.conn = pool;

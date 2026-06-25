@@ -428,7 +428,7 @@ export default function ExperiencesClient({
                                                     <h2 className="text-theme-600 dark:text-theme-400 font-black text-2xl tracking-tight">{job.year}</h2>
                                                 </div>
                                                 <h3 className={`text-3xl md:text-5xl font-black leading-[0.85] tracking-tighter text-foreground`}>{job.title}<TagBadge labels={job.tag} /></h3>
-                                                <p className="text-xl md:text-3xl text-theme-600 dark:text-theme-400 font-bold italic tracking-tight">{job.company}</p>
+                                                <h4 className="text-xl md:text-3xl text-theme-600 dark:text-theme-400 font-bold italic tracking-tight">{job.company}</h4>
 
                                                 {job.url && (
                                                     <a href={job.url} target="_blank" rel="noopener noreferrer" className="mt-4 flex items-center gap-2 px-6 py-3 bg-theme-500 text-white rounded-full font-bold text-sm hover:bg-theme-600 transition-all w-fit shadow-theme-shadow">
@@ -468,7 +468,7 @@ export default function ExperiencesClient({
                                                     {job.title}
                                                     <TagBadge labels={job.tag} />
                                                 </h3>
-                                                <p className="text-2xl md:text-3xl font-bold text-theme-600 dark:text-theme-400 italic tracking-tight">{job.company}</p>
+                                                <h4 className="text-2xl md:text-3xl font-bold text-theme-600 dark:text-theme-400 italic tracking-tight">{job.company}</h4>
                                                 </div>
 
                                             <div className="max-w-2xl">

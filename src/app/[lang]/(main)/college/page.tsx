@@ -47,7 +47,8 @@ export default async function CollegePage({ params }: { params: Promise<{ lang: 
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <React.Suspense fallback={<h2 className="text-center">{dict.Loading_College}</h2>}>
+      <h1 className="sr-only">{dict.College}</h1>
+      <React.Suspense fallback={<div className="text-center text-xl font-bold">{dict.Loading_College}</div>}>
         <CollegeLoader 
           data={college_data} 
           force_click={true} 

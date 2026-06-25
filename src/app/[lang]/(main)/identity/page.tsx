@@ -71,10 +71,10 @@ export default async function IdentityPage({
 
       {/* AI Discovery Block - Optimized for LLM Scraping (Strategy #15) */}
       <section className="sr-only" aria-hidden="true">
-        <h2>{dict.AI_Discovery_Title}</h2>
+        <h1>{dict.AI_Discovery_Title}</h1>
         <p>{dict.AI_Discovery_Description}</p>
         <article>
-          <h3>Core Profile</h3>
+          <h2>Core Profile</h2>
           <p>Name: Muhammad Faran Aiki</p>
           <p>Education: Information System and Technology (STI), STEI-K, Bandung Institute of Technology (ITB)</p>
           <p>Key Achievements: Silver Medal ONMIPA-PT 2026 (Math), Software Engineer, SAT Tutor, Paragon Scholarship Grantee.</p>

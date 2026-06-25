@@ -1,0 +1,104 @@
+src/app/not-found-client.tsx:      <h1 className="text-3xl md:text-5xl font-black mb-4 nav-active-gacor">
+src/app/[lang]/(main)/HomeClient.tsx:            <h2 id="search-heading" className="sr-only">Search Faran Aiki Content</h2>
+src/app/[lang]/(main)/HomeClient.tsx:                <h2 className="text-2xl md:text-3xl font-black nav-active-gacor tracking-tight">
+src/app/[lang]/(main)/HomeClient.tsx:                      <h3 className="text-xl font-black text-foreground group-hover:text-theme-500 transition-colors mb-3 line-clamp-2">
+src/app/[lang]/(main)/college/page.tsx:      <React.Suspense fallback={<h2 className="text-center">{dict.Loading_College}</h2>}>
+src/app/[lang]/(main)/all/page.tsx:                      <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Work}</h2>
+src/app/[lang]/(main)/all/page.tsx:                      <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Project}</h2>
+src/app/[lang]/(main)/all/page.tsx:                      <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Organization}</h2>
+src/app/[lang]/(main)/all/page.tsx:                      <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Award}</h2>
+src/app/[lang]/(main)/all/page.tsx:                      <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Certificate}</h2>
+src/app/[lang]/(main)/all/page.tsx:                  <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Important_Highlights}</h2>
+src/app/[lang]/(main)/all/page.tsx:                  <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Social}</h2>
+src/app/[lang]/(main)/business-requests/page.tsx:      <h1 className="text-3xl font-bold mb-8">{dict.Business_Requests || 'Business Requests'}</h1>
+src/app/[lang]/(main)/business-requests/BusinessRequestsClient.tsx:                <h3 className="text-xl font-bold">{request.company}</h3>
+src/app/[lang]/(main)/portfolio/page.tsx:              <h3 className="text-xl font-black mb-4 nav-active-gacor">{dict.Professional_Pitch_Title}</h3>
+src/app/[lang]/(main)/identity/page.tsx:        <h2>{dict.AI_Discovery_Title}</h2>
+src/app/[lang]/(main)/identity/page.tsx:          <h3>Core Profile</h3>
+src/app/[lang]/(main)/news/[id]/page.tsx:          <h1 className="text-4xl md:text-5xl font-black text-foreground leading-tight">
+src/app/[lang]/(main)/website/page.tsx:            <h1 className="text-4xl md:text-6xl font-black nav-active-gacor tracking-tighter">
+src/app/[lang]/(main)/website/page.tsx:              <h2 className="text-3xl font-black tracking-tight">{dict.Tech_Reference || "Architectural Reference"}</h2>
+src/app/[lang]/(main)/website/page.tsx:                <h3 className="text-xl font-bold mb-3">Next.js 15 Framework</h3>
+src/app/[lang]/(main)/website/page.tsx:                <h3 className="text-xl font-bold mb-3">Custom UI/UX Styling</h3>
+src/app/[lang]/(main)/website/page.tsx:                <h3 className="text-xl font-bold mb-3">PostgreSQL & Prisma</h3>
+src/app/[lang]/(main)/website/page.tsx:                <h3 className="text-xl font-bold mb-3">Global Localization (i18n)</h3>
+src/app/[lang]/(main)/website/page.tsx:                    <h3 className="text-2xl font-black mb-3">Holistic Engineering</h3>
+src/app/[lang]/loading.tsx:          <h2 className="text-3xl md:text-4xl font-black text-gacor-smooth tracking-tighter animate-fade-in leading-tight drop-shadow-sm min-h-[3rem]">
+src/app/[lang]/(naked)/project/uas_matematika_dasar/UasHeader.tsx:            <h3 className="text-2xl font-bold mb-6 text-center text-foreground">Dukungan / Donasi</h3>
+src/app/[lang]/not-found-client.tsx:      <h1 className="text-3xl md:text-5xl font-black mb-4 nav-active-gacor">
+src/components/shared/SearchBar.tsx:                              <h4 className={`text-sm font-black transition-colors truncate
+src/components/layout/Header.tsx:                            <h1 className={`flex items-center justify-center transition-[colors,transform] duration-200 text-lg font-black nav-active-gacor whitespace-nowrap cursor-pointer opacity-95`}>
+src/components/layout/Header.tsx:                            <h1 className={`flex items-center justify-center transition-[colors,transform] duration-200 text-lg font-black nav-active-gacor whitespace-nowrap cursor-pointer opacity-95`}>
+src/components/portfolio/AboutMe.tsx:          <h1 className="text-4xl md:text-6xl font-black tracking-tighter nav-active-gacor leading-none cursor-default hover:opacity-80 transition-opacity">
+src/components/portfolio/AboutMe.tsx:            <h1 className={`${props.isCompact ? 'text-2xl md:text-3xl' : 'text-4xl md:text-5xl'} font-extrabold ${titleClass} mb-6 hover:opacity-85 transition-opacity tracking-tight`}>
+src/components/portfolio/AboutMe.tsx:            <h2 className={`${props.isCompact ? 'text-xl md:text-2xl' : 'text-3xl md:text-4xl'} font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
+src/components/portfolio/AboutMe.tsx:            <h2 className={`${props.isCompact ? 'text-xl md:text-2xl' : 'text-3xl md:text-4xl'} font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
+src/components/portfolio/AboutMe.tsx:            <h2 className={`${props.isCompact ? 'text-xl md:text-2xl' : 'text-3xl md:text-4xl'} font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
+src/components/portfolio/ExperienceDisplayer.tsx:                        <h3 className="text-lg md:text-xl font-black leading-tight mb-1 nav-active-gacor">
+src/components/portfolio/ExperienceDisplayer.tsx:                            <h3 className="text-xl font-black mb-1 nav-active-gacor">{job.title}<TagBadge labels={job.tag} /></h3>
+src/components/portfolio/ExperienceDisplayer.tsx:                                            <h2 className="text-theme-600 dark:text-theme-400 font-bold text-xl md:text-2xl tracking-tight">{job.year}</h2>
+src/components/portfolio/ExperienceDisplayer.tsx:                                            <h3 className="text-3xl md:text-5xl font-black leading-tight tracking-tighter text-foreground">{job.title}<TagBadge labels={job.tag} /></h3>
+src/components/portfolio/ExperienceDisplayer.tsx:                                            <h4 className="text-theme-600 dark:text-theme-400 text-xl md:text-2xl italic opacity-90">{job.company}</h4>
+src/components/portfolio/ExperienceDisplayer.tsx:                                                    <h2 className="text-theme-600 dark:text-theme-400 font-black text-2xl tracking-tight">{job.year}</h2>
+src/components/portfolio/ExperienceDisplayer.tsx:                                                <h3 className={`text-3xl md:text-5xl font-black leading-[0.85] tracking-tighter text-foreground`}>{job.title}<TagBadge labels={job.tag} /></h3>
+src/components/portfolio/ExperienceDisplayer.tsx:                                                <h3 className={`text-3xl md:text-5xl font-black text-foreground leading-[0.85] tracking-tighter`}>
+src/components/portfolio/ExperienceDisplayer.tsx:                                            <h2 className={`transition-transform duration-300 hover:scale-105 text-2xl font-bold text-theme-600 dark:text-theme-400 mb-6 py-2 cursor-pointer`}>
+src/components/portfolio/ExperienceDisplayer.tsx:                                                            <h3 className={`text-xl font-bold ${mainText} group-hover:text-theme-500 ${job.url ? 'underline decoration-dotted decoration-theme-500/30' : ''}`}>{job.title}<TagBadge labels={job.tag} /></h3>
+src/components/portfolio/ExperienceDisplayer.tsx:                                                <h3 className={`text-2xl font-black ${mainText}`}>{activeJob.title}<TagBadge labels={activeJob.tag} /></h3>
+src/components/portfolio/ExperienceDisplayer.tsx:                                                                    <h3 className="text-base lg:text-lg font-black mb-1 group-hover:text-theme-500 transition-colors leading-tight">{job.title}</h3>
+src/components/portfolio/ExperienceDisplayer.tsx:                                                                <h3 className="text-lg font-black mb-1 group-hover:text-theme-500 transition-colors leading-tight">{job.title}</h3>
+src/components/portfolio/ExperienceDisplayer.tsx:                                                    <h3 className="text-sm font-black mb-1 text-foreground group-hover:text-theme-500 leading-tight">{job.title}</h3>
+src/components/portfolio/ExperienceDisplayer.tsx:                                            <h3 className={`text-xl font-black ${mainText} group-hover:text-theme-500`}>{job.title}<TagBadge labels={job.tag} /></h3>
+src/components/portfolio/ExperienceDisplayer.tsx:                                                    <h3 className={`text-4xl md:text-5xl font-black ${mainText} group-hover:text-theme-500 leading-tight transition-colors`}>{job.title}<TagBadge labels={job.tag} /></h3>
+src/components/portfolio/CertificatesDisplay.tsx:                <h3 className={`text-sm font-black leading-tight ${titleColor} line-clamp-2`}>{formatCJK(fileName, lang)}</h3>
+src/components/portfolio/CertificatesDisplay.tsx:                    <h3 className={`text-xl font-black mb-2 ${titleColor}`}>{formatCJK(fileName, lang)}</h3>
+src/components/portfolio/CertificatesDisplay.tsx:            <h2 className="text-xl md:text-3xl font-black mb-6 text-center flex flex-wrap justify-center items-center gap-x-4">
+src/components/portfolio/CertificatesDisplay.tsx:                                <h3 className={`font-semibold ${titleColor} truncate hover-gacor`}>
+src/components/portfolio/CertificatesDisplay.tsx:                            <h2 className={`text-3xl font-black text-gacor-smooth`}>{item.year}</h2>
+src/components/portfolio/CertificatesDisplay.tsx:                            <h3 className={`text-xl font-bold text-gacor-smooth opacity-70`}>{formatCJK(item.category, lang)}</h3>
+src/components/portfolio/CertificatesDisplay.tsx:                                        <h4 className={`font-bold ${titleColor} hover-gacor line-clamp-1 text-sm`}>{formatCJK(fileName, lang)}</h4>
+src/components/portfolio/CertificatesDisplay.tsx:                            <h3 className={`text-sm font-bold ${titleColor} hover-gacor line-clamp-1`}>{formatCJK(item.fileName, lang)}</h3>
+src/components/portfolio/FAQ.tsx:          <h2 className="text-xl md:text-2xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-[var(--gacor-1)] via-[var(--gacor-2)] to-[var(--gacor-3)]">
+src/components/portfolio/PortfolioHeader.tsx:        <h1 className="text-3xl font-black tracking-tighter">
+src/components/portfolio/PortfolioHeader.tsx:        <h1 className="text-2xl md:text-3xl font-black tracking-tighter nav-active-gacor portfolio-title">
+src/components/portfolio/PortfolioSummaryItem.tsx:          <h3 className="font-bold text-foreground text-xs portfolio-item-title m-0">
+src/components/portfolio/PortfolioSummaryItem.tsx:        <h3 className="font-bold text-foreground group-hover:text-theme-500 transition-colors leading-tight portfolio-item-title text-base">
+src/components/portfolio/PortfolioSkills.tsx:          <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">
+src/components/portfolio/PortfolioSkills.tsx:        <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">
+src/components/portfolio/PortfolioSkills.tsx:            <h3 className="text-sm font-bold text-foreground mb-3">
+src/components/portfolio/PortfolioSkills.tsx:                    <h4 className="text-[12px] font-bold text-theme-muted tracking-wider mb-1.5">{sub.title}</h4>
+src/components/portfolio/SocialDisplay.tsx:          <h3 className={`text-base font-black text-foreground mb-0.5 line-clamp-1`}>
+src/components/portfolio/SocialDisplay.tsx:          <h3 className="text-xl font-black text-foreground mb-1 relative z-10">Faran Aiki</h3>
+src/components/portfolio/SocialDisplay.tsx:          <h3 className="text-xl font-black text-foreground mb-1 relative z-10">Faran Aiki</h3>
+src/components/portfolio/InteractiveCollections.tsx:                <h2 className="text-2xl md:text-4xl font-black mb-8 text-center flex flex-wrap justify-center items-center gap-x-4">
+src/components/portfolio/InteractiveCollections.tsx:                                          {Object.entries(documents).length > 0 && (<h3 className={`font-bold hover-gacor cursor-pointer hover:text-theme-600 transition-colors`}>{formatCJK(headingTwo, lang)}</h3>)}
+src/components/portfolio/InteractiveCollections.tsx:                                  <h2 className={`text-3xl font-black text-gacor-smooth mb-8`}>{formatCJK(headingOne, lang)}</h2>
+src/components/portfolio/InteractiveCollections.tsx:                                              <h3 className={`text-xl font-bold text-gacor-smooth italic`}>{formatCJK(headingTwo, lang)}</h3>
+src/components/portfolio/InteractiveCollections.tsx:                                  <h3 className={`text-lg font-black ${titleColor} hover-gacor`}>{formatCJK(item.docName, lang)}</h3>
+src/components/portfolio/PortfolioExperienceList.tsx:            <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">{labels.Work}</h2>
+src/components/portfolio/PortfolioExperienceList.tsx:            <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">{labels.Project}</h2>
+src/components/portfolio/PortfolioExperienceList.tsx:            <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">{labels.Organization}</h2>
+src/components/portfolio/PortfolioExperienceList.tsx:            <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">{labels.Award}</h2>
+src/components/portfolio/PortfolioEducation.tsx:          <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">
+src/components/portfolio/PortfolioEducation.tsx:                  <h3 className="font-bold text-foreground text-xs portfolio-item-title m-0">
+src/components/portfolio/PortfolioEducation.tsx:        <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">
+src/components/portfolio/PortfolioEducation.tsx:                <h3 className="text-sm font-bold text-foreground leading-snug">
+src/components/interactive/AskMePopup.tsx:                    <h3 className="text-sm font-medium opacity-75 mb-1.5">{question_title}</h3>
+src/components/interactive/AskMePopup.tsx:                    <h3 className="text-sm font-medium opacity-75 mb-1.5">{question_answer}</h3>
+src/components/interactive/RegisterForm.tsx:        <h2 className="text-2xl font-black text-foreground tracking-tight">{dict.Register_Success}</h2>
+src/components/interactive/RegisterForm.tsx:          <h1 className="text-3xl font-black nav-active-gacor tracking-tighter">{dict.Register}</h1>
+src/components/interactive/LoginForm.tsx:          <h1 className="text-3xl font-black nav-active-gacor tracking-tighter">{dict.Login}</h1>
+src/components/interactive/FeedbackDisplay.tsx:          <h1 className="text-4xl md:text-5xl font-black nav-active-gacor flex items-center gap-4">
+src/components/interactive/FeedbackDisplay.tsx:                      <h3 className="text-xl font-bold text-foreground">{item.user.name || 'Anonymous'}</h3>
+src/components/interactive/FeedbackDisplay.tsx:          <h2 className="text-2xl font-bold text-foreground opacity-80 border-l-4 border-theme-500 pl-4">
+src/components/interactive/CommentSection.tsx:            <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
+src/components/interactive/EditProfileForm.tsx:        <h1 className="text-4xl font-black nav-active-gacor tracking-tighter flex items-center gap-4">
+src/components/interactive/MusicDisplay.tsx:                    <h2 className="text-3xl font-bold text-red-500">{dict.YouTube_Playlist_Empty || 'YouTube Playlist Empty'}</h2>
+src/components/interactive/MusicDisplay.tsx:                            <h3 className="text-center font-semibold text-sm md:text-base text-foreground line-clamp-2">{formatCJK(item.snippet.title, lang)}</h3>
+src/components/interactive/HireMeForm.tsx:        <h2 className="text-2xl font-bold text-theme-500 mb-6">{dict.Hire_Success}</h2>
+src/components/interactive/HireMeForm.tsx:      <h1 className="text-3xl font-bold mb-2 nav-active-gacor">
+src/components/interactive/NewsDisplay.tsx:          <h1 className="text-4xl md:text-5xl font-black nav-active-gacor flex items-center gap-4">
+src/components/interactive/NewsDisplay.tsx:                      <h3 className="text-xl font-black text-foreground line-clamp-2 hover:text-theme-500 transition-colors">
+src/components/interactive/NewsDisplay.tsx:          <h2 className="text-2xl font-bold text-foreground opacity-80 border-l-4 border-theme-500 pl-4">
+src/components/interactive/NewsDisplay.tsx:                      <h3 className="text-2xl md:text-3xl font-black text-foreground group-hover:text-theme-500 transition-colors">
+src/components/providers/SettingsPopup.tsx:        <h3 className="text-lg font-bold flex items-center gap-2 nav-active-gacor">

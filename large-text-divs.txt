@@ -1,0 +1,3 @@
+src/app/[lang]/(main)/website/page.tsx:            <p className="text-xl md:text-2xl text-[var(--text-muted)] font-medium leading-relaxed">
+src/components/portfolio/ExperienceDisplayer.tsx:                                                <p className="text-xl md:text-3xl text-theme-600 dark:text-theme-400 font-bold italic tracking-tight">{job.company}</p>
+src/components/portfolio/ExperienceDisplayer.tsx:                                                <p className="text-2xl md:text-3xl font-bold text-theme-600 dark:text-theme-400 italic tracking-tight">{job.company}</p>
