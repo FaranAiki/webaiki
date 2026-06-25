@@ -61,6 +61,7 @@ export default async function OrganizationExperiencesPage({ params }: { params: 
         modern_text={dict.Presentation_Modern}
         cinematic_text={dict.Presentation_Cinematic}
         editorial_text={dict.Presentation_Editorial}
+            visit_external_link_text={dict.Visit_External_Link}
       />
     </main>
   );

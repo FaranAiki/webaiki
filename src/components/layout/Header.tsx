@@ -464,6 +464,7 @@ export default function Header(props: HeaderProps) {
                                 <button
                                     onClick={togglePresentationMode}
                                     title={presentation_mode}
+                                    aria-label={presentation_mode}
                                     className={`
                                         flex items-center justify-center transition-all duration-300 p-2 rounded-full
                                         ${(mounted && isPresentationMode)
@@ -484,6 +485,7 @@ export default function Header(props: HeaderProps) {
                             <button
                                 onClick={handleShare}
                                 title="Share this page with current settings"
+                                aria-label="Share this page with current settings"
                                 className={`
                                     flex items-center justify-center transition-all duration-300 p-2 rounded-full
                                     ${showShareSuccess
@@ -688,6 +690,7 @@ export default function Header(props: HeaderProps) {
                                 <Link
                                     href={getLocalizedHref('/login')}
                                     title={login_label}
+                                    aria-label={login_label}
                                     className={`
                                         flex items-center justify-center transition-all duration-300 p-2 rounded-full
                                         ${isDark

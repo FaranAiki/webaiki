@@ -118,6 +118,7 @@ export default function MusicDisplay({ youtubeItems = [], error, lang, dict = {}
                     scrolling="no" 
                     frameBorder="no" 
                     allow="autoplay"  
+                    title="SoundCloud Player"
                     src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/667105430&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&visual=false&show_artwork=false"
                 ></iframe>
             </div>
@@ -236,6 +237,7 @@ export default function MusicDisplay({ youtubeItems = [], error, lang, dict = {}
                     scrolling="no" 
                     frameBorder="no" 
                     allow="autoplay"  
+                    title="SoundCloud Player"
                     src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/667105430&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&visual=false&show_artwork=false"
                     loading="lazy"
                   ></iframe>

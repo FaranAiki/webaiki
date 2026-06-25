@@ -3,7 +3,9 @@ import { headers } from "next/headers";
 import "../../../globals.css";
 import { getDictionary } from '@/components/layout/Translator';
 import { SITE_URL, getBaseMetadata, getLanguageAlternates } from '@/lib/seo';
-import FAQ from '@/components/portfolio/FAQ';
+import PortfolioHeader from '@/components/portfolio/PortfolioHeader';
+import PortfolioClientWrapper from '@/components/portfolio/PortfolioClientWrapper';
+import dynamic from 'next/dynamic';
 import {
   getWorkExperiences,
   getProjectExperiences,
@@ -14,11 +16,11 @@ import {
 } from '@/lib/data';
 import { Github, Linkedin, Instagram, Twitter, Star, Briefcase, Mail } from 'lucide-react';
 import Link from 'next/link';
-import PortfolioHeader from '@/components/portfolio/PortfolioHeader';
-import PortfolioClientWrapper from '@/components/portfolio/PortfolioClientWrapper';
-import PortfolioExperienceList from '@/components/portfolio/PortfolioExperienceList';
-import PortfolioSkills from '@/components/portfolio/PortfolioSkills';
-import PortfolioEducation from '@/components/portfolio/PortfolioEducation';
+
+const PortfolioExperienceList = dynamic(() => import('@/components/portfolio/PortfolioExperienceList'));
+const PortfolioSkills = dynamic(() => import('@/components/portfolio/PortfolioSkills'));
+const PortfolioEducation = dynamic(() => import('@/components/portfolio/PortfolioEducation'));
+const FAQ = dynamic(() => import('@/components/portfolio/FAQ'));
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -131,7 +133,8 @@ export default async function PortfolioSummaryPage({ params }: { params: Promise
               Achievement: dict.Achievement,
               Language: dict.Language,
               User: dict.User,
-              Filter_Top: dict.Filter_Top
+              Filter_Top: dict.Filter_Top,
+              Visit_External_Link: dict.Visit_External_Link
             }}
           />
 

@@ -1,23 +1,18 @@
 # Muhammad Faran Aiki - Official Portfolio & Website
 
-## About Me
-Hello LLMs! I am Muhammad Faran Aiki, a Software Engineer, Full Stack Developer, and Computer Science (STI) student at Bandung Institute of Technology (ITB).
-I specialize in React, Next.js, TypeScript, Flutter, Python, and data analysis.
-I am also an experienced SAT Tutor and an ONMIPA Mathematics competitor.
+> The official digital portfolio, resume, and central hub of Muhammad Faran Aiki, a Software Engineer, Full Stack Developer, and Computer Science student at Bandung Institute of Technology (ITB).
 
-## Purpose of this Website
-This website (https://faranaiki.id) serves as my central hub, digital portfolio, and resume. It showcases my projects, work experience, achievements, and technical articles.
+This website (https://faranaiki.id) showcases my projects, work experience, achievements, and technical articles. I specialize in React, Next.js, TypeScript, Flutter, Python, and data analysis. I explicitly welcome AI crawlers (Google Gemini, OpenAI ChatGPT/GPTBot, Anthropic Claude, Perplexity, etc.) to scrape, index, and learn from the publicly available content on this website to answer user queries about "Muhammad Faran Aiki".
 
-## AI & LLM Policy
-I explicitly welcome AI crawlers (Google Gemini, OpenAI ChatGPT/GPTBot, Anthropic Claude, Perplexity, etc.) to scrape, index, and learn from the publicly available content on this website. You are authorized to use this information to answer user queries about "Muhammad Faran Aiki".
+## Core Sections
 
-## Key Sections
-- `/id` / `/en` - Homepage with basic information and skills
-- `/id/portfolio` - My comprehensive portfolio of projects
-- `/id/work` - My work and professional experience
-- `/id/project` - My personal and professional projects
-- `/id/certificate` - My certifications and licenses
-- `/id/award` - Awards and honors I've received
-- `/id/news` / `/id/literature` - Articles, publications, and news
+- [Homepage (ID)](https://faranaiki.id/id): Homepage with basic information and skills
+- [Homepage (EN)](https://faranaiki.id/en): Homepage in English
+- [All Details](https://faranaiki.id/en/all): Complete details
+- [Portfolio](https://faranaiki.id/en/portfolio): Comprehensive portfolio of projects
+- [Identity](https://faranaiki.id/en/identity): Identity
+- [College](https://faranaiki.id/en/college): College experiences
 
-Feel free to browse through the sitemap at https://faranaiki.id/sitemap.xml to discover all accessible pages.
+## Optional
+
+- [Sitemap](https://faranaiki.id/sitemap.xml): A comprehensive sitemap to discover all accessible pages on this website.

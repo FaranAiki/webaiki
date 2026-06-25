@@ -1,9 +1,12 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import TrackingIcon, { TrackerType } from "../../../components/interactive/TrackingIcon";
+import dynamic from 'next/dynamic';
+import type { TrackerType } from "../../../components/interactive/TrackingIcon";
 import FadeInSection from "@/components/shared/FadeInSection";
-import SearchBar from "@/components/shared/SearchBar";
+
+const TrackingIcon = dynamic(() => import("../../../components/interactive/TrackingIcon"), { ssr: false });
+const SearchBar = dynamic(() => import("@/components/shared/SearchBar"), { ssr: false });
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { NewsItem } from '@/lib/types';
 import Link from 'next/link';
@@ -190,6 +193,7 @@ export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientP
               </div>
               <Link
                 href={`/${lang}/news`}
+                aria-label="View all latest activity and news"
                 className="flex items-center gap-2 text-sm font-bold text-theme-500 hover:text-theme-400 transition-colors group"
               >
                 {dict.All || "All"}
@@ -257,6 +261,7 @@ export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientP
 
                         <Link
                           href={`/${lang}/news`}
+                          aria-label={`Read more about ${item.title}`}
                           className="text-sm font-black tracking-widest text-theme-muted group-hover:text-theme-500 transition-colors"
                         >
                           {dict.Read_More || "Read More"}

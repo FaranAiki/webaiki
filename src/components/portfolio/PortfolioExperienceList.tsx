@@ -52,6 +52,7 @@ interface PortfolioExperienceListProps {
     Language: string;
     User: string;
     Filter_Top: string;
+    Visit_External_Link?: string;
   };
 }
 
@@ -81,7 +82,7 @@ export default function PortfolioExperienceList({
     } else if (portfolioFilter !== 'all') {
       // Filter by tag - comparing untranslated enum key to translated tag strings in the data
       const targetLabel = labels[portfolioFilter as keyof typeof labels];
-      filtered = filtered.filter(j => j.tag?.includes(targetLabel));
+      filtered = filtered.filter(j => targetLabel && j.tag?.includes(targetLabel));
     }
     
     return filtered.sort((a, b) => {
@@ -141,6 +142,7 @@ export default function PortfolioExperienceList({
                 description={job.description}
                 url={job.url}
                 onRemove={() => handleRemove('work', job)}
+                ariaLabelTemplate={labels.Visit_External_Link}
               />
             ))}
           </div>
@@ -164,6 +166,7 @@ export default function PortfolioExperienceList({
                 description={job.description}
                 url={job.url}
                 onRemove={() => handleRemove('project', job)}
+                ariaLabelTemplate={labels.Visit_External_Link}
               />
             ))}
           </div>
@@ -187,6 +190,7 @@ export default function PortfolioExperienceList({
                 description={job.description}
                 url={job.url}
                 onRemove={() => handleRemove('org', job)}
+                ariaLabelTemplate={labels.Visit_External_Link}
               />
             ))}
           </div>
@@ -210,6 +214,7 @@ export default function PortfolioExperienceList({
                 description={job.description}
                 url={job.url}
                 onRemove={() => handleRemove('award', job)}
+                ariaLabelTemplate={labels.Visit_External_Link}
               />
             ))}
           </div>

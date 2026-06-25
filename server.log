@@ -1,0 +1,10 @@
+
+> webaiki@3.0.0 start
+> NODE_OPTIONS='--no-deprecation' next start -p 3005
+
+   ▲ Next.js 15.5.19
+   - Local:        http://localhost:3005
+   - Network:      http://10.93.167.13:3005
+
+ ✓ Starting...
+[Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id]

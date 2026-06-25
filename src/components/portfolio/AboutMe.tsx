@@ -97,14 +97,15 @@ export function PortfolioAboutHeader(props: AboutMeProps) {
                   transition={{ duration: 0.6 }}
                   className="relative w-full h-full"
                 >
-                  <Image
-                    src={`/images/photo_faran_aiki/${props.carouselPhotos[currentIndex]}`}
-                    alt={props.faran_photo}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 200px, 400px"
-                    priority
-                  />
+                    <Image
+                      src={`/images/photo_faran_aiki/${props.carouselPhotos[currentIndex]}`}
+                      alt={props.faran_photo}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 200px, 400px"
+                      priority
+                      fetchPriority="high"
+                    />
                 </motion.div>
               </AnimatePresence>
             ) : (
@@ -224,6 +225,7 @@ export function AboutSection(props: AboutSubSectionProps) {
                     sizes="(max-width: 768px) 160px, 400px"
                     quality={85}
                     priority={true}
+                    fetchPriority="high"
                   />
                 </motion.div>
                 ) : (

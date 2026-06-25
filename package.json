@@ -14,7 +14,8 @@
     "lint": "eslint",
     "test:unit": "vitest run",
     "test": "cypress run",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "lighthouse": "npm run build && lhci autorun"
   },
   "dependencies": {
     "@base-ui/react": "^1.5.0",
@@ -56,6 +57,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@lhci/cli": "^0.15.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/pg": "^8.20.0",

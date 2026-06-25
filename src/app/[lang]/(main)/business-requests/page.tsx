@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation';
 import { db } from '@/lib/db';
 import BusinessRequestsClient from './BusinessRequestsClient';
 import { Metadata } from 'next';
+import { unstable_cache } from 'next/cache';
 
 export const metadata: Metadata = {
   title: 'Business Requests | Admin',
@@ -26,12 +27,20 @@ export default async function BusinessRequestsPage({ params }: { params: Promise
     redirect(`/${lang}`);
   }
 
-  const requests = await db.query.hireRequests.findMany({
-    with: {
-      user: true,
+  const getRequests = unstable_cache(
+    async () => {
+      return await db.query.hireRequests.findMany({
+        with: {
+          user: true,
+        },
+        orderBy: (hireRequests, { desc }) => [desc(hireRequests.createdAt)],
+      });
     },
-    orderBy: (hireRequests, { desc }) => [desc(hireRequests.createdAt)],
-  });
+    ['business-requests'],
+    { revalidate: 60, tags: ['business-requests'] }
+  );
+  
+  const requests = await getRequests();
 
   return (
     <div className="container mx-auto px-4 py-24 min-h-screen">

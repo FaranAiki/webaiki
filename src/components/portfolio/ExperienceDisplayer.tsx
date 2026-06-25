@@ -59,6 +59,7 @@ interface ExperiencesClientProps {
     modern_text?: string;
     cinematic_text?: string;
     editorial_text?: string;
+    visit_external_link_text?: string;
 }
 
 
@@ -75,7 +76,7 @@ const TagBadge = ({ labels }: { labels?: string[] }) => {
                 </span>
             ))}
             {labels.length > 3 && (
-                <span className="text-[9px] font-bold text-theme-muted opacity-50">+{labels.length - 3}</span>
+                <span className="text-[9px] font-bold text-theme-muted">+{labels.length - 3}</span>
             )}
         </div>
     );
@@ -256,7 +257,8 @@ export default function ExperiencesClient({
     click_to_close_text = 'Click to close',
     modern_text = 'Modern',
     cinematic_text = 'Cinematic',
-    editorial_text = 'Editorial'
+    editorial_text = 'Editorial',
+    visit_external_link_text = 'Visit external link for'
 }: ExperiencesClientProps) {
     const [currentLayout, setCurrentLayout] = useState<LayoutType>(layout);
     const [presentationLayout, setPresentationLayout] = useState<PresentationLayoutType>('modern');
@@ -377,7 +379,7 @@ export default function ExperiencesClient({
                                         </HoverableWords>
 
                                         {job.url && (
-                                            <a href={job.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-3 bg-theme-500 text-white rounded-full font-bold text-sm hover:bg-theme-600 transition-all w-fit shadow-lg hover:scale-105">
+                                            <a href={job.url} target="_blank" rel="noopener noreferrer" aria-label={`${visit_external_link_text} ${job.title}`} className="flex items-center gap-2 px-6 py-3 bg-theme-500 text-white rounded-full font-bold text-sm hover:bg-theme-600 transition-all w-fit shadow-lg hover:scale-105">
                                                 <ExternalLink size={18} />
                                                 Visit Project
                                             </a>
@@ -431,7 +433,7 @@ export default function ExperiencesClient({
                                                 <h4 className="text-xl md:text-3xl text-theme-600 dark:text-theme-400 font-bold italic tracking-tight">{job.company}</h4>
 
                                                 {job.url && (
-                                                    <a href={job.url} target="_blank" rel="noopener noreferrer" className="mt-4 flex items-center gap-2 px-6 py-3 bg-theme-500 text-white rounded-full font-bold text-sm hover:bg-theme-600 transition-all w-fit shadow-theme-shadow">
+                                                    <a href={job.url} target="_blank" rel="noopener noreferrer" aria-label={`${visit_external_link_text} ${job.title}`} className="mt-4 flex items-center gap-2 px-6 py-3 bg-theme-500 text-white rounded-full font-bold text-sm hover:bg-theme-600 transition-all w-fit shadow-theme-shadow">
                                                         <ExternalLink size={18} />
                                                         Visit Project
                                                     </a>
@@ -477,7 +479,7 @@ export default function ExperiencesClient({
                                                 </HoverableWords>
 
                                                 {job.url && (
-                                                    <a href={job.url} target="_blank" rel="noopener noreferrer" className="mt-10 flex items-center gap-2 px-8 py-4 bg-theme-500 text-white rounded-full font-black text-base hover:bg-theme-600 transition-all w-fit shadow-theme-shadow hover:scale-105">
+                                                    <a href={job.url} target="_blank" rel="noopener noreferrer" aria-label={`${visit_external_link_text} ${job.title}`} className="mt-10 flex items-center gap-2 px-8 py-4 bg-theme-500 text-white rounded-full font-black text-base hover:bg-theme-600 transition-all w-fit shadow-theme-shadow hover:scale-105">
                                                         <ExternalLink size={20} />
                                                         Explore Now
                                                     </a>

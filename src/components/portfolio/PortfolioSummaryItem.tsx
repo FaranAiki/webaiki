@@ -13,6 +13,7 @@ interface PortfolioSummaryItemProps {
   description: string;
   url?: string;
   onRemove?: () => void;
+  ariaLabelTemplate?: string;
 }
 
 const cleanText = (text: string) => {
@@ -26,7 +27,8 @@ export default function PortfolioSummaryItem({
   date,
   description,
   url,
-  onRemove
+  onRemove,
+  ariaLabelTemplate
 }: PortfolioSummaryItemProps) {
   const [isOpen, setIsOpen] = useState(false);
   const { isExpandAll, isAtsMode, isFullDescription } = useSettings();
@@ -108,6 +110,7 @@ export default function PortfolioSummaryItem({
                 href={url}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={ariaLabelTemplate ? `${ariaLabelTemplate}${title}` : `Visit external link for ${title}`}
                 className="p-1 hover:bg-theme-500/10 rounded-md transition-colors portfolio-item-link"
                 onClick={(e) => e.stopPropagation()}
               >

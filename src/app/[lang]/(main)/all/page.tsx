@@ -2,15 +2,21 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import "../../../globals.css";
 import { getDictionary } from '@/components/layout/Translator';
-import ExperiencesClient, { Experience, Job } from '@/components/portfolio/ExperienceDisplayer';
-import CertificatesDisplay, { CertificateData } from '@/components/portfolio/CertificatesDisplay';
-import InteractiveCollections, { CollectionsData } from '@/components/portfolio/InteractiveCollections';
+import type { Experience, Job } from '@/components/portfolio/ExperienceDisplayer';
+import type { CertificateData } from '@/components/portfolio/CertificatesDisplay';
+import type { CollectionsData } from '@/components/portfolio/InteractiveCollections';
 import { PortfolioAboutHeader } from '@/components/portfolio/AboutMe';
-import FAQ from '@/components/portfolio/FAQ';
-import SocialDisplay, { SocialLink } from '@/components/portfolio/SocialDisplay';
+import type { SocialLink } from '@/components/portfolio/SocialDisplay';
 import { Github, Linkedin, Instagram, Twitter, Youtube, Share2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
+
+const ExperiencesClient = dynamic(() => import('@/components/portfolio/ExperienceDisplayer'));
+const CertificatesDisplay = dynamic(() => import('@/components/portfolio/CertificatesDisplay'));
+const InteractiveCollections = dynamic(() => import('@/components/portfolio/InteractiveCollections'));
+const FAQ = dynamic(() => import('@/components/portfolio/FAQ'));
+const SocialDisplay = dynamic(() => import('@/components/portfolio/SocialDisplay'));
 
 import { getLanguageAlternates, getBaseMetadata, getPersonSchema, getBreadcrumbSchema, getFaqSchema, SITE_URL } from '@/lib/seo';
 import PageEntrance from "@/components/shared/PageEntrance";
@@ -237,6 +243,7 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
                 modern_text={dict.Presentation_Modern}
                 cinematic_text={dict.Presentation_Cinematic}
                 editorial_text={dict.Presentation_Editorial}
+            visit_external_link_text={dict.Visit_External_Link}
               />
             </section>
           )}
@@ -258,6 +265,7 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
                 modern_text={dict.Presentation_Modern}
                 cinematic_text={dict.Presentation_Cinematic}
                 editorial_text={dict.Presentation_Editorial}
+            visit_external_link_text={dict.Visit_External_Link}
               />
             </section>
           )}
@@ -281,6 +289,7 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
                       modern_text={dict.Presentation_Modern}
                       cinematic_text={dict.Presentation_Cinematic}
                       editorial_text={dict.Presentation_Editorial}
+            visit_external_link_text={dict.Visit_External_Link}
                     />
                   </div>
                 </section>
@@ -302,6 +311,7 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
                       modern_text={dict.Presentation_Modern}
                       cinematic_text={dict.Presentation_Cinematic}
                       editorial_text={dict.Presentation_Editorial}
+            visit_external_link_text={dict.Visit_External_Link}
                     />
                   </div>
                 </section>
