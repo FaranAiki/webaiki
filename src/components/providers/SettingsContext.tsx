@@ -187,7 +187,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     if (savedFilter) setPortfolioFilter(savedFilter as PortfolioFilter);
     
     setMounted(true);
-  }, []);
+  }, [setColor, setFont, setIsAtsMode, setIsExpandAll, setIsFullDescription, setLetterSpacing, setLineHeight, setPortfolioFilter, setTextAlign, setTextScale]);
 
   useEffect(() => {
     if (!mounted) return;

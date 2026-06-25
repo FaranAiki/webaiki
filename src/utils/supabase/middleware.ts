@@ -32,7 +32,10 @@ export async function updateSession(request: NextRequest) {
       }
     )
 
-    await supabase.auth.getUser()
+    // Optimization: Use getSession() instead of getUser() to avoid network requests 
+    // when the token is still valid. getSession() only decodes the local JWT unless 
+    // it's expired, making it significantly faster for most requests.
+    await supabase.auth.getSession()
   } catch (error) {
     // If Supabase fetch fails (e.g. network issue or invalid url), we don't want to crash the whole middleware
     console.warn('Supabase middleware gracefully bypassed fetch error:', error instanceof Error ? error.message : String(error));

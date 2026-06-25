@@ -8,10 +8,12 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { Inter } from "next/font/google";
 import ThemeToggle from '@/components/shared/ThemeToggle';
 import { useTheme } from 'next-themes';
-import SettingsPopup from '@/components/providers/SettingsPopup';
+import dynamic from 'next/dynamic';
 import { useSettings } from '@/components/providers/SettingsContext';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CommandPalette } from '@/components/interactive/CommandPalette';
+
+const SettingsPopup = dynamic(() => import('@/components/providers/SettingsPopup'), { ssr: false });
+const CommandPalette = dynamic(() => import('@/components/interactive/CommandPalette').then(mod => mod.CommandPalette), { ssr: false });
 
 import {
   Monitor,

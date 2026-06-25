@@ -3,8 +3,9 @@ import "../../globals.css";
 // Replace React's per-request cache with Next.js's global cross-request cache
 
 import { getDictionary } from '@/components/layout/Translator';
+import dynamic from 'next/dynamic';
 import { createClient } from '@/utils/supabase/server';
-import TerminalOverlay from "@/components/interactive/TerminalOverlay";
+const TerminalOverlay = dynamic(() => import("@/components/interactive/TerminalOverlay"));
 import {
   getWorkExperiences,
   getProjectExperiences,

@@ -113,6 +113,7 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/((?!api|_next/static|_next/image|favicon.ico|images|documents|locales|.*\\..*).*)',
+    // Optimization: Exclude more static paths, api routes, and common extensions
+    '/((?!api|_next/static|_next/image|favicon.ico|images|documents|locales|fonts|icons|svg|site.webmanifest|.*\\..*).*)',
   ],
 };
