@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { useAppStore } from "@/lib/store";
 
 export default function PageTransitionLoader({ label }: { label: string }) {
   const [isNavigating, setIsNavigating] = useState(false);
@@ -11,6 +12,7 @@ export default function PageTransitionLoader({ label }: { label: string }) {
   const [isFinished, setIsFinished] = useState(false);
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const colorTheme = useAppStore((state) => state.color);
 
   const prevPathnameRef = useRef(pathname);
   const prevSearchParamsRef = useRef(searchParams?.toString());
@@ -104,6 +106,16 @@ export default function PageTransitionLoader({ label }: { label: string }) {
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference - (progress / 100) * circumference;
 
+  const getFilterStr = (colorName: string) => {
+    switch (colorName) {
+      case 'rose': return 'hue-rotate(150deg) saturate(1.5)';
+      case 'emerald': return 'hue-rotate(-120deg) saturate(1.2)';
+      case 'purple': return 'hue-rotate(45deg) saturate(1.5)';
+      case 'amber': return 'hue-rotate(-180deg) saturate(2)';
+      default: return 'none';
+    }
+  };
+
   return (
     <AnimatePresence>
       {isNavigating && (
@@ -121,7 +133,15 @@ export default function PageTransitionLoader({ label }: { label: string }) {
             <div className="relative flex items-center justify-center w-16 h-16">
               {/* Center Logo */}
               <div className="absolute inset-0 flex items-center justify-center animate-pulse">
-                 <Image src="/icon.ico" alt="Loading Page Muhammad Faran Aiki Portfolio" width={24} height={24} className="opacity-80" priority />
+                 <Image 
+                   src="/icon.ico" 
+                   alt="Loading" 
+                   width={24} 
+                   height={24} 
+                   className="opacity-80 transition-all duration-500" 
+                   style={{ filter: getFilterStr(colorTheme) }}
+                   priority 
+                 />
               </div>
 
               {/* Progress SVG */}

@@ -203,7 +203,7 @@ export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientPro
             <span className="w-2 h-2 rounded-full" style={{ backgroundColor: displayNode ? displayNode.color : (isDark ? '#555' : '#ccc') }}></span>
             {displayNode ? displayNode.name : (dict.Preview || 'Preview')}
             {lockedNode && (
-              <span className="ml-2 text-[10px] bg-theme-500 text-white px-1.5 py-0.5 rounded uppercase tracking-wider">Locked</span>
+              <span className="ml-2 text-[10px] bg-theme-500 text-white px-1.5 py-0.5 rounded capitalize tracking-wider">{dict.Locked || 'Locked'}</span>
             )}
           </span>
           <span className="text-[10px] sm:text-xs text-theme-muted font-mono bg-theme-surface px-2 py-1 rounded border border-theme-border truncate max-w-full">

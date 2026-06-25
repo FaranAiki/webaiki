@@ -24,8 +24,8 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       smoothWheel: true,
       wheelMultiplier: 1.15,
       // Fix for mobile and desktop lag: let native touch handle scroll, or sync it correctly.
-      syncTouch: true,
-      touchMultiplier: 2.5,
+      syncTouch: false,
+      touchMultiplier: 1,
       autoRaf: true, // Let Lenis handle RAF natively (v1.1+)
     });
 

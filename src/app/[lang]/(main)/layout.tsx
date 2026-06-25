@@ -30,7 +30,7 @@ import {
   LayoutGrid,
   Fingerprint,
   Globe,
-  Heart,
+  Handshake,
   MessageSquare,
   Newspaper,
   MoreHorizontal,
@@ -95,7 +95,7 @@ export default async function RootLayout({
         { name: dict.Project, href: '/project', icon: <Code size={16} /> },
         { name: dict.Organization, href: '/organization', icon: <Users size={16} /> },
         { name: dict.Award, href: '/award', icon: <Trophy size={16} /> },
-        { name: dict.Hire_Me, href: '/hire-me', icon: <Heart size={16} /> },
+        { name: dict.Hire_Me, href: '/hire-me', icon: <Handshake size={16} /> },
       ]
     },
 
@@ -128,7 +128,7 @@ export default async function RootLayout({
       homeLink.subLinks.push({
         name: dict.Hire_Me,
         href: '/hire-me',
-        icon: <Heart size={16} />
+        icon: <Handshake size={16} />
       });
     }
   }

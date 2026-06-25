@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       description: "Faran Aiki's social media links and profiles",
       url: `${SITE_URL}/${lang}/social`,
     },
-    alternates: { 
+    alternates: {
       canonical: `/${lang}/social`,
       languages: getLanguageAlternates('/social'),
     },
@@ -44,7 +44,9 @@ export default async function SocialPage({ params }: { params: Promise<{ lang: s
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <SocialDisplay dict={dict} />
+      <div className="pt-8 md:pt-0">
+        <SocialDisplay dict={dict} />
+      </div>
     </main>
   );
 }

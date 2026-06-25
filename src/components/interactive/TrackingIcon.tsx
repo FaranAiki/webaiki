@@ -92,7 +92,7 @@ export default function TrackingIcon({ type }: TrackerProps) {
   return (
     <div ref={containerRef} className="relative flex items-center justify-center text-theme-500">
         {renderContent()}
-        <div className="absolute inset-0 bg-theme-500/10 rounded-full blur-3xl -z-10 animate-pulse" />
+        <div className="absolute inset-0 bg-theme-500/10 rounded-full blur-3xl -z-10 animate-pulse will-change-transform will-change-[opacity]" />
     </div>
   );
 }

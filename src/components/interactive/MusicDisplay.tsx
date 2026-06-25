@@ -269,7 +269,7 @@ export default function MusicDisplay({ youtubeItems = [], error, lang, dict = {}
                             loading="lazy"
                           />
                           <div className="p-3">
-                            <h3 className={`text-center font-semibold text-base h-16 overflow-auto no-scrollbar text-foreground`} data-lenis-prevent>{formatCJK(item.snippet.title, lang)}</h3>
+                            <h3 className="text-center font-semibold text-sm md:text-base text-foreground line-clamp-2">{formatCJK(item.snippet.title, lang)}</h3>
                           </div>
                         </a>
                       </li>

@@ -98,19 +98,24 @@ interface SettingsContextType {
   resetSettings: () => void;
 }
 
+import { useAppStore } from '@/lib/store';
+
 const SettingsContext = createContext<SettingsContextType | undefined>(undefined);
 
 export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [font, setFont] = useState('Default');
-  const [textAlign, setTextAlign] = useState<TextAlign>('default');
-  const [textScale, setTextScale] = useState(100);
-  const [letterSpacing, setLetterSpacing] = useState(0); 
-  const [lineHeight, setLineHeight] = useState(1.5);
-  const [color, setColor] = useState('blue');
-  const [isAtsMode, setIsAtsMode] = useState(false);
-  const [isExpandAll, setIsExpandAll] = useState(false);
-  const [isFullDescription, setIsFullDescription] = useState(false);
-  const [portfolioFilter, setPortfolioFilter] = useState<PortfolioFilter>('top');
+  const { 
+    font, setFont,
+    textAlign, setTextAlign,
+    textScale, setTextScale,
+    letterSpacing, setLetterSpacing,
+    lineHeight, setLineHeight,
+    color, setColor,
+    isAtsMode, setIsAtsMode,
+    isExpandAll, setIsExpandAll,
+    isFullDescription, setIsFullDescription,
+    portfolioFilter, setPortfolioFilter
+  } = useAppStore();
+
   const [mounted, setMounted] = useState(false);
 
   const resetSettings = () => {

@@ -403,7 +403,7 @@ To navigate to this page in your browser, type:
 
       case 'sudo':
         outputNode = (
-          <p className="text-xs text-red-500 font-mono">
+          <p className="text-xs text-red-500 ">
             {lang === 'id'
               ? `${shellUser} tidak terdaftar di berkas sudoers. Insiden ini akan dilaporkan.`
               : `${shellUser} is not in the sudoers file. This incident will be reported.`}
@@ -419,7 +419,7 @@ To navigate to this page in your browser, type:
           : `${Math.floor(uptimeSec / 60)}m ${uptimeSec % 60}s`;
 
         outputNode = (
-          <div className="flex flex-col md:flex-row gap-6 text-xs font-mono select-none leading-relaxed">
+          <div className="flex flex-col md:flex-row gap-6 text-xs  select-none leading-relaxed">
             <div className="text-theme-500 font-bold text-center md:text-left shrink-0">
 {`    /\\ 
    /  \\ 
@@ -546,10 +546,10 @@ To navigate to this page in your browser, type:
         if (!lsEntry) {
           outputNode = <p className="text-xs text-red-500">{lang === 'id' ? `ls: folder tidak ditemukan: ${targetPath}` : `ls: no such folder: ${targetPath}`}</p>;
         } else if (lsEntry.type === 'file') {
-          outputNode = <p className="text-xs text-foreground font-mono">{targetPath.split('/').pop()}</p>;
+          outputNode = <p className="text-xs text-foreground ">{targetPath.split('/').pop()}</p>;
         } else {
           outputNode = (
-            <div className="flex flex-wrap gap-4 text-xs font-mono">
+            <div className="flex flex-wrap gap-4 text-xs ">
               {lsEntry.children?.map(child => {
                 const childFullPath = resolvedLsPath === '/' ? `/${child}` : `${resolvedLsPath}/${child}`;
                 const childEntry = fileSystem[childFullPath];
@@ -610,13 +610,13 @@ To navigate to this page in your browser, type:
         } else if (catEntry.type === 'dir') {
           outputNode = <p className="text-xs text-red-500">{lang === 'id' ? `cat: adalah folder: ${fileArg}/` : `cat: is a directory: ${fileArg}/`}</p>;
         } else {
-          outputNode = <p className="text-xs whitespace-pre-wrap leading-relaxed font-mono text-foreground">{catEntry.content}</p>;
+          outputNode = <p className="text-xs whitespace-pre-wrap leading-relaxed  text-foreground">{catEntry.content}</p>;
         }
         break;
 
       case 'pwd': {
         const currentUrl = typeof window !== 'undefined' ? window.location.pathname : `/${lang}`;
-        outputNode = <p className="text-xs font-mono text-foreground">{currentUrl}</p>;
+        outputNode = <p className="text-xs  text-foreground">{currentUrl}</p>;
         break;
       }
 
@@ -624,7 +624,7 @@ To navigate to this page in your browser, type:
         outputNode = (
           <div className="space-y-1 text-xs">
             <p className="text-theme-500 font-bold mb-2">{lang === 'id' ? 'Halaman tersedia (gunakan: goto <slug>)' : 'Available pages (use: goto <slug>)'}</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-0.5 font-mono">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-0.5 ">
               {pageRoutes.map(p => (
                 <div key={p.slug}>
                   <span className="text-theme-500">{p.slug || '(home)'}</span>
@@ -707,7 +707,7 @@ To navigate to this page in your browser, type:
           outputNode = <p className="text-xs text-theme-muted">{lang === 'id' ? 'Belum ada riwayat perintah.' : 'No command history yet.'}</p>;
         } else {
           outputNode = (
-            <div className="text-xs font-mono space-y-0.5">
+            <div className="text-xs  space-y-0.5">
               {commandHistory.map((cmd, i) => (
                 <div key={i}>
                   <span className="text-theme-muted select-none">{String(i + 1).padStart(3, ' ')}  </span>
@@ -722,18 +722,75 @@ To navigate to this page in your browser, type:
 
       case 'echo': {
         const echoText = args.join(' ');
-        outputNode = <p className="text-xs font-mono text-foreground">{echoText || ''}</p>;
+        outputNode = <p className="text-xs  text-foreground">{echoText || ''}</p>;
         break;
       }
 
-      default:
+      default: {
+        const allCommands = [
+          'help', 'ls', 'cd', 'cat', 'whoami', 'login', 'sudo', 'neofetch',
+          'projects', 'project', 'work', 'organization', 'organizations',
+          'award', 'awards', 'social', 'theme', 'clear', 'exit', 'goto', 'open',
+          'navigate', 'pages', 'pwd', 'lang', 'uptime', 'history', 'echo'
+        ];
+
+        // Levenshtein distance calculation
+        const levenshtein = (a: string, b: string) => {
+          const matrix = Array.from({ length: a.length + 1 }, () => Array(b.length + 1).fill(0));
+          for (let i = 0; i <= a.length; i++) matrix[i][0] = i;
+          for (let j = 0; j <= b.length; j++) matrix[0][j] = j;
+          for (let i = 1; i <= a.length; i++) {
+            for (let j = 1; j <= b.length; j++) {
+              const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+              matrix[i][j] = Math.min(
+                matrix[i - 1][j] + 1,
+                matrix[i][j - 1] + 1,
+                matrix[i - 1][j - 1] + cost
+              );
+            }
+          }
+          return matrix[a.length][b.length];
+        };
+
+        // Find closest command
+        let closestCommand = null;
+        let minDistance = Infinity;
+
+        for (const cmd of allCommands) {
+          const dist = levenshtein(command, cmd);
+          if (dist < minDistance && dist <= 2) { // Max distance 2
+            minDistance = dist;
+            closestCommand = cmd;
+          }
+        }
+
         outputNode = (
-          <p className="text-xs text-red-500">
-            {lang === 'id' 
-              ? `bash: perintah tidak ditemukan: ${command}. Ketik 'help' untuk daftar perintah.`
-              : `bash: command not found: ${command}. Type 'help' to see available commands.`}
-          </p>
+          <div className="text-xs text-red-500 ">
+            <p>
+              {lang === 'id' 
+                ? `bash: perintah tidak ditemukan: ${command}`
+                : `bash: command not found: ${command}`}
+            </p>
+            {closestCommand && (
+              <p className="mt-1 text-theme-500">
+                {lang === 'id' ? `Mungkin maksud Anda: ` : `Did you mean: `} 
+                <span className="font-bold underline cursor-pointer" onClick={() => {
+                  setInput(closestCommand);
+                  focusInput();
+                }}>
+                  {closestCommand}
+                </span>
+                ?
+              </p>
+            )}
+            {!closestCommand && (
+              <p className="mt-1">
+                {lang === 'id' ? `Ketik 'help' untuk daftar perintah.` : `Type 'help' to see available commands.`}
+              </p>
+            )}
+          </div>
         );
+      }
     }
 
     setHistory(prev => [...prev, { input: cmdStr, output: outputNode }]);
@@ -787,7 +844,7 @@ To navigate to this page in your browser, type:
           setInput(matches[0]);
         } else if (matches.length > 1) {
           const listOutput = (
-            <div className="flex flex-wrap gap-4 text-xxs font-mono text-theme-muted">
+            <div className="flex flex-wrap gap-4 text-xxs  text-theme-muted">
               {matches.map(m => <span key={m}>{m}</span>)}
             </div>
           );
@@ -804,7 +861,7 @@ To navigate to this page in your browser, type:
             setInput(`${cmd} ${matches[0]}`);
           } else if (matches.length > 1) {
             const listOutput = (
-              <div className="flex gap-4 text-xxs font-mono text-theme-muted">
+              <div className="flex gap-4 text-xxs  text-theme-muted">
                 {matches.map(m => <span key={m}>{m}</span>)}
               </div>
             );
@@ -819,7 +876,7 @@ To navigate to this page in your browser, type:
           setInput(`${cmd} ${matches[0]}`);
         } else if (matches.length > 1) {
           const listOutput = (
-            <div className="flex flex-wrap gap-4 text-xxs font-mono text-theme-muted">
+            <div className="flex flex-wrap gap-4 text-xxs  text-theme-muted">
               {matches.map(m => <span key={m}>{m}</span>)}
             </div>
           );
@@ -833,7 +890,7 @@ To navigate to this page in your browser, type:
           setInput(`lang ${matches[0]}`);
         } else if (matches.length > 1) {
           const listOutput = (
-            <div className="flex flex-wrap gap-4 text-xxs font-mono text-theme-muted">
+            <div className="flex flex-wrap gap-4 text-xxs  text-theme-muted">
               {matches.map(m => <span key={m}>{m}</span>)}
             </div>
           );
@@ -847,7 +904,7 @@ To navigate to this page in your browser, type:
           setInput(`theme ${matches[0]}`);
         } else if (matches.length > 1) {
           const listOutput = (
-            <div className="flex gap-4 text-xxs font-mono text-theme-muted">
+            <div className="flex gap-4 text-xxs  text-theme-muted">
               {matches.map(m => <span key={m}>{m}</span>)}
             </div>
           );
@@ -863,7 +920,7 @@ To navigate to this page in your browser, type:
 
   // Dynamic style matching theme input
   const getThemeClasses = () => {
-    if (terminalTheme === 'hacker') return 'bg-[#050505] text-[#39ff14] border-[#00ff00]/20 font-mono shadow-green-500/5 [&_*]:!text-[#39ff14] [&_a]:underline';
+    if (terminalTheme === 'hacker') return 'bg-[#050505] text-[#39ff14] border-[#00ff00]/20  shadow-green-500/5 [&_*]:!text-[#39ff14] [&_a]:underline';
     if (terminalTheme === 'light') return 'bg-white/80 dark:bg-white/95 text-[#111] border-black/10 shadow-lg backdrop-blur-md [&_span]:!text-[#111] [&_p]:!text-[#111] [&_input]:!text-[#111] [&_.text-theme-500]:!text-blue-600 [&_.text-theme-muted]:!text-gray-500';
     if (terminalTheme === 'dark') return 'bg-[#121212] text-[#f3f4f6] border-neutral-800 shadow-2xl [&_span]:!text-gray-100 [&_p]:!text-gray-100 [&_input]:!text-gray-100 [&_.text-theme-500]:!text-indigo-400';
     
@@ -889,24 +946,30 @@ To navigate to this page in your browser, type:
       {/* Terminal Overlay Modal */}
       <AnimatePresence>
         {isOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs">
+          <div 
+            className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/40 backdrop-blur-xs"
+            onClick={toggleTerminal}
+          >
             {/* Modal Container */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 10 }}
               transition={{ duration: 0.25, ease: [0.25, 1, 0.5, 1] }}
-              className={`w-full max-w-3xl flex flex-col rounded-3xl border overflow-hidden transition-all duration-300 ${
-                isMaximized ? 'h-[95vh] max-w-[95vw]' : 'h-[65vh] max-w-3xl'
+              className={`w-full max-w-3xl flex flex-col rounded-2xl sm:rounded-3xl border overflow-hidden transition-all duration-300 ${
+                isMaximized ? 'h-[95vh] max-w-[98vw]' : 'h-[75vh] sm:h-[65vh] max-w-3xl'
               } ${getThemeClasses()}`}
-              onClick={focusInput}
+              onClick={(e) => {
+                e.stopPropagation();
+                focusInput();
+              }}
             >
               {/* Window Header */}
               <div className="flex items-center justify-between p-3.5 border-b border-theme-border/50 shrink-0 select-none bg-black/5 dark:bg-white/5">
                 {/* Empty div for spacing where the buttons used to be */}
                 <div className="w-6" />
                 
-                <span className="text-xs font-bold font-mono flex items-center gap-1.5 opacity-80 text-foreground">
+                <span className="text-xs font-bold  flex items-center gap-1.5 opacity-80 text-foreground">
                   <TerminalIcon size={13} />
                   <span>{dict.Terminal_Title || "Terminal Shell"}</span>
                 </span>
@@ -938,27 +1001,27 @@ To navigate to this page in your browser, type:
               {/* Console logs output viewport */}
               <div 
                 data-lenis-prevent
-                className="flex-1 p-5 overflow-y-auto scroll-smooth font-mono text-xs flex flex-col gap-3 scrollbar-thin scrollbar-thumb-theme-border/50"
+                className="flex-1 p-5 overflow-y-auto scroll-smooth  text-xs flex flex-col gap-3 scrollbar-thin scrollbar-thumb-theme-border/50"
               >
                 {history.map((item, idx) => (
-                  <div key={idx} className="space-y-1.5 font-mono">
+                  <div key={idx} className="space-y-1.5 ">
                     {item.input && (
-                      <p className="text-xs font-black tracking-tight select-none opacity-80 font-mono text-theme-500">
+                      <p className="text-xs font-black tracking-tight select-none opacity-80  text-theme-500">
                         <span>{shellUser}@faranaiki.id:</span>
                         <span className="text-theme-muted">~{cwd === '/' ? '' : cwd}</span>
                         <span>$ {item.input}</span>
                       </p>
                     )}
-                    <div className="pl-3 border-l border-theme-border/40 font-mono">
+                    <div className="pl-3 border-l border-theme-border/40 ">
                       {item.output}
                     </div>
                   </div>
                 ))}
 
                 {/* Input line prompt */}
-                <div className="space-y-1 font-mono">
+                <div className="space-y-1 ">
                   <div className="flex items-center gap-1">
-                    <span className="text-xs font-black tracking-tight select-none opacity-80 font-mono text-theme-500 shrink-0">
+                    <span className="text-xs font-black tracking-tight select-none opacity-80  text-theme-500 shrink-0">
                       {shellUser}@faranaiki.id:
                       <span className="text-theme-muted">~{cwd === '/' ? '' : cwd}</span>
                       $
@@ -969,7 +1032,7 @@ To navigate to this page in your browser, type:
                       value={input}
                       onChange={handleInputChange}
                       onKeyDown={handleInputKeyDown}
-                      className="bg-transparent border-none outline-none text-foreground font-mono text-xs flex-grow p-0 m-0 focus:ring-0 select-text"
+                      className="bg-transparent border-none outline-none text-foreground  text-xs flex-grow p-0 m-0 focus:ring-0 select-text"
                       autoComplete="off"
                       autoFocus
                       aria-label="Terminal command prompt"

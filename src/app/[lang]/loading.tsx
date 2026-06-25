@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useSettings } from "@/components/providers/SettingsContext";
 
 /**
  * Loading component for localized routes.
@@ -12,6 +13,7 @@ import { motion } from "framer-motion";
 export default function Loading() {
   const [text, setText] = useState("Preparing the best portfolio site");
   const [waitingText, setWaitingText] = useState("Wait ....");
+  const settings = useSettings();
 
   useEffect(() => {
     // Lock scroll
@@ -65,12 +67,12 @@ export default function Loading() {
       className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background theme-transition overflow-hidden"
     >
       {/* Dynamic Background Accents */}
-      <div className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full bg-theme-500/10 blur-3xl opacity-20" />
-      <div className="absolute bottom-1/4 right-1/4 w-72 h-72 rounded-full bg-theme-500/10 blur-3xl opacity-20" />
+      <div className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full bg-theme-500/10 blur-3xl opacity-20 will-change-transform will-change-[opacity]" />
+      <div className="absolute bottom-1/4 right-1/4 w-72 h-72 rounded-full bg-theme-500/10 blur-3xl opacity-20 will-change-transform will-change-[opacity]" />
 
       <div className="relative mb-12 flex flex-col items-center">
         {/* Radiant Glow behind the logo */}
-        <div className="absolute inset-0 blur-2xl opacity-20 bg-theme-500 rounded-full scale-125" />
+        <div className="absolute inset-0 blur-2xl opacity-20 bg-theme-500 rounded-full scale-125 will-change-transform will-change-[opacity]" />
 
         {/* Floating Logo Container */}
         <div className="relative p-6 bg-theme-surface/80 rounded-full shadow-2xl border border-theme-border animate-float backdrop-blur-xl ring-4 ring-white/5">
@@ -80,6 +82,14 @@ export default function Loading() {
             width={110}
             height={110}
             className="rounded-full shadow-lg"
+            style={{ 
+                filter: settings?.color === 'pink' ? 'hue-rotate(120deg) saturate(1.2)' : 
+                        settings?.color === 'green' ? 'hue-rotate(-90deg) saturate(1.2)' : 
+                        settings?.color === 'purple' ? 'hue-rotate(60deg)' : 
+                        settings?.color === 'orange' ? 'hue-rotate(180deg) saturate(1.5)' : 
+                        settings?.color === 'mono' ? 'grayscale(100%)' : 'none',
+                transition: 'filter 0.3s ease-in-out'
+            }}
             priority
           />
         </div>

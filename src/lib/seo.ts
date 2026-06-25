@@ -87,6 +87,8 @@ export function getBaseMetadata(dict: Record<string, string> = {}): Metadata {
       "muhammad faran", "muhammad aiki", "faran itb", "faran onmipa", "faran aiki itb", "muhammad faran itb",
       "software engineer faran", "faran software engineer", "matematika faran", "mtk faran", "faran mtk",
       "faran aiki olimpiade matematika", "muhammad faran olimpiade", "faran olimpiade matematika",
+      "farhan aiki", "faran aik", "farhan aik", "farran aiki", "farhan aiky", "muhammad farhan aiki",
+      "muhammad faran aik", "m faran aiki", "m farhan aiki", "farran", "aiky", "faran aiki portfolio",
       "tutor matematika faran", "sat tutor faran aiki", "guru privat matematika", "penulis modul utbk",
       "analitica software engineer", "gdg itb faran", "paragon scholarship faran", "alkyl compiler faran",
       "osn matematika faran", "faran osn", "hackerrank faran", "kmnr faran", "eduversal faran",
@@ -97,7 +99,8 @@ export function getBaseMetadata(dict: Record<string, string> = {}): Metadata {
       "Bandung Institute of Technology", "Institut Teknologi Bandung", "Portfolio", "Indonesia",
       "Full Stack Developer", "Data Analyst", "SAT Tutor", "ONMIPA Matematika", "ONMIPA PT",
       "Next.js Developer", "React Developer", "TypeScript", "Hire Muhammad Faran Aiki", "Best Software Engineer Indonesia",
-      dict.Software_Engineer || "Software Engineer", dict.Mathematics || "Mathematics"
+      dict.Software_Engineer || "Software Engineer", dict.Mathematics || "Mathematics",
+      ...Object.values(dict)
     ],
     authors: [{ name: "Muhammad Faran Aiki", url: SITE_URL }],
     creator: "Muhammad Faran Aiki",
@@ -126,9 +129,11 @@ export function getBaseMetadata(dict: Record<string, string> = {}): Metadata {
     verification: {
       google: 'xZMulZsvn0xj7TrxhEN8O9KLWSmNIfx6tqFtOpbgOV4',
       yandex: '19e93e9065247166',
+      yahoo: '', // Insert Yahoo site verification ID here if available
       other: {
         'msvalidate.01': '2EB0055DF3DBEDEFD420F081B721CF01',
         'bing-site-verification': '769fffac4599a44b95e49e6e0142599',
+        'baidu-site-verification': '', // Insert Baidu site verification ID here if available
       },
     },
     openGraph: {

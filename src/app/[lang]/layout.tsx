@@ -28,13 +28,21 @@ export default async function BaseLayout({
 
   return (
     <div>
+      <a 
+        href="#main-content" 
+        className="sr-only focus:not-sr-only focus:absolute focus:z-[100000] focus:p-4 focus:bg-background focus:text-foreground focus:outline-2 focus:outline-offset-2 focus:outline-theme-500 rounded-br-lg shadow-lg"
+      >
+        {dict.Skip_To_Content || "Skip to main content"}
+      </a>
       <ProvidersConfigurator 
         loadingLabel={dict.Preparing_Portfolio}
       />
       <CookieInitializer />
       <ClientOnlyWidgets backgrounds={backgrounds} />
       <PageTransitionLoader label={dict.Loading} />
-      {children}
+      <div id="main-content">
+        {children}
+      </div>
       <Script
         strategy="lazyOnload"
         src="https://cloud.umami.is/script.js"

@@ -9,6 +9,7 @@ import { Inter } from "next/font/google";
 import ThemeToggle from '@/components/shared/ThemeToggle';
 import { useTheme } from 'next-themes';
 import SettingsPopup from '@/components/providers/SettingsPopup';
+import { useSettings } from '@/components/providers/SettingsContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CommandPalette } from '@/components/interactive/CommandPalette';
 
@@ -176,6 +177,7 @@ export default function Header(props: HeaderProps) {
         const { resolvedTheme } = useTheme();
         const [mounted, setMounted] = useState(false);
         const { isPresentationMode, togglePresentationMode } = usePresentation();
+        const settings = useSettings();
         const setScrollLocked = useAppStore((state) => state.setScrollLocked);
         const setGlobalLoading = useAppStore((state) => state.setGlobalLoading);
 
@@ -423,6 +425,14 @@ export default function Header(props: HeaderProps) {
                             width={32}
                             height={32}
                             className="scale-[1.01]"
+                            style={{ 
+                                filter: settings?.color === 'pink' ? 'hue-rotate(120deg) saturate(1.2)' : 
+                                        settings?.color === 'green' ? 'hue-rotate(-90deg) saturate(1.2)' : 
+                                        settings?.color === 'purple' ? 'hue-rotate(60deg)' : 
+                                        settings?.color === 'orange' ? 'hue-rotate(180deg) saturate(1.5)' : 
+                                        settings?.color === 'mono' ? 'grayscale(100%)' : 'none',
+                                transition: 'filter 0.3s ease-in-out'
+                            }}
                             priority
                         />
                     </div>
