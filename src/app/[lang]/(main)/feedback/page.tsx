@@ -25,10 +25,10 @@ export default async function FeedbackPage({ params }: { params: Promise<{ lang:
   const { lang } = await params;
   const [dict, userResult] = await Promise.all([
     getDictionary(lang),
-    createClient().then(supabase => supabase.auth.getUser())
+    createClient().then(supabase => supabase.auth.getSession())
   ]);
 
-  const user = userResult.data.user;
+  const user = userResult.data.session?.user;
 
   return (
     <main className="container mx-auto px-4 md:px-8 pt-32 pb-16 min-h-screen">

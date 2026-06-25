@@ -27,7 +27,8 @@ export default async function EditProfilePage({ params }: { params: Promise<{ la
   const dict = await getDictionary(lang);
 
   const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const { data: { session } } = await supabase.auth.getSession();
+  const user = session?.user;
 
   if (!user) {
     redirect(`/${lang}/login?next=/${lang}/edit-profile`);

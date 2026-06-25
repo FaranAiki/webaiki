@@ -3,6 +3,9 @@
   "version": "3.0.0",
   "private": false,
   "scripts": {
+    "optimize:assets": "bash scripts/compress_pdfs.sh public/documents && bash scripts/convert_to_webp.sh public",
+    "prebuild": "npm run optimize:assets",
+    "predev": "npm run optimize:assets",
     "dev": "NODE_OPTIONS='--no-deprecation' next dev",
     "build": "next build",
     "db:push": "drizzle-kit push",

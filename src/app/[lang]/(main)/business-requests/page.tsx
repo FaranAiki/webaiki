@@ -19,7 +19,8 @@ export default async function BusinessRequestsPage({ params }: { params: Promise
   
   const supabase = await createClient();
   
-  const { data: { user } } = await supabase.auth.getUser();
+  const { data: { session } } = await supabase.auth.getSession();
+  const user = session?.user;
 
   if (!user || user.email !== 'faran.aiki.business@gmail.com') {
     redirect(`/${lang}`);

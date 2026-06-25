@@ -56,7 +56,8 @@ export default async function RootLayout({
   const awardExp = getAwardExperiences(dict).flatMap(y => y.jobs);
 
   const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const { data: { session } } = await supabase.auth.getSession();
+  const user = session?.user;
   const registrationReason = user?.user_metadata?.registration_reason;
   const username = user?.user_metadata?.username || user?.email?.split('@')[0] || null;
 

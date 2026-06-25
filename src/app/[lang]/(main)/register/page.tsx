@@ -8,7 +8,8 @@ export default async function RegisterPage({ params }: { params: Promise<{ lang:
   const dict = await getDictionary(lang);
   
   const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const { data: { session } } = await supabase.auth.getSession();
+  const user = session?.user;
 
   if (user) {
     redirect(`/${lang}`);
