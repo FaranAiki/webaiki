@@ -73,6 +73,7 @@ export default async function NewsDetailPage({ params }: { params: Promise<{ lan
                     src={news.author.avatarUrl}
                     alt={`${news.author.name || 'Author'} - Muhammad Faran Aiki News Portfolio`}
                     fill
+                    sizes="40px"
                     className="object-cover"
                   />
                 ) : (
@@ -103,6 +104,7 @@ export default async function NewsDetailPage({ params }: { params: Promise<{ lan
               src={news.image}
               alt={`${news.title} - Muhammad Faran Aiki News Portfolio`}
               fill
+              sizes="(max-width: 1024px) 100vw, 1024px"
               className="object-cover"
               priority
             />

@@ -139,15 +139,14 @@ export function PresentationProvider({
         // prioritize its internal scroll unless it's already at the boundaries.
         let current: HTMLElement | null = target;
         while (current && current !== main) {
-          if (current.scrollHeight > current.clientHeight) {
-            const style = window.getComputedStyle(current);
-            if (style.overflowY === 'auto' || style.overflowY === 'scroll') {
+          // A quick heuristic instead of getComputedStyle to avoid layout thrashing
+          const hasScroll = current.scrollHeight > current.clientHeight;
+          if (hasScroll && (current.style.overflowY === 'auto' || current.style.overflowY === 'scroll' || current.classList.contains('overflow-y-auto') || current.classList.contains('overflow-y-scroll'))) {
               const isAtTop = current.scrollTop <= 0;
               const isAtBottom = Math.abs(current.scrollHeight - current.clientHeight - current.scrollTop) < 1;
               
               if (e.deltaY < 0 && !isAtTop) return; // Scrolling up and not at top
               if (e.deltaY > 0 && !isAtBottom) return; // Scrolling down and not at bottom
-            }
           }
           current = current.parentElement;
         }

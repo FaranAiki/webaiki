@@ -32,11 +32,7 @@ export default async function RootLayout({
     <html lang={locale} suppressHydrationWarning>
       <head>
         <link rel="dns-prefetch" href="https://www.google.com" />
-        <link rel="preconnect" href="https://www.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://cloud.umami.is" crossOrigin="anonymous" />
-        {process.env.NEXT_PUBLIC_SUPABASE_URL && (
-          <link rel="preconnect" href={process.env.NEXT_PUBLIC_SUPABASE_URL} crossOrigin="anonymous" />
-        )}
+
       </head>
       <body className={`${inter.variable} ${robotoMono.variable} font-sans antialiased`}>
         <Providers>

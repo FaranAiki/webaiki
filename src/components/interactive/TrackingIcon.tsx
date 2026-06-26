@@ -21,26 +21,47 @@ export default function TrackingIcon({ type }: TrackerProps) {
   const trackY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!containerRef.current) return;
+    let cachedRect: DOMRect | null = null;
+    let frameId: number | null = null;
 
-      const rect = containerRef.current.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-
-      const angle = Math.atan2(e.clientY - centerY, e.clientX - centerX);
-
-      // Limit movement within the icon
-      const limit = type === 'see' ? 18 : 10;
-      const moveX = Math.cos(angle) * limit;
-      const moveY = Math.sin(angle) * limit;
-
-      mouseX.set(moveX);
-      mouseY.set(moveY);
+    const updateRect = () => {
+      if (containerRef.current) {
+        cachedRect = containerRef.current.getBoundingClientRect();
+      }
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    updateRect();
+    window.addEventListener('resize', updateRect);
+    window.addEventListener('scroll', updateRect, { passive: true });
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!cachedRect) return;
+
+      const centerX = cachedRect.left + cachedRect.width / 2;
+      const centerY = cachedRect.top + cachedRect.height / 2;
+
+      if (frameId !== null) cancelAnimationFrame(frameId);
+
+      frameId = requestAnimationFrame(() => {
+        const angle = Math.atan2(e.clientY - centerY, e.clientX - centerX);
+
+        // Limit movement within the icon
+        const limit = type === 'see' ? 18 : 10;
+        const moveX = Math.cos(angle) * limit;
+        const moveY = Math.sin(angle) * limit;
+
+        mouseX.set(moveX);
+        mouseY.set(moveY);
+      });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('resize', updateRect);
+      window.removeEventListener('scroll', updateRect);
+      if (frameId !== null) cancelAnimationFrame(frameId);
+    };
   }, [mouseX, mouseY, type]);
 
   const renderContent = () => {

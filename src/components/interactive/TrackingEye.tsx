@@ -15,26 +15,47 @@ export default function TrackingEye() {
   const pupilY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!eyeRef.current) return;
+    let cachedRect: DOMRect | null = null;
+    let frameId: number | null = null;
 
-      const rect = eyeRef.current.getBoundingClientRect();
-      const eyeCenterX = rect.left + rect.width / 2;
-      const eyeCenterY = rect.top + rect.height / 2;
-
-      const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
-      
-      // Calculate movement within the eye bounds
-      const limit = 20; // Increased limit for larger eye
-      const moveX = Math.cos(angle) * limit;
-      const moveY = Math.sin(angle) * limit;
-
-      mouseX.set(moveX);
-      mouseY.set(moveY);
+    const updateRect = () => {
+      if (eyeRef.current) {
+        cachedRect = eyeRef.current.getBoundingClientRect();
+      }
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    updateRect();
+    window.addEventListener('resize', updateRect);
+    window.addEventListener('scroll', updateRect, { passive: true });
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!cachedRect) return;
+
+      const eyeCenterX = cachedRect.left + cachedRect.width / 2;
+      const eyeCenterY = cachedRect.top + cachedRect.height / 2;
+
+      if (frameId !== null) cancelAnimationFrame(frameId);
+
+      frameId = requestAnimationFrame(() => {
+        const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
+        
+        // Calculate movement within the eye bounds
+        const limit = 20; // Increased limit for larger eye
+        const moveX = Math.cos(angle) * limit;
+        const moveY = Math.sin(angle) * limit;
+
+        mouseX.set(moveX);
+        mouseY.set(moveY);
+      });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('resize', updateRect);
+      window.removeEventListener('scroll', updateRect);
+      if (frameId !== null) cancelAnimationFrame(frameId);
+    };
   }, [mouseX, mouseY]);
 
   return (

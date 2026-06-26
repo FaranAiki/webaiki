@@ -155,6 +155,7 @@ export default function EditProfileForm({ dict, user }: EditProfileFormProps) {
                   src={avatarUrl}
                   alt={`${name || 'User'} - Faran Aiki Portfolio Profile`}
                   fill
+                  sizes="192px"
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
               ) : (

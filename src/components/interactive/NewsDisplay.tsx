@@ -350,6 +350,7 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
                           src={item.image}
                           alt={`${item.title} - Muhammad Faran Aiki News Portfolio`}
                           fill
+                          sizes="(max-width: 768px) 100vw, 33vw"
                           className="object-cover"
                         />
                       </div>
@@ -412,6 +413,7 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
                           src={item.image}
                           alt={`${item.title} - Muhammad Faran Aiki News Portfolio`}
                           fill
+                          sizes="(max-width: 768px) 100vw, 80vw"
                           className="object-cover transition-transform duration-700 group-hover:scale-110"
                           priority={idx === 0}
                         />
@@ -429,6 +431,7 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
                               src={item.author.avatarUrl}
                               alt={`${item.author.name || 'Author'} - Muhammad Faran Aiki News Portfolio`}
                               fill
+                              sizes="32px"
                               className="object-cover"
                             />
                           ) : (

@@ -69,6 +69,9 @@ export async function middleware(request: NextRequest) {
     }
 
     request.nextUrl.pathname = `/${locale}${pathname}`;
+    if (pathname === '/') {
+      return NextResponse.rewrite(request.nextUrl);
+    }
     return NextResponse.redirect(request.nextUrl);
   }
 

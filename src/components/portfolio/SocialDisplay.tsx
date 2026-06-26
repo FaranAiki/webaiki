@@ -375,35 +375,32 @@ export default function SocialDisplay({ customLinks, hidePresentation = false, d
           
           <div className="flex flex-col gap-3 w-full">
             {/* Profile & Overall Stats */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img 
+            <Image 
               src={`https://github-readme-stats.vercel.app/api?username=FaranAiki&show_icons=true&theme=${badgeTheme === 'dark' ? 'tokyonight' : 'default'}&hide_border=true&bg_color=00000000`}
               alt="GitHub Profile Stats"
               width={495}
               height={195}
-              loading="lazy"
+              unoptimized
               className="w-full h-auto object-contain hover:scale-[1.02] transition-transform duration-500"
             />
             
             {/* Top Languages */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img 
+            <Image 
               src={`https://github-readme-stats.vercel.app/api/top-langs/?username=FaranAiki&layout=compact&theme=${badgeTheme === 'dark' ? 'tokyonight' : 'default'}&hide_border=true&bg_color=00000000`}
               alt="GitHub Top Languages"
               width={300}
               height={165}
-              loading="lazy"
+              unoptimized
               className="w-full h-auto object-contain hover:scale-[1.02] transition-transform duration-500 delay-75"
             />
 
             {/* Commits / Activity Graph */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img 
+            <Image 
               src={`https://github-readme-activity-graph.vercel.app/graph?username=FaranAiki&theme=${badgeTheme === 'dark' ? 'tokyonight' : 'default'}&hide_border=true&bg_color=00000000&line=theme-500`}
               alt="GitHub Commits Graph"
               width={500}
               height={200}
-              loading="lazy"
+              unoptimized
               className="w-full h-auto object-contain hover:scale-[1.02] transition-transform duration-500 delay-150"
             />
           </div>
