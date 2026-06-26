@@ -297,7 +297,7 @@ export default function Background({ carousel, showOverlay = true }: BackgroundP
         <AnimatePresence mode="wait">
             <motion.div
                 key={currentIndex}
-                initial={{ opacity: 0 }}
+                initial={{ opacity: currentIndex === 0 ? 0.8 : 0 }}
                 animate={{ opacity: 0.8 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 1.5, ease: "easeInOut" }}

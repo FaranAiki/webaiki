@@ -13,9 +13,11 @@ import { useSettings } from "@/components/providers/SettingsContext";
 export default function Loading() {
   const [text, setText] = useState("Preparing the best portfolio site");
   const [waitingText, setWaitingText] = useState("Wait ....");
+  const [mounted, setMounted] = useState(false);
   const settings = useSettings();
 
   useEffect(() => {
+    setMounted(true);
     // Lock scroll
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -57,6 +59,8 @@ export default function Loading() {
       document.body.style.overflow = originalOverflow;
     };
   }, []);
+
+  if (!mounted) return null;
 
   return (
     <motion.div 

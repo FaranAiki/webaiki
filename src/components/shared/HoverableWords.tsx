@@ -27,7 +27,7 @@ const processWords = (text: string, separatorRegex: RegExp, hoverClass: string, 
 };
 
 export default function HoverableWords({ children, className, prophover }: HoverableWordsProps) {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(true); // Default to true (mobile/fast mode) for SSR and hydration speed
   const { isAtsMode } = useSettings();
   const finalClassName = className || '';
 
