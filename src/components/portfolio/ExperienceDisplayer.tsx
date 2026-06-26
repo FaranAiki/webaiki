@@ -581,7 +581,7 @@ export default function ExperiencesClient({
                                                             activeImageSrc!.toLowerCase().endsWith('.pdf') ? (
                                                                 <PdfRenderer url={activeImageSrc!} isExpanded={true} />
                                                             ) : (
-                                                                <Image fill sizes="(max-width: 768px) 100vw, 50vw" src={activeImageSrc!} placeholder="blur" blurDataURL={shimmer600x400} alt={`${activeJob.title} at ${activeJob.company} - Muhammad Faran Aiki Portfolio`} className="object-cover" priority />
+                                                                <Image fill sizes="(max-width: 768px) 100vw, 50vw" src={activeImageSrc!} placeholder="blur" blurDataURL={shimmer600x400} alt={`${activeJob.title} at ${activeJob.company} - Muhammad Faran Aiki Portfolio`} className="object-contain" priority quality={100} />
                                                             )
                                                         ) : (
                                                             <PlaceholderIcon company={activeJob.company} />

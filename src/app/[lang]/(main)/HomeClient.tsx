@@ -9,8 +9,7 @@ const TrackingIcon = dynamic(() => import("../../../components/interactive/Track
 const SearchBar = dynamic(() => import("@/components/shared/SearchBar"), { ssr: false });
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { NewsItem } from '@/lib/types';
-import Link from 'next/link';
-import Image from 'next/image';
+import { useAppStore } from '@/lib/store';
 
 const LatestActivity = dynamic(() => import("../../../components/interactive/LatestActivity"));
 
@@ -32,32 +31,15 @@ export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientP
     { word: dict.Word_Search || "Search", type: 'search' }
   ];
 
+  const isGlobalLoading = useAppStore((state) => state.isGlobalLoading);
 
   useEffect(() => {
-    const checkLoading = () => {
-      const loadingOverlay = document.querySelector('.fixed.inset-0.z-\\[100\\]');
-      if (!loadingOverlay) {
-        setIsReady(true);
-      } else {
-        const observer = new MutationObserver(() => {
-          if (!document.querySelector('.fixed.inset-0.z-\\[100\\]')) {
-            setIsReady(true);
-            observer.disconnect();
-          }
-        });
-        observer.observe(document.body, { childList: true, subtree: true });
-        const fallback = setTimeout(() => {
-          setIsReady(true);
-          observer.disconnect();
-        }, 1500); // Reduced from 3000ms for faster interaction
-        return () => {
-          observer.disconnect();
-          clearTimeout(fallback);
-        };
-      }
-    };
-    checkLoading();
+    if (!isGlobalLoading) {
+      setIsReady(true);
+    }
+  }, [isGlobalLoading]);
 
+  useEffect(() => {
     const handleResize = () => setIsLgScreen(window.innerWidth >= 1024);
     handleResize();
     window.addEventListener('resize', handleResize);

@@ -26,7 +26,13 @@ export default function TrackingEye() {
 
     updateRect();
     window.addEventListener('resize', updateRect);
-    window.addEventListener('scroll', updateRect, { passive: true });
+    
+    let scrollTimeout: NodeJS.Timeout;
+    const onScroll = () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(updateRect, 100);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
 
     const handleMouseMove = (e: MouseEvent) => {
       if (!cachedRect) return;

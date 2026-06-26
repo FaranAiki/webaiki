@@ -32,7 +32,14 @@ export default function TrackingIcon({ type }: TrackerProps) {
 
     updateRect();
     window.addEventListener('resize', updateRect);
-    window.addEventListener('scroll', updateRect, { passive: true });
+    
+    // Debounce scroll to avoid layout thrashing
+    let scrollTimeout: NodeJS.Timeout;
+    const onScroll = () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(updateRect, 100);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
 
     const handleMouseMove = (e: MouseEvent) => {
       if (!cachedRect) return;

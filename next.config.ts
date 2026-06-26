@@ -66,8 +66,7 @@ const nextConfig: NextConfig = {
       if (!isServer) {
         if (!config.resolve) config.resolve = {};
         if (!config.resolve.alias) config.resolve.alias = {};
-        const alias = config.resolve.alias as any;
-        
+        const alias = config.resolve.alias as Record<string, string | boolean>;
         // Mock polyfill modules to save ~12KiB
         alias['next/dist/build/polyfills/polyfill-module.js'] = false;
         alias['next/dist/build/polyfills/polyfill-nomodule.js'] = false;

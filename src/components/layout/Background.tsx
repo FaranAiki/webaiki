@@ -1,17 +1,10 @@
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion';
-import { useSettings } from '../providers/SettingsContext';
-
 const SLIDE_DURATION = 10000;
-
-interface GeometricPatternProps {
-  isDark: boolean;
-}
-
 /* 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function GeometricPattern({isDark}: GeometricPatternProps) {

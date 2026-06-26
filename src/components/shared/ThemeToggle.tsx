@@ -8,7 +8,7 @@ import { Sun, Moon, Monitor } from "lucide-react";
 
 export default function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
@@ -52,8 +52,6 @@ export default function ThemeToggle() {
     else handleThemeChange('light');
   };
 
-  const isDark = resolvedTheme === 'dark';
-  
   // Desktop
   const desktopContainerClass = "bg-theme-surface border-theme-border shadow-theme-shadow";
 

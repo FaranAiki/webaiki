@@ -347,7 +347,9 @@ export default function Header(props: HeaderProps) {
         await setCookies("language", langCode);
 
         let newPathname = pathname;
-        if (pathname.startsWith(`/${current_lang}/`)) {
+        if (pathname === '/') {
+            newPathname = `/${langCode}`;
+        } else if (pathname.startsWith(`/${current_lang}/`)) {
             newPathname = pathname.replace(`/${current_lang}/`, `/${langCode}/`);
         } else if (pathname === `/${current_lang}`) {
             newPathname = `/${langCode}`;
