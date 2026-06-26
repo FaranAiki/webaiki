@@ -7,9 +7,10 @@ interface PopRotateSectionProps {
   children: React.ReactNode;
   delay?: number;
   className?: string;
+  initialVisible?: boolean;
 }
 
-export default function PopRotateSection({ children, delay = 0, className = "" }: PopRotateSectionProps) {
+export default function PopRotateSection({ children, delay = 0, className = "", initialVisible = false }: PopRotateSectionProps) {
   const [isMobile, setIsMobile] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -27,7 +28,7 @@ export default function PopRotateSection({ children, delay = 0, className = "" }
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.8, rotate: -5, y: 30, filter: 'blur(10px)' }}
+      initial={initialVisible ? { opacity: 1, scale: 1, rotate: 0, y: 0, filter: 'blur(0px)' } : { opacity: 0, scale: 0.8, rotate: -5, y: 30, filter: 'blur(10px)' }}
       whileInView={{ opacity: 1, scale: 1, rotate: 0, y: 0, filter: 'blur(0px)' }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ 

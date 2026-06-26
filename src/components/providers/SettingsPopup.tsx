@@ -461,6 +461,8 @@ export default function SettingsPopup({
             <label className="flex items-center gap-3 cursor-pointer group">
               <div className="relative">
                 <input
+                  id="settings-ats-mode"
+                  name="settings-ats-mode"
                   type="checkbox"
                   checked={isAtsMode}
                   onChange={(e) => setIsAtsMode(e.target.checked)}
@@ -477,6 +479,8 @@ export default function SettingsPopup({
             <label className="flex items-center gap-3 cursor-pointer group">
               <div className="relative">
                 <input
+                  id="settings-expand-all"
+                  name="settings-expand-all"
                   type="checkbox"
                   checked={isExpandAll}
                   onChange={(e) => setIsExpandAll(e.target.checked)}
@@ -493,6 +497,8 @@ export default function SettingsPopup({
             <label className="flex items-center gap-3 cursor-pointer group">
               <div className="relative">
                 <input
+                  id="settings-full-description"
+                  name="settings-full-description"
                   type="checkbox"
                   checked={isFullDescription}
                   onChange={(e) => setIsFullDescription(e.target.checked)}
@@ -525,6 +531,8 @@ export default function SettingsPopup({
               <Minus size={16} />
             </button>
             <input
+              id="settings-text-scale"
+              name="settings-text-scale"
               type="range" min="80" max="120" step="5" value={textScale}
               onChange={(e) => setTextScale(parseInt(e.target.value))}
               className="flex-1 accent-theme-500 h-1.5 bg-theme-border rounded-lg appearance-none cursor-pointer"
@@ -549,6 +557,8 @@ export default function SettingsPopup({
               <Minus size={16} />
             </button>
             <input
+              id="settings-letter-spacing"
+              name="settings-letter-spacing"
               type="range" min="-2" max="10" step="0.1" value={letterSpacing}
               onChange={(e) => setLetterSpacing(parseFloat(e.target.value))}
               className="flex-1 accent-theme-500 h-1.5 bg-theme-border rounded-lg appearance-none cursor-pointer"
@@ -573,6 +583,8 @@ export default function SettingsPopup({
               <Minus size={16} />
             </button>
             <input
+              id="settings-line-height"
+              name="settings-line-height"
               type="range" min="0.8" max="3" step="0.1" value={lineHeight}
               onChange={(e) => setLineHeight(parseFloat(e.target.value))}
               className="flex-1 accent-theme-500 h-1.5 bg-theme-border rounded-lg appearance-none cursor-pointer"

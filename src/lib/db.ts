@@ -5,7 +5,7 @@ import * as schema from './schema';
 import { env } from './env';
 
 const isProduction = process.env.NODE_ENV === 'production';
-const connectionString = env.DIRECT_URL || env.DATABASE_URL;
+const connectionString = env.DATABASE_URL || env.DIRECT_URL;
 
 /**
  * Initializes the PostgreSQL Connection Pool (Supabase).

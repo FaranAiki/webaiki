@@ -42,6 +42,9 @@ const nextConfig: NextConfig = {
     cpus: 1,
     workerThreads: false,
     memoryBasedWorkersCount: true,
+    optimizeCss: true, // Keep it if it helps, but inlineCss is for App Router
+    inlineCss: true,
+    cssChunking: false,
   },
 
     webpack: (

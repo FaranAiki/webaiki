@@ -254,6 +254,8 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
                   <div>
                     <label className="block text-sm font-bold text-theme-muted mb-1">{dict.Title || 'Title'}</label>
                     <input
+                      id="news-title-input"
+                      name="news-title-input"
                       type="text"
                       value={title}
                       onChange={(e) => setTitle(e.target.value)}
@@ -271,7 +273,7 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
                           <Camera size={18} className="text-theme-muted" />
                         )}
                         <span className="text-xs font-bold text-theme-muted">{dict.Upload_Photo || 'Upload Photo'}</span>
-                        <input type="file" accept="image/*" className="hidden" onChange={handleImageUpload} disabled={uploading} />
+                        <input id="news-image-upload" name="news-image-upload" type="file" accept="image/*" className="hidden" onChange={handleImageUpload} disabled={uploading} />
                       </label>
                       
                       {imageUrl && (
@@ -291,6 +293,8 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
                   <div>
                     <label className="block text-sm font-bold text-theme-muted mb-1">{dict.Content}</label>
                     <textarea
+                      id="news-content-input"
+                      name="news-content-input"
                       value={content}
                       onChange={(e) => setContent(e.target.value)}
                       className="w-full h-40 px-4 py-3 rounded-xl bg-theme-surface-strong border border-theme-border focus:border-theme-500 outline-none transition-all resize-none"
@@ -409,6 +413,7 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
                           alt={`${item.title} - Muhammad Faran Aiki News Portfolio`}
                           fill
                           className="object-cover transition-transform duration-700 group-hover:scale-110"
+                          priority={idx === 0}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-theme-bg via-transparent to-transparent opacity-60" />
                       </div>

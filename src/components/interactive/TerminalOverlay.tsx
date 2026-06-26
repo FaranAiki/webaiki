@@ -1027,6 +1027,8 @@ To navigate to this page in your browser, type:
                       $
                     </span>
                     <input
+                      id="terminal-input"
+                      name="terminal-input"
                       ref={inputRef}
                       type="text"
                       value={input}

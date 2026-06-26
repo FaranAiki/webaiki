@@ -80,10 +80,9 @@
     "os": false
   },
   "browserslist": [
-    ">0.3%",
-    "not dead",
-    "not op_mini all",
-    "last 2 versions",
-    "not ios < 13"
+    "chrome >= 100",
+    "firefox >= 100",
+    "safari >= 15.4",
+    "edge >= 100"
   ]
 }

@@ -65,6 +65,8 @@ export default function CommentSection({ initialComments, user, lang, dict }: Co
                 {user ? (
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <textarea
+                            id="new-comment"
+                            name="new-comment"
                             value={newComment}
                             onChange={(e) => setNewComment(e.target.value)}
                             placeholder={formatCJK(dict.Write_Comment || 'Write a comment...', lang)}

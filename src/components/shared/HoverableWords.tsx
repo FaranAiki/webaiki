@@ -27,25 +27,17 @@ const processWords = (text: string, separatorRegex: RegExp, hoverClass: string, 
 };
 
 export default function HoverableWords({ children, className, prophover }: HoverableWordsProps) {
-  const [isMobile, setIsMobile] = useState(true); // Default to true (mobile/fast mode) for SSR and hydration speed
+  const [isHovered, setIsHovered] = useState(false);
   const { isAtsMode } = useSettings();
   const finalClassName = className || '';
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
   // Return early if no children are provided to prevent crash
   if (!children) {
     return <p className={finalClassName}></p>;
   }
 
-  const skipSplitting = isMobile || isAtsMode;
+  // Only split if the user has hovered this specific paragraph and not in ATS mode
+  const skipSplitting = !isHovered || isAtsMode;
 
   // The "gacor" effect: gradient text on hover with smooth transition
   const gacorHover = 'transition-all inline-block duration-700 ease-in-out hover:scale-105 hover:font-bold cursor-pointer hover:nav-active-gacor';
@@ -61,7 +53,15 @@ export default function HoverableWords({ children, className, prophover }: Hover
   const segments = String(children).split(tagRegex).filter(Boolean);
 
   return (
-    <p className={finalClassName}>
+    <p 
+      className={finalClassName}
+      onMouseEnter={() => {
+        // We only split on desktop devices (width >= 768) when hovered
+        if (window.innerWidth >= 768 && !isAtsMode) {
+          setIsHovered(true);
+        }
+      }}
+    >
       {segments.map((segment, i) => {
         const lowerSegment = segment.toLowerCase();
         if (lowerSegment.startsWith('<b>') && lowerSegment.endsWith('</b>')) {

@@ -103,9 +103,10 @@ interface BentoCardProps {
     lang: string;
     justifyClass: string;
     click_to_close_text: string;
+    priority?: boolean;
 }
 
-const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, justifyClass, click_to_close_text }: BentoCardProps) => {
+const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, justifyClass, click_to_close_text, priority }: BentoCardProps) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const hasImage = job.image && job.image.length > 0;
     const itemId = `exp-${job.title.toLowerCase().replace(/\s+/g, '-')}`;
@@ -140,6 +141,7 @@ const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, j
                         src={job.image[0]}
                         alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`}
                         fill
+                        priority={priority}
                         className={`object-cover transition-transform duration-700
                             ${isExpanded
                                 ? (isDark ? 'scale-110 blur-sm brightness-[0.2]' : 'scale-110 blur-md opacity-20')
@@ -639,7 +641,7 @@ export default function ExperiencesClient({
                                                                             {isPdf ? (
                                                                                 <PdfRenderer url={job.image[0]} />
                                                                             ) : (
-                                                                                <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="300px" className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                                                                                <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="300px" priority={rowIdx === 0 && idx < 3} className="object-cover group-hover:scale-110 transition-transform duration-700" />
                                                                             )}
                                                                         </div>
                                                                     )}
@@ -690,7 +692,7 @@ export default function ExperiencesClient({
                                                                         {job.image[0].toLowerCase().endsWith('.pdf') ? (
                                                                             <PdfRenderer url={job.image[0]} />
                                                                         ) : (
-                                                                            <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="400px" className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                                                                            <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="400px" priority={rowIdx === 0 && idx < 2} className="object-cover group-hover:scale-110 transition-transform duration-700" />
                                                                         )}
                                                                     </div>
                                                                 )}
@@ -724,7 +726,7 @@ export default function ExperiencesClient({
                                                             {job.image[0].toLowerCase().endsWith('.pdf') ? (
                                                                 <PdfRenderer url={job.image[0]} />
                                                             ) : (
-                                                                <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="100vw" className="object-cover" />
+                                                                <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="100vw" priority={idx < 2} className="object-cover" />
                                                             )}
                                                         </div>
                                                     )}
@@ -770,7 +772,7 @@ export default function ExperiencesClient({
                                                 job.image[0].toLowerCase().endsWith('.pdf') ? (
                                                     <PdfRenderer url={job.image[0]} />
                                                 ) : (
-                                                    <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform group-hover:scale-105" placeholder="blur" blurDataURL={shimmer400x225} />
+                                                    <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform group-hover:scale-105" priority={idx < 6} placeholder="blur" blurDataURL={shimmer400x225} />
                                                 )
                                             ) : (
                                                 <PlaceholderIcon company={job.company} />
@@ -802,7 +804,7 @@ export default function ExperiencesClient({
                                     const spans = ["md:col-span-2 md:row-span-2", "md:col-span-2 md:row-span-1", "md:col-span-1 md:row-span-1", "md:col-span-1 md:row-span-1", "md:col-span-1 md:row-span-1", "md:col-span-3 md:row-span-1", "md:col-span-2 md:row-span-1", "md:col-span-2 md:row-span-2"];
                                     const spanClass = spans[idx % spans.length];
                                     return (
-                                        <BentoCard key={`${job.year}-${idx}`} job={job} spanClass={spanClass} cardBorder={cardBorder} inactiveCardBg={inactiveCardBg} isDark={isDark} lang={lang} justifyClass={justifyClass} click_to_close_text={click_to_close_text} />
+                                        <BentoCard key={`${job.year}-${idx}`} job={job} spanClass={spanClass} cardBorder={cardBorder} inactiveCardBg={inactiveCardBg} isDark={isDark} lang={lang} justifyClass={justifyClass} click_to_close_text={click_to_close_text} priority={idx < 4} />
                                     );
                                 })}
                             </motion.div>
@@ -854,7 +856,7 @@ export default function ExperiencesClient({
                                                         job.image[0].toLowerCase().endsWith('.pdf') ? (
                                                             <PdfRenderer url={job.image[0]} isExpanded />
                                                         ) : (
-                                                            <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+                                                            <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="(max-width: 768px) 100vw, 50vw" priority={idx < 2} className="object-cover" />
                                                         )
                                                     ) : (
                                                         <PlaceholderIcon company={job.company} />

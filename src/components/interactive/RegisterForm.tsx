@@ -119,11 +119,12 @@ export default function RegisterForm({ dict, lang }: RegisterFormProps) {
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <motion.div variants={itemVariants} className="space-y-1.5">
-            <label className="flex items-center gap-2 text-sm font-bold text-theme-muted ml-1">
+            <label htmlFor="register-username" className="flex items-center gap-2 text-sm font-bold text-theme-muted ml-1">
               <User size={14} />
               {dict.Username}
             </label>
             <input
+              id="register-username"
               name="username"
               type="text"
               required
@@ -132,11 +133,12 @@ export default function RegisterForm({ dict, lang }: RegisterFormProps) {
           </motion.div>
 
           <motion.div variants={itemVariants} className="space-y-1.5">
-            <label className="flex items-center gap-2 text-sm font-bold text-theme-muted ml-1">
+            <label htmlFor="register-email" className="flex items-center gap-2 text-sm font-bold text-theme-muted ml-1">
               <Mail size={14} />
               {dict.Email}
             </label>
             <input
+              id="register-email"
               name="email"
               type="email"
               required
@@ -145,12 +147,13 @@ export default function RegisterForm({ dict, lang }: RegisterFormProps) {
           </motion.div>
 
           <motion.div variants={itemVariants} className="space-y-1.5">
-            <label className="flex items-center gap-2 text-sm font-bold text-theme-muted ml-1">
+            <label htmlFor="register-reason" className="flex items-center gap-2 text-sm font-bold text-theme-muted ml-1">
               <Info size={14} />
               {dict.Registration_Reason}
             </label>
             <div className="relative">
               <select
+                id="register-reason"
                 name="reason"
                 required
                 className="w-full px-4 py-2.5 rounded-xl bg-theme-surface-strong border border-theme-border focus:border-theme-500 focus:ring-4 focus:ring-theme-500/10 outline-none transition-all duration-300 appearance-none cursor-pointer"
@@ -167,11 +170,12 @@ export default function RegisterForm({ dict, lang }: RegisterFormProps) {
           </motion.div>
 
           <motion.div variants={itemVariants} className="space-y-1.5">
-            <label className="flex items-center gap-2 text-sm font-bold text-theme-muted ml-1">
+            <label htmlFor="register-password" className="flex items-center gap-2 text-sm font-bold text-theme-muted ml-1">
               <Lock size={14} />
               {dict.Password}
             </label>
             <input
+              id="register-password"
               name="password"
               type="password"
               required
@@ -180,11 +184,12 @@ export default function RegisterForm({ dict, lang }: RegisterFormProps) {
           </motion.div>
 
           <motion.div variants={itemVariants} className="space-y-1.5">
-            <label className="flex items-center gap-2 text-sm font-bold text-theme-muted ml-1">
+            <label htmlFor="register-confirm-password" className="flex items-center gap-2 text-sm font-bold text-theme-muted ml-1">
               <Lock size={14} />
               {dict.Confirm_Password}
             </label>
             <input
+              id="register-confirm-password"
               name="confirmPassword"
               type="password"
               required

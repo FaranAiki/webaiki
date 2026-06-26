@@ -256,6 +256,8 @@ export default function SearchBar({
         </div>
 
         <input
+          id="search-input"
+          name="search-input"
           ref={inputRef}
           type="text"
           value={query}

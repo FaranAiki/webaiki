@@ -224,6 +224,8 @@ export default function FeedbackDisplay({ dict, lang, currentUserId }: FeedbackD
                 <div>
                   <label className="block text-sm font-bold text-theme-muted mb-2">{dict.Add_Feedback}</label>
                   <textarea
+                    id="new-feedback-content"
+                    name="new-feedback-content"
                     value={newFeedback}
                     onChange={(e) => setNewFeedback(e.target.value)}
                     placeholder={dict.Content}
@@ -242,7 +244,7 @@ export default function FeedbackDisplay({ dict, lang, currentUserId }: FeedbackD
                           <Camera size={18} className="text-theme-muted" />
                         )}
                         <span className="text-xs font-bold text-theme-muted">{dict.Image || 'Image'}</span>
-                        <input type="file" accept="image/*" className="hidden" onChange={handleImageUpload} disabled={uploading} />
+                        <input id="feedback-image-upload" name="feedback-image-upload" type="file" accept="image/*" className="hidden" onChange={handleImageUpload} disabled={uploading} />
                       </label>
                       {imageUrl && (
                         <div className="relative w-10 h-10 rounded-lg overflow-hidden border border-theme-border">

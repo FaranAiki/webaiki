@@ -32,6 +32,7 @@ interface BentoCertificateCardProps {
     titleColor: string;
     click_to_close_text: string;
     spanClass: string;
+    priority?: boolean;
 }
 
 const getPath = (data: string | { path: string; point: number }): string => {
@@ -40,7 +41,7 @@ const getPath = (data: string | { path: string; point: number }): string => {
 };
 
 const BentoCertificateCard = ({
-    fileName, filePath, category, year, isDark, lang, titleColor, click_to_close_text, spanClass
+    fileName, filePath, category, year, isDark, lang, titleColor, click_to_close_text, spanClass, priority
 }: BentoCertificateCardProps) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
@@ -62,6 +63,7 @@ const BentoCertificateCard = ({
                         src={filePath}
                         alt={`${fileName} Certificate Faran Aiki`}
                         fill
+                        priority={priority}
                         className={`object-cover transition-all duration-700 ${isExpanded ? 'scale-110 blur-sm brightness-[0.3]' : 'opacity-80 group-hover:opacity-100'}`}
                         sizes="(max-width: 768px) 50vw, 33vw"
                     />
@@ -292,7 +294,7 @@ export default function CertificatesDisplay({
 
         {currentLayout === 'original' && (
             <div className="space-y-6">
-              {Object.entries(certificates).map(([category, yearsData]) => {
+              {Object.entries(certificates).map(([category, yearsData], categoryIndex) => {
                 const isOpen = openCategories.includes(category);
                 const activeYear = selectedYears[category] || (categoryYears[category][0] || 'All');
 
@@ -306,10 +308,12 @@ export default function CertificatesDisplay({
                   return yearsData[activeYear] || {};
                 })();
 
+                const isFirstCategory = categoryIndex === 0;
+
                 return (
                   <div key={category} className={`border-b ${borderColor} pb-4`}>
                     {/* Category Title FadeIn */}
-                    <FadeInSection delay={50}>
+                    <FadeInSection delay={50} initialVisible={isFirstCategory}>
                         <h2 className="w-full">
                           <button
                           onClick={() => handleCategoryClick(category)}
@@ -326,7 +330,7 @@ export default function CertificatesDisplay({
                     }`}
                     >
                     {/* Year Selection FadeIn */}
-                    <FadeInSection delay={50}>
+                    <FadeInSection delay={50} initialVisible={isFirstCategory}>
                         <div className="flex flex-wrap gap-2 mb-6">
                             <button
                             onClick={() => handleYearClick(category, 'All')}
@@ -355,10 +359,11 @@ export default function CertificatesDisplay({
                     </FadeInSection>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                        {Object.entries(filteredFiles).map(([fileName, fileData]) => {
+                        {Object.entries(filteredFiles).map(([fileName, fileData], index) => {
                         const filePath = getPath(fileData);
+                        const isFirstItem = isFirstCategory && index < 3;
                         return (
-                        <PopRotateSection delay={50} key={fileName} className="h-full">
+                        <PopRotateSection delay={50} key={fileName} className="h-full" initialVisible={isFirstItem}>
                             <div
                                 className={`${cardBg} rounded-lg overflow-hidden shadow-lg transition-[colors,transform,opacity] hover:scale-105 hover:opacity-100 opacity-90 h-full flex flex-col transform-gpu`}
                                 style={{ boxShadow: isDark ? 'inset 0 0 0 1px rgba(255,255,255,0.1)' : 'inset 0 0 0 1px rgba(0,0,0,0.1)' }}
@@ -511,6 +516,7 @@ export default function CertificatesDisplay({
                             titleColor={titleColor}
                             click_to_close_text={click_to_close_text}
                             spanClass={spanClass}
+                            priority={idx < 4}
                         />
                     );
                 })}
