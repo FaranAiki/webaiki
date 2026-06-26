@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
 import "../../../globals.css";
 
 import LiteratureLoader from './literature-loader'
@@ -32,7 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 export default async function LiteraturePage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
-  const nonce = (await headers()).get('x-nonce') || undefined;
+  
   const literature_data = await getCollectionsData(lang, 'literature');
 
   const breadcrumbSchema = getBreadcrumbSchema([

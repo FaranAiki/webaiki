@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
 import AboutMe from '@/components/portfolio/AboutMe';
 import FAQ from '@/components/portfolio/FAQ';
 import { getDictionary } from '@/components/layout/Translator';
@@ -44,7 +43,7 @@ export default async function IdentityPage({
 }) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
-  const nonce = (await headers()).get('x-nonce') || undefined;
+  
 
   const faranFaqs = [
     { question: dict.FAQ_Faran_Q1, answer: dict.FAQ_Faran_A1 },

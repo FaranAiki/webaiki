@@ -52,7 +52,7 @@ export default function RecaptchaNotice({ dict, className = "" }: RecaptchaNotic
   });
 
   return (
-    <p className={`text-[10px] text-center text-theme-muted opacity-50 font-medium ${className}`}>
+    <p className={`text-[10px] text-center text-theme-muted font-medium ${className}`}>
       {content}
     </p>
   );

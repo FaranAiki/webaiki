@@ -1,6 +1,6 @@
 import "../globals.css";
-import { headers } from 'next/headers';
 import Script from 'next/script'
+import { Suspense } from 'react';
 
 import { ProvidersConfigurator } from "@/components/providers/Providers";
 import { getDictionary } from "@/components/layout/Translator";
@@ -21,7 +21,7 @@ export default async function BaseLayout({
   children: React.ReactNode;
   params: Promise<{ lang: string }>;
 }>) {
-  const nonce = (await headers()).get('x-nonce') || undefined;
+  
   const { lang } = await params;
   const dict = await getDictionary(lang);
   const backgrounds = getBackgrounds();
@@ -37,9 +37,13 @@ export default async function BaseLayout({
       <ProvidersConfigurator 
         loadingLabel={dict.Preparing_Portfolio}
       />
-      <CookieInitializer />
+      <Suspense fallback={null}>
+        <CookieInitializer />
+      </Suspense>
       <ClientOnlyWidgets backgrounds={backgrounds} />
-      <PageTransitionLoader label={dict.Loading} />
+      <Suspense fallback={null}>
+        <PageTransitionLoader label={dict.Loading} />
+      </Suspense>
       <div id="main-content">
         {children}
       </div>
@@ -47,13 +51,13 @@ export default async function BaseLayout({
         strategy="lazyOnload"
         src="https://cloud.umami.is/script.js"
         data-website-id="a418298f-fdca-4df0-a3bf-be453b48eeaf"
-        nonce={nonce}
+        
       />
       <Script
         strategy="lazyOnload"
         src="https://platform.twitter.com/widgets.js"
         charSet="utf-8"
-        nonce={nonce}
+        
       />
     </div>
   );

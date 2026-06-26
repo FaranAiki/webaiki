@@ -7,7 +7,14 @@
         "http://127.0.0.1:3005/",
         "http://127.0.0.1:3005/en",
         "http://127.0.0.1:3005/en/all",
-        "http://127.0.0.1:3005/en/portfolio"
+        "http://127.0.0.1:3005/en/portfolio",
+        "http://127.0.0.1:3005/en/work",
+        "http://127.0.0.1:3005/en/certificate",
+        "http://127.0.0.1:3005/en/timeline",
+        "http://127.0.0.1:3005/en/music",
+        "http://127.0.0.1:3005/en/literature",
+        "http://127.0.0.1:3005/en/college",
+        "http://127.0.0.1:3005/en/sitemap-graph"
       ],
       "numberOfRuns": 1,
       "settings": {

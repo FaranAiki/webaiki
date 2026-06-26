@@ -418,9 +418,11 @@ export default function Header(props: HeaderProps) {
                     <div
                         className="flex-1 flex items-center gap-4"
                     >
-                    <div className={`transition-[colors,transform,opacity] shadow-md border border-theme-border opacity-100 hover:opacity-80 scale-100 hover:scale-110 cursor-pointer rounded-full overflow-hidden transform-gpu`}>
+                    <button 
+                        onClick={() => router.push(getLocalizedHref('/all'))}
+                        aria-label={logo_alt}
+                        className={`transition-[colors,transform,opacity] shadow-md border border-theme-border opacity-100 hover:opacity-80 scale-100 hover:scale-110 cursor-pointer rounded-full overflow-hidden transform-gpu flex`}>
                         <Image
-                            onClick={() => router.push(getLocalizedHref('/all'))}
                             src='/icon.ico'
                             alt={logo_alt}
                             title={logo_alt}
@@ -437,13 +439,14 @@ export default function Header(props: HeaderProps) {
                             }}
                             priority
                         />
-                    </div>
+                    </button>
 
                         {/* Share Button (Mobile) */}
                         <div className="md:hidden flex items-center justify-center self-center">
                             <button
                                 onClick={handleShare}
                                 title="Share this page with current settings"
+                                aria-label="Share this page with current settings"
                                 className={`
                                     flex items-center justify-center transition-all duration-300 p-2 rounded-full
                                     ${showShareSuccess
@@ -630,6 +633,8 @@ export default function Header(props: HeaderProps) {
                                 <div className="relative" ref={userMenuRef}>
                                     <button
                                         onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                                        aria-label="Toggle user menu"
+                                        aria-expanded={isUserMenuOpen}
                                         className="flex items-center space-x-2 p-1 rounded-full hover:bg-theme-surface-strong transition-colors border border-transparent hover:border-theme-border"
                                     >
                                         <div className="relative w-8 h-8 rounded-full overflow-hidden border border-theme-border shadow-sm">

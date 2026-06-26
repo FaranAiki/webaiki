@@ -1,8 +1,8 @@
+
 import { Inter, Roboto_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { Providers } from "@/components/providers/Providers";
-import { headers } from "next/headers";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -27,12 +27,10 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const headerList = await headers();
-  const nonce = headerList.get('x-nonce') || undefined;
-  const locale = headerList.get('x-locale') || "id";
+  const locale = "id";
 
   return (
-    <html lang={locale} suppressHydrationWarning nonce={nonce}>
+    <html lang={locale} suppressHydrationWarning>
       <head>
         <link rel="dns-prefetch" href="https://www.google.com" />
         <link rel="preconnect" href="https://www.gstatic.com" crossOrigin="anonymous" />
@@ -64,7 +62,6 @@ export default async function RootLayout({
               }
             ]))
           }}
-          nonce={nonce}
         />
       </body>
     </html>

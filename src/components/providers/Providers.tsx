@@ -1,7 +1,7 @@
 "use client";
 
 import { ThemeProvider } from "next-themes";
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect, Suspense } from "react";
 import { PresentationProvider } from "./PresentationContext";
 import { SettingsProvider } from "./SettingsContext";
 import QueryProvider from "./QueryProvider";
@@ -52,7 +52,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
           <QueryProvider>
             <SmoothScroll>
               <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-                <GlobalLoadingReset />
+                <Suspense fallback={null}>
+                  <GlobalLoadingReset />
+                </Suspense>
                 <LoadingOverlay label={loadingLabel} />
                 {children}
               </ThemeProvider>

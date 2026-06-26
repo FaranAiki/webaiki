@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
 import ExperiencesClient from '@/components/portfolio/ExperienceDisplayer';
 import "../../../globals.css"; 
 
@@ -34,7 +33,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 export default async function ProjectPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
-  const nonce = (await headers()).get('x-nonce') || undefined;
+  
 
   const projectExperiences = getProjectExperiences(dict);
 

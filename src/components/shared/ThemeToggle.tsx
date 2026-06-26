@@ -66,11 +66,7 @@ export default function ThemeToggle() {
       {/* Visible up to lg breakpoint (so that it is visible on md) */}
       <button
         onClick={cycleTheme}
-        className={`hidden md:block lg:hidden p-2 rounded-full transition-[transform,colors] duration-300 border bg-theme-surface border-theme-border shadow-theme-shadow ${
-          isDark 
-            ? "text-yellow-400 hover:bg-theme-surface-strong" 
-            : "text-orange-500 hover:bg-theme-surface-strong shadow-sm"
-        }`}
+        className={`hidden md:block lg:hidden p-2 rounded-full transition-[transform,colors] duration-300 border bg-theme-surface border-theme-border shadow-theme-shadow text-theme-500 hover:bg-theme-surface-strong`}
         aria-label="Toggle Theme"
       >
         <CurrentIcon size={20} />

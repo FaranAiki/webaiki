@@ -308,7 +308,6 @@ export default function SocialDisplay({ customLinks, hidePresentation = false, d
           <iframe 
             src="https://www.instagram.com/mfaranaiki/embed/" 
             className="w-full h-[400px] sm:h-[450px] rounded-lg border-0 bg-transparent"
-            allowTransparency={true}
             scrolling="no"
             frameBorder="0"
             title="Instagram Embed"
@@ -380,6 +379,9 @@ export default function SocialDisplay({ customLinks, hidePresentation = false, d
             <img 
               src={`https://github-readme-stats.vercel.app/api?username=FaranAiki&show_icons=true&theme=${badgeTheme === 'dark' ? 'tokyonight' : 'default'}&hide_border=true&bg_color=00000000`}
               alt="GitHub Profile Stats"
+              width={495}
+              height={195}
+              loading="lazy"
               className="w-full h-auto object-contain hover:scale-[1.02] transition-transform duration-500"
             />
             
@@ -388,6 +390,9 @@ export default function SocialDisplay({ customLinks, hidePresentation = false, d
             <img 
               src={`https://github-readme-stats.vercel.app/api/top-langs/?username=FaranAiki&layout=compact&theme=${badgeTheme === 'dark' ? 'tokyonight' : 'default'}&hide_border=true&bg_color=00000000`}
               alt="GitHub Top Languages"
+              width={300}
+              height={165}
+              loading="lazy"
               className="w-full h-auto object-contain hover:scale-[1.02] transition-transform duration-500 delay-75"
             />
 
@@ -396,6 +401,9 @@ export default function SocialDisplay({ customLinks, hidePresentation = false, d
             <img 
               src={`https://github-readme-activity-graph.vercel.app/graph?username=FaranAiki&theme=${badgeTheme === 'dark' ? 'tokyonight' : 'default'}&hide_border=true&bg_color=00000000&line=theme-500`}
               alt="GitHub Commits Graph"
+              width={500}
+              height={200}
+              loading="lazy"
               className="w-full h-auto object-contain hover:scale-[1.02] transition-transform duration-500 delay-150"
             />
           </div>

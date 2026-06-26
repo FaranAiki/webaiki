@@ -22,6 +22,7 @@ interface HomeClientProps {
 export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientProps) {
   const [isReady, setIsReady] = useState(false);
   const [wordIndex, setWordIndex] = useState(0);
+  const [isLgScreen, setIsLgScreen] = useState(true);
 
   const cyclingData: { word: string; type: TrackerType }[] = [
     { word: dict.Word_See || "See", type: 'see' },
@@ -55,6 +56,12 @@ export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientP
       }
     };
     checkLoading();
+
+    const handleResize = () => setIsLgScreen(window.innerWidth >= 1024);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   useEffect(() => {
@@ -90,12 +97,13 @@ export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientP
 
   return (
     <main className="min-h-[50vh] flex flex-col items-center justify-center px-4 md:px-8 pt-24 md:pt-12 pb-12">
+      <h1 className="sr-only">{dict.Search_About_Faran || "Search about Muhammad Faran Aiki"}</h1>
       <div className="w-full max-w-6xl overflow-visible">
         <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">
 
           {/* The Main Question Section */}
           <div className="relative flex-1 z-1 text-center lg:text-left xs:pt-12 md:pt-6 lg:pt-0">
-              <motion.h1
+              <motion.h2
                 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tighter"
                 variants={containerVariants}
                 initial="hidden"
@@ -114,7 +122,7 @@ export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientP
                     <motion.span
                       key={wordIndex}
                       initial={{ y: 30, opacity: 0 }}
-                      animate={{ y: -4.75, opacity: 1 }}
+                      animate={{ y: isLgScreen ? -4.75 : -2.75, opacity: 1 }}
                       exit={{ y: -30, opacity: 0 }}
                       transition={{ type: "spring", stiffness: 200, damping: 18 }}
                       className="absolute inset-0 flex items-center justify-center lg:justify-start text-theme-500 whitespace-nowrap nav-active-gacor lowercase"
@@ -125,7 +133,7 @@ export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientP
                 </span>
 
                 <motion.span variants={partVariants} className="inline-block whitespace-pre-wrap nav-active-gacor">{parts[1]}</motion.span>
-              </motion.h1>
+              </motion.h2>
           </div>
 
           {/* Dynamic Interactive Icon Section (Floating Right) */}
@@ -218,7 +226,8 @@ export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientP
                           alt={`${item.title} - Highlight Muhammad Faran Aiki Portfolio`}
                           fill
                           sizes="(max-width: 768px) 100vw, 33vw"
-                          loading="lazy"
+                          priority={idx === 0}
+                          loading={idx === 0 ? "eager" : "lazy"}
                           className="object-cover transition-transform duration-700 group-hover:scale-110"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-theme-bg/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -230,7 +239,7 @@ export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientP
                     )}
 
                     <div className="p-5 md:p-6 flex flex-col flex-1">
-                      <div className="flex items-center gap-2 mb-3 text-sm font-bold tracking-widest text-theme-muted opacity-70">
+                      <div className="flex items-center gap-2 mb-3 text-sm font-bold tracking-widest text-theme-muted">
                         <Calendar size={12} />
                         {new Date(item.createdAt).toLocaleDateString(lang, {
                           day: 'numeric',

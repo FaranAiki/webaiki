@@ -1,4 +1,5 @@
 'use server';
+import { headers } from "next/headers";
 
 import { Type } from '@sinclair/typebox';
 import { db } from '@/lib/db';
@@ -6,7 +7,6 @@ import { users, RegistrationReason } from '@/lib/schema';
 import { sql } from 'drizzle-orm';
 import { createClient } from '@/utils/supabase/server';
 import { validateData } from '@/lib/validation';
-import { headers } from 'next/headers';
 import { AppError } from '@/lib/errors';
 
 // Schemas

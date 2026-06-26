@@ -254,10 +254,10 @@ export default function MusicDisplay({ youtubeItems = [], error, lang, dict = {}
             
             <section>
               {items.length > 0 ? (
-                <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 animate-fade-in">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 animate-fade-in">
                   {items.map((item) => (
                     <PopRotateSection key={item.id}> 
-                      <li 
+                      <div 
                         className={`bg-theme-surface-strong rounded-lg overflow-hidden shadow-md shadow-theme-shadow transform hover:scale-105 transition-[transform,colors] hover:text-theme-600 dark:hover:text-theme-300 duration-300 transform-gpu`}
                         style={{ boxShadow: 'inset 0 0 0 1px rgba(var(--theme-border-rgb),0.1)' }}
                       >
@@ -271,13 +271,13 @@ export default function MusicDisplay({ youtubeItems = [], error, lang, dict = {}
                             loading="lazy"
                           />
                           <div className="p-3">
-                            <h3 className="text-center font-semibold text-sm md:text-base text-foreground line-clamp-2">{formatCJK(item.snippet.title, lang)}</h3>
+                            <h2 className="text-center font-semibold text-sm md:text-base text-foreground line-clamp-2">{formatCJK(item.snippet.title, lang)}</h2>
                           </div>
                         </a>
-                      </li>
+                      </div>
                     </PopRotateSection> 
                   ))}
-                </ul>
+                </div>
               ) : (
                 <p className="text-theme-muted">{dict.Cannot_Load_Video || 'Cannot load video or playlist is empty.'}</p>
               )}

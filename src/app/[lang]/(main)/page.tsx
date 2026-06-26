@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { getDictionary } from '@/components/layout/Translator';
 import { getLanguageAlternates, getBaseMetadata, SITE_URL, getPersonSchema, getWebsiteSchema } from '@/lib/seo';
 import HomeClient from "./HomeClient";
-import { headers } from 'next/headers';
 import { getNews } from '@/app/actions';
 import { NewsItem } from '@/lib/types';
 
@@ -38,7 +37,7 @@ export default async function HomePage({
 }) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
-  const nonce = (await headers()).get('x-nonce') || undefined;
+  
 
   let news: NewsItem[] = [];
   try {

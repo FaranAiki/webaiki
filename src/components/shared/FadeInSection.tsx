@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { usePresentation } from '../providers/PresentationContext';
 
@@ -22,16 +22,7 @@ export default function FadeInSection({
   initialVisible = false
 }: FadeInSectionProps) {
   const { isPresentationMode, slideNumberFormat, cycleSlideNumberFormat } = usePresentation();
-  const [isMobile, setIsMobile] = useState(false);
-  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
   const formatNumber = (num: number | undefined, total: number | undefined) => {
     if (num === undefined || total === undefined) return '';
@@ -47,16 +38,8 @@ export default function FadeInSection({
     return num.toString().padStart(totalDigits, '0');
   };
 
-  // Skip animations on mobile for better performance
-  // But only after mounting to ensure SSR matches client first render
-  if (mounted && isMobile && !isPresentationMode) {
-    return (
-      <div className={className}>
-        {children}
-      </div>
-    );
-  }
-
+  // CSS will handle skipping animations on mobile to ensure SSR works.
+  
   return (
     <motion.div
       initial={initialVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}

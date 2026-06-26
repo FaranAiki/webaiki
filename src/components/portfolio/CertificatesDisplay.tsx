@@ -71,7 +71,7 @@ const BentoCertificateCard = ({
             {/* Base Content - Shows only on hover or when not expanded */}
             <div className={`absolute inset-0 p-6 flex flex-col justify-end transition-all duration-500 bg-gradient-to-t ${isDark ? 'from-theme-bg-dark/90 via-theme-bg-dark/40' : 'from-theme-surface/95 via-theme-surface/60'} to-transparent opacity-0 group-hover:opacity-100 ${isExpanded ? 'opacity-0 pointer-events-none' : ''}`}>
                 <p className="text-theme-600 dark:text-theme-400 text-sm font-black mb-1 tracking-widest">{year} • {formatCJK(category, lang)}</p>
-                <h3 className={`text-sm font-black leading-tight ${titleColor} line-clamp-2`}>{formatCJK(fileName, lang)}</h3>
+                <h2 className={`text-sm font-black leading-tight ${titleColor} line-clamp-2`}>{formatCJK(fileName, lang)}</h2>
             </div>
 
             {/* Expanded Content (Overlay) */}
@@ -83,7 +83,7 @@ const BentoCertificateCard = ({
             >
                 <div className="overflow-y-auto max-h-full flex flex-col items-center justify-center text-center" data-lenis-prevent>
                     <p className="text-theme-500 text-xs font-bold mb-2 tracking-widest">{year}</p>
-                    <h3 className={`text-xl font-black mb-2 ${titleColor}`}>{formatCJK(fileName, lang)}</h3>
+                    <h2 className={`text-xl font-black mb-2 ${titleColor}`}>{formatCJK(fileName, lang)}</h2>
                     <p className={`text-sm italic mb-6 text-gacor-smooth`}>{formatCJK(category, lang)}</p>
 
                     <a
@@ -310,12 +310,14 @@ export default function CertificatesDisplay({
                   <div key={category} className={`border-b ${borderColor} pb-4`}>
                     {/* Category Title FadeIn */}
                     <FadeInSection delay={50}>
-                        <button
-                        onClick={() => handleCategoryClick(category)}
-                        className={`w-full text-left text-2xl font-bold text-gacor-smooth hover:scale-102 transition-[transform,colors]`}
-                        >
-                        {formatCJK(category, lang)}
-                        </button>
+                        <h2 className="w-full">
+                          <button
+                          onClick={() => handleCategoryClick(category)}
+                          className={`w-full text-left text-2xl font-bold text-gacor-smooth hover:scale-102 transition-[transform,colors]`}
+                          >
+                          {formatCJK(category, lang)}
+                          </button>
+                        </h2>
                     </FadeInSection>
 
                     <div
@@ -365,6 +367,7 @@ export default function CertificatesDisplay({
                                 href={filePath}
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                aria-label={`View ${fileName} certificate`}
                                 className="block h-48 w-full relative"
                                 >
                                 {filePath.endsWith('.pdf') ? (
@@ -406,7 +409,7 @@ export default function CertificatesDisplay({
                         <div className="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-theme-500 border-4 border-theme-surface dark:border-theme-bg-dark shadow-sm" />
                         <div className="flex flex-wrap items-baseline gap-x-4 mb-6">
                             <h2 className={`text-3xl font-black text-gacor-smooth`}>{item.year}</h2>
-                            <h3 className={`text-xl font-bold text-gacor-smooth opacity-70`}>{formatCJK(item.category, lang)}</h3>
+                            <h3 className={`text-xl font-bold text-gacor-smooth`}>{formatCJK(item.category, lang)}</h3>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {Object.entries(item.files).map(([fileName, fileData]) => {
@@ -419,7 +422,7 @@ export default function CertificatesDisplay({
                                     viewport={{ once: true }}
                                     className={`${cardBg} overflow-hidden rounded-xl border ${borderColor} flex flex-col shadow-md group transform-gpu`}
                                 >
-                                    <a href={filePath} target="_blank" rel="noopener noreferrer" className="relative aspect-video w-full overflow-hidden">
+                                    <a href={filePath} target="_blank" rel="noopener noreferrer" aria-label={`View ${fileName} certificate`} className="relative aspect-video w-full overflow-hidden">
                                         {filePath.endsWith('.pdf') ? (
                                             <div className="w-full h-full">
                                                 <PdfPreview fileUrl={filePath} />
@@ -456,7 +459,7 @@ export default function CertificatesDisplay({
                         whileHover={{ y: -5 }}
                         className={`${cardBg} rounded-2xl overflow-hidden border ${borderColor} shadow-md group transform-gpu`}
                     >
-                        <a href={filePath} target="_blank" rel="noopener noreferrer" className="block relative aspect-video">
+                        <a href={filePath} target="_blank" rel="noopener noreferrer" aria-label={`View ${item.fileName} certificate`} className="block relative aspect-video">
                           {filePath.endsWith('.pdf') ? (
                               <div className="w-full h-full overflow-hidden">
                                   <PdfPreview fileUrl={filePath} />
@@ -468,9 +471,9 @@ export default function CertificatesDisplay({
                         <div className="p-4">
                             <div className="flex justify-between items-start mb-1">
                                 <span className="text-sm font-bold text-gacor-smooth tracking-tighter">{formatCJK(item.category, lang)}</span>
-                                <span className={`text-sm font-mono ${titleColor} opacity-50`}>{item.year}</span>
+                                <span className={`text-sm font-mono text-theme-muted`}>{item.year}</span>
                             </div>
-                            <h3 className={`text-sm font-bold ${titleColor} hover-gacor line-clamp-1`}>{formatCJK(item.fileName, lang)}</h3>
+                            <h2 className={`text-sm font-bold ${titleColor} hover-gacor line-clamp-1`}>{formatCJK(item.fileName, lang)}</h2>
                         </div>
                     </motion.div>
                 );})}

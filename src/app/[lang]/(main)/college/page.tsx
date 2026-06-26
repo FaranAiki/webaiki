@@ -6,7 +6,6 @@ import CollegeLoader from './college-loader';
 import { getDictionary } from '@/components/layout/Translator';
 import { getCollectionsData } from '@/lib/data';
 import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema } from '@/lib/seo';
-import { headers } from 'next/headers';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -34,7 +33,7 @@ export default async function CollegePage({ params }: { params: Promise<{ lang: 
   const { lang } = await params;
   const dict = await getDictionary(lang);
   const college_data = await getCollectionsData(lang, 'college');
-  const nonce = (await headers()).get('x-nonce') || undefined;
+  
 
   const breadcrumbSchema = getBreadcrumbSchema([
     { name: dict.Home, item: `/${lang}` },

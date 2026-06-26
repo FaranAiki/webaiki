@@ -392,7 +392,7 @@ export default function ExperiencesClient({
                                                 job.image[0].toLowerCase().endsWith('.pdf') ? (
                                                     <PdfRenderer url={job.image[0]} />
                                                 ) : (
-                                                    <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill className="object-contain transition-transform duration-700 hover:scale-[1.03] scale-[1.01]" sizes="(max-width: 768px) 100vw, 400px" priority={true} loading="eager" />
+                                                    <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill className="object-contain transition-transform duration-700 hover:scale-[1.03] scale-[1.01]" sizes="(max-width: 768px) 100vw, 400px" />
                                                 )
                                             ) : (
                                                 <PlaceholderIcon company={job.company} />
@@ -412,7 +412,7 @@ export default function ExperiencesClient({
                                                     <PdfRenderer url={job.image[0]} isExpanded={true} />
                                                 </div>
                                             ) : (
-                                                <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="100vw" className={`object-cover transition-all duration-1000 dark:brightness-[0.35] brightness-[1.1] grayscale-[0.2] opacity-20`} priority={true} loading="eager" />
+                                                <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="100vw" className={`object-cover transition-all duration-1000 dark:brightness-[0.35] brightness-[1.1] grayscale-[0.2] opacity-20`} />
                                             )}
                                             <div className={`absolute inset-0 bg-gradient-to-t from-theme-bg-dark via-transparent to-transparent`} />
                                         </div>

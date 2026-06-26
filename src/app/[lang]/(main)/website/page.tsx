@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
 import FAQ from '@/components/portfolio/FAQ';
 import { getDictionary } from '@/components/layout/Translator';
 import { getLanguageAlternates, getBaseMetadata, getWebsiteSchema, SITE_URL, getFaqSchema } from '@/lib/seo';
@@ -35,7 +34,7 @@ export default async function WebsitePage({
 }) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
-  const nonce = (await headers()).get('x-nonce') || undefined;
+  
 
   const websiteFaqs = [
     { question: dict.FAQ_Website_Q1, answer: dict.FAQ_Website_A1 },
