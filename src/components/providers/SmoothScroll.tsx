@@ -17,8 +17,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     if (!mounted) return;
 
     const lenis = new Lenis({
-      duration: 1.1,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      lerp: 0.1, // Replaced heavy duration/easing math with lightweight linear interpolation
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
