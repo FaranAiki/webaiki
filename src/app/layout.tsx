@@ -8,14 +8,14 @@ const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   display: 'swap',
-  preload: true,
+  preload: false,
 });
 
 const robotoMono = Roboto_Mono({
   variable: "--font-roboto-mono",
   subsets: ["latin"],
   display: 'swap',
-  preload: true,
+  preload: false,
 });
 
 import { getBaseMetadata, getFaqSchema } from "@/lib/seo";

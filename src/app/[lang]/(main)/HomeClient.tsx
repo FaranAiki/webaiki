@@ -13,7 +13,7 @@ import { useAppStore } from '@/lib/store';
 
 const LatestActivity = dynamic(() => import("../../../components/interactive/LatestActivity"));
 
-const DynamicHero = React.memo(({ dict, isReady, isLgScreen, parts }: { dict: Record<string, string>, isReady: boolean, isLgScreen: boolean, parts: string[] }) => {
+const DynamicHero = React.memo(({ dict, isReady, isLgScreen, isMdScreen, parts }: { dict: Record<string, string>, isReady: boolean, isLgScreen: boolean, isMdScreen: boolean, parts: string[] }) => {
   const [wordIndex, setWordIndex] = useState(0);
 
   const cyclingData: { word: string; type: TrackerType }[] = useMemo(() => [
@@ -72,18 +72,20 @@ const DynamicHero = React.memo(({ dict, isReady, isLgScreen, parts }: { dict: Re
           </motion.h2>
       </div>
       <div className="hidden md:flex flex-shrink-0 relative md:w-64 md:h-64 items-center justify-center">
-        <AnimatePresence mode="wait">
-            <motion.div
-                key={wordIndex}
-                initial={{ opacity: 0, scale: 0.8, y: 15 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 1.1, y: -15 }}
-                transition={{ type: "spring", stiffness: 220, damping: 20 }}
-                className="absolute"
-            >
-                <TrackingIcon type={cyclingData[wordIndex].type} />
-            </motion.div>
-        </AnimatePresence>
+        {isMdScreen && (
+          <AnimatePresence mode="wait">
+              <motion.div
+                  key={wordIndex}
+                  initial={{ opacity: 0, scale: 0.8, y: 15 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 1.1, y: -15 }}
+                  transition={{ type: "spring", stiffness: 220, damping: 20 }}
+                  className="absolute"
+              >
+                  <TrackingIcon type={cyclingData[wordIndex].type} />
+              </motion.div>
+          </AnimatePresence>
+        )}
       </div>
     </div>
   );
@@ -99,6 +101,7 @@ interface HomeClientProps {
 export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientProps) {
   const [isReady, setIsReady] = useState(true);
   const [isLgScreen, setIsLgScreen] = useState(true);
+  const [isMdScreen, setIsMdScreen] = useState(true);
 
   const isGlobalLoading = useAppStore((state) => state.isGlobalLoading);
 
@@ -111,7 +114,10 @@ export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientP
   }, [isGlobalLoading]);
 
   useEffect(() => {
-    const handleResize = () => setIsLgScreen(window.innerWidth >= 1024);
+    const handleResize = () => {
+      setIsLgScreen(window.innerWidth >= 1024);
+      setIsMdScreen(window.innerWidth >= 768);
+    };
     handleResize();
     window.addEventListener('resize', handleResize);
 
@@ -127,7 +133,7 @@ export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientP
     <main className="min-h-[50vh] flex flex-col items-center justify-center px-4 md:px-8 pt-24 md:pt-12 pb-12">
       <h1 className="sr-only">{dict.Search_About_Faran || "Search about Muhammad Faran Aiki"}</h1>
       <div className="w-full max-w-6xl overflow-visible">
-          <DynamicHero dict={dict} isReady={isReady} isLgScreen={isLgScreen} parts={parts} />
+          <DynamicHero dict={dict} isReady={isReady} isLgScreen={isLgScreen} isMdScreen={isMdScreen} parts={parts} />
 
         {/* Quick Navigation / Explore Section */}
         {/*
