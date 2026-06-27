@@ -7,7 +7,7 @@ import FadeInSection from '@/components/shared/FadeInSection';
 import PopRotateSection from '@/components/shared/PopRotateSection';
 import { usePresentation } from '../providers/PresentationContext';
 import { formatCJK } from '@/lib/utils';
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import { LayoutSwitcher } from '../shared/LayoutSwitcher';
 import BookmarkButton from '@/components/interactive/BookmarkButton';
 

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useAuthActions } from '@/app/auth-hooks';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import { LogIn, Mail, Lock, AlertCircle } from 'lucide-react';
 import { getErrorMessage } from '@/lib/errors';
 import OAuthButtons from './OAuthButtons';

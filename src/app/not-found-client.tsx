@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import Link from "next/link";
 import { Home, Star } from "lucide-react";
 import SearchBar from "@/components/shared/SearchBar";

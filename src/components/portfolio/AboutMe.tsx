@@ -5,7 +5,7 @@ import { shimmer, toBase64, formatCJK } from '@/lib/utils';
 import Image from 'next/image';
 import HoverableWords from '@/components/shared/HoverableWords';
 import FadeInSection from '@/components/shared/FadeInSection';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m as motion, AnimatePresence } from 'framer-motion';
 import { useSettings } from '../providers/SettingsContext';
 import { usePresentation } from '../providers/PresentationContext';
 

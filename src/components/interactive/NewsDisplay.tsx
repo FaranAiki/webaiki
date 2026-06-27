@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m as motion, AnimatePresence } from 'framer-motion';
 import { Newspaper, Send, User, Plus, X, Camera, Trash2, Search } from 'lucide-react';
 import { getNews, postNews, uploadFile, deleteNews } from '@/app/actions';
 import Image from 'next/image';

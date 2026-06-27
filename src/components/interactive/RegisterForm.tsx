@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useAuthActions } from '@/app/auth-hooks';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import { UserPlus, Mail, Lock, User, Info, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { executeCaptcha } from './CaptchaValidator';
 import RecaptchaNotice from '../shared/RecaptchaNotice';

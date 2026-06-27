@@ -12,7 +12,7 @@ import { usePresentation } from '../providers/PresentationContext';
 import { formatCJK } from '@/lib/utils';
 import { LayoutSwitcher } from '../shared/LayoutSwitcher';
 import { LayoutPanelLeft, Milestone, LayoutGrid, Grid2X2 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import BookmarkButton from '@/components/interactive/BookmarkButton';
 
 export type CertificateData = {

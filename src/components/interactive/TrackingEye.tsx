@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from 'react';
-import { motion, useSpring, useMotionValue } from 'framer-motion';
+import { m as motion, useSpring, useMotionValue } from 'framer-motion';
 
 export default function TrackingEye() {
   const eyeRef = useRef<HTMLDivElement>(null);

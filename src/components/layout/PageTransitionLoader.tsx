@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { m as motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useAppStore } from "@/lib/store";
 

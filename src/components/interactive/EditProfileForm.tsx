@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import { User, Mail, Camera, Save, AlertCircle, CheckCircle2, UserCircle } from 'lucide-react';
 import { updateProfile, uploadFile } from '@/app/actions';
 import Image from 'next/image';

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from 'react';
-import { motion, useSpring, useMotionValue } from 'framer-motion';
+import { m as motion, useSpring, useMotionValue } from 'framer-motion';
 import { HandMetal, Lightbulb, Search } from 'lucide-react';
 
 export type TrackerType = 'see' | 'do' | 'know' | 'search';

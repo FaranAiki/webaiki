@@ -10,7 +10,7 @@ import ThemeToggle from '@/components/shared/ThemeToggle';
 import { useTheme } from 'next-themes';
 import dynamic from 'next/dynamic';
 import { useSettings } from '@/components/providers/SettingsContext';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m as motion, AnimatePresence } from 'framer-motion';
 
 const SettingsPopup = dynamic(() => import('@/components/providers/SettingsPopup'), { ssr: false });
 const CommandPalette = dynamic(() => import('@/components/interactive/CommandPalette').then(mod => mod.CommandPalette), { ssr: false });

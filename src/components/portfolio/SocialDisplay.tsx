@@ -5,7 +5,7 @@ import { Github, Linkedin, Instagram, Twitter, Mail, Youtube } from 'lucide-reac
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
 import { usePresentation } from '../providers/PresentationContext';
-import { motion, Variants } from 'framer-motion';
+import { m as motion, Variants } from 'framer-motion';
 
 
 export interface SocialLink {

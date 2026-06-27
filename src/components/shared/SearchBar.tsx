@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m as motion, AnimatePresence } from 'framer-motion';
 import { Search, X, Loader2, ArrowRight, Layout, FileCheck, Award, Briefcase, Code, Users, HelpCircle, Info } from 'lucide-react';
 import { searchContent, getSuggestions, SearchResult } from '@/app/search-actions';
 import { useParams, useRouter } from 'next/navigation';

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef, KeyboardEvent, ChangeEvent } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m as motion, AnimatePresence } from 'framer-motion';
 import { Terminal as TerminalIcon, X, Maximize2, Minimize2 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { defaultSocialLinks } from '../portfolio/SocialDisplay';

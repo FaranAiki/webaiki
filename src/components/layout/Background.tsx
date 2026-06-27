@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import Image from 'next/image'
-import { motion, AnimatePresence } from 'framer-motion';
+import { m as motion, AnimatePresence } from 'framer-motion';
 const SLIDE_DURATION = 10000;
 /* 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -22,10 +22,15 @@ export default function Background({ carousel, showOverlay = true }: BackgroundP
   const [mounted, setMounted] = useState(false);
   // Preload first few images for smoother initial experience
   const [loadedIndices, setLoadedIndices] = useState<Set<number>>(new Set([0, 1]));
+  const [isMdScreen, setIsMdScreen] = useState(true);
   const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
+    const handleResize = () => setIsMdScreen(window.innerWidth >= 768);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   useEffect(() => {
@@ -87,8 +92,7 @@ export default function Background({ carousel, showOverlay = true }: BackgroundP
             </motion.div>
         </AnimatePresence>
 
-        {/* Adjusted Gradient to improve text readability on all backgrounds with SLOW transition for epilepsy prevention */}
-        {showOverlay && (
+        {showOverlay && isMdScreen && (
           <motion.div
             initial={false}
             animate={{ opacity: 1 }}

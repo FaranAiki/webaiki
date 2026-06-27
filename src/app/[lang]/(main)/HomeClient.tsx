@@ -7,7 +7,7 @@ import FadeInSection from "@/components/shared/FadeInSection";
 
 const TrackingIcon = dynamic(() => import("../../../components/interactive/TrackingIcon"), { ssr: false });
 const SearchBar = dynamic(() => import("@/components/shared/SearchBar"), { ssr: false });
-import { motion, AnimatePresence, Variants } from 'framer-motion';
+import { m as motion, AnimatePresence, Variants } from 'framer-motion';
 import { NewsItem } from '@/lib/types';
 import { useAppStore } from '@/lib/store';
 

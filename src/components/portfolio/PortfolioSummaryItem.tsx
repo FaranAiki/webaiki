@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { Calendar, ExternalLink, ChevronDown, ChevronUp, Trash2 } from 'lucide-react';
 import HoverableWords from '../shared/HoverableWords';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m as motion, AnimatePresence } from 'framer-motion';
 import { useSettings } from '../providers/SettingsContext';
 
 interface PortfolioSummaryItemProps {
