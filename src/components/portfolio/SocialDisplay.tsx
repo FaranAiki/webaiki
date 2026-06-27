@@ -3,20 +3,10 @@
 import React, { useEffect } from 'react';
 import { Github, Linkedin, Instagram, Twitter, Mail, Youtube } from 'lucide-react';
 import Image from 'next/image';
-import Script from 'next/script';
 import { useTheme } from 'next-themes';
 import { usePresentation } from '../providers/PresentationContext';
 import { motion, Variants } from 'framer-motion';
 
-declare global {
-  interface Window {
-    twttr?: {
-      widgets?: {
-        load: () => void;
-      };
-    };
-  }
-}
 
 export interface SocialLink {
   name: string;
@@ -200,16 +190,6 @@ export default function SocialDisplay({ customLinks, hidePresentation = false, d
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  useEffect(() => {
-    // Force Twitter widget to rescan the DOM and render the timeline
-    // This handles both client-side navigation and theme toggling
-    if (mounted && typeof window !== 'undefined' && window.twttr && window.twttr.widgets) {
-      setTimeout(() => {
-        window.twttr?.widgets?.load();
-      }, 100);
-    }
-  }, [mounted, theme, systemTheme]);
 
   const currentTheme = theme === 'system' ? systemTheme : theme;
   const badgeTheme = mounted && currentTheme === 'dark' ? 'dark' : 'light';
@@ -439,7 +419,6 @@ export default function SocialDisplay({ customLinks, hidePresentation = false, d
 
   return (
     <div className="w-full h-full">
-      <Script src="https://platform.twitter.com/widgets.js" strategy="lazyOnload" />
       {showPresentation && (
         <div className="presentation-container">
           {socialChunks.map((chunk, chunkIdx) => (
