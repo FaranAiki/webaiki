@@ -8,12 +8,14 @@ const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   display: 'swap',
+  preload: true,
 });
 
 const robotoMono = Roboto_Mono({
   variable: "--font-roboto-mono",
   subsets: ["latin"],
   display: 'swap',
+  preload: true,
 });
 
 import { getBaseMetadata, getFaqSchema } from "@/lib/seo";
@@ -36,10 +38,7 @@ export default async function RootLayout({
     <html lang={locale} suppressHydrationWarning>
       <head>
         <link rel="dns-prefetch" href="https://www.google.com" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" nonce={nonce} />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" nonce={nonce} />
         <link rel="preconnect" href="https://cloud.umami.is" crossOrigin="anonymous" nonce={nonce} />
-        <link rel="preconnect" href="https://ndutyvnkhavzchhjmzfm.supabase.co" crossOrigin="anonymous" nonce={nonce} />
       </head>
       <body className={`${inter.variable} ${robotoMono.variable} font-sans antialiased`}>
         <Providers>
