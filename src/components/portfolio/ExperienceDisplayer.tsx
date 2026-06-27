@@ -580,7 +580,7 @@ export default function ExperiencesClient({
                                 <div className="w-full md:w-1/2">
                                     {experiences.map((experience, expIdx) => (
                                         <div key={experience.year} className={`mb-12`}>
-                                            <h2 className={`transition-transform duration-300 hover:scale-105 text-2xl font-bold text-theme-600 dark:text-theme-400 mb-6 py-2 cursor-pointer`}>
+                                            <h2 className={`transition-transform duration-300 hover:scale-105 text-2xl font-bold text-theme-700 dark:text-theme-300 mb-6 py-2 cursor-pointer`}>
                                                 {experience.year}
                                             </h2>
                                             <motion.div
