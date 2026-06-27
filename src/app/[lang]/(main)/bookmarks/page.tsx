@@ -183,6 +183,8 @@ export default async function BookmarksPage({ params }: { params: Promise<{ lang
     { question: dict.FAQ_Faran_Q2, answer: dict.FAQ_Faran_A2 },
     { question: dict.FAQ_Faran_Q3, answer: dict.FAQ_Faran_A3 },
     { question: dict.FAQ_Faran_Q4, answer: dict.FAQ_Faran_A4 },
+    { question: dict.FAQ_Faran_Q5, answer: dict.FAQ_Faran_A5 },
+    { question: dict.FAQ_Faran_Q6, answer: dict.FAQ_Faran_A6 },
   ];
 
   const jsonLd = {

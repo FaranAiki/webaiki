@@ -250,7 +250,8 @@ export default function SocialDisplay({ customLinks, hidePresentation = false, d
                 src="/images/photo_faran_aiki/1_fa_photo_linkedin.webp" 
                 alt="Muhammad Faran Aiki" 
                 fill 
-                className="object-cover" 
+                className="object-cover"
+                sizes="64px"
               />
             </div>
             {/* LinkedIn Badge Overlay Icon */}

@@ -148,6 +148,7 @@ const BentoCard = React.memo(({ job, spanClass, cardBorder, inactiveCardBg, isDa
                         alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`}
                         fill
                         priority={priority}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className={`object-cover transition-transform duration-700
                             ${isExpanded
                                 ? (isDark ? 'scale-110 blur-sm brightness-[0.2]' : 'scale-110 blur-md opacity-20')
@@ -686,7 +687,7 @@ export default function ExperiencesClient({
                                                                             {isPdf ? (
                                                                                 <PdfRenderer url={job.image[0]} />
                                                                             ) : (
-                                                                                <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="300px" priority={rowIdx === 0 && idx < 3} className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                                                                                <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="(max-width: 1024px) 100vw, 25vw" priority={rowIdx === 0 && idx < 3} className="object-cover group-hover:scale-110 transition-transform duration-700" />
                                                                             )}
                                                                         </div>
                                                                     )}
@@ -742,7 +743,7 @@ export default function ExperiencesClient({
                                                                         {job.image[0].toLowerCase().endsWith('.pdf') ? (
                                                                             <PdfRenderer url={job.image[0]} />
                                                                         ) : (
-                                                                            <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="400px" priority={rowIdx === 0 && idx < 2} className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                                                                            <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="(max-width: 768px) 100vw, 50vw" priority={rowIdx === 0 && idx < 2} className="object-cover group-hover:scale-110 transition-transform duration-700" />
                                                                         )}
                                                                     </div>
                                                                 )}
