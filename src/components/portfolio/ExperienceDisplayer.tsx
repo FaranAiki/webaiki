@@ -127,6 +127,7 @@ const BentoCard = React.memo(({ job, spanClass, cardBorder, inactiveCardBg, isDa
     return (
         <motion.div
             id={itemId}
+            initial={priority ? "show" : undefined}
             variants={{
                 hidden: { opacity: 0, y: 20 },
                 show: { opacity: 1, y: 0 }
@@ -575,14 +576,14 @@ export default function ExperiencesClient({
                             {currentLayout === 'original' && (
                             <div className="flex flex-col md:flex-row gap-8 md:gap-16">
                                 <div className="w-full md:w-1/2">
-                                    {experiences.map((experience) => (
+                                    {experiences.map((experience, expIdx) => (
                                         <div key={experience.year} className={`mb-12`}>
                                             <h2 className={`transition-transform duration-300 hover:scale-105 text-2xl font-bold text-theme-600 dark:text-theme-400 mb-6 py-2 cursor-pointer`}>
                                                 {experience.year}
                                             </h2>
                                             <motion.div
                                                 className="space-y-4"
-                                                initial="hidden"
+                                                initial={expIdx === 0 ? "show" : "hidden"}
                                                 whileInView="show"
                                                 viewport={{ once: true, margin: "-50px" }}
                                                 variants={{
@@ -816,6 +817,7 @@ export default function ExperiencesClient({
                                     <motion.div
                                         key={`${job.year}-${idx}`}
                                         id={`exp-${job.title.toLowerCase().replace(/\s+/g, '-')}`}
+                                        initial={idx < 4 ? "show" : undefined}
                                         variants={{
                                             hidden: { opacity: 0, y: 20, scale: 0.95 },
                                             show: { opacity: 1, y: 0, scale: 1, transition: { type: "spring", stiffness: 100 } }
@@ -887,6 +889,7 @@ export default function ExperiencesClient({
                                     <motion.div
                                         key={`${job.year}-${idx}`}
                                         id={`exp-${job.title.toLowerCase().replace(/\s+/g, '-')}`}
+                                        initial={idx < 2 ? "show" : undefined}
                                         variants={{
                                             hidden: { opacity: 0, y: 30 },
                                             show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }

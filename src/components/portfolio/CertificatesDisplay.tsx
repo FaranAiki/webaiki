@@ -50,7 +50,7 @@ const BentoCertificateCard = React.memo(({
 
     return (
         <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={priority ? false : { opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             onClick={() => setIsExpanded(!isExpanded)}

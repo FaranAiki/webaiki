@@ -472,8 +472,8 @@ export default function SocialDisplay({ customLinks, hidePresentation = false, d
         >
           <div className={`container mx-auto max-w-5xl ${containerClass}`}>
             <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-6 p-4 space-y-6">
-              {socialLinks.map((link) => (
-                <motion.div key={link.name} className="break-inside-avoid w-full" variants={itemVariants}>
+              {socialLinks.map((link, idx) => (
+                <motion.div key={link.name} className="break-inside-avoid w-full" initial={idx < 4 ? "visible" : undefined} variants={itemVariants}>
                   {renderCard(link, false)}
                 </motion.div>
               ))}

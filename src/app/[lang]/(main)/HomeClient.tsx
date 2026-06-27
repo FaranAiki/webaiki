@@ -47,7 +47,7 @@ const DynamicHero = React.memo(({ dict, isReady, isLgScreen, parts }: { dict: Re
           <motion.h2
             className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tighter"
             variants={containerVariants}
-            initial="hidden"
+            initial={false}
             animate={isReady ? "visible" : "hidden"}
           >
             <motion.span variants={partVariants} className="inline-block whitespace-pre-wrap nav-active-gacor">{parts[0]}</motion.span>
@@ -97,16 +97,16 @@ interface HomeClientProps {
 }
 
 export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientProps) {
-  const [isReady, setIsReady] = useState(false);
+  const [isReady, setIsReady] = useState(true);
   const [isLgScreen, setIsLgScreen] = useState(true);
-
-
 
   const isGlobalLoading = useAppStore((state) => state.isGlobalLoading);
 
   useEffect(() => {
     if (!isGlobalLoading) {
       setIsReady(true);
+    } else {
+      setIsReady(false);
     }
   }, [isGlobalLoading]);
 

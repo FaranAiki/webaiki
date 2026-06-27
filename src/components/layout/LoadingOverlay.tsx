@@ -76,10 +76,10 @@ export default function LoadingOverlay({ label }: LoadingOverlayProps) {
 
     if (mounted && hasStarted) {
       // Handwriting animation total duration:
-      // (signatures.length - 1) * 0.05 [delay] + 0.15 [duration] = 2.15 + 0.15 = 2.3s
+      // (signatures.length - 1) * 0.025 [delay] + 0.1 [duration] = 1.075 + 0.1 = 1.175s
       // Plus Euler-Mascheroni constant delay: 0.577s (γ ≈ 0.5772156649)
-      // Total: 2.3 + 0.577 = 2.877s
-      const exitTimer = setTimeout(() => setInternalVisible(false), 2877);
+      // Total: 1.175 + 0.577 = 1.752s
+      const exitTimer = setTimeout(() => setInternalVisible(false), 1752);
 
       return () => {
         clearTimeout(startTimer);
@@ -143,8 +143,8 @@ export default function LoadingOverlay({ label }: LoadingOverlayProps) {
                       initial={getInitialClipProps(sig.direction)}
                       animate={hasStarted ? getAnimateClipProps(sig.direction) : {}}
                       transition={{
-                        duration: 0.15,
-                        delay: i * 0.05,
+                        duration: 0.1,
+                        delay: i * 0.025,
                         ease: humanWritingEase,
                       }}
                     />
