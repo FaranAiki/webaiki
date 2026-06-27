@@ -65,16 +65,6 @@ const nextConfig: NextConfig = {
         }
       }
 
-      // Optimization: Disable Next.js default polyfills for modern browsers
-      if (!isServer) {
-        if (!config.resolve) config.resolve = {};
-        if (!config.resolve.alias) config.resolve.alias = {};
-        const alias = config.resolve.alias as Record<string, string | boolean>;
-        // Mock polyfill modules to save ~12KiB
-        alias['next/dist/build/polyfills/polyfill-module.js'] = false;
-        alias['next/dist/build/polyfills/polyfill-nomodule.js'] = false;
-      }
-
       return config;
     },
 async headers() {

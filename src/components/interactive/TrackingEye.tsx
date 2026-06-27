@@ -94,7 +94,7 @@ export default function TrackingEye() {
         </div>
         
         {/* Glow effect */}
-        <div className="absolute inset-0 bg-theme-500/10 rounded-full blur-3xl -z-10 animate-pulse will-change-transform will-change-[opacity]" />
+        <div className="absolute inset-0 bg-theme-500/10 rounded-full blur-3xl -z-10 will-change-transform" />
     </div>
   );
 }

@@ -22,15 +22,10 @@ export default function Background({ carousel, showOverlay = true }: BackgroundP
   const [mounted, setMounted] = useState(false);
   // Preload first few images for smoother initial experience
   const [loadedIndices, setLoadedIndices] = useState<Set<number>>(new Set([0, 1]));
-  const [isMdScreen, setIsMdScreen] = useState(true);
   const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
-    const handleResize = () => setIsMdScreen(window.innerWidth >= 768);
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   useEffect(() => {
@@ -92,7 +87,7 @@ export default function Background({ carousel, showOverlay = true }: BackgroundP
             </motion.div>
         </AnimatePresence>
 
-        {showOverlay && isMdScreen && (
+        {showOverlay && (
           <motion.div
             initial={false}
             animate={{ opacity: 1 }}
