@@ -358,7 +358,20 @@ export default function ExperiencesClient({
     const justifyClass = textAlign === 'default' ? defaultJustifyClass : `text-${textAlign}`;
 
 
-    const allJobs = useMemo(() => experiences.flatMap(exp => exp.jobs.map(job => ({ ...job, year: exp.year }))), [experiences]);
+    const [visibleCount, setVisibleCount] = useState(6);
+    
+    const allJobsTotal = useMemo(() => experiences.flatMap(exp => exp.jobs.map(job => ({ ...job, year: exp.year }))), [experiences]);
+    const allJobs = useMemo(() => allJobsTotal.slice(0, visibleCount), [allJobsTotal, visibleCount]);
+    
+    const paginatedExperiences = useMemo(() => {
+        let count = 0;
+        return experiences.map(exp => {
+            if (count >= visibleCount) return { ...exp, jobs: [] };
+            const jobsToTake = Math.min(exp.jobs.length, visibleCount - count);
+            count += jobsToTake;
+            return { ...exp, jobs: exp.jobs.slice(0, jobsToTake) };
+        }).filter(exp => exp.jobs.length > 0);
+    }, [experiences, visibleCount]);
 
     const handleJobChange = (job: Job) => {
         if (activeJob.title !== job.title || activeJob.company !== job.company) {
@@ -578,7 +591,7 @@ export default function ExperiencesClient({
                             {currentLayout === 'original' && (
                             <div className="flex flex-col md:flex-row gap-8 md:gap-16">
                                 <div className="w-full md:w-1/2">
-                                    {experiences.map((experience, expIdx) => (
+                                    {paginatedExperiences.map((experience, expIdx) => (
                                         <div key={experience.year} className={`mb-12`}>
                                             <h2 className={`transition-transform duration-300 hover:scale-105 text-2xl font-bold text-theme-700 dark:text-theme-300 mb-6 py-2 cursor-pointer`}>
                                                 {experience.year}
@@ -939,6 +952,16 @@ export default function ExperiencesClient({
                             </motion.div>
                         )}
                     </div>
+                </div>
+            )}
+            {!isPresentationMode && visibleCount < allJobsTotal.length && (
+                <div className="flex justify-center mt-12 pb-8 w-full z-10 relative print:hidden">
+                    <button
+                        onClick={() => setVisibleCount(prev => prev + 6)}
+                        className="px-6 py-2 rounded-full bg-theme-surface-strong border border-theme-border font-bold text-sm hover:bg-theme-surface hover:text-theme-500 transition-colors shadow-sm cursor-pointer"
+                    >
+                        Show More ({allJobsTotal.length - visibleCount} remaining)
+                    </button>
                 </div>
             )}
             </div>
