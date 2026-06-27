@@ -600,7 +600,7 @@ export default function SettingsPopup({
 
   if (inline) {
     return (
-      <div className="w-full max-h-[60vh] overflow-y-auto custom-scrollbar" data-lenis-prevent style={{ overscrollBehavior: 'contain' }}>
+      <div className="w-full">
         {renderContent()}
       </div>
     );

@@ -21,18 +21,25 @@ import { getBaseMetadata, getFaqSchema } from "@/lib/seo";
 export const metadata = getBaseMetadata();
 
 
+import { headers } from 'next/headers';
+
 export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const locale = "id";
+  const headersList = await headers();
+  const nonce = headersList.get('x-nonce') || undefined;
 
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
         <link rel="dns-prefetch" href="https://www.google.com" />
-
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" nonce={nonce} />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" nonce={nonce} />
+        <link rel="preconnect" href="https://cloud.umami.is" crossOrigin="anonymous" nonce={nonce} />
+        <link rel="preconnect" href="https://ndutyvnkhavzchhjmzfm.supabase.co" crossOrigin="anonymous" nonce={nonce} />
       </head>
       <body className={`${inter.variable} ${robotoMono.variable} font-sans antialiased`}>
         <Providers>

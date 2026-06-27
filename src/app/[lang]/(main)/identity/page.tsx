@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import AboutMe from '@/components/portfolio/AboutMe';
-import FAQ from '@/components/portfolio/FAQ';
+import dynamic from 'next/dynamic';
+const FAQ = dynamic(() => import('@/components/portfolio/FAQ'), {
+  loading: () => <div className="h-96 animate-pulse bg-theme-surface-strong rounded-xl w-full"></div>,
+});
 import { getDictionary } from '@/components/layout/Translator';
 import { cache } from 'react';
 import fs from 'fs';

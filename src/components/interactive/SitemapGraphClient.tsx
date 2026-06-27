@@ -26,6 +26,7 @@ interface GraphNode {
 interface ForceGraphMethods {
   centerAt: (x: number, y: number, durationMs?: number) => void;
   zoom: (scale: number, durationMs?: number) => void;
+  zoomToFit: (durationMs?: number, padding?: number, nodeFilter?: (node: GraphNode) => boolean) => void;
 }
 
 export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientProps) {
@@ -36,6 +37,7 @@ export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientPro
   const containerRef = useRef<HTMLDivElement>(null);
   const [hoveredNode, setHoveredNode] = useState<GraphNode | null>(null);
   const [lockedNode, setLockedNode] = useState<GraphNode | null>(null);
+  const initialCenterDone = useRef(false);
 
   useEffect(() => {
     setMounted(true);
@@ -138,6 +140,13 @@ export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientPro
 
         <ForceGraph2D
           ref={graphRef as never}
+          cooldownTicks={100}
+          onEngineStop={() => {
+            if (!initialCenterDone.current && graphRef.current) {
+              graphRef.current.zoomToFit(400, 20);
+              initialCenterDone.current = true;
+            }
+          }}
           width={dimensions.width}
           height={dimensions.height}
           graphData={graphData}
@@ -165,9 +174,9 @@ export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientPro
               graphRef.current.zoom(1.5, 2000);
             }
           }}
-          onBackgroundClick={() => {
-            setLockedNode(null);
-          }}
+          // onBackgroundClick={() => {
+          //   setLockedNode(null);
+          // }}
           nodeCanvasObject={(node, ctx, globalScale) => {
             const gNode = node as GraphNode;
             if (gNode.x === undefined || gNode.y === undefined) return;
@@ -203,7 +212,13 @@ export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientPro
             <span className="w-2 h-2 rounded-full" style={{ backgroundColor: displayNode ? displayNode.color : (isDark ? '#555' : '#ccc') }}></span>
             {displayNode ? displayNode.name : (dict.Preview || 'Preview')}
             {lockedNode && (
-              <span className="ml-2 text-[10px] bg-theme-500 text-white px-1.5 py-0.5 rounded capitalize tracking-wider">{dict.Locked || 'Locked'}</span>
+              <button 
+                onClick={() => setLockedNode(null)}
+                className="ml-2 text-[10px] bg-theme-500 hover:bg-theme-600 text-white px-2 py-0.5 rounded capitalize tracking-wider flex items-center gap-1 cursor-pointer pointer-events-auto transition-colors"
+                title="Unlock preview"
+              >
+                {dict.Locked || 'Locked'} <span>×</span>
+              </button>
             )}
           </span>
           <span className="text-[10px] sm:text-xs text-theme-muted font-mono bg-theme-surface px-2 py-1 rounded border border-theme-border truncate max-w-full">
