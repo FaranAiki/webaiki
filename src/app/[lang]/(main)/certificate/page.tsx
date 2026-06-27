@@ -5,6 +5,8 @@ import CertificatesDisplay from '@/components/portfolio/CertificatesDisplay';
 import { getDictionary } from '@/components/layout/Translator';
 import { getCertificatesData } from '@/lib/data';
 import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema } from '@/lib/seo';
+import { createClient } from '@/utils/supabase/server';
+import { getBookmarks } from '@/app/bookmark-actions';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -34,6 +36,12 @@ export default async function CertificatePage({ params }: { params: Promise<{ la
   
   const certificates_data = await getCertificatesData(lang);
 
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  const isLoggedIn = !!user;
+  const bookmarks = isLoggedIn ? await getBookmarks(user.id) : [];
+  const bookmarkedItemIds = bookmarks.filter(b => b.itemType === 'certificate').map(b => b.itemId);
+
   const breadcrumbSchema = getBreadcrumbSchema([
     { name: dict.Home, item: `/${lang}` },
     { name: dict.Certificate, item: `/${lang}/certificate` },
@@ -50,7 +58,9 @@ export default async function CertificatePage({ params }: { params: Promise<{ la
         certificates={certificates_data} 
         lang={lang} 
         allTranslation={dict.All} 
-        click_to_close_text={dict.Click_To_Close} 
+        click_to_close_text={dict.Click_To_Close}
+        isLoggedIn={isLoggedIn}
+        bookmarkedItemIds={bookmarkedItemIds}
       />
     </main>
   );

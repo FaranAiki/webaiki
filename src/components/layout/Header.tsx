@@ -23,7 +23,8 @@ import {
   LogIn,
   LogOut,
   User,
-  ChevronDown
+  ChevronDown,
+  Settings
 } from 'lucide-react';
 
 import { usePresentation } from '@/components/providers/PresentationContext';
@@ -111,6 +112,10 @@ interface HeaderProps {
         Language: string;
         User: string;
         Select_Language: string;
+        My_Bookmarks?: string;
+        My_Requests?: string;
+        My_Feedbacks?: string;
+        My_Preferences?: string;
     };
 }
 
@@ -629,8 +634,20 @@ export default function Header(props: HeaderProps) {
                             />
                         </div>
 
-                        {/* Desktop Auth Section */}
-                        <div className="hidden md:flex items-center">
+                        {/* --- Mobile Menu Button --- */}
+                        <div className="md:hidden flex items-center cursor-pointer">
+                            <button
+                                onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
+                                className={`transition-all duration-300 z-50 p-2 rounded-lg hover:bg-theme-surface-strong hover-gacor
+                                    ${isMobileMenuOpen ? 'nav-active-gacor' : textColor}
+                                `}
+                                aria-label="Toggle menu"
+                            >
+                                {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
+                            </button>
+                        </div>
+                    {/* Desktop Auth Section */}
+                        <div className="flex items-center">
                             {props.user ? (
                                 <div className="relative" ref={userMenuRef}>
                                     <button
@@ -668,7 +685,7 @@ export default function Header(props: HeaderProps) {
                                                     </p>
                                                 </div>
 
-                                                <button
+                                                                                                <button
                                                     onClick={() => {
                                                         setIsUserMenuOpen(false);
                                                         router.push(getLocalizedHref('/edit-profile'));
@@ -678,6 +695,43 @@ export default function Header(props: HeaderProps) {
                                                     <User size={16} className="mr-2" />
                                                     {edit_profile_label}
                                                 </button>
+
+                                                <button
+                                                    onClick={() => {
+                                                        setIsUserMenuOpen(false);
+                                                        router.push(getLocalizedHref('/bookmarks'));
+                                                    }}
+                                                    className={`w-full text-left px-4 py-2 text-sm ${textColor} hover:bg-theme-surface-strong transition-colors flex items-center`}
+                                                >
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                                    {settings_labels.My_Bookmarks || 'My Bookmarks'}
+                                                </button>
+
+                                                {props.user?.email === 'faran.aiki.business@gmail.com' && (
+                                                <button
+                                                    onClick={() => {
+                                                        setIsUserMenuOpen(false);
+                                                        router.push(getLocalizedHref('/business-requests'));
+                                                    }}
+                                                    className={`w-full text-left px-4 py-2 text-sm ${textColor} hover:bg-theme-surface-strong transition-colors flex items-center`}
+                                                >
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                                                    {settings_labels.My_Requests || 'My Requests'}
+                                                </button>
+                                                )}
+
+                                                <button
+                                                    onClick={() => {
+                                                        setIsUserMenuOpen(false);
+                                                        router.push(getLocalizedHref('/feedback'));
+                                                    }}
+                                                    className={`w-full text-left px-4 py-2 text-sm ${textColor} hover:bg-theme-surface-strong transition-colors flex items-center`}
+                                                >
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                                    {settings_labels.My_Feedbacks || 'My Feedbacks'}
+                                                </button>
+
+
 
                                                 <button
                                                     onClick={() => {
@@ -711,19 +765,7 @@ export default function Header(props: HeaderProps) {
                             )}
                         </div>
 
-                        {/* --- Mobile Menu Button --- */}
-                        <div className="md:hidden flex items-center cursor-pointer">
-                            <button
-                                onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
-                                className={`transition-all duration-300 z-50 p-2 rounded-lg hover:bg-theme-surface-strong hover-gacor
-                                    ${isMobileMenuOpen ? 'nav-active-gacor' : textColor}
-                                `}
-                                aria-label="Toggle menu"
-                            >
-                                {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
-                            </button>
                         </div>
-                    </div>
                 </div>
             </motion.header>
 
@@ -868,6 +910,38 @@ export default function Header(props: HeaderProps) {
                                                     >
                                                         <User size={20} className="mr-3" />
                                                         {edit_profile_label}
+                                                    </button>
+                                                    <button
+                                                        onClick={() => {
+                                                            setMobileMenuOpen(false);
+                                                            router.push(getLocalizedHref('/bookmarks'));
+                                                        }}
+                                                        className={`flex items-center w-full text-lg font-semibold ${textColor} transition-colors duration-300 hover:text-theme-600 px-2`}
+                                                    >
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                                        {settings_labels.My_Bookmarks || 'My Bookmarks'}
+                                                    </button>
+                                                    {props.user?.email === 'faran.aiki.business@gmail.com' && (
+                                                    <button
+                                                        onClick={() => {
+                                                            setMobileMenuOpen(false);
+                                                            router.push(getLocalizedHref('/business-requests'));
+                                                        }}
+                                                        className={`flex items-center w-full text-lg font-semibold ${textColor} transition-colors duration-300 hover:text-theme-600 px-2`}
+                                                    >
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-3"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                                                        {settings_labels.My_Requests || 'My Requests'}
+                                                    </button>
+                                                    )}
+                                                    <button
+                                                        onClick={() => {
+                                                            setMobileMenuOpen(false);
+                                                            router.push(getLocalizedHref('/feedback'));
+                                                        }}
+                                                        className={`flex items-center w-full text-lg font-semibold ${textColor} transition-colors duration-300 hover:text-theme-600 px-2`}
+                                                    >
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-3"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                                        {settings_labels.My_Feedbacks || 'My Feedbacks'}
                                                     </button>
                                                     <button
                                                         onClick={() => {

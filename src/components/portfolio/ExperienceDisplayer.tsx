@@ -8,6 +8,7 @@ import FadeInSection from '@/components/shared/FadeInSection';
 import { shimmer, toBase64, formatCJK } from '@/lib/utils';
 import { useSettings } from '../providers/SettingsContext';
 import { usePresentation } from '../providers/PresentationContext';
+import BookmarkButton from '@/components/interactive/BookmarkButton';
 import {
     LayoutPanelLeft,
     Milestone,
@@ -60,6 +61,8 @@ interface ExperiencesClientProps {
     cinematic_text?: string;
     editorial_text?: string;
     visit_external_link_text?: string;
+    isLoggedIn?: boolean;
+    bookmarkedItemIds?: string[];
 }
 
 
@@ -104,9 +107,11 @@ interface BentoCardProps {
     justifyClass: string;
     click_to_close_text: string;
     priority?: boolean;
+    isLoggedIn?: boolean;
+    bookmarkedItemIds?: string[];
 }
 
-const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, justifyClass, click_to_close_text, priority }: BentoCardProps) => {
+const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, justifyClass, click_to_close_text, priority, isLoggedIn, bookmarkedItemIds = [] }: BentoCardProps) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const hasImage = job.image && job.image.length > 0;
     const itemId = `exp-${job.title.toLowerCase().replace(/\s+/g, '-')}`;
@@ -166,9 +171,17 @@ const BentoCard = ({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, j
                             <TagBadge labels={job.tag} />
                         </h3>
                     </div>
-                    {job.url && (
-                        <ExternalLink size={16} className="text-theme-500 opacity-0 group-hover:opacity-100 transition-opacity ml-2 shrink-0" />
-                    )}
+                    <div className="flex items-start gap-2">
+                        <BookmarkButton
+                            itemType="experience"
+                            itemId={job.title}
+                            initialBookmarked={bookmarkedItemIds.includes(job.title)}
+                            isLoggedIn={!!isLoggedIn}
+                        />
+                        {job.url && (
+                            <ExternalLink size={16} className="text-theme-500 opacity-0 group-hover:opacity-100 transition-opacity ml-2 shrink-0" />
+                        )}
+                    </div>
                 </div>
                 <p className={`text-sm italic text-theme-muted`}>
                     {job.company}
@@ -260,7 +273,9 @@ export default function ExperiencesClient({
     modern_text = 'Modern',
     cinematic_text = 'Cinematic',
     editorial_text = 'Editorial',
-    visit_external_link_text = 'Visit external link for'
+    visit_external_link_text = 'Visit external link for',
+    isLoggedIn = false,
+    bookmarkedItemIds = []
 }: ExperiencesClientProps) {
     const [currentLayout, setCurrentLayout] = useState<LayoutType>(layout);
     const [presentationLayout, setPresentationLayout] = useState<PresentationLayoutType>('modern');
@@ -374,7 +389,10 @@ export default function ExperiencesClient({
                                             <h2 className="text-theme-600 dark:text-theme-400 font-bold text-xl md:text-2xl tracking-tight">{job.year}</h2>
                                             <h3 className="text-3xl md:text-5xl font-black leading-tight tracking-tighter text-foreground">{job.title}<TagBadge labels={job.tag} /></h3>
                                             <h4 className="text-theme-600 dark:text-theme-400 text-xl md:text-2xl italic opacity-90">{job.company}</h4>
-                                            <p style={dateStyle} className="text-base md:text-lg font-medium italic text-muted-foreground">{job.date}</p>
+                                            <div className="flex items-center gap-2">
+                                                <p style={dateStyle} className="text-base md:text-lg font-medium italic text-muted-foreground">{job.date}</p>
+                                                <BookmarkButton itemType="experience" itemId={job.title} initialBookmarked={bookmarkedItemIds.includes(job.title)} isLoggedIn={!!isLoggedIn} className="relative" />
+                                            </div>
                                         </div>
                                         <HoverableWords className={`text-base md:text-lg ${justifyClass} ${descText} font-medium`}>
                                             {job.description}
@@ -432,7 +450,10 @@ export default function ExperiencesClient({
                                                     <h2 className="text-theme-600 dark:text-theme-400 font-black text-2xl tracking-tight">{job.year}</h2>
                                                 </div>
                                                 <h3 className={`text-3xl md:text-5xl font-black leading-[0.85] tracking-tighter text-foreground`}>{job.title}<TagBadge labels={job.tag} /></h3>
-                                                <h4 className="text-xl md:text-3xl text-theme-600 dark:text-theme-400 font-bold italic tracking-tight">{job.company}</h4>
+                                                <div className="flex items-center gap-4 mt-2">
+                                                    <h4 className="text-xl md:text-3xl text-theme-600 dark:text-theme-400 font-bold italic tracking-tight">{job.company}</h4>
+                                                    <BookmarkButton itemType="experience" itemId={job.title} initialBookmarked={bookmarkedItemIds.includes(job.title)} isLoggedIn={!!isLoggedIn} className="relative" />
+                                                </div>
 
                                                 {job.url && (
                                                     <a href={job.url} target="_blank" rel="noopener noreferrer" aria-label={`${visit_external_link_text} ${job.title}`} className="mt-4 flex items-center gap-2 px-6 py-3 bg-theme-500 text-white rounded-full font-bold text-sm hover:bg-theme-600 transition-all w-fit shadow-theme-shadow">
@@ -472,7 +493,10 @@ export default function ExperiencesClient({
                                                     {job.title}
                                                     <TagBadge labels={job.tag} />
                                                 </h3>
-                                                <h4 className="text-2xl md:text-3xl font-bold text-theme-600 dark:text-theme-400 italic tracking-tight">{job.company}</h4>
+                                                <div className="flex items-center gap-4">
+                                                    <h4 className="text-2xl md:text-3xl font-bold text-theme-600 dark:text-theme-400 italic tracking-tight">{job.company}</h4>
+                                                    <BookmarkButton itemType="experience" itemId={job.title} initialBookmarked={bookmarkedItemIds.includes(job.title)} isLoggedIn={!!isLoggedIn} className="relative" />
+                                                </div>
                                                 </div>
 
                                             <div className="max-w-2xl">
@@ -520,7 +544,7 @@ export default function ExperiencesClient({
                                             <h2 className={`transition-transform duration-300 hover:scale-105 text-2xl font-bold text-theme-600 dark:text-theme-400 mb-6 py-2 cursor-pointer`}>
                                                 {experience.year}
                                             </h2>
-                                            <motion.div 
+                                            <motion.div
                                                 className="space-y-4"
                                                 initial="hidden"
                                                 whileInView="show"
@@ -552,7 +576,10 @@ export default function ExperiencesClient({
                                                         <p className="text-xs mb-1 text-muted-foreground">{job.date}</p>
                                                         <div className="flex justify-between items-center mb-1">
                                                             <h3 className={`text-xl font-bold ${mainText} group-hover:text-theme-500 ${job.url ? 'underline decoration-dotted decoration-theme-500/30' : ''}`}>{job.title}<TagBadge labels={job.tag} /></h3>
-                                                            {job.url && <ExternalLink size={14} className="text-theme-500 opacity-0 group-hover:opacity-100 transition-opacity" />}
+                                                            <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()}>
+                                                                <BookmarkButton itemType="experience" itemId={job.title} initialBookmarked={bookmarkedItemIds.includes(job.title)} isLoggedIn={!!isLoggedIn} className="relative" />
+                                                                {job.url && <ExternalLink size={14} className="text-theme-500 opacity-0 group-hover:opacity-100 transition-opacity" />}
+                                                            </div>
                                                         </div>
                                                         <p className="text-theme-600 dark:text-theme-400 italic mb-3">{job.company}</p>
                                                         <HoverableWords className={`${justifyClass} ${descText} text-sm`}>
@@ -567,7 +594,7 @@ export default function ExperiencesClient({
                                 <div className="hidden md:block w-1/2">
                                     <div className="sticky top-32 flex justify-center">
                                         <div className="w-full">
-                                            <div className="relative w-full max-w-[600px] aspect-[3/2] mx-auto shadow-2xl overflow-hidden rounded-lg bg-theme-surface-strong">
+                                            <div className="relative w-full max-w-[600px] aspect-[3/2] mx-auto shadow-2xl overflow-hidden rounded-lg">
                                                 <AnimatePresence mode="wait">
                                                     <motion.div
                                                         key={activeImageSrc || activeJob.company}
@@ -581,7 +608,7 @@ export default function ExperiencesClient({
                                                             activeImageSrc!.toLowerCase().endsWith('.pdf') ? (
                                                                 <PdfRenderer url={activeImageSrc!} isExpanded={true} />
                                                             ) : (
-                                                                <Image fill sizes="(max-width: 768px) 100vw, 50vw" src={activeImageSrc!} placeholder="blur" blurDataURL={shimmer600x400} alt={`${activeJob.title} at ${activeJob.company} - Muhammad Faran Aiki Portfolio`} className="object-contain" priority quality={100} />
+                                                                <Image fill sizes="(max-width: 768px) 100vw, 50vw" src={activeImageSrc!} placeholder="blur" blurDataURL={shimmer600x400} alt={`${activeJob.title} at ${activeJob.company} - Muhammad Faran Aiki Portfolio`} className="object-contain" priority />
                                                             )
                                                         ) : (
                                                             <PlaceholderIcon company={activeJob.company} />
@@ -650,7 +677,12 @@ export default function ExperiencesClient({
                                                                         <span className="text-[10px] font-bold text-theme-muted">{job.date}</span>
                                                                     </div>
                                                                     <h3 className="text-base lg:text-lg font-black mb-1 group-hover:text-theme-500 transition-colors leading-tight">{job.title}</h3>
-                                                                    <div className="mb-2"><TagBadge labels={job.tag} /></div>
+                                                                    <div className="mb-2 flex items-center justify-between">
+                                                                        <TagBadge labels={job.tag} />
+                                                                        <div onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()}>
+                                                                            <BookmarkButton itemType="experience" itemId={job.title} initialBookmarked={bookmarkedItemIds.includes(job.title)} isLoggedIn={!!isLoggedIn} className="relative" />
+                                                                        </div>
+                                                                    </div>
                                                                     <p className="text-theme-600 dark:text-theme-400 font-bold italic text-xs mb-2">{job.company}</p>
                                                                     <p className="text-xs text-foreground/80 line-clamp-3 group-hover:line-clamp-none transition-all duration-500">{job.description}</p>
                                                                 </div>
@@ -743,7 +775,7 @@ export default function ExperiencesClient({
                         )}
 
                         {currentLayout === 'grid' && (
-                            <motion.div 
+                            <motion.div
                                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
                                 initial="hidden"
                                 whileInView="show"
@@ -790,7 +822,7 @@ export default function ExperiencesClient({
                         )}
 
                         {currentLayout === 'bento' && (
-                            <motion.div 
+                            <motion.div
                                 className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[300px]"
                                 initial="hidden"
                                 whileInView="show"
@@ -811,7 +843,7 @@ export default function ExperiencesClient({
                         )}
 
                         {currentLayout === 'smooth' && (
-                            <motion.div 
+                            <motion.div
                                 className="space-y-24 max-w-4xl mx-auto"
                                 initial="hidden"
                                 whileInView="show"

@@ -80,6 +80,8 @@ export const news = pgTable('News', {
 export const usersRelations = relations(users, ({ many }) => ({
   feedbacks: many(feedbacks),
   newsItems: many(news),
+  bookmarks: many(bookmarks),
+  hireRequests: many(hireRequests),
 }));
 
 export const feedbacksRelations = relations(feedbacks, ({ one }) => ({
@@ -116,6 +118,24 @@ export const hireRequests = pgTable('HireRequest', {
 export const hireRequestsRelations = relations(hireRequests, ({ one }) => ({
   user: one(users, {
     fields: [hireRequests.userId],
+    references: [users.id],
+  }),
+}));
+
+export const bookmarks = pgTable('Bookmark', {
+  id: text('id').primaryKey(),
+  userId: text('userId').notNull().references(() => users.id, { onDelete: 'cascade' }),
+  itemType: text('itemType').notNull(), // 'certificate', 'project', etc.
+  itemId: text('itemId').notNull(),
+  createdAt: timestamp('createdAt', { mode: 'date' }).defaultNow().notNull(),
+}, (table) => [
+  index('Bookmark_userId_idx').on(table.userId),
+  index('Bookmark_itemType_itemId_idx').on(table.itemType, table.itemId),
+]);
+
+export const bookmarksRelations = relations(bookmarks, ({ one }) => ({
+  user: one(users, {
+    fields: [bookmarks.userId],
     references: [users.id],
   }),
 }));

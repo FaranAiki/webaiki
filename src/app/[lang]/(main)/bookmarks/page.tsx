@@ -4,11 +4,11 @@ import { getDictionary } from '@/components/layout/Translator';
 import type { Experience, Job } from '@/components/portfolio/ExperienceDisplayer';
 import type { CertificateData } from '@/components/portfolio/CertificatesDisplay';
 import type { CollectionsData } from '@/components/portfolio/InteractiveCollections';
-import { PortfolioAboutHeader } from '@/components/portfolio/AboutMe';
 import type { SocialLink } from '@/components/portfolio/SocialDisplay';
 import { Github, Linkedin, Instagram, Twitter, Youtube, Share2 } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
+import { redirect } from 'next/navigation';
+
 import dynamic from 'next/dynamic';
 
 const ExperiencesClient = dynamic(() => import('@/components/portfolio/ExperienceDisplayer'));
@@ -26,8 +26,7 @@ import {
   getOrganizationExperiences,
   getAwardExperiences,
   getCertificatesData,
-  getCollectionsData,
-  getFaranAikiPhoto
+  getCollectionsData
 } from '@/lib/data';
 
 import { Briefcase, Code, Users, Trophy, FileCheck, Star } from 'lucide-react';
@@ -41,26 +40,24 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
   return {
     ...baseMetadata,
-    title: `${dict.All || 'All'} | Faran Aiki`,
+    title: `${dict.My_Bookmarks || 'My Bookmarks'} | Faran Aiki`,
     description: dict.Portfolio_Description || "Full professional portfolio and highlights of Muhammad Faran Aiki",
     openGraph: {
       ...baseMetadata.openGraph,
-      title: `${dict.All || 'All'} | Faran Aiki`,
+      title: `${dict.My_Bookmarks || 'My Bookmarks'} | Faran Aiki`,
       description: dict.Portfolio_Description || "Full professional portfolio and highlights of Muhammad Faran Aiki",
       url: `${SITE_URL}/${lang}/all`,
     },
     alternates: {
-      canonical: `/${lang}/all`,
-      languages: getLanguageAlternates('/all'),
+      canonical: `/${lang}/bookmarks`,
+      languages: getLanguageAlternates('/bookmarks'),
     },
   };
 }
 
-export default async function AllHighlightsPage({ params }: { params: Promise<{ lang: string }> }) {
+export default async function BookmarksPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
-  
-  const faranPhotos = await getFaranAikiPhoto();
 
   const workExp = getWorkExperiences(dict);
   const projectExp = getProjectExperiences(dict);
@@ -73,6 +70,11 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   const isLoggedIn = !!user;
+  
+  if (!isLoggedIn) {
+      redirect(`/${lang}/login?next=/${lang}/bookmarks`);
+  }
+
   const bookmarks = isLoggedIn ? await getBookmarks(user.id) : [];
   const certificateBookmarks = bookmarks.filter(b => b.itemType === 'certificate').map(b => b.itemId);
   const experienceBookmarks = bookmarks.filter(b => b.itemType === 'experience').map(b => b.itemId);
@@ -82,7 +84,7 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
   const filterImportantExp = (exps: Experience[]): Experience[] => {
     return exps.map(yearGroup => ({
       ...yearGroup,
-      jobs: yearGroup.jobs.filter((job: Job) => (job.point || 0) >= 80)
+      jobs: yearGroup.jobs.filter((job: Job) => bookmarks.some(b => b.itemType === 'experience' && b.itemId === job.title))
     })).filter(yearGroup => yearGroup.jobs.length > 0);
   };
 
@@ -97,7 +99,7 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
     for (const cat in data) {
       for (const year in data[cat]) {
         for (const file in data[cat][year]) {
-          if ((data[cat][year][file].point || 0) >= 80) {
+          if (bookmarks.some(b => b.itemType === 'certificate' && b.itemId === file)) {
             if (!filtered[cat]) filtered[cat] = {};
             if (!filtered[cat][year]) filtered[cat][year] = {};
             filtered[cat][year][file] = data[cat][year][file];
@@ -116,7 +118,7 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
     for (const h1 in data) {
       for (const h2 in data[h1]) {
         for (const file in data[h1][h2]) {
-          if ((data[h1][h2][file].point || 0) >= 80) {
+          if (bookmarks.some(b => b.itemType === 'collection' && b.itemId === file)) {
             if (!filtered[h1]) filtered[h1] = {};
             if (!filtered[h1][h2]) filtered[h1][h2] = {};
             filtered[h1][h2][file] = data[h1][h2][file];
@@ -202,34 +204,14 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
       />
       <PageEntrance className="space-y-6">
         {/* Refined Portfolio Header */}
-        <section id="about" className="container mx-auto px-4 sm:px-8">
-          <div className="flex justify-end mb-4">
-              <Link 
-                  href={`/${lang}/portfolio`}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-theme-surface-strong border border-theme-border hover:border-theme-500 transition-all font-bold text-xs text-[var(--text-muted)] hover:text-theme-500 group"
-              >
-                  <Star size={14} className="group-hover:animate-spin-slow" />
-                  {dict.Summary || 'Summary'}
-              </Link>
-          </div>
-          <PortfolioAboutHeader
-            lang={lang}
-            carouselPhotos={faranPhotos}
-            faran_photo={dict.Faran_Photo}
-            about_philosophy_title={dict.Faran_Philosophy_Title}
-            about_philosophy={dict.Faran_Philosophy}
-            about_principle_title={dict.Faran_Principle_Title}
-            about_principle_1={dict.Faran_Principle_1}
-            about_principle_2={dict.Faran_Principle_2}
-            about_principle_3=""
-            about_vision_mission_title={dict.Faran_Vision_Mission_Title}
-            about_vision_mission_1={dict.Faran_Vision_Mission_1}
-            about_vision_mission_2={dict.Faran_Vision_Mission_2}
-            about_vision_mission_3={dict.Faran_Vision_Mission_3}
-            about_title={dict.About_Me}
-            about_text_1={dict.Faran_About_1}
-            about_text_2={dict.Faran_About_2}
-          />
+        <section className="container mx-auto px-4 sm:px-8">
+          <h1 className="text-4xl md:text-5xl font-black mb-4 nav-active-gacor flex items-center gap-4">
+            <Star size={40} className="text-theme-500" />
+            {dict.My_Bookmarks || 'My Bookmarks'}
+          </h1>
+          <p className="text-theme-muted font-bold max-w-2xl text-lg">
+            {dict.Bookmarks_Description || 'Here are all the items you have bookmarked.'}
+          </p>
         </section>
 
         {/* Professional Content - High Point Highlights */}

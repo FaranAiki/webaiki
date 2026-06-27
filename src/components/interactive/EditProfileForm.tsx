@@ -7,6 +7,7 @@ import { updateProfile, uploadFile } from '@/app/actions';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { getErrorMessage } from '@/lib/errors';
+import { MessageSquare, Briefcase } from 'lucide-react';
 
 interface EditProfileFormProps {
   dict: Record<string, string>;
@@ -277,6 +278,26 @@ export default function EditProfileForm({ dict, user }: EditProfileFormProps) {
           </form>
         </div>
       </div>
+
+      {/* Additional User Data Sections */}
+      <motion.div variants={itemVariants} className="pt-8 space-y-8 border-t border-theme-border mt-12">
+        <h2 className="text-2xl font-black text-gacor-smooth tracking-tighter">
+          {dict.My_Preferences || 'My Preferences'}
+        </h2>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="p-6 bg-theme-surface/50 border border-theme-border rounded-2xl shadow-sm hover:border-theme-500 transition-colors group cursor-pointer">
+             <Briefcase className="text-theme-500 mb-4 group-hover:scale-110 transition-transform" size={32} />
+             <h3 className="font-bold text-lg mb-2">{dict.My_Requests || 'My Requests'}</h3>
+             <p className="text-sm text-theme-muted">{dict.My_Requests_Desc || 'Manage your business & hire requests.'}</p>
+          </div>
+          
+          <div className="p-6 bg-theme-surface/50 border border-theme-border rounded-2xl shadow-sm hover:border-theme-500 transition-colors group cursor-pointer">
+             <MessageSquare className="text-theme-500 mb-4 group-hover:scale-110 transition-transform" size={32} />
+             <h3 className="font-bold text-lg mb-2">{dict.My_Feedbacks || 'My Feedbacks'}</h3>
+             <p className="text-sm text-theme-muted">{dict.My_Feedbacks_Desc || 'View or edit testimonials you left.'}</p>
+          </div>
+        </div>
+      </motion.div>
     </motion.div>
   );
 }

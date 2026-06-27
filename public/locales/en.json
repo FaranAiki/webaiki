@@ -464,5 +464,20 @@
   "Visit_External_Link": "Visit external link for ",
   "Locked": "Locked",
   "GDGOC ITB_Product Manager": "GDGOC ITB Product Manager",
-  "Search_About_Faran": "Search about Muhammad Faran Aiki"
+  "Search_About_Faran": "Search about Muhammad Faran Aiki",
+  "My_Requests": "My Requests",
+  "My_Feedbacks": "My Feedbacks",
+  "My_Preferences": "My Preferences",
+  "Bookmarks": "Bookmarks",
+  "My_Bookmarks": "My Bookmarks",
+  "No_Bookmarks": "No bookmarks yet.",
+  "Bookmark_Added": "Successfully added to bookmarks!",
+  "Bookmark_Removed": "Successfully removed from bookmarks!",
+  "My_Requests_Desc": "Manage your business & hire requests.",
+  "My_Feedbacks_Desc": "View or edit testimonials you left.",
+  "My_Preferences_Desc": "Open the global settings menu.",
+  "Joined": "Joined",
+  "Public_Feedbacks": "Public Feedbacks",
+  "No_Public_Feedbacks": "No public feedbacks yet.",
+  "Bookmarks_Description": "Here are all the items you have bookmarked."
 }

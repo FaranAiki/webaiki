@@ -36,15 +36,23 @@ export default function FeedbackDisplay({ dict, lang, currentUserId }: FeedbackD
   const router = useRouter();
   const { isPresentationMode } = usePresentation();
   const [feedbacks, setFeedbacks] = useState<FeedbackItem[]>([]);
+  const [filterType, setFilterType] = useState<'all' | 'mine'>('all');
   const [loading, setLoading] = useState(true);
+  const displayedFeedbacks = useMemo(() => {
+    if (filterType === 'mine' && currentUserId) {
+      return feedbacks.filter(f => f.user.id === currentUserId);
+    }
+    return feedbacks;
+  }, [feedbacks, filterType, currentUserId]);
+
   const feedbackChunks = useMemo(() => {
     if (!isPresentationMode) return [];
     const chunks = [];
-    for (let i = 0; i < feedbacks.length; i += 2) {
-      chunks.push(feedbacks.slice(i, i + 2));
+    for (let i = 0; i < displayedFeedbacks.length; i += 2) {
+      chunks.push(displayedFeedbacks.slice(i, i + 2));
     }
     return chunks;
-  }, [feedbacks, isPresentationMode]);
+  }, [displayedFeedbacks, isPresentationMode]);
   const [submitting, setSubmitting] = useState(false);
   const [newFeedback, setNewFeedback] = useState('');
   const [imageUrl, setImageUrl] = useState<string | undefined>(undefined);
@@ -336,20 +344,38 @@ export default function FeedbackDisplay({ dict, lang, currentUserId }: FeedbackD
         ))
       ) : (
         <section className="space-y-6">
-          <h2 className="text-2xl font-bold text-foreground opacity-80 border-l-4 border-theme-500 pl-4">
-            {dict.Latest} {dict.Feedback}
-          </h2>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-2 border-theme-border pb-4 mb-6">
+            <h2 className="text-2xl font-bold text-foreground opacity-80 border-l-4 border-theme-500 pl-4">
+              {dict.Latest} {dict.Feedback}
+            </h2>
+            {currentUserId && (
+                <div className="flex gap-2">
+                  <button 
+                      onClick={() => setFilterType('all')} 
+                      className={`px-4 py-2 rounded-full text-sm font-bold transition-colors ${filterType === 'all' ? 'bg-theme-500 text-white shadow-md' : 'bg-theme-surface-strong text-theme-muted hover:text-foreground'}`}
+                  >
+                      {dict.All || 'All'}
+                  </button>
+                  <button 
+                      onClick={() => setFilterType('mine')} 
+                      className={`px-4 py-2 rounded-full text-sm font-bold transition-colors ${filterType === 'mine' ? 'bg-theme-500 text-white shadow-md' : 'bg-theme-surface-strong text-theme-muted hover:text-foreground'}`}
+                  >
+                      {dict.My_Feedbacks || 'My Feedbacks'}
+                  </button>
+                </div>
+            )}
+          </div>
 
           {loading ? (
             <div className="flex justify-center py-10">
               <div className="w-10 h-10 border-4 border-theme-500 border-t-transparent rounded-full animate-spin" />
             </div>
-          ) : feedbacks.length === 0 ? (
+          ) : displayedFeedbacks.length === 0 ? (
             <p className="text-center text-theme-muted py-10">{dict.No_Feedback}</p>
           ) : (
             <div className="grid gap-6">
               <AnimatePresence mode="popLayout">
-                {feedbacks.map((item, idx) => (
+                {displayedFeedbacks.map((item, idx) => (
                   <motion.div
                     key={item.id}
                     initial={{ opacity: 0, x: -20 }}

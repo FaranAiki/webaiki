@@ -13,6 +13,7 @@ import { formatCJK } from '@/lib/utils';
 import { LayoutSwitcher } from '../shared/LayoutSwitcher';
 import { LayoutPanelLeft, Milestone, LayoutGrid, Grid2X2 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import BookmarkButton from '@/components/interactive/BookmarkButton';
 
 export type CertificateData = {
   [category: string]: {
@@ -33,6 +34,8 @@ interface BentoCertificateCardProps {
     click_to_close_text: string;
     spanClass: string;
     priority?: boolean;
+    isLoggedIn?: boolean;
+    isBookmarked?: boolean;
 }
 
 const getPath = (data: string | { path: string; point: number }): string => {
@@ -41,7 +44,7 @@ const getPath = (data: string | { path: string; point: number }): string => {
 };
 
 const BentoCertificateCard = ({
-    fileName, filePath, category, year, isDark, lang, titleColor, click_to_close_text, spanClass, priority
+    fileName, filePath, category, year, isDark, lang, titleColor, click_to_close_text, spanClass, priority, isLoggedIn, isBookmarked
 }: BentoCertificateCardProps) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
@@ -69,6 +72,13 @@ const BentoCertificateCard = ({
                     />
                 )}
             </div>
+            
+            <BookmarkButton 
+                itemType="certificate" 
+                itemId={fileName} 
+                initialBookmarked={!!isBookmarked} 
+                isLoggedIn={!!isLoggedIn} 
+            />
 
             {/* Base Content - Shows only on hover or when not expanded */}
             <div className={`absolute inset-0 p-6 flex flex-col justify-end transition-all duration-500 bg-gradient-to-t ${isDark ? 'from-theme-bg-dark/90 via-theme-bg-dark/40' : 'from-theme-surface/95 via-theme-surface/60'} to-transparent opacity-0 group-hover:opacity-100 ${isExpanded ? 'opacity-0 pointer-events-none' : ''}`}>
@@ -118,6 +128,8 @@ export type CertificatesDisplayProps = {
   grid_text?: string;
   bento_text?: string;
   click_to_close_text?: string;
+  isLoggedIn?: boolean;
+  bookmarkedItemIds?: string[];
 };
 
 export default function CertificatesDisplay({
@@ -128,7 +140,9 @@ export default function CertificatesDisplay({
   timeline_text = 'Timeline',
   grid_text = 'Grid',
   bento_text = 'Bento',
-  click_to_close_text = 'Click to close'
+  click_to_close_text = 'Click to close',
+  isLoggedIn = false,
+  bookmarkedItemIds = []
 }: CertificatesDisplayProps) {
   const [currentLayout, setCurrentLayout] = useState<'original' | 'timeline' | 'grid' | 'bento'>('original');
   const [openCategories, setOpenCategories] = useState<string[]>([]);
@@ -389,6 +403,12 @@ export default function CertificatesDisplay({
                                     />
                                 )}
                                 </a>
+                                <BookmarkButton 
+                                    itemType="certificate" 
+                                    itemId={fileName} 
+                                    initialBookmarked={bookmarkedItemIds.includes(fileName)} 
+                                    isLoggedIn={isLoggedIn} 
+                                />
                                 <div className="p-4 flex-grow">
                                 <h3 className={`font-semibold ${titleColor} truncate hover-gacor`}>
                                     {formatCJK(fileName, lang)}
@@ -436,6 +456,12 @@ export default function CertificatesDisplay({
                                             <Image src={filePath} alt={`${fileName} Certificate - Muhammad Faran Aiki Portfolio`} fill className="object-cover transition-transform group-hover:scale-105" sizes="(max-width: 768px) 100vw, 33vw" />
                                         )}
                                     </a>
+                                    <BookmarkButton 
+                                        itemType="certificate" 
+                                        itemId={fileName} 
+                                        initialBookmarked={bookmarkedItemIds.includes(fileName)} 
+                                        isLoggedIn={isLoggedIn} 
+                                    />
                                     <div className="p-3">
                                         <h4 className={`font-bold ${titleColor} hover-gacor line-clamp-1 text-sm`}>{formatCJK(fileName, lang)}</h4>
                                     </div>
@@ -473,6 +499,12 @@ export default function CertificatesDisplay({
                               <Image src={filePath} alt={`${item.fileName} Certificate - Muhammad Faran Aiki Portfolio`} fill className="object-cover" sizes="(max-width: 768px) 100vw, 25vw" />
                           )}
                         </a>
+                        <BookmarkButton 
+                            itemType="certificate" 
+                            itemId={item.fileName} 
+                            initialBookmarked={bookmarkedItemIds.includes(item.fileName)} 
+                            isLoggedIn={isLoggedIn} 
+                        />
                         <div className="p-4">
                             <div className="flex justify-between items-start mb-1">
                                 <span className="text-sm font-bold text-gacor-smooth tracking-tighter">{formatCJK(item.category, lang)}</span>
@@ -517,6 +549,8 @@ export default function CertificatesDisplay({
                             click_to_close_text={click_to_close_text}
                             spanClass={spanClass}
                             priority={idx < 4}
+                            isLoggedIn={isLoggedIn}
+                            isBookmarked={bookmarkedItemIds.includes(item.fileName)}
                         />
                     );
                 })}
