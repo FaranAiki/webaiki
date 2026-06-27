@@ -175,7 +175,7 @@ async headers() {
 images: {
   // Optimization: Support modern image formats
   formats: ['image/avif', 'image/webp'],
-  qualities: [75, 80, 85, 90],
+  qualities: [60, 75, 80, 85, 90],
   // Optimization: Cache optimized images at the edge for a week
   minimumCacheTTL: 604800,
   remotePatterns: [
