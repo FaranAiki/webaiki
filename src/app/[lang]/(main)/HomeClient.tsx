@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import type { TrackerType } from "../../../components/interactive/TrackingIcon";
 import FadeInSection from "@/components/shared/FadeInSection";
@@ -13,6 +13,83 @@ import { useAppStore } from '@/lib/store';
 
 const LatestActivity = dynamic(() => import("../../../components/interactive/LatestActivity"));
 
+const DynamicHero = React.memo(({ dict, isReady, isLgScreen, parts }: { dict: Record<string, string>, isReady: boolean, isLgScreen: boolean, parts: string[] }) => {
+  const [wordIndex, setWordIndex] = useState(0);
+
+  const cyclingData: { word: string; type: TrackerType }[] = useMemo(() => [
+    { word: dict.Word_See || "See", type: 'see' },
+    { word: dict.Word_Do || "Do", type: 'do' },
+    { word: dict.Word_Know || "Know", type: 'know' },
+    { word: dict.Word_Search || "Search", type: 'search' }
+  ], [dict]);
+
+  useEffect(() => {
+    if (!isReady) return;
+    const interval = setInterval(() => {
+      setWordIndex((prev) => (prev + 1) % cyclingData.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [isReady, cyclingData.length]);
+
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
+  };
+
+  const partVariants: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0, 0, 0.2, 1] } }
+  };
+
+  return (
+    <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">
+      <div className="relative flex-1 z-1 text-center lg:text-left xs:pt-12 md:pt-6 lg:pt-0">
+          <motion.h2
+            className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tighter"
+            variants={containerVariants}
+            initial="hidden"
+            animate={isReady ? "visible" : "hidden"}
+          >
+            <motion.span variants={partVariants} className="inline-block whitespace-pre-wrap nav-active-gacor">{parts[0]}</motion.span>
+            <span className="inline-flex relative align-middle overflow-visible">
+              <span className="invisible select-none pointer-events-none whitespace-nowrap nav-active-gacor">
+                {cyclingData[wordIndex].word.trim()}
+              </span>
+              <AnimatePresence mode="popLayout">
+                <motion.span
+                  key={wordIndex}
+                  initial={{ y: 30, opacity: 0 }}
+                  animate={{ y: isLgScreen ? -4.75 : -2.75, opacity: 1 }}
+                  exit={{ y: -30, opacity: 0 }}
+                  transition={{ type: "spring", stiffness: 200, damping: 18 }}
+                  className="absolute inset-0 flex items-center justify-center lg:justify-start text-theme-500 whitespace-nowrap nav-active-gacor lowercase"
+                >
+                  {cyclingData[wordIndex].word}
+                </motion.span>
+              </AnimatePresence>
+            </span>
+            <motion.span variants={partVariants} className="inline-block whitespace-pre-wrap nav-active-gacor">{parts[1]}</motion.span>
+          </motion.h2>
+      </div>
+      <div className="hidden md:flex flex-shrink-0 relative md:w-64 md:h-64 items-center justify-center">
+        <AnimatePresence mode="wait">
+            <motion.div
+                key={wordIndex}
+                initial={{ opacity: 0, scale: 0.8, y: 15 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 1.1, y: -15 }}
+                transition={{ type: "spring", stiffness: 220, damping: 20 }}
+                className="absolute"
+            >
+                <TrackingIcon type={cyclingData[wordIndex].type} />
+            </motion.div>
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+});
+DynamicHero.displayName = 'DynamicHero';
+
 interface HomeClientProps {
   lang: string;
   dict: Record<string, string>;
@@ -21,15 +98,9 @@ interface HomeClientProps {
 
 export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientProps) {
   const [isReady, setIsReady] = useState(false);
-  const [wordIndex, setWordIndex] = useState(0);
   const [isLgScreen, setIsLgScreen] = useState(true);
 
-  const cyclingData: { word: string; type: TrackerType }[] = [
-    { word: dict.Word_See || "See", type: 'see' },
-    { word: dict.Word_Do || "Do", type: 'do' },
-    { word: dict.Word_Know || "Know", type: 'know' },
-    { word: dict.Word_Search || "Search", type: 'search' }
-  ];
+
 
   const isGlobalLoading = useAppStore((state) => state.isGlobalLoading);
 
@@ -47,95 +118,16 @@ export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientP
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  useEffect(() => {
-    if (!isReady) return;
-    const interval = setInterval(() => {
-      setWordIndex((prev) => (prev + 1) % cyclingData.length);
-    }, 3000); // 3 second interval
-    return () => clearInterval(interval);
-  }, [isReady, cyclingData.length]);
+
 
   const baseText = dict.What_Do_You_Want_To_Base || "What do you want to {word}";
   const parts = baseText.split("{word}");
-
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const partVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.4, ease: [0, 0, 0.2, 1] } // standard easeOut as numeric array for strict typing
-    }
-  };
 
   return (
     <main className="min-h-[50vh] flex flex-col items-center justify-center px-4 md:px-8 pt-24 md:pt-12 pb-12">
       <h1 className="sr-only">{dict.Search_About_Faran || "Search about Muhammad Faran Aiki"}</h1>
       <div className="w-full max-w-6xl overflow-visible">
-        <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">
-
-          {/* The Main Question Section */}
-          <div className="relative flex-1 z-1 text-center lg:text-left xs:pt-12 md:pt-6 lg:pt-0">
-              <motion.h2
-                className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tighter"
-                variants={containerVariants}
-                initial="hidden"
-                animate={isReady ? "visible" : "hidden"}
-              >
-                <motion.span variants={partVariants} className="inline-block whitespace-pre-wrap nav-active-gacor">{parts[0]}</motion.span>
-
-                {/* Dynamic Word Container - Using a ghost element to set width for proper expansion */}
-                <span className="inline-flex relative align-middle overflow-visible">
-                  {/* Invisible Ghost Element to reserve horizontal space */}
-                  <span className="invisible select-none pointer-events-none whitespace-nowrap nav-active-gacor">
-                    {cyclingData[wordIndex].word.trim()}
-                  </span>
-
-                  <AnimatePresence mode="popLayout">
-                    <motion.span
-                      key={wordIndex}
-                      initial={{ y: 30, opacity: 0 }}
-                      animate={{ y: isLgScreen ? -4.75 : -2.75, opacity: 1 }}
-                      exit={{ y: -30, opacity: 0 }}
-                      transition={{ type: "spring", stiffness: 200, damping: 18 }}
-                      className="absolute inset-0 flex items-center justify-center lg:justify-start text-theme-500 whitespace-nowrap nav-active-gacor lowercase"
-                    >
-                      {cyclingData[wordIndex].word}
-                    </motion.span>
-                  </AnimatePresence>
-                </span>
-
-                <motion.span variants={partVariants} className="inline-block whitespace-pre-wrap nav-active-gacor">{parts[1]}</motion.span>
-              </motion.h2>
-          </div>
-
-          {/* Dynamic Interactive Icon Section (Floating Right) */}
-          <div className="hidden md:flex flex-shrink-0 relative md:w-64 md:h-64 items-center justify-center">
-            <AnimatePresence mode="wait">
-                <motion.div
-                    key={wordIndex}
-                    initial={{ opacity: 0, scale: 0.8, y: 15 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 1.1, y: -15 }}
-                    transition={{ type: "spring", stiffness: 220, damping: 20 }}
-                    className="absolute"
-                >
-                    <TrackingIcon type={cyclingData[wordIndex].type} />
-                </motion.div>
-            </AnimatePresence>
-          </div>
-
-        </div>
+          <DynamicHero dict={dict} isReady={isReady} isLgScreen={isLgScreen} parts={parts} />
 
         {/* Quick Navigation / Explore Section */}
         {/*

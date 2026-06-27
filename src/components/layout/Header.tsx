@@ -23,8 +23,7 @@ import {
   LogIn,
   LogOut,
   User,
-  ChevronDown,
-  Settings
+  ChevronDown
 } from 'lucide-react';
 
 import { usePresentation } from '@/components/providers/PresentationContext';
@@ -695,6 +694,8 @@ export default function Header(props: HeaderProps) {
                                                     <User size={16} className="mr-2" />
                                                     {edit_profile_label}
                                                 </button>
+                                                
+                                                <div className="h-px bg-theme-border/50 my-1 mx-2" />
 
                                                 <button
                                                     onClick={() => {
@@ -723,7 +724,7 @@ export default function Header(props: HeaderProps) {
                                                 <button
                                                     onClick={() => {
                                                         setIsUserMenuOpen(false);
-                                                        router.push(getLocalizedHref('/feedback'));
+                                                        router.push(getLocalizedHref('/feedback?filter=mine'));
                                                     }}
                                                     className={`w-full text-left px-4 py-2 text-sm ${textColor} hover:bg-theme-surface-strong transition-colors flex items-center`}
                                                 >
@@ -911,6 +912,7 @@ export default function Header(props: HeaderProps) {
                                                         <User size={20} className="mr-3" />
                                                         {edit_profile_label}
                                                     </button>
+                                                    <div className="h-px bg-theme-border/50 my-2 mx-2" />
                                                     <button
                                                         onClick={() => {
                                                             setMobileMenuOpen(false);
@@ -936,7 +938,7 @@ export default function Header(props: HeaderProps) {
                                                     <button
                                                         onClick={() => {
                                                             setMobileMenuOpen(false);
-                                                            router.push(getLocalizedHref('/feedback'));
+                                                            router.push(getLocalizedHref('/feedback?filter=mine'));
                                                         }}
                                                         className={`flex items-center w-full text-lg font-semibold ${textColor} transition-colors duration-300 hover:text-theme-600 px-2`}
                                                     >

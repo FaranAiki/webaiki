@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Newspaper, Send, User, Plus, X, Camera, Trash2 } from 'lucide-react';
+import { Newspaper, Send, User, Plus, X, Camera, Trash2, Search } from 'lucide-react';
 import { getNews, postNews, uploadFile, deleteNews } from '@/app/actions';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -45,6 +45,19 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
   const [imageUrl, setImageUrl] = useState('');
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const displayedNews = useMemo(() => {
+    let result = news;
+    if (searchQuery.trim() !== '') {
+      const q = searchQuery.toLowerCase();
+      result = result.filter(n => 
+        n.title.toLowerCase().includes(q) || 
+        n.content.toLowerCase().includes(q)
+      );
+    }
+    return result;
+  }, [news, searchQuery]);
 
   useEffect(() => {
     // Check admin status on client side asynchronously
@@ -78,11 +91,11 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
   const newsChunks = useMemo(() => {
     if (!isPresentationMode) return [];
     const chunks = [];
-    for (let i = 0; i < news.length; i += 3) {
-      chunks.push(news.slice(i, i + 3));
+    for (let i = 0; i < displayedNews.length; i += 3) {
+      chunks.push(displayedNews.slice(i, i + 3));
     }
     return chunks;
-  }, [news, isPresentationMode]);
+  }, [displayedNews, isPresentationMode]);
 
   const fetchNews = async () => {
     setLoading(true);
@@ -385,19 +398,31 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
         ))
       ) : (
         <section className="space-y-8">
-          <h2 className="text-2xl font-bold text-foreground opacity-80 border-l-4 border-theme-500 pl-4">
-            {dict.Latest_News}
-          </h2>
+          <div className="flex flex-col sm:flex-row gap-4 sm:items-center justify-between">
+            <h2 className="text-2xl font-bold text-foreground opacity-80 border-l-4 border-theme-500 pl-4">
+              {dict.Latest_News}
+            </h2>
+            <div className="relative w-full sm:w-auto">
+              <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-theme-muted" />
+              <input
+                type="text"
+                placeholder={dict.Search_News || "Search News..."}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full sm:w-64 pl-10 pr-4 py-2 bg-theme-surface border border-theme-border rounded-full text-sm focus:outline-none focus:border-theme-500 transition-colors"
+              />
+            </div>
+          </div>
 
           {loading ? (
             <div className="flex justify-center py-10">
               <div className="w-10 h-10 border-4 border-theme-500 border-t-transparent rounded-full animate-spin" />
             </div>
-          ) : news.length === 0 ? (
+          ) : displayedNews.length === 0 ? (
             <p className="text-center text-theme-muted py-10">{dict.No_News}</p>
           ) : (
             <div className="grid gap-10">
-              {news.map((item, idx) => (
+              {displayedNews.map((item, idx) => (
                 <motion.article
                   key={item.id}
                   initial={{ opacity: 0, y: 30 }}

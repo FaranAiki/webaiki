@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
@@ -43,7 +43,7 @@ const getPath = (data: string | { path: string; point: number }): string => {
   return data?.path || '';
 };
 
-const BentoCertificateCard = ({
+const BentoCertificateCard = React.memo(({
     fileName, filePath, category, year, isDark, lang, titleColor, click_to_close_text, spanClass, priority, isLoggedIn, isBookmarked
 }: BentoCertificateCardProps) => {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -116,7 +116,7 @@ const BentoCertificateCard = ({
             </motion.div>
         </motion.div>
     );
-};
+});
 BentoCertificateCard.displayName = 'BentoCertificateCard';
 
 export type CertificatesDisplayProps = {

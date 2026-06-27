@@ -5,6 +5,8 @@ import LiteratureLoader from './literature-loader'
 import { getDictionary } from '@/components/layout/Translator';
 import { getCollectionsData } from '@/lib/data';
 import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema } from '@/lib/seo';
+import { createClient } from '@/utils/supabase/server';
+import { getBookmarks } from '@/app/bookmark-actions';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -31,8 +33,13 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 export default async function LiteraturePage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
-  
   const literature_data = await getCollectionsData(lang, 'literature');
+  
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  const isLoggedIn = !!user;
+  const bookmarks = isLoggedIn ? await getBookmarks(user.id) : [];
+  const bookmarkedItemIds = bookmarks.filter(b => b.itemType === 'collection').map(b => b.itemId);
 
   const breadcrumbSchema = getBreadcrumbSchema([
     { name: dict.Home, item: `/${lang}` },
@@ -53,6 +60,8 @@ export default async function LiteraturePage({ params }: { params: Promise<{ lan
         timeline_text={dict.Timeline}
         grid_text={dict.Grid}
         dict={dict}
+        isLoggedIn={isLoggedIn}
+        bookmarkedItemIds={bookmarkedItemIds}
       />
     </main>
   );

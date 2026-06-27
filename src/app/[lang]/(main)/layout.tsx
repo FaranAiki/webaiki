@@ -115,8 +115,8 @@ export default async function RootLayout({
       href: '#',
       icon: <MoreHorizontal size={18} />,
       subLinks: [
-        { name: dict.Timeline || 'Timeline', href: '/timeline', icon: <History size={16} /> },
         { name: dict.College, href: '/college', icon: <GraduationCap size={16} /> },
+        { name: dict.Timeline || 'Timeline', href: '/timeline', icon: <History size={16} /> },
         { name: dict.Sitemap_Graph || 'Sitemap Graph', href: '/sitemap-graph', icon: <Network size={16} /> }
       ]
     },
@@ -249,16 +249,19 @@ export default async function RootLayout({
           Achievement: dict.Achievement,
           Language: dict.Language,
           User: dict.User,
-          Select_Language: dict.Select_Language
+          Select_Language: dict.Select_Language,
+          My_Bookmarks: dict.My_Bookmarks,
+          My_Requests: dict.My_Requests,
+          My_Feedbacks: dict.My_Feedbacks
         }}
       />
       <div id="main-content">
         {children}
       </div>
-      <TerminalOverlay 
-        lang={lang} 
-        username={username} 
-        dict={dict} 
+      <TerminalOverlay
+        lang={lang}
+        username={username}
+        dict={dict}
         workExperiences={workExp}
         projectExperiences={projectExp}
         organizationExperiences={orgExp}

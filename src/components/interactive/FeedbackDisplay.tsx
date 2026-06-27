@@ -2,10 +2,10 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, Send, User, Camera, Trash2, AlertCircle } from 'lucide-react';
+import { MessageSquare, Send, User, Camera, Trash2, AlertCircle, Search } from 'lucide-react';
 import { getFeedbacks, submitFeedback, uploadFile, deleteFeedback } from '@/app/actions';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { usePresentation } from '../providers/PresentationContext';
 import FadeInSection from '../shared/FadeInSection';
@@ -34,16 +34,29 @@ interface FeedbackDisplayProps {
 
 export default function FeedbackDisplay({ dict, lang, currentUserId }: FeedbackDisplayProps) {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const initialFilter = searchParams.get('filter') === 'mine' ? 'mine' : 'all';
   const { isPresentationMode } = usePresentation();
   const [feedbacks, setFeedbacks] = useState<FeedbackItem[]>([]);
-  const [filterType, setFilterType] = useState<'all' | 'mine'>('all');
+  const [filterType, setFilterType] = useState<'all' | 'mine'>(initialFilter);
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
+
   const displayedFeedbacks = useMemo(() => {
+    let result = feedbacks;
     if (filterType === 'mine' && currentUserId) {
-      return feedbacks.filter(f => f.user.id === currentUserId);
+      result = result.filter(f => f.user.id === currentUserId);
     }
-    return feedbacks;
-  }, [feedbacks, filterType, currentUserId]);
+    if (searchQuery.trim() !== '') {
+      const q = searchQuery.toLowerCase();
+      result = result.filter(f => 
+        (f.user.name && f.user.name.toLowerCase().includes(q)) || 
+        (f.user.username && f.user.username.toLowerCase().includes(q)) || 
+        f.content.toLowerCase().includes(q)
+      );
+    }
+    return result;
+  }, [feedbacks, filterType, currentUserId, searchQuery]);
 
   const feedbackChunks = useMemo(() => {
     if (!isPresentationMode) return [];
@@ -345,9 +358,20 @@ export default function FeedbackDisplay({ dict, lang, currentUserId }: FeedbackD
       ) : (
         <section className="space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-2 border-theme-border pb-4 mb-6">
-            <h2 className="text-2xl font-bold text-foreground opacity-80 border-l-4 border-theme-500 pl-4">
-              {dict.Latest} {dict.Feedback}
+            <h2 className="text-2xl font-bold text-foreground">
+              {dict.All_Feedback}
             </h2>
+            <div className="flex flex-col sm:flex-row gap-4 items-center">
+                <div className="relative w-full sm:w-auto">
+                    <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-theme-muted" />
+                    <input
+                        type="text"
+                        placeholder={dict.Search_Feedback || "Search Feedback..."}
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="w-full sm:w-64 pl-10 pr-4 py-2 bg-theme-surface border border-theme-border rounded-full text-sm focus:outline-none focus:border-theme-500 transition-colors"
+                    />
+                </div>
             {currentUserId && (
                 <div className="flex gap-2">
                   <button 
@@ -364,6 +388,7 @@ export default function FeedbackDisplay({ dict, lang, currentUserId }: FeedbackD
                   </button>
                 </div>
             )}
+            </div>
           </div>
 
           {loading ? (

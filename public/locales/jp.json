@@ -457,5 +457,7 @@
   "Bookmarks_Description": "これはあなたがブックマークしたすべてのアイテムです。",
   "My_Bookmarks": "私のブックマーク",
   "My_Requests": "私のリクエスト",
-  "My_Feedbacks": "私のフィードバック"
+  "My_Feedbacks": "私のフィードバック",
+  "Search_Feedback": "フィードバックを検索...",
+  "Search_News": "ニュースを検索..."
 }

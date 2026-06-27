@@ -78,7 +78,8 @@ export default async function BookmarksPage({ params }: { params: Promise<{ lang
   const bookmarks = isLoggedIn ? await getBookmarks(user.id) : [];
   const certificateBookmarks = bookmarks.filter(b => b.itemType === 'certificate').map(b => b.itemId);
   const experienceBookmarks = bookmarks.filter(b => b.itemType === 'experience').map(b => b.itemId);
-  
+  const collectionBookmarks = bookmarks.filter(b => b.itemType === 'collection').map(b => b.itemId);
+
 
   // Filtering function for Experience structure (Point >= 80)
   const filterImportantExp = (exps: Experience[]): Experience[] => {
@@ -339,10 +340,10 @@ export default async function BookmarksPage({ params }: { params: Promise<{ lang
                   <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Important_Highlights}</h2>
               </div>            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                   {Object.keys(importantCollege).length > 0 && (
-                      <InteractiveCollections data={importantCollege} lang={lang} force_click={true} />
+                      <InteractiveCollections data={importantCollege} lang={lang} force_click={true} isLoggedIn={isLoggedIn} bookmarkedItemIds={collectionBookmarks} />
                   )}
                   {Object.keys(importantLiterature).length > 0 && (
-                      <InteractiveCollections data={importantLiterature} lang={lang} force_click={true} />
+                      <InteractiveCollections data={importantLiterature} lang={lang} force_click={true} isLoggedIn={isLoggedIn} bookmarkedItemIds={collectionBookmarks} />
                   )}
               </div>
             </section>

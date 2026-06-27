@@ -479,5 +479,7 @@
   "Joined": "Joined",
   "Public_Feedbacks": "Public Feedbacks",
   "No_Public_Feedbacks": "No public feedbacks yet.",
-  "Bookmarks_Description": "Here are all the items you have bookmarked."
+  "Bookmarks_Description": "Here are all the items you have bookmarked.",
+  "Search_Feedback": "Search Feedback...",
+  "Search_News": "Search News..."
 }

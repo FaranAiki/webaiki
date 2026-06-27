@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Star } from 'lucide-react';
 import { toggleBookmark } from '@/app/bookmark-actions';
-import { motion } from 'framer-motion';
 
-export default function BookmarkButton({ 
+
+const BookmarkButton = React.memo(function BookmarkButton({ 
   itemType, 
   itemId, 
   initialBookmarked,
@@ -41,17 +41,18 @@ export default function BookmarkButton({
   const defaultPosition = className ? '' : 'absolute top-3 right-3';
 
   return (
-    <motion.button
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.9 }}
+    <button
       onClick={handleToggle}
-      className={`${className || ''} ${defaultPosition} p-2 rounded-full backdrop-blur-md transition-all shadow-md z-20 flex items-center justify-center ${
+      className={`${className || ''} ${defaultPosition} p-1 transition-all duration-200 hover:scale-110 active:scale-95 z-20 flex items-center justify-center print:hidden ${
         isBookmarked 
-          ? 'bg-yellow-400/20 text-yellow-500 border border-yellow-400/50' 
-          : 'bg-black/30 text-white hover:bg-black/50 border border-white/20'
+          ? 'nav-active-gacor' 
+          : 'text-foreground/40 hover:text-foreground/80'
       }`}
+      aria-label={isBookmarked ? "Remove bookmark" : "Add bookmark"}
     >
-      <Star size={18} className={isBookmarked ? 'fill-yellow-500' : ''} />
-    </motion.button>
+      <Star size={18} className={isBookmarked ? 'fill-current' : ''} />
+    </button>
   );
-}
+});
+
+export default BookmarkButton;

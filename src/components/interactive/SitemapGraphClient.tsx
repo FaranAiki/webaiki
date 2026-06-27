@@ -49,13 +49,30 @@ export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientPro
           width: containerRef.current.clientWidth,
           height: containerRef.current.clientHeight
         });
+        // Auto-recenter if we already did initial center
+        if (initialCenterDone.current && graphRef.current) {
+          setTimeout(() => {
+            if (graphRef.current) graphRef.current.zoomToFit(400, 20);
+          }, 50);
+        }
       }
     };
     
-    window.addEventListener('resize', updateDimensions);
-    updateDimensions();
+    const observer = new ResizeObserver(() => {
+      // Use requestAnimationFrame to avoid ResizeObserver loop limit error
+      window.requestAnimationFrame(() => {
+        updateDimensions();
+      });
+    });
     
-    return () => window.removeEventListener('resize', updateDimensions);
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+      updateDimensions();
+    }
+    
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
   const currentTheme = theme === 'system' ? systemTheme : theme;
@@ -128,7 +145,7 @@ export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientPro
 
   return (
     <div className="w-full h-full flex flex-col md:flex-row bg-theme-surface">
-      <div ref={containerRef} className="w-full md:w-[65%] h-[400px] md:h-full cursor-move relative border-b md:border-b-0 md:border-r border-theme-border">
+      <div ref={containerRef} className="w-full md:w-[65%] h-[400px] md:h-full cursor-move relative border-b md:border-b-0 md:border-r border-theme-border flex items-center justify-center overflow-hidden">
         {/* Accessibility support for screen readers */}
         <ul className="sr-only">
           {graphData.nodes.map(node => (
@@ -140,10 +157,10 @@ export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientPro
 
         <ForceGraph2D
           ref={graphRef as never}
-          cooldownTicks={100}
+          cooldownTicks={200}
           onEngineStop={() => {
             if (!initialCenterDone.current && graphRef.current) {
-              graphRef.current.zoomToFit(400, 20);
+              graphRef.current.zoomToFit(400, 40);
               initialCenterDone.current = true;
             }
           }}

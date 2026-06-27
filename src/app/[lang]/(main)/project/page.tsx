@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { createClient } from '@/utils/supabase/server';
+import { getBookmarks } from '@/app/bookmark-actions';
+
 import ExperiencesClient from '@/components/portfolio/ExperienceDisplayer';
 import "../../../globals.css"; 
 
@@ -33,7 +36,13 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 export default async function ProjectPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
-  
+
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  const isLoggedIn = !!user;
+  const bookmarks = isLoggedIn ? await getBookmarks(user.id) : [];
+  const experienceBookmarks = bookmarks.filter(b => b.itemType === 'experience').map(b => b.itemId);
+
 
   const projectExperiences = getProjectExperiences(dict);
 
@@ -60,6 +69,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ lang: 
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <ExperiencesClient 
+        isLoggedIn={isLoggedIn}
+        bookmarkedItemIds={experienceBookmarks}
+
         experiences={projectExperiences} 
         lang={lang} 
         canChange={true} 

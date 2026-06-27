@@ -9,6 +9,7 @@ import { usePresentation } from '../providers/PresentationContext';
 import { formatCJK } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import { LayoutSwitcher } from '../shared/LayoutSwitcher';
+import BookmarkButton from '@/components/interactive/BookmarkButton';
 
 // Define typescript data
 export type CollectionsData = Record<string, Record<string, Record<string, { path: string; point: number }>>>;
@@ -23,6 +24,8 @@ export type InteractiveCollectionsProps = {
   timeline_text?: string;
   grid_text?: string;
   dict?: Record<string, string>;
+  isLoggedIn?: boolean;
+  bookmarkedItemIds?: string[];
 };
 
 const getPath = (data: string | { path: string; point: number }): string => {
@@ -37,7 +40,9 @@ export default function InteractiveCollections( {
   original_text = 'Original',
   timeline_text = 'Timeline',
   grid_text = 'Grid',
-  dict = {}
+  dict = {},
+  isLoggedIn = false,
+  bookmarkedItemIds = [],
 }: InteractiveCollectionsProps ) {
   const [currentLayout, setCurrentLayout] = useState<CollectionLayoutType>('original');
   const [activeHeadingOne, setActiveHeadingOne] = useState<string | null>(null);
@@ -139,16 +144,19 @@ export default function InteractiveCollections( {
                         )}
                         <span className={`text-base md:text-lg font-bold ${titleColor} truncate max-w-[250px] md:max-w-md`}>{formatCJK(docName, lang)}</span>
                       </div>
-                      {filePath && (
-                        <a
-                          href={filePath}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="bg-theme-500 text-white px-4 py-1.5 rounded-full font-bold text-sm hover:bg-theme-600 transition-colors shadow-md shrink-0"
-                        >
-                          {dict.Open || 'Open'}
-                        </a>
-                      )}
+                      <div className="flex items-center gap-2 shrink-0">
+                        <BookmarkButton itemType="collection" itemId={docName} initialBookmarked={bookmarkedItemIds.includes(docName)} isLoggedIn={!!isLoggedIn} className="relative !p-1.5" />
+                        {filePath && (
+                          <a
+                            href={filePath}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-theme-500 text-white px-4 py-1.5 rounded-full font-bold text-sm hover:bg-theme-600 transition-colors shadow-md"
+                          >
+                            {dict.Open || 'Open'}
+                          </a>
+                        )}
+                      </div>
                     </div>
                   );})}
                 </div>
@@ -229,15 +237,21 @@ export default function InteractiveCollections( {
                                                       delay={docIndex * 30} // Staggered delay for each document
                                                   >
                                                       {filePath ? (
-                                                          <a href={filePath} target="_blank" rel="noopener noreferrer" className="flex items-center hover-gacor hover:text-theme-600 transition-colors">
-                                                          <LinkIcon size={16} className="mr-2 flex-shrink-0" />
-                                                          <span>{formatCJK(docName, lang)}</span>
-                                                          </a>
+                                                          <div className="flex items-center justify-between w-full gap-2">
+                                                              <a href={filePath} target="_blank" rel="noopener noreferrer" className="flex items-center hover-gacor hover:text-theme-600 transition-colors truncate">
+                                                                  <LinkIcon size={16} className="mr-2 flex-shrink-0" />
+                                                                  <span className="truncate">{formatCJK(docName, lang)}</span>
+                                                              </a>
+                                                              <BookmarkButton itemType="collection" itemId={docName} initialBookmarked={bookmarkedItemIds.includes(docName)} isLoggedIn={!!isLoggedIn} className="relative flex-shrink-0" />
+                                                          </div>
                                                       ) : (
-                                                          <span className="flex items-center text-theme-muted cursor-not-allowed">
-                                                          <XCircle size={16} className="mr-2 flex-shrink-0" />
-                                                          <span>{formatCJK(docName, lang)} ({dict.Not_Available || 'Not available'})</span>
-                                                          </span>
+                                                          <div className="flex items-center justify-between w-full gap-2">
+                                                              <span className="flex items-center text-theme-muted cursor-not-allowed truncate">
+                                                                  <XCircle size={16} className="mr-2 flex-shrink-0" />
+                                                                  <span className="truncate">{formatCJK(docName, lang)} ({dict.Not_Available || 'Not available'})</span>
+                                                              </span>
+                                                              <BookmarkButton itemType="collection" itemId={docName} initialBookmarked={bookmarkedItemIds.includes(docName)} isLoggedIn={!!isLoggedIn} className="relative flex-shrink-0" />
+                                                          </div>
                                                       )}
                                                   </FadeInSection>
                                               );})}
@@ -275,13 +289,16 @@ export default function InteractiveCollections( {
                                                       return (
                                                       <div key={docName} className={`p-4 rounded-xl border ${dropdownBg} flex items-center justify-between group`}>
                                                           <span className={`font-medium ${titleColor} hover-gacor`}>{formatCJK(docName, lang)}</span>
-                                                          {filePath ? (
-                                                              <a href={filePath} target="_blank" rel="noopener noreferrer" className="text-theme-500 hover:text-theme-600 transition-colors">
-                                                                  <LinkIcon size={18} />
-                                                              </a>
-                                                          ) : (
-                                                              <XCircle size={18} className="text-theme-muted" />
-                                                          )}
+                                                          <div className="flex items-center gap-2">
+                                                              {filePath ? (
+                                                                  <a href={filePath} target="_blank" rel="noopener noreferrer" className="text-theme-500 hover:text-theme-600 transition-colors flex-shrink-0">
+                                                                      <LinkIcon size={18} />
+                                                                  </a>
+                                                              ) : (
+                                                                  <XCircle size={18} className="text-theme-muted flex-shrink-0" />
+                                                              )}
+                                                              <BookmarkButton itemType="collection" itemId={docName} initialBookmarked={bookmarkedItemIds.includes(docName)} isLoggedIn={!!isLoggedIn} className="relative flex-shrink-0" />
+                                                          </div>
                                                       </div>
                                                   );})}
                                               </div>
