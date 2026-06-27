@@ -104,6 +104,7 @@ export function PortfolioAboutHeader(props: AboutMeProps) {
                       className="object-cover"
                       sizes="(max-width: 768px) 200px, 400px"
                       priority
+                      quality={60}
                       fetchPriority="high"
                     />
                 </motion.div>
@@ -223,7 +224,7 @@ export function AboutSection(props: AboutSubSectionProps) {
                       scale-[1.01]
                     `}
                     sizes="(max-width: 768px) 160px, 400px"
-                    quality={85}
+                    quality={60}
                     priority={true}
                     fetchPriority="high"
                   />
@@ -264,7 +265,7 @@ export function PhilosophySection(props: AboutSubSectionProps) {
             placeholder="blur"
             blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(288, 288))}`}
             sizes="(max-width: 768px) 128px, 288px"
-            quality={85}
+            quality={60}
             priority={isPresentationMode}
             className="object-contain md:animate-float transition-[colors,transform,opacity] duration-500 ease-in-out opacity-90 hover:opacity-100 md:hover:-rotate-3 drop-shadow-xl md:hover:drop-shadow-[0_0_20px_var(--accent-shadow)]"
             />
@@ -304,7 +305,7 @@ export function PrinciplesSection(props: AboutSubSectionProps) {
                 placeholder="blur"
                 blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(288, 288))}`}
                 sizes="(max-width: 768px) 128px, 288px"
-                quality={85}
+                quality={60}
                 priority={isPresentationMode}
                 className="object-contain transition-[colors,opacity,transform] duration-500 ease-in-out opacity-90 hover:opacity-100 hover:scale-105 hover:rotate-2 drop-shadow-xl hover:drop-shadow-[0_0_20px_var(--accent-shadow)]"
               />
@@ -352,7 +353,7 @@ export function VisionMissionSection(props: AboutSubSectionProps) {
                 placeholder="blur"
                 blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(288, 288))}`}
                 sizes="(max-width: 768px) 128px, 288px"
-                quality={85}
+                quality={60}
                 priority={isPresentationMode}
                 className="object-contain md:animate-float transition-[colors,transform,opacity] duration-500 ease-in-out opacity-90 hover:opacity-100 hover:scale-110 hover:brightness-110 drop-shadow-xl hover:drop-shadow-[0_0_20px_var(--accent-shadow)]"
               />

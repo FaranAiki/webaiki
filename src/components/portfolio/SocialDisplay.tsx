@@ -311,6 +311,7 @@ export default function SocialDisplay({ customLinks, hidePresentation = false, d
             className="w-full h-[400px] sm:h-[450px] rounded-lg border-0 bg-transparent"
             scrolling="no"
             frameBorder="0"
+            loading="lazy"
             title="Instagram Embed"
           />
         </div>
@@ -326,6 +327,7 @@ export default function SocialDisplay({ customLinks, hidePresentation = false, d
             allow="fullscreen"
             scrolling="no"
             frameBorder="0"
+            loading="lazy"
             title="TikTok Embed"
           />
         </div>
