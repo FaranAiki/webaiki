@@ -79,8 +79,9 @@ export default function Background({ carousel, showOverlay = true }: BackgroundP
                       className="w-full h-full object-cover"
                       sizes="100vw"
                       quality={75}
-                      priority={currentIndex <= 3}
-                      loading={currentIndex <= 3 ? "eager" : "lazy"}
+                      priority={currentIndex === 0}
+                      loading={currentIndex === 0 ? "eager" : "lazy"}
+                      fetchPriority={currentIndex === 0 ? "high" : "auto"}
                   />
                 )}
             </motion.div>
