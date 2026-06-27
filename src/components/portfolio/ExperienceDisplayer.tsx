@@ -251,7 +251,7 @@ BentoCard.displayName = 'BentoCard';
 
 const PdfRenderer = ({ url, isExpanded }: { url: string, isExpanded?: boolean }) => {
     const ref = React.useRef(null);
-    const isInView = useInView(ref, { once: true, margin: "400px" });
+    const isInView = useInView(ref, { once: true, margin: "50px" });
 
     return (
         <div ref={ref} className={`w-full h-full flex justify-center items-center overflow-hidden bg-theme-surface-strong ${isExpanded ? 'scale-110 blur-sm brightness-[0.3]' : 'group-hover:scale-105 transition-transform duration-700'}`}>

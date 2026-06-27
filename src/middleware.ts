@@ -7,7 +7,7 @@ const defaultLocale = 'id';
 
 const base_cspHeader = `
     default-src 'self' https://ndutyvnkhavzchhjmzfm.supabase.co;
-    script-src 'nonce-placeholder' 'strict-dynamic' 'wasm-unsafe-eval' 'sha256-rbbnijHn7DZ6ps39myQ3cVQF1H+U/PJfHh5ei/Q2kb8=' 'sha256-n46vPwSWuMC0W703pBofImv82Z26xo4LXymv0E9caPk=' https://platform.twitter.com https://platform.x.com ${
+    script-src 'self' 'unsafe-inline' 'nonce-placeholder' 'wasm-unsafe-eval' 'sha256-rbbnijHn7DZ6ps39myQ3cVQF1H+U/PJfHh5ei/Q2kb8=' 'sha256-n46vPwSWuMC0W703pBofImv82Z26xo4LXymv0E9caPk=' https://platform.twitter.com https://platform.x.com ${
       process.env.NODE_ENV === 'development' ? "'unsafe-eval'" : ''
     };
     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://platform.twitter.com;
