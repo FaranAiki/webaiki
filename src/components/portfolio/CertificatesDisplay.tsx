@@ -66,7 +66,7 @@ const BentoCertificateCard = React.memo(({
                         src={filePath}
                         alt={`${fileName} Certificate Faran Aiki`}
                         fill
-                        priority={priority}
+                        priority={priority} fetchPriority={priority ? "high" : "auto"}
                         className={`object-cover transition-all duration-700 ${isExpanded ? 'scale-110 blur-sm brightness-[0.3]' : 'opacity-80 group-hover:opacity-100'}`}
                         sizes="(max-width: 768px) 50vw, 33vw"
                     />
@@ -429,7 +429,7 @@ export default function CertificatesDisplay({
             <div className="relative border-l-2 border-theme-500/30 ml-4 md:ml-8 space-y-12">
                 {Object.entries(certificates).flatMap(([category, yearsData]) =>
                   Object.entries(yearsData).map(([year, files]) => ({ category, year, files }))
-                ).sort((a, b) => b.year.localeCompare(a.year)).map((item) => (
+                 ).sort((a, b) => b.year.localeCompare(a.year)).map((item, itemIdx) => (
                     <div key={`${item.category}-${item.year}`} className="relative pl-8">
                         <div className="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-theme-500 border-4 border-theme-surface dark:border-theme-bg-dark shadow-sm" />
                         <div className="flex flex-wrap items-baseline gap-x-4 mb-6">
@@ -437,12 +437,13 @@ export default function CertificatesDisplay({
                             <h3 className={`text-xl font-bold text-gacor-smooth`}>{formatCJK(item.category, lang)}</h3>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {Object.entries(item.files).map(([fileName, fileData]) => {
+                            {Object.entries(item.files).map(([fileName, fileData], fileIdx) => {
                                 const filePath = getPath(fileData);
+                                const isPriority = itemIdx === 0 && fileIdx < 3;
                                 return (
                                 <motion.div
                                     key={fileName}
-                                    initial={{ opacity: 0, x: 20 }}
+                                    initial={isPriority ? false : { opacity: 0, x: 20 }}
                                     whileInView={{ opacity: 1, x: 0 }}
                                     viewport={{ once: true }}
                                     className={`${cardBg} overflow-hidden rounded-xl border ${borderColor} flex flex-col shadow-md group transform-gpu`}
@@ -450,10 +451,10 @@ export default function CertificatesDisplay({
                                     <a href={filePath} target="_blank" rel="noopener noreferrer" aria-label={`View ${fileName} certificate`} className="relative aspect-video w-full overflow-hidden">
                                         {filePath.endsWith('.pdf') ? (
                                             <div className="w-full h-full">
-                                                <PdfPreview fileUrl={filePath} />
+                                                <PdfPreview fileUrl={filePath} priority={isPriority} />
                                             </div>
                                         ) : (
-                                            <Image src={filePath} alt={`${fileName} Certificate - Muhammad Faran Aiki Portfolio`} fill className="object-cover transition-transform group-hover:scale-105" sizes="(max-width: 768px) 100vw, 33vw" />
+                                            <Image src={filePath} alt={`${fileName} Certificate - Muhammad Faran Aiki Portfolio`} fill className="object-cover transition-transform group-hover:scale-105" sizes="(max-width: 768px) 100vw, 33vw" priority={isPriority} fetchPriority={isPriority ? "high" : "auto"} />
                                         )}
                                     </a>
                                     <BookmarkButton 

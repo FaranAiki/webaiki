@@ -74,7 +74,7 @@ const TagBadge = ({ labels }: { labels?: string[] }) => {
     return (
         <div className="inline-flex flex-wrap gap-1 ml-2 align-middle">
             {limitedLabels.map((label, idx) => (
-                <span key={idx} className="inline-block px-1.5 py-0.5 text-[9px] font-black rounded-md bg-theme-500/10 text-theme-500 border border-theme-500/20 tracking-wider">
+                <span key={idx} className="inline-block px-1.5 py-0.5 text-[9px] font-black rounded-md bg-theme-500/10 text-theme-700 dark:text-theme-300 border border-theme-500/20 tracking-wider">
                     {label}
                 </span>
             ))}
@@ -438,11 +438,11 @@ export default function ExperiencesClient({
                                 <div className={`text-foreground w-full h-full px-4 md:px-8 flex flex-col md:flex-row print:flex-row gap-4 md:gap-12 items-center justify-center mx-auto pt-20 pb-10`}>
                                     <div className="flex-[1.2] flex flex-col justify-center space-y-6 max-w-2xl print:max-w-none">
                                         <div className="space-y-2">
-                                            <h2 className="text-theme-600 dark:text-theme-400 font-bold text-xl md:text-2xl tracking-tight">{job.year}</h2>
+                                            <h2 className="text-theme-700 dark:text-theme-300 font-bold text-xl md:text-2xl tracking-tight">{job.year}</h2>
                                             <h3 className="text-3xl md:text-5xl font-black leading-tight tracking-tighter text-foreground">{job.title}<TagBadge labels={job.tag} /></h3>
-                                            <h4 className="text-theme-600 dark:text-theme-400 text-xl md:text-2xl italic opacity-90">{job.company}</h4>
+                                            <h4 className="text-theme-700 dark:text-theme-300 text-xl md:text-2xl italic opacity-90">{job.company}</h4>
                                             <div className="flex items-center gap-2">
-                                                <p style={dateStyle} className="text-base md:text-lg font-medium italic text-muted-foreground">{job.date}</p>
+                                                <p style={dateStyle} className="text-base md:text-lg font-medium italic text-foreground/80">{job.date}</p>
                                                 <BookmarkButton itemType="experience" itemId={job.title} initialBookmarked={bookmarkedItemIds.includes(job.title)} isLoggedIn={!!isLoggedIn} className="relative" />
                                             </div>
                                         </div>
@@ -499,11 +499,11 @@ export default function ExperiencesClient({
                                             <div className="flex-1 space-y-6">
                                                 <div className="flex items-center gap-4">
                                                     <span className="w-16 h-1.5 bg-theme-500 rounded-full" />
-                                                    <h2 className="text-theme-600 dark:text-theme-400 font-black text-2xl tracking-tight">{job.year}</h2>
+                                                    <h2 className="text-theme-700 dark:text-theme-300 font-black text-2xl tracking-tight">{job.year}</h2>
                                                 </div>
                                                 <h3 className={`text-3xl md:text-5xl font-black leading-[0.85] tracking-tighter text-foreground`}>{job.title}<TagBadge labels={job.tag} /></h3>
                                                 <div className="flex items-center gap-4 mt-2">
-                                                    <h4 className="text-xl md:text-3xl text-theme-600 dark:text-theme-400 font-bold italic tracking-tight">{job.company}</h4>
+                                                    <h4 className="text-xl md:text-3xl text-theme-700 dark:text-theme-300 font-bold italic tracking-tight">{job.company}</h4>
                                                     <BookmarkButton itemType="experience" itemId={job.title} initialBookmarked={bookmarkedItemIds.includes(job.title)} isLoggedIn={!!isLoggedIn} className="relative" />
                                                 </div>
 
@@ -538,7 +538,7 @@ export default function ExperiencesClient({
                                                 <div className="md:col-span-7 space-y-10">
                                                 <div className="space-y-4">
                                                 <div className="flex items-center gap-3">
-                                                    <p className="text-theme-600 dark:text-theme-400 font-black text-xl tracking-tight">{job.date}</p>
+                                                    <p className="text-theme-700 dark:text-theme-300 font-black text-xl tracking-tight">{job.date}</p>
                                                     <span className="flex-grow h-px bg-theme-500/30" />
                                                 </div>
                                                 <h3 className={`text-3xl md:text-5xl font-black text-foreground leading-[0.85] tracking-tighter`}>
@@ -546,7 +546,7 @@ export default function ExperiencesClient({
                                                     <TagBadge labels={job.tag} />
                                                 </h3>
                                                 <div className="flex items-center gap-4">
-                                                    <h4 className="text-2xl md:text-3xl font-bold text-theme-600 dark:text-theme-400 italic tracking-tight">{job.company}</h4>
+                                                    <h4 className="text-2xl md:text-3xl font-bold text-theme-700 dark:text-theme-300 italic tracking-tight">{job.company}</h4>
                                                     <BookmarkButton itemType="experience" itemId={job.title} initialBookmarked={bookmarkedItemIds.includes(job.title)} isLoggedIn={!!isLoggedIn} className="relative" />
                                                 </div>
                                                 </div>
@@ -625,7 +625,7 @@ export default function ExperiencesClient({
                                                                 : `${inactiveCardBg} ${cardBorder} hover:border-theme-500/50`
                                                             }`}
                                                     >
-                                                        <p className="text-xs mb-1 text-muted-foreground">{job.date}</p>
+                                                        <p className="text-xs mb-1 text-foreground/80">{job.date}</p>
                                                         <div className="flex justify-between items-center mb-1">
                                                             <h3 className={`text-xl font-bold ${mainText} group-hover:text-theme-500 ${job.url ? 'underline decoration-dotted decoration-theme-500/30' : ''}`}>{job.title}<TagBadge labels={job.tag} /></h3>
                                                             <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()}>
@@ -633,7 +633,7 @@ export default function ExperiencesClient({
                                                                 {job.url && <ExternalLink size={14} className="text-theme-500 opacity-0 group-hover:opacity-100 transition-opacity" />}
                                                             </div>
                                                         </div>
-                                                        <p className="text-theme-600 dark:text-theme-400 italic mb-3">{job.company}</p>
+                                                        <p className="text-theme-700 dark:text-theme-300 italic mb-3">{job.company}</p>
                                                         <HoverableWords className={`${justifyClass} ${descText} text-sm`}>
                                                             {formatCJK(job.description, lang)}
                                                         </HoverableWords>
@@ -651,7 +651,7 @@ export default function ExperiencesClient({
                                             </div>
                                             <div className="mt-4 text-center">
                                                 <h3 className={`text-2xl font-black ${mainText}`}>{activeJob.title}<TagBadge labels={activeJob.tag} /></h3>
-                                                <p className="text-lg italic text-theme-600 dark:text-theme-400">{activeJob.company}</p>
+                                                <p className="text-lg italic text-theme-700 dark:text-theme-300">{activeJob.company}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -706,7 +706,7 @@ export default function ExperiencesClient({
                                                                         </div>
                                                                     )}
                                                                     <div className="flex flex-wrap gap-2 mb-2 items-center">
-                                                                        <span className="px-2 py-1 bg-theme-500/10 text-theme-500 rounded-md text-[10px] font-black uppercase border border-theme-500/20">{job.year}</span>
+                                                                        <span className="px-2 py-1 bg-theme-500/10 text-theme-700 dark:text-theme-300 rounded-md text-[10px] font-black uppercase border border-theme-500/20">{job.year}</span>
                                                                         <span className="text-[10px] font-bold text-theme-muted">{job.date}</span>
                                                                     </div>
                                                                     <h3 className="text-base lg:text-lg font-black mb-1 group-hover:text-theme-500 transition-colors leading-tight">{job.title}</h3>
@@ -716,7 +716,7 @@ export default function ExperiencesClient({
                                                                             <BookmarkButton itemType="experience" itemId={job.title} initialBookmarked={bookmarkedItemIds.includes(job.title)} isLoggedIn={!!isLoggedIn} className="relative" />
                                                                         </div>
                                                                     </div>
-                                                                    <p className="text-theme-600 dark:text-theme-400 font-bold italic text-xs mb-2">{job.company}</p>
+                                                                    <p className="text-theme-700 dark:text-theme-300 font-bold italic text-xs mb-2">{job.company}</p>
                                                                     <p className="text-xs text-foreground/80 line-clamp-3 group-hover:line-clamp-none transition-all duration-500">{job.description}</p>
                                                                 </div>
                                                             </div>
@@ -762,7 +762,7 @@ export default function ExperiencesClient({
                                                                     </div>
                                                                 )}
                                                                 <div className="flex flex-wrap gap-2 mb-2 items-center">
-                                                                    <span className="px-2 py-1 bg-theme-500/10 text-theme-500 rounded-md text-[10px] font-black uppercase border border-theme-500/20">{job.year}</span>
+                                                                    <span className="px-2 py-1 bg-theme-500/10 text-theme-700 dark:text-theme-300 rounded-md text-[10px] font-black uppercase border border-theme-500/20">{job.year}</span>
                                                                     <span className="text-[10px] font-bold text-theme-muted">{job.date}</span>
                                                                 </div>
                                                                 <div className="flex justify-between items-start mb-1">
@@ -772,7 +772,7 @@ export default function ExperiencesClient({
                                                                     </div>
                                                                 </div>
                                                                 <div className="mb-2"><TagBadge labels={job.tag} /></div>
-                                                                <p className="text-theme-600 dark:text-theme-400 font-bold italic text-sm mb-2">{job.company}</p>
+                                                                <p className="text-theme-700 dark:text-theme-300 font-bold italic text-sm mb-2">{job.company}</p>
                                                                 <p className="text-xs text-foreground/80 line-clamp-3 group-hover:line-clamp-none transition-all duration-500">{job.description}</p>
                                                             </div>
                                                         </div>
@@ -800,14 +800,14 @@ export default function ExperiencesClient({
                                                             )}
                                                         </div>
                                                     )}
-                                                    <span className="inline-block px-2 py-0.5 bg-theme-500/10 text-theme-500 rounded-md text-[10px] font-black uppercase mb-2">{job.year}</span>
+                                                    <span className="inline-block px-2 py-0.5 bg-theme-500/10 text-theme-700 dark:text-theme-300 rounded-md text-[10px] font-black uppercase mb-2">{job.year}</span>
                                                     <div className="flex justify-between items-start mb-1">
                                                         <h3 className="text-sm font-black text-foreground group-hover:text-theme-500 leading-tight">{job.title}</h3>
                                                         <div onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()}>
                                                             <BookmarkButton itemType="experience" itemId={job.title} initialBookmarked={bookmarkedItemIds.includes(job.title)} isLoggedIn={!!isLoggedIn} className="relative !p-1" />
                                                         </div>
                                                     </div>
-                                                    <p className="text-theme-600 dark:text-theme-400 font-bold italic text-xs mb-2">{job.company}</p>
+                                                    <p className="text-theme-700 dark:text-theme-300 font-bold italic text-xs mb-2">{job.company}</p>
                                                     <p className="text-xs text-foreground/80 line-clamp-2">{job.description}</p>
                                                 </div>
                                             </div>
@@ -854,7 +854,7 @@ export default function ExperiencesClient({
                                                 <PlaceholderIcon company={job.company} />
                                             )}
                                         </div>
-                                        <p className="text-xs mb-1 text-muted-foreground">{job.date}</p>
+                                        <p className="text-xs mb-1 text-foreground/80">{job.date}</p>
                                         <div className="flex justify-between items-start mb-1 gap-2">
                                             <h3 className={`text-xl font-black ${mainText} group-hover:text-theme-500 leading-tight`}>{job.title}<TagBadge labels={job.tag} /></h3>
                                             <div className="flex items-center gap-1 shrink-0" onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()}>
@@ -862,7 +862,7 @@ export default function ExperiencesClient({
                                                 {job.url && <ExternalLink size={14} className="text-theme-500 opacity-0 group-hover:opacity-100 transition-opacity" />}
                                             </div>
                                         </div>
-                                        <p className="text-sm italic text-theme-600 dark:text-theme-400 mb-4">{job.company}</p>
+                                        <p className="text-sm italic text-theme-700 dark:text-theme-300 mb-4">{job.company}</p>
                                     </motion.div>
                                 ))}
                             </motion.div>
@@ -919,7 +919,7 @@ export default function ExperiencesClient({
                                             <div className="w-full md:w-1/2 space-y-4">
                                                 <div className="flex items-center gap-4">
                                                     <span className="h-px w-12 bg-theme-500"></span>
-                                                    <p className="text-sm font-bold text-muted-foreground">{job.date}</p>
+                                                    <p className="text-sm font-bold text-foreground/80">{job.date}</p>
                                                 </div>
                                                 <div className="flex items-center gap-3">
                                                     <h3 className={`text-4xl md:text-5xl font-black ${mainText} group-hover:text-theme-500 leading-tight transition-colors`}>{job.title}<TagBadge labels={job.tag} /></h3>
@@ -928,7 +928,7 @@ export default function ExperiencesClient({
                                                         {job.url && <ExternalLink size={24} className="text-theme-500 opacity-0 group-hover:opacity-100 transition-all translate-y-2" />}
                                                     </div>
                                                 </div>
-                                                <p className="text-xl font-medium italic text-theme-600 dark:text-theme-400 opacity-80">{job.company}</p>
+                                                <p className="text-xl font-medium italic text-theme-700 dark:text-theme-300 opacity-80">{job.company}</p>
                                                 <HoverableWords className={`${justifyClass} ${descText} text-lg leading-relaxed`}>
                                                     {formatCJK(job.description, lang)}
                                                 </HoverableWords>

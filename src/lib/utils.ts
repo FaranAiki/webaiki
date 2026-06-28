@@ -5,19 +5,21 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export const shimmer = (w: number, h: number) => `
-<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <defs>
-    <linearGradient id="g">
-      <stop stop-color="#333" offset="20%" />
-      <stop stop-color="#222" offset="50%" />
-      <stop stop-color="#333" offset="70%" />
-    </linearGradient>
-  </defs>
-  <rect width="${w}" height="${h}" fill="#333" />
-  <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
-  <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
+export const shimmer = (w: number, h: number) => {
+  const cx = w / 2;
+  const cy = h / 2;
+  const r = Math.min(w, h) * 0.2; // 20% of the shortest side
+  const strokeWidth = Math.max(2, Math.min(w, h) * 0.04);
+
+  return `
+<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <rect width="${w}" height="${h}" fill="transparent" />
+  <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="rgba(150, 150, 150, 0.15)" stroke-width="${strokeWidth}" />
+  <path d="M ${cx} ${cy - r} A ${r} ${r} 0 0 1 ${cx + r} ${cy}" fill="none" stroke="rgba(150, 150, 150, 0.7)" stroke-width="${strokeWidth}" stroke-linecap="round">
+    <animateTransform attributeName="transform" type="rotate" from="0 ${cx} ${cy}" to="360 ${cx} ${cy}" dur="0.5s" repeatCount="indefinite" />
+  </path>
 </svg>`;
+};
 
 export const toBase64 = (str: string) =>
   typeof window === 'undefined'

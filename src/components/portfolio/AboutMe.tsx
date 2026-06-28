@@ -85,7 +85,7 @@ export function PortfolioAboutHeader(props: AboutMeProps) {
         <div className="relative w-48 h-48 md:w-64 md:h-64 lg:w-full lg:aspect-square group transform-gpu">
           <div className="absolute inset-0 bg-theme-500/20 blur-[60px] rounded-full opacity-50 group-hover:opacity-80 transition-opacity" />
           <div className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-theme-500/20 dark:border-theme-500/30 bg-theme-surface/50 backdrop-blur-sm shadow-theme-shadow">
-              <AnimatePresence mode="wait">
+              <AnimatePresence mode="wait" initial={false}>
                 <motion.div
                   key={currentIndex}
                   initial={{ opacity: 0, scale: 1.1 }}
