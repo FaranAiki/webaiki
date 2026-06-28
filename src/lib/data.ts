@@ -1,9 +1,10 @@
 import { cache } from 'react';
+import { unstable_cache } from 'next/cache';
 import fs from 'fs';
 import path from 'path';
 import { getDictionary } from '@/components/layout/Translator';
 import { CollectionsData } from '@/components/portfolio/InteractiveCollections';
-import { CertificateData } from '@/components/portfolio/CertificatesDisplay';
+import type { CertificateData } from '@/components/portfolio/CertificatesContext';
 
 export const getBackgrounds = cache(() => {
   const photosDir = path.join(process.cwd(), 'public', 'images', 'background');
@@ -206,7 +207,7 @@ export const getProjectExperiences = (dict: Dictionary) => [
       {
         date: `${dict.October} 2025 — ${dict.Present}`,
         title: dict.Make_Website,
-        company: 'NextJS, TailwindCSS, TypeScript, Prisma, SQL, Lenis, Framer-Motion',
+        company: 'NextJS, TailwindCSS, TypeScript, Drizzle, SQL, Lenis, Framer-Motion',
         description: dict.Make_Website_Description,
         point: 80,
         image: [
@@ -484,7 +485,7 @@ export const getAwardExperiences = (dict: Dictionary) => [
   },
 ];
 
-export const getCollectionsData = cache(async (lang: string, type: 'literature' | 'college') => {
+export const getCollectionsData = unstable_cache(async (lang: string, type: 'literature' | 'college') => {
   const dict = await getDictionary(lang);
   const baseDir = path.join(process.cwd(), 'public', 'documents', type);
 
@@ -528,9 +529,9 @@ export const getCollectionsData = cache(async (lang: string, type: 'literature' 
     }
   }
   return allCollectionsData;
-});
+}, ['collections-data'], { revalidate: 3600, tags: ['collections'] });
 
-export const getCertificatesData = cache(async (lang: string) => {
+export const getCertificatesData = unstable_cache(async (lang: string) => {
   const dict = await getDictionary(lang);
   const baseDir = path.join(process.cwd(), 'public', 'documents', 'certificate');
 
@@ -568,7 +569,7 @@ export const getCertificatesData = cache(async (lang: string) => {
   }
 
   return allCertificatesData;
-});
+}, ['certificates-data'], { revalidate: 3600, tags: ['certificates'] });
 
 export interface SkillSubcategory {
   title: string;
@@ -621,7 +622,7 @@ export const getSkills = (dict: Dictionary): SkillCategory[] => [
       },
       {
         title: dict.Skills_Sub_ORMs || 'ORMs',
-        items: ['Prisma']
+        items: ['Drizzle']
       }
     ]
   },

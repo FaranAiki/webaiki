@@ -63,7 +63,7 @@ export async function signInAction(formData: FormData) {
     return new AppError('APP_ERROR', 400, 'Auth_Error' ).toJSON();
   }
 
-  // Sync with Prisma after successful login to ensure user exists in our DB
+  // Sync with Drizzle after successful login to ensure user exists in our DB
   if (data.user) {
     try {
       const metadata = data.user.user_metadata;

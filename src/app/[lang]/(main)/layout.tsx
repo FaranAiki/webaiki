@@ -204,6 +204,30 @@ export default async function RootLayout({
         ha_lang={dict.Hausa}
         he_lang={dict.Hebrew}
         el_lang={dict.Greek}
+        hi_lang={dict.Hindi || 'Hindi'}
+        pt_lang={dict.Portuguese || 'Portuguese'}
+        bn_lang={dict.Bengali || 'Bengali'}
+        vi_lang={dict.Vietnamese || 'Vietnamese'}
+        commandPaletteLabels={{
+          placeholder: dict.Command_Palette_Search_Placeholder || "Type a command or search portfolio...",
+          navigation: dict.Navigation || "Navigation",
+          home: dict.Home || "Home",
+          portfolio: dict.Portfolio || "Portfolio",
+          projects: dict.Project || "Projects",
+          awards: dict.Award || "Awards",
+          college: dict.College || "College Documents",
+          news: dict.News_And_Activity || "News & Articles",
+          hireMe: dict.Hire_Me || "Hire Me",
+          theme: dict.Theme || "Theme",
+          lightTheme: dict.Light_Theme || "Light Theme",
+          darkTheme: dict.Dark_Theme || "Dark Theme",
+          systemTheme: dict.System_Theme || "System Theme",
+          language: dict.Language || "Language",
+          searchResults: dict.Search_Results || "Search Results",
+          noResults: dict.No_Results_Found || "No results found.",
+          searching: dict.Searching || "Searching...",
+          suggestions: dict.Suggestions || "Suggestions",
+        }}
         select_lang={dict.Select_Language}
         presentation_mode={dict.Presentation_Mode}
         navigation_label={dict.Navigation}

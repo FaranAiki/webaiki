@@ -60,6 +60,30 @@ interface HeaderProps {
     ha_lang: string;
     he_lang: string;
     el_lang: string;
+    hi_lang: string;
+    pt_lang: string;
+    bn_lang: string;
+    vi_lang: string;
+    commandPaletteLabels: {
+      placeholder: string;
+      navigation: string;
+      home: string;
+      portfolio: string;
+      projects: string;
+      awards: string;
+      college: string;
+      news: string;
+      hireMe: string;
+      theme: string;
+      lightTheme: string;
+      darkTheme: string;
+      systemTheme: string;
+      language: string;
+      searchResults: string;
+      noResults: string;
+      searching: string;
+      suggestions: string;
+    };
     select_lang: string;
     presentation_mode: string;
     navigation_label: string;
@@ -160,6 +184,7 @@ export default function Header(props: HeaderProps) {
         ha_lang,
         he_lang,
         el_lang,
+        commandPaletteLabels,
         presentation_mode,
         navigation_label,
         logo_alt,
@@ -358,7 +383,6 @@ export default function Header(props: HeaderProps) {
 
         setMobileMenuOpen(false);
         router.push(newPathname);
-        router.refresh();
     };
 
     // Normalize Pathname by removing language prefix for internal matching
@@ -611,7 +635,7 @@ export default function Header(props: HeaderProps) {
                         <div
                             className="hidden md:block"
                         >
-                            <CommandPalette lang={current_lang} />
+                            <CommandPalette lang={current_lang} labels={commandPaletteLabels} />
                         </div>
 
                         <div

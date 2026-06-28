@@ -3,7 +3,6 @@
 import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
 import { useTheme } from 'next-themes';
 import { useSettings } from '../providers/SettingsContext';
-import { usePresentation } from '../providers/PresentationContext';
 import { Job, Experience, LayoutType, PresentationLayoutType } from './ExperienceDisplayer'; // We'll export these types from ExperienceDisplayer or a types file later
 
 interface ExperienceContextType {
@@ -29,19 +28,7 @@ interface ExperienceContextType {
     justifyClass: string;
     shimmer600x400: string;
 
-    // Translations
-    translations: {
-        original_text: string;
-        timeline_text: string;
-        grid_text: string;
-        bento_text: string;
-        smooth_text: string;
-        click_to_close_text: string;
-        modern_text: string;
-        cinematic_text: string;
-        editorial_text: string;
-        visit_external_link_text: string;
-    };
+    translations: Record<string, string>;
 }
 
 const ExperienceContext = createContext<ExperienceContextType | undefined>(undefined);
@@ -61,7 +48,7 @@ export function ExperienceProvider({
     layout: LayoutType;
     isLoggedIn: boolean;
     bookmarkedItemIds: string[];
-    translations: any;
+    translations: Record<string, string>;
 }) {
     const [currentLayout, setCurrentLayout] = useState<LayoutType>(layout);
     const [presentationLayout, setPresentationLayout] = useState<PresentationLayoutType>('modern');
@@ -69,7 +56,7 @@ export function ExperienceProvider({
     const { resolvedTheme } = useTheme();
     const { textAlign } = useSettings();
     const [mounted, setMounted] = useState(false);
-    const { isPresentationMode } = usePresentation();
+    
 
     useEffect(() => {
         setMounted(true);

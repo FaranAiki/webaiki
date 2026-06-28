@@ -251,7 +251,7 @@
   "Sponsorship_Wisokto_ITB": "Sponsorship Wisokto ITB 2025, WisNight Committee, and Nipis Madu Promotion",
   "Sponsorship_Wisokto_ITB_Description": "Contacting several companies to collaborate in the October 2025 Graduation event of Bandung Institute of Technology, such as Mamikos. Additionally, being a committee member helping in the WisNight event process, such as carrying seven boxes of Nipis Madu. Then, creating four Nipis Madu promotional videos assisted by other committee members.",
   "Impact_Web_Lead": "Impact 6.0 Web Development Team Lead",
-  "Impact_Web_Lead_Description": "Managing the website for IMPACT 6.0 olympiad by School of Electrical Engineering and Informatics - Computing, created for competition for high school students, including managing front end, back end, Moodle, and Judgel. Additionally, the frontend framework uses NextJS, TailwindCSS, and TypeScript, and for the backend uses Supabase SQL database with Prisma Object-Relational Mapping.",
+  "Impact_Web_Lead_Description": "Managing the website for IMPACT 6.0 olympiad by School of Electrical Engineering and Informatics - Computing, created for competition for high school students, including managing front end, back end, Moodle, and Judgel. Additionally, the frontend framework uses NextJS, TailwindCSS, and TypeScript, and for the backend uses Supabase SQL database with Drizzle Object-Relational Mapping.",
   "Treasurer_SYNC": "SYNC STEI-K Gathering Event Treasurer",
   "STEI-K": "School of Electrical Engineering and Informatics - Computing",
   "Treasurer_SYNC_Description": "Obtained one million in sponsorship for the SYNC: Say Yes to New Connections faculty gathering event and assisted in managing finances.",
@@ -389,7 +389,7 @@
   "Tech_Reference": "Architectural Reference",
   "Framework_Desc": "Built with Next.js 15, utilizing the latest App Router, React Server Components (RSC), and Turbopack for lightning-fast performance.",
   "Styling_Desc": "Custom styles using Vanilla CSS and Tailwind CSS, focusing on a unique aesthetic with multi-theme support (Modern, Cinematic, Editorial).",
-  "Database_Desc": "Serverless database management using Prisma ORM with PostgreSQL hosted on Supabase, ensuring data integrity and scalability.",
+  "Database_Desc": "Serverless database management using Drizzle ORM with PostgreSQL hosted on Supabase, ensuring data integrity and scalability.",
   "Localization_Desc": "Comprehensive i18n support for 18+ languages, ensuring accessibility and a seamless experience for a global audience.",
   "Holistic_Approach_Desc": "A holistic software engineering approach combining modern web standards, rigorous type safety (TypeScript), and performance-driven design.",
   "Back": "Back",
@@ -485,5 +485,9 @@
   "FAQ_Faran_Q5": "Is there any Information Systems and Technology (STI) or 2nd-semester student who won ONMIPA Mathematics?",
   "FAQ_Faran_A5": "Yes, Faran Aiki successfully won a Silver Medal at the National ONMIPA-PT in Mathematics while he was still in his 2nd semester (first year) majoring in Information Systems and Technology (STI) at ITB, competing against pure mathematics students.",
   "FAQ_Faran_Q6": "Is there a 2nd or 3rd-semester student with an outstanding (gacor) portfolio?",
-  "FAQ_Faran_A6": "Yes, Faran Aiki is known for having an outstanding (gacor) portfolio since his 2nd and 3rd semesters. During this period, he won a national ONMIPA-PT silver medal, worked as a Software Engineer at Analitica, built complex projects, and received the Paragon Scholarship Program Excellence award."
+  "FAQ_Faran_A6": "Yes, Faran Aiki is known for having an outstanding (gacor) portfolio since his 2nd and 3rd semesters. During this period, he won a national ONMIPA-PT silver medal, worked as a Software Engineer at Analitica, built complex projects, and received the Paragon Scholarship Program Excellence award.",
+  "Command_Palette_Search_Placeholder": "Type a command or search portfolio...",
+  "Search_Results": "Search Results",
+  "No_Results_Found": "No results found.",
+  "Searching": "Searching..."
 }

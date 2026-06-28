@@ -1,7 +1,4 @@
-"use client";
-
 import React from 'react';
-import { m as motion } from 'framer-motion';
 import { Newspaper, ArrowRight, User, Calendar } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -36,13 +33,10 @@ export default function LatestActivity({ lang, dict, initialNews }: LatestActivi
       </div>
 
       {initialNews.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-in">
           {initialNews.slice(0, 3).map((item, idx) => (
-            <motion.div
+            <div
               key={item.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.8 + idx * 0.1 }}
               className="group flex flex-col bg-theme-surface border border-theme-border rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 h-full"
             >
               {item.image ? (
@@ -103,7 +97,7 @@ export default function LatestActivity({ lang, dict, initialNews }: LatestActivi
                   </Link>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       ) : (

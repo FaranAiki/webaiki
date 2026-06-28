@@ -154,7 +154,7 @@ export default async function PortfolioSummaryPage({ params }: { params: Promise
               <div className="mt-6 flex flex-wrap gap-4">
                   <Link 
                       href={`/${lang}/hire-me`}
-                      className="px-6 py-2 rounded-xl bg-theme-500 text-white font-bold text-sm hover:scale-105 transition-transform shadow-lg shadow-theme-500/20"
+                      className="px-6 py-2 rounded-xl bg-theme-600 dark:bg-theme-500 text-white font-bold text-sm hover:scale-105 transition-transform shadow-lg shadow-theme-500/20"
                   >
                       {dict.Hire_Me}
                   </Link>

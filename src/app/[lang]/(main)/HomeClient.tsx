@@ -6,12 +6,9 @@ import type { TrackerType } from "../../../components/interactive/TrackingIcon";
 import FadeInSection from "@/components/shared/FadeInSection";
 
 const TrackingIcon = dynamic(() => import("../../../components/interactive/TrackingIcon"), { ssr: false });
-const SearchBar = dynamic(() => import("@/components/shared/SearchBar"), { ssr: false });
+// SearchBar removed from here
 import { m as motion, AnimatePresence, Variants } from 'framer-motion';
-import { NewsItem } from '@/lib/types';
 import { useAppStore } from '@/lib/store';
-
-const LatestActivity = dynamic(() => import("../../../components/interactive/LatestActivity"));
 
 const DynamicHero = React.memo(({ dict, isReady, isLgScreen, isMdScreen, parts }: { dict: Record<string, string>, isReady: boolean, isLgScreen: boolean, isMdScreen: boolean, parts: string[] }) => {
   const [wordIndex, setWordIndex] = useState(0);
@@ -93,12 +90,11 @@ const DynamicHero = React.memo(({ dict, isReady, isLgScreen, isMdScreen, parts }
 DynamicHero.displayName = 'DynamicHero';
 
 interface HomeClientProps {
-  lang: string;
   dict: Record<string, string>;
-  initialNews?: NewsItem[];
+  children?: React.ReactNode;
 }
 
-export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientProps) {
+export default function HomeClient({ dict, children }: HomeClientProps) {
   const [isReady, setIsReady] = useState(true);
   const [isLgScreen, setIsLgScreen] = useState(true);
   const [isMdScreen, setIsMdScreen] = useState(true);
@@ -135,42 +131,29 @@ export default function HomeClient({ lang, dict, initialNews = [] }: HomeClientP
       <div className="w-full max-w-6xl overflow-visible">
           <DynamicHero dict={dict} isReady={isReady} isLgScreen={isLgScreen} isMdScreen={isMdScreen} parts={parts} />
 
-        {/* Quick Navigation / Explore Section */}
-        {/*
-        <FadeInSection delay={isReady ? 1.2 : 0}>
-            <div className="mt-24 md:mt-32 grid grid-cols-2 md:grid-cols-4 gap-4 w-full no-print">
-                {[
-                    { name: dict.Identity, href: `/${lang}/identity` },
-                    { name: dict.Website, href: `/${lang}/website` },
-                    { name: dict.Portfolio, href: `/${lang}/portfolio` },
-                    { name: dict.College, href: `/${lang}/college` }
-                ].map((item: { name: string; href: string }) => (
-                    <a
-                        key={item.href}
-                        href={item.href}
-                        className="px-6 py-5 rounded-2xl bg-theme-surface-strong border border-theme-border hover:border-theme-500 transition-all text-center font-bold group shadow-sm hover:shadow-theme-shadow"
-                    >
-                        <span className="group-hover:text-theme-500 transition-colors tracking-widest text-xs">
-                            {item.name}
-                        </span>
-                    </a>
-                ))}
-            </div>
-        </FadeInSection>
-        */}
-
-        {/* Search Bar Section */}
+        {/* Fake Search Bar to open Command Palette */}
         <FadeInSection delay={isReady ? 1.4 : 0}>
-          <section className="w-full no-print" aria-labelledby="search-heading">
-            {/*Make sure to change the Search Faran Aiki Content to language locales*/}
-            <h2 id="search-heading" className="sr-only">Search Faran Aiki Content</h2>
-            <SearchBar dict={dict} scope="all" />
+          <section className="w-full no-print mt-4 md:mt-8 flex justify-center" aria-labelledby="search-heading">
+            <h2 id="search-heading" className="sr-only">{dict.Search_About_Faran || "Search Faran Aiki Content"}</h2>
+            <button
+              type="button"
+              onClick={() => document.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }))}
+              className="group relative flex w-full max-w-2xl items-center gap-3 rounded-full border border-theme-border bg-theme-surface-strong/50 px-6 py-4 text-left shadow-sm transition-all hover:border-theme-500 hover:bg-theme-surface hover:shadow-theme-shadow"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-theme-muted group-hover:text-theme-500 transition-colors"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              <span className="flex-1 text-[var(--text-muted)] text-sm font-medium tracking-wide">
+                {dict.Command_Palette_Search_Placeholder || "Type a command or search portfolio..."}
+              </span>
+              <kbd className="hidden md:inline-flex h-6 items-center gap-1 font-mono text-[11px] font-black nav-active-gacor opacity-100 transition-colors tracking-widest">
+                Ctrl + K
+              </kbd>
+            </button>
           </section>
         </FadeInSection>
 
         {/* Latest Activity Section */}
         <FadeInSection delay={isReady ? 1.6 : 0}>
-          <LatestActivity lang={lang} dict={dict} initialNews={initialNews} />
+          {children}
         </FadeInSection>
       </div>
     </main>

@@ -16,7 +16,7 @@ export async function GET(request: Request) {
     const { data, error } = await supabase.auth.exchangeCodeForSession(code)
     
     if (!error && data.user) {
-      // Sync user to Prisma database
+      // Sync user to Drizzle database
       try {
         const metadata = data.user.user_metadata;
         await db.insert(users).values({

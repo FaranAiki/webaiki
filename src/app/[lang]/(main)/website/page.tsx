@@ -106,7 +106,7 @@ export default async function WebsitePage({
                 <div className="mb-6 p-3 bg-theme-500/10 text-theme-500 w-fit rounded-2xl group-hover:scale-110 transition-transform">
                   <Database size={32} />
                 </div>
-                <h3 className="text-xl font-bold mb-3">PostgreSQL & Prisma</h3>
+                <h3 className="text-xl font-bold mb-3">PostgreSQL & Drizzle</h3>
                 <p className="text-theme-muted leading-relaxed">
                   {dict.Database_Desc}
                 </p>

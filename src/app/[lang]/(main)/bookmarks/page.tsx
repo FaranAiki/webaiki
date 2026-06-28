@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "../../../globals.css";
 import { getDictionary } from '@/components/layout/Translator';
 import type { Experience, Job } from '@/components/portfolio/ExperienceDisplayer';
-import type { CertificateData } from '@/components/portfolio/CertificatesDisplay';
+import type { CertificateData } from '@/components/portfolio/CertificatesContext';
 import type { CollectionsData } from '@/components/portfolio/InteractiveCollections';
 import type { SocialLink } from '@/components/portfolio/SocialDisplay';
 import { Github, Linkedin, Instagram, Twitter, Youtube, Share2 } from 'lucide-react';

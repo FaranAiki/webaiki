@@ -17,7 +17,7 @@ export default function OAuthButtons({ dict, lang }: OAuthButtonsProps) {
     setLoadingProvider(provider);
     const supabase = createClient();
     
-    // We use the same callback route that handles updating Prisma db.
+    // We use the same callback route that handles updating Drizzle db.
     await supabase.auth.signInWithOAuth({
       provider,
       options: {

@@ -96,40 +96,11 @@ export async function getSuggestions(lang: string, count: number = 5): Promise<S
   return suggestions;
 }
 
-export async function searchContent(query: string, lang: string): Promise<SearchResult[]> {
-  if (!query || query.trim().length < 2) return [];
-
+export async function getFullSearchPool(lang: string): Promise<SearchResult[]> {
   const dict = await getDictionary(lang);
-  const lowercaseQuery = query.toLowerCase().trim();
-  const queryTerms = lowercaseQuery.split(/\s+/).filter(term => term.length > 1);
+  const pool: SearchResult[] = [];
 
-  const results: SearchResult[] = [];
-
-  const calculateScore = (item: Partial<SearchResult>, terms: string[]) => {
-    let score = 0;
-    const fieldsToSearch = [
-      { text: item.title || "", weight: 10 },
-      { text: item.description || "", weight: 3 },
-      { text: item.company || "", weight: 5 },
-      { text: item.date || "", weight: 2 },
-      { text: (item.tags || []).join(" "), weight: 4 },
-      { text: (item.keywords || []).join(" "), weight: 8 }
-    ];
-
-    terms.forEach(term => {
-      fieldsToSearch.forEach(field => {
-        const lowerText = field.text.toLowerCase();
-        if (lowerText.includes(term)) {
-          score += field.weight;
-          if (lowerText.startsWith(term)) score += field.weight * 0.5;
-          if (lowerText === term) score += field.weight * 2;
-        }
-      });
-    });
-    return score;
-  };
-
-  // 1. Search Static Pages
+  // 1. Static Pages
   const pages: (Omit<SearchResult, 'type' | 'score'> & { keywords: string[] })[] = [
     {
       title: dict.Home || "Home",
@@ -230,14 +201,11 @@ export async function searchContent(query: string, lang: string): Promise<Search
   ];
 
   pages.forEach(page => {
-    const score = calculateScore(page, queryTerms);
-    if (score > 0) {
-      results.push({
-        ...page,
-        type: 'page',
-        score: score * 1.5
-      });
-    }
+    pool.push({
+      ...page,
+      type: 'page',
+      score: 1.5 // Default score multiplier
+    });
   });
 
   // 2. Search Experience Data
@@ -252,23 +220,19 @@ export async function searchContent(query: string, lang: string): Promise<Search
           tags: job.tag,
         };
 
-        const score = calculateScore(item, queryTerms);
-
-        if (score > 0) {
-          const anchor = `#exp-${job.title.toLowerCase().replace(/\s+/g, '-')}`;
-          results.push({
-            title: job.title,
-            company: job.company,
-            description: job.description,
-            year: yearGroup.year,
-            date: job.date,
-            type: type,
-            url: job.url ? job.url : `/${lang}/${type}${anchor}`,
-            tags: job.tag,
-            score: score,
-            image: job.image && job.image.length > 0 ? job.image[0] : undefined
-          });
-        }
+        const anchor = `#exp-${job.title.toLowerCase().replace(/\s+/g, '-')}`;
+        pool.push({
+          title: job.title,
+          company: job.company,
+          description: job.description,
+          year: yearGroup.year,
+          date: job.date,
+          type: type,
+          url: job.url ? job.url : `/${lang}/${type}${anchor}`,
+          tags: job.tag,
+          score: 1.0,
+          image: job.image && job.image.length > 0 ? job.image[0] : undefined
+        });
       });
     });
   };
@@ -278,47 +242,49 @@ export async function searchContent(query: string, lang: string): Promise<Search
   searchInList(getOrganizationExperiences(dict) as YearGroup[], 'organization');
   searchInList(getAwardExperiences(dict) as YearGroup[], 'award');
 
-  // 3. Search Collections (College & Literature)
-  const collections = ['college', 'literature'] as const;
-  for (const type of collections) {
-    const data = await getCollectionsData(lang, type);
+  // Fetch collections and certificates concurrently
+  const [collegeData, literatureData, certData] = await Promise.all([
+    getCollectionsData(lang, 'college'),
+    getCollectionsData(lang, 'literature'),
+    getCertificatesData(lang)
+  ]);
+
+  const collectionsDataMap = [
+    { type: 'college' as const, data: collegeData },
+    { type: 'literature' as const, data: literatureData }
+  ];
+
+  for (const { type, data } of collectionsDataMap) {
     Object.entries(data).forEach(([category, subcategories]) => {
       Object.entries(subcategories).forEach(([subcategory, items]) => {
         Object.entries(items).forEach(([itemName, details]) => {
-          const score = calculateScore({ title: itemName, company: `${category} - ${subcategory}` }, queryTerms);
-          if (score > 0) {
-            results.push({
-              title: itemName,
-              company: `${category} - ${subcategory}`,
-              description: `${dict[type.charAt(0).toUpperCase() + type.slice(1)] || type} - ${category}`,
-              type: type === 'college' ? 'page' : 'other', // Mapping to page or other
-              url: details.path,
-              score: score * 0.7
-            });
-          }
+          pool.push({
+            title: itemName,
+            company: `${category} - ${subcategory}`,
+            description: `${dict[type.charAt(0).toUpperCase() + type.slice(1)] || type} - ${category}`,
+            type: type === 'college' ? 'page' : 'other',
+            url: details.path,
+            score: 0.7
+          });
         });
       });
     });
   }
 
   // 4. Search Individual Certificates
-  const certData = await getCertificatesData(lang);
   Object.entries(certData).forEach(([category, years]) => {
     Object.entries(years).forEach(([year, certificates]) => {
       Object.entries(certificates).forEach(([certName, details]) => {
-        const score = calculateScore({ title: certName, company: category, date: year }, queryTerms);
-        if (score > 0) {
-          results.push({
-            title: certName,
-            company: category,
-            description: `${category} - ${year}`,
-            year: year,
-            date: year,
-            type: 'certificate',
-            url: details.path,
-            score: score * 0.8 // Slightly lower priority than main categories
-          });
-        }
+        pool.push({
+          title: certName,
+          company: category,
+          description: `${category} - ${year}`,
+          year: year,
+          date: year,
+          type: 'certificate',
+          url: details.path,
+          score: 0.8
+        });
       });
     });
   });
@@ -334,17 +300,14 @@ export async function searchContent(query: string, lang: string): Promise<Search
       const q = dict[`${cat.prefix}Q${i}`];
       const a = dict[`${cat.prefix}A${i}`];
       if (q && a) {
-        const score = calculateScore({ title: q, description: a }, queryTerms);
-        if (score > 0) {
-          results.push({
-            title: q,
-            description: a.replace(/<[^>]*>/g, ''), // Strip HTML
-            company: cat.title,
-            type: 'faq',
-            url: cat.url,
-            score: score * 1.2
-          });
-        }
+        pool.push({
+          title: q,
+          description: a.replace(/<[^>]*>/g, ''), // Strip HTML
+          company: cat.title,
+          type: 'faq',
+          url: cat.url,
+          score: 1.2
+        });
       }
     }
   });
@@ -358,16 +321,13 @@ export async function searchContent(query: string, lang: string): Promise<Search
 
   otherSections.forEach(section => {
     if (section.title && section.description) {
-      const score = calculateScore({ title: section.title, description: section.description }, queryTerms);
-      if (score > 0) {
-        results.push({
-          title: section.title,
-          description: section.description.replace(/<[^>]*>/g, ''), // Strip HTML
-          type: 'other',
-          url: section.url,
-          score: score * 1.1
-        });
-      }
+      pool.push({
+        title: section.title,
+        description: section.description.replace(/<[^>]*>/g, ''), // Strip HTML
+        type: 'other',
+        url: section.url,
+        score: 1.1
+      });
     }
   });
 
@@ -379,53 +339,90 @@ export async function searchContent(query: string, lang: string): Promise<Search
 
   aboutMe.forEach(item => {
     if (item.description) {
-      const score = calculateScore({ title: item.title, description: item.description }, queryTerms);
-      if (score > 0) {
-        results.push({
-          title: item.title,
-          description: item.description.replace(/<[^>]*>/g, ''), // Strip HTML
-          type: 'other',
-          url: item.url,
-          score: score * 1.0
-        });
-      }
-    }
-  });
-
-  // 7. Search News content
-  let newsItems: NewsItem[] = [];
-  try {
-    newsItems = await getNews() as unknown as NewsItem[];
-  } catch (error) {
-    console.error("Error fetching news in searchContent:", error);
-  }
-  
-  newsItems.forEach(item => {
-    const score = calculateScore({ title: item.title, description: item.content, company: item.author.name || "Admin" }, queryTerms);
-    if (score > 0) {
-      results.push({
+      pool.push({
         title: item.title,
-        description: item.content,
-        company: item.author.name || "Admin",
-        type: 'news',
-        url: `/${lang}/news`,
-        image: item.image || undefined,
-        score: score * 1.3
+        description: item.description.replace(/<[^>]*>/g, ''), // Strip HTML
+        type: 'other',
+        url: item.url,
+        score: 1.0
       });
     }
   });
 
+  // 7. Search News content
+  const newsItems = await getNews().catch(err => {
+    console.error("Error fetching news in searchContent:", err);
+    return [];
+  }) as unknown as NewsItem[];
+  
+  newsItems.forEach(item => {
+    pool.push({
+      title: item.title,
+      description: item.content,
+      company: item.author.name || "Admin",
+      type: 'news',
+      url: `/${lang}/news`,
+      image: item.image || undefined,
+      score: 1.3
+    });
+  });
+
   // Deduplicate by URL and Title
-  const uniqueResultsMap = new Map<string, SearchResult>();
-  results.forEach(res => {
+  const uniquePoolMap = new Map<string, SearchResult>();
+  pool.forEach(res => {
     const key = `${res.url}-${res.title}`;
-    const existing = uniqueResultsMap.get(key);
-    if (!existing || (res.score || 0) > (existing.score || 0)) {
-      uniqueResultsMap.set(key, res);
+    uniquePoolMap.set(key, res);
+  });
+
+  return Array.from(uniquePoolMap.values());
+}
+
+export async function searchContent(query: string, lang: string): Promise<SearchResult[]> {
+  if (!query || query.trim().length < 2) return [];
+
+  const lowercaseQuery = query.toLowerCase().trim();
+  const queryTerms = lowercaseQuery.split(/\s+/).filter(term => term.length > 1);
+
+  const pool = await getFullSearchPool(lang);
+  
+  const calculateScore = (item: Partial<SearchResult>, terms: string[]) => {
+    let score = 0;
+    const fieldsToSearch = [
+      { text: item.title || "", weight: 10 },
+      { text: item.description || "", weight: 3 },
+      { text: item.company || "", weight: 5 },
+      { text: item.date || "", weight: 2 },
+      { text: (item.tags || []).join(" "), weight: 4 },
+      { text: (item.keywords || []).join(" "), weight: 8 }
+    ];
+
+    terms.forEach(term => {
+      fieldsToSearch.forEach(field => {
+        const lowerText = field.text.toLowerCase();
+        if (lowerText.includes(term)) {
+          score += field.weight;
+          if (lowerText.startsWith(term)) score += field.weight * 0.5;
+          if (lowerText === term) score += field.weight * 2;
+        }
+      });
+    });
+    return score;
+  };
+
+  const results: SearchResult[] = [];
+  
+  pool.forEach(item => {
+    const baseScoreMultiplier = item.score || 1.0;
+    const matchScore = calculateScore(item, queryTerms);
+    if (matchScore > 0) {
+      results.push({
+        ...item,
+        score: matchScore * baseScoreMultiplier
+      });
     }
   });
 
-  return Array.from(uniqueResultsMap.values()).sort((a, b) => {
+  return results.sort((a, b) => {
     return (b.score || 0) - (a.score || 0);
   });
 }

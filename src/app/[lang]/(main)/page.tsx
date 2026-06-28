@@ -4,6 +4,7 @@ import { getLanguageAlternates, getBaseMetadata, SITE_URL, getPersonSchema, getW
 import HomeClient from "./HomeClient";
 import { getNews } from '@/app/actions';
 import { NewsItem } from '@/lib/types';
+import LatestActivity from '@/components/interactive/LatestActivity';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -61,7 +62,9 @@ export default async function HomePage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <HomeClient lang={lang} dict={dict} initialNews={news} />
+      <HomeClient dict={dict}>
+        <LatestActivity lang={lang} dict={dict} initialNews={news} />
+      </HomeClient>
     </>
   );
 }

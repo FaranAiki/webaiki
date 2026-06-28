@@ -165,16 +165,24 @@ async headers() {
   images: {
   // Optimization: Support modern image formats
   formats: ['image/avif', 'image/webp'],
+  // Add allowed qualities array for Next 16+
+  qualities: [25, 35, 50, 60, 75, 80, 85, 90, 100],
   // Add intermediate sizes to prevent rounding up from 400px -> 640px
   imageSizes: [16, 32, 48, 64, 96, 128, 256, 300, 350, 384],
   deviceSizes: [400, 450, 500, 550, 640, 750, 828, 1080, 1200, 1920, 2048, 3840],
   // Optimization: Cache optimized images at the edge for a week
   minimumCacheTTL: 604800,
   remotePatterns: [
-    { protocol: 'https', hostname: 'static.wikia.nocookie.net' },      { protocol: 'https', hostname: 'i.ytimg.com', pathname: '/vi/**' },
+      { protocol: 'https', hostname: 'static.wikia.nocookie.net' },
+      { protocol: 'https', hostname: 'i.ytimg.com', pathname: '/vi/**' },
       { protocol: 'https', hostname: 'placehold.co' },
       { protocol: 'https', hostname: 'upload.wikimedia.org' },
       { protocol: 'https', hostname: 'faranaiki.id' },
+      { protocol: 'https', hostname: 'raw.githubusercontent.com' },
+      { protocol: 'https', hostname: 'github.com' },
+      { protocol: 'https', hostname: 'imgur.com' },
+      { protocol: 'https', hostname: 'i.imgur.com' },
+      { protocol: 'https', hostname: 'drive.google.com' },
       { protocol: 'https', hostname: 'cloud.umami.is' },
       { protocol: 'https', hostname: 'api-gateway.umami.dev' },
       { protocol: 'https', hostname: 'gateway.umami.is' },
