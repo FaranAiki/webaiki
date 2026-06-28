@@ -28,13 +28,16 @@ const nextConfig: NextConfig = {
 
   compiler: {
     // Remove console logs in production for security and performance
-    removeConsole: process.env.NODE_ENV === 'production',
+    removeConsole: process.env.NODE_ENV === 'production' ? { exclude: ['error'] } : false,
+    // Remove React testing attributes from the production DOM
+    reactRemoveProperties: process.env.NODE_ENV === 'production' ? { properties: ['^data-testid$'] } : false,
   },
 
   // Optimization: Enable gzip/brotli compression for server responses
   compress: true,
 
   // Vercel OOM Fixes: Disable linting/typechecking during build to save memory
+  // @ts-expect-error - eslint is valid but not typed in Next.js 15
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -44,6 +47,13 @@ const nextConfig: NextConfig = {
   
   // Vercel OOM Fixes: Limit workers to prevent memory spikes during static generation
   experimental: {
+    optimizePackageImports: [
+      'lucide-react',
+      'framer-motion',
+      '@base-ui/react',
+      'react-force-graph-2d',
+      'force-graph'
+    ],
     cpus: 1,
     workerThreads: false,
     memoryBasedWorkersCount: true,

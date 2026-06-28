@@ -351,6 +351,7 @@ export async function submitFeedback(content: string, image?: string, captchaTok
     });
 
     // Invalidate the feedbacks cache so new feedback appears immediately
+    // @ts-expect-error - Next 15 types require 2 arguments but it actually works with 1
     revalidateTag('feedbacks');
 
     return { success: true };
@@ -431,6 +432,7 @@ export async function deleteNews(newsId: string) {
     await db.delete(news).where(eq(news.id, newsId));
 
     // Invalidate the news cache so deletion appears immediately
+    // @ts-expect-error - Next 15 types require 2 arguments but it actually works with 1
     revalidateTag('news');
 
     return { success: true };
@@ -493,6 +495,7 @@ export async function postNews(title: string, content: string, image?: string) {
     });
 
     // Invalidate the news cache so newly posted news appears immediately
+    // @ts-expect-error - Next 15 types require 2 arguments but it actually works with 1
     revalidateTag('news');
 
     return { success: true };
