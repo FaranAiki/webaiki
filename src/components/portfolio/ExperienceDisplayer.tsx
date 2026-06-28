@@ -2,15 +2,14 @@
 
 import React, { useState } from 'react';
 
-
 import { usePresentation } from '../providers/PresentationContext';
 import { LayoutSwitcher } from '../shared/LayoutSwitcher';
 import FadeInSection from '@/components/shared/FadeInSection';
-import { 
-    LayoutPanelLeft, 
-    Milestone, 
-    LayoutGrid, 
-    Grid2X2, 
+import {
+    LayoutPanelLeft,
+    Milestone,
+    LayoutGrid,
+    Grid2X2,
     Rows,
 } from 'lucide-react';
 
@@ -116,7 +115,7 @@ export default function ExperiencesClient({
     };
 
     return (
-        <ExperienceProvider 
+        <ExperienceProvider
             experiences={experiences}
             lang={lang}
             layout={currentLayout}
@@ -124,7 +123,7 @@ export default function ExperiencesClient({
             bookmarkedItemIds={bookmarkedItemIds}
             translations={translations}
         >
-            <div className="w-full">
+            <div className={isPresentationMode ? "contents" : "w-full"}>
                 {canChange && !isPresentationMode && (
                     <LayoutSwitcher
                         options={layoutOptions}
@@ -133,7 +132,7 @@ export default function ExperiencesClient({
                         canChange={canChange}
                     />
                 )}
-                
+
                 {isPresentationMode ? (
                     <ExperiencePresentationLayout />
                 ) : (

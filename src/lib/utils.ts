@@ -37,3 +37,14 @@ export const formatCJK = (text: string, lang?: string) => {
   // For Korean: \uAC00-\uD7AF (Hangul Syllables)
   return text.replace(/([\u4E00-\u9FFF\u3040-\u309F\u30A0-\u30FF\uAC00-\uD7AF])(?!\s|$)/g, '$1\u200A');
 };
+
+export const getThemeLogoFilter = (colorName: string) => {
+  switch (colorName) {
+    case 'pink': return 'hue-rotate(120deg) saturate(1.2)';
+    case 'green': return 'hue-rotate(-90deg) saturate(1.2)';
+    case 'purple': return 'hue-rotate(60deg)';
+    case 'orange': return 'hue-rotate(180deg) saturate(1.5)';
+    case 'mono': return 'grayscale(100%)';
+    default: return 'none';
+  }
+};

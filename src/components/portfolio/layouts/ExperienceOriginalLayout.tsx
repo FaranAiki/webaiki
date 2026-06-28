@@ -87,7 +87,7 @@ export default function ExperienceOriginalLayout() {
             <div className="hidden md:block w-1/2">
                 <div className="sticky top-32 flex justify-center">
                     <div className="w-full">
-                        <div className="relative w-full max-w-[600px] aspect-[3/2] mx-auto shadow-2xl overflow-hidden rounded-lg">
+                        <div className="relative w-full max-w-[600px] aspect-[3/2] mx-auto shadow-xl overflow-hidden rounded-lg">
                             <TimelineActiveImage activeJob={activeJob} shimmer600x400={shimmer600x400} />
                         </div>
                         <div className="mt-4 text-center">

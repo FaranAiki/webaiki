@@ -359,7 +359,7 @@ export default function SocialDisplay({ customLinks, hidePresentation = false, d
           <div className="flex flex-col gap-3 w-full">
             {/* Profile & Overall Stats */}
             <Image 
-              src={`https://github-readme-stats.vercel.app/api?username=FaranAiki&show_icons=true&theme=${badgeTheme === 'dark' ? 'tokyonight' : 'default'}&hide_border=true&bg_color=00000000`}
+              src={`/api/github-stats?type=profile&username=FaranAiki&theme=${badgeTheme === 'dark' ? 'tokyonight' : 'default'}`}
               alt="GitHub Profile Stats"
               width={495}
               height={195}
@@ -369,7 +369,7 @@ export default function SocialDisplay({ customLinks, hidePresentation = false, d
             
             {/* Top Languages */}
             <Image 
-              src={`https://github-readme-stats.vercel.app/api/top-langs/?username=FaranAiki&layout=compact&theme=${badgeTheme === 'dark' ? 'tokyonight' : 'default'}&hide_border=true&bg_color=00000000`}
+              src={`/api/github-stats?type=langs&username=FaranAiki&theme=${badgeTheme === 'dark' ? 'tokyonight' : 'default'}`}
               alt="GitHub Top Languages"
               width={300}
               height={165}
@@ -379,7 +379,7 @@ export default function SocialDisplay({ customLinks, hidePresentation = false, d
 
             {/* Commits / Activity Graph */}
             <Image 
-              src={`https://github-readme-activity-graph.vercel.app/graph?username=FaranAiki&theme=${badgeTheme === 'dark' ? 'tokyonight' : 'default'}&hide_border=true&bg_color=00000000&line=theme-500`}
+              src={`/api/github-stats?type=activity&username=FaranAiki&theme=${badgeTheme === 'dark' ? 'tokyonight' : 'default'}`}
               alt="GitHub Commits Graph"
               width={500}
               height={200}

@@ -274,7 +274,6 @@
   "PT Paragon": "PT Paragon",
   "ALTH_Project": "ALTH: I Forgot to Mark Presence",
   "ALTH_Project_Description": "ALTH (Aku Lupa Tandai Hadir) is an innovative application specifically designed for ITB students to overcome the problem of negligence in taking attendance. Developed using Flutter and utilizing Burp Suite integration, this application automatically sends a GET signal to the SIX portal and processes data through Microsoft SSO authentication cookies. While having the technical capability to send POST signals, ALTH was developed with high integrity as a smart reminder tool, not for attendance manipulation.",
-  "": "",
   "Navigation": "Navigation",
   "GDG_ITB_Title": "Google Developer Group Campus on ITB - Product Manager Explorer",
   "GDG_ITB_Description": "Learning the basics of product management, conducting user research, and assisting in drafting product roadmaps for technology initiatives in the campus environment.",
@@ -489,5 +488,8 @@
   "Command_Palette_Search_Placeholder": "Type a command or search portfolio...",
   "Search_Results": "Search Results",
   "No_Results_Found": "No results found.",
-  "Searching": "Searching..."
+  "Searching": "Searching...",
+  "Offline_Title": "You are offline",
+  "Offline_Description": "No internet found. Please check your Wi-Fi and internet.",
+  "Offline_Retry": "Retry"
 }

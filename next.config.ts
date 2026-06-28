@@ -7,6 +7,8 @@ const withPWA = withPWAInit({
   dest: "public",
   disable: process.env.NODE_ENV === "development",
   register: true,
+  // @ts-expect-error: swcMinify is used by next-pwa to fix SW compilation but is not in its types
+  swcMinify: false, // Fix ReferenceError: _async_to_generator is not defined in sw.js
   fallbacks: {
     document: "/~offline",
   },

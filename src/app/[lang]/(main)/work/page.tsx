@@ -69,7 +69,8 @@ export default async function WorkExperiencesPage({ params }: { params: Promise<
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <ExperiencesClient 
+      <div className="pt-[12px] w-full">
+        <ExperiencesClient 
         isLoggedIn={isLoggedIn}
         bookmarkedItemIds={experienceBookmarks}
 
@@ -87,6 +88,7 @@ export default async function WorkExperiencesPage({ params }: { params: Promise<
         editorial_text={dict.Presentation_Editorial}
             visit_external_link_text={dict.Visit_External_Link}
       />
+      </div>
     </main>
   );
 }

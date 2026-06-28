@@ -246,7 +246,8 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
                       <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Work}</h2>
                   </div>
               </div>
-              <ExperiencesClient
+              <div className="pt-[12px] w-full">
+        <ExperiencesClient
                 experiences={importantWork}
                 lang={lang}
                 layout="bento"
@@ -259,6 +260,7 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
                 isLoggedIn={isLoggedIn}
                 bookmarkedItemIds={experienceBookmarks}
               />
+      </div>
             </section>
           )}
 
@@ -270,7 +272,8 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
                       <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Project}</h2>
                   </div>
               </div>
-              <ExperiencesClient
+              <div className="pt-[12px] w-full">
+        <ExperiencesClient
                 experiences={importantProjects}
                 lang={lang}
                 layout="original"
@@ -283,6 +286,7 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
                 isLoggedIn={isLoggedIn}
                 bookmarkedItemIds={experienceBookmarks}
               />
+      </div>
             </section>
           )}
 
@@ -296,7 +300,8 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
                       <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Organization}</h2>
                   </div>
                   <div className="lg:contents">
-                    <ExperiencesClient
+                    <div className="pt-[12px] w-full">
+        <ExperiencesClient
                       experiences={importantOrg}
                       lang={lang}
                       layout="timeline"
@@ -309,6 +314,7 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
                       isLoggedIn={isLoggedIn}
                       bookmarkedItemIds={experienceBookmarks}
                     />
+      </div>
                   </div>
                 </section>
               )}
@@ -320,7 +326,8 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
                       <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Award}</h2>
                   </div>
                   <div className="lg:contents">
-                    <ExperiencesClient
+                    <div className="pt-[12px] w-full">
+        <ExperiencesClient
                       experiences={importantAwards}
                       lang={lang}
                       layout="timeline"
@@ -333,6 +340,7 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
                       isLoggedIn={isLoggedIn}
                       bookmarkedItemIds={experienceBookmarks}
                     />
+      </div>
                   </div>
                 </section>
               )}

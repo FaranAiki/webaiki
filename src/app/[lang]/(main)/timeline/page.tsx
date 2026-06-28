@@ -119,10 +119,11 @@ export default async function TimelinePage({ params }: { params: Promise<{ lang:
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <ExperiencesClient 
+      <div className="pt-[12px] w-full">
+        <ExperiencesClient 
         isLoggedIn={isLoggedIn}
         bookmarkedItemIds={experienceBookmarks}
-
+        layout="timeline"
         experiences={allExperiences} 
         lang={lang} 
         canChange={true} 
@@ -135,8 +136,9 @@ export default async function TimelinePage({ params }: { params: Promise<{ lang:
         modern_text={dict.Presentation_Modern}
         cinematic_text={dict.Presentation_Cinematic}
         editorial_text={dict.Presentation_Editorial}
-            visit_external_link_text={dict.Visit_External_Link}
+        visit_external_link_text={dict.Visit_External_Link}
       />
+      </div>
     </main>
   );
 }

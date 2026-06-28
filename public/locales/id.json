@@ -479,5 +479,18 @@
   "Command_Palette_Search_Placeholder": "Ketik perintah atau cari portofolio...",
   "Search_Results": "Hasil Pencarian",
   "No_Results_Found": "Tidak ada hasil yang ditemukan.",
-  "Searching": "Mencari..."
+  "Searching": "Mencari...",
+  "Offline_Title": "Anda sedang offline",
+  "Offline_Description": "Tidak ada internet. Silakan periksa Wi-Fi dan internet Anda.",
+  "Offline_Retry": "Coba lagi",
+  "Interest": "Minat",
+  "Filter_All": "Semua",
+  "Download_CV": "Unduh CV",
+  "Contact_Me": "Hubungi Saya",
+  "Send_Message": "Kirim Pesan",
+  "Name": "Nama",
+  "Message": "Pesan",
+  "Success_Message": "Pesan berhasil dikirim!",
+  "Error_Message": "Gagal mengirim pesan.",
+  "View_Project": "Lihat Proyek"
 }

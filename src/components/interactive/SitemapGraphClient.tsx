@@ -67,7 +67,9 @@ export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientPro
     
     if (containerRef.current) {
       observer.observe(containerRef.current);
-      updateDimensions();
+      window.requestAnimationFrame(() => {
+        updateDimensions();
+      });
     }
     
     return () => {

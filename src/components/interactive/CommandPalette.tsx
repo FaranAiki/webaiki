@@ -3,12 +3,11 @@
 import * as React from "react";
 import { useRouter } from "next/navigation";
 import { Command } from "cmdk";
-import { useTheme } from "next-themes";
 import { 
-  Search, Home, Briefcase, Code, Award, 
-  GraduationCap, Mail, Newspaper, Globe, Layout, Users, FileCheck, HelpCircle, Info, Loader2, X
+  Search, Briefcase, Code, Award, 
+  Layout, Users, FileCheck, HelpCircle, Info, Loader2, X
 } from "lucide-react";
-import { searchContent, getFullSearchPool, getSuggestions, SearchResult } from '@/app/search-actions';
+import { getFullSearchPool, getSuggestions, SearchResult } from '@/app/search-actions';
 import Image from 'next/image';
 import { useAppStore } from '@/lib/store';
 import { m as motion } from 'framer-motion';
@@ -55,7 +54,7 @@ export function CommandPalette({ lang, labels }: { lang: string; labels: Command
         }
       });
     }
-  }, [open, lang, pool.length]);
+  }, [open, lang, pool.length, query]);
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -124,19 +123,7 @@ export function CommandPalette({ lang, labels }: { lang: string; labels: Command
     }
   }, [query, pool, suggestions]);
 
-  const runCommand = React.useCallback((command: () => void, url?: string) => {
-    if (url) {
-      setRedirecting(url);
-      setGlobalLoading(true);
-    }
-    setOpen(false);
-    command();
-    
-    // Reset redirecting state after a delay to allow the page to transition
-    if (url) {
-      setTimeout(() => setRedirecting(null), 1000);
-    }
-  }, [setGlobalLoading]);
+
 
   const navigateToResult = React.useCallback((result: SearchResult) => {
     const url = result.url;

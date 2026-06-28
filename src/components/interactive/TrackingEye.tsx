@@ -19,11 +19,14 @@ export default function TrackingEye() {
     let frameId: number | null = null;
 
     const updateRect = () => {
-      if (eyeRef.current) {
-        cachedRect = eyeRef.current.getBoundingClientRect();
-      }
+      requestAnimationFrame(() => {
+        if (eyeRef.current) {
+          cachedRect = eyeRef.current.getBoundingClientRect();
+        }
+      });
     };
 
+    // Defer initial measurement to allow layout to settle
     updateRect();
     window.addEventListener('resize', updateRect);
     

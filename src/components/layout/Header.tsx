@@ -26,7 +26,7 @@ import {
 } from 'lucide-react';
 
 import { usePresentation } from '@/components/providers/PresentationContext';
-import { formatCJK } from '@/lib/utils';
+import { formatCJK, getThemeLogoFilter } from '@/lib/utils';
 import { useAppStore } from '@/lib/store';
 import { useAuthActions } from '@/app/auth-hooks';
 
@@ -457,11 +457,7 @@ export default function Header(props: HeaderProps) {
                             height={32}
                             className="scale-[1.01]"
                             style={{ 
-                                filter: settings?.color === 'pink' ? 'hue-rotate(120deg) saturate(1.2)' : 
-                                        settings?.color === 'green' ? 'hue-rotate(-90deg) saturate(1.2)' : 
-                                        settings?.color === 'purple' ? 'hue-rotate(60deg)' : 
-                                        settings?.color === 'orange' ? 'hue-rotate(180deg) saturate(1.5)' : 
-                                        settings?.color === 'mono' ? 'grayscale(100%)' : 'none',
+                                filter: getThemeLogoFilter(settings?.color || ''),
                                 transition: 'filter 0.3s ease-in-out'
                             }}
                             priority

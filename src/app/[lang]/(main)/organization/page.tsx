@@ -56,7 +56,8 @@ export default async function OrganizationExperiencesPage({ params }: { params: 
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <ExperiencesClient 
+      <div className="pt-[12px] w-full">
+        <ExperiencesClient 
         isLoggedIn={isLoggedIn}
         bookmarkedItemIds={experienceBookmarks}
 
@@ -74,6 +75,7 @@ export default async function OrganizationExperiencesPage({ params }: { params: 
         editorial_text={dict.Presentation_Editorial}
             visit_external_link_text={dict.Visit_External_Link}
       />
+      </div>
     </main>
   );
 }

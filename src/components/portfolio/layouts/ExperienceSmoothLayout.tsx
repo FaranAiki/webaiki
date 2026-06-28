@@ -74,7 +74,7 @@ export default function ExperienceSmoothLayout() {
                                     job.image[0].toLowerCase().endsWith('.pdf') ? (
                                         <PdfRenderer url={job.image[0]} isExpanded />
                                     ) : (
-                                        <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="(max-width: 768px) 50vw, 400px" quality={75} priority={true} className="object-cover" />
+                                        <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" quality={75} priority={true} className="object-cover" />
                                     )
                                 ) : (
                                     <PlaceholderIcon company={job.company} />

@@ -6,6 +6,8 @@ import { m as motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useAppStore } from "@/lib/store";
 
+import { getThemeLogoFilter } from "@/lib/utils";
+
 export default function PageTransitionLoader({ label }: { label: string }) {
   const [isNavigating, setIsNavigating] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -106,16 +108,6 @@ export default function PageTransitionLoader({ label }: { label: string }) {
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference - (progress / 100) * circumference;
 
-  const getFilterStr = (colorName: string) => {
-    switch (colorName) {
-      case 'rose': return 'hue-rotate(150deg) saturate(1.5)';
-      case 'emerald': return 'hue-rotate(-120deg) saturate(1.2)';
-      case 'purple': return 'hue-rotate(45deg) saturate(1.5)';
-      case 'amber': return 'hue-rotate(-180deg) saturate(2)';
-      default: return 'none';
-    }
-  };
-
   return (
     <AnimatePresence>
       {isNavigating && (
@@ -139,7 +131,7 @@ export default function PageTransitionLoader({ label }: { label: string }) {
                    width={24} 
                    height={24} 
                    className="opacity-80 transition-all duration-500" 
-                   style={{ filter: getFilterStr(colorTheme) }}
+                   style={{ filter: getThemeLogoFilter(colorTheme), transition: 'filter 0.3s ease-in-out' }}
                    priority 
                  />
               </div>

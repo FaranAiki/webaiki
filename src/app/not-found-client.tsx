@@ -3,6 +3,9 @@ import { m as motion } from "framer-motion";
 import Link from "next/link";
 import { Home, Star } from "lucide-react";
 import SearchBar from "@/components/shared/SearchBar";
+import { useSettings } from "@/components/providers/SettingsContext";
+import { getThemeLogoFilter } from "@/lib/utils";
+import Image from "next/image";
 
 interface NotFoundClientProps {
   dict: Record<string, string>;
@@ -10,6 +13,7 @@ interface NotFoundClientProps {
 }
 
 export default function NotFoundClient({ dict, lang }: NotFoundClientProps) {
+  const settings = useSettings();
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -23,18 +27,21 @@ export default function NotFoundClient({ dict, lang }: NotFoundClientProps) {
         >
           404
         </div>
-        {/*
         <div className="absolute inset-0 flex items-center justify-center">
-           <div className="w-32 h-32 md:w-48 md:h-48 relative rounded-full overflow-hidden border-4 border-theme-500/50 shadow-2xl">
+           <div className="w-24 h-24 md:w-32 md:h-32 relative rounded-full overflow-hidden border-4 border-theme-500/50 shadow-2xl bg-theme-surface flex items-center justify-center p-4">
               <Image
-                src="/images/photo_faran_aiki/1_fa_photo_linkedin.webp"
+                src="/icon.ico"
                 alt="404 Not Found Faran Aiki Portfolio"
-                fill
-                className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                width={80}
+                height={80}
+                className="object-contain"
+                style={{ 
+                  filter: getThemeLogoFilter(settings?.color || ''),
+                  transition: 'filter 0.3s ease-in-out'
+                }}
               />
            </div>
         </div>
-        */}
 
       </div>
 

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getDictionary } from '@/components/layout/Translator';
 import { getLanguageAlternates, getBaseMetadata, SITE_URL, getPersonSchema, getWebsiteSchema, getProfilePageSchema } from '@/lib/seo';
 import HomeClient from "./HomeClient";
-import { getNews } from '@/app/actions';
+import { getNews, getFeedbacks } from '@/app/actions';
 import { NewsItem } from '@/lib/types';
 import LatestActivity from '@/components/interactive/LatestActivity';
 
@@ -40,11 +40,30 @@ export default async function HomePage({
   const dict = await getDictionary(lang);
   
 
-  let news: NewsItem[] = [];
+  let combinedActivity: NewsItem[] = [];
   try {
-    news = await getNews() as unknown as NewsItem[];
+    const [fetchedNews, fetchedFeedbacks] = await Promise.all([
+      getNews(),
+      getFeedbacks()
+    ]);
+    
+    const mappedFeedbacks = (fetchedFeedbacks || []).map((fb: { id: string, content: string, image: string | null, createdAt: Date, user?: { id: string, name: string | null, avatarUrl: string | null } | null }) => ({
+      id: fb.id,
+      title: dict.Feedback_From ? `${dict.Feedback_From} ${fb.user?.name || 'Anonymous'}` : `Feedback from ${fb.user?.name || 'Anonymous'}`,
+      content: fb.content,
+      image: fb.image || null,
+      createdAt: fb.createdAt,
+      author: {
+        id: fb.user?.id || 'unknown',
+        name: fb.user?.name || 'Anonymous',
+        avatarUrl: fb.user?.avatarUrl || null,
+      }
+    })) as unknown as NewsItem[];
+
+    combinedActivity = [...(fetchedNews as unknown as NewsItem[]), ...mappedFeedbacks]
+      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
   } catch (error) {
-    console.error("Error fetching news in HomePage:", error);
+    console.error("Error fetching activity in HomePage:", error);
   }
 
   const jsonLd = {
@@ -63,7 +82,7 @@ export default async function HomePage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <HomeClient dict={dict}>
-        <LatestActivity lang={lang} dict={dict} initialNews={news} />
+        <LatestActivity lang={lang} dict={dict} initialNews={combinedActivity} />
       </HomeClient>
     </>
   );

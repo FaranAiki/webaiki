@@ -48,12 +48,11 @@ export async function getSuggestions(lang: string, count: number = 5): Promise<S
   const now = new Date();
   const seed = now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate();
   
-  const lcg = (s: number) => {
-    return (s * 1664525 + 1013904223) % 4294967296;
-  };
-
-  const suggestions: SearchResult[] = [];
   let currentSeed = seed;
+  const lcg = () => {
+    currentSeed = (Math.imul(currentSeed, 1664525) + 1013904223) | 0;
+    return currentSeed >>> 0;
+  };
 
   // 1. Static pages as high-priority suggestions
   const basePages: SearchResult[] = [
@@ -82,21 +81,22 @@ export async function getSuggestions(lang: string, count: number = 5): Promise<S
   }
 
   const fullPool = [...basePages, ...dynamicPool];
-  const usedIndices = new Set<number>();
-
-  while (suggestions.length < Math.min(count, fullPool.length)) {
-    currentSeed = lcg(currentSeed);
-    const index = currentSeed % fullPool.length;
-    if (!usedIndices.has(index)) {
-      suggestions.push(fullPool[index]);
-      usedIndices.add(index);
-    }
+  for (let i = fullPool.length - 1; i > 0; i--) {
+    const j = lcg() % (i + 1);
+    [fullPool[i], fullPool[j]] = [fullPool[j], fullPool[i]];
   }
-
-  return suggestions;
+  return fullPool.slice(0, count);
 }
 
+const searchPoolCache = new Map<string, { pool: SearchResult[], timestamp: number }>();
+const CACHE_TTL = 1000 * 60 * 60; // 1 hour
+
 export async function getFullSearchPool(lang: string): Promise<SearchResult[]> {
+  const cached = searchPoolCache.get(lang);
+  if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
+    return cached.pool;
+  }
+
   const dict = await getDictionary(lang);
   const pool: SearchResult[] = [];
 
@@ -212,13 +212,7 @@ export async function getFullSearchPool(lang: string): Promise<SearchResult[]> {
   const searchInList = (list: YearGroup[], type: 'work' | 'project' | 'organization' | 'award') => {
     list.forEach(yearGroup => {
       yearGroup.jobs.forEach((job) => {
-        const item: Partial<SearchResult> = {
-          title: job.title,
-          description: job.description,
-          company: job.company,
-          date: job.date,
-          tags: job.tag,
-        };
+
 
         const anchor = `#exp-${job.title.toLowerCase().replace(/\s+/g, '-')}`;
         pool.push({
@@ -374,7 +368,9 @@ export async function getFullSearchPool(lang: string): Promise<SearchResult[]> {
     uniquePoolMap.set(key, res);
   });
 
-  return Array.from(uniquePoolMap.values());
+  const finalPool = Array.from(uniquePoolMap.values());
+  searchPoolCache.set(lang, { pool: finalPool, timestamp: Date.now() });
+  return finalPool;
 }
 
 export async function searchContent(query: string, lang: string): Promise<SearchResult[]> {

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { m as motion } from "framer-motion";
 import { useSettings } from "@/components/providers/SettingsContext";
+import { getThemeLogoFilter } from "@/lib/utils";
 
 /**
  * Loading component for localized routes.
@@ -87,11 +88,7 @@ export default function Loading() {
             height={110}
             className="rounded-full shadow-lg"
             style={{ 
-                filter: settings?.color === 'pink' ? 'hue-rotate(120deg) saturate(1.2)' : 
-                        settings?.color === 'green' ? 'hue-rotate(-90deg) saturate(1.2)' : 
-                        settings?.color === 'purple' ? 'hue-rotate(60deg)' : 
-                        settings?.color === 'orange' ? 'hue-rotate(180deg) saturate(1.5)' : 
-                        settings?.color === 'mono' ? 'grayscale(100%)' : 'none',
+                filter: getThemeLogoFilter(settings?.color || ''),
                 transition: 'filter 0.3s ease-in-out'
             }}
             priority

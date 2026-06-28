@@ -124,7 +124,7 @@ export default function PortfolioSummaryItem({
       </div>
 
       <div className="flex flex-wrap items-center gap-x-3 text-sm md:text-xs font-medium tracking-wider portfolio-item-meta">
-        <span className="text-theme-600 dark:text-theme-400 portfolio-item-company">{company}</span>
+        <span className="text-theme-800 dark:text-theme-200 portfolio-item-company">{company}</span>
         <span className="text-[var(--text-muted)] flex items-center gap-1 portfolio-item-date">
           <Calendar size={10} />
           {date}

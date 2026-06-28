@@ -5,7 +5,7 @@ import { useTheme } from 'next-themes';
 import Image from 'next/image'
 import { m as motion, AnimatePresence } from 'framer-motion';
 const SLIDE_DURATION = 10000;
-/* 
+/*
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function GeometricPattern({isDark}: GeometricPatternProps) {
   // Commented out to prevent JS parsing/execution overhead as it is unused and slows down performance
@@ -52,10 +52,10 @@ export default function Background({ carousel, showOverlay = true }: BackgroundP
 
   const isDark = mounted && resolvedTheme === 'dark';
   const overlayClass = !mounted
-    ? "from-theme-surface/90 via-theme-surface/75 to-theme-surface/95" // Default for SSR
+    ? "from-theme-surface/85 via-theme-surface/90 to-theme-surface/95" // Default for SSR
     : isDark
-      ? "from-theme-surface/93 via-theme-surface/85 to-theme-surface/93"
-      : "from-theme-surface/85 via-theme-surface/85 to-theme-surface/85";
+      ? "from-theme-surface/90 via-theme-surface/91 to-theme-surface/93"
+      : "from-theme-surface/90 via-theme-surface/91 to-theme-surface/93";
 
   return (
     <div className={`presentation-background sticky top-0 left-0 w-full h-screen -mb-[100vh] z-[-1] pointer-events-none transform-gpu contain-strict overflow-hidden bg-theme-bg dark:bg-theme-bg-dark transition-colors duration-1000`}>

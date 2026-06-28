@@ -25,11 +25,14 @@ export default function TrackingIcon({ type }: TrackerProps) {
     let frameId: number | null = null;
 
     const updateRect = () => {
-      if (containerRef.current) {
-        cachedRect = containerRef.current.getBoundingClientRect();
-      }
+      requestAnimationFrame(() => {
+        if (containerRef.current) {
+          cachedRect = containerRef.current.getBoundingClientRect();
+        }
+      });
     };
 
+    // Defer initial measurement to allow layout to settle
     updateRect();
     window.addEventListener('resize', updateRect);
     
