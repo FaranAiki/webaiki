@@ -43,11 +43,11 @@ export default function CertificatesPresentationLayout() {
   }, []);
 
   return (
-    <div ref={containerRef} className="w-full relative presentation-container flex overflow-x-auto snap-x snap-mandatory hide-scrollbar scroll-smooth">
+    <div ref={containerRef} className="w-full h-[calc(100vh-6rem)] relative presentation-container flex overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth">
       {allSlides.map((slide, idx) => (
         <FadeInSection
           key={`${slide.category}-${slide.year}-p${slide.part}`}
-          className="w-full min-w-full min-h-[calc(100vh-6rem)] flex-shrink-0 snap-center py-8 flex flex-col justify-center"
+          className="w-full min-w-full h-full flex-shrink-0 snap-center flex flex-col justify-center"
           slideIndex={idx + 1}
           totalSlides={allSlides.length}
         >

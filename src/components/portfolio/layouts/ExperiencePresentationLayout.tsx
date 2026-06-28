@@ -54,7 +54,7 @@ export default function ExperiencePresentationLayout() {
     }, []);
 
     return (
-        <div className="w-full relative">
+        <div className="w-full relative h-[calc(100vh-6rem)]">
             <div className={`fixed bottom-8 left-8 z-[100] flex items-center p-1.5 rounded-xl border backdrop-blur-md shadow-2xl transition-all duration-300 border-theme-border ring-1 ring-black/5 dark:ring-white/10 print:hidden`}>
                 <div className="flex gap-1">
                     {[
@@ -78,11 +78,11 @@ export default function ExperiencePresentationLayout() {
                 </div>
             </div>
 
-            <div ref={containerRef} className="w-full relative presentation-container flex overflow-x-auto snap-x snap-mandatory hide-scrollbar scroll-smooth">
+            <div ref={containerRef} className="w-full h-full relative presentation-container flex overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth">
             {allJobs.map((job, idx) => (
                 <FadeInSection
                     key={`pres-${idx}`}
-                    className="w-full min-w-full min-h-[calc(100vh-6rem)] flex-shrink-0 snap-center py-8 flex flex-col justify-center"
+                    className="w-full min-w-full h-full flex-shrink-0 snap-center flex flex-col justify-center"
                     slideIndex={idx + 1}
                     totalSlides={allJobs.length}
                 >
@@ -182,35 +182,35 @@ export default function ExperiencePresentationLayout() {
 
                     {/* 3. Editorial */}
                     {presentationLayout === 'minimal' && (
-                        <div className={`w-full h-full flex items-center justify-center p-8 md:p-16 relative overflow-hidden transition-colors duration-500`}>
+                        <div className={`w-full h-full flex items-center justify-center p-4 md:p-8 relative overflow-hidden transition-colors duration-500`}>
                             <div className={`absolute top-0 left-0 w-full h-full flex items-center justify-center pointer-events-none opacity-[0.04] overflow-hidden select-none transition-opacity duration-700`}>
-                                <span className={`text-[35vw] font-black leading-none text-theme-500`}>{job.year}</span>
+                                <span className={`text-[25vw] font-black leading-none text-theme-500`}>{job.year}</span>
                             </div>
 
-                            <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-12 gap-16 items-center relative z-10">
-                                <div className="md:col-span-7 space-y-10">
-                                    <div className="space-y-4">
+                            <div className="max-w-5xl w-full grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center relative z-10">
+                                <div className="md:col-span-7 space-y-6">
+                                    <div className="space-y-3">
                                         <div className="flex items-center gap-3">
-                                            <p className="text-theme-700 dark:text-theme-300 font-black text-xl tracking-tight">{job.date}</p>
+                                            <p className="text-theme-700 dark:text-theme-300 font-black text-lg tracking-tight">{job.date}</p>
                                             <span className="flex-grow h-px bg-theme-500/30" />
                                         </div>
-                                        <h3 className={`text-3xl md:text-5xl font-black text-foreground leading-[0.85] tracking-tighter`}>
+                                        <h3 className={`text-2xl md:text-4xl font-black text-foreground leading-[0.9] tracking-tighter`}>
                                             {job.title}
                                             <TagBadge labels={job.tag} />
                                         </h3>
                                         <div className="flex items-center gap-4">
-                                            <h4 className="text-2xl md:text-3xl font-bold text-theme-700 dark:text-theme-300 italic tracking-tight">{job.company}</h4>
+                                            <h4 className="text-xl md:text-2xl font-bold text-theme-700 dark:text-theme-300 italic tracking-tight">{job.company}</h4>
                                             <BookmarkButton itemType="experience" itemId={job.title} initialBookmarked={bookmarkedItemIds.includes(job.title)} isLoggedIn={!!isLoggedIn} className="relative" />
                                         </div>
                                     </div>
 
-                                    <div className="max-w-2xl">
-                                        <HoverableWords className={`text-xl md:text-2xl leading-snug font-medium text-foreground`}>
+                                    <div className="max-w-xl">
+                                        <HoverableWords className={`text-lg md:text-xl leading-relaxed font-medium text-foreground`}>
                                             {job.description}
                                         </HoverableWords>
 
                                         {job.url && (
-                                            <a href={job.url} target="_blank" rel="noopener noreferrer" aria-label={`${translations?.visit_external_link_text} ${job.title}`} className="mt-10 flex items-center gap-2 px-8 py-4 bg-theme-500 text-white rounded-full font-black text-base hover:bg-theme-600 transition-all w-fit shadow-theme-shadow hover:scale-105">
+                                            <a href={job.url} target="_blank" rel="noopener noreferrer" aria-label={`${translations?.visit_external_link_text} ${job.title}`} className="mt-8 flex items-center gap-2 px-6 py-3 bg-theme-500 text-white rounded-full font-bold text-sm hover:bg-theme-600 transition-all w-fit shadow-theme-shadow hover:scale-105">
                                                 <ExternalLink size={20} />
                                                 Explore Now
                                             </a>
