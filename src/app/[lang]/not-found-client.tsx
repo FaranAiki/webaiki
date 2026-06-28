@@ -2,7 +2,6 @@
 import { m as motion } from "framer-motion";
 import Link from "next/link";
 import { Home, Star } from "lucide-react";
-import SearchBar from "@/components/shared/SearchBar";
 import { useSettings } from "@/components/providers/SettingsContext";
 import { getThemeLogoFilter } from "@/lib/utils";
 import Image from "next/image";
@@ -53,8 +52,19 @@ export default function NotFoundClient({ dict, lang }: NotFoundClientProps) {
         {dict.Not_Found_Description || "Ups! Halaman yang Anda cari sepertinya sedang tersesat di dimensi lain."}
       </p>
 
-      <div className="w-full max-w-md mb-12">
-        <SearchBar dict={dict} />
+      <div className="w-full max-w-md mb-12 flex justify-center">
+        <button
+          onClick={() => {
+            document.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', ctrlKey: true }));
+          }}
+          className="flex items-center space-x-3 px-8 py-4 rounded-full bg-theme-surface border-2 border-theme-border font-bold hover:bg-theme-surface-strong hover:scale-105 transition-all duration-300 w-full justify-center shadow-lg group"
+        >
+          <Star size={20} className="text-theme-500 group-hover:rotate-12 transition-transform" />
+          <span className="text-theme-muted group-hover:text-foreground transition-colors">{dict.Command_Palette_Search_Placeholder || "Search something..."}</span>
+          <kbd className="hidden sm:inline-flex items-center gap-1 rounded border border-theme-border bg-theme-surface px-2 py-0.5 font-mono text-xs font-medium text-theme-muted opacity-100 ml-2">
+            <span className="text-xs">⌘</span>K
+          </kbd>
+        </button>
       </div>
 
       <div className="flex flex-wrap items-center justify-center gap-4">

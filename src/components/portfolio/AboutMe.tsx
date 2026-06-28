@@ -163,10 +163,8 @@ export function PortfolioAboutHeader(props: AboutMeProps) {
 export function AboutSection(props: AboutSubSectionProps) {
   const { responsiveJustifyClass, justifyClass, titleClass, textClass } = useAboutLayout(props);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     if (!props.carouselPhotos || props.carouselPhotos.length <= 1) return;
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % props.carouselPhotos.length);
@@ -195,8 +193,8 @@ export function AboutSection(props: AboutSubSectionProps) {
             <div
               className={`relative ${props.isCompact ? 'w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56' : 'w-64 h-64 md:w-80 md:h-80 lg:w-[400px] lg:h-[400px]'} flex justify-center items-center overflow-hidden transform-gpu`}
             >
-              <AnimatePresence mode="wait">
-                {mounted && props.carouselPhotos && props.carouselPhotos.length > 0 ? (
+              <AnimatePresence mode="wait" initial={false}>
+                {props.carouselPhotos && props.carouselPhotos.length > 0 && (
                 <motion.div
                   key={currentIndex}
                   initial={{ opacity: 0, scale: 1.1 }}
@@ -223,8 +221,6 @@ export function AboutSection(props: AboutSubSectionProps) {
                     fetchPriority="high"
                   />
                 </motion.div>
-                ) : (
-                    <div className="w-full h-full bg-theme-surface-strong animate-pulse rounded-full" />
                 )}
               </AnimatePresence>
             </div>

@@ -156,6 +156,17 @@ export function CommandPalette({ lang, labels }: { lang: string; labels: Command
 
   return (
     <>
+      <button
+        onClick={() => setOpen(true)}
+        className="flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 text-sm text-[var(--text-muted)] hover:text-foreground bg-theme-surface border border-theme-border rounded-full shadow-sm hover:shadow-md transition-all duration-300 group"
+        aria-label="Search"
+      >
+        <Search size={16} className="group-hover:text-theme-500 transition-colors" />
+        <span className="hidden sm:inline-block font-medium">Search...</span>
+        <kbd className="hidden md:inline-flex items-center gap-1 rounded border border-theme-border bg-theme-surface-strong px-1.5 font-mono text-[10px] font-medium opacity-100 ml-2">
+          <span className="text-xs">⌘</span>K
+        </kbd>
+      </button>
       <Command.Dialog
         open={open}
         onOpenChange={setOpen}
