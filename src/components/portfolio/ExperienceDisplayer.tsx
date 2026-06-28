@@ -15,22 +15,12 @@ import {
 
 import { ExperienceProvider } from './ExperienceContext';
 
-import dynamic from 'next/dynamic';
-import { Loader2 } from 'lucide-react';
-
-const LoadingFallback = () => (
-  <div className="w-full min-h-[300px] flex items-center justify-center">
-    <Loader2 className="animate-spin text-theme-500" size={32} />
-  </div>
-);
-
-// Dynamically import layouts to code-split and reduce initial client bundle size
-const ExperienceOriginalLayout = dynamic(() => import('./layouts/ExperienceOriginalLayout'), { loading: () => <LoadingFallback /> });
-const ExperienceTimelineLayout = dynamic(() => import('./layouts/ExperienceTimelineLayout'), { loading: () => <LoadingFallback /> });
-const ExperienceGridLayout = dynamic(() => import('./layouts/ExperienceGridLayout'), { loading: () => <LoadingFallback /> });
-const ExperienceBentoLayout = dynamic(() => import('./layouts/ExperienceBentoLayout'), { loading: () => <LoadingFallback /> });
-const ExperienceSmoothLayout = dynamic(() => import('./layouts/ExperienceSmoothLayout'), { loading: () => <LoadingFallback /> });
-const ExperiencePresentationLayout = dynamic(() => import('./layouts/ExperiencePresentationLayout'), { loading: () => <LoadingFallback /> });
+import ExperienceOriginalLayout from './layouts/ExperienceOriginalLayout';
+import ExperienceTimelineLayout from './layouts/ExperienceTimelineLayout';
+import ExperienceGridLayout from './layouts/ExperienceGridLayout';
+import ExperienceBentoLayout from './layouts/ExperienceBentoLayout';
+import ExperienceSmoothLayout from './layouts/ExperienceSmoothLayout';
+import ExperiencePresentationLayout from './layouts/ExperiencePresentationLayout';
 
 export type Job = {
     date: string;

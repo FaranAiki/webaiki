@@ -81,11 +81,17 @@ export async function getSuggestions(lang: string, count: number = 5): Promise<S
   }
 
   const fullPool = [...basePages, ...dynamicPool];
-  for (let i = fullPool.length - 1; i > 0; i--) {
-    const j = lcg() % (i + 1);
-    [fullPool[i], fullPool[j]] = [fullPool[j], fullPool[i]];
+  const result: SearchResult[] = [];
+  
+  for (let i = 0; i < count && fullPool.length > 0; i++) {
+    const idx = lcg() % fullPool.length;
+    result.push(fullPool[idx]);
+    // Swap with last element and pop to avoid duplicates (O(1))
+    fullPool[idx] = fullPool[fullPool.length - 1];
+    fullPool.pop();
   }
-  return fullPool.slice(0, count);
+  
+  return result;
 }
 
 const searchPoolCache = new Map<string, { pool: SearchResult[], timestamp: number }>();

@@ -129,7 +129,7 @@ export function PortfolioAboutHeader(props: AboutMeProps) {
               {formatCJK(props.about_text_1, props.lang)}
             </HoverableWords>
             <div className="p-4 rounded-xl bg-theme-surface-strong border border-theme-border hover:scale-[1.02] transition-transform duration-300 group">
-              <p className={`text-xs font-bold text-theme-500 mb-2 group-hover:text-theme-400 transition-colors`}>{props.about_philosophy_title}</p>
+              <p className={`text-xs font-bold text-theme-700 dark:text-theme-300 mb-2 group-hover:text-theme-600 dark:group-hover:text-theme-200 transition-colors`}>{props.about_philosophy_title}</p>
               <HoverableWords className={`text-sm italic ${textClass} opacity-80 group-hover:opacity-100 transition-opacity`}>
                 {formatCJK(props.about_philosophy, props.lang)}
               </HoverableWords>

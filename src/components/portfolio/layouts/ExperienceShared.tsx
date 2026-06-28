@@ -95,7 +95,7 @@ export const TimelineActiveImage = React.memo(({ activeJob, shimmer600x400 }: { 
                     ) : (
                         <Image
                             fill
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            sizes="(max-width: 768px) 80vw, (max-width: 1200px) 40vw, 30vw"
                             src={activeImageSrc!}
                             placeholder="blur"
                             blurDataURL={shimmer600x400}

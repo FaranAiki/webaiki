@@ -5,20 +5,11 @@ import { LayoutSwitcher } from '../shared/LayoutSwitcher';
 import { LayoutPanelLeft, Milestone, LayoutGrid, Grid2X2 } from 'lucide-react';
 import { CertificatesProvider, useCertificatesContext, CertificateData } from './CertificatesContext';
 export type { CertificateData };
-import dynamic from 'next/dynamic';
-import { Loader2 } from 'lucide-react';
-
-const LoadingFallback = () => (
-  <div className="w-full min-h-[300px] flex items-center justify-center">
-    <Loader2 className="animate-spin text-theme-500" size={32} />
-  </div>
-);
-
-const CertificatesPresentationLayout = dynamic(() => import('./layouts/CertificatesPresentationLayout'), { loading: () => <LoadingFallback /> });
-const CertificatesOriginalLayout = dynamic(() => import('./layouts/CertificatesOriginalLayout'), { loading: () => <LoadingFallback /> });
-const CertificatesTimelineLayout = dynamic(() => import('./layouts/CertificatesTimelineLayout'), { loading: () => <LoadingFallback /> });
-const CertificatesGridLayout = dynamic(() => import('./layouts/CertificatesGridLayout'), { loading: () => <LoadingFallback /> });
-const CertificatesBentoLayout = dynamic(() => import('./layouts/CertificatesBentoLayout'), { loading: () => <LoadingFallback /> });
+import CertificatesPresentationLayout from './layouts/CertificatesPresentationLayout';
+import CertificatesOriginalLayout from './layouts/CertificatesOriginalLayout';
+import CertificatesTimelineLayout from './layouts/CertificatesTimelineLayout';
+import CertificatesGridLayout from './layouts/CertificatesGridLayout';
+import CertificatesBentoLayout from './layouts/CertificatesBentoLayout';
 
 function CertificatesContent() {
   const { 
