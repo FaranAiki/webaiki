@@ -15,12 +15,15 @@ import {
 
 import { ExperienceProvider } from './ExperienceContext';
 
-import ExperienceOriginalLayout from './layouts/ExperienceOriginalLayout';
-import ExperienceTimelineLayout from './layouts/ExperienceTimelineLayout';
-import ExperienceGridLayout from './layouts/ExperienceGridLayout';
-import ExperienceBentoLayout from './layouts/ExperienceBentoLayout';
-import ExperienceSmoothLayout from './layouts/ExperienceSmoothLayout';
-import ExperiencePresentationLayout from './layouts/ExperiencePresentationLayout';
+import dynamic from 'next/dynamic';
+
+
+const ExperienceOriginalLayout = dynamic(() => import('./layouts/ExperienceOriginalLayout'));
+const ExperienceTimelineLayout = dynamic(() => import('./layouts/ExperienceTimelineLayout'));
+const ExperienceGridLayout = dynamic(() => import('./layouts/ExperienceGridLayout'));
+const ExperienceBentoLayout = dynamic(() => import('./layouts/ExperienceBentoLayout'));
+const ExperienceSmoothLayout = dynamic(() => import('./layouts/ExperienceSmoothLayout'));
+const ExperiencePresentationLayout = dynamic(() => import('./layouts/ExperiencePresentationLayout'));
 
 export type Job = {
     date: string;

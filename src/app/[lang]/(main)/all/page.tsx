@@ -9,13 +9,11 @@ import type { SocialLink } from '@/components/portfolio/SocialDisplay';
 import { Github, Linkedin, Instagram, Twitter, Youtube, Share2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
-
-const ExperiencesClient = dynamic(() => import('@/components/portfolio/ExperienceDisplayer'));
-const CertificatesDisplay = dynamic(() => import('@/components/portfolio/CertificatesDisplay'));
-const InteractiveCollections = dynamic(() => import('@/components/portfolio/InteractiveCollections'));
-const FAQ = dynamic(() => import('@/components/portfolio/FAQ'));
-const SocialDisplay = dynamic(() => import('@/components/portfolio/SocialDisplay'));
+import ExperiencesClient from '@/components/portfolio/ExperienceDisplayer';
+import CertificatesDisplay from '@/components/portfolio/CertificatesDisplay';
+import InteractiveCollections from '@/components/portfolio/InteractiveCollections';
+import FAQ from '@/components/portfolio/FAQ';
+import SocialDisplay from '@/components/portfolio/SocialDisplay';
 
 import { getLanguageAlternates, getBaseMetadata, getPersonSchema, getBreadcrumbSchema, getFaqSchema, SITE_URL } from '@/lib/seo';
 import PageEntrance from "@/components/shared/PageEntrance";

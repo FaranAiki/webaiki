@@ -56,13 +56,13 @@ export default function ExperiencePresentationLayout() {
             {allJobs.map((job, idx) => (
                 <FadeInSection
                     key={`pres-${idx}`}
-                    className="w-full h-full flex-shrink-0"
+                    className="w-full py-12 flex-shrink-0 border-b border-theme-border/30 last:border-0"
                     slideIndex={idx + 1}
                     totalSlides={allJobs.length}
                 >
                     {/* 1. Modern */}
                     {presentationLayout === 'modern' && (
-                        <div className={`text-foreground w-full h-full px-4 md:px-8 flex flex-col md:flex-row print:flex-row gap-4 md:gap-12 items-center justify-center mx-auto pt-20 pb-10`}>
+                        <div className={`text-foreground w-full px-4 md:px-8 flex flex-col md:flex-row print:flex-row gap-4 md:gap-12 items-center justify-center mx-auto pt-20 pb-10`}>
                             <div className="flex-[1.2] flex flex-col justify-center space-y-6 max-w-2xl print:max-w-none">
                                 <div className="space-y-2">
                                     <h2 className="text-theme-700 dark:text-theme-300 font-bold text-xl md:text-2xl tracking-tight">{job.year}</h2>
