@@ -162,10 +162,12 @@ async headers() {
   ];
 },
 
-images: {
+  images: {
   // Optimization: Support modern image formats
   formats: ['image/avif', 'image/webp'],
-  qualities: [60, 75, 80, 85, 90],
+  // Add intermediate sizes to prevent rounding up from 400px -> 640px
+  imageSizes: [16, 32, 48, 64, 96, 128, 256, 300, 350, 384],
+  deviceSizes: [400, 450, 500, 550, 640, 750, 828, 1080, 1200, 1920, 2048, 3840],
   // Optimization: Cache optimized images at the edge for a week
   minimumCacheTTL: 604800,
   remotePatterns: [

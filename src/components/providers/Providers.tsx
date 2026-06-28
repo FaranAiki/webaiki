@@ -43,7 +43,7 @@ function GlobalLoadingReset() {
 /**
  * A stable outer provider that ensures hook execution order remains constant.
  */
-export function Providers({ children }: { children: React.ReactNode }) {
+export function Providers({ children, isBot = false }: { children: React.ReactNode, isBot?: boolean }) {
   const [loadingLabel, setLoadingLabel] = useState<string | undefined>(undefined);
 
   return (
@@ -57,7 +57,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
                   <Suspense fallback={null}>
                     <GlobalLoadingReset />
                   </Suspense>
-                  <LoadingOverlay label={loadingLabel} />
+                  <LoadingOverlay label={loadingLabel} isBot={isBot} />
                   {children}
                 </LazyMotion>
               </ThemeProvider>

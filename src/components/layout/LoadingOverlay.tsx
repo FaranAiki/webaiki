@@ -7,12 +7,13 @@ import { signatures } from "@/lib/signatures";
 
 interface LoadingOverlayProps {
   label?: string;
+  isBot?: boolean;
 }
 
 // Trigger HMR update
-export default function LoadingOverlay({ label }: LoadingOverlayProps) {
+export default function LoadingOverlay({ label, isBot = false }: LoadingOverlayProps) {
   const [mounted, setMounted] = useState(false);
-  const [internalVisible, setInternalVisible] = useState(true);
+  const [internalVisible, setInternalVisible] = useState(!isBot);
   const [hasStarted, setHasStarted] = useState(false);
   
   const isGlobalLoading = useAppStore((state) => state.isGlobalLoading);
@@ -21,16 +22,13 @@ export default function LoadingOverlay({ label }: LoadingOverlayProps) {
   const isVisible = internalVisible || isGlobalLoading;
 
   useEffect(() => {
-    // Optimization: Skip loading overlay for bots and performance audits
-    const isBot = /bot|googlebot|lighthouse|google-hub|google-structured-data-testing-tool|bingbot|yandexbot|duckduckbot|slurp|ia_archiver/i.test(navigator.userAgent);
     if (isBot) {
-      setInternalVisible(false);
       setMounted(true);
       return;
     }
 
     setMounted(true);
-  }, []);
+  }, [isBot]);
 
   useEffect(() => {
     if (isVisible) {

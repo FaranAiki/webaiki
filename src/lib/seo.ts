@@ -97,10 +97,10 @@ export function getBaseMetadata(dict: Record<string, string> = {}): Metadata {
   return {
     metadataBase: new URL(SITE_URL),
     title: {
-      default: 'Muhammad Faran Aiki',
+      default: 'Muhammad Faran Aiki (Faran)',
       template: '%s | Muhammad Faran Aiki',
     },
-    description: dict.SEO_Description || "Official personal website of Muhammad Faran Aiki - Software Engineer, Computer Science Student at ITB, and SAT Tutor.",
+    description: dict.SEO_Description || "Official personal website of Muhammad Faran Aiki (also known as Faran Aiki or simply Faran) - Software Engineer, Computer Science Student at ITB, and SAT Tutor.",
     keywords: [
       "Muhammad Faran Aiki", "Faran Aiki", "Faran", "Aiki", "faranaiki",
       "muhammad faran", "muhammad aiki", "faran itb", "faran onmipa", "faran aiki itb", "muhammad faran itb",
@@ -120,8 +120,7 @@ export function getBaseMetadata(dict: Record<string, string> = {}): Metadata {
       "Next.js Developer", "React Developer", "TypeScript", "Hire Muhammad Faran Aiki", "Best Software Engineer Indonesia",
       dict.Software_Engineer || "Software Engineer", dict.Mathematics || "Mathematics",
       ...generateKeywordScrambles("Muhammad Faran Aiki"),
-      ...generateKeywordScrambles("Software Engineer ITB"),
-      ...Object.values(dict)
+      ...generateKeywordScrambles("Software Engineer ITB")
     ],
     authors: [{ name: "Muhammad Faran Aiki", url: SITE_URL }],
     creator: "Muhammad Faran Aiki",
@@ -247,6 +246,17 @@ export function getWebsiteSchema(lang: string) {
     "alternateName": ["Faran Aiki", "Faran", "Aiki", "webaiki", "web aiki"],
     "publisher": { "@id": `${SITE_URL}/#person` },
     "inLanguage": lang,
+  };
+}
+
+export function getProfilePageSchema(_lang: string) {
+  return {
+    "@type": "ProfilePage",
+    "@id": `${SITE_URL}/#profilepage`,
+    "url": SITE_URL,
+    "name": "Muhammad Faran Aiki (Faran Aiki) - Software Engineer Portfolio",
+    "description": "Muhammad Faran Aiki, often known as Faran Aiki or just Faran, is a Software Engineer, Mathematics Enthusiast, ONMIPA Medalist, and Computer Science Student at ITB.",
+    "mainEntity": { "@id": `${SITE_URL}/#person` },
   };
 }
 

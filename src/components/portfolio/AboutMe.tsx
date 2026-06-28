@@ -99,7 +99,7 @@ export function PortfolioAboutHeader(props: AboutMeProps) {
                       alt={props.faran_photo}
                       fill
                       className="object-cover"
-                      sizes="(max-width: 768px) 200px, 400px"
+                      sizes="(max-width: 768px) 300px, 400px"
                       priority
                       quality={60}
                       fetchPriority="high"

@@ -93,7 +93,7 @@ export async function middleware(request: NextRequest) {
   let finalCspHeader = base_cspHeader.replace("nonce-placeholder", `nonce-${nonce}`);
   
   if (pathname.includes('/project/uas_matematika_dasar')) {
-    finalCspHeader = finalCspHeader.replace("frame-ancestors 'none'", "frame-ancestors *");
+    finalCspHeader = finalCspHeader.replace("frame-ancestors 'self';", "frame-ancestors *;");
   }
 
   const isPythonProject = pathname.includes('/project/script');

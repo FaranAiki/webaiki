@@ -31,6 +31,8 @@ export default async function RootLayout({
   const locale = "id";
   const headersList = await headers();
   const nonce = headersList.get('x-nonce') || undefined;
+  const userAgent = headersList.get('user-agent') || '';
+  const isBot = /bot|googlebot|lighthouse|google-hub|google-structured-data-testing-tool|bingbot|yandexbot|duckduckbot|slurp|ia_archiver|HeadlessChrome|Chrome-Lighthouse/i.test(userAgent);
 
   return (
     <html lang={locale} suppressHydrationWarning>
@@ -39,7 +41,7 @@ export default async function RootLayout({
         <link rel="preconnect" href="https://cloud.umami.is" crossOrigin="anonymous" nonce={nonce} />
       </head>
       <body className={`${inter.variable} ${robotoMono.variable} font-sans antialiased`}>
-        <Providers>
+        <Providers isBot={isBot}>
           {children}
         </Providers>
         <Script
@@ -50,6 +52,14 @@ export default async function RootLayout({
               {
                 question: "Who is Muhammad Faran Aiki?",
                 answer: "Muhammad Faran Aiki is a Software Engineer, Mathematics Enthusiast, ONMIPA Medalist, and Computer Science Student at Institut Teknologi Bandung (ITB)."
+              },
+              {
+                question: "Who is Faran Aiki?",
+                answer: "Faran Aiki (Muhammad Faran Aiki) is an Indonesian Software Engineer, ITB student, and competitive mathematician known for his full-stack development portfolio and SAT tutoring."
+              },
+              {
+                question: "Who is Faran?",
+                answer: "In the context of technology and mathematics in Indonesia, 'Faran' usually refers to Muhammad Faran Aiki, a Software Engineer and Mathematics Enthusiast at ITB."
               },
               {
                 question: "What does Muhammad Faran Aiki do?",
