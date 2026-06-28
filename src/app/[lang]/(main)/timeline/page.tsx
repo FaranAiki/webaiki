@@ -119,7 +119,7 @@ export default async function TimelinePage({ params }: { params: Promise<{ lang:
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="pt-[12px] w-full">
+      <div className="pt-[12px] w-full px-4 md:px-0">
         <ExperiencesClient 
         isLoggedIn={isLoggedIn}
         bookmarkedItemIds={experienceBookmarks}

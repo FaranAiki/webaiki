@@ -60,13 +60,13 @@ export default function FadeInSection({
                     e.stopPropagation();
                     cycleSlideNumberFormat();
                 }}
-                className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-theme-600/30 backdrop-blur-md border border-theme-400/30 shadow-[0_0_20px_var(--accent-shadow)] hover:bg-theme-600/50 transition-all duration-300 cursor-pointer group hover:scale-105"
+                className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-white dark:bg-theme-bg shadow-lg dark:shadow-none border border-black/10 dark:border-white/10 hover:scale-105 transition-all duration-300 cursor-pointer group"
               >
-                <span className="text-white font-black tabular-nums tracking-tighter group-hover:text-theme-200 transition-colors">
+                <span className="text-black dark:text-white font-black tabular-nums tracking-tighter group-hover:text-theme-500 transition-colors">
                   {formatNumber(slideIndex, totalSlides)}
                 </span>
-                <span className="text-white/40">/</span>
-                <span className="text-white/80 font-medium tabular-nums">
+                <span className="text-black/40 dark:text-white/40">/</span>
+                <span className="text-black/80 dark:text-white/80 font-medium tabular-nums">
                   {formatNumber(totalSlides, totalSlides)}
                 </span>
               </button>

@@ -244,7 +244,7 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
                       <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Work}</h2>
                   </div>
               </div>
-              <div className="pt-[12px] w-full">
+              <div className="pt-[12px] w-full px-4 md:px-0">
         <ExperiencesClient
                 experiences={importantWork}
                 lang={lang}
@@ -270,7 +270,7 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
                       <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Project}</h2>
                   </div>
               </div>
-              <div className="pt-[12px] w-full">
+              <div className="pt-[12px] w-full px-4 md:px-0">
         <ExperiencesClient
                 experiences={importantProjects}
                 lang={lang}
@@ -298,7 +298,7 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
                       <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Organization}</h2>
                   </div>
                   <div className="lg:contents">
-                    <div className="pt-[12px] w-full">
+                    <div className="pt-[12px] w-full px-4 md:px-0">
         <ExperiencesClient
                       experiences={importantOrg}
                       lang={lang}
@@ -324,7 +324,7 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
                       <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Award}</h2>
                   </div>
                   <div className="lg:contents">
-                    <div className="pt-[12px] w-full">
+                    <div className="pt-[12px] w-full px-4 md:px-0">
         <ExperiencesClient
                       experiences={importantAwards}
                       lang={lang}
