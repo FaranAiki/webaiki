@@ -7,10 +7,20 @@ const withPWA = withPWAInit({
   dest: "public",
   disable: process.env.NODE_ENV === "development",
   register: true,
-  // @ts-expect-error: swcMinify is used by next-pwa to fix SW compilation but is not in its types
-  swcMinify: false, // Fix ReferenceError: _async_to_generator is not defined in sw.js
   fallbacks: {
     document: "/~offline",
+  },
+  workboxOptions: {
+    // Disable dev logs to prevent noise
+    disableDevLogs: true,
+    runtimeCaching: [
+      {
+        // Don't intercept next-image requests with Service Worker in production
+        // to prevent unexpected errors due to opaque responses.
+        urlPattern: /^\/_next\/image\//,
+        handler: 'NetworkOnly',
+      },
+    ],
   },
 });
 

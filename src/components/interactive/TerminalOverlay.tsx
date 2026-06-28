@@ -70,21 +70,26 @@ export default function TerminalOverlay({
   const { isPresentationMode } = usePresentation();
 
   useEffect(() => {
+    let checkTimeout: NodeJS.Timeout;
     const checkChatbot = () => {
       const btn = document.getElementById('gemini-chatbot-button');
       if (btn) {
         const isHidden = btn.classList.contains('hidden') || 
-                        window.getComputedStyle(btn).display === 'none' ||
+                        btn.style.display === 'none' ||
                         btn.closest('.hidden') !== null;
         setHasChatbot(!isHidden);
       } else {
         setHasChatbot(false);
       }
     };
+    const debouncedCheck = () => {
+      clearTimeout(checkTimeout);
+      checkTimeout = setTimeout(checkChatbot, 200);
+    };
 
     checkChatbot();
 
-    const observer = new MutationObserver(checkChatbot);
+    const observer = new MutationObserver(debouncedCheck);
     observer.observe(document.body, { 
       childList: true, 
       subtree: true, 
@@ -92,11 +97,12 @@ export default function TerminalOverlay({
       attributeFilter: ['class', 'style'] 
     });
 
-    window.addEventListener('resize', checkChatbot);
+    window.addEventListener('resize', debouncedCheck);
 
     return () => {
+      clearTimeout(checkTimeout);
       observer.disconnect();
-      window.removeEventListener('resize', checkChatbot);
+      window.removeEventListener('resize', debouncedCheck);
     };
   }, []);
 
