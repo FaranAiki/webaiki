@@ -46,11 +46,6 @@ const nextConfig: NextConfig = {
   // Optimization: Enable gzip/brotli compression for server responses
   compress: true,
 
-  // Vercel OOM Fixes: Disable linting/typechecking during build to save memory
-  // @ts-expect-error - eslint is valid but not typed in Next.js 15
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -64,9 +59,6 @@ const nextConfig: NextConfig = {
       'react-force-graph-2d',
       'force-graph'
     ],
-    cpus: 1,
-    workerThreads: false,
-    memoryBasedWorkersCount: true,
     optimizeCss: true, // Keep it if it helps, but inlineCss is for App Router
     inlineCss: true,
     cssChunking: false,
@@ -170,17 +162,7 @@ async headers() {
           value: 'public, max-age=31536000, immutable',
         },
       ],
-    },
-    {
-      // Optimization: Cache fonts heavily
-      source: '/_next/static/media/:path*',
-      headers: [
-        {
-          key: 'Cache-Control',
-          value: 'public, max-age=31536000, immutable',
-        },
-      ],
-    },
+    }
   ];
 },
 

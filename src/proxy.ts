@@ -36,7 +36,7 @@ const base_cspHeader = `
  * @param request The incoming Next.js request object.
  * @returns The resulting Next.js response, potentially containing redirection or modified headers.
  */
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // 1. Check if the current URL already has a language prefix
