@@ -5,7 +5,6 @@ import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { setCookies } from '@/app/actions';
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { Inter } from "next/font/google";
 import ThemeToggle from '@/components/shared/ThemeToggle';
 import { useTheme } from 'next-themes';
 import dynamic from 'next/dynamic';
@@ -30,8 +29,6 @@ import { usePresentation } from '@/components/providers/PresentationContext';
 import { formatCJK } from '@/lib/utils';
 import { useAppStore } from '@/lib/store';
 import { useAuthActions } from '@/app/auth-hooks';
-
-const inter = Inter({ subsets: ["latin"], preload: false });
 
 export interface NavLink {
     name: string;
@@ -511,7 +508,7 @@ export default function Header(props: HeaderProps) {
                     </div>
 
                     {/* --- Mobile Title (Center) --- */}
-                    <div className={`md:hidden ${inter.className}`} >
+                    <div className="md:hidden font-sans" >
                         {mobileTitle ? (
                             <h1 className={`flex items-center justify-center transition-[colors,transform] duration-200 text-lg font-black nav-active-gacor whitespace-nowrap cursor-pointer opacity-95`}>
                                 {formatCJK(mobileTitle, current_lang)}
@@ -538,9 +535,14 @@ export default function Header(props: HeaderProps) {
                                     return (
                                         <li key={link.name} className="relative group">
                                             <button
-                                                onClick={() => {
+                                                onClick={(e) => {
                                                     if (hasSubLinks) {
-                                                        router.push(getLocalizedHref(link.subLinks![0].href));
+                                                        const isTouch = typeof window !== 'undefined' && (window.matchMedia("(pointer: coarse)").matches || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent));
+                                                        if (!isTouch) {
+                                                            router.push(getLocalizedHref(link.subLinks![0].href));
+                                                        } else {
+                                                            e.preventDefault();
+                                                        }
                                                     }
                                                 }}
                                                 className={`flex items-center transition-[colors,transform] duration-200

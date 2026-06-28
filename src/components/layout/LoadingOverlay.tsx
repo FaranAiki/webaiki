@@ -34,39 +34,12 @@ export default function LoadingOverlay({ label }: LoadingOverlayProps) {
 
   useEffect(() => {
     if (isVisible) {
-      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
       setScrollLocked(true);
-
-      // Disable scrolling on both html and body to be absolutely sure
-      document.documentElement.classList.add("no-scrollbar");
-      document.documentElement.style.setProperty("overflow", "hidden", "important");
-      document.documentElement.style.setProperty("height", "100%", "important");
-
-      document.body.classList.add("no-scrollbar");
-      document.body.style.setProperty("overflow", "hidden", "important");
-      document.body.style.setProperty("height", "100%", "important");
-      document.body.style.setProperty("padding-right", `${scrollbarWidth}px`, "important");
     } else {
       setScrollLocked(false);
-      document.documentElement.classList.remove("no-scrollbar");
-      document.documentElement.style.removeProperty("overflow");
-      document.documentElement.style.removeProperty("height");
-
-      document.body.classList.remove("no-scrollbar");
-      document.body.style.removeProperty("overflow");
-      document.body.style.removeProperty("height");
-      document.body.style.removeProperty("padding-right");
     }
     return () => {
       setScrollLocked(false);
-      document.documentElement.classList.remove("no-scrollbar");
-      document.documentElement.style.removeProperty("overflow");
-      document.documentElement.style.removeProperty("height");
-
-      document.body.classList.remove("no-scrollbar");
-      document.body.style.removeProperty("overflow");
-      document.body.style.removeProperty("height");
-      document.body.style.removeProperty("padding-right");
     };
   }, [isVisible, setScrollLocked]);
 
@@ -129,7 +102,7 @@ export default function LoadingOverlay({ label }: LoadingOverlayProps) {
           }}
           className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-theme-bg dark:bg-theme-bg-dark overflow-hidden"
         >
-          <div className="relative w-72 md:w-[500px] h-auto px-4">
+          <div className="relative w-full max-w-72 md:max-w-[500px] h-auto px-4">
             <svg
               viewBox="0 0 446 153"
               className="w-full h-auto text-foreground"
