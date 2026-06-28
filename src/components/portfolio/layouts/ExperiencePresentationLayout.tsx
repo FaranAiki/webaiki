@@ -45,6 +45,14 @@ export default function ExperiencePresentationLayout() {
         return () => el.removeEventListener('wheel', onWheel);
     }, []);
 
+    React.useEffect(() => {
+        // Prevent body vertical scroll
+        document.body.style.overflow = 'hidden';
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, []);
+
     return (
         <div className="w-full relative">
             <div className={`fixed bottom-8 left-8 z-[100] flex items-center p-1.5 rounded-xl border backdrop-blur-md shadow-2xl transition-all duration-300 border-theme-border ring-1 ring-black/5 dark:ring-white/10 print:hidden`}>
@@ -80,7 +88,7 @@ export default function ExperiencePresentationLayout() {
                 >
                     {/* 1. Modern */}
                     {presentationLayout === 'modern' && (
-                        <div className={`text-foreground w-full px-4 md:px-8 flex flex-col md:flex-row print:flex-row gap-4 md:gap-12 items-center justify-center mx-auto pt-20 pb-10`}>
+                        <div className={`text-foreground w-full h-full px-4 md:px-8 flex flex-col md:flex-row print:flex-row gap-4 md:gap-12 items-center justify-center mx-auto`}>
                             <div className="flex-[1.2] flex flex-col justify-center space-y-6 max-w-2xl print:max-w-none">
                                 <div className="space-y-2">
                                     <h2 className="text-theme-700 dark:text-theme-300 font-bold text-xl md:text-2xl tracking-tight">{job.year}</h2>

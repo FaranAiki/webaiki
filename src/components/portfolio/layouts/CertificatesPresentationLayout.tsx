@@ -34,6 +34,14 @@ export default function CertificatesPresentationLayout() {
       return () => el.removeEventListener('wheel', onWheel);
   }, []);
 
+  React.useEffect(() => {
+      // Prevent body vertical scroll
+      document.body.style.overflow = 'hidden';
+      return () => {
+          document.body.style.overflow = '';
+      };
+  }, []);
+
   return (
     <div ref={containerRef} className="w-full relative presentation-container flex overflow-x-auto snap-x snap-mandatory hide-scrollbar scroll-smooth">
       {allSlides.map((slide, idx) => (
