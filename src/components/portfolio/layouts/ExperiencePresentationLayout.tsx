@@ -46,7 +46,7 @@ export default function ExperiencePresentationLayout() {
     }, []);
 
     return (
-        <div ref={containerRef} className="w-full relative presentation-container flex overflow-x-auto snap-x snap-mandatory hide-scrollbar scroll-smooth">
+        <div className="w-full relative">
             <div className={`fixed bottom-8 left-8 z-[100] flex items-center p-1.5 rounded-xl border backdrop-blur-md shadow-2xl transition-all duration-300 border-theme-border ring-1 ring-black/5 dark:ring-white/10 print:hidden`}>
                 <div className="flex gap-1">
                     {[
@@ -70,10 +70,11 @@ export default function ExperiencePresentationLayout() {
                 </div>
             </div>
 
+            <div ref={containerRef} className="w-full relative presentation-container flex overflow-x-auto snap-x snap-mandatory hide-scrollbar scroll-smooth">
             {allJobs.map((job, idx) => (
                 <FadeInSection
                     key={`pres-${idx}`}
-                    className="w-full min-w-full min-h-[70vh] flex-shrink-0 snap-center py-12"
+                    className="w-full min-w-full min-h-[calc(100vh-6rem)] flex-shrink-0 snap-center py-8 flex flex-col justify-center"
                     slideIndex={idx + 1}
                     totalSlides={allJobs.length}
                 >
@@ -229,6 +230,7 @@ export default function ExperiencePresentationLayout() {
                     )}
                 </FadeInSection>
             ))}
+            </div>
         </div>
     );
 }

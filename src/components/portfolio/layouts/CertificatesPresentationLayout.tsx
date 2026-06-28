@@ -39,7 +39,7 @@ export default function CertificatesPresentationLayout() {
       {allSlides.map((slide, idx) => (
         <FadeInSection
           key={`${slide.category}-${slide.year}-p${slide.part}`}
-          className="w-full min-w-full min-h-[70vh] flex-shrink-0 snap-center py-12"
+          className="w-full min-w-full min-h-[calc(100vh-6rem)] flex-shrink-0 snap-center py-8 flex flex-col justify-center"
           slideIndex={idx + 1}
           totalSlides={allSlides.length}
         >
