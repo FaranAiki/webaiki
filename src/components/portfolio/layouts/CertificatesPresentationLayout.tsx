@@ -47,7 +47,7 @@ export default function CertificatesPresentationLayout() {
       {allSlides.map((slide, idx) => (
         <FadeInSection
           key={`${slide.category}-${slide.year}-p${slide.part}`}
-          className="w-full min-w-full h-full flex-shrink-0 snap-center flex flex-col justify-center"
+          className="w-full min-w-full h-full flex-shrink-0 snap-center flex flex-col justify-center bg-white dark:bg-theme-bg shadow-2xl dark:shadow-none text-black dark:text-white"
           slideIndex={idx + 1}
           totalSlides={allSlides.length}
         >
@@ -94,7 +94,7 @@ export default function CertificatesPresentationLayout() {
                         />
                       )}
                     </div>
-                    <p className={`text-center font-bold text-sm md:text-xl lg:text-2xl text-foreground line-clamp-2 px-2 leading-tight`}>
+                    <p className={`text-center font-bold text-sm md:text-xl lg:text-2xl text-inherit line-clamp-2 px-2 leading-tight`}>
                       {formatCJK(fileName, lang)}
                     </p>
                   </div>

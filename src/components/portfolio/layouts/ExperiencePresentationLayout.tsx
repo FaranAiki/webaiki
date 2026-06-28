@@ -82,20 +82,20 @@ export default function ExperiencePresentationLayout() {
             {allJobs.map((job, idx) => (
                 <FadeInSection
                     key={`pres-${idx}`}
-                    className="w-full min-w-full h-full flex-shrink-0 snap-center flex flex-col justify-center"
+                    className="w-full min-w-full h-full flex-shrink-0 snap-center flex flex-col justify-center bg-white dark:bg-theme-bg shadow-2xl dark:shadow-none text-black dark:text-white"
                     slideIndex={idx + 1}
                     totalSlides={allJobs.length}
                 >
                     {/* 1. Modern */}
                     {presentationLayout === 'modern' && (
-                        <div className={`text-foreground w-full h-full px-4 md:px-8 flex flex-col md:flex-row print:flex-row gap-4 md:gap-12 items-center justify-center mx-auto`}>
+                        <div className={`w-full h-full px-4 md:px-8 flex flex-col md:flex-row print:flex-row gap-4 md:gap-12 items-center justify-center mx-auto`}>
                             <div className="flex-[1.2] flex flex-col justify-center space-y-6 max-w-2xl print:max-w-none">
                                 <div className="space-y-2">
                                     <h2 className="text-theme-700 dark:text-theme-300 font-bold text-xl md:text-2xl tracking-tight">{job.year}</h2>
-                                    <h3 className="text-3xl md:text-5xl font-black leading-tight tracking-tighter text-foreground">{job.title}<TagBadge labels={job.tag} /></h3>
+                                    <h3 className="text-3xl md:text-5xl font-black leading-tight tracking-tighter text-inherit">{job.title}<TagBadge labels={job.tag} /></h3>
                                     <h4 className="text-theme-700 dark:text-theme-300 text-xl md:text-2xl italic opacity-90">{job.company}</h4>
                                     <div className="flex items-center gap-2">
-                                        <p style={dateStyle} className="text-base md:text-lg font-medium italic text-foreground/80">{job.date}</p>
+                                        <p style={dateStyle} className="text-base md:text-lg font-medium italic opacity-80">{job.date}</p>
                                         <BookmarkButton itemType="experience" itemId={job.title} initialBookmarked={bookmarkedItemIds.includes(job.title)} isLoggedIn={!!isLoggedIn} className="relative" />
                                     </div>
                                 </div>
@@ -129,7 +129,7 @@ export default function ExperiencePresentationLayout() {
 
                     {/* 2. Cinematic */}
                     {presentationLayout === 'split' && (
-                        <div className="w-full h-full relative overflow-hidden flex items-end bg-theme-bg/30">
+                        <div className="w-full h-full relative overflow-hidden flex items-end">
                             {job.image && job.image.length > 0 ? (
                                 <div className="absolute inset-0 z-0">
                                     {job.image[0].toLowerCase().endsWith('.pdf') ? (
@@ -139,7 +139,6 @@ export default function ExperiencePresentationLayout() {
                                     ) : (
                                         <Image src={job.image[0]} alt={`${job.title} at ${job.company}`} fill sizes="(max-width: 768px) 80vw, (max-width: 1200px) 40vw, 30vw" quality={75} className={`object-cover transition-all duration-1000 dark:brightness-[0.35] brightness-[1.1] grayscale-[0.2] opacity-20`} priority={true} />
                                     )}
-                                    <div className={`absolute inset-0 bg-gradient-to-t from-theme-bg-dark via-transparent to-transparent`} />
                                 </div>
                             ) : (
                                 <div className={`absolute inset-0 z-0 bg-theme-bg dark:bg-theme-bg-dark flex items-center justify-center opacity-10`}>
@@ -194,7 +193,7 @@ export default function ExperiencePresentationLayout() {
                                             <p className="text-theme-700 dark:text-theme-300 font-black text-lg tracking-tight">{job.date}</p>
                                             <span className="flex-grow h-px bg-theme-500/30" />
                                         </div>
-                                        <h3 className={`text-2xl md:text-4xl font-black text-foreground leading-[0.9] tracking-tighter`}>
+                                        <h3 className={`text-2xl md:text-4xl font-black text-inherit leading-[0.9] tracking-tighter`}>
                                             {job.title}
                                             <TagBadge labels={job.tag} />
                                         </h3>
@@ -205,7 +204,7 @@ export default function ExperiencePresentationLayout() {
                                     </div>
 
                                     <div className="max-w-xl">
-                                        <HoverableWords className={`text-lg md:text-xl leading-relaxed font-medium text-foreground`}>
+                                        <HoverableWords className={`text-lg md:text-xl leading-relaxed font-medium text-inherit`}>
                                             {job.description}
                                         </HoverableWords>
 

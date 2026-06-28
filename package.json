@@ -4,7 +4,6 @@
   "private": false,
   "scripts": {
     "optimize:assets": "sh scripts/compress_pdfs.sh public/documents && sh scripts/convert_to_webp.sh public",
-    "prebuild": "npm run optimize:assets",
     "dev": "NODE_OPTIONS='--no-deprecation' next dev --turbo",
     "build": "next build",
     "db:push": "drizzle-kit push",
