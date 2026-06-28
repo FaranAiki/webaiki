@@ -28,8 +28,25 @@ export default function ExperiencePresentationLayout() {
     
     const dateStyle = { fontVariantNumeric: 'tabular-nums' };
 
+    const containerRef = React.useRef<HTMLDivElement>(null);
+
+    React.useEffect(() => {
+        const el = containerRef.current;
+        if (!el) return;
+        const onWheel = (e: WheelEvent) => {
+            if (e.deltaY === 0) return;
+            // Intercept vertical scrolling to scroll horizontally
+            if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+                e.preventDefault();
+                el.scrollBy({ left: e.deltaY > 0 ? window.innerWidth : -window.innerWidth, behavior: 'smooth' });
+            }
+        };
+        el.addEventListener('wheel', onWheel, { passive: false });
+        return () => el.removeEventListener('wheel', onWheel);
+    }, []);
+
     return (
-        <div className="w-full h-full relative presentation-container">
+        <div ref={containerRef} className="w-full relative presentation-container flex overflow-x-auto snap-x snap-mandatory hide-scrollbar scroll-smooth">
             <div className={`fixed bottom-8 left-8 z-[100] flex items-center p-1.5 rounded-xl border backdrop-blur-md shadow-2xl transition-all duration-300 border-theme-border ring-1 ring-black/5 dark:ring-white/10 print:hidden`}>
                 <div className="flex gap-1">
                     {[
@@ -56,7 +73,7 @@ export default function ExperiencePresentationLayout() {
             {allJobs.map((job, idx) => (
                 <FadeInSection
                     key={`pres-${idx}`}
-                    className="w-full py-12 flex-shrink-0 border-b border-theme-border/30 last:border-0"
+                    className="w-full min-w-full min-h-[70vh] flex-shrink-0 snap-center py-12"
                     slideIndex={idx + 1}
                     totalSlides={allJobs.length}
                 >

@@ -18,12 +18,28 @@ export default function CertificatesPresentationLayout() {
     cardBg
   } = useCertificatesContext();
 
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+      const el = containerRef.current;
+      if (!el) return;
+      const onWheel = (e: WheelEvent) => {
+          if (e.deltaY === 0) return;
+          if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+              e.preventDefault();
+              el.scrollBy({ left: e.deltaY > 0 ? window.innerWidth : -window.innerWidth, behavior: 'smooth' });
+          }
+      };
+      el.addEventListener('wheel', onWheel, { passive: false });
+      return () => el.removeEventListener('wheel', onWheel);
+  }, []);
+
   return (
-    <>
+    <div ref={containerRef} className="w-full relative presentation-container flex overflow-x-auto snap-x snap-mandatory hide-scrollbar scroll-smooth">
       {allSlides.map((slide, idx) => (
         <FadeInSection
           key={`${slide.category}-${slide.year}-p${slide.part}`}
-          className="w-full h-full flex-shrink-0"
+          className="w-full min-w-full min-h-[70vh] flex-shrink-0 snap-center py-12"
           slideIndex={idx + 1}
           totalSlides={allSlides.length}
         >
@@ -80,6 +96,6 @@ export default function CertificatesPresentationLayout() {
           </div>
         </FadeInSection>
       ))}
-    </>
+    </div>
   );
 }

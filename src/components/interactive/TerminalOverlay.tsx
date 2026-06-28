@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef, KeyboardEvent, ChangeEvent } from '
 import { m as motion, AnimatePresence } from 'framer-motion';
 import { Terminal as TerminalIcon, X, Maximize2, Minimize2 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
+import { usePresentation } from '../providers/PresentationContext';
 import { defaultSocialLinks } from '../portfolio/SocialDisplay';
 
 interface JobItem {
@@ -65,6 +66,8 @@ export default function TerminalOverlay({
   const [terminalTheme, setTerminalTheme] = useState<'default' | 'hacker' | 'light' | 'dark'>('default');
   const [sessionStartTime] = useState<number>(Date.now());
   const [hasChatbot, setHasChatbot] = useState<boolean>(false);
+
+  const { isPresentationMode } = usePresentation();
 
   useEffect(() => {
     const checkChatbot = () => {
@@ -929,7 +932,7 @@ To navigate to this page in your browser, type:
   };
 
   const isHiddenPage = ['/login', '/register', '/hire-me'].some(p => pathname?.includes(p));
-  if (isHiddenPage) return null;
+  if (isHiddenPage || isPresentationMode) return null;
 
   return (
     <>
