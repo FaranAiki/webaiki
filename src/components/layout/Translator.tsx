@@ -1,5 +1,4 @@
 import 'server-only'; // Ensures this only runs on the server
-import { cookies } from 'next/headers'; 
 
 const dictionaries: Record<string, () => Promise<Record<string, string>>> = {
   en: () => import('../../../public/locales/en.json').then((module) => module.default),
@@ -26,17 +25,3 @@ export const getDictionary = async (locale: string): Promise<Record<string, stri
   const loader = dictionaries[locale] || dictionaries.en;
   return loader();
 };
-
-// For pages like not-found.tsx that don't receive URL params
-export async function getDictionaryFromCookie() {
-  const cookieStore = await cookies();
-  const language = cookieStore.get('language')?.value || 'id';
-  return await getDictionary(language);
-}
-
-// Keep this available if absolutely needed, though relying on URL params is better
-export async function currentLanguage(): Promise<string> {
-  const cookieStore = await cookies();
-  const language = cookieStore.get('language')?.value || 'id';
-  return language;
-}

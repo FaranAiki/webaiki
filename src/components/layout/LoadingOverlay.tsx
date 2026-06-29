@@ -7,13 +7,12 @@ import { signatures } from "@/lib/signatures";
 
 interface LoadingOverlayProps {
   label?: string;
-  isBot?: boolean;
 }
 
 // Trigger HMR update
-export default function LoadingOverlay({ label, isBot = false }: LoadingOverlayProps) {
+export default function LoadingOverlay({ label }: LoadingOverlayProps) {
   const [mounted, setMounted] = useState(false);
-  const [internalVisible, setInternalVisible] = useState(!isBot);
+  const [internalVisible, setInternalVisible] = useState(true);
   const [hasStarted, setHasStarted] = useState(false);
   
   const isGlobalLoading = useAppStore((state) => state.isGlobalLoading);
@@ -22,13 +21,12 @@ export default function LoadingOverlay({ label, isBot = false }: LoadingOverlayP
   const isVisible = internalVisible || isGlobalLoading;
 
   useEffect(() => {
-    if (isBot) {
-      setMounted(true);
-      return;
+    const isBotEnv = /bot|googlebot|lighthouse|google-hub|google-structured-data-testing-tool|bingbot|yandexbot|duckduckbot|slurp|ia_archiver|HeadlessChrome|Chrome-Lighthouse/i.test(navigator.userAgent);
+    if (isBotEnv) {
+      setInternalVisible(false);
     }
-
     setMounted(true);
-  }, [isBot]);
+  }, []);
 
   useEffect(() => {
     if (isVisible) {
@@ -98,7 +96,7 @@ export default function LoadingOverlay({ label, isBot = false }: LoadingOverlayP
             opacity: 0,
             transition: { duration: 0.6, ease: "easeInOut" }
           }}
-          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-theme-bg dark:bg-theme-bg-dark overflow-hidden"
+          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-theme-bg dark:bg-theme-bg-dark overflow-hidden [.is-bot_&]:hidden"
         >
           <div className="relative w-full max-w-72 md:max-w-[500px] h-auto px-4">
             <svg

@@ -9,6 +9,7 @@ import ThemeToggle from '@/components/shared/ThemeToggle';
 import { useTheme } from 'next-themes';
 import dynamic from 'next/dynamic';
 import { useSettings } from '@/components/providers/SettingsContext';
+import type { User as SupabaseUser } from '@supabase/supabase-js';
 import { m as motion, AnimatePresence } from 'framer-motion';
 
 const SettingsPopup = dynamic(() => import('@/components/providers/SettingsPopup'), { ssr: false });
@@ -137,6 +138,8 @@ interface HeaderProps {
         My_Feedbacks?: string;
         My_Preferences?: string;
     };
+    hire_me_label: string;
+    business_requests_label: string;
 }
 
 function MenuIcon() {
@@ -190,12 +193,48 @@ export default function Header(props: HeaderProps) {
         logo_alt,
         share_copied,
         share_description,
-        settings_labels
+        settings_labels,
+        hire_me_label,
+        business_requests_label
         } = props;
         const pathname = usePathname();
         const router = useRouter();
         const [isSettingsOpen, setIsSettingsOpen] = useState(false);
         const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
+        const [user, setUser] = useState<SupabaseUser | null>(null);
+        const [dynamicNavLinks, setDynamicNavLinks] = useState<NavLink[]>(navLinks);
+
+        useEffect(() => {
+            const fetchUser = async () => {
+                const { createClient } = await import('@/utils/supabase/client');
+                const supabase = createClient();
+                const { data } = await supabase.auth.getUser();
+                if (data?.user) {
+                    setUser(data.user);
+                    
+                    const reason = data.user.user_metadata?.registration_reason;
+                    const email = data.user.email;
+                    
+                    const newNavLinks = JSON.parse(JSON.stringify(navLinks));
+                    const homeLink = newNavLinks[0];
+                    
+                    if (reason === 'HR' && homeLink.subLinks) {
+                        homeLink.subLinks.push({
+                            name: hire_me_label,
+                            href: '/hire-me',
+                        });
+                    }
+                    if (email === 'faran.aiki.business@gmail.com' && homeLink.subLinks) {
+                        homeLink.subLinks.push({
+                            name: business_requests_label,
+                            href: '/business-requests',
+                        });
+                    }
+                    setDynamicNavLinks(newNavLinks);
+                }
+            };
+            fetchUser();
+        }, [navLinks, hire_me_label, business_requests_label]);
 
         useEffect(() => {
             const down = (e: KeyboardEvent) => {
@@ -425,7 +464,7 @@ export default function Header(props: HeaderProps) {
         return undefined;
     };
 
-    const activeLink = findActiveLink(navLinks);
+    const activeLink = findActiveLink(dynamicNavLinks);
     const { signOut } = useAuthActions(current_lang);
 
     const getMobileTitle = () => {
@@ -559,7 +598,7 @@ export default function Header(props: HeaderProps) {
                         className="hidden md:flex flex-shrink-0"
                     >
                         <ul className="flex items-center space-x-8">
-                            {navLinks.map((link) => {
+                            {dynamicNavLinks.map((link) => {
                                 const hasSubLinks = link.subLinks && link.subLinks.length > 0;
 
                                 if (hasSubLinks) {
@@ -687,7 +726,7 @@ export default function Header(props: HeaderProps) {
                         </div>
                     {/* Desktop Auth Section */}
                         <div className="flex items-center">
-                            {props.user ? (
+                            {user ? (
                                 <div className="relative" ref={userMenuRef}>
                                     <button
                                         onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
@@ -697,8 +736,8 @@ export default function Header(props: HeaderProps) {
                                     >
                                         <div className="relative w-8 h-8 rounded-full overflow-hidden border border-theme-border shadow-sm">
                                             <Image
-                                                src={props.user.user_metadata?.avatar_url || '/images/no_photo_profile.webp'}
-                                                alt={`${props.user.user_metadata?.full_name || props.user.email || 'User'} - Faran Aiki Portfolio Profile`}
+                                                src={user.user_metadata?.avatar_url || '/images/no_photo_profile.webp'}
+                                                alt={`${user.user_metadata?.full_name || user.email || 'User'} - Faran Aiki Portfolio Profile`}
                                                 fill
                                                 sizes="32px"
                                                 className="object-cover"
@@ -717,10 +756,10 @@ export default function Header(props: HeaderProps) {
                                             >
                                                 <div className="px-4 py-2 border-b border-theme-border mb-1">
                                                     <p className="text-sm font-bold truncate">
-                                                        {props.user.user_metadata?.full_name || props.user.user_metadata?.username || 'User'}
+                                                        {user.user_metadata?.full_name || user.user_metadata?.username || 'User'}
                                                     </p>
                                                     <p className="text-xs text-theme-muted truncate">
-                                                        {props.user.email}
+                                                        {user.email}
                                                     </p>
                                                 </div>
 
@@ -748,7 +787,7 @@ export default function Header(props: HeaderProps) {
                                                     {settings_labels.My_Bookmarks || 'My Bookmarks'}
                                                 </button>
 
-                                                {props.user?.email === 'faran.aiki.business@gmail.com' && (
+                                                {user?.email === 'faran.aiki.business@gmail.com' && (
                                                 <button
                                                     onClick={() => {
                                                         setIsUserMenuOpen(false);

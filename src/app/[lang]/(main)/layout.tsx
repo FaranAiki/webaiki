@@ -4,7 +4,6 @@ import "../../globals.css";
 
 import { getDictionary } from '@/components/layout/Translator';
 import dynamic from 'next/dynamic';
-import { createClient } from '@/utils/supabase/server';
 const TerminalOverlay = dynamic(() => import("@/components/interactive/TerminalOverlay"));
 import {
   getWorkExperiences,
@@ -54,11 +53,6 @@ export default async function RootLayout({
   const projectExp = getProjectExperiences(dict).flatMap(y => y.jobs);
   const orgExp = getOrganizationExperiences(dict).flatMap(y => y.jobs);
   const awardExp = getAwardExperiences(dict).flatMap(y => y.jobs);
-
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  const registrationReason = user?.user_metadata?.registration_reason;
-  const username = user?.user_metadata?.username || user?.email?.split('@')[0] || null;
 
   // Navigation Links with Icons
   const navLinks = [
@@ -122,29 +116,7 @@ export default async function RootLayout({
     },
   ];
 
-  // Nest Hire Me link for HR
-  if (registrationReason === 'HR') {
-    const homeLink = navLinks[0];
-    if (homeLink.subLinks) {
-      homeLink.subLinks.push({
-        name: dict.Hire_Me,
-        href: '/hire-me',
-        icon: <Handshake size={16} />
-      });
-    }
-  }
 
-  // Nest Business Requests link for the owner
-  if (user?.email === 'faran.aiki.business@gmail.com') {
-    const homeLink = navLinks[0];
-    if (homeLink.subLinks) {
-      homeLink.subLinks.push({
-        name: dict.Business_Requests || 'Business Requests',
-        href: '/business-requests',
-        icon: <Briefcase size={16} />
-      });
-    }
-  }
 
   // Derive page routes for the terminal from navLinks (single source of truth)
   // Each navLink or subLink with a real href becomes a terminal page route.
@@ -234,11 +206,12 @@ export default async function RootLayout({
         logo_alt={dict.Logo_Alt}
         share_copied={dict.Copied_To_Clipboard}
         share_description={dict.Share_Description}
-        user={user}
         login_label={dict.Login}
         logout_label={dict.Logout}
         register_label={dict.Register}
         edit_profile_label={dict.Edit_Profile}
+        hire_me_label={dict.Hire_Me}
+        business_requests_label={dict.Business_Requests || 'Business Requests'}
         settings_labels={{
           Settings: dict.Settings,
           Typography: dict.Typography,
@@ -284,8 +257,8 @@ export default async function RootLayout({
       </div>
       <TerminalOverlay
         lang={lang}
-        username={username}
         dict={dict}
+        username={null}
         workExperiences={workExp}
         projectExperiences={projectExp}
         organizationExperiences={orgExp}

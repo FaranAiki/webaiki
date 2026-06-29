@@ -21,27 +21,28 @@ import { getBaseMetadata, getFaqSchema } from "@/lib/seo";
 export const metadata = getBaseMetadata();
 
 
-import { headers } from 'next/headers';
-
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const locale = "id";
-  const headersList = await headers();
-  const nonce = headersList.get('x-nonce') || undefined;
-  const userAgent = headersList.get('user-agent') || '';
-  const isBot = /bot|googlebot|lighthouse|google-hub|google-structured-data-testing-tool|bingbot|yandexbot|duckduckbot|slurp|ia_archiver|HeadlessChrome|Chrome-Lighthouse/i.test(userAgent);
 
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
         <link rel="dns-prefetch" href="https://www.google.com" />
         <link rel="dns-prefetch" href="https://cloud.umami.is" />
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            if (/bot|googlebot|lighthouse|google-hub|google-structured-data-testing-tool|bingbot|yandexbot|duckduckbot|slurp|ia_archiver|HeadlessChrome|Chrome-Lighthouse/i.test(navigator.userAgent)) {
+              document.documentElement.classList.add('is-bot');
+            }
+          `
+        }} />
       </head>
       <body className={`${inter.variable} ${robotoMono.variable} font-sans antialiased`}>
-        <Providers isBot={isBot}>
+        <Providers>
           {children}
         </Providers>
         <Script

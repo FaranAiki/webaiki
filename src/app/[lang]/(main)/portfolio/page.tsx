@@ -1,10 +1,11 @@
+export const dynamic = 'error';
 import type { Metadata } from "next";
 import "../../../globals.css";
 import { getDictionary } from '@/components/layout/Translator';
 import { SITE_URL, getBaseMetadata, getLanguageAlternates } from '@/lib/seo';
 import PortfolioHeader from '@/components/portfolio/PortfolioHeader';
 import PortfolioClientWrapper from '@/components/portfolio/PortfolioClientWrapper';
-import dynamic from 'next/dynamic';
+import nextDynamic from 'next/dynamic';
 import {
   getWorkExperiences,
   getProjectExperiences,
@@ -16,10 +17,10 @@ import {
 import { Github, Linkedin, Instagram, Twitter, Star, Briefcase, Mail } from 'lucide-react';
 import Link from 'next/link';
 
-const PortfolioExperienceList = dynamic(() => import('@/components/portfolio/PortfolioExperienceList'));
-const PortfolioSkills = dynamic(() => import('@/components/portfolio/PortfolioSkills'));
-const PortfolioEducation = dynamic(() => import('@/components/portfolio/PortfolioEducation'));
-const FAQ = dynamic(() => import('@/components/portfolio/FAQ'));
+const PortfolioExperienceList = nextDynamic(() => import('@/components/portfolio/PortfolioExperienceList'));
+const PortfolioSkills = nextDynamic(() => import('@/components/portfolio/PortfolioSkills'));
+const PortfolioEducation = nextDynamic(() => import('@/components/portfolio/PortfolioEducation'));
+const FAQ = nextDynamic(() => import('@/components/portfolio/FAQ'));
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
