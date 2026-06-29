@@ -103,7 +103,7 @@ export const TimelineActiveImage = React.memo(({ activeJob, shimmer600x400 }: { 
                             className="object-contain"
                             priority={true}
                             fetchPriority="high"
-                            quality={50}
+                            quality={25}
                         />
                     )
                 ) : (
@@ -167,7 +167,7 @@ export const BentoCard = React.memo(({ job, spanClass, cardBorder, inactiveCardB
                         fill
                         priority={priority}
                         fetchPriority={priority ? "high" : "auto"}
-                        quality={50}
+                        quality={25}
                         sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                         className={`object-cover transition-transform duration-700
                             ${isExpanded
