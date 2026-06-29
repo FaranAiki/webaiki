@@ -16,7 +16,7 @@ export default function OAuthButtons({ dict, lang }: OAuthButtonsProps) {
   const handleOAuth = async (provider: Provider) => {
     setLoadingProvider(provider);
     const supabase = createClient();
-    
+
     // We use the same callback route that handles updating Drizzle db.
     await supabase.auth.signInWithOAuth({
       provider,
@@ -40,7 +40,7 @@ export default function OAuthButtons({ dict, lang }: OAuthButtonsProps) {
           <div className="w-full border-t border-[var(--card-border)]" />
         </div>
         <div className="relative flex justify-center text-sm font-medium">
-          <span className="bg-[var(--card-bg)] px-2 text-[var(--text-muted)] text-xs tracking-widest">
+          <span className="px-2 text-[var(--text-muted)] text-xs tracking-widest">
             {dict.Or_Continue_With || "Or Continue With"}
           </span>
         </div>

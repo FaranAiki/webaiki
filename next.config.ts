@@ -20,6 +20,11 @@ const withPWA = withPWAInit({
         urlPattern: /^\/_next\/image\//,
         handler: 'NetworkOnly',
       },
+      {
+        // Don't intercept vercel.app requests to prevent async generator errors
+        urlPattern: /^https:\/\/.*\.vercel\.app\/.*/,
+        handler: 'NetworkOnly',
+      },
     ],
   },
 });
@@ -28,6 +33,10 @@ const nextConfig: NextConfig = {
   // Turbopack configuration to resolve root directory issues
   turbopack: {
     root: path.resolve('.'),
+    resolveAlias: {
+      canvas: './empty-module.js',
+      encoding: './empty-module.js',
+    },
   },
 
   // Set output to standalone for optimized production builds
@@ -51,10 +60,10 @@ const nextConfig: NextConfig = {
   },
   
   // Vercel OOM Fixes: Limit workers to prevent memory spikes during static generation
+  serverExternalPackages: ['pdfjs-dist'],
   experimental: {
     optimizePackageImports: [
       'lucide-react',
-      'framer-motion',
       '@base-ui/react',
       'react-force-graph-2d',
       'force-graph'
@@ -68,6 +77,18 @@ const nextConfig: NextConfig = {
       config: WebpackConfiguration,
       { dev, isServer }: { dev: boolean; isServer: boolean }
     ) => {
+      // Fix for pdfjs-dist canvas dependency
+      if (!config.resolve) {
+        config.resolve = {};
+      }
+      if (!config.resolve.alias) {
+        config.resolve.alias = {};
+      }
+      Object.assign(config.resolve.alias, {
+        canvas: false,
+        encoding: false,
+      });
+
       // Optimization: Remove comments from the minified output in production
       if (!dev && !isServer && config.optimization?.minimizer) {
         const minimizer = config.optimization.minimizer[0];

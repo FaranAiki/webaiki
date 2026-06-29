@@ -33,8 +33,7 @@ interface CommandPaletteLabels {
   suggestions: string;
 }
 
-export function CommandPalette({ lang, labels }: { lang: string; labels: CommandPaletteLabels }) {
-  const [open, setOpen] = React.useState(false);
+export function CommandPalette({ lang, labels, isOpen, onOpenChange }: { lang: string; labels: CommandPaletteLabels, isOpen: boolean, onOpenChange: (open: boolean) => void }) {
   const [query, setQuery] = React.useState("");
   const [results, setResults] = React.useState<SearchResult[]>([]);
   const [loading, setLoading] = React.useState(false);
@@ -45,7 +44,7 @@ export function CommandPalette({ lang, labels }: { lang: string; labels: Command
   const setGlobalLoading = useAppStore((state) => state.setGlobalLoading);
 
   React.useEffect(() => {
-    if (open && pool.length === 0) {
+    if (isOpen && pool.length === 0) {
       getFullSearchPool(lang).then(setPool);
       getSuggestions(lang, 5).then((suggs) => {
         setSuggestions(suggs);
@@ -54,19 +53,9 @@ export function CommandPalette({ lang, labels }: { lang: string; labels: Command
         }
       });
     }
-  }, [open, lang, pool.length, query]);
+  }, [isOpen, lang, pool.length, query]);
 
-  React.useEffect(() => {
-    const down = (e: KeyboardEvent) => {
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault();
-        setOpen((open) => !open);
-      }
-    };
 
-    document.addEventListener("keydown", down);
-    return () => document.removeEventListener("keydown", down);
-  }, []);
 
   React.useEffect(() => {
     if (query.trim().length >= 2) {
@@ -129,7 +118,7 @@ export function CommandPalette({ lang, labels }: { lang: string; labels: Command
     const url = result.url;
     setRedirecting(url);
     setGlobalLoading(true);
-    setOpen(false);
+    onOpenChange(false);
     if (url.startsWith('http')) {
       window.open(url, '_blank');
       setGlobalLoading(false);
@@ -138,7 +127,7 @@ export function CommandPalette({ lang, labels }: { lang: string; labels: Command
       router.push(url);
       setTimeout(() => setRedirecting(null), 1000);
     }
-  }, [router, setGlobalLoading]);
+  }, [router, setGlobalLoading, onOpenChange]);
 
   const getTypeIcon = (type: string) => {
     switch (type) {
@@ -157,8 +146,8 @@ export function CommandPalette({ lang, labels }: { lang: string; labels: Command
   return (
     <>
       <Command.Dialog
-        open={open}
-        onOpenChange={setOpen}
+        open={isOpen}
+        onOpenChange={onOpenChange}
         shouldFilter={false}
         label={labels.placeholder}
         className="fixed inset-0 z-50 flex items-start justify-center pt-[15vh] bg-black/40 backdrop-blur-sm sm:pt-[20vh] transition-opacity duration-300"
@@ -183,7 +172,7 @@ export function CommandPalette({ lang, labels }: { lang: string; labels: Command
             />
             {loading && <Loader2 className="animate-spin text-theme-500 mr-2" size={18} />}
             <button 
-              onClick={() => setOpen(false)} 
+              onClick={() => onOpenChange(false)} 
               className="p-1.5 rounded-md text-[var(--text-muted)] hover:text-[var(--text-main)] hover:bg-[var(--hover-bg)] transition-colors"
               aria-label="Close command palette"
             >

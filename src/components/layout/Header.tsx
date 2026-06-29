@@ -195,6 +195,19 @@ export default function Header(props: HeaderProps) {
         const pathname = usePathname();
         const router = useRouter();
         const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+        const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
+
+        useEffect(() => {
+            const down = (e: KeyboardEvent) => {
+                if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+                    e.preventDefault();
+                    setIsCommandPaletteOpen((open) => !open);
+                }
+            };
+            document.addEventListener("keydown", down);
+            return () => document.removeEventListener("keydown", down);
+        }, []);
+
         const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
         const [shouldShowHeader, setShouldShowHeader] = useState(true);
         const [showShareSuccess, setShowShareSuccess] = useState(false);
@@ -628,10 +641,15 @@ export default function Header(props: HeaderProps) {
                     {/* Right section */}
                     <div className="flex-1 flex justify-end items-center space-x-2 md:space-x-4">
 
-                        <div
-                            className="hidden md:block"
-                        >
-                            <CommandPalette lang={current_lang} labels={commandPaletteLabels} />
+                        <div className="hidden md:block">
+                            {isCommandPaletteOpen && (
+                                <CommandPalette 
+                                    lang={current_lang} 
+                                    labels={commandPaletteLabels} 
+                                    isOpen={isCommandPaletteOpen}
+                                    onOpenChange={setIsCommandPaletteOpen}
+                                />
+                            )}
                         </div>
 
                         <div

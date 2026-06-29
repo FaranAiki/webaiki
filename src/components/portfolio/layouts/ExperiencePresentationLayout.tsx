@@ -117,7 +117,7 @@ export default function ExperiencePresentationLayout() {
                                         job.image[0].toLowerCase().endsWith('.pdf') ? (
                                             <PdfRenderer url={job.image[0]} />
                                         ) : (
-                                            <Image src={job.image[0]} alt={`${job.title} at ${job.company}`} fill className="object-contain transition-transform duration-700 hover:scale-[1.03] scale-[1.01]" sizes="(max-width: 768px) 80vw, (max-width: 1200px) 40vw, 30vw" quality={75} priority={true} />
+                                            <Image src={job.image[0]} alt={`${job.title} at ${job.company}`} fill className="object-contain transition-transform duration-700 hover:scale-[1.03] scale-[1.01]" sizes="(max-width: 768px) 80vw, (max-width: 1200px) 40vw, 30vw" quality={50} priority={true} />
                                         )
                                     ) : (
                                         <PlaceholderIcon company={job.company} />
@@ -137,7 +137,7 @@ export default function ExperiencePresentationLayout() {
                                             <PdfRenderer url={job.image[0]} isExpanded={true} priority={true} />
                                         </div>
                                     ) : (
-                                        <Image src={job.image[0]} alt={`${job.title} at ${job.company}`} fill sizes="(max-width: 768px) 80vw, (max-width: 1200px) 40vw, 30vw" quality={75} className={`object-cover transition-all duration-1000 dark:brightness-[0.35] brightness-[1.1] grayscale-[0.2] opacity-20`} priority={true} />
+                                        <Image src={job.image[0]} alt={`${job.title} at ${job.company}`} fill sizes="(max-width: 768px) 80vw, (max-width: 1200px) 40vw, 30vw" quality={50} className={`object-cover transition-all duration-1000 dark:brightness-[0.35] brightness-[1.1] grayscale-[0.2] opacity-20`} priority={true} />
                                     )}
                                 </div>
                             ) : (
@@ -223,7 +223,7 @@ export default function ExperiencePresentationLayout() {
                                             job.image[0].toLowerCase().endsWith('.pdf') ? (
                                                 <PdfRenderer url={job.image[0]} />
                                             ) : (
-                                                <Image src={job.image[0]} alt={`${job.title} at ${job.company}`} fill sizes="(max-width: 768px) 80vw, (max-width: 1200px) 40vw, 30vw" quality={75} className="object-cover" priority={true} />
+                                                <Image src={job.image[0]} alt={`${job.title} at ${job.company}`} fill sizes="(max-width: 768px) 80vw, (max-width: 1200px) 40vw, 30vw" quality={50} className="object-cover" priority={true} />
                                             )
                                         ) : (
                                             <PlaceholderIcon company={job.company} />

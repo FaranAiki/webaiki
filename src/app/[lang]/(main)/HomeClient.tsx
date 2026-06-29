@@ -96,8 +96,8 @@ interface HomeClientProps {
 
 export default function HomeClient({ dict, children }: HomeClientProps) {
   const [isReady, setIsReady] = useState(true);
-  const [isLgScreen, setIsLgScreen] = useState(true);
-  const [isMdScreen, setIsMdScreen] = useState(true);
+  const [isLgScreen, setIsLgScreen] = useState(false);
+  const [isMdScreen, setIsMdScreen] = useState(false);
 
   const isGlobalLoading = useAppStore((state) => state.isGlobalLoading);
 

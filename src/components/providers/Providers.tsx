@@ -9,7 +9,7 @@ import SmoothScroll from "./SmoothScroll";
 import LoadingOverlay from "../layout/LoadingOverlay";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useAppStore } from "@/lib/store";
-import { LazyMotion, domAnimation } from "framer-motion";
+import { LazyMotion, domMax } from "framer-motion";
 
 interface ProvidersContextType {
   setLoadingLabel: (label: string) => void;
@@ -53,7 +53,7 @@ export function Providers({ children, isBot = false }: { children: React.ReactNo
           <QueryProvider>
             <SmoothScroll>
               <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-                <LazyMotion features={domAnimation}>
+                <LazyMotion features={domMax}>
                   <Suspense fallback={null}>
                     <GlobalLoadingReset />
                   </Suspense>

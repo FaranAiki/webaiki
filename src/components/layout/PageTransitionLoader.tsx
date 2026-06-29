@@ -122,7 +122,8 @@ export default function PageTransitionLoader({ label }: { label: string }) {
             {/* Ambient Background Glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-theme-500/20 blur-3xl rounded-full pointer-events-none" />
 
-            <div className="relative flex items-center justify-center w-16 h-16">
+            {/* Desktop View - Circular */}
+            <div className="hidden md:flex relative items-center justify-center w-16 h-16">
               {/* Center Logo */}
               <div className="absolute inset-0 flex items-center justify-center animate-pulse">
                  <Image 
@@ -137,7 +138,14 @@ export default function PageTransitionLoader({ label }: { label: string }) {
               </div>
 
               {/* Progress SVG */}
-              <svg className="w-full h-full transform -rotate-90 drop-shadow-md">
+              <svg className="w-full h-full transform -rotate-90 overflow-visible">
+                <defs>
+                  <linearGradient id="loadingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="var(--gacor-1)" />
+                    <stop offset="50%" stopColor="var(--gacor-2)" />
+                    <stop offset="100%" stopColor="var(--gacor-3)" />
+                  </linearGradient>
+                </defs>
                 <circle
                   cx="32"
                   cy="32"
@@ -150,16 +158,43 @@ export default function PageTransitionLoader({ label }: { label: string }) {
                   cx="32"
                   cy="32"
                   r={radius}
-                  className="stroke-theme-500 transition-all duration-300 ease-out"
+                  className="transition-all duration-300 ease-out"
                   strokeWidth="3.5"
                   fill="none"
+                  stroke="url(#loadingGradient)"
                   strokeDasharray={circumference}
                   strokeDashoffset={strokeDashoffset}
                   strokeLinecap="round"
+                  style={{ filter: 'drop-shadow(0 0 6px var(--accent-shadow))' }}
                 />
               </svg>
             </div>
-            <p className="font-bold text-sm tracking-widest text-theme-foreground/90 opacity-90">
+
+            {/* Mobile View - Linear */}
+            <div className="flex md:hidden flex-col items-center justify-center gap-4 w-[200px]">
+              <div className="animate-pulse">
+                 <Image 
+                   src="/icon.ico" 
+                   alt="Loading" 
+                   width={40} 
+                   height={40} 
+                   className="opacity-80 transition-all duration-500 drop-shadow-md" 
+                   style={{ filter: getThemeLogoFilter(colorTheme), transition: 'filter 0.3s ease-in-out' }}
+                   priority 
+                 />
+              </div>
+              <div className="w-full h-1.5 bg-theme-muted/10 dark:bg-theme-muted/20 rounded-full">
+                <div 
+                  className="h-full bg-gradient-to-r from-[var(--gacor-1)] via-[var(--gacor-2)] to-[var(--gacor-3)] transition-all duration-300 ease-out rounded-full"
+                  style={{ 
+                    width: `${progress}%`,
+                    boxShadow: '0 0 12px var(--accent-shadow)' 
+                  }}
+                />
+              </div>
+            </div>
+
+            <p className="font-bold text-sm tracking-widest text-theme-foreground/90 opacity-90 text-center">
               {label}
             </p>
           </div>

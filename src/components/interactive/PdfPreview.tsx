@@ -3,12 +3,10 @@
 import { memo, useMemo, useState, useEffect, useRef } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 
-// Use the local worker for better stability and to avoid external dependency issues.
-const PDFJS_VERSION = '5.3.93';
 pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
 
-const CMAP_URL = `https://unpkg.com/pdfjs-dist@${PDFJS_VERSION}/cmaps/`;
-const STANDARD_FONTS_URL = `https://unpkg.com/pdfjs-dist@${PDFJS_VERSION}/standard_fonts/`;
+const CMAP_URL = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/cmaps/`;
+const STANDARD_FONTS_URL = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/standard_fonts/`;
 
 type PdfPreviewProps = {
   fileUrl: string;

@@ -52,7 +52,7 @@ export default function ExperienceGridLayout() {
                             job.image[0].toLowerCase().endsWith('.pdf') ? (
                                 <PdfRenderer url={job.image[0]} />
                             ) : (
-                                <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="(max-width: 768px) 80vw, (max-width: 1200px) 40vw, 20vw" quality={75} className="object-cover transition-transform group-hover:scale-105" priority={true} placeholder="blur" blurDataURL={shimmer600x400} />
+                                <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="(max-width: 768px) 80vw, (max-width: 1200px) 40vw, 20vw" quality={50} className="object-cover transition-transform group-hover:scale-105" priority={true} placeholder="blur" blurDataURL={shimmer600x400} />
                             )
                         ) : (
                             <PlaceholderIcon company={job.company} />

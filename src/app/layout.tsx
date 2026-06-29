@@ -38,7 +38,7 @@ export default async function RootLayout({
     <html lang={locale} suppressHydrationWarning>
       <head>
         <link rel="dns-prefetch" href="https://www.google.com" />
-        <link rel="preconnect" href="https://cloud.umami.is" crossOrigin="anonymous" nonce={nonce} />
+        <link rel="dns-prefetch" href="https://cloud.umami.is" />
       </head>
       <body className={`${inter.variable} ${robotoMono.variable} font-sans antialiased`}>
         <Providers isBot={isBot}>
