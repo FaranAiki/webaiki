@@ -1,9 +1,11 @@
+import { headers } from "next/headers";
 import { getDictionary } from '@/components/layout/Translator';
 import HireMeForm from '@/components/interactive/HireMeForm';
 import { createClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
 
 export default async function HireMePage({ params }: { params: Promise<{ lang: string }> }) {
+  const nonce = (await headers()).get("x-nonce") || "";
   const { lang } = await params;
   const dict = await getDictionary(lang);
   

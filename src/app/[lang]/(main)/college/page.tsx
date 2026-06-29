@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import "../../../globals.css";
 
 import React from 'react';
@@ -31,7 +32,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
-export default async function CollegePage({ params }: { params: Promise<{ lang: string }> }) {
+export default async function CollegePage({params }: { params: Promise<{ lang: string }> }) {
+  const nonce = (await headers()).get("x-nonce") || "";
   const { lang } = await params;
   const dict = await getDictionary(lang);
   const college_data = await getCollectionsData(lang, 'college');
@@ -49,8 +51,7 @@ export default async function CollegePage({ params }: { params: Promise<{ lang: 
 
   return (
     <main className="container mx-auto pb-16 pt-16">
-      <script
-        type="application/ld+json"
+      <script nonce={nonce}         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <h1 className="sr-only">{dict.College}</h1>

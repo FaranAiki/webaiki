@@ -1,3 +1,4 @@
+import { headers } from "next/headers";
 import { getDictionary } from '@/components/layout/Translator';
 import SitemapGraphClient from '@/components/interactive/SitemapGraphClient';
 
@@ -16,6 +17,7 @@ export default async function SitemapGraphPage({
 }: {
   params: Promise<{ lang: string }>
 }) {
+  const nonce = (await headers()).get("x-nonce") || "";
   const { lang } = await params;
   const dict = await getDictionary(lang);
 

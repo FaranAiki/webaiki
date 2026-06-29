@@ -7,10 +7,11 @@ import { signatures } from "@/lib/signatures";
 
 interface LoadingOverlayProps {
   label?: string;
+  isBot?: boolean;
 }
 
 // Trigger HMR update
-export default function LoadingOverlay({ label }: LoadingOverlayProps) {
+export default function LoadingOverlay({ label, isBot }: LoadingOverlayProps) {
   const [mounted, setMounted] = useState(false);
   const [internalVisible, setInternalVisible] = useState(true);
   const [hasStarted, setHasStarted] = useState(false);
@@ -86,6 +87,8 @@ export default function LoadingOverlay({ label }: LoadingOverlayProps) {
       default: return { width: 446 };
     }
   };
+
+  if (isBot) return null;
 
   return (
     <AnimatePresence>

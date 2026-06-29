@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { getDictionary } from '@/components/layout/Translator';
 import { getLanguageAlternates, getBaseMetadata, SITE_URL, getPersonSchema, getWebsiteSchema, getProfilePageSchema } from '@/lib/seo';
 import HomeClient from "./HomeClient";
@@ -31,11 +32,12 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
-export default async function HomePage({ 
+export default async function HomePage({
   params 
 }: { 
   params: Promise<{ lang: string }> 
 }) {
+  const nonce = (await headers()).get("x-nonce") || "";
   const { lang } = await params;
   const dict = await getDictionary(lang);
   
@@ -77,8 +79,7 @@ export default async function HomePage({
 
   return (
     <>
-      <script
-        type="application/ld+json"
+      <script nonce={nonce}         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <HomeClient dict={dict}>

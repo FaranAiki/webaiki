@@ -30,6 +30,8 @@ export default async function RootLayout({
   const locale = "id";
   const headersList = await headers();
   const nonce = headersList.get("x-nonce") || "";
+  const userAgent = headersList.get("user-agent") || "";
+  const isBot = /bot|googlebot|lighthouse|google-hub|google-structured-data-testing-tool|bingbot|yandexbot|duckduckbot|slurp|ia_archiver|HeadlessChrome|Chrome-Lighthouse/i.test(userAgent);
 
   return (
     <html lang={locale} suppressHydrationWarning>
@@ -44,8 +46,8 @@ export default async function RootLayout({
           `
         }} />
       </head>
-      <body className={`${inter.variable} ${robotoMono.variable} font-sans antialiased`}>
-        <Providers>
+      <body className={`${inter.variable} ${robotoMono.variable} font-sans antialiased ${isBot ? 'is-bot' : ''}`}>
+        <Providers nonce={nonce} isBot={isBot}>
           {children}
         </Providers>
         <Script

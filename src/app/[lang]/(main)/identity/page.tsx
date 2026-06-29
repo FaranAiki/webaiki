@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import AboutMe from '@/components/portfolio/AboutMe';
 import dynamic from 'next/dynamic';
 const FAQ = dynamic(() => import('@/components/portfolio/FAQ'), {
@@ -39,11 +40,12 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
-export default async function IdentityPage({ 
+export default async function IdentityPage({
   params 
 }: { 
   params: Promise<{ lang: string }> 
 }) {
+  const nonce = (await headers()).get("x-nonce") || "";
   const { lang } = await params;
   const dict = await getDictionary(lang);
   
@@ -68,8 +70,7 @@ export default async function IdentityPage({
 
   return (
     <main className="container mx-auto px-4 md:px-8 pt-24 pb-16">
-      <script
-        type="application/ld+json"
+      <script nonce={nonce}         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 

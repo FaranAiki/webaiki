@@ -1,3 +1,4 @@
+import { headers } from "next/headers";
 import type { Metadata } from "next";
 import { getDictionary } from '@/components/layout/Translator';
 import EditProfileForm from '@/components/interactive/EditProfileForm';
@@ -23,6 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 }
 
 export default async function EditProfilePage({ params }: { params: Promise<{ lang: string }> }) {
+  const nonce = (await headers()).get("x-nonce") || "";
   const { lang } = await params;
   const dict = await getDictionary(lang);
 

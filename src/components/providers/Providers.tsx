@@ -43,7 +43,7 @@ function GlobalLoadingReset() {
 /**
  * A stable outer provider that ensures hook execution order remains constant.
  */
-export function Providers({ children }: { children: React.ReactNode }) {
+export function Providers({ children, nonce, isBot }: { children: React.ReactNode; nonce?: string; isBot?: boolean }) {
   const [loadingLabel, setLoadingLabel] = useState<string | undefined>(undefined);
 
   return (
@@ -52,12 +52,12 @@ export function Providers({ children }: { children: React.ReactNode }) {
         <PresentationProvider>
           <QueryProvider>
             <SmoothScroll>
-              <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+              <ThemeProvider attribute="class" defaultTheme="system" enableSystem nonce={nonce}>
                 <LazyMotion features={domMax}>
                   <Suspense fallback={null}>
                     <GlobalLoadingReset />
                   </Suspense>
-                  <LoadingOverlay label={loadingLabel} />
+                  <LoadingOverlay label={loadingLabel} isBot={isBot} />
                   {children}
                 </LazyMotion>
               </ThemeProvider>

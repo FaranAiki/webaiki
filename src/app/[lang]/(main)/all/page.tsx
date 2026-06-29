@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import "../../../globals.css";
 import { getDictionary } from '@/components/layout/Translator';
 import type { Experience, Job } from '@/components/portfolio/ExperienceDisplayer';
@@ -54,7 +55,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
-export default async function AllHighlightsPage({ params }: { params: Promise<{ lang: string }> }) {
+export default async function AllHighlightsPage({params }: { params: Promise<{ lang: string }> }) {
+  const nonce = (await headers()).get("x-nonce") || "";
   const { lang } = await params;
   const dict = await getDictionary(lang);
   
@@ -197,8 +199,7 @@ export default async function AllHighlightsPage({ params }: { params: Promise<{ 
 
   return (
     <main className="w-full pt-20 pb-20 space-y-6">
-      <script
-        type="application/ld+json"
+      <script nonce={nonce}         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <PageEntrance className="space-y-6">

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { createClient } from '@/utils/supabase/server';
 import { getBookmarks } from '@/app/bookmark-actions';
 
@@ -32,7 +33,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
-export default async function WorkExperiencesPage({ params }: { params: Promise<{ lang: string }> }) {
+export default async function WorkExperiencesPage({params }: { params: Promise<{ lang: string }> }) {
+  const nonce = (await headers()).get("x-nonce") || "";
   const { lang } = await params;
   const dict = await getDictionary(lang);
 
@@ -65,8 +67,7 @@ export default async function WorkExperiencesPage({ params }: { params: Promise<
 
   return (
     <main className="w-full pt-16">
-      <script
-        type="application/ld+json"
+      <script nonce={nonce}         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <div className="pt-[12px] w-full px-4 md:px-0">

@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { headers } from "next/headers";
 import { getDictionary } from '@/components/layout/Translator';
 import SocialDisplay from '@/components/portfolio/SocialDisplay';
 import "../../../globals.css";
@@ -27,7 +28,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
-export default async function SocialPage({ params }: { params: Promise<{ lang: string }> }) {
+export default async function SocialPage({params }: { params: Promise<{ lang: string }> }) {
+  const nonce = (await headers()).get("x-nonce") || "";
   const { lang } = await params;
   const dict = await getDictionary(lang);
   
@@ -39,8 +41,7 @@ export default async function SocialPage({ params }: { params: Promise<{ lang: s
 
   return (
     <main className="min-h-screen">
-      <script
-        type="application/ld+json"
+      <script nonce={nonce}         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <div className="pt-8 md:pt-0">

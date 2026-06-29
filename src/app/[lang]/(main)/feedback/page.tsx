@@ -1,3 +1,4 @@
+import { headers } from "next/headers";
 import type { Metadata } from "next";
 import { getDictionary } from '@/components/layout/Translator';
 import FeedbackDisplay from '@/components/interactive/FeedbackDisplay';
@@ -22,6 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 }
 
 export default async function FeedbackPage({ params }: { params: Promise<{ lang: string }> }) {
+  const nonce = (await headers()).get("x-nonce") || "";
   const { lang } = await params;
   const [dict, userResult] = await Promise.all([
     getDictionary(lang),

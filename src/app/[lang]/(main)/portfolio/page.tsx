@@ -1,5 +1,6 @@
 export const dynamic = 'error';
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import "../../../globals.css";
 import { getDictionary } from '@/components/layout/Translator';
 import { SITE_URL, getBaseMetadata, getLanguageAlternates } from '@/lib/seo';
@@ -44,7 +45,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
-export default async function PortfolioSummaryPage({ params }: { params: Promise<{ lang: string }> }) {
+export default async function PortfolioSummaryPage({params }: { params: Promise<{ lang: string }> }) {
+  const nonce = (await headers()).get("x-nonce") || "";
   const { lang } = await params;
   const dict = await getDictionary(lang);
   
@@ -97,8 +99,7 @@ export default async function PortfolioSummaryPage({ params }: { params: Promise
 
   return (
     <main className="container mx-auto px-4 md:px-6 pt-24 pb-12 max-w-4xl portfolio-main">
-      <script
-        type="application/ld+json"
+      <script nonce={nonce}         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <PortfolioClientWrapper>

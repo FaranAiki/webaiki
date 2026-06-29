@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import "../../../globals.css";
 import MusicDisplay from '@/components/interactive/MusicDisplay';
 import { getDictionary } from '@/components/layout/Translator';
@@ -28,7 +29,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
 const YOUTUBE_PLAYLIST_ITEMS_API = "https://www.googleapis.com/youtube/v3/playlistItems";
 
-export default async function MusicPage({ params }: { params: Promise<{ lang: string }> }) {
+export default async function MusicPage({params }: { params: Promise<{ lang: string }> }) {
+  const nonce = (await headers()).get("x-nonce") || "";
   const { lang } = await params;
   const dict = await getDictionary(lang);
   
@@ -61,8 +63,7 @@ export default async function MusicPage({ params }: { params: Promise<{ lang: st
   return (
     <main className="min-h-screen">
       <h1 className="sr-only">{dict.Music}</h1>
-      <script
-        type="application/ld+json"
+      <script nonce={nonce}         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <MusicDisplay youtubeItems={youtubeItems} error={errorString} lang={lang} dict={dict} />

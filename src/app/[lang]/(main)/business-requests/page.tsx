@@ -1,3 +1,4 @@
+import { headers } from "next/headers";
 import { getDictionary } from '@/components/layout/Translator';
 import { createClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
 };
 
 export default async function BusinessRequestsPage({ params }: { params: Promise<{ lang: string }> }) {
+  const nonce = (await headers()).get("x-nonce") || "";
   const { lang } = await params;
   const dict = await getDictionary(lang);
   
