@@ -7,7 +7,7 @@ const defaultLocale = 'id';
 
 const base_cspHeader = `
     default-src 'self' https://ndutyvnkhavzchhjmzfm.supabase.co;
-    script-src 'self' 'unsafe-inline' 'nonce-placeholder' 'wasm-unsafe-eval' 'sha256-rbbnijHn7DZ6ps39myQ3cVQF1H+U/PJfHh5ei/Q2kb8=' 'sha256-n46vPwSWuMC0W703pBofImv82Z26xo4LXymv0E9caPk=' https://platform.twitter.com https://platform.x.com https://cloud.umami.is ${
+    script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://platform.twitter.com https://platform.x.com https://cloud.umami.is ${
       process.env.NODE_ENV === 'development' ? "'unsafe-eval'" : ''
     };
     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://platform.twitter.com;
@@ -36,7 +36,7 @@ const base_cspHeader = `
  * @param request The incoming Next.js request object.
  * @returns The resulting Next.js response, potentially containing redirection or modified headers.
  */
-export async function proxy(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // 1. Check if the current URL already has a language prefix
@@ -89,8 +89,8 @@ export async function proxy(request: NextRequest) {
     response = await updateSession(request);
   }
 
-  // Security headers (CSP, Nonce)
-  let finalCspHeader = base_cspHeader.replace("nonce-placeholder", `nonce-${nonce}`);
+  // Security headers (CSP)
+  let finalCspHeader = base_cspHeader;
   
   if (pathname.includes('/project/uas_matematika_dasar')) {
     finalCspHeader = finalCspHeader.replace("frame-ancestors 'self';", "frame-ancestors *;");

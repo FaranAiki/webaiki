@@ -78,10 +78,12 @@
     "os": false
   },
   "browserslist": [
-    "Chrome >= 95",
-    "Safari >= 15.4",
-    "iOS >= 15.4",
-    "Firefox >= 95",
-    "Edge >= 95"
+    "defaults",
+    "not IE 11",
+    "not dead",
+    "Chrome >= 109",
+    "Safari >= 16.4",
+    "Firefox >= 115",
+    "Edge >= 109"
   ]
 }

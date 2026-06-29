@@ -1,6 +1,7 @@
 
 import { Inter, Roboto_Mono } from "next/font/google";
 import Script from "next/script";
+import { headers } from "next/headers";
 import "./globals.css";
 import { Providers } from "@/components/providers/Providers";
 
@@ -21,19 +22,21 @@ import { getBaseMetadata, getFaqSchema } from "@/lib/seo";
 export const metadata = getBaseMetadata();
 
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const locale = "id";
+  const headersList = await headers();
+  const nonce = headersList.get("x-nonce") || "";
 
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
         <link rel="dns-prefetch" href="https://www.google.com" />
         <link rel="dns-prefetch" href="https://cloud.umami.is" />
-        <script dangerouslySetInnerHTML={{
+        <script nonce={nonce} dangerouslySetInnerHTML={{
           __html: `
             if (/bot|googlebot|lighthouse|google-hub|google-structured-data-testing-tool|bingbot|yandexbot|duckduckbot|slurp|ia_archiver|HeadlessChrome|Chrome-Lighthouse/i.test(navigator.userAgent)) {
               document.documentElement.classList.add('is-bot');
@@ -48,6 +51,7 @@ export default function RootLayout({
         <Script
           id="faq-schema"
           type="application/ld+json"
+          nonce={nonce}
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(getFaqSchema([
               {
