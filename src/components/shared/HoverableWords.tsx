@@ -39,6 +39,23 @@ export default function HoverableWords({ children, className, prophover }: Hover
   // Only split if the user has hovered this specific paragraph and not in ATS mode
   const skipSplitting = !isHovered || isAtsMode;
 
+  const handleMouseEnter = () => {
+    // We only split on desktop devices (width >= 768) when hovered
+    if (window.innerWidth >= 768 && !isAtsMode) {
+      setIsHovered(true);
+    }
+  };
+
+  if (skipSplitting) {
+    return (
+      <p 
+        className={finalClassName}
+        onMouseEnter={handleMouseEnter}
+        dangerouslySetInnerHTML={{ __html: children }}
+      />
+    );
+  }
+
   // The "gacor" effect: gradient text on hover with smooth transition
   const gacorHover = 'transition-all inline-block duration-700 ease-in-out hover:scale-105 hover:font-bold cursor-pointer hover:nav-active-gacor';
 
@@ -55,12 +72,7 @@ export default function HoverableWords({ children, className, prophover }: Hover
   return (
     <p 
       className={finalClassName}
-      onMouseEnter={() => {
-        // We only split on desktop devices (width >= 768) when hovered
-        if (window.innerWidth >= 768 && !isAtsMode) {
-          setIsHovered(true);
-        }
-      }}
+      onMouseEnter={handleMouseEnter}
     >
       {segments.map((segment, i) => {
         const lowerSegment = segment.toLowerCase();
@@ -68,7 +80,7 @@ export default function HoverableWords({ children, className, prophover }: Hover
           const content = segment.slice(3, -4); // Remove tags
           return (
             <span key={i} className="font-bold">
-              {processWords(content, separatorRegex, finalPropHover, skipSplitting)}
+              {processWords(content, separatorRegex, finalPropHover, false)}
             </span>
           );
         }
@@ -76,12 +88,12 @@ export default function HoverableWords({ children, className, prophover }: Hover
           const content = segment.slice(3, -4); // Remove tags
           return (
             <span key={i} className="italic">
-              {processWords(content, separatorRegex, finalPropHover, skipSplitting)}
+              {processWords(content, separatorRegex, finalPropHover, false)}
             </span>
           );
         }
         // Plain text segment
-        return <React.Fragment key={i}>{processWords(segment, separatorRegex, finalPropHover, skipSplitting)}</React.Fragment>;
+        return <React.Fragment key={i}>{processWords(segment, separatorRegex, finalPropHover, false)}</React.Fragment>;
       })}
     </p>
   );
