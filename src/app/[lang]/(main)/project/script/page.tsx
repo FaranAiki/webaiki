@@ -1,4 +1,3 @@
-import { headers } from "next/headers";
 import type { Metadata } from "next";
 import PythonCLI from "@/components/interactive/PythonCLI"; 
 import "../../../../globals.css"; 
@@ -33,7 +32,6 @@ type ProjectPageProps = {
 };
 
 export default async function ProjectPage({ params, searchParams }: ProjectPageProps) {
-  const nonce = (await headers()).get("x-nonce") || "";
   const { lang } = await params;
   const dict = await getDictionary(lang);
   const resolvedParams = await searchParams;

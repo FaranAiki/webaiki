@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
 import FAQ from '@/components/portfolio/FAQ';
 import { getDictionary } from '@/components/layout/Translator';
 import { getLanguageAlternates, getBaseMetadata, getWebsiteSchema, SITE_URL, getFaqSchema } from '@/lib/seo';
@@ -33,7 +32,6 @@ export default async function WebsitePage({
 }: { 
   params: Promise<{ lang: string }> 
 }) {
-  const nonce = (await headers()).get("x-nonce") || "";
   const { lang } = await params;
   const dict = await getDictionary(lang);
   
@@ -56,7 +54,8 @@ export default async function WebsitePage({
 
   return (
     <main className="container mx-auto px-4 md:px-8 pt-32 pb-16 max-w-4xl">
-      <script nonce={nonce}         type="application/ld+json"
+      <script
+        type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       

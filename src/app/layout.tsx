@@ -1,7 +1,6 @@
 
 import { Inter, Roboto_Mono } from "next/font/google";
 import Script from "next/script";
-import { headers } from "next/headers";
 import "./globals.css";
 import { Providers } from "@/components/providers/Providers";
 
@@ -28,10 +27,9 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const locale = "id";
-  const headersList = await headers();
-  const nonce = headersList.get("x-nonce") || "";
-  const userAgent = headersList.get("user-agent") || "";
-  const isBot = /bot|googlebot|lighthouse|google-hub|google-structured-data-testing-tool|bingbot|yandexbot|duckduckbot|slurp|ia_archiver|HeadlessChrome|Chrome-Lighthouse/i.test(userAgent);
+  // Static pages cannot use headers(). We use an empty nonce since proxy.ts allows unsafe-inline now.
+  const nonce = "";
+  const isBot = false; // We can't detect bot on server for static pages, but the inline script handles it on client.
 
   return (
     <html lang={locale} suppressHydrationWarning>

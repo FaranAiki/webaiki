@@ -1,4 +1,3 @@
-import { headers } from "next/headers";
 import { getDictionary } from '@/components/layout/Translator';
 import { Metadata } from 'next';
 import { getLanguageAlternates, getBaseMetadata, SITE_URL } from '@/lib/seo';
@@ -26,7 +25,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 }
 
 export default async function LatestPage() {
-  const nonce = (await headers()).get("x-nonce") || "";
   return (
     <main className="container mx-auto px-8 pt-24 pb-16">
     </main>

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
 import { getDictionary } from '@/components/layout/Translator';
 import { getBaseMetadata, getLanguageAlternates, SITE_URL, getNewsArticleSchema, extractKeywords } from '@/lib/seo';
 import { getNewsItem } from '@/app/actions';
@@ -36,7 +35,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 }
 
 export default async function NewsDetailPage({params }: { params: Promise<{ lang: string, id: string }> }) {
-  const nonce = (await headers()).get("x-nonce") || "";
   const { lang, id } = await params;
   const [dict, news] = await Promise.all([
     getDictionary(lang),
@@ -49,7 +47,8 @@ export default async function NewsDetailPage({params }: { params: Promise<{ lang
 
   return (
     <main className="container mx-auto px-4 md:px-8 pt-32 pb-16 min-h-screen max-w-4xl">
-      <script nonce={nonce}         type="application/ld+json"
+      <script
+        type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(newsArticleSchema) }}
       />
       <Link 

@@ -1,4 +1,3 @@
-import { headers } from "next/headers";
 import type { Metadata } from "next";
 import { getDictionary } from '@/components/layout/Translator';
 import NewsDisplay from '@/components/interactive/NewsDisplay';
@@ -23,7 +22,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 }
 
 export default async function NewsPage({ params }: { params: Promise<{ lang: string }> }) {
-  const nonce = (await headers()).get("x-nonce") || "";
   const { lang } = await params;
   const [dict, news] = await Promise.all([
     getDictionary(lang),

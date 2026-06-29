@@ -1,4 +1,3 @@
-import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 import { getDictionary } from '@/components/layout/Translator';
 import { getLanguageAlternates, getBaseMetadata, SITE_URL } from '@/lib/seo';
@@ -48,7 +47,6 @@ export async function generateMetadata({ params }: GenerateMetadataProps): Promi
 }
 
 export default async function UserProfilePage({ params }: GenerateMetadataProps) {
-  const nonce = (await headers()).get("x-nonce") || "";
   const { lang, username } = await params;
   const dict = await getDictionary(lang);
   
