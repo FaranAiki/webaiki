@@ -507,6 +507,7 @@ export default function Header(props: HeaderProps) {
                             title={logo_alt}
                             width={32}
                             height={32}
+                            unoptimized
                             className="scale-[1.01]"
                             style={{ 
                                 filter: getThemeLogoFilter(settings?.color || ''),

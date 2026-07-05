@@ -34,6 +34,7 @@ export default function NotFoundClient({ dict, lang }: NotFoundClientProps) {
                 alt="404 Not Found Faran Aiki Portfolio"
                 width={80}
                 height={80}
+                unoptimized
                 className="object-contain"
                 style={{ 
                   filter: getThemeLogoFilter(settings?.color || ''),

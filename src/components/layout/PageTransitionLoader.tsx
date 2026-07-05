@@ -131,7 +131,8 @@ export default function PageTransitionLoader({ label }: { label: string }) {
                    alt="Loading" 
                    width={24} 
                    height={24} 
-                   className="opacity-80 transition-all duration-500" 
+                   unoptimized
+                   className="opacity-70 dark:opacity-90 invert-0 dark:invert hue-rotate-180 brightness-150 contrast-125" 
                    style={{ filter: getThemeLogoFilter(colorTheme), transition: 'filter 0.3s ease-in-out' }}
                    priority 
                  />
@@ -178,7 +179,8 @@ export default function PageTransitionLoader({ label }: { label: string }) {
                    alt="Loading" 
                    width={40} 
                    height={40} 
-                   className="opacity-80 transition-all duration-500 drop-shadow-md" 
+                   unoptimized
+                   className="opacity-80 dark:opacity-100 invert-0 dark:invert hue-rotate-180 brightness-150 contrast-125 drop-shadow-2xl filter saturate-200" 
                    style={{ filter: getThemeLogoFilter(colorTheme), transition: 'filter 0.3s ease-in-out' }}
                    priority 
                  />

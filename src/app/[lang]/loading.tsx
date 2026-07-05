@@ -86,6 +86,7 @@ export default function Loading() {
             alt="Muhammad Faran Aiki Loading Screen Portfolio"
             width={110}
             height={110}
+            unoptimized
             className="rounded-full shadow-lg"
             style={{ 
                 filter: getThemeLogoFilter(settings?.color || ''),

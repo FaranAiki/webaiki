@@ -7,13 +7,15 @@ import { Providers } from "@/components/providers/Providers";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  display: 'swap',
+  display: 'optional',
+  preload: false,
 });
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-roboto-mono",
   subsets: ["latin"],
-  display: 'swap',
+  display: 'optional',
+  preload: false,
 });
 
 import { getBaseMetadata, getFaqSchema } from "@/lib/seo";
