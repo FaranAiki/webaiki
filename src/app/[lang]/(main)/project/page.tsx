@@ -64,6 +64,7 @@ export default async function ProjectPage({params }: { params: Promise<{ lang: s
 
   return (
     <main className="w-full pt-16">
+      <h1 className="sr-only">{dict.Project || 'Project'}</h1>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

@@ -52,7 +52,7 @@ export default function ExperienceGridLayout() {
                             job.image[0].toLowerCase().endsWith('.pdf') ? (
                                 <PdfRenderer url={job.image[0]} />
                             ) : (
-                                <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="(max-width: 768px) 80vw, (max-width: 1200px) 40vw, 20vw" quality={25} className="object-cover transition-transform group-hover:scale-105" priority={false} placeholder="blur" blurDataURL={shimmer600x400} />
+                                <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="(max-width: 768px) 80vw, (max-width: 1200px) 40vw, 20vw" quality={25} className="object-cover transition-transform group-hover:scale-105" priority={idx === 0} fetchPriority={idx === 0 ? "high" : "auto"} placeholder="blur" blurDataURL={shimmer600x400} />
                             )
                         ) : (
                             <PlaceholderIcon company={job.company} />
@@ -60,7 +60,7 @@ export default function ExperienceGridLayout() {
                     </div>
                     <p className="text-xs mb-1 text-foreground/80">{job.date}</p>
                     <div className="flex justify-between items-start mb-1 gap-2">
-                        <h3 className={`text-xl font-black ${mainText} group-hover:text-theme-500 leading-tight`}>{job.title}<TagBadge labels={job.tag} /></h3>
+                        <h2 className={`text-xl font-black ${mainText} group-hover:text-theme-500 leading-tight`}>{job.title}<TagBadge labels={job.tag} /></h2>
                         <div className="flex items-center gap-1 shrink-0" onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()}>
                             <BookmarkButton itemType="experience" itemId={job.title} initialBookmarked={bookmarkedItemIds.includes(job.title)} isLoggedIn={!!isLoggedIn} className="relative !p-1.5" />
                             {job.url && <ExternalLink size={14} className="text-theme-500 opacity-0 group-hover:opacity-100 transition-opacity" />}

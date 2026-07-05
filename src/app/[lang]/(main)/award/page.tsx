@@ -52,6 +52,7 @@ export default async function AwardPage({params }: { params: Promise<{ lang: str
 
   return (
     <main className="w-full pt-16">
+      <h1 className="sr-only">{dict.Award || 'Award'}</h1>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}

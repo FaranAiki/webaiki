@@ -65,6 +65,7 @@ export default async function WorkExperiencesPage({params }: { params: Promise<{
 
   return (
     <main className="w-full pt-16">
+      <h1 className="sr-only">{dict.Work || 'Work'}</h1>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

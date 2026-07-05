@@ -52,6 +52,7 @@ export default async function OrganizationExperiencesPage({params }: { params: P
 
   return (
     <main className="w-full pt-16">
+      <h1 className="sr-only">{dict.Organization || 'Organization'}</h1>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}

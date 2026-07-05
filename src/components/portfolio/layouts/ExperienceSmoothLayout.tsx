@@ -57,7 +57,7 @@ export default function ExperienceSmoothLayout() {
                                 <p className="text-sm font-bold text-foreground/80">{job.date}</p>
                             </div>
                             <div className="flex items-center gap-3">
-                                <h3 className={`text-4xl md:text-5xl font-black ${mainText} group-hover:text-theme-500 leading-tight transition-colors`}>{job.title}<TagBadge labels={job.tag} /></h3>
+                                <h2 className={`text-4xl md:text-5xl font-black ${mainText} group-hover:text-theme-500 leading-tight transition-colors`}>{job.title}<TagBadge labels={job.tag} /></h2>
                                 <div onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()} className="flex items-center gap-2">
                                     <BookmarkButton itemType="experience" itemId={job.title} initialBookmarked={bookmarkedItemIds.includes(job.title)} isLoggedIn={!!isLoggedIn} className="relative" />
                                     {job.url && <ExternalLink size={24} className="text-theme-500 opacity-0 group-hover:opacity-100 transition-all translate-y-2" />}
@@ -74,7 +74,7 @@ export default function ExperienceSmoothLayout() {
                                     job.image[0].toLowerCase().endsWith('.pdf') ? (
                                         <PdfRenderer url={job.image[0]} isExpanded />
                                     ) : (
-                                        <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="(max-width: 768px) 80vw, (max-width: 1200px) 40vw, 20vw" quality={25} priority={false} className="object-cover" />
+                                        <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="(max-width: 768px) 80vw, (max-width: 1200px) 40vw, 20vw" quality={25} priority={idx === 0} fetchPriority={idx === 0 ? "high" : "auto"} className="object-cover" />
                                     )
                                 ) : (
                                     <PlaceholderIcon company={job.company} />
