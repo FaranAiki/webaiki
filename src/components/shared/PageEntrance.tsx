@@ -1,7 +1,6 @@
 "use client";
 
 import React from 'react';
-import { m as motion } from 'framer-motion';
 
 interface PageEntranceProps {
   children: React.ReactNode;
@@ -18,18 +17,16 @@ export default function PageEntrance({
   className = "", 
   delay = 0 
 }: PageEntranceProps) {
+  // Using native CSS animation for better LCP (Largest Contentful Paint) performance.
+  // Framer Motion delays rendering until hydration, which causes a large "Element render delay" penalty in Lighthouse.
+  const style = delay > 0 ? { animationDelay: `${delay}s`, opacity: 0 } : undefined;
+  
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 8 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ 
-        duration: 0.4, 
-        delay: delay,
-        ease: [0.21, 0.47, 0.32, 0.98] // Smooth "out-quint" like ease
-      }}
-      className={className}
+    <div
+      className={`animate-page-entrance ${className}`}
+      style={style}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

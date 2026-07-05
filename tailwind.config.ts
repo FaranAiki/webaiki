@@ -15,11 +15,16 @@ const config: Config = {
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
           '50%': { transform: 'translateY(-10px)' }, // Adjust -10px to make it float higher or lower
+        },
+        'fade-in-up': {
+          '0%': { opacity: '0', transform: 'translateY(8px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
         }
       },
 
       animation: {
         float: 'float 4s ease-in-out infinite', // 4s duration, smooth easing, repeats forever
+        'page-entrance': 'fade-in-up 0.4s cubic-bezier(0.21, 0.47, 0.32, 0.98) forwards',
       },
 
       colors: {
