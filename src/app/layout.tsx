@@ -1,23 +1,6 @@
-
-import { Inter, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { Providers } from "@/components/providers/Providers";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: 'optional',
-  preload: false,
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-roboto-mono",
-  subsets: ["latin"],
-  display: 'optional',
-  preload: false,
-});
-
 import { getBaseMetadata, getFaqSchema } from "@/lib/seo";
 
 export const metadata = getBaseMetadata();
@@ -47,7 +30,7 @@ export default async function RootLayout({
           `
         }} />
       </head>
-      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased ${isBot ? 'is-bot' : ''}`}>
+      <body className={`font-sans antialiased ${isBot ? 'is-bot' : ''}`}>
         <Providers nonce={nonce} isBot={isBot}>
           {children}
         </Providers>

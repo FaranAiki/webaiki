@@ -15,10 +15,31 @@ export default function Background({ carousel, showOverlay = true }: BackgroundP
   const [currentIndex, setCurrentIndex] = useState(0);
   const [mounted, setMounted] = useState(false);
   const [loadedIndices, setLoadedIndices] = useState<Set<number>>(new Set([0, 1]));
+  const [isInteracted, setIsInteracted] = useState(false);
   const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
+    
+    const handleInteraction = () => {
+      setIsInteracted(true);
+      window.removeEventListener('scroll', handleInteraction);
+      window.removeEventListener('mousemove', handleInteraction);
+      window.removeEventListener('touchstart', handleInteraction);
+      window.removeEventListener('keydown', handleInteraction);
+    };
+
+    window.addEventListener('scroll', handleInteraction, { passive: true, once: true });
+    window.addEventListener('mousemove', handleInteraction, { passive: true, once: true });
+    window.addEventListener('touchstart', handleInteraction, { passive: true, once: true });
+    window.addEventListener('keydown', handleInteraction, { passive: true, once: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleInteraction);
+      window.removeEventListener('mousemove', handleInteraction);
+      window.removeEventListener('touchstart', handleInteraction);
+      window.removeEventListener('keydown', handleInteraction);
+    };
   }, []);
 
   const dLen = Math.max(1, carousel.desktop?.length || 1);
@@ -58,7 +79,7 @@ export default function Background({ carousel, showOverlay = true }: BackgroundP
 
   let pictureElement = null;
 
-  if (loadedIndices.has(currentIndex) && desktopImage && mobileImage) {
+  if (isInteracted && loadedIndices.has(currentIndex) && desktopImage && mobileImage) {
     const commonProps = {
       alt: `Background image ${currentIndex + 1} - Muhammad Faran Aiki Portfolio`,
       fill: true,
