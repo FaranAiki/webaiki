@@ -136,7 +136,7 @@ export default function LoadingOverlay({ label, isBot }: LoadingOverlayProps) {
             <motion.div
               initial={{ opacity: 0 }}
               animate={hasStarted ? { opacity: 1 } : { opacity: 0 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
+              transition={{ delay: 0.5, duration: 0.4 }}
               className="mt-8 text-center"
             >
               <p className="text-foreground font-semibold tracking-tight text-sm md:text-base opacity-80">

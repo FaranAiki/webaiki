@@ -15,12 +15,15 @@ npm run test:unit
 echo -e "\n[3/4] Running TypeScript compiler check..."
 npx tsc --noEmit
 
-echo -e "\n[4/4] Testing Docker build..."
+echo -e "\n[4/5] Testing Docker build..."
 if docker info >/dev/null 2>&1; then
   docker build -t webaiki:ci-test .
 else
   echo "⚠️ Skipping Docker build: Docker daemon is not running or requires sudo permissions."
 fi
+
+echo -e "\n[5/5] Running Next.js build..."
+npm run build
 
 echo -e "\n==========================================="
 echo "   All CI checks passed successfully! 🎉"

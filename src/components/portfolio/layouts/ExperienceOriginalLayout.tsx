@@ -37,7 +37,7 @@ export default function ExperienceOriginalLayout() {
                         </h2>
                         <motion.div
                             className="space-y-4"
-                            initial={expIdx === 0 ? "show" : "hidden"}
+                            initial={expIdx < 3 ? "show" : "hidden"}
                             whileInView="show"
                             viewport={{ once: true, margin: "-50px" }}
                             variants={{

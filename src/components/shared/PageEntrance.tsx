@@ -23,7 +23,7 @@ export default function PageEntrance({
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ 
-        duration: 0.6, 
+        duration: 0.4, 
         delay: delay,
         ease: [0.21, 0.47, 0.32, 0.98] // Smooth "out-quint" like ease
       }}

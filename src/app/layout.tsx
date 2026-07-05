@@ -1,5 +1,5 @@
 
-import { Inter, Roboto_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { Providers } from "@/components/providers/Providers";
@@ -10,7 +10,7 @@ const inter = Inter({
   display: 'swap',
 });
 
-const robotoMono = Roboto_Mono({
+const jetbrainsMono = JetBrains_Mono({
   variable: "--font-roboto-mono",
   subsets: ["latin"],
   display: 'swap',
@@ -35,7 +35,6 @@ export default async function RootLayout({
     <html lang={locale} suppressHydrationWarning>
       <head>
         <meta name="strix-verification" content="strix-verify-c06f1485383fb06c8ff307fe69f30458" />
-        <link rel="dns-prefetch" href="https://www.google.com" />
         <link rel="dns-prefetch" href="https://cloud.umami.is" />
         <script nonce={nonce} dangerouslySetInnerHTML={{
           __html: `
@@ -45,7 +44,7 @@ export default async function RootLayout({
           `
         }} />
       </head>
-      <body className={`${inter.variable} ${robotoMono.variable} font-sans antialiased ${isBot ? 'is-bot' : ''}`}>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased ${isBot ? 'is-bot' : ''}`}>
         <Providers nonce={nonce} isBot={isBot}>
           {children}
         </Providers>

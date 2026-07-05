@@ -39,7 +39,7 @@ export default function ExperienceSmoothLayout() {
                 <motion.div
                     key={`${job.year}-${idx}`}
                     id={`exp-${job.title.toLowerCase().replace(/\s+/g, '-')}`}
-                    initial={idx < 2 ? "show" : undefined}
+                    initial={idx < 12 ? "show" : undefined}
                     variants={{
                         hidden: { opacity: 0, y: 30 },
                         show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }

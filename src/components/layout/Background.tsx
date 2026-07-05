@@ -67,8 +67,8 @@ export default function Background({ carousel, showOverlay = true }: BackgroundP
                 initial={{ opacity: currentIndex === 0 ? 0.8 : 0 }}
                 animate={{ opacity: 0.8 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 1.5, ease: "easeInOut" }}
-                className={`blur-[4px] absolute inset-0 w-full h-full scale-105 transform-gpu will-change-[opacity]`}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                className={`blur-[4px] absolute inset-0 w-full h-full scale-105 transform-gpu will-change-[opacity]` }
                 style={{ backfaceVisibility: 'hidden' }}
             >
                 {loadedIndices.has(currentIndex) && (
@@ -78,7 +78,7 @@ export default function Background({ carousel, showOverlay = true }: BackgroundP
                       alt={`Background image ${currentIndex + 1} - Muhammad Faran Aiki Portfolio`}
                       className="w-full h-full object-cover"
                       sizes="100vw"
-                      quality={35}
+                      quality={85}
                       priority={currentIndex === 0}
                       loading={currentIndex === 0 ? "eager" : "lazy"}
                       fetchPriority={currentIndex === 0 ? "high" : "auto"}

@@ -45,7 +45,7 @@ export default function FadeInSection({
       initial={initialVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: delay / 1000, ease: "easeOut" }}
+      transition={{ duration: 0.4, delay: delay / 1000, ease: "easeOut" }}
       className={`relative overflow-visible ${className} ${isPresentationMode ? 'presentation-section' : ''}`}
     >
       {isPresentationMode ? (

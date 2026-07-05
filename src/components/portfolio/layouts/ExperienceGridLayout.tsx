@@ -36,7 +36,7 @@ export default function ExperienceGridLayout() {
                 <motion.div
                     key={`${job.year}-${idx}`}
                     id={`exp-${job.title.toLowerCase().replace(/\s+/g, '-')}`}
-                    initial={idx < 4 ? "show" : undefined}
+                    initial={idx < 12 ? "show" : undefined}
                     variants={{
                         hidden: { opacity: 0, y: 20, scale: 0.95 },
                         show: { opacity: 1, y: 0, scale: 1, transition: { type: "spring", stiffness: 100 } }

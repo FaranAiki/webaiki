@@ -91,7 +91,7 @@ export function PortfolioAboutHeader(props: AboutMeProps) {
                   initial={{ opacity: 0, scale: 1.1 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.6 }}
+                  transition={{ duration: 0.4 }}
                   className="relative w-full h-full"
                 >
                     <Image
@@ -200,7 +200,7 @@ export function AboutSection(props: AboutSubSectionProps) {
                   initial={{ opacity: 0, scale: 1.1 }}
                   animate={{ opacity: 1, scale: 1.01 }}
                   exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.8, ease: "easeInOut" }}
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
                   className="relative w-full h-full flex justify-center items-center"
                 >
                   <Image
