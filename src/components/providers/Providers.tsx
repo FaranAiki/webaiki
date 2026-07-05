@@ -5,11 +5,12 @@ import React, { createContext, useContext, useState, useEffect, Suspense } from 
 import { PresentationProvider } from "./PresentationContext";
 import { SettingsProvider } from "./SettingsContext";
 import QueryProvider from "./QueryProvider";
-import SmoothScroll from "./SmoothScroll";
+import dynamic from "next/dynamic";
+const SmoothScroll = dynamic(() => import("./SmoothScroll"), { ssr: false });
 import LoadingOverlay from "../layout/LoadingOverlay";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useAppStore } from "@/lib/store";
-import { LazyMotion, domMax } from "framer-motion";
+import { LazyMotion, domAnimation } from "framer-motion";
 
 interface ProvidersContextType {
   setLoadingLabel: (label: string) => void;
@@ -53,7 +54,7 @@ export function Providers({ children, nonce, isBot }: { children: React.ReactNod
           <QueryProvider>
             <SmoothScroll>
               <ThemeProvider attribute="class" defaultTheme="system" enableSystem nonce={nonce}>
-                <LazyMotion features={domMax}>
+                <LazyMotion features={domAnimation}>
                   <Suspense fallback={null}>
                     <GlobalLoadingReset />
                   </Suspense>

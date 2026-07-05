@@ -131,7 +131,6 @@ export function getBaseMetadata(dict: Record<string, string> = {}): Metadata {
       telephone: false,
     },
     alternates: {
-      canonical: '/',
       languages: getLanguageAlternates(''),
     },
     robots: {

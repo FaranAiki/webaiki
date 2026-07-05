@@ -66,7 +66,8 @@ const nextConfig: NextConfig = {
       'lucide-react',
       '@base-ui/react',
       'react-force-graph-2d',
-      'force-graph'
+      'force-graph',
+      'framer-motion'
     ],
     optimizeCss: true, // Keep it if it helps, but inlineCss is for App Router
     inlineCss: true,
