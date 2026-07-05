@@ -513,7 +513,7 @@ export default function Header(props: HeaderProps) {
                                 filter: getThemeLogoFilter(settings?.color || ''),
                                 transition: 'filter 0.3s ease-in-out'
                             }}
-                            priority
+                            loading="lazy"
                         />
                     </button>
 
