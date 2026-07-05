@@ -2,25 +2,18 @@
 
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import Image from 'next/image'
+import { getImageProps } from 'next/image';
 import { m as motion, AnimatePresence } from 'framer-motion';
 const SLIDE_DURATION = 10000;
-/*
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function GeometricPattern({isDark}: GeometricPatternProps) {
-  // Commented out to prevent JS parsing/execution overhead as it is unused and slows down performance
-}
-*/
 
 export type BackgroundProps = {
-  carousel: string[];
+  carousel: { desktop: string[]; mobile: string[] };
   showOverlay?: boolean;
 };
 
 export default function Background({ carousel, showOverlay = true }: BackgroundProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [mounted, setMounted] = useState(false);
-  // Preload first few images for smoother initial experience
   const [loadedIndices, setLoadedIndices] = useState<Set<number>>(new Set([0, 1]));
   const { resolvedTheme } = useTheme();
 
@@ -28,27 +21,28 @@ export default function Background({ carousel, showOverlay = true }: BackgroundP
     setMounted(true);
   }, []);
 
+  const dLen = Math.max(1, carousel.desktop?.length || 1);
+  const mLen = Math.max(1, carousel.mobile?.length || 1);
+  const maxIndex = dLen * mLen;
+
   useEffect(() => {
-    if (!carousel || carousel.length === 0) return;
+    if ((!carousel.desktop || carousel.desktop.length === 0) && (!carousel.mobile || carousel.mobile.length === 0)) return;
 
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => {
-        const nextIndex = (prevIndex + 1) % carousel.length;
-
-        // Add the new index to our loaded set so it gets rendered and fetched
+        const nextIndex = (prevIndex + 1) % maxIndex;
         setLoadedIndices((prev) => {
           if (prev.has(nextIndex)) return prev;
           const newSet = new Set(prev);
           newSet.add(nextIndex);
           return newSet;
         });
-
         return nextIndex;
       });
     }, SLIDE_DURATION);
 
     return () => clearInterval(interval);
-  }, [carousel]);
+  }, [carousel, maxIndex]);
 
   const isDark = mounted && resolvedTheme === 'dark';
   const overlayClass = !mounted
@@ -57,9 +51,51 @@ export default function Background({ carousel, showOverlay = true }: BackgroundP
       ? "from-theme-surface/90 via-theme-surface/91 to-theme-surface/93"
       : "from-theme-surface/90 via-theme-surface/91 to-theme-surface/93";
 
+  const safeDesktopIndex = currentIndex % dLen;
+  const safeMobileIndex = currentIndex % mLen;
+  const desktopImage = carousel.desktop?.[safeDesktopIndex];
+  const mobileImage = carousel.mobile?.[safeMobileIndex];
+
+  let pictureElement = null;
+
+  if (loadedIndices.has(currentIndex) && desktopImage && mobileImage) {
+    const commonProps = {
+      alt: `Background image ${currentIndex + 1} - Muhammad Faran Aiki Portfolio`,
+      fill: true,
+      sizes: "100vw",
+      quality: 85,
+      priority: currentIndex === 0,
+      loading: (currentIndex === 0 ? "eager" : "lazy") as "eager" | "lazy",
+      fetchPriority: (currentIndex === 0 ? "high" : "auto") as "high" | "auto",
+    };
+
+    const {
+      props: { srcSet: desktopSrcSet },
+    } = getImageProps({ ...commonProps, src: `/images/background/${desktopImage}` });
+
+    const {
+      props: { srcSet: mobileSrcSet, src: mobileSrc, alt, loading, fetchPriority, sizes },
+    } = getImageProps({ ...commonProps, src: `/images/background/${mobileImage}` });
+
+    pictureElement = (
+      <picture>
+        <source media="(min-width: 768px)" srcSet={desktopSrcSet} />
+        <source media="(max-width: 767px)" srcSet={mobileSrcSet} />
+        <img
+          src={mobileSrc}
+          alt={alt}
+          loading={loading}
+          fetchPriority={fetchPriority}
+          sizes={sizes}
+          className="w-full h-full object-cover"
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+        />
+      </picture>
+    );
+  }
+
   return (
     <div className={`presentation-background sticky top-0 left-0 w-full h-screen -mb-[100vh] z-[-1] pointer-events-none transform-gpu contain-strict overflow-hidden bg-theme-bg dark:bg-theme-bg-dark transition-colors duration-1000`}>
-
       <div className={`w-full h-full absolute inset-0 transform-gpu`} style={{ backfaceVisibility: 'hidden' }}>
         <AnimatePresence mode="wait">
             <motion.div
@@ -71,19 +107,7 @@ export default function Background({ carousel, showOverlay = true }: BackgroundP
                 className={`blur-[4px] absolute inset-0 w-full h-full scale-105 transform-gpu will-change-[opacity]` }
                 style={{ backfaceVisibility: 'hidden' }}
             >
-                {loadedIndices.has(currentIndex) && (
-                  <Image
-                      fill={true}
-                      src={`/images/background/${carousel[currentIndex]}`}
-                      alt={`Background image ${currentIndex + 1} - Muhammad Faran Aiki Portfolio`}
-                      className="w-full h-full object-cover"
-                      sizes="100vw"
-                      quality={85}
-                      priority={currentIndex === 0}
-                      loading={currentIndex === 0 ? "eager" : "lazy"}
-                      fetchPriority={currentIndex === 0 ? "high" : "auto"}
-                  />
-                )}
+                {pictureElement}
             </motion.div>
         </AnimatePresence>
 
@@ -96,8 +120,6 @@ export default function Background({ carousel, showOverlay = true }: BackgroundP
             transition={{ duration: 1 }}
           />
         )}
-
-        {/* mounted && <GeometricPattern isDark={isDark}/> */}
       </div>
     </div>
   );

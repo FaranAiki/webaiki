@@ -8,8 +8,18 @@ import type { CertificateData } from '@/components/portfolio/CertificatesContext
 
 export const getBackgrounds = cache(() => {
   const photosDir = path.join(process.cwd(), 'public', 'images', 'background');
-  if (!fs.existsSync(photosDir)) return [];
-  return fs.readdirSync(photosDir).filter(file => file.toLowerCase().endsWith('.webp'));
+  if (!fs.existsSync(photosDir)) return { desktop: [], mobile: [] };
+  
+  const allFiles = fs.readdirSync(photosDir).filter(file => file.toLowerCase().endsWith('.webp'));
+  
+  // Desktop images are landscape, mobile are portrait
+  const desktopKnown = ['background_4.webp', 'background_5.webp', 'background_6.webp', 'background_7.webp', 'background_8.webp', 'background_9.webp', 'background_11.webp'];
+  const mobileKnown = ['background_1.webp', 'background_2.webp', 'background_3.webp', 'background_10.webp', 'background_12.webp', 'background_13.webp'];
+  
+  const desktop = allFiles.filter(f => desktopKnown.includes(f) || (!desktopKnown.includes(f) && !mobileKnown.includes(f)));
+  const mobile = allFiles.filter(f => mobileKnown.includes(f) || (!desktopKnown.includes(f) && !mobileKnown.includes(f)));
+
+  return { desktop, mobile };
 });
 
 export const getFaranAikiPhoto = cache(() => {

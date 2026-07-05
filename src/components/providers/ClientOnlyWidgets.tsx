@@ -3,7 +3,7 @@
 import Background from '@/components/layout/Background';
 
 interface ClientOnlyWidgetsProps {
-  backgrounds: string[];
+  backgrounds: { desktop: string[]; mobile: string[] };
 }
 
 export default function ClientOnlyWidgets({ backgrounds }: ClientOnlyWidgetsProps) {
