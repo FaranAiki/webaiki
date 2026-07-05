@@ -82,7 +82,7 @@ export default function CertificatesPresentationLayout() {
                     >
                       {filePath.endsWith('.pdf') ? (
                         <div className="w-full h-full flex justify-center items-center overflow-hidden">
-                          <PdfPreview fileUrl={filePath} width={350} priority={true} />
+                          <PdfPreview fileUrl={filePath} width={350} priority={false} />
                         </div>
                       ) : (
                         <Image

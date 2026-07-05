@@ -258,6 +258,7 @@ export default function SocialDisplay({ customLinks, hidePresentation = false, d
                 fill 
                 className="object-cover"
                 sizes="64px"
+                loading="lazy"
               />
             </div>
             {/* LinkedIn Badge Overlay Icon */}

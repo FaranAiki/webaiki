@@ -91,7 +91,7 @@ export const TimelineActiveImage = React.memo(({ activeJob, shimmer600x400 }: { 
             >
                 {hasValidImage ? (
                     activeImageSrc!.toLowerCase().endsWith('.pdf') ? (
-                        <PdfRenderer url={activeImageSrc!} isExpanded={true} priority={true} />
+                        <PdfRenderer url={activeImageSrc!} isExpanded={true} priority={false} />
                     ) : (
                         <Image
                             fill
@@ -101,7 +101,7 @@ export const TimelineActiveImage = React.memo(({ activeJob, shimmer600x400 }: { 
                             blurDataURL={shimmer600x400}
                             alt={`${activeJob.title} at ${activeJob.company}`}
                             className="object-contain"
-                            priority={true}
+                            priority={false}
                             fetchPriority="high"
                             quality={25}
                         />

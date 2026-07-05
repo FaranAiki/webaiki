@@ -20,7 +20,7 @@ export default async function RootLayout({
     <html lang={locale} suppressHydrationWarning>
       <head>
         <meta name="strix-verification" content="strix-verify-c06f1485383fb06c8ff307fe69f30458" />
-        <link rel="preconnect" href="https://cloud.umami.is" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://cloud.umami.is" />
         <link rel="dns-prefetch" href="https://cloud.umami.is" />
         <script nonce={nonce} dangerouslySetInnerHTML={{
           __html: `
