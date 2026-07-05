@@ -186,10 +186,36 @@ export default function SocialDisplay({ customLinks, hidePresentation = false, d
   
   // Need mounted state for next-themes to avoid hydration mismatch
   const [mounted, setMounted] = React.useState(false);
+  const [iframesLoaded, setIframesLoaded] = React.useState(false);
 
   useEffect(() => {
     setMounted(true);
-  }, []);
+    
+    // Defer iframes to avoid third-party cookies and CPU spikes on page load
+    const handleInteraction = () => {
+      setIframesLoaded(true);
+      window.removeEventListener('scroll', handleInteraction);
+      window.removeEventListener('mousemove', handleInteraction);
+      window.removeEventListener('touchstart', handleInteraction);
+      window.removeEventListener('keydown', handleInteraction);
+    };
+
+    window.addEventListener('scroll', handleInteraction, { passive: true, once: true });
+    window.addEventListener('mousemove', handleInteraction, { passive: true, once: true });
+    window.addEventListener('touchstart', handleInteraction, { passive: true, once: true });
+    window.addEventListener('keydown', handleInteraction, { passive: true, once: true });
+
+    if (isPresentationMode) {
+        setIframesLoaded(true);
+    }
+
+    return () => {
+      window.removeEventListener('scroll', handleInteraction);
+      window.removeEventListener('mousemove', handleInteraction);
+      window.removeEventListener('touchstart', handleInteraction);
+      window.removeEventListener('keydown', handleInteraction);
+    };
+  }, [isPresentationMode]);
 
   const currentTheme = theme === 'system' ? systemTheme : theme;
   const badgeTheme = mounted && currentTheme === 'dark' ? 'dark' : 'light';
@@ -286,14 +312,21 @@ export default function SocialDisplay({ customLinks, hidePresentation = false, d
     if (link.name === 'Instagram') {
       return (
         <div className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-4' : 'rounded-lg p-3'} flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 w-full shadow-sm hover:shadow-lg overflow-hidden`}>
-          <iframe 
-            src="https://www.instagram.com/mfaranaiki/embed/" 
-            className="w-full h-[400px] sm:h-[450px] rounded-lg border-0 bg-transparent"
-            scrolling="no"
-            frameBorder="0"
-            loading="lazy"
-            title="Instagram Embed"
-          />
+          {!iframesLoaded && (
+            <div className="w-full h-[400px] sm:h-[450px] flex items-center justify-center bg-black/5 dark:bg-white/5 rounded-lg border border-black/10 dark:border-white/10">
+              <span className="text-sm font-bold text-theme-muted animate-pulse">Loading Instagram...</span>
+            </div>
+          )}
+          {iframesLoaded && (
+            <iframe 
+              src="https://www.instagram.com/mfaranaiki/embed/" 
+              className="w-full h-[400px] sm:h-[450px] rounded-lg border-0 bg-transparent animate-fade-in"
+              scrolling="no"
+              frameBorder="0"
+              loading="lazy"
+              title="Instagram Embed"
+            />
+          )}
         </div>
       );
     }
@@ -301,15 +334,22 @@ export default function SocialDisplay({ customLinks, hidePresentation = false, d
     if (link.name === 'TikTok') {
       return (
         <div className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-4' : 'rounded-lg p-3'} flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 w-full shadow-sm hover:shadow-lg overflow-hidden`}>
-          <iframe 
-            src="https://www.tiktok.com/embed/@faranaiki07" 
-            className="w-full h-[400px] sm:h-[450px] rounded-lg border-0 bg-transparent"
-            allow="fullscreen"
-            scrolling="no"
-            frameBorder="0"
-            loading="lazy"
-            title="TikTok Embed"
-          />
+          {!iframesLoaded && (
+            <div className="w-full h-[400px] sm:h-[450px] flex items-center justify-center bg-black/5 dark:bg-white/5 rounded-lg border border-black/10 dark:border-white/10">
+              <span className="text-sm font-bold text-theme-muted animate-pulse">Loading TikTok...</span>
+            </div>
+          )}
+          {iframesLoaded && (
+            <iframe 
+              src="https://www.tiktok.com/embed/@faranaiki07" 
+              className="w-full h-[400px] sm:h-[450px] rounded-lg border-0 bg-transparent animate-fade-in"
+              allow="fullscreen"
+              scrolling="no"
+              frameBorder="0"
+              loading="lazy"
+              title="TikTok Embed"
+            />
+          )}
         </div>
       );
     }
