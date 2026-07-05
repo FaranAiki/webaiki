@@ -30,7 +30,7 @@ export default async function RootLayout({
           `
         }} />
       </head>
-      <body className={`font-sans antialiased ${isBot ? 'is-bot' : ''}`}>
+      <body className={`font-serif antialiased ${isBot ? 'is-bot' : ''}`}>
         <Providers nonce={nonce} isBot={isBot}>
           {children}
         </Providers>

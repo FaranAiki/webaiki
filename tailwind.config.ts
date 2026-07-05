@@ -35,6 +35,7 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-inter)'],
         mono: ['var(--font-roboto-mono)'],
+        serif: ['ui-serif', 'Georgia', 'Cambria', '"Hoefler Text"', 'Garamond', 'serif'],
       },
     },
   },
