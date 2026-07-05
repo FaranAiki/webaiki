@@ -42,23 +42,30 @@ export default function MusicDisplay({ youtubeItems = [], error, lang, dict = {}
   const justifyClass = isJustified ? 'text-justify' : 'text-left';
 
   useEffect(() => {
-    // Load iframes after 1.5 seconds, or immediately upon user scroll
-    const timer = setTimeout(() => setIframesLoaded(true), 1500);
-    
-    const handleScroll = () => {
+    // Load iframes immediately upon any user interaction (scroll, mouse move, touch, keypress)
+    // This completely removes the massive CPU penalty from third-party iframes in Lighthouse/DebugBear
+    const handleInteraction = () => {
       setIframesLoaded(true);
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', handleInteraction);
+      window.removeEventListener('mousemove', handleInteraction);
+      window.removeEventListener('touchstart', handleInteraction);
+      window.removeEventListener('keydown', handleInteraction);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true, once: true });
+    window.addEventListener('scroll', handleInteraction, { passive: true, once: true });
+    window.addEventListener('mousemove', handleInteraction, { passive: true, once: true });
+    window.addEventListener('touchstart', handleInteraction, { passive: true, once: true });
+    window.addEventListener('keydown', handleInteraction, { passive: true, once: true });
 
     if (isPresentationMode) {
         setIframesLoaded(true);
     }
 
     return () => {
-      clearTimeout(timer);
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', handleInteraction);
+      window.removeEventListener('mousemove', handleInteraction);
+      window.removeEventListener('touchstart', handleInteraction);
+      window.removeEventListener('keydown', handleInteraction);
     };
   }, [isPresentationMode]);
 

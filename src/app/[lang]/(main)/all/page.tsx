@@ -54,11 +54,16 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
+import { preload } from 'react-dom';
+
 export default async function AllHighlightsPage({params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
   
   const faranPhotos = await getFaranAikiPhoto();
+  if (faranPhotos && faranPhotos.length > 0) {
+    preload(`/images/photo_faran_aiki/${faranPhotos[0]}`, { as: 'image', fetchPriority: 'high' });
+  }
 
   const workExp = getWorkExperiences(dict);
   const projectExp = getProjectExperiences(dict);
