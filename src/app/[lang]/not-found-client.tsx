@@ -1,5 +1,5 @@
 "use client";
-import { m as motion } from "framer-motion";
+
 import Link from "next/link";
 import { Home, Star } from "lucide-react";
 import { useSettings } from "@/components/providers/SettingsContext";
@@ -14,11 +14,8 @@ interface NotFoundClientProps {
 export default function NotFoundClient({ dict, lang }: NotFoundClientProps) {
   const settings = useSettings();
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="w-full flex flex-col items-center"
+    <div
+      className="w-full flex flex-col items-center animate-in fade-in slide-in-from-bottom-4 duration-500"
     >
       <div className="relative mb-8">
         <div
@@ -84,6 +81,6 @@ export default function NotFoundClient({ dict, lang }: NotFoundClientProps) {
           <span>{dict.Portfolio}</span>
         </Link>
       </div>
-    </motion.div>
+    </div>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { m as motion } from 'framer-motion';
+
 import { 
   Building2, 
   Briefcase, 
@@ -48,12 +48,10 @@ export default function BusinessRequestsClient({ requests }: BusinessRequestsCli
   return (
     <div className="grid gap-6">
       {requests.map((request, index) => (
-        <motion.div
+        <div
           key={request.id}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: index * 0.1 }}
-          className="bg-theme-surface/50 border border-theme-border rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow"
+          className="bg-theme-surface/50 border border-theme-border rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow animate-in fade-in slide-in-from-bottom-4 duration-500"
+          style={{ animationFillMode: 'both', animationDelay: `${index * 100}ms` }}
         >
           <div className="flex flex-wrap justify-between items-start gap-4 mb-6">
             <div className="flex items-center gap-4">
@@ -112,7 +110,7 @@ export default function BusinessRequestsClient({ requests }: BusinessRequestsCli
             </p>
             <p className="text-sm leading-relaxed whitespace-pre-wrap">{request.reason}</p>
           </div>
-        </motion.div>
+        </div>
       ))}
     </div>
   );

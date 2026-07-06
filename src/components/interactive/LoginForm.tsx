@@ -58,7 +58,7 @@ export default function LoginForm({ dict, lang }: LoginFormProps) {
   return (
     <motion.div 
       variants={containerVariants}
-      initial="hidden"
+      initial={false}
       animate="visible"
       className="relative max-w-md mx-auto mt-10"
     >

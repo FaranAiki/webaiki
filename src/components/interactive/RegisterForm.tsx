@@ -103,7 +103,7 @@ export default function RegisterForm({ dict, lang }: RegisterFormProps) {
   return (
     <motion.div
       variants={containerVariants}
-      initial="hidden"
+      initial={false}
       animate="visible"
       className="relative max-w-md mx-auto mt-10"
     >

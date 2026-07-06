@@ -68,7 +68,7 @@ export const TimelineActiveImage = React.memo(({ activeJob, shimmer600x400 }: { 
         }
         const timer = setInterval(() => {
             setCurrentImageIndex((prev) => (prev + 1) % activeJob.image.length);
-        }, 3000);
+        }, 12000);
         return () => clearInterval(timer);
     }, [activeJob]);
 
@@ -101,9 +101,9 @@ export const TimelineActiveImage = React.memo(({ activeJob, shimmer600x400 }: { 
                             blurDataURL={shimmer600x400}
                             alt={`${activeJob.title} at ${activeJob.company}`}
                             className="object-contain"
-                            priority={false}
+                            priority={true}
                             fetchPriority="high"
-                            quality={85}
+                            quality={75}
                         />
                     )
                 ) : (
@@ -167,7 +167,7 @@ export const BentoCard = React.memo(({ job, spanClass, cardBorder, inactiveCardB
                         fill
                         priority={priority}
                         fetchPriority={priority ? "high" : "auto"}
-                        quality={85}
+                        quality={75}
                         sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                         className={`object-cover transition-transform duration-700
                             ${isExpanded

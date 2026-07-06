@@ -82,7 +82,7 @@ export default function ExperiencePresentationLayout() {
             {allJobs.map((job, idx) => (
                 <FadeInSection
                     key={`pres-${idx}`}
-                    className="w-full min-w-full h-full flex-shrink-0 snap-center flex flex-col justify-center bg-white dark:bg-theme-bg shadow-2xl dark:shadow-none text-black dark:text-white"
+                    className="w-full min-w-full h-full flex-shrink-0 snap-center flex flex-col justify-center bg-theme-bg text-foreground"
                     slideIndex={idx + 1}
                     totalSlides={allJobs.length}
                 >

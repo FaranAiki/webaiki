@@ -5,7 +5,7 @@ import { getDictionary } from '@/components/layout/Translator';
 import { SITE_URL, getBaseMetadata, getLanguageAlternates } from '@/lib/seo';
 import PortfolioHeader from '@/components/portfolio/PortfolioHeader';
 import PortfolioClientWrapper from '@/components/portfolio/PortfolioClientWrapper';
-import nextDynamic from 'next/dynamic';
+
 import {
   getWorkExperiences,
   getProjectExperiences,
@@ -17,10 +17,10 @@ import {
 import { Github, Linkedin, Instagram, Twitter, Star, Briefcase, Mail } from 'lucide-react';
 import Link from 'next/link';
 
-const PortfolioExperienceList = nextDynamic(() => import('@/components/portfolio/PortfolioExperienceList'));
-const PortfolioSkills = nextDynamic(() => import('@/components/portfolio/PortfolioSkills'));
-const PortfolioEducation = nextDynamic(() => import('@/components/portfolio/PortfolioEducation'));
-const FAQ = nextDynamic(() => import('@/components/portfolio/FAQ'));
+import PortfolioExperienceList from '@/components/portfolio/PortfolioExperienceList';
+import PortfolioSkills from '@/components/portfolio/PortfolioSkills';
+import PortfolioEducation from '@/components/portfolio/PortfolioEducation';
+import FAQ from '@/components/portfolio/FAQ';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
