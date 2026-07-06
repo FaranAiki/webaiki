@@ -15,7 +15,7 @@ import { NewsItem } from '@/lib/types';
 export interface SearchResult {
   title: string;
   company?: string;
-  description: string;
+  description: string | string[];
   year?: string;
   date?: string;
   type: 'work' | 'project' | 'organization' | 'award' | 'page' | 'certificate' | 'faq' | 'other' | 'news';
@@ -29,7 +29,7 @@ export interface SearchResult {
 interface ExperienceItem {
   title: string;
   company?: string;
-  description: string;
+  description: string | string[];
   date: string;
   url?: string;
   tag?: string[];
@@ -187,8 +187,8 @@ export async function getFullSearchPool(lang: string): Promise<SearchResult[]> {
       keywords: ["new", "recent", "updates", "fresh", "latest", "terbaru", "update"]
     },
     {
-      title: dict.Certificates || "Certificates",
-      description: dict.Certificates || "Professional and academic certifications",
+      title: dict.Certificate || "Certificates",
+      description: dict.Certificate || "Professional and academic certifications",
       url: `/${lang}/certificate`,
       keywords: ["certification", "course", "diploma", "verified", "skill", "certificate", "sertifikat", "kursus"]
     },
@@ -261,7 +261,7 @@ export async function getFullSearchPool(lang: string): Promise<SearchResult[]> {
           pool.push({
             title: itemName,
             company: `${category} - ${subcategory}`,
-            description: `${dict[type.charAt(0).toUpperCase() + type.slice(1)] || type} - ${category}`,
+            description: `${((dict[(type.charAt(0).toUpperCase() + type.slice(1)) as keyof typeof dict as keyof typeof dict] as string) as string) || type} - ${category}`,
             type: type === 'college' ? 'page' : 'other',
             url: details.path,
             score: 0.7
@@ -297,8 +297,8 @@ export async function getFullSearchPool(lang: string): Promise<SearchResult[]> {
 
   faqCategories.forEach(cat => {
     for (let i = 1; i <= 10; i++) {
-      const q = dict[`${cat.prefix}Q${i}`];
-      const a = dict[`${cat.prefix}A${i}`];
+      const q = ((dict[`${cat.prefix}Q${i}` as keyof typeof dict as keyof typeof dict] as string) as string);
+      const a = ((dict[`${cat.prefix}A${i}` as keyof typeof dict as keyof typeof dict] as string) as string);
       if (q && a) {
         pool.push({
           title: q,
@@ -400,7 +400,7 @@ export async function searchContent(query: string, lang: string): Promise<Search
 
     terms.forEach(term => {
       fieldsToSearch.forEach(field => {
-        const lowerText = field.text.toLowerCase();
+        const lowerText = (Array.isArray(field.text) ? field.text.join(' ') : field.text).toLowerCase();
         if (lowerText.includes(term)) {
           score += field.weight;
           if (lowerText.startsWith(term)) score += field.weight * 0.5;

@@ -29,7 +29,7 @@ export type Job = {
     date: string;
     title: string;
     company: string;
-    description: string;
+    description: string | string[];
     image: string[];
     url?: string;
     year?: string;

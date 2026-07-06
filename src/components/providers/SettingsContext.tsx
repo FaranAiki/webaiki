@@ -152,7 +152,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     // Helper to get from cookie or localStorage
     const getSetting = (key: string) => {
       // 1. Check cookies first (most recent from URL via middleware)
-      const cookies = document.cookie.split('; ').reduce((acc: Record<string, string>, current) => {
+      const cookies = document.cookie.split('; ').reduce((acc: import('@/components/layout/Translator').TranslationDict, current) => {
         const [name, value] = current.split('=');
         if (name && value) acc[name.trim()] = value;
         return acc;

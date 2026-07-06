@@ -10,7 +10,7 @@ export type ActionResponse<T = void> =
   | { success: true; data?: T; url?: string }
   | ErrorResponse;
 
-export function getErrorMessage(error: unknown, dict?: Record<string, string>): string {
+export function getErrorMessage(error: unknown, dict?: import('@/components/layout/Translator').TranslationDict): string {
   if (!error) return 'Unknown error';
   
   let code = '';

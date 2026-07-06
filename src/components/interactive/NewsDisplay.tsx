@@ -5,6 +5,7 @@ import { m as motion, AnimatePresence } from 'framer-motion';
 import { Newspaper, Send, User, Plus, X, Camera, Trash2, Search } from 'lucide-react';
 import { getNews, postNews, uploadFile, deleteNews } from '@/app/actions';
 import Image from 'next/image';
+import Script from 'next/script';
 import { useRouter } from 'next/navigation';
 import { usePresentation } from '../providers/PresentationContext';
 import FadeInSection from '../shared/FadeInSection';
@@ -26,7 +27,7 @@ interface NewsItem {
 }
 
 interface NewsDisplayProps {
-  dict: Record<string, string>;
+  dict: import('@/components/layout/Translator').TranslationDict;
   lang: string;
   isAdmin: boolean;
   initialNews?: NewsItem[];
@@ -201,9 +202,11 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
     <div className={`${isPresentationMode ? 'presentation-container' : 'max-w-4xl mx-auto space-y-12 pb-20'}`}>
       {/* Schema.org NewsArticle markup */}
       {jsonLd.map((ld, i) => (
-        <script
+        <Script
           key={`news-ld-${i}`}
+          id={`news-ld-${i}`}
           type="application/ld+json"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }}
         />
       ))}

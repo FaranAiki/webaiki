@@ -24,7 +24,7 @@ interface TerminalPageRoute {
 
 interface TerminalOverlayProps {
   lang: string;
-  dict: Record<string, string>;
+  dict: import('@/components/layout/Translator').TranslationDict;
   username: string | null;
   workExperiences: JobItem[];
   projectExperiences: JobItem[];

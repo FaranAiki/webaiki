@@ -47,7 +47,7 @@ export type CertificatesContextType = {
     buttonInactiveBg: string;
     buttonInactiveText: string;
     
-    translations: Record<string, string>;
+    translations: import('@/components/layout/Translator').TranslationDict;
 };
 
 const CertificatesContext = createContext<CertificatesContextType | undefined>(undefined);
@@ -65,7 +65,7 @@ export function CertificatesProvider({
     lang: string;
     isLoggedIn: boolean;
     bookmarkedItemIds: string[];
-    translations: Record<string, string>;
+    translations: import('@/components/layout/Translator').TranslationDict;
 }) {
     const [currentLayout, setCurrentLayout] = useState<'original' | 'timeline' | 'grid' | 'bento'>('original');
     const [openCategories, setOpenCategories] = useState<string[]>([]);

@@ -6,7 +6,7 @@ import type { NewsItem } from '@/lib/types';
 
 interface LatestActivityProps {
   lang: string;
-  dict: Record<string, string>;
+  dict: import('@/components/layout/Translator').TranslationDict;
   initialNews: NewsItem[];
 }
 

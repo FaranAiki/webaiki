@@ -23,7 +23,9 @@ import {
   LogIn,
   LogOut,
   User,
-  ChevronDown
+  ChevronDown,
+  Handshake,
+  Briefcase
 } from 'lucide-react';
 
 import { usePresentation } from '@/components/providers/PresentationContext';
@@ -205,6 +207,12 @@ export default function Header(props: HeaderProps) {
         const [dynamicNavLinks, setDynamicNavLinks] = useState<NavLink[]>(navLinks);
 
         useEffect(() => {
+            const handleOpenCommandPalette = () => setIsCommandPaletteOpen(true);
+            window.addEventListener('open-command-palette', handleOpenCommandPalette);
+            return () => window.removeEventListener('open-command-palette', handleOpenCommandPalette);
+        }, []);
+
+        useEffect(() => {
             const fetchUser = async () => {
                 const { createClient } = await import('@/utils/supabase/client');
                 const supabase = createClient();
@@ -215,19 +223,24 @@ export default function Header(props: HeaderProps) {
                     const reason = data.user.user_metadata?.registration_reason;
                     const email = data.user.email;
                     
-                    const newNavLinks = JSON.parse(JSON.stringify(navLinks));
+                    const newNavLinks = navLinks.map(link => ({
+                        ...link,
+                        subLinks: link.subLinks ? [...link.subLinks] : undefined
+                    }));
                     const homeLink = newNavLinks[0];
                     
                     if (reason === 'HR' && homeLink.subLinks) {
                         homeLink.subLinks.push({
                             name: hire_me_label,
                             href: '/hire-me',
+                            icon: <Handshake size={16} />
                         });
                     }
                     if (email === 'faran.aiki.business@gmail.com' && homeLink.subLinks) {
                         homeLink.subLinks.push({
                             name: business_requests_label,
                             href: '/business-requests',
+                            icon: <Briefcase size={16} />
                         });
                     }
                     setDynamicNavLinks(newNavLinks);

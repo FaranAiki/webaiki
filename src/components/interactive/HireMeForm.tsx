@@ -9,7 +9,7 @@ import RecaptchaNotice from '../shared/RecaptchaNotice';
 import { getErrorMessage } from '@/lib/errors';
 
 interface HireMeFormProps {
-  dict: Record<string, string>;
+  dict: import('@/components/layout/Translator').TranslationDict;
 }
 
 interface ExistingHireRequest {

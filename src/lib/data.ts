@@ -28,7 +28,7 @@ export const getFaranAikiPhoto = cache(() => {
   return fs.readdirSync(photosDir);
 });
 
-type Dictionary = Record<string, string>;
+import type { TranslationDict as Dictionary } from "@/components/layout/Translator";
 
 export const getWorkExperiences = (dict: Dictionary) => [
   {
@@ -316,7 +316,7 @@ export const getOrganizationExperiences = (dict: Dictionary) => [
       {
         date: `${dict.March} 2026 — ${dict.Present}`,
         title: dict.Impact_Web_Lead,
-        company: dict.STEI_K || 'STEI-K',
+        company: dict['STEI-K'] || 'STEI-K',
         description: dict.Impact_Web_Lead_Description,
         point: 85,
         image: [
@@ -347,7 +347,7 @@ export const getOrganizationExperiences = (dict: Dictionary) => [
       {
         date: `${dict.June} 2025 — ${dict.August} 2025`,
         title: dict.Treasurer_SYNC,
-        company: dict.STEI_K || 'STEI-K',
+        company: dict['STEI-K'] || 'STEI-K',
         description: dict.Treasurer_SYNC_Description,
         point: 80,
         image: [
@@ -483,7 +483,7 @@ export const getAwardExperiences = (dict: Dictionary) => [
       {
         date: `${dict.November} 2025 — ${dict.Present}`,
         title: dict.Paragon_Scholarship_Title,
-        company: dict.PT_Paragon || 'PT Paragon',
+        company: dict['PT Paragon'] || 'PT Paragon',
         description: dict.Paragon_Scholarship_Desc,
         point: 100,
         image: [
@@ -506,7 +506,7 @@ export const getCollectionsData = unstable_cache(async (lang: string, type: 'lit
 
   for (const folder of folders) {
     const folderPath = path.join(baseDir, folder);
-    const folderName = dict[folder] || folder;
+    const folderName = (dict[folder as keyof Dictionary] as string) || folder;
 
     if (fs.statSync(folderPath).isDirectory()) {
       allCollectionsData[folderName] = {};
@@ -516,7 +516,7 @@ export const getCollectionsData = unstable_cache(async (lang: string, type: 'lit
         const subPath = path.join(folderPath, sub);
 
         if (fs.statSync(subPath).isDirectory()) {
-          const subName = dict[sub] || sub;
+          const subName = (dict[sub as keyof Dictionary] as string) || sub;
           allCollectionsData[folderName][subName] = {};
           const files = fs.readdirSync(subPath);
 
@@ -554,7 +554,7 @@ export const getCertificatesData = unstable_cache(async (lang: string) => {
     const folderPath = path.join(baseDir, folder);
 
     if (fs.statSync(folderPath).isDirectory()) {
-      const folderName = dict[folder] || folder;
+      const folderName = (dict[folder as keyof Dictionary] as string) || folder;
       allCertificatesData[folderName] = {};
 
       const yearFolders = fs.readdirSync(folderPath);
@@ -624,7 +624,7 @@ export const getSkills = (dict: Dictionary): SkillCategory[] => [
     ]
   },
   {
-    category: dict.Skills_Databases || 'Databases & ORMs',
+    category: (dict as unknown as Record<string, string>).Skills_Databases || 'Databases & ORMs',
     subcategories: [
       {
         title: dict.Skills_Sub_Relational || 'Relational & NoSQL',
@@ -671,9 +671,9 @@ export const getSkills = (dict: Dictionary): SkillCategory[] => [
       {
         title: dict.Skills_Sub_Applied || 'Applied',
         items: [
-          dict.Software_Engineering || 'Software Engineering',
+          (dict as unknown as Record<string, string>).Software_Engineering || 'Software Engineering',
           dict.Data_Science || 'Data Science',
-          dict.Game_Development || 'Game Development'
+          (dict as unknown as Record<string, string>).Game_Development || 'Game Development'
         ]
       }
     ]
@@ -707,7 +707,7 @@ export const getEducationExperiences = (dict: Dictionary) => [
       {
         date: `${dict.August || 'August'} 2025 — ${dict.Present || 'Present'}`,
         title: dict.STI || 'Sistem dan Teknologi Informasi',
-        company: dict.ITB || 'Institut Teknologi Bandung',
+        company: `${dict.ITB || 'Institut Teknologi Bandung'} (GPA: 3.94 / 4.00)`,
         description: dict.Education_ITB_Description || 'Currently pursuing a Bachelor\'s degree in Information Systems and Technology.',
         point: 90,
         tag: [dict.Education]

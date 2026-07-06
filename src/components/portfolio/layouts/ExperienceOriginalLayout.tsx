@@ -75,9 +75,19 @@ export default function ExperienceOriginalLayout() {
                                         </div>
                                     </div>
                                     <p className="text-theme-800 dark:text-theme-200 italic mb-3 font-medium">{job.company}</p>
-                                    <HoverableWords className={`${justifyClass} ${descText} text-sm`}>
-                                        {formatCJK(job.description, lang)}
-                                    </HoverableWords>
+                                    <div className={`${justifyClass} ${descText} text-sm mt-2`}>
+                                        {Array.isArray(job.description) ? (
+                                            <ul className="list-disc pl-5 space-y-1">
+                                                {job.description.map((item, idx) => (
+                                                    <li key={idx}>
+                                                        <HoverableWords>{formatCJK(item, lang)}</HoverableWords>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        ) : (
+                                            <HoverableWords>{formatCJK(job.description, lang)}</HoverableWords>
+                                        )}
+                                    </div>
                                 </motion.div>
                             ))}
                         </motion.div>

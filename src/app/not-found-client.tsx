@@ -1,14 +1,13 @@
 "use client";
 import { m as motion } from "framer-motion";
 import Link from "next/link";
-import { Home, Star } from "lucide-react";
-import SearchBar from "@/components/shared/SearchBar";
+import { Home, Star, Search } from "lucide-react";
 import { useSettings } from "@/components/providers/SettingsContext";
 import { getThemeLogoFilter } from "@/lib/utils";
 import Image from "next/image";
 
 interface NotFoundClientProps {
-  dict: Record<string, string>;
+  dict: import('@/components/layout/Translator').TranslationDict;
   lang: string;
 }
 
@@ -55,7 +54,19 @@ export default function NotFoundClient({ dict, lang }: NotFoundClientProps) {
       </p>
 
       <div className="w-full max-w-md mb-12">
-        <SearchBar dict={dict} />
+        <button 
+          onClick={() => window.dispatchEvent(new Event('open-command-palette'))}
+          className="w-full flex items-center justify-between px-4 py-4 bg-theme-surface-strong border border-theme-border rounded-2xl hover:border-theme-500 hover:shadow-theme-shadow transition-all text-theme-muted group"
+        >
+          <div className="flex items-center gap-3">
+            <Search size={20} className="group-hover:text-theme-500 transition-colors" />
+            <span className="font-medium">{dict.Command_Palette_Search_Placeholder || "Type a command or search portfolio..."}</span>
+          </div>
+          <div className="flex items-center gap-1 opacity-70 group-hover:opacity-100 transition-opacity">
+            <kbd className="px-2 py-1 bg-theme-surface border border-theme-border rounded text-xs font-mono font-bold">⌘</kbd>
+            <kbd className="px-2 py-1 bg-theme-surface border border-theme-border rounded text-xs font-mono font-bold">K</kbd>
+          </div>
+        </button>
       </div>
 
       <div className="flex flex-wrap items-center justify-center gap-4">

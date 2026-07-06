@@ -6,7 +6,7 @@ import { Github, Mail } from 'lucide-react';
 import { Provider } from '@supabase/supabase-js';
 
 interface OAuthButtonsProps {
-  dict: Record<string, string>;
+  dict: import('@/components/layout/Translator').TranslationDict;
   lang: string;
 }
 

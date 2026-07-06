@@ -39,7 +39,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
-import { preload } from 'react-dom';
 
 export default async function IdentityPage({
   params 
@@ -49,10 +48,7 @@ export default async function IdentityPage({
   const { lang } = await params;
   const dict = await getDictionary(lang);
   
-  const faranPhotos = getFaranAikiPhoto();
-  if (faranPhotos && faranPhotos.length > 0) {
-    preload(`/images/photo_faran_aiki/${faranPhotos[0]}`, { as: 'image', fetchPriority: 'high' });
-  }
+
 
   const faranFaqs = [
     { question: dict.FAQ_Faran_Q1, answer: dict.FAQ_Faran_A1 },

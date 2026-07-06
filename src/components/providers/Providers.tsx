@@ -12,6 +12,16 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { useAppStore } from "@/lib/store";
 import { LazyMotion, domAnimation } from "framer-motion";
 
+if (typeof window !== "undefined") {
+  const originalError = console.error;
+  console.error = (...args) => {
+    if (typeof args[0] === "string" && args[0].includes("Encountered a script tag while rendering React component")) {
+      return;
+    }
+    originalError.apply(console, args);
+  };
+}
+
 interface ProvidersContextType {
   setLoadingLabel: (label: string) => void;
 }

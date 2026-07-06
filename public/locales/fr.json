@@ -38,11 +38,17 @@
   "Faran_Vision_Mission_3": "De plus, je donne également la priorité aux valeurs de bonté largement, globalement et rationnellement acceptées. Je fais cela pour prouver la valeur de la signification de mon nom, qui est d'<i>avancer et de progresser</i>, tant individuellement qu'en groupe.",
   "All": "Tout",
   "Portfolio": "Portfolio",
-  "Portfolio_Summary_Description": "Résumé compact des expériences professionnelles et des points forts de Muhammad Faran Aiki",
+  "Portfolio_Summary_Description": [
+    "Résumé compact des expériences professionnelles et des points forts de Muhammad Faran Aiki"
+  ],
   "Portfolio_Summary_Quote": "Un résumé organisé d'expériences professionnelles et de projets à fort impact.",
-  "Portfolio_Description": "Portfolio professionnel complet et points forts de Muhammad Faran Aiki",
+  "Portfolio_Description": [
+    "Portfolio professionnel complet et points forts de Muhammad Faran Aiki"
+  ],
   "Full_Portfolio": "Portfolio Complet",
-  "Share_Description": "Découvrez le site personnel de Faran Aiki !",
+  "Share_Description": [
+    "Découvrez le site personnel de Faran Aiki !"
+  ],
   "Profile": "Profil",
   "Experience": "Expérience",
   "Artwork": "Œuvres d'Art",
@@ -137,58 +143,146 @@
   "Dutch": "Néerlandais",
   "Hausa": "Haoussa",
   "Make_Interactive_UAS": "Apprentissage interactif untuk UAS MA1101 ITB",
-  "Make_Interactive_UAS_Description": "Développement d'une application basée sur Flutter/Dart pour aider les étudiants à préparer l'examen final de Calculus I à l'Institut de Technologie de Bandung, en utilisant des widgets interactifs et l'intelligence artificielle Gemini pour approfondir la compréhension par la visualisation de concepts complexes.",
+  "Make_Interactive_UAS_Description": [
+    "Création d'un outil d'apprentissage interactif des mathématiques en utilisant Flutter, Dart et FL Chart.",
+    "Visualisation dynamique de concepts mathématiques complexes pour faciliter la compréhension des étudiants.",
+    "Conception d'une interface réactive et conviviale pour une interaction fluide."
+  ],
   "Make_Website": "Site personnel faranaiki.id",
-  "Make_Website_Description": "Création d'un site web personnel principal utilisant NextJS, TailwindCSS et Vercel (pour les tests) comme un « afficheur » d'identité qui englobe mon développement personnel.",
+  "Make_Website_Description": [
+    "A conçu un site web de portfolio dynamique et performant utilisant NextJS, TailwindCSS et TypeScript.",
+    "A implémenté un défilement fluide et des animations utilisant Lenis et Framer-Motion.",
+    "A conçu une structure de base de données backend robuste utilisant Drizzle et SQL."
+  ],
   "Make_Nihwm": "Gestionnaire de fenêtres NihWM",
-  "Make_Nihwm_Description": "Création d'un gestionnaire de fenêtres qui est une dérive (fork) de dynamic window manager (dwm) en langage C utilisant la bibliothèque XOrg pour une utilisation sous Arch Linux et qui est toujours utilisé aujourd'hui car il a été personnalisé.",
+  "Make_Nihwm_Description": [
+    "Développement de 'nihwm', un gestionnaire de fenêtres X11 léger écrit entièrement en C pour Linux.",
+    "Implémentation des fonctionnalités principales de gestion des fenêtres et de gestion des entrées avec XOrg.",
+    "Optimisation du code pour une consommation minimale des ressources et une grande réactivité."
+  ],
   "Lidia_Project": "Analyse des données d'intégration socio-économique pour Indonesia Emas 2045",
-  "Lidia_Project_Description": "Projet d'intégration de données (LIDIA) au niveau provincial utilisant des processus ETL et des analyses statistiques avancées (descriptives, diagnostiques, prédictives et prescriptives). Analyse la relation entre le taux net de scolarisation, l'IDH, les dépenses par habitant, le retard de croissance et la durée moyenne de scolarisation pour générer des recommandations politiques fondées sur les données.",
+  "Lidia_Project_Description": [
+    "Conception d'un pipeline ETL utilisant Python, Pandas et Jupyter Notebook.",
+    "Intégration de Gemini-CLI pour améliorer les capacités de traitement des données.",
+    "Rationalisation des flux de données, réduisant considérablement le temps de traitement manuel."
+  ],
   "Alkyl_Compiler": "Langage de programmation et compilateur Alkyl",
-  "Alkyl_Compiler_Description": "Le langage de programmation Alkyl est un langage de programmation écrit pour la première fois en C utilisant LLVM-IR. Le projet vise à créer un langage de programmation plus facile à générer pour l'intelligence artificielle, mais également lisible pour l'homme. Sa syntaxe est similaire à celle du C, mais sans verbosité/plus simple.",
+  "Alkyl_Compiler_Description": [
+    "Conception et implémentation d'un compilateur personnalisé à partir de zéro utilisant C et LLVM.",
+    "Utilisation de Valgrind et GDB pour une gestion rigoureuse de la mémoire et le débogage.",
+    "Traduction des constructions de langage de haut niveau en code machine efficace."
+  ],
   "Impact_Module_Author": "Auteur du module de mathématiques IMPACT 6.0",
-  "Impact_Module_Author_Description": "Rédaction d'un matériel d'étude pour les mathématiques, incluant les systèmes d'équations linéaires et les inégalités linéaires, les graphes linéaires, les fonctions et les polynômes avec 4 problèmes chacun : 2 en indonésien pour le SSU, 2 en anglais pour l'IUP. De plus, création de 20 problèmes pour le Try Out IUP.",
+  "Impact_Module_Author_Description": [
+    "Rédaction de modules éducatifs complets pour les olympiades IMPACT 6.0.",
+    "Conception d'ensembles de problèmes rigoureux et de solutions pour défier les meilleurs lycéens.",
+    "Collaboration avec des pairs académiques pour garantir des normes de qualité de contenu élevées."
+  ],
   "SAT_Tutor": "Tuteur SAT Math & Verbal (Contrat)",
-  "SAT_Tutor_Description": "Enseignement hebdomadaire du SAT Verbal et des Mathématiques à un groupe de six lycéens, et évaluation des résultats des pré-tests et post-tests facilitée par Kobi Education.",
+  "SAT_Tutor_Description": [
+    "A enseigné aux étudiants en Mathématiques et en Anglais du SAT, en fournissant des leçons complètes et des stratégies adaptées.",
+    "A guidé les étudiants dans l'atteinte de leurs objectifs d'admission aux universités à l'étranger."
+  ],
   "Compile_Module_Author": "Créateur du module COMPILE STEI-K UTBK",
-  "Compile_Module_Author_Description": "Création de deux modules avec des thèmes quantitatifs et inductifs dans le sous-test de raisonnement général pour exécuter le programme COMPILE 2026 organisé par STEI-K 2025.",
+  "Compile_Module_Author_Description": [
+    "Création de modules d'apprentissage pour le programme de préparation COMPILE UTBK.",
+    "Sélection de nombreuses questions pratiques pour préparer les étudiants aux examens nationaux d'entrée à l'université.",
+    "Facilitation d'une meilleure compréhension des sujets complexes grâce à des explications détaillées."
+  ],
   "Software_Engineer": "Ingénieur Logiciel (Front-End Flutter)",
-  "Software_Engineer_Description": "Création et maintenance de widgets interactifs, tels que des graphiques interactifs, des statistiques interactives pour visualiser les données, et un séparateur de mots pour une courbe d'apprentissage plus facile en utilisant Flutter.",
+  "Software_Engineer_Description": [
+    "Développement et maintenance des fonctionnalités de base de la plateforme Analitica en tant qu'ingénieur logiciel.",
+    "Optimisation des performances de l'application et rationalisation du code pour une meilleure évolutivité.",
+    "Collaboration avec des équipes interfonctionnelles pour fournir des solutions logicielles de haute qualité."
+  ],
   "Mathematics_Private_Tutor": "Tuteur privé de mathématiques",
-  "Mathematics_Private_Tutor_Description": "Fournir un tutorat individuel aux étudiants en olympiades de mathématiques pour les compétitions de collège. Développement de plans de cours personnalisés pour aider les étudiants à atteindre leurs objectifs académiques et à améliorer leur compréhension de concepts complexes.",
+  "Mathematics_Private_Tutor_Description": [
+    "Prestation de sessions de tutorat en mathématiques personnalisées axées sur des sujets de niveau Olympiade.",
+    "Évaluation des progrès des étudiants et adaptation des méthodes d'enseignement pour corriger les faiblesses individuelles.",
+    "Promotion de la pensée analytique et des compétences avancées en résolution de problèmes chez les étudiants."
+  ],
   "Education_Team": "Équipe Éducation",
-  "Education_Team_Description": "Aide à la création de matériels de contenu éducatif, tels que les mathématiques générales, et création de 600 problèmes de physique, chimie et mathématiques pour le Tes Kemampuan Akademik (TKA) du lycée. Soutien à la planification et à l'exécution de programmes d'apprentissage pour les étudiants et les professionnels, et aide à l'utilisation de l'intelligence artificielle.",
+  "Education_Team_Description": [
+    "Contribution à l'équipe éducative d'Analitica en développant un contenu éducatif spécialisé.",
+    "Analyse des données de performance des étudiants pour affiner et améliorer les supports d'apprentissage.",
+    "Soutien à la création d'outils d'évaluation utilisés par des milliers d'étudiants."
+  ],
   "ITB": "Institut de technologie de Bandung",
   "Sponsorship_Wisokto_ITB": "Sponsorisation de la remise des diplômes d'octobre 2025 de l'ITB, comité WisNight et promotion de Nipis Madu",
-  "Sponsorship_Wisokto_ITB_Description": "Contact de plusieurs entreprises pour une collaboration lors de la cérémonie de remise des diplômes d'octobre 2025 de l'Institut de Technologie de Bandung, comme Mamikos. De plus, service en tant que membre du comité aidant au processus de l'événement WisNight, comme le transport de sept boîtes de Nipis Madu. Ensuite, création de quatre vidéos promotionnelles pour Nipis Madu avec l'aide d'autres membres du comité.",
+  "Sponsorship_Wisokto_ITB_Description": [
+    "A identifié et établi des partenariats stratégiques et a recherché des parrainages auprès de diverses parties."
+  ],
   "Impact_Web_Lead": "Chef d'équipe du développement Web Web Impact 6.0",
-  "Impact_Web_Lead_Description": "Gestion d'un site Web pour l'olympiade IMPACT 6.0 par l'École d'Électrotechnique et d'Informatique - Calcul, conçu pour les compétitions pour lycéens, incluant la gestion du front-end, du back-end, de Moodles et de Judgels. De plus, le framework front-end utilise NextJS, TailwindCSS et TypeScript, tandis que le back-end utilise une base de données SQL Supabase avec le mapping objet-relationnel Drizzle.",
+  "Impact_Web_Lead_Description": [
+    "A développé une application full-stack robuste utilisant NextJS, TailwindCSS et TypeScript pour un frontend très performant.",
+    "A conçu l'architecture backend en exploitant la base de données SQL Supabase associée à Prisma ORM pour une gestion des données fiable et évolutive.",
+    "A administré les plateformes Moodle et Judgel pour assurer un environnement compétitif fluide pour tous les participants.",
+    "A géré et coordonné les équipes de développement front-end et back-end pour assurer une livraison efficace du projet."
+  ],
   "Treasurer_SYNC": "Trésorier pour l'événement de rassemblement STEI-K",
   "STEI-K": "École d'Électrotechnique et d'Informatique - Calcul",
-  "Treasurer_SYNC_Description": "Obtention d'un parrainage d'un million de roupies pour l'événement de rassemblement de la faculté SYNC : Say Yes to New Connections et aide à la gestion des finances.",
+  "Treasurer_SYNC_Description": [
+    "Gestion des dossiers financiers et du budget pour l'événement de rassemblement SYNC STEI-K.",
+    "Traitement des transactions, suivi des dépenses et préparation de rapports financiers détaillés.",
+    "Garantie d'une allocation transparente et efficace des fonds organisationnels."
+  ],
   "IT_Club_Vice_Renpy": "Directeur de projet adjoint pour le projet final de l'IT Club 2024",
-  "IT_Club_Vice_Renpy_Description": "Supervision du développement d'un jeu de type visual novel utilisant Ren'Py en langage Python.",
+  "IT_Club_Vice_Renpy_Description": [
+    "Vice-président, organisant les activités du club et guidant les membres.",
+    "Enseignement des concepts de développement de jeux en utilisant le moteur de roman visuel Ren'Py.",
+    "Encadrement des étudiants en logique de programmation et en narration interactive."
+  ],
   "IT_Club_Tutor": "Tuteur du club d'informatique",
-  "IT_Club_Tutor_Description": "Enseignement de Python et du développement web aux membres du club d'informatique.",
+  "IT_Club_Tutor_Description": [
+    "Soutien aux lycéens sur la programmation fondamentale et les concepts informatiques.",
+    "Développement de plans de cours captivants et d'exercices pratiques de codage.",
+    "Promotion d'un environnement d'apprentissage collaboratif et favorable au sein du club."
+  ],
   "Student_Club_Member": "Membre du club étudiant",
-  "Student_Club_Member_Description": "Membre actif du club étudiant du lycée SMA Negeri 1 Depok, participant à des concours et des olympiades, comme l'obtention d'une médaille de bronze au 19e Concours National de Mathématiques (KMNR).",
+  "Student_Club_Member_Description": [
+    "Participation active aux événements et initiatives du Student Club 1 Depok.",
+    "Collaboration avec les pairs pour organiser des activités de renforcement communautaire.",
+    "Contribution aux objectifs du club grâce à un travail d'équipe dévoué."
+  ],
   "English_Club_Member": "Membre du club d'anglais",
-  "English_Club_Member_Description": "Création et adaptation de contenus, comme le conte de fées « Le Vilain Petit Canard ».",
+  "English_Club_Member_Description": [
+    "A amélioré les compétences en communication et en prise de parole en public.",
+    "A aidé à la création de contenu, y compris 'Le Vilain Petit Canard'."
+  ],
   "NBK_Member": "Membre du club Nihongo Benkyoukai",
-  "NBK_Member_Description": "Participation aux activités du club orienté vers le Japon et étude de la langue.",
+  "NBK_Member_Description": [
+    "A étudié la langue et la culture japonaises en tant que membre du Nihongo Benkyoukai."
+  ],
   "PARAS": "Concepteur de logo et éditeur de script MC pour PARAS Glorigion 1445H",
-  "PARAS_Description": "Conception du logo principal de l'événement PARAS (Paket Ramadan Spesial) Glorigion 2024 en collaboration avec d'autres concepteurs, et relecture et édition de la mise en page du script pour le maître de cérémonie.",
+  "PARAS_Description": [
+    "A contribué à l'organisation de l'événement PARAS à la SMA Negeri 1 Kota Depok.",
+    "A collaboré à la conception et à la production du logo de l'événement.",
+    "A aidé à la rédaction et à la révision du script du Maître de Cérémonie (MC)."
+  ],
   "Concerto": "Coordinateur pour la phase finale du concours Concerto",
-  "Concerto_Description": "Création, relecture, coordination et supervision des questions de compétition, telles que les mathématiques, les sciences naturelles (IPA) et les études sociales (IPS), préparées pour la phase finale de la compétition.",
+  "Concerto_Description": [
+    "Gestion des opérations et de la logistique de l'événement pour le rassemblement du Concerto Student Club.",
+    "Collaboration avec les membres de l'équipe pour planifier et exécuter des activités engageantes.",
+    "Gestion de l'inscription des participants et soutien sur place."
+  ],
   "Paragon_Scholarship_Title": "Boursier du programme d'excellence Paragon, promotion 2025",
-  "Paragon_Scholarship_Desc": "Bénéficiaire de la bourse Paragon (Paragon Scholarship Program Excellence), promotion 2025.",
+  "Paragon_Scholarship_Desc": [
+    "A obtenu la bourse Paragon, très compétitive, pour son excellence académique et son potentiel de leadership.",
+    "A participé à des programmes de formation en leadership et de développement communautaire."
+  ],
   "PT Paragon": "PT Paragon",
   "ALTH_Project": "ALTH : J'ai oublié de marquer ma présence",
-  "ALTH_Project_Description": "ALTH (Aku Lupa Tandai Hadir) est une application innovante spécialement conçue pour les étudiants de l'ITB afin de résoudre le problème fréquent de l'oubli de marquage de présence. Développée avec Flutter en exploitant l'intégration de Burp Suite, l'application envoie automatiquement des signaux GET au portail SIX et traite les données via des cookies obtenus par authentification Microsoft SSO. Bien qu'elle possède la capacité technique d'envoyer des signaux POST, ALTH a été conçue avec une grande intégrité comme un outil de rappel intelligent, et non pour la manipulation des présences.",
+  "ALTH_Project_Description": [
+    "A mené une analyse Burp Suite pour comprendre l'utilisation du SSO et des cookies.",
+    "A développé une application de rappel de présence utilisant Flutter et Dart pour les étudiants de l'Institut Teknologi Bandung."
+  ],
   "": "",
   "Navigation": "Navigation",
   "GDG_ITB_Title": "Google Developer Group Campus on ITB - Product Manager Explorer",
-  "GDG_ITB_Description": "Apprentissage des bases de la gestion de produits, réalisation d'études utilisateurs et assistance à l'élaboration de feuilles de route de produits pour des initiatives technologiques au sein du campus.",
+  "GDG_ITB_Description": [
+    "A appris la gestion de produits des concepts de base aux concepts avancés.",
+    "A appris à faire preuve d'empathie envers les utilisateurs et leurs besoins."
+  ],
   "Presentation_Mode": "Mode Présentation",
   "Presentation_Modern": "Moderne",
   "Presentation_Cinematic": "Cinématique",
@@ -204,13 +298,19 @@
   "Sultan_PDF_Creating": "Création du PDF Sultan...",
   "Sultan_PDF_Ready": "PDF Sultan prêt !",
   "Sultan_PDF_Failed": "Échec du PDF.",
-  "Sultan_PDF_Description": "Rendu PDF vectoriel haute fidélité.",
+  "Sultan_PDF_Description": [
+    "Rendu PDF vectoriel haute fidélité."
+  ],
   "Sultan_PDF_Download": "Téléchargement...",
   "Estimating": "Estimation...",
   "Dismiss": "Fermer",
   "Cancel": "Annuler",
   "National_Statistics_Competition_Prep": "Préparation au Concours National de Statistique",
-  "National_Statistics_Competition_Prep_Description": "Étude des méthodes analytiques et statistiques telles que ARIMA, ANOVA, régression linéaire et tests d'hypothèses rigoureux en préparation au Concours National de Statistique.",
+  "National_Statistics_Competition_Prep_Description": [
+    "Préparation et modélisation de données statistiques à l'aide des Probabilités et Statistiques, de SARIMAX et de MANOVA.",
+    "Programmation de vastes scripts d'analyse de données utilisant Python et Jupyter Notebooks.",
+    "Visualisation d'ensembles de données complexes pour en tirer des informations utiles pour la compétition nationale."
+  ],
   "Open": "Ouvrir",
   "Not_Available": "Pas disponible",
   "No_Documents_Available": "Aucun document disponible.",
@@ -222,14 +322,30 @@
   "Upload_Photo": "Télécharger une photo",
   "Title": "Titre",
   "Image_Optional": "Image (Optionnel)",
-  "SEO_Home_Description": "Official site of Muhammad Faran Aiki - STI ITB student, Software Engineer, and SAT Tutor. Explore my portfolio, experiences, and insights here.",
-  "SEO_Work_Description": "Professional history of Muhammad Faran Aiki as a Software Engineer at Analitica, SAT Tutor at Kobi Education, and other tech roles.",
-  "SEO_Project_Description": "A collection of technical projects by Muhammad Faran Aiki, ranging from the Alkyl compiler to the ALTH Flutter app and Indonesian socio-economic data integration.",
-  "SEO_Organization_Description": "Organizational experience of Muhammad Faran Aiki at GDG ITB, STEI-K, and various committees at Bandung Institute of Technology.",
-  "SEO_Award_Description": "Awards and scholarships received by Muhammad Faran Aiki, including the 2025 Paragon Scholarship Excellence Program.",
-  "SEO_College_Description": "Documentation of the academic journey, course materials, and study notes of Muhammad Faran Aiki at STI STEI-K ITB.",
-  "SEO_Certificate_Description": "Professional certifications and courses completed by Muhammad Faran Aiki in software development and other skills.",
-  "SEO_Literature_Description": "Literary works including poems, short stories, and essays written by Muhammad Faran Aiki in Indonesian and English.",
+  "SEO_Home_Description": [
+    "Official site of Muhammad Faran Aiki - STI ITB student, Software Engineer, and SAT Tutor. Explore my portfolio, experiences, and insights here."
+  ],
+  "SEO_Work_Description": [
+    "Professional history of Muhammad Faran Aiki as a Software Engineer at Analitica, SAT Tutor at Kobi Education, and other tech roles."
+  ],
+  "SEO_Project_Description": [
+    "A collection of technical projects by Muhammad Faran Aiki, ranging from the Alkyl compiler to the ALTH Flutter app and Indonesian socio-economic data integration."
+  ],
+  "SEO_Organization_Description": [
+    "Organizational experience of Muhammad Faran Aiki at GDG ITB, STEI-K, and various committees at Bandung Institute of Technology."
+  ],
+  "SEO_Award_Description": [
+    "Awards and scholarships received by Muhammad Faran Aiki, including the 2025 Paragon Scholarship Excellence Program."
+  ],
+  "SEO_College_Description": [
+    "Documentation of the academic journey, course materials, and study notes of Muhammad Faran Aiki at STI STEI-K ITB."
+  ],
+  "SEO_Certificate_Description": [
+    "Professional certifications and courses completed by Muhammad Faran Aiki in software development and other skills."
+  ],
+  "SEO_Literature_Description": [
+    "Literary works including poems, short stories, and essays written by Muhammad Faran Aiki in Indonesian and English."
+  ],
   "Original": "Original",
   "Timeline": "Chronologie",
   "Grid": "Grille",
@@ -238,9 +354,17 @@
   "Click_To_Close": "Cliquez pour fermer",
   "Logo_Alt": "Logo de Faran Aiki",
   "Jump_Game_Project": "Jump! Game",
-  "Jump_Game_Description": "A simple platformer like Geometry Dash I made with C# and Visual Studio. My parents actually played this game too! From this project, I also learned how to use FPS and Time.deltaTime properly.",
+  "Jump_Game_Description": [
+    "Création d'un jeu de plateforme stimulant avec C# et Visual Studio.",
+    "Implémentation de mécaniques de saut basées sur la physique et de la détection des collisions.",
+    "Conception de la disposition des niveaux et intégration de systèmes de notation pour améliorer le gameplay."
+  ],
   "Below_Below_Project": "Below Below",
-  "Below_Below_Description": "A narrative-driven mining exploration game where you are reincarnated as a mining slave. It features a hybrid of 2D exploration and 3D mining mechanics, dynamic world generation, and complex survival systems like crafting and NPC interactions. Built with Godot 4.2 and GDScript.",
+  "Below_Below_Description": [
+    "Conception et programmation de 'Below Below', un jeu vidéo captivant utilisant Godot 4.2 et GDScript.",
+    "Développement de mécaniques de jeu, d'interactions physiques et de commandes de joueur.",
+    "Création de ressources pixel art personnalisées et intégration d'effets sonores pour une expérience cohérente."
+  ],
   "Point_System_Summary": "Point System Summary",
   "Total_Points": "Total Points",
   "Important_Highlights": "Important Highlights",
@@ -286,7 +410,11 @@
   "Indonesia": "Indonésie",
   "Semester": "Semestre",
   "Olive_Divergence": "Olive Divergence",
-  "Olive_Divergence_Desc": "A fork of the 0.1.x version of Olive Video Editor, focusing on feature experimentation and community-driven development.",
+  "Olive_Divergence_Desc": [
+    "Programmation de 'Olive Divergence' utilisant C++ et le framework Qt.",
+    "Conception d'une interface graphique avec des éléments visuels riches et des widgets personnalisés.",
+    "Gestion efficace de l'état de l'application et du flux de données au sein de la boucle d'événements Qt."
+  ],
   "Resume": "Resume",
   "Education": "Éducation",
   "Data": "Données",
@@ -315,7 +443,9 @@
   "Faq": "FAQ",
   "Other": "Autre",
   "Hire_Me": "Recrutez-moi",
-  "Hire_Me_Description": "Collaborer avec ou recruter Muhammad Faran Aiki pour votre projet.",
+  "Hire_Me_Description": [
+    "Collaborer avec ou recruter Muhammad Faran Aiki pour votre projet."
+  ],
   "Company": "Entreprise",
   "Reason_Hiring": "Raison du recrutement",
   "Hire_Success": "Demande d'embauche envoyée avec succès !",
@@ -332,7 +462,9 @@
   "Require_Login": "Vous devez être connecté pour accéder à cette page.",
   "Don_t_have_account": "Pas de compte ?",
   "Already_have_account": "Déjà un compte ?",
-  "Not_Found_Description": "Oups ! La page que vous cherchez semble s'être perdue dans une autre dimension.",
+  "Not_Found_Description": [
+    "Oups ! La page que vous cherchez semble s'être perdue dans une autre dimension."
+  ],
   "Job_Title": "Titre du poste",
   "Location": "Lieu",
   "Job_Type": "Type d'emploi",
@@ -372,14 +504,28 @@
   "Uploading": "Mengunggah...",
   "ONMIPA_Award_Title": "Médaille d'Argent ONMIPA-PT 2026 Mathématiques",
   "ONMIPA_Award_Company": "Kemendikti & Belmawa",
-  "ONMIPA_Award_Desc": "ONMIPA-PT est l'olympiade scientifique étudiante la plus prestigieuse d'Indonésie, couvrant les mathématiques, la physique, la chimie et la biologie. J'ai remporté avec succès une médaille d'argent dans la catégorie mathématiques. Cette réussite est considérée comme une anomalie car j'étais un étudiant de 2ème semestre spécialisé en Systèmes et Technologies de l'Information (STI), en compétition au niveau national contre des étudiants en mathématiques pures.",
+  "ONMIPA_Award_Desc": [
+    "A remporté une Médaille d'Argent lors de la prestigieuse compétition de Mathématiques ONMIPA-PT 2026.",
+    "A démontré des compétences exceptionnelles en résolution de problèmes et une maîtrise des concepts mathématiques avancés.",
+    "A concouru contre les meilleurs étudiants universitaires à l'échelle nationale, obtenant des résultats exceptionnels bien qu'étant encore au deuxième semestre du programme d'études en Systèmes et Technologie de l'Information."
+  ],
   "Delete": "Supprimer",
   "Tech_Reference": "Référence Architecturale",
-  "Framework_Desc": "Construit avec Next.js 15, utilisant le dernier App Router, les React Server Components (RSC) et Turbopack pour des performances ultra-rapides.",
-  "Styling_Desc": "Styles personnalisés utilisant Vanilla CSS et Tailwind CSS, axés sur une esthétique unique avec un support multi-thème (Moderne, Cinématographique, Éditorial).",
-  "Database_Desc": "Gestion de base de données sans serveur utilisant l'ORM Drizzle avec PostgreSQL hébergé sur Supabase, garantissant l'intégrité et l'évolutivité des données.",
-  "Localization_Desc": "Prise en charge complète de l'i18n pour plus de 18 langues, garantissant l'accessibilité et une expérience fluide pour un public mondial.",
-  "Holistic_Approach_Desc": "Une approche holistique de l'ingénierie logicielle combinant les standards web modernes, une sécurité de type rigoureuse (TypeScript) et une conception axée sur la performance.",
+  "Framework_Desc": [
+    "Construit avec Next.js 15, utilisant le dernier App Router, les React Server Components (RSC) et Turbopack pour des performances ultra-rapides."
+  ],
+  "Styling_Desc": [
+    "Styles personnalisés utilisant Vanilla CSS et Tailwind CSS, axés sur une esthétique unique avec un support multi-thème (Moderne, Cinématographique, Éditorial)."
+  ],
+  "Database_Desc": [
+    "Gestion de base de données sans serveur utilisant l'ORM Drizzle avec PostgreSQL hébergé sur Supabase, garantissant l'intégrité et l'évolutivité des données."
+  ],
+  "Localization_Desc": [
+    "Prise en charge complète de l'i18n pour plus de 18 langues, garantissant l'accessibilité et une expérience fluide pour un public mondial."
+  ],
+  "Holistic_Approach_Desc": [
+    "Une approche holistique de l'ingénierie logicielle combinant les standards web modernes, une sécurité de type rigoureuse (TypeScript) et une conception axée sur la performance."
+  ],
   "Suggestions": "Suggestions",
   "Read_More": "Lire plus",
   "Location_Online": "En ligne",
@@ -396,15 +542,21 @@
   "Back_To_News": "Kembali ke Berita",
   "Business_Requests": "Demandes professionnelles",
   "AI_Discovery_Title": "Identité Numérique (Optimisée pour l'IA)",
-  "AI_Discovery_Description": "Résumé structuré pour les moteurs de recherche et l'intelligence artificielle (LLMs).",
+  "AI_Discovery_Description": [
+    "Résumé structuré pour les moteurs de recherche et l'intelligence artificielle (LLMs)."
+  ],
   "Professional_Pitch_Title": "Pourquoi Collaborer avec Faran Aiki ?",
   "Professional_Pitch_Text": "En tant qu'étudiant en systèmes d'information et technologie à l'ITB, fort d'une expérience concrète en ingénierie logicielle et de réalisations nationales en mathématiques, j'offre un mélange unique de vivacité logique, de créativité technique et de dévouement à la croissance. Qu'il s'agisse de construire des systèmes complexes ou de résoudre des problèmes mathématiques, je me concentre sur des résultats à fort impact.",
   "Hire_Already_Submitted": "Vous avez déjà soumis une demande. Vous pouvez la modifier ci-dessous.",
   "Recaptcha_Protected": "Protégé par reCAPTCHA. {privacy} et {terms} s'appliquent.",
   "Privacy": "Confidentialité",
   "Terms": "Conditions",
-  "Superskill_Project": "Superskill",
-  "Superskill_Description": "Superskill est un jeu conçu pour entraîner la logique, la réflexion, les compétences numériques et plus encore, développé avec Flutter.",
+  "Superskill_Project": "Jardin Cognitif",
+  "Superskill_Description": [
+    "A développé Jardin Cognitif, une application multiplateforme sophistiquée utilisant Flutter et Dart.",
+    "A conçu des jeux qui entraînent la cognition cérébrale et stimulent le cerveau.",
+    "A conçu une interface utilisateur intuitive et attrayante avec des animations riches."
+  ],
   "Terminal_Title": "Konsol Terminal",
   "Skills_Languages": "Langages de Programmation",
   "Skills_Frameworks": "Frameworks et Bibliothèques",
@@ -413,8 +565,16 @@
   "Data_Science": "Sains Data",
   "Compilers": "Desain Kompilator",
   "Algorithms": "Algoritma & Struktur Data",
-  "Education_ITB_Description": "Poursuit une licence en Systèmes d'Information et Technologie.",
-  "Education_SMA_Description": "Diplômé avec une spécialisation en Kurikulum Merdeka: Informatika.",
+  "Education_ITB_Description": [
+    "Poursuite d'un baccalauréat en Systèmes d'Information et Technologie.",
+    "Maintien d'un solide dossier académique axé sur l'ingénierie logicielle et la science des données.",
+    "Participation active à des projets techniques et à des organisations étudiantes."
+  ],
+  "Education_SMA_Description": [
+    "Diplômé avec une spécialisation en Kurikulum Merdeka: Informatika.",
+    "Excellence dans les cours d'informatique, de mathématiques et de sciences.",
+    "Participation active aux clubs parascolaires de TI et académiques."
+  ],
   "Or_Continue_With": "Ou Continuer Avec",
   "Loading": "Chargement...",
   "Full_Description_Portfolio": "Description Complète (Portfolio)",
@@ -449,7 +609,9 @@
   "Sitemap_Hover_Node": "Survolez un nœud",
   "Sitemap_Preview_Instruction": "Survolez n'importe quel nœud du graphique pour voir un aperçu en direct de cette page.",
   "Preview": "Aperçu",
-  "SEO_Timeline_Description": "Chronologie complète de la carrière, de l'éducation, de l'organisation et des projets de Faran Aiki.",
+  "SEO_Timeline_Description": [
+    "Chronologie complète de la carrière, de l'éducation, de l'organisation et des projets de Faran Aiki."
+  ],
   "Skip_To_Content": "Passer au contenu principal",
   "Locked": "Verrouillé",
   "GDGOC ITB_Product Manager": "GDGOC ITB Chef de Produit",
@@ -465,7 +627,9 @@
   "No_Results_Found": "Aucun résultat trouvé.",
   "Searching": "Recherche en cours...",
   "Offline_Title": "Vous êtes hors ligne",
-  "Offline_Description": "Aucune connexion Internet trouvée. Veuillez vérifier votre Wi-Fi et votre réseau.",
+  "Offline_Description": [
+    "Aucune connexion Internet trouvée. Veuillez vérifier votre Wi-Fi et votre réseau."
+  ],
   "Offline_Retry": "Réessayer",
   "Interest": "Interest",
   "Filter_All": "All",
@@ -486,11 +650,54 @@
   "No_Bookmarks": "No bookmarks yet.",
   "Bookmark_Added": "Successfully added to bookmarks!",
   "Bookmark_Removed": "Successfully removed from bookmarks!",
-  "My_Requests_Desc": "Manage your business & hire requests.",
-  "My_Feedbacks_Desc": "View or edit testimonials you left.",
-  "My_Preferences_Desc": "Open the global settings menu.",
+  "My_Requests_Desc": [
+    "Manage your business & hire requests."
+  ],
+  "My_Feedbacks_Desc": [
+    "View or edit testimonials you left."
+  ],
+  "My_Preferences_Desc": [
+    "Open the global settings menu."
+  ],
   "Joined": "Joined",
   "Public_Feedbacks": "Public Feedbacks",
   "No_Public_Feedbacks": "No public feedbacks yet.",
-  "Bookmarks_Description": "Here are all the items you have bookmarked."
+  "Bookmarks_Description": [
+    "Here are all the items you have bookmarked."
+  ],
+  "Academic_Transcript": "Relevé de Notes",
+  "Transcript_Subtitle": "Institut de Technologie de Bandung • Systèmes et Technologies de l'Information • Moyenne Générale :",
+  "Transcript_IP": "Moyenne :",
+  "Transcript_Passed_Credits": "Crédits Validés :",
+  "Transcript_No": "N°",
+  "Transcript_Code": "Code",
+  "Transcript_Course": "Cours",
+  "Transcript_Type": "Type",
+  "Transcript_Credits": "Crédits",
+  "Transcript_Grade": "Note",
+  "Transcript_Semester": "Semestre Suivi",
+  "Transcript_Grade_Conversion": "Conversion de Note",
+  "Transcript_TPB": "Année Préparatoire Commune",
+  "Transcript_Sarjana": "Programme de Licence",
+  "Transcript_Type_W": "Obligatoire",
+  "Transcript_Type_P": "Option de Spécialité",
+  "Transcript_Type_L": "Option Hors Spécialité",
+  "Course_MA1101": "Calculus I",
+  "Course_FI1101": "Physique Fondamentale I",
+  "Course_KI1101": "Chimie Fondamentale I",
+  "Course_WI1101": "Pancasila (Idéologie d'État)",
+  "Course_WI1102": "Pensée Informatique",
+  "Course_WI1103": "Introduction aux Principes de Durabilité",
+  "Course_WI1111": "Laboratoire de Physique Fondamentale",
+  "Course_WI1116": "Laboratoire d'Interaction Informatique",
+  "Course_II1200": "Introduction aux Systèmes et Technologies de l'Information",
+  "Course_IF1210": "Algorithmique et Programmation 1",
+  "Course_WI2001": "Introduction à l'Ingénierie et au Design",
+  "Course_WI2005": "Langue Indonésienne",
+  "Course_WI2011": "Religion Islamique",
+  "Course_WI2006": "Éducation Civique",
+  "Course_WI2002": "Littératie des Données et Intelligence Artificielle",
+  "Course_WI2003": "Sports",
+  "Transcript_Grade_Pass": "Réussi",
+  "Transcript_Grade_Fail": "Échoué"
 }

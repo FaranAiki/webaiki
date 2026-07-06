@@ -10,7 +10,7 @@ const TrackingIcon = dynamic(() => import("../../../components/interactive/Track
 import { m as motion, AnimatePresence, Variants } from 'framer-motion';
 import { useAppStore } from '@/lib/store';
 
-const DynamicHero = React.memo(({ dict, isReady, isLgScreen, isMdScreen, parts }: { dict: Record<string, string>, isReady: boolean, isLgScreen: boolean, isMdScreen: boolean, parts: string[] }) => {
+const DynamicHero = React.memo(({ dict, isReady, isLgScreen, isMdScreen, parts }: { dict: import('@/components/layout/Translator').TranslationDict, isReady: boolean, isLgScreen: boolean, isMdScreen: boolean, parts: string[] }) => {
   const [wordIndex, setWordIndex] = useState(0);
 
   const cyclingData: { word: string; type: TrackerType }[] = useMemo(() => [
@@ -90,7 +90,7 @@ const DynamicHero = React.memo(({ dict, isReady, isLgScreen, isMdScreen, parts }
 DynamicHero.displayName = 'DynamicHero';
 
 interface HomeClientProps {
-  dict: Record<string, string>;
+  dict: import('@/components/layout/Translator').TranslationDict;
   children?: React.ReactNode;
 }
 

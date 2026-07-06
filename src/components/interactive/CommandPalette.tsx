@@ -78,7 +78,7 @@ export function CommandPalette({ lang, labels, isOpen, onOpenChange }: { lang: s
 
           terms.forEach(term => {
             fieldsToSearch.forEach(field => {
-              const lowerText = field.text.toLowerCase();
+              const lowerText = (Array.isArray(field.text) ? field.text.join(' ') : field.text).toLowerCase();
               if (lowerText.includes(term)) {
                 score += field.weight;
                 if (lowerText.startsWith(term)) score += field.weight * 0.5;

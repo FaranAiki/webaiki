@@ -11,7 +11,7 @@ interface Job {
   title: string;
   company: string;
   date: string;
-  description: string;
+  description: string | string[];
   point?: number;
   url?: string;
   tag?: string[];
@@ -133,10 +133,10 @@ export default function PortfolioExperienceList({
             <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">{labels.Work}</h2>
           </div>
           <div className="space-y-1">
-            {filteredWork.map((job, i) => (
+            {filteredWork.map((job) => (
               <PortfolioSummaryItem
                 key={`${job.title}-${job.company}-${job.date}`}
-                title={`${i + 1}. ${job.title}`}
+                title={job.title}
                 company={job.company}
                 date={job.date}
                 description={job.description}
@@ -157,10 +157,10 @@ export default function PortfolioExperienceList({
             <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">{labels.Project}</h2>
           </div>
           <div className="space-y-1">
-            {filteredProject.map((job, i) => (
+            {filteredProject.map((job) => (
               <PortfolioSummaryItem
                 key={`${job.title}-${job.company}-${job.date}`}
-                title={`${i + 1}. ${job.title}`}
+                title={job.title}
                 company={job.company}
                 date={job.date}
                 description={job.description}
@@ -181,10 +181,10 @@ export default function PortfolioExperienceList({
             <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">{labels.Organization}</h2>
           </div>
           <div className="space-y-1">
-            {filteredOrg.map((job, i) => (
+            {filteredOrg.map((job) => (
               <PortfolioSummaryItem
                 key={`${job.title}-${job.company}-${job.date}`}
-                title={`${i + 1}. ${job.title}`}
+                title={job.title}
                 company={job.company}
                 date={job.date}
                 description={job.description}
@@ -205,10 +205,10 @@ export default function PortfolioExperienceList({
             <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">{labels.Award}</h2>
           </div>
           <div className="space-y-1">
-            {filteredAward.map((job, i) => (
+            {filteredAward.map((job) => (
               <PortfolioSummaryItem
                 key={`${job.title}-${job.company}-${job.date}`}
-                title={`${i + 1}. ${job.title}`}
+                title={job.title}
                 company={job.company}
                 date={job.date}
                 description={job.description}

@@ -219,7 +219,7 @@ const BentoCard = React.memo(({ job, spanClass, cardBorder, inactiveCardBg, isDa
                             <h3 className="text-xl font-black mb-1 nav-active-gacor">{job.title}<TagBadge labels={job.tag} /></h3>
                             <p className={`text-sm italic mb-4 ${isDark ? 'text-theme-300' : 'text-theme-600'}`}>{job.company}</p>
                             <div className={`text-sm leading-relaxed text-foreground ${justifyClass}`}>
-                                {formatCJK(job.description, lang)}
+                                {formatCJK(Array.isArray(job.description) ? job.description.join(' ') : job.description, lang)}
                             </div>
 
                             {job.url && (
@@ -447,7 +447,7 @@ export default function ExperiencesClient({
                                             </div>
                                         </div>
                                         <HoverableWords className={`text-base md:text-lg ${justifyClass} ${descText} font-medium`}>
-                                            {job.description}
+                                            {Array.isArray(job.description) ? job.description.join(' ') : job.description}
                                         </HoverableWords>
 
                                         {job.url && (
@@ -519,7 +519,7 @@ export default function ExperiencesClient({
                                                     {job.date}
                                                 </div>
                                                 <HoverableWords className={`text-lg md:text-xl leading-relaxed font-medium text-foreground`}>
-                                                    {formatCJK(job.description, lang)}
+                                                    {formatCJK(Array.isArray(job.description) ? job.description.join(' ') : job.description, lang)}
                                                 </HoverableWords>
                                                 </div>
                                                 </div>
@@ -553,7 +553,7 @@ export default function ExperiencesClient({
 
                                             <div className="max-w-2xl">
                                                 <HoverableWords className={`text-xl md:text-2xl leading-snug font-medium text-foreground`}>
-                                                    {job.description}
+                                                    {Array.isArray(job.description) ? job.description.join(' ') : job.description}
                                                 </HoverableWords>
 
                                                 {job.url && (
@@ -635,7 +635,7 @@ export default function ExperiencesClient({
                                                         </div>
                                                         <p className="text-theme-700 dark:text-theme-300 italic mb-3">{job.company}</p>
                                                         <HoverableWords className={`${justifyClass} ${descText} text-sm`}>
-                                                            {formatCJK(job.description, lang)}
+                                                            {formatCJK(Array.isArray(job.description) ? job.description.join(' ') : job.description, lang)}
                                                         </HoverableWords>
                                                     </motion.div>
                                                 ))}
@@ -717,7 +717,7 @@ export default function ExperiencesClient({
                                                                         </div>
                                                                     </div>
                                                                     <p className="text-theme-700 dark:text-theme-300 font-bold italic text-xs mb-2">{job.company}</p>
-                                                                    <p className="text-xs text-foreground/80 line-clamp-3 group-hover:line-clamp-none transition-all duration-500">{job.description}</p>
+                                                                    <p className="text-xs text-foreground/80 line-clamp-3 group-hover:line-clamp-none transition-all duration-500">{Array.isArray(job.description) ? job.description.join(' ') : job.description}</p>
                                                                 </div>
                                                             </div>
                                                         )
@@ -773,7 +773,7 @@ export default function ExperiencesClient({
                                                                 </div>
                                                                 <div className="mb-2"><TagBadge labels={job.tag} /></div>
                                                                 <p className="text-theme-700 dark:text-theme-300 font-bold italic text-sm mb-2">{job.company}</p>
-                                                                <p className="text-xs text-foreground/80 line-clamp-3 group-hover:line-clamp-none transition-all duration-500">{job.description}</p>
+                                                                <p className="text-xs text-foreground/80 line-clamp-3 group-hover:line-clamp-none transition-all duration-500">{Array.isArray(job.description) ? job.description.join(' ') : job.description}</p>
                                                             </div>
                                                         </div>
                                                     )
@@ -808,7 +808,7 @@ export default function ExperiencesClient({
                                                         </div>
                                                     </div>
                                                     <p className="text-theme-700 dark:text-theme-300 font-bold italic text-xs mb-2">{job.company}</p>
-                                                    <p className="text-xs text-foreground/80 line-clamp-2">{job.description}</p>
+                                                    <p className="text-xs text-foreground/80 line-clamp-2">{Array.isArray(job.description) ? job.description.join(' ') : job.description}</p>
                                                 </div>
                                             </div>
                                         ))}
@@ -930,7 +930,7 @@ export default function ExperiencesClient({
                                                 </div>
                                                 <p className="text-xl font-medium italic text-theme-700 dark:text-theme-300 opacity-80">{job.company}</p>
                                                 <HoverableWords className={`${justifyClass} ${descText} text-lg leading-relaxed`}>
-                                                    {formatCJK(job.description, lang)}
+                                                    {formatCJK(Array.isArray(job.description) ? job.description.join(' ') : job.description, lang)}
                                                 </HoverableWords>
                                             </div>
                                             <div className="w-full md:w-1/2">

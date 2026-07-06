@@ -32,7 +32,7 @@ interface HireRequestWithUser {
 
 interface BusinessRequestsClientProps {
   requests: HireRequestWithUser[];
-  dict: Record<string, string>;
+  dict: import('@/components/layout/Translator').TranslationDict;
 }
 
 export default function BusinessRequestsClient({ requests }: BusinessRequestsClientProps) {

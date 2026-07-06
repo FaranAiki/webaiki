@@ -35,7 +35,8 @@ import {
   Newspaper,
   MoreHorizontal,
   Network,
-  History
+  History,
+  FileText
 } from 'lucide-react';
 
 export default async function RootLayout({
@@ -110,6 +111,7 @@ export default async function RootLayout({
       icon: <MoreHorizontal size={18} />,
       subLinks: [
         { name: dict.College, href: '/college', icon: <GraduationCap size={16} /> },
+        { name: dict.Academic_Transcript || 'Academic Transcript', href: '/academic-transcript', icon: <FileText size={16} /> },
         { name: dict.Timeline || 'Timeline', href: '/timeline', icon: <History size={16} /> },
         { name: dict.Sitemap_Graph || 'Sitemap Graph', href: '/sitemap-graph', icon: <Network size={16} /> }
       ]

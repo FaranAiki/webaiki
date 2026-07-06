@@ -28,7 +28,7 @@ interface ExperienceContextType {
     justifyClass: string;
     shimmer600x400: string;
 
-    translations: Record<string, string>;
+    translations: import('@/components/layout/Translator').TranslationDict;
 }
 
 const ExperienceContext = createContext<ExperienceContextType | undefined>(undefined);
@@ -48,7 +48,7 @@ export function ExperienceProvider({
     layout: LayoutType;
     isLoggedIn: boolean;
     bookmarkedItemIds: string[];
-    translations: Record<string, string>;
+    translations: import('@/components/layout/Translator').TranslationDict;
 }) {
     const [currentLayout, setCurrentLayout] = useState<LayoutType>(layout);
     const [presentationLayout, setPresentationLayout] = useState<PresentationLayoutType>('modern');

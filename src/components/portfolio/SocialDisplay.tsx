@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Github, Linkedin, Instagram, Twitter, Mail, Youtube } from 'lucide-react';
 import Image from 'next/image';
-import { useTheme } from 'next-themes';
 import { usePresentation } from '../providers/PresentationContext';
 import { m as motion, Variants } from 'framer-motion';
 
@@ -19,7 +18,7 @@ export interface SocialLink {
 interface SocialDisplayProps {
   customLinks?: SocialLink[];
   hidePresentation?: boolean;
-  dict?: Record<string, string>;
+  dict?: import('@/components/layout/Translator').TranslationDict;
 }
 
 // Professional animation variants
@@ -182,44 +181,7 @@ export const defaultSocialLinks: SocialLink[] = [
 
 export default function SocialDisplay({ customLinks, hidePresentation = false, dict = {} }: SocialDisplayProps) {
   const { isPresentationMode } = usePresentation();
-  const { theme, systemTheme } = useTheme();
   
-  // Need mounted state for next-themes to avoid hydration mismatch
-  const [mounted, setMounted] = React.useState(false);
-  const [iframesLoaded, setIframesLoaded] = React.useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    
-    // Defer iframes to avoid third-party cookies and CPU spikes on page load
-    const handleInteraction = () => {
-      setIframesLoaded(true);
-      window.removeEventListener('scroll', handleInteraction);
-      window.removeEventListener('mousemove', handleInteraction);
-      window.removeEventListener('touchstart', handleInteraction);
-      window.removeEventListener('keydown', handleInteraction);
-    };
-
-    window.addEventListener('scroll', handleInteraction, { passive: true, once: true });
-    window.addEventListener('mousemove', handleInteraction, { passive: true, once: true });
-    window.addEventListener('touchstart', handleInteraction, { passive: true, once: true });
-    window.addEventListener('keydown', handleInteraction, { passive: true, once: true });
-
-    if (isPresentationMode) {
-        setIframesLoaded(true);
-    }
-
-    return () => {
-      window.removeEventListener('scroll', handleInteraction);
-      window.removeEventListener('mousemove', handleInteraction);
-      window.removeEventListener('touchstart', handleInteraction);
-      window.removeEventListener('keydown', handleInteraction);
-    };
-  }, [isPresentationMode]);
-
-  const currentTheme = theme === 'system' ? systemTheme : theme;
-  const badgeTheme = mounted && currentTheme === 'dark' ? 'dark' : 'light';
-
   // Static/CSS-variable based styles to prevent flicker
   const containerClass = "text-foreground";
   const cardBg = "bg-[var(--card-bg)] border-[var(--card-border)] backdrop-blur-sm shadow-sm hover:shadow-lg";
@@ -238,204 +200,6 @@ export default function SocialDisplay({ customLinks, hidePresentation = false, d
   const showPresentation = isPresentationMode && !hidePresentation;
 
   const renderCard = (link: SocialLink, presentationMode: boolean) => {
-    if (link.name === 'LinkedIn') {
-      return (
-        <a
-          href={link.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-8' : 'rounded-lg p-6'} flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-2 ${presentationMode ? 'hover:scale-[1.02]' : ''} h-full ${presentationMode ? 'min-h-[200px]' : ''} shadow-sm hover:shadow-lg relative overflow-hidden`}
-        >
-          {/* Top Banner Gradient matching the theme */}
-          <div className="absolute top-0 inset-x-0 h-12 bg-gradient-to-r from-theme-500/20 to-theme-600/30 border-b border-theme-border/50" />
-          
-          {/* Profile Photo */}
-          <div className="relative mt-4 mb-3 z-10">
-            <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-theme-surface bg-theme-surface-strong relative shadow-md">
-              <Image 
-                src="/images/photo_faran_aiki/1_fa_photo_linkedin.webp" 
-                alt="Muhammad Faran Aiki" 
-                fill 
-                className="object-cover"
-                sizes="64px"
-                loading="lazy"
-              />
-            </div>
-            {/* LinkedIn Badge Overlay Icon */}
-            <div className="absolute -bottom-1 -right-1 bg-theme-surface rounded-full p-1 border border-theme-border shadow-sm flex items-center justify-center">
-              <Linkedin size={12} className="text-theme-500" />
-            </div>
-          </div>
-
-          <h3 className={`text-base font-black text-foreground mb-0.5 line-clamp-1`}>
-            Muhammad Faran Aiki
-          </h3>
-
-          <p className="text-[10px] md:text-xs text-theme-muted mb-4 line-clamp-1 font-bold tracking-tight">
-            Software Engineer & ITB Student
-          </p>
-
-          <span className="mt-auto px-4 py-1.5 rounded-full border border-theme-border text-[10px] md:text-xs font-black tracking-wider text-theme-500 group-hover:bg-theme-500 group-hover:text-white group-hover:border-theme-500 transition-all">
-            {dict.View_Profile || "View Profile"}
-          </span>
-        </a>
-      );
-    }
-
-    if (link.name === 'Twitter / X') {
-      return (
-        <a 
-          href={link.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-6' : 'rounded-lg p-5'} flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 w-full shadow-sm hover:shadow-lg overflow-hidden relative min-h-[300px]`}
-        >
-          {/* Accent Header */}
-          <div className="absolute top-0 inset-x-0 h-16 bg-blue-500/10 dark:bg-zinc-800/50 border-b border-blue-500/20 dark:border-zinc-700/50" />
-          
-          <div className="relative mt-2 mb-4 z-10 bg-theme-surface rounded-full p-4 border-4 border-theme-surface shadow-md group-hover:scale-110 transition-transform duration-300">
-             <Twitter size={48} className="text-blue-500 dark:text-zinc-100" />
-          </div>
-
-          <h3 className="text-xl font-black text-foreground mb-1 relative z-10">Faran Aiki</h3>
-          <p className="text-xs text-theme-muted font-bold tracking-tight mb-6 relative z-10">
-            @FaranAiki
-          </p>
-
-          <span className="mt-auto px-6 py-2.5 rounded-full bg-blue-500 dark:bg-zinc-800 text-white text-xs font-black tracking-wider shadow-sm group-hover:bg-blue-600 dark:group-hover:bg-zinc-700 group-hover:shadow-md transition-all flex items-center gap-2">
-            <Twitter size={16} />
-            {dict.View_Profile || "View Profile"}
-          </span>
-        </a>
-      );
-    }
-
-    if (link.name === 'Instagram') {
-      return (
-        <div className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-4' : 'rounded-lg p-3'} flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 w-full shadow-sm hover:shadow-lg overflow-hidden`}>
-          {!iframesLoaded && (
-            <div className="w-full h-[400px] sm:h-[450px] flex items-center justify-center bg-black/5 dark:bg-white/5 rounded-lg border border-black/10 dark:border-white/10">
-              <span className="text-sm font-bold text-theme-muted animate-pulse">Loading Instagram...</span>
-            </div>
-          )}
-          {iframesLoaded && (
-            <iframe 
-              src="https://www.instagram.com/mfaranaiki/embed/" 
-              className="w-full h-[400px] sm:h-[450px] rounded-lg border-0 bg-transparent animate-fade-in"
-              scrolling="no"
-              frameBorder="0"
-              loading="lazy"
-              title="Instagram Embed"
-            />
-          )}
-        </div>
-      );
-    }
-
-    if (link.name === 'TikTok') {
-      return (
-        <div className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-4' : 'rounded-lg p-3'} flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 w-full shadow-sm hover:shadow-lg overflow-hidden`}>
-          {!iframesLoaded && (
-            <div className="w-full h-[400px] sm:h-[450px] flex items-center justify-center bg-black/5 dark:bg-white/5 rounded-lg border border-black/10 dark:border-white/10">
-              <span className="text-sm font-bold text-theme-muted animate-pulse">Loading TikTok...</span>
-            </div>
-          )}
-          {iframesLoaded && (
-            <iframe 
-              src="https://www.tiktok.com/embed/@faranaiki07" 
-              className="w-full h-[400px] sm:h-[450px] rounded-lg border-0 bg-transparent animate-fade-in"
-              allow="fullscreen"
-              scrolling="no"
-              frameBorder="0"
-              loading="lazy"
-              title="TikTok Embed"
-            />
-          )}
-        </div>
-      );
-    }
-
-    if (link.name === 'YouTube') {
-      return (
-        <a 
-          href={link.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-6' : 'rounded-lg p-5'} flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 w-full shadow-sm hover:shadow-lg overflow-hidden relative min-h-[300px]`}
-        >
-          <div className="absolute top-0 inset-x-0 h-16 bg-red-600/10 border-b border-red-500/20" />
-          
-          <div className="relative mt-2 mb-4 z-10 bg-theme-surface rounded-full p-4 border-4 border-theme-surface shadow-md group-hover:scale-110 transition-transform duration-300">
-             <Youtube size={48} className="text-red-500" />
-          </div>
-
-          <h3 className="text-xl font-black text-foreground mb-1 relative z-10">Faran Aiki</h3>
-          <p className="text-xs text-theme-muted font-bold tracking-tight mb-6 relative z-10">
-            {dict.Official_YouTube_Channel || "Official YouTube Channel"}
-          </p>
-
-          <span className="mt-auto px-6 py-2.5 rounded-full bg-red-600 text-white text-xs font-black tracking-wider shadow-sm group-hover:bg-red-700 group-hover:shadow-md transition-all flex items-center gap-2">
-            <Youtube size={16} />
-            {dict.Subscribe || "SUBSCRIBE"}
-          </span>
-        </a>
-      );
-    }
-
-    if (link.name === 'GitHub') {
-      return (
-        <a 
-          href={link.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-6' : 'rounded-lg p-4'} flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 w-full shadow-sm hover:shadow-lg overflow-hidden gap-4 min-h-[300px]`}
-        >
-          <div className="w-full flex justify-center mb-2">
-            <div className="flex items-center gap-2">
-              <Github size={24} className="text-foreground" />
-              <span className="font-bold text-foreground">@FaranAiki on GitHub</span>
-            </div>
-          </div>
-          
-          <div className="flex flex-col gap-3 w-full">
-            {/* Profile & Overall Stats */}
-            <Image 
-              src={`/api/github-stats?type=profile&username=FaranAiki&theme=${badgeTheme === 'dark' ? 'tokyonight' : 'default'}`}
-              alt="GitHub Profile Stats"
-              width={495}
-              height={195}
-              unoptimized
-              className="w-full h-auto object-contain hover:scale-[1.02] transition-transform duration-500"
-            />
-            
-            {/* Top Languages */}
-            <Image 
-              src={`/api/github-stats?type=langs&username=FaranAiki&theme=${badgeTheme === 'dark' ? 'tokyonight' : 'default'}`}
-              alt="GitHub Top Languages"
-              width={300}
-              height={165}
-              unoptimized
-              className="w-full h-auto object-contain hover:scale-[1.02] transition-transform duration-500 delay-75"
-            />
-
-            {/* Commits / Activity Graph */}
-            <Image 
-              src={`/api/github-stats?type=activity&username=FaranAiki&theme=${badgeTheme === 'dark' ? 'tokyonight' : 'default'}`}
-              alt="GitHub Commits Graph"
-              width={500}
-              height={200}
-              unoptimized
-              className="w-full h-auto object-contain hover:scale-[1.02] transition-transform duration-500 delay-150"
-            />
-          </div>
-
-          <span className="mt-2 text-xs font-bold text-theme-500 opacity-0 group-hover:opacity-100 transition-opacity">
-            {dict.View_Full_Profile || "View Full Profile →"}
-          </span>
-        </a>
-      );
-    }
-    
     return (
       <a
           href={link.url}

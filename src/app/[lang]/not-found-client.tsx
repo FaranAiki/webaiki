@@ -7,7 +7,7 @@ import { getThemeLogoFilter } from "@/lib/utils";
 import Image from "next/image";
 
 interface NotFoundClientProps {
-  dict: Record<string, string>;
+  dict: import('@/components/layout/Translator').TranslationDict;
   lang: string;
 }
 

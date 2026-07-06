@@ -8,7 +8,7 @@ import { useTheme } from 'next-themes';
 const ForceGraph2D = dynamic(() => import('react-force-graph-2d'), { ssr: false });
 
 interface SitemapGraphClientProps {
-  dict: Record<string, string>;
+  dict: import('@/components/layout/Translator').TranslationDict;
   lang: string;
 }
 

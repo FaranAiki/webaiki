@@ -10,7 +10,7 @@ interface PortfolioSummaryItemProps {
   title: string;
   company: string;
   date: string;
-  description: string;
+  description: string | string[];
   url?: string;
   onRemove?: () => void;
   ariaLabelTemplate?: string;
@@ -33,9 +33,12 @@ export default function PortfolioSummaryItem({
   const [isOpen, setIsOpen] = useState(false);
   const { isExpandAll, isAtsMode, isFullDescription } = useSettings();
 
-  const getBrief = (text: string) => {
-    if (!text) return "";
-    const firstSentence = text.split('.')[0];
+  const getBrief = (desc: string | string[]) => {
+    if (Array.isArray(desc)) {
+      return desc.length > 0 ? desc[0] : "";
+    }
+    if (!desc) return "";
+    const firstSentence = desc.split('.')[0];
     return firstSentence ? firstSentence.trim() + "." : "";
   };
 
@@ -46,7 +49,31 @@ export default function PortfolioSummaryItem({
     const cleanTitle = cleanText(title);
     const cleanCompany = cleanText(company);
     const cleanDate = cleanText(date);
-    const cleanBrief = cleanText(isFullDescription ? description : brief);
+    
+    // For ATS, if description is array and isFullDescription is true, show bullet points
+    const renderATSDescription = () => {
+      if (isFullDescription && Array.isArray(description)) {
+        return (
+          <ul className="list-none space-y-1 mt-1 text-xs text-[var(--text-muted)] leading-relaxed">
+            {description.map((item, idx) => (
+              <li key={idx}>• {cleanText(item)}</li>
+            ))}
+          </ul>
+        );
+      }
+      
+      const textToClean = isFullDescription && !Array.isArray(description) ? description : brief;
+      const cleanBrief = cleanText(textToClean);
+      if (!cleanBrief) return null;
+      
+      return (
+        <div className="pt-0.5 pb-0">
+          <p className="text-xs text-[var(--text-muted)] leading-relaxed">
+            {cleanBrief}
+          </p>
+        </div>
+      );
+    };
 
     return (
       <div className="portfolio-summary-item py-0 relative group">
@@ -83,16 +110,31 @@ export default function PortfolioSummaryItem({
             </button>
           )}
         </div>
-        {cleanBrief && (
-          <div className="pt-0.5 pb-0">
-            <p className="text-xs text-[var(--text-muted)] leading-relaxed">
-              {cleanBrief}
-            </p>
-          </div>
-        )}
+        {renderATSDescription()}
       </div>
     );
   }
+
+  const renderNormalDescription = () => {
+    if (Array.isArray(description)) {
+      return (
+        <ul className="list-disc pl-4 space-y-1 mt-1 text-xs md:text-sm text-[var(--text-muted)] leading-relaxed">
+          {description.map((item, idx) => (
+            <li key={idx}><HoverableWords className="">{item}</HoverableWords></li>
+          ))}
+        </ul>
+      );
+    }
+
+    const textToClean = isFullDescription ? description : brief;
+    const cleanBrief = cleanText(textToClean);
+    
+    return (
+      <HoverableWords className="text-xs md:text-sm text-[var(--text-muted)] leading-relaxed">
+        {cleanBrief}
+      </HoverableWords>
+    );
+  };
 
   return (
     <div
@@ -141,9 +183,7 @@ export default function PortfolioSummaryItem({
             className="overflow-hidden"
           >
             <div className="pt-1.5 pb-1">
-                <HoverableWords className="text-xs md:text-sm text-[var(--text-muted)] leading-relaxed">
-                  {isFullDescription ? description : brief}
-                </HoverableWords>
+                {renderNormalDescription()}
             </div>
           </motion.div>
         )}

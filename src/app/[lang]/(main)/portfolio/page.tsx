@@ -141,7 +141,7 @@ export default async function PortfolioSummaryPage({params }: { params: Promise<
           />
 
           {/* Skills Section */}
-          <PortfolioSkills skills={skills} title={dict['03Skill'] || 'Skills'} />
+          <PortfolioSkills skills={skills} title={(dict['03Skill' as keyof typeof dict] as string) || 'Skills'} />
 
           {/* Professional Pitch / Sales Closing (Strategy #13) */}
           <section className="bg-theme-surface/30 border border-theme-border rounded-2xl p-6 md:p-8 mt-12 mb-8 relative overflow-hidden group no-print">

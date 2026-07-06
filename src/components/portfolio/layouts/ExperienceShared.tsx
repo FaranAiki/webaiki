@@ -238,7 +238,15 @@ export const BentoCard = React.memo(({ job, spanClass, cardBorder, inactiveCardB
                             <h3 className="text-xl font-black mb-1 nav-active-gacor">{job.title}<TagBadge labels={job.tag} /></h3>
                             <p className={`text-sm italic mb-4 ${isDark ? 'text-theme-300' : 'text-theme-600'}`}>{job.company}</p>
                             <div className={`text-sm leading-relaxed text-foreground ${justifyClass}`}>
-                                {formatCJK(job.description, lang)}
+                                {Array.isArray(job.description) ? (
+                                    <ul className="list-disc pl-5 space-y-1">
+                                        {job.description.map((item, idx) => (
+                                            <li key={idx}>{formatCJK(item, lang)}</li>
+                                        ))}
+                                    </ul>
+                                ) : (
+                                    formatCJK(job.description, lang)
+                                )}
                             </div>
 
                             {job.url && (

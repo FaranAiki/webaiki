@@ -68,7 +68,15 @@ export default function ExperienceTimelineLayout() {
                                                     </div>
                                                 </div>
                                                 <p className="text-theme-700 dark:text-theme-300 font-bold italic text-xs mb-2">{job.company}</p>
-                                                <p className="text-xs text-foreground/80 line-clamp-3 group-hover:line-clamp-none transition-all duration-500">{job.description}</p>
+                                                <div className="text-xs text-foreground/80 transition-all duration-500 max-h-24 group-hover:max-h-96 overflow-hidden">
+                                                    {Array.isArray(job.description) ? (
+                                                        <ul className="list-disc pl-4 space-y-1">
+                                                            {job.description.map((item, i) => <li key={i}>{item}</li>)}
+                                                        </ul>
+                                                    ) : (
+                                                        <p>{job.description}</p>
+                                                    )}
+                                                </div>
                                             </div>
                                         </div>
                                     )
@@ -124,7 +132,15 @@ export default function ExperienceTimelineLayout() {
                                             </div>
                                             <div className="mb-2"><TagBadge labels={job.tag} /></div>
                                             <p className="text-theme-700 dark:text-theme-300 font-bold italic text-sm mb-2">{job.company}</p>
-                                            <p className="text-xs text-foreground/80 line-clamp-3 group-hover:line-clamp-none transition-all duration-500">{job.description}</p>
+                                            <div className="text-xs text-foreground/80 transition-all duration-500 max-h-24 group-hover:max-h-96 overflow-hidden">
+                                                {Array.isArray(job.description) ? (
+                                                    <ul className="list-disc pl-4 space-y-1">
+                                                        {job.description.map((item, i) => <li key={i}>{item}</li>)}
+                                                    </ul>
+                                                ) : (
+                                                    <p>{job.description}</p>
+                                                )}
+                                            </div>
                                         </div>
                                     </div>
                                 )
@@ -159,7 +175,15 @@ export default function ExperienceTimelineLayout() {
                                     </div>
                                 </div>
                                 <p className="text-theme-700 dark:text-theme-300 font-bold italic text-xs mb-2">{job.company}</p>
-                                <p className="text-xs text-foreground/80 line-clamp-2">{job.description}</p>
+                                <div className="text-xs text-foreground/80 max-h-16 group-hover:max-h-96 overflow-hidden transition-all duration-500">
+                                    {Array.isArray(job.description) ? (
+                                        <ul className="list-disc pl-4 space-y-1">
+                                            {job.description.map((item, i) => <li key={i}>{item}</li>)}
+                                        </ul>
+                                    ) : (
+                                        <p>{job.description}</p>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     ))}

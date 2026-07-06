@@ -14,7 +14,7 @@ interface SearchBarProps {
   scope?: SearchScope;
   placeholder?: string;
   className?: string;
-  dict: Record<string, string>;
+  dict: import('@/components/layout/Translator').TranslationDict;
   onSearch?: (query: string, scope: SearchScope) => void;
 }
 
@@ -364,7 +364,7 @@ export default function SearchBar({
                                 <HighlightText text={result.title} query={query} />
                               </h4>
                               <p className="text-xs text-theme-muted line-clamp-1 mb-1">
-                                <HighlightText text={result.description} query={query} />
+                                <HighlightText text={Array.isArray(result.description) ? result.description.join(' ') : result.description} query={query} />
                               </p>
                             </div>
                           </div>

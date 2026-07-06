@@ -38,11 +38,17 @@
   "Faran_Vision_Mission_3": "יתרה מזאת, אני גם נותן עדיפות לערכי הטוב המקובלים באופן נרחב, גלובלי ורציונלי. אני עושה זאת כדי להוכיח את ערך משמעות שמי, שהיא <i>להתקדם ולהתפתח</i>, הן כפרט והן כקבוצה.",
   "All": "הכל",
   "Portfolio": "תיק עבודות",
-  "Portfolio_Summary_Description": "סיכום קומפקטי של החוויות המקצועיות והדגשים של מוחמד פארן אייקי",
+  "Portfolio_Summary_Description": [
+    "סיכום קומפקטי של החוויות המקצועיות והדגשים של מוחמד פארן אייקי"
+  ],
   "Portfolio_Summary_Quote": "סיכום אצור של חוויות מקצועיות ופרויקטים בעלי השפעה רבה.",
-  "Portfolio_Description": "תיק עבודות מקצועי מלא ודגשים של מוחמד פארן אייקי",
+  "Portfolio_Description": [
+    "תיק עבודות מקצועי מלא ודגשים של מוחמד פארן אייקי"
+  ],
   "Full_Portfolio": "תיק עבודות מלא",
-  "Share_Description": "בדוק את האתר האישי של פארן אייקי!",
+  "Share_Description": [
+    "בדוק את האתר האישי של פארן אייקי!"
+  ],
   "Profile": "פרופיל",
   "Experience": "ניסיון",
   "Artwork": "אמנות",
@@ -137,58 +143,146 @@
   "Dutch": "הולנדית",
   "Hausa": "האוסה",
   "Make_Interactive_UAS": "למידה אינטראקטיבית עבור UAS MA1101 ITB",
-  "Make_Interactive_UAS_Description": "פיתוח אפליקציה מבוססת Flutter/Dart כדי לסייע לסטודנטים להתכונן לבחינה הסופית של Calculus I במכון הטכנולוגי של באנדונג, באמצעות ווידג'טים אינטראקטיביים ובינה מלאכותית של Gemini כדי להעמיק את ההבנה באמצעות ויזואליזציה של מושגים מורכבים.",
+  "Make_Interactive_UAS_Description": [
+    "בניתי כלי למידת מתמטיקה אינטראקטיבי באמצעות Flutter, Dart ו-FL Chart.",
+    "המחשה דינמית של מושגים מתמטיים מורכבים כדי לעזור להבנת התלמידים.",
+    "עיצבתי ממשק רספונסיבי וידידותי למשתמש לאינטראקציה חלקה."
+  ],
   "Make_Website": "אתר אישי faranaiki.id",
-  "Make_Website_Description": "יצירת אתר אישי ראשי באמצעות NextJS, TailwindCSS ו-Vercel (לבדיקה) כ\"מציג\" זהות המקיף את ההתפתחות האישית שלי.",
+  "Make_Website_Description": [
+    "הנדס אתר תיק עבודות דינמי ובעל ביצועים גבוהים באמצעות NextJS, TailwindCSS ו-TypeScript.",
+    "יישם גלילה חלקה ואנימציות באמצעות Lenis ו-Framer-Motion.",
+    "בנה ארכיטקטורת מסד נתונים אחורית חזקה באמצעות Drizzle ו-SQL."
+  ],
   "Make_Nihwm": "NihWM Window Manager",
-  "Make_Nihwm_Description": "יצירת מנהל חלונות שהוא נגזרת (fork) של מנהל חלונות דינמי (dwm) בשפת C באמצעות ספריית XOrg לשימוש ב-Arch Linux ועדיין נמצא בשימוש כיום כיוון שהוא הותאם אישית.",
+  "Make_Nihwm_Description": [
+    "פיתחתי את 'nihwm', מנהל חלונות X11 קל משקל שנכתב כולו ב-C עבור לינוקס.",
+    "יישמתי פונקציות ליבה של ניהול חלונות וטיפול בקלט באמצעות XOrg.",
+    "ביצעתי אופטימיזציה של קוד המקור לצריכת משאבים מינימלית ותגובתיות גבוהה."
+  ],
   "Lidia_Project": "ניתוח נתוני אינטגרציה סוציו-כלכלית עבור אינדונזיה אמאס 2045",
-  "Lidia_Project_Description": "פרויקט אינטגרציה של נתונים (LIDIA) ברמת המחוז באמצעות תהליכי ETL וניתוח סטטיסטי מתקדם (תיאורי, אבחוני, חיזויי והנחייתי). מנתח את הקשר בין שיעור הרשמה נקי, מדד הפיתוח האנושי, הוצאה לנפש, עיכוב בצמיחה ושנות לימוד ממוצעות כדי ליצור המלצות מדיניות מבוססות נתונים.",
+  "Lidia_Project_Description": [
+    "הקמתי תהליך ETL באמצעות Python, Pandas ו-Jupyter Notebook.",
+    "שילבתי את Gemini-CLI כדי לשפר את יכולות עיבוד הנתונים.",
+    "ייעלתי את תהליכי העבודה של הנתונים, והפחתתי משמעותית את זמן העיבוד הידני."
+  ],
   "Alkyl_Compiler": "שפת תכנות וקומפיילר Alkyl",
-  "Alkyl_Compiler_Description": "שפת התכנות Alkyl היא שפת תכנות שנכתבה לראשונה ב-C באמצעות LLVM-IR. הפרויקט שואף ליצור שפת תכנות שקל יותר לבינה מלאכותית ליצור, אך גם קריאה לבני אדם. התחביר שלה דומה ל-C, אך ללא עומס/קל יותר.",
+  "Alkyl_Compiler_Description": [
+    "תכננתי ויישמתי מהדר (קומפיילר) מותאם אישית מאפס באמצעות C ו-LLVM.",
+    "השתמשתי ב-Valgrind וב-GDB לניהול זיכרון וניפוי באגים קפדני.",
+    "תרגמתי מבני שפה ברמה גבוהה לקוד מכונה יעיל."
+  ],
   "Impact_Module_Author": "מחבר מודול מתמטיקה IMPACT 6.0",
-  "Impact_Module_Author_Description": "כתב חומר לימוד למתמטיקה, כולל מערכת משוואות ליניאריות ואי-שוויונות ליניאריים, גרף ליניארי, פונקציות ופולינומים עם 4 בעיות כל אחת: 2 באינדונזית ל-SSU, 2 באנגלית ל-IUP. בנוסף, הכין 20 בעיות ל-Try Out IUP.",
+  "Impact_Module_Author_Description": [
+    "חיברתי מודולים חינוכיים מקיפים לאולימפיאדת IMPACT 6.0.",
+    "תכננתי מערכי בעיות קפדניים ופתרונות כדי לאתגר את תלמידי התיכון המובילים.",
+    "שיתפתי פעולה עם עמיתים אקדמיים כדי להבטיח תקני איכות תוכן גבוהים."
+  ],
   "SAT_Tutor": "מורה פרטי ל-SAT מתמטיקה ומילולי (חוזה)",
-  "SAT_Tutor_Description": "הוראת SAT מילולי ומתמטיקה באופן שגרתי מדי שבוע לקבוצה של שישה תלמידי תיכון וגם הערכת תוצאות מבחני קבלה וסיום בהנחיית Kobi Education.",
+  "SAT_Tutor_Description": [
+    "לימד תלמידים במתמטיקה ואנגלית עבור מבחן ה-SAT, תוך מתן שיעורים מקיפים ואסטרטגיות מותאמות אישית.",
+    "הדריך תלמידים להשגת מטרותיהם לקבלה לאוניברסיטאות בחו\"ל."
+  ],
   "Compile_Module_Author": "יוצר מודול COMPILE STEI-K UTBK",
-  "Compile_Module_Author_Description": "יצירת שני מודולים עם נושאים כמותיים ואינדוקטיביים במבחן המשנה של חשיבה כללית להפעלת תוכנית COMPILE 2026 המאורגנת על ידי STEI-K 2025.",
+  "Compile_Module_Author_Description": [
+    "חיברתי מודולי למידה לתוכנית ההכנה COMPILE UTBK.",
+    "ריכזתי שאלות תרגול נרחבות להכנת תלמידים לבחינות הכניסה לאוניברסיטאות הלאומיות.",
+    "אפשרתי הבנה טובה יותר של נושאים מורכבים באמצעות הסברים מפורטים."
+  ],
   "Software_Engineer": "מהנדס תוכנה (Front-End Flutter)",
-  "Software_Engineer_Description": "יצירה ותחזוקה של ווידג'טים אינטראקטיביים, כגון גרף אינטראקטיבי, סטטיסטיקה אינטראקטיבית להצגת נתונים, ופיצול מילים לעקומת למידה קלה יותר באמצעות Flutter.",
+  "Software_Engineer_Description": [
+    "פיתחתי ותחזקתי תכונות ליבה של פלטפורמת Analitica כמהנדס תוכנה.",
+    "ייעלתי את ביצועי האפליקציה ושיפרתי את קוד המקור עבור מדרגיות טובה יותר.",
+    "שיתפתי פעולה עם צוותים חוצי תפקוד כדי לספק פתרונות תוכנה באיכות גבוהה."
+  ],
   "Mathematics_Private_Tutor": "מורה פרטי למתמטיקה",
-  "Mathematics_Private_Tutor_Description": "מתן שיעורים פרטיים לתלמידים באולימפיאדת המתמטיקה לתחרויות חטיבת ביניים. פיתוח תוכניות שיעור מותאמות אישית כדי לעזור לתלמידים להשיג את מטרותיהם האקדמיות ולשפר את הבנתם במושגים מורכבים.",
+  "Mathematics_Private_Tutor_Description": [
+    "העברתי שיעורי מתמטיקה מותאמים אישית שהתמקדו בנושאי רמת אולימפיאדה.",
+    "הערכתי את התקדמות התלמידים והתאמתי שיטות הוראה לטיפול בחולשות אינדיבידואליות.",
+    "טיפחתי חשיבה אנליטית ומיומנויות פתרון בעיות מתקדמות אצל התלמידים."
+  ],
   "Education_Team": "צוות חינוך",
-  "Education_Team_Description": "סיוע ביצירת תכני חומר חינוכי, כגון מתמטיקה כללית, והכנת 600 בעיות בפיזיקה, כימיה ומתמטיקה עבור מבחן היכולת האקדמית (TKA) בתיכון. תמיכה בתכנון ובביצוע של תוכניות למידה לסטודנטים ולאנשי מקצוע, וסיוע בשימוש בבינה מלאכותית.",
+  "Education_Team_Description": [
+    "תרמתי לצוות החינוך ב-Analitica על ידי פיתוח תוכן חינוכי ייעודי.",
+    "ניתחתי נתוני ביצועים של תלמידים כדי לעדן ולשפר חומרי למידה.",
+    "תמכתי ביצירת כלי הערכה המשמשים אלפי תלמידים."
+  ],
   "ITB": "המכון הטכנולוגי של בנדונג",
   "Sponsorship_Wisokto_ITB": "חסות לטקס סיום לימודי אוקטובר 2025 של ITB, ועדת WisNight וקידום Nipis Madu",
-  "Sponsorship_Wisokto_ITB_Description": "יצירת קשר עם מספר חברות לשיתוף פעולה בטקס סיום הלימודים של אוקטובר 2025 במכון הטכנולוגי של באנדונג, כגון Mamikos. בנוסף, שימוש כחבר ועדה המסייע בתהליך אירוע WisNight, כגון שינוע שבעה ארגזים של Nipis Madu. לאחר מכן, יצירת ארבעה סרטוני קידום מכירות של Nipis Madu בסיוע חברי ועדה אחרים.",
+  "Sponsorship_Wisokto_ITB_Description": [
+    "זיהה וביסס שותפויות אסטרטגיות וחיפש חסויות מגורמים שונים."
+  ],
   "Impact_Web_Lead": "ראש צוות פיתוח אתרים Web Impact 6.0",
-  "Impact_Web_Lead_Description": "ניהול אתר לאולימפיאדה IMPACT 6.0 על ידי Sekolah Teknik Elektro Informatika - Komputasi, המיועד לתחרויות לתלמידי תיכון, כולל ניהול צד לקוח, צד שרת, Moodles ו-Judgels. בנוסף, מסגרת צד הלקוח משתמשת ב-NextJS, TailwindCSS ו-TypeScript, בעוד צד השרת משתמש במסד נתונים SQL של Supabase עם Drizzle Object-Relational Mapping.",
+  "Impact_Web_Lead_Description": [
+    "פיתח אפליקציית full-stack חזקה באמצעות NextJS, TailwindCSS ו-TypeScript עבור ממשק קצה ברמת ביצועים גבוהה.",
+    "הנדס את ארכיטקטורת צד השרת תוך מינוף מסד הנתונים Supabase SQL בשילוב עם Prisma ORM לניהול נתונים אמין וניתן להרחבה.",
+    "ניהל את פלטפורמות Moodle ו-Judgel כדי להבטיח סביבה תחרותית חלקה לכל המשתתפים.",
+    "ניהל ותיאם את צוותי פיתוח ה-front-end וה-back-end כדי להבטיח מסירת פרויקט יעילה."
+  ],
   "Treasurer_SYNC": "גזבר לאירוע המפגש של STEI-K",
   "STEI-K": "School of Electrical Engineering and Informatics - Computation",
-  "Treasurer_SYNC_Description": "הבטחת חסות של מיליון רופיה לאירוע המפגש של הפקולטה SYNC: Say Yes to New Connections וסיוע בניהול הכספים.",
+  "Treasurer_SYNC_Description": [
+    "ניהלתי רישומים פיננסיים ותקצוב עבור אירוע המפגש של SYNC STEI-K.",
+    "עיבדתי עסקאות, עקבתי אחר הוצאות והכנתי דוחות כספיים מפורטים.",
+    "הבטחתי הקצאה שקופה ויעילה של כספים ארגוניים."
+  ],
   "IT_Club_Vice_Renpy": "סגן מנהל פרויקט עבור הפרויקט הסופי של מועדון ה-IT לשנת 2024",
-  "IT_Club_Vice_Renpy_Description": "פיקוח על פיתוח משחק נובלה ויזואלית באמצעות Ren'Py בשפת פייתון.",
+  "IT_Club_Vice_Renpy_Description": [
+    "כיהנתי כסגן נשיא, ארגנתי פעילויות מועדון והנחיתי את החברים.",
+    "לימדתי מושגי פיתוח משחקים באמצעות מנוע הרומן החזותי Ren'Py.",
+    "הדרכתי תלמידים בלוגיקה תכנותית ובסיפורים אינטראקטיביים."
+  ],
   "IT_Club_Tutor": "מורה במועדון אינפורמטיקה",
-  "IT_Club_Tutor_Description": "לימד את חברי מועדון האינפורמטיקה על פייתון ופיתוח אתרים.",
+  "IT_Club_Tutor_Description": [
+    "לימדתי תלמידי תיכון מושגי תכנות יסודיים וטכנולוגיית מידע.",
+    "פיתחתי מערכי שיעור מרתקים ותרגילי קידוד מעשיים.",
+    "טיפחתי סביבת למידה שיתופית ותומכת בתוך המועדון."
+  ],
   "Student_Club_Member": "חבר מועדון סטודנטים",
-  "Student_Club_Member_Description": "חבר פעיל במועדון הסטודנטים של SMA Negeri 1 Depok City, השתתפות בתחרויות ואולימפיאדות, כגון זכייה במדליית ארד בתחרות המתמטיקה הלאומית ה-19 (KMNR).",
+  "Student_Club_Member_Description": [
+    "השתתפתי באופן פעיל באירועים וביוזמות של מועדון התלמידים 1 של Depok.",
+    "שיתפתי פעולה עם עמיתים לארגון פעילויות לבניית קהילה.",
+    "תרמתי ליעדי המועדון באמצעות עבודת צוות מסורה."
+  ],
   "English_Club_Member": "חבר מועדון אנגלית",
-  "English_Club_Member_Description": "יצירה ועיבוד של תוכן, כגון האגדה \"הברווזון המכוער\".",
+  "English_Club_Member_Description": [
+    "שיפר את מיומנויות התקשורת והדיבור בפני קהל.",
+    "סייע ביצירת תוכן, כולל 'הברווזון המכוער'."
+  ],
   "NBK_Member": "חבר מועדון Nihongo Benkyoukai",
-  "NBK_Member_Description": "השתתפות בפעילויות מועדון מוכוונות יפן ולימוד השפה.",
+  "NBK_Member_Description": [
+    "למד את השפה והתרבות היפנית כחבר ב-Nihongo Benkyoukai."
+  ],
   "PARAS": "מעצב לוגו ועורך תסריט MC עבור PARAS Glorigion 1445H",
-  "PARAS_Description": "עיצוב הלוגו הראשי לאירוע PARAS (Paket Ramadan Spesial) Glorigion 2024 בשיתוף פעולה עם מעצבים אחרים, והגהה ועריכה של פריסת התסריט עבור מנחה הטקס.",
+  "PARAS_Description": [
+    "תרם לארגון אירוע PARAS ב-SMA Negeri 1 Kota Depok.",
+    "שיתף פעולה בעיצוב והפקת לוגו האירוע.",
+    "סייע בניסוח ועריכת התסריט למנחה האירוע (MC)."
+  ],
   "Concerto": "מתאם לשלב הסופי של תחרות הקונצ'רטו",
-  "Concerto_Description": "יצירה, הגהה, תיאום ופיקוח על שאלות תחרות, כגון מתמטיקה, מדעי הטבע (IPA) ומדעי החברה (IPS), שהוכנו לשלב הסופי של התחרות.",
+  "Concerto_Description": [
+    "ניהלתי את פעולות האירוע והלוגיסטיקה עבור מפגש מועדון הסטודנטים של Concerto.",
+    "שיתפתי פעולה עם חברי הצוות לתכנון וביצוע פעילויות מרתקות.",
+    "טיפלתי ברישום משתתפים וסיפקתי תמיכה במקום."
+  ],
   "Paragon_Scholarship_Title": "מלגת Paragon Program Excellence מחזור 2025",
-  "Paragon_Scholarship_Desc": "מקבל מלגת פארגון (Paragon Scholarship Program Excellence) מחזור 2025.",
+  "Paragon_Scholarship_Desc": [
+    "זכה במלגת Paragon היוקרתית והתחרותית עבור מצוינות אקדמית ופוטנציאל מנהיגות.",
+    "השתתף בתוכניות הכשרת מנהיגות ופיתוח קהילתי."
+  ],
   "PT Paragon": "PT Paragon",
   "ALTH_Project": "ALTH: Aku Lupa Tandai Hadir",
-  "ALTH_Project_Description": "ALTH (Aku Lupa Tandai Hadir) היא אפליקציה חדשנית שתוכננה במיוחד עבור סטודנטים של ITB כדי לטפל בבעיה השכיחה של שכחת סימון נוכחות. פותחה באמצעות Flutter ומינוף שילוב Burp Suite, האפליקציה שולחת אותות GET באופן אוטומטי לפורטל SIX ומעבדת נתונים באמצעות עוגיות המתקבלות באמצעות אימות Microsoft SSO. למרות שיש לה את היכולת הטכנית לשלוח אותות POST, ALTH בנויה עם יושרה גבוהה ככלי תזכורת חכם, לא למניפולציה של נוכחות.",
+  "ALTH_Project_Description": [
+    "ביצע ניתוח Burp Suite כדי להבין את השימוש ב-SSO ובעוגיות.",
+    "פיתח אפליקציית תזכורת נוכחות באמצעות Flutter ו-Dart עבור תלמידי Institut Teknologi Bandung."
+  ],
   "": "",
   "Navigation": "ניווט",
   "GDG_ITB_Title": "Google Developer Group Campus on ITB - מנהל מוצר חוקר",
-  "GDG_ITB_Description": "לימוד יסודות ניהול המוצר, ביצוע מחקר משתמשים וסיוע בפיתוח מפות דרכים למוצרים ליוזמות טכנולוגיות בתוך סביבת הקמפוס.",
+  "GDG_ITB_Description": [
+    "למד על ניהול מוצר ממושגים בסיסיים ועד מתקדמים.",
+    "למד להזדהות עם משתמשים וצרכיהם."
+  ],
   "Presentation_Mode": "מצב מצגת",
   "Presentation_Modern": "מודרני",
   "Presentation_Cinematic": "קולנועי",
@@ -204,13 +298,19 @@
   "Sultan_PDF_Creating": "יוצר PDF...",
   "Sultan_PDF_Ready": "ה-PDF מוכן!",
   "Sultan_PDF_Failed": "יצירת ה-PDF נכשלה.",
-  "Sultan_PDF_Description": "רינדור PDF וקטורי איכותי.",
+  "Sultan_PDF_Description": [
+    "רינדור PDF וקטורי איכותי."
+  ],
   "Sultan_PDF_Download": "מוריד...",
   "Estimating": "מעריך...",
   "Dismiss": "התעלם",
   "Cancel": "ביטול",
   "National_Statistics_Competition_Prep": "הכנה לתחרות הסטטיסטיקה הלאומית",
-  "National_Statistics_Competition_Prep_Description": "לימוד שיטות אנליטיות וסטטיסטיות כגון ARIMA, ANOVA, רגרסיה לינארית ובדיקת השערות קפדנית כהכנה לתחרות הסטטיסטיקה הלאומית.",
+  "National_Statistics_Competition_Prep_Description": [
+    "הכנתי ומדלתי נתונים סטטיסטיים תוך שימוש בהסתברות וסטטיסטיקה, SARIMAX ו-MANOVA.",
+    "תכנתתי סקריפטים נרחבים לניתוח נתונים באמצעות Python ו-Jupyter Notebooks.",
+    "המחשה חזותית של מערכי נתונים מורכבים כדי להפיק תובנות ניתנות לפעולה עבור התחרות הלאומית."
+  ],
   "Open": "פתח",
   "Not_Available": "לא זמין",
   "No_Documents_Available": "אין מסמכים זמינים.",
@@ -222,14 +322,30 @@
   "Upload_Photo": "העלאת תמונה",
   "Title": "כותרת",
   "Image_Optional": "תמונה (אופציונלי)",
-  "SEO_Home_Description": "האתר הרשמי של מוחמד פארן אייקי - סטודנט STI ITB, מהנדס תוכנה ומורה פרטי ל-SAT. חקור את תיק העבודות, החוויות והתובנות שלי כאן.",
-  "SEO_Work_Description": "היסטוריה מקצועית של מוחמד פארן אייקי כמהנדס תוכנה ב-Analitica, מורה פרטי ל-SAT ב-Kobi Education ותפקידים טכנולוגיים אחרים.",
-  "SEO_Project_Description": "אוסף של פרויקטים טכניים מאת מוחמד פארן אייקי, החל מקומפיילר Alkyl ועד לאפליקציית ALTH Flutter ואינטגרציית נתונים סוציו-כלכליים של אינדונזיה.",
-  "SEO_Organization_Description": "ניסיון ארגוני של מוחמד פארן אייקי ב-GDG ITB, STEI-K ובוועדות שונות במכון הטכנולוגי של באנדונג.",
-  "SEO_Award_Description": "פרסים ומלגות שקיבל מוחמד פארן אייקי, כולל תוכנית המצוינות של מלגת פארגון לשנת 2025.",
-  "SEO_College_Description": "תיעוד המסע האקדמי, חומרי הקורס והערות הלימוד של מוחמד פארן אייקי ב-STI STEI-K ITB.",
-  "SEO_Certificate_Description": "הסמכות מקצועיות וקורסים שהושלמו על ידי מוחמד פארן אייקי בפיתוח תוכנה ומיומנויות אחרות.",
-  "SEO_Literature_Description": "יצירות ספרותיות הכוללות שירים, סיפורים קצרים ומסות שנכתבו על ידי מוחמד פארן אייקי באינדונזית ובאנגלית.",
+  "SEO_Home_Description": [
+    "האתר הרשמי של מוחמד פארן אייקי - סטודנט STI ITB, מהנדס תוכנה ומורה פרטי ל-SAT. חקור את תיק העבודות, החוויות והתובנות שלי כאן."
+  ],
+  "SEO_Work_Description": [
+    "היסטוריה מקצועית של מוחמד פארן אייקי כמהנדס תוכנה ב-Analitica, מורה פרטי ל-SAT ב-Kobi Education ותפקידים טכנולוגיים אחרים."
+  ],
+  "SEO_Project_Description": [
+    "אוסף של פרויקטים טכניים מאת מוחמד פארן אייקי, החל מקומפיילר Alkyl ועד לאפליקציית ALTH Flutter ואינטגרציית נתונים סוציו-כלכליים של אינדונזיה."
+  ],
+  "SEO_Organization_Description": [
+    "ניסיון ארגוני של מוחמד פארן אייקי ב-GDG ITB, STEI-K ובוועדות שונות במכון הטכנולוגי של באנדונג."
+  ],
+  "SEO_Award_Description": [
+    "פרסים ומלגות שקיבל מוחמד פארן אייקי, כולל תוכנית המצוינות של מלגת פארגון לשנת 2025."
+  ],
+  "SEO_College_Description": [
+    "תיעוד המסע האקדמי, חומרי הקורס והערות הלימוד של מוחמד פארן אייקי ב-STI STEI-K ITB."
+  ],
+  "SEO_Certificate_Description": [
+    "הסמכות מקצועיות וקורסים שהושלמו על ידי מוחמד פארן אייקי בפיתוח תוכנה ומיומנויות אחרות."
+  ],
+  "SEO_Literature_Description": [
+    "יצירות ספרותיות הכוללות שירים, סיפורים קצרים ומסות שנכתבו על ידי מוחמד פארן אייקי באינדונזית ובאנגלית."
+  ],
   "Original": "מקור",
   "Timeline": "ציר זמן",
   "Grid": "רשת",
@@ -238,9 +354,17 @@
   "Click_To_Close": "לחץ לסגירה",
   "Logo_Alt": "הלוגו של פארן אייקי",
   "Jump_Game_Project": "Jump! Game",
-  "Jump_Game_Description": "משחק פלטפורמה פשוט כמו Geometry Dash שיצרתי עם #C ו-Visual Studio. ההורים שלי באמת שיחקו במשחק הזה גם! מפרויקט זה למדתי גם כיצד להשתמש ב-FPS וב-Time.deltaTime בצורה נכונה.",
+  "Jump_Game_Description": [
+    "יצרתי משחק פלטפורמה מאתגר באמצעות C# ו-Visual Studio.",
+    "יישמתי מכניקת קפיצה מבוססת פיזיקה וזיהוי התנגשויות.",
+    "עיצבתי פריסות שלבים ושילבתי מערכות ניקוד לשיפור המשחקיות."
+  ],
   "Below_Below_Project": "Below Below",
-  "Below_Below_Description": "משחק חקירת כרייה מונחה נרטיב שבו אתה עובר גלגול נשמות כעבד כרייה. הוא כולל שילוב של חקירה בדו-מימד ומכניקת כרייה בתלת-מימד, יצירת עולם דינמית ומערכות הישרדות מורכבות כמו יצירה ואינטראקציות עם NPC. נבנה עם Godot 4.2 ו-GDScript.",
+  "Below_Below_Description": [
+    "תכננתי ותכנתתי את 'Below Below', משחק וידאו מרתק באמצעות Godot 4.2 ו-GDScript.",
+    "פיתחתי מכניקת משחק, אינטראקציות פיזיקליות ובקרות שחקן.",
+    "יצרתי נכסי פיקסל ארט מותאמים אישית ושילבתי אפקטים קוליים לחוויה מגובשת."
+  ],
   "Point_System_Summary": "סיכום מערכת נקודות",
   "Total_Points": "סה\"כ נקודות",
   "Important_Highlights": "דגשים חשובים",
@@ -286,7 +410,11 @@
   "Indonesia": "אינדונזיה",
   "Semester": "סמסטר",
   "Olive_Divergence": "Olive Divergence",
-  "Olive_Divergence_Desc": "A fork of the 0.1.x version of Olive Video Editor, focusing on feature experimentation and community-driven development.",
+  "Olive_Divergence_Desc": [
+    "תכנתתי את 'Olive Divergence' באמצעות C++ ומסגרת Qt.",
+    "עיצבתי ממשק משתמש גרפי עם אלמנטים חזותיים עשירים ווידג'טים מותאמים אישית.",
+    "ניהלתי את מצב האפליקציה וזרימת הנתונים ביעילות בתוך לולאת האירועים של Qt."
+  ],
   "Resume": "Resume",
   "Education": "השכלה",
   "Data": "נתונים",
@@ -315,7 +443,9 @@
   "Faq": "FAQ",
   "Other": "אחר",
   "Hire_Me": "גייס אותי",
-  "Hire_Me_Description": "Collaborate with or hire Muhammad Faran Aiki for your project.",
+  "Hire_Me_Description": [
+    "Collaborate with or hire Muhammad Faran Aiki for your project."
+  ],
   "Company": "Company",
   "Reason_Hiring": "Reason for Hiring",
   "Hire_Success": "בקשת הגיוס נשלחה בהצלחה!",
@@ -332,7 +462,9 @@
   "Require_Login": "עליך להתחבר.",
   "Don_t_have_account": "אין לך חשבון?",
   "Already_have_account": "כבר יש לך חשבון?",
-  "Not_Found_Description": "אופס! הדף שחיפשת אבד בממד אחר.",
+  "Not_Found_Description": [
+    "אופס! הדף שחיפשת אבד בממד אחר."
+  ],
   "Job_Title": "Job Title",
   "Location": "Location",
   "Job_Type": "Job Type",
@@ -372,14 +504,28 @@
   "Uploading": "Mengunggah...",
   "ONMIPA_Award_Title": "מדליית כסף ONMIPA-PT 2026 מתמטיקה",
   "ONMIPA_Award_Company": "Kemendikti & Belmawa",
-  "ONMIPA_Award_Desc": "ONMIPA-PT היא אולימפיאדת המדע היוקרתית ביותר לסטודنتים באינדונזיה, המקיפה מתמטיקה, פיזיקה, כימיה וביולוגיה. זכיתי במדליית כסף בקטגוריית המתמטיקה. הישג זה נחשב לחריג שכן הייתי סטודנט בסמסטר ב' במגמת מערכות מידע וטכנולוגיה (STI), והתחרתי ברמה הלאומית מול סטודנטים למתמטיקה עיונית.",
+  "ONMIPA_Award_Desc": [
+    "זכה במדליית כסף בתחרות היוקרתית ONMIPA-PT 2026 במתמטיקה.",
+    "הפגין כישורי פתרון בעיות יוצאי דופן ושליטה במושגים מתמטיים מתקדמים.",
+    "התחרה מול טובי הסטודנטים באוניברסיטאות ברמה הלאומית, והשיג תוצאות יוצאות דופן למרות שעדיין היה בסמסטר השני של תוכנית הלימודים למערכות מידע וטכנולוגיה."
+  ],
   "Delete": "מחק",
   "Tech_Reference": "ייחוס אדריכלי",
-  "Framework_Desc": "נבנה עם Next.js 15, תוך שימוש ב-App Router העדכני ביותר, React Server Components (RSC) ו-Turbopack לביצועים מהירים כברק.",
-  "Styling_Desc": "סגנונות מותאמים אישית באמצעות Vanilla CSS ו-Tailwind CSS, תוך התמקדות באסתטיקה ייחודית עם תמיכה בריבוי ערכות נושא (מודרני, קולנועי, עריכתי).",
-  "Database_Desc": "ניהול מסד נתונים ללא שרת באמצעות Drizzle ORM עם PostgreSQL המתארח ב-Supabase, המבטיח שלמות נתונים ויכולת הרחבה.",
-  "Localization_Desc": "תמיכה מקיפה ב-i18n ליותר מ-18 שפות, המבטיחה נגישות וחוויה חלקה לקהל עולמי.",
-  "Holistic_Approach_Desc": "גישה הוליסטית להנדסת תוכנה המשלבת תקני אינטרנט מודרניים, בטיחות טיפוסים קפדנית (TypeScript) ועיצוב מונחה ביצועים.",
+  "Framework_Desc": [
+    "נבנה עם Next.js 15, תוך שימוש ב-App Router העדכני ביותר, React Server Components (RSC) ו-Turbopack לביצועים מהירים כברק."
+  ],
+  "Styling_Desc": [
+    "סגנונות מותאמים אישית באמצעות Vanilla CSS ו-Tailwind CSS, תוך התמקדות באסתטיקה ייחודית עם תמיכה בריבוי ערכות נושא (מודרני, קולנועי, עריכתי)."
+  ],
+  "Database_Desc": [
+    "ניהול מסד נתונים ללא שרת באמצעות Drizzle ORM עם PostgreSQL המתארח ב-Supabase, המבטיח שלמות נתונים ויכולת הרחבה."
+  ],
+  "Localization_Desc": [
+    "תמיכה מקיפה ב-i18n ליותר מ-18 שפות, המבטיחה נגישות וחוויה חלקה לקהל עולמי."
+  ],
+  "Holistic_Approach_Desc": [
+    "גישה הוליסטית להנדסת תוכנה המשלבת תקני אינטרנט מודרניים, בטיחות טיפוסים קפדנית (TypeScript) ועיצוב מונחה ביצועים."
+  ],
   "Suggestions": "הצעות",
   "Read_More": "קרא עוד",
   "Location_Online": "מקוון",
@@ -396,15 +542,21 @@
   "Back_To_News": "Kembali ke Berita",
   "Business_Requests": "בקשות עסקיות",
   "AI_Discovery_Title": "זהות דיגיטלית (מותאם ל-AI)",
-  "AI_Discovery_Description": "תקציר מובנה עבור מנועי חיפוש ובינה מלאכותית (LLMs).",
+  "AI_Discovery_Description": [
+    "תקציר מובנה עבור מנועי חיפוש ובינה מלאכותית (LLMs)."
+  ],
   "Professional_Pitch_Title": "למה לשתף פעולה עם Faran Aiki?",
   "Professional_Pitch_Text": "כסטודנט למערכות מידע וטכנולוגיה ב-ITB, עם ניסיון מעשי בהנדסת תוכנה והישגים לאומיים במתמטיקה, אני מציע שילוב ייחודי של חדות לוגית, יצירתיות טכנית ומסירות לצמיחה. בין אם מדובר בבניית מערכות מורכבות או בפתרון בעיות מתמטיות, אני מתמקד בתוצאות בעלות השפעה רבה.",
   "Hire_Already_Submitted": "כבר שלחת בקשה. אתה יכול לערוך אותה למטה.",
   "Recaptcha_Protected": "מוגן על-יดี reCAPTCHA. ה{privacy} וה{terms} חלים.",
   "Privacy": "פרטיות",
   "Terms": "תנאים",
-  "Superskill_Project": "סופר-סקיל",
-  "Superskill_Description": "Superskill הוא משחק שפותח באמצעות Flutter ומיועד לאימון היגיון, כישوري חשיבה, מיומנויות מספריות ועוד.",
+  "Superskill_Project": "גן קוגניטיבי",
+  "Superskill_Description": [
+    "פיתח את הגן הקוגניטיבי, אפליקציה מתוחכמת חוצת פלטפורמות באמצעות Flutter ו-Dart.",
+    "עיצב משחקים המאמנים קוגניציה מוחית ומגרים את המוח.",
+    "עיצב ממשק משתמש אינטואיטיבי ומרתק עם אנימציות עשירות."
+  ],
   "Terminal_Title": "Konsol Terminal",
   "Skills_Languages": "שפות תכנות",
   "Skills_Frameworks": "מסגרות וספריות",
@@ -413,8 +565,16 @@
   "Data_Science": "Sains Data",
   "Compilers": "Desain Kompilator",
   "Algorithms": "Algoritma & Struktur Data",
-  "Education_ITB_Description": "לומד לתואר ראשון במערכות מידע וטכנולוגיה.",
-  "Education_SMA_Description": "בוגר עם התמחות ב-Kurikulum Merdeka: Informatika.",
+  "Education_ITB_Description": [
+    "לומד לתואר ראשון במערכות מידע וטכנולוגיה.",
+    "שומר על הישגים אקדמיים חזקים עם דגש על הנדסת תוכנה ומדעי נתונים.",
+    "משתתף באופן פעיל בפרויקטים טכניים ובארגוני סטודנטים."
+  ],
+  "Education_SMA_Description": [
+    "סיימתי עם דגש על Kurikulum Merdeka: Informatika.",
+    "הצטיינתי בקורסי מדעי המחשב, מתמטיקה ומדעים.",
+    "השתתפתי באופן פעיל במועדונים אקדמיים ומועדוני IT."
+  ],
   "Or_Continue_With": "או המשך עם",
   "Loading": "טוען...",
   "Full_Description_Portfolio": "תיאור מלא (תיק עבודות)",
@@ -449,7 +609,9 @@
   "Sitemap_Hover_Node": "רחף מעל צומת",
   "Sitemap_Preview_Instruction": "רחף מעל כל צומת בגרף כדי לראות תצוגה מקדימה חיה של אותו דף.",
   "Preview": "תצוגה מקדימה",
-  "SEO_Timeline_Description": "Complete timeline of Faran Aiki's career, education, organization, and projects.",
+  "SEO_Timeline_Description": [
+    "Complete timeline of Faran Aiki's career, education, organization, and projects."
+  ],
   "Skip_To_Content": "דלג לתוכן המרכזי",
   "Locked": "נעול",
   "GDGOC ITB_Product Manager": "מנהל מוצר GDGOC ITB",
@@ -465,7 +627,9 @@
   "No_Results_Found": "לא נמצאו תוצאות.",
   "Searching": "מחפש...",
   "Offline_Title": "אתה לא מקוון",
-  "Offline_Description": "לא נמצא אינטרנט. אנא בדוק את ה-Wi-Fi והאינטרנט שלך.",
+  "Offline_Description": [
+    "לא נמצא אינטרנט. אנא בדוק את ה-Wi-Fi והאינטרנט שלך."
+  ],
   "Offline_Retry": "נסה שוב",
   "Interest": "Interest",
   "Filter_All": "All",
@@ -486,11 +650,54 @@
   "No_Bookmarks": "No bookmarks yet.",
   "Bookmark_Added": "Successfully added to bookmarks!",
   "Bookmark_Removed": "Successfully removed from bookmarks!",
-  "My_Requests_Desc": "Manage your business & hire requests.",
-  "My_Feedbacks_Desc": "View or edit testimonials you left.",
-  "My_Preferences_Desc": "Open the global settings menu.",
+  "My_Requests_Desc": [
+    "Manage your business & hire requests."
+  ],
+  "My_Feedbacks_Desc": [
+    "View or edit testimonials you left."
+  ],
+  "My_Preferences_Desc": [
+    "Open the global settings menu."
+  ],
   "Joined": "Joined",
   "Public_Feedbacks": "Public Feedbacks",
   "No_Public_Feedbacks": "No public feedbacks yet.",
-  "Bookmarks_Description": "Here are all the items you have bookmarked."
+  "Bookmarks_Description": [
+    "Here are all the items you have bookmarked."
+  ],
+  "Academic_Transcript": "גיליון ציונים אקדמי",
+  "Transcript_Subtitle": "מכון הטכנולוגיה של בנדונג • מערכות וטכנולוגיות מידע • ממוצע ציונים מצטבר:",
+  "Transcript_IP": "ממוצע ציונים:",
+  "Transcript_Passed_Credits": "נקודות זכות שעברו:",
+  "Transcript_No": "מס'",
+  "Transcript_Code": "קוד",
+  "Transcript_Course": "קורס",
+  "Transcript_Type": "סוג",
+  "Transcript_Credits": "נקודות זכות",
+  "Transcript_Grade": "ציון",
+  "Transcript_Semester": "סמסטר נלמד",
+  "Transcript_Grade_Conversion": "המרת ציון",
+  "Transcript_TPB": "שנת מכינה משותפת",
+  "Transcript_Sarjana": "תואר ראשון",
+  "Transcript_Type_W": "חובה",
+  "Transcript_Type_P": "בחירה במסלול",
+  "Transcript_Type_L": "בחירה מחוץ למסלול",
+  "Course_MA1101": "חדו\"א 1",
+  "Course_FI1101": "פיזיקה בסיסית 1",
+  "Course_KI1101": "כימיה בסיסית 1",
+  "Course_WI1101": "פנצ'סילה (אידיאולוגיית המדינה)",
+  "Course_WI1102": "חשיבה חישובית",
+  "Course_WI1103": "מבוא לעקרונות קיימות",
+  "Course_WI1111": "מעבדה לפיזיקה בסיסית",
+  "Course_WI1116": "מעבדה לאינטראקציית מחשב",
+  "Course_II1200": "מבוא למערכות וטכנולוגיות מידע",
+  "Course_IF1210": "אלגוריתמים ותכנות 1",
+  "Course_WI2001": "מבוא להנדסה ועיצוב",
+  "Course_WI2005": "השפה האינדונזית",
+  "Course_WI2011": "דת האסלאם",
+  "Course_WI2006": "אזרחות",
+  "Course_WI2002": "אוריינות נתונים ובינה מלאכותית",
+  "Course_WI2003": "ספורט",
+  "Transcript_Grade_Pass": "עובר",
+  "Transcript_Grade_Fail": "נכשל"
 }

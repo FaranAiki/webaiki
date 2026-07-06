@@ -28,11 +28,11 @@ export default function PortfolioSkills({ skills, title }: PortfolioSkillsProps)
               {cat.subcategories ? (
                 <div className="pl-4 flex flex-col gap-0.5">
                   {cat.subcategories.map((sub, sIdx) => (
-                    <div key={sIdx}>* {sub.title}: {sub.items.join(', ')}</div>
+                    <div key={sIdx}>• {sub.title}: {sub.items.join(', ')}</div>
                   ))}
                 </div>
               ) : (
-                <div className="pl-4">* {cat.items?.join(', ')}</div>
+                <div className="pl-4">• {cat.items?.join(', ')}</div>
               )}
             </div>
           ))}

@@ -32,7 +32,7 @@ export const LOCALES = ['en', 'id', 'zh', 'jp', 'ru', 'fr', 'ar', 'es', 'ko', 'd
 
 // Map locale codes to hreflang codes (Next.js Metadata alternates.languages keys)
 // 'ja' is the standard code for Japanese, but our URL path uses 'jp'
-export const HREFLANG_MAP: Record<string, string> = {
+export const HREFLANG_MAP: import('@/components/layout/Translator').TranslationDict = {
   id: 'id',
   en: 'en',
   zh: 'zh',
@@ -56,7 +56,7 @@ export const HREFLANG_MAP: Record<string, string> = {
 export const SITE_URL = 'https://faranaiki.id';
 
 export function getLanguageAlternates(path: string) {
-  const languages: Record<string, string> = {};
+  const languages: import('@/components/layout/Translator').TranslationDict = {};
   
   LOCALES.forEach((loc) => {
     const hreflang = HREFLANG_MAP[loc] || loc;
@@ -93,7 +93,7 @@ export function getNewsArticleSchema(news: { title: string; image?: string | nul
   };
 }
 
-export function getBaseMetadata(dict: Record<string, string> = {}): Metadata {
+export function getBaseMetadata(dict: import('@/components/layout/Translator').TranslationDict = {}): Metadata {
   return {
     metadataBase: new URL(SITE_URL),
     title: {

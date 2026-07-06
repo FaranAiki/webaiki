@@ -27,7 +27,7 @@ interface FeedbackItem {
 }
 
 interface FeedbackDisplayProps {
-  dict: Record<string, string>;
+  dict: import('@/components/layout/Translator').TranslationDict;
   lang: string;
   currentUserId: string | null;
 }

@@ -27,7 +27,7 @@ export default function Loading() {
     const pathParts = window.location.pathname.split('/');
     const lang = pathParts[1] || "id";
 
-    const loadingTexts: Record<string, string> = {
+    const loadingTexts: import('@/components/layout/Translator').TranslationDict = {
       en: "Preparing the best portfolio site",
       id: "Menyiapkan situs portofolio terbaik",
       zh: "正在准备最佳作品集网站",
@@ -40,7 +40,7 @@ export default function Loading() {
       de: "Vorbereitung der besten Portfolio-Website",
     };
 
-    const waitingTexts: Record<string, string> = {
+    const waitingTexts: import('@/components/layout/Translator').TranslationDict = {
       en: "Wait ....",
       id: "Tunggu ....",
       zh: "请稍候 ....",

@@ -8,8 +8,8 @@ interface EducationJob {
   title: string;
   company: string;
   date: string;
-  description: string;
-  brief?: string;
+  description: string | string[];
+  brief?: string | string[];
   url?: string;
 }
 
@@ -18,9 +18,15 @@ interface PortfolioEducationProps {
   title: string;
 }
 
-const cleanText = (text: string) => {
-  if (!text) return "";
-  return text.replace(/\r?\n|\r|\t/g, ' ').replace(/\s+/g, ' ').trim();
+const cleanText = <T extends string | string[] | undefined | null>(text: T): T => {
+  if (!text) return "" as T;
+  if (Array.isArray(text)) {
+    return text.map(t => typeof t === 'string' ? t.replace(/\r?\n|\r|\t/g, ' ').replace(/\s+/g, ' ').trim() : t) as T;
+  }
+  if (typeof text === 'string') {
+    return text.replace(/\r?\n|\r|\t/g, ' ').replace(/\s+/g, ' ').trim() as T;
+  }
+  return text;
 };
 
 export default function PortfolioEducation({ education, title }: PortfolioEducationProps) {
@@ -81,9 +87,17 @@ export default function PortfolioEducation({ education, title }: PortfolioEducat
                 </div>
                 {cleanDescription && (
                   <div className="pt-0.5 pb-0">
-                    <p className="text-xs text-[var(--text-muted)] leading-relaxed">
-                      {cleanDescription}
-                    </p>
+                    {Array.isArray(cleanDescription) ? (
+                      <ul className="list-none space-y-0.5 mt-1 text-xs text-[var(--text-muted)] leading-relaxed">
+                        {cleanDescription.map((desc, i) => (
+                          <li key={i}>• {desc}</li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="text-xs text-[var(--text-muted)] leading-relaxed">
+                        {cleanDescription}
+                      </p>
+                    )}
                   </div>
                 )}
               </div>
@@ -118,7 +132,15 @@ export default function PortfolioEducation({ education, title }: PortfolioEducat
                 </span>
               </div>
               <p className="text-xs font-semibold text-theme-600 mb-1">{edu.company}</p>
-              <p className="text-xs text-[var(--text-muted)] leading-relaxed">{edu.description}</p>
+              {Array.isArray(edu.description) ? (
+                <ul className="list-disc list-outside ml-3 space-y-1 text-xs text-[var(--text-muted)] leading-relaxed">
+                  {edu.description.map((desc, i) => (
+                    <li key={i}>{desc}</li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-xs text-[var(--text-muted)] leading-relaxed">{edu.description}</p>
+              )}
             </div>
           </div>
         ))}

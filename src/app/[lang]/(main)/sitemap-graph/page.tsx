@@ -22,7 +22,7 @@ export default async function SitemapGraphPage({
   return (
     <main className="min-h-screen w-full flex flex-col items-center justify-center p-4 md:p-8 bg-theme-base pt-24 overflow-hidden relative">
       <div className="w-full max-w-6xl h-auto md:h-[600px] flex flex-col md:flex-row border border-theme-border rounded-2xl overflow-hidden bg-theme-surface shadow-2xl relative z-10">
-        <SitemapGraphClient dict={dict as Record<string, string>} lang={lang} />
+        <SitemapGraphClient dict={dict as import('@/components/layout/Translator').TranslationDict} lang={lang} />
       </div>
     </main>
   );

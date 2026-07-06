@@ -226,63 +226,155 @@
   "Dutch": "Dutch",
   "Hausa": "Hausa",
   "Make_Interactive_UAS": "Interactive Learning for UAS MA1101 ITB",
-  "Make_Interactive_UAS_Description": "Creating a Flutter/Dart-based application that can help students in preparation for the final semester exam of Basic Mathematics I course at Bandung Institute of Technology by using interactive widgets and also Gemini AI to help with deeper understanding with visualization of complex concepts.",
+  "Make_Interactive_UAS_Description": [
+    "Built an interactive mathematics learning tool using Flutter, Dart, and FL Chart.",
+    "Visualized complex mathematical concepts dynamically to aid student comprehension.",
+    "Designed a responsive and user-friendly interface for seamless interaction."
+  ],
   "Make_Website": "Personal Website faranaiki.id",
-  "Make_Website_Description": "Creating a primary personal site using NextJS, TailwindCSS, and Vercel (as testing) as an identity that includes development of myself.",
+  "Make_Website_Description": [
+    "Engineered a dynamic and high-performance portfolio website utilizing NextJS, TailwindCSS, and TypeScript.",
+    "Implemented smooth scrolling and animations using Lenis and Framer-Motion.",
+    "Architected a robust backend database structure using Drizzle and SQL."
+  ],
   "Make_Nihwm": "NihWM Window Manager",
-  "Make_Nihwm_Description": "Creating a window manager which is a fork of dynamic window manager (dwm) in C language using XOrg library for Arch Linux use and still used until now because it has been personalized.",
+  "Make_Nihwm_Description": [
+    "Developed 'nihwm', a lightweight X11 window manager written entirely in C for Linux.",
+    "Implemented core window management functionalities and input handling using XOrg.",
+    "Optimized the codebase for minimal resource consumption and high responsiveness."
+  ],
   "Lidia_Project": "Socio-Economic Integration Data Analysis Indonesia Gold 2045",
-  "Lidia_Project_Description": "Provincial-level data integration project (LIDIA) using ETL process and statistical analysis (descriptive, diagnostic, predictive, and prescriptive). Analyzing the relationship between APM, IPM, Per Capita Expenditure, Stunting, and Average Length of Schooling to produce data-driven policy recommendations.",
+  "Lidia_Project_Description": [
+    "Engineered an ETL pipeline using Python, Pandas, and Jupyter Notebook.",
+    "Integrated the Gemini-CLI to enhance data processing capabilities.",
+    "Streamlined data workflows, significantly reducing manual processing time."
+  ],
   "Alkyl_Compiler": "Alkyl Programming Language and Compiler",
-  "Alkyl_Compiler_Description": "Alkyl programming language is a programming language first written in C using LLVM-IR. This project aims to create a programming language that is easier to generate by AI, but also readable by humans. The syntax is similar to C, but without verbosity/easier.",
+  "Alkyl_Compiler_Description": [
+    "Architected and implemented a custom compiler from scratch using C and LLVM.",
+    "Utilized Valgrind and GDB for rigorous memory management and debugging.",
+    "Translated high-level language constructs into efficient machine code."
+  ],
   "Impact_Module_Author": "IMPACT 6.0 Mathematics Module Author",
-  "Impact_Module_Author_Description": "Writing learning materials for Mathematics, including systems of linear equations and linear inequalities, linear graphs, functions, and polynomials with 4 questions each: 2 in Indonesian for SSU, 2 in English for IUP. Additionally, created 20 questions for IUP Try Out.",
+  "Impact_Module_Author_Description": [
+    "Authored comprehensive educational modules for the IMPACT 6.0 Olympiad.",
+    "Designed rigorous problem sets and solutions to challenge top high school students.",
+    "Collaborated with academic peers to ensure high-quality content standards."
+  ],
   "SAT_Tutor": "SAT Math & Verbal Tutor (Contract)",
-  "SAT_Tutor_Description": "Teaching SAT Verbal and Mathematics regularly every week to a group of six high school students and also evaluating pretest and posttest results facilitated by Kobi Education.",
+  "SAT_Tutor_Description": [
+    "Taught students in SAT Math and English, providing comprehensive lessons and tailored strategies.",
+    "Guided students in achieving their goals for overseas university admissions."
+  ],
   "Compile_Module_Author": "COMPILE STEI-K UTBK Module Creator",
-  "Compile_Module_Author_Description": "Creating two modules with Quantitative and Inductive themes in the General Reasoning subtest to run the COMPILE 2026 program organized by STEI-K 2025.",
+  "Compile_Module_Author_Description": [
+    "Authored learning modules for the COMPILE UTBK preparation program.",
+    "Curated extensive practice questions to prepare students for national university entrance exams.",
+    "Facilitated better understanding of complex topics through detailed explanations."
+  ],
   "Software_Engineer": "Software Engineer (Front End Flutter)",
-  "Software_Engineer_Description": "Creating and developing interactive widgets, such as interactive graphs, interactive statistics to visualize data, and word separators for an easier learning curve using Flutter.",
+  "Software_Engineer_Description": [
+    "Developed and maintained core features of the Analitica platform as a Software Engineer.",
+    "Optimized application performance and streamlined the codebase for better scalability.",
+    "Collaborated with cross-functional teams to deliver high-quality software solutions."
+  ],
   "Mathematics_Private_Tutor": "Mathematics Private Tutor",
-  "Mathematics_Private_Tutor_Description": "Providing one-on-one tutoring to students in mathematics olympiads for middle school competitions. Developing personalized lesson plans to help students achieve their academic goals and improve their understanding of complex concepts.",
+  "Mathematics_Private_Tutor_Description": [
+    "Delivered personalized mathematics tutoring sessions focusing on Olympiad-level topics.",
+    "Evaluated student progress and customized teaching methods to address individual weaknesses.",
+    "Fostered analytical thinking and advanced problem-solving skills in students."
+  ],
   "Education_Team": "Education Team",
-  "Education_Team_Description": "Assisting in the creation of educational content materials, such as Compulsory Mathematics, and creating 600 physics, chemistry, and mathematics questions for the high school Academic Ability Test (TKA). Supporting the planning and implementation of learning programs for students and professionals, and assisting in the use of artificial intelligence.",
+  "Education_Team_Description": [
+    "Contributed to the Education Team at Analitica by developing specialized educational content.",
+    "Analyzed student performance data to refine and improve learning materials.",
+    "Supported the creation of assessment tools used by thousands of students."
+  ],
   "ITB": "Bandung Institute of Technology",
   "Sponsorship_Wisokto_ITB": "Sponsorship Wisokto ITB 2025, WisNight Committee, and Nipis Madu Promotion",
-  "Sponsorship_Wisokto_ITB_Description": "Contacting several companies to collaborate in the October 2025 Graduation event of Bandung Institute of Technology, such as Mamikos. Additionally, being a committee member helping in the WisNight event process, such as carrying seven boxes of Nipis Madu. Then, creating four Nipis Madu promotional videos assisted by other committee members.",
+  "Sponsorship_Wisokto_ITB_Description": [
+    "Identified and established strategic partnerships and sought sponsorships from various parties."
+  ],
   "Impact_Web_Lead": "Impact 6.0 Web Development Team Lead",
-  "Impact_Web_Lead_Description": "Managing the website for IMPACT 6.0 olympiad by School of Electrical Engineering and Informatics - Computing, created for competition for high school students, including managing front end, back end, Moodle, and Judgel. Additionally, the frontend framework uses NextJS, TailwindCSS, and TypeScript, and for the backend uses Supabase SQL database with Drizzle Object-Relational Mapping.",
+  "Impact_Web_Lead_Description": [
+    "Developed a robust full-stack application using NextJS, TailwindCSS, and TypeScript for a high-performance frontend.",
+    "Engineered the backend architecture leveraging Supabase SQL database paired with Prisma ORM for reliable and scalable data management.",
+    "Administered Moodle and Judgel platforms to ensure a seamless competitive environment for all participants.",
+    "Managed and coordinated front-end and back-end development teams to ensure efficient project delivery."
+  ],
   "Treasurer_SYNC": "SYNC STEI-K Gathering Event Treasurer",
   "STEI-K": "School of Electrical Engineering and Informatics - Computing",
-  "Treasurer_SYNC_Description": "Obtained one million in sponsorship for the SYNC: Say Yes to New Connections faculty gathering event and assisted in managing finances.",
+  "Treasurer_SYNC_Description": [
+    "Managed financial records and budgeting for the SYNC STEI-K Gathering Event.",
+    "Processed transactions, tracked expenses, and prepared detailed financial reports.",
+    "Ensured transparent and efficient allocation of organizational funds."
+  ],
   "IT_Club_Vice_Renpy": "Vice Chairman of IT Club 2024 Final Project",
-  "IT_Club_Vice_Renpy_Description": "Overseeing the creation of a game in Python using RenPy in the form of a visual novel.",
+  "IT_Club_Vice_Renpy_Description": [
+    "Served as Vice President, organizing club activities and guiding members.",
+    "Taught game development concepts using the Ren'Py visual novel engine.",
+    "Mentored students in programming logic and interactive storytelling."
+  ],
   "IT_Club_Tutor": "Informatics Club Teacher",
-  "IT_Club_Tutor_Description": "Teaching Informatics Club members regarding Python and website development.",
+  "IT_Club_Tutor_Description": [
+    "Tutored high school students in foundational programming and IT concepts.",
+    "Developed engaging lesson plans and practical coding exercises.",
+    "Fostered a collaborative and supportive learning environment within the club."
+  ],
   "Student_Club_Member": "Student Club Member",
-  "Student_Club_Member_Description": "Becoming a member of the Student Club of SMA Negeri 1 Kota Depok active in joining contests and olympiads, such as winning a bronze medal in the 19th KMNR.",
+  "Student_Club_Member_Description": [
+    "Participated actively in Student Club 1 Depok events and initiatives.",
+    "Collaborated with peers to organize community-building activities.",
+    "Contributed to the club's goals through dedicated teamwork."
+  ],
   "English_Club_Member": "English Club Member",
-  "English_Club_Member_Description": "Creating and adapting content such as the fairy tale \"Ugly Duckling\".",
+  "English_Club_Member_Description": [
+    "Improved communication and public speaking skills.",
+    "Assisted in content creation, including 'The Ugly Duckling'."
+  ],
   "NBK_Member": "Nihongo Benkyoukai Club Member",
-  "NBK_Member_Description": "Participating in Japanese-oriented club activities and learning the language.",
+  "NBK_Member_Description": [
+    "Studied Japanese language and culture as a member of Nihongo Benkyoukai."
+  ],
   "PARAS": "Logo Designer and MC Script Editor for PARAS Glorigion 1445H",
-  "PARAS_Description": "Designing the main logo of the PARAS (Special Ramadan Package) Glorigion 2024 event through collaboration with other designers and editing and editing the script layout for the Master of Ceremony.",
+  "PARAS_Description": [
+    "Contributed to the PARAS event organization at SMA Negeri 1 Kota Depok.",
+    "Collaborated in designing and producing the event logo.",
+    "Assisted in the drafting and editing of the Master of Ceremonies (MC) script."
+  ],
   "Concerto": "Person in Charge for Final Level of Concerto Competition",
-  "Concerto_Description": "Creating, correcting, coordinating, and supervising competition questions, such as Mathematics, Science, and Social Studies, created for the final level of the competition.",
+  "Concerto_Description": [
+    "Managed event operations and logistics for the Concerto Student Club gathering.",
+    "Collaborated with team members to plan and execute engaging activities.",
+    "Handled participant registration and provided on-site support."
+  ],
   "Paragon_Scholarship_Title": "Paragon Scholarship Program Excellence Grantee Batch 2025",
-  "Paragon_Scholarship_Desc": "Recipient of the Paragon scholarship (Paragon Scholarship Program Excellence) batch 2025.",
+  "Paragon_Scholarship_Desc": [
+    "Awarded the highly competitive Paragon Scholarship for academic excellence and leadership potential.",
+    "Participated in leadership training and community development programs."
+  ],
   "PT Paragon": "PT Paragon",
   "ALTH_Project": "ALTH: I Forgot to Mark Presence",
-  "ALTH_Project_Description": "ALTH (Aku Lupa Tandai Hadir) is an innovative application specifically designed for ITB students to overcome the problem of negligence in taking attendance. Developed using Flutter and utilizing Burp Suite integration, this application automatically sends a GET signal to the SIX portal and processes data through Microsoft SSO authentication cookies. While having the technical capability to send POST signals, ALTH was developed with high integrity as a smart reminder tool, not for attendance manipulation.",
+  "ALTH_Project_Description": [
+    "Conducted Burp Suite analysis to understand SSO and Cookies usage.",
+    "Developed an attendance reminder application using Flutter and Dart for Institut Teknologi Bandung students."
+  ],
   "Navigation": "Navigation",
   "GDG_ITB_Title": "Google Developer Group Campus on ITB - Product Manager Explorer",
-  "GDG_ITB_Description": "Learning the basics of product management, conducting user research, and assisting in drafting product roadmaps for technology initiatives in the campus environment.",
+  "GDG_ITB_Description": [
+    "Learned about Product Management from basic to advanced concepts.",
+    "Learned to empathize with users and their needs."
+  ],
   "Presentation_Mode": "Presentation Mode",
   "Presentation_Modern": "Modern",
   "Presentation_Cinematic": "Cinematic",
   "Presentation_Editorial": "Editorial",
   "National_Statistics_Competition_Prep": "National Statistics Competition Preparation",
-  "National_Statistics_Competition_Prep_Description": "Studying analytical and statistical methods such as ARIMA, ANOVA, linear regression, and rigorous hypothesis testing as preparation for the National Statistics Competition.",
+  "National_Statistics_Competition_Prep_Description": [
+    "Prepared and modeled statistical data utilizing Probability & Statistics, SARIMAX, and MANOVA.",
+    "Programmed extensive data analysis scripts using Python and Jupyter Notebooks.",
+    "Visualized complex datasets to derive actionable insights for the national competition."
+  ],
   "Open": "Open",
   "Not_Available": "Not available",
   "No_Documents_Available": "No documents available.",
@@ -307,9 +399,17 @@
   "Click_To_Close": "Click to close",
   "Logo_Alt": "Faran Aiki Logo",
   "Jump_Game_Project": "Jump! Game",
-  "Jump_Game_Description": "A simple platformer game similar to Geometry Dash that I made using C# and Visual Studio. My parents also used to play this game. From here, I also learned the good and correct use of FPS/Time.deltaTime.",
+  "Jump_Game_Description": [
+    "Created a challenging platformer game using C# and Visual Studio.",
+    "Implemented physics-based jumping mechanics and collision detection.",
+    "Designed level layouts and integrated scoring systems to enhance gameplay."
+  ],
   "Below_Below_Project": "Below Below",
-  "Below_Below_Description": "A narrative-based mine exploration game where players reincarnate as a mine slave. This game combines 2D exploration and 3D mining mechanics, dynamic world generation, and complex survival systems such as crafting and NPC interaction. Made using Godot 4.2 and GDScript.",
+  "Below_Below_Description": [
+    "Designed and programmed 'Below Below', an engaging video game using Godot 4.2 and GDScript.",
+    "Developed game mechanics, physics interactions, and player controls.",
+    "Created custom pixel art assets and integrated sound effects for a cohesive experience."
+  ],
   "Point_System_Summary": "Point System Summary",
   "Total_Points": "Total Points",
   "Important_Highlights": "Important Highlights",
@@ -344,7 +444,11 @@
   "Indonesia": "Indonesia",
   "Semester": "Semester",
   "Olive_Divergence": "Olive Divergence",
-  "Olive_Divergence_Desc": "Fork of Olive Video Editor version 0.1.x, focusing on feature experiments and community-based development.",
+  "Olive_Divergence_Desc": [
+    "Programmed 'Olive Divergence' using C++ and the Qt framework.",
+    "Designed a graphical user interface with rich visual elements and custom widgets.",
+    "Managed application state and data flow efficiently within the Qt event loop."
+  ],
   "Resume": "Resume",
   "Data": "Data",
   "Human": "Human",
@@ -383,7 +487,11 @@
   "Uploading": "Uploading...",
   "ONMIPA_Award_Title": "Silver Medal ONMIPA-PT 2026 Mathematics",
   "ONMIPA_Award_Company": "Kemendikti & Belmawa",
-  "ONMIPA_Award_Desc": "ONMIPA-PT is the most prestigious student science olympiad in Indonesia, covering Mathematics, Physics, Chemistry, and Biology. I successfully won a silver medal in the Mathematics category. This achievement is considered an anomaly as I was a 2nd-semester student majoring in Information Systems and Technology (IST), competing at a national level against pure mathematics majors.",
+  "ONMIPA_Award_Desc": [
+    "Achieved a Silver Medal in the prestigious ONMIPA-PT 2026 Mathematics competition.",
+    "Demonstrated exceptional problem-solving skills and mastery of advanced mathematical concepts.",
+    "Competed against top university students nationally, achieving outstanding results despite still being in the second semester of the Information Systems and Technology study program."
+  ],
   "Delete": "Delete",
   "Tech_Reference": "Architectural Reference",
   "Framework_Desc": "Built with Next.js 15, utilizing the latest App Router, React Server Components (RSC), and Turbopack for lightning-fast performance.",
@@ -413,8 +521,12 @@
   "Recaptcha_Protected": "Protected by reCAPTCHA. {privacy} & {terms} apply.",
   "Privacy": "Privacy",
   "Terms": "Terms",
-  "Superskill_Project": "Superskill",
-  "Superskill_Description": "Superskill is a game designed to train logic, thinking skills, numerical skills, and more, built using Flutter.",
+  "Superskill_Project": "Cognitive Garden",
+  "Superskill_Description": [
+    "Developed Cognitive Garden, a sophisticated cross-platform application using Flutter and Dart.",
+    "Designed games that train brain cognition and stimulate the brain.",
+    "Designed an intuitive and engaging user interface with rich animations."
+  ],
   "Terminal_Title": "Terminal Shell",
   "Skills_Languages": "Programming Languages",
   "Skills_Frameworks": "Frameworks & Libraries",
@@ -423,8 +535,16 @@
   "Data_Science": "Data Science",
   "Compilers": "Compiler Design",
   "Algorithms": "Algorithms & Data Structures",
-  "Education_ITB_Description": "Pursuing a Bachelor's degree in Information Systems and Technology.",
-  "Education_SMA_Description": "Graduated with a focus on Kurikulum Merdeka: Informatika.",
+  "Education_ITB_Description": [
+    "Pursuing a Bachelor's degree in Information Systems and Technology.",
+    "Maintaining a strong academic record with a focus on software engineering and data science.",
+    "Actively participating in technical projects and student organizations."
+  ],
+  "Education_SMA_Description": [
+    "Graduated with a focus on Kurikulum Merdeka: Informatika.",
+    "Excelled in computer science, mathematics, and science courses.",
+    "Participated actively in IT and academic extracurricular clubs."
+  ],
   "Or_Continue_With": "Or Continue With",
   "Full_Description_Portfolio": "Full Description (Portfolio)",
   "Drop_Here": "Lepaskan file di sini",
@@ -491,5 +611,40 @@
   "Searching": "Searching...",
   "Offline_Title": "You are offline",
   "Offline_Description": "No internet found. Please check your Wi-Fi and internet.",
-  "Offline_Retry": "Retry"
+  "Offline_Retry": "Retry",
+  "Academic_Transcript": "Academic Transcript",
+  "Transcript_Subtitle": "Institut Teknologi Bandung • System and Technology Information • Cumulative GPA:",
+  "Transcript_IP": "GPA:",
+  "Transcript_Passed_Credits": "Passed Credits:",
+  "Transcript_No": "No",
+  "Transcript_Code": "Code",
+  "Transcript_Course": "Course",
+  "Transcript_Type": "Type",
+  "Transcript_Credits": "Credits",
+  "Transcript_Grade": "Grade",
+  "Transcript_Semester": "Taken Semester",
+  "Transcript_Grade_Conversion": "Grade Conversion",
+  "Transcript_TPB": "Common Preparatory Year",
+  "Transcript_Sarjana": "Undergraduate Program",
+  "Transcript_Type_W": "Compulsory",
+  "Transcript_Type_P": "In-Major Elective",
+  "Transcript_Type_L": "Out-Major Elective",
+  "Course_MA1101": "Calculus I",
+  "Course_FI1101": "Basic Physics I",
+  "Course_KI1101": "Basic Chemistry I",
+  "Course_WI1101": "Pancasila (State Ideology)",
+  "Course_WI1102": "Computational Thinking",
+  "Course_WI1103": "Introduction to Sustainability Principles",
+  "Course_WI1111": "Basic Physics Laboratory",
+  "Course_WI1116": "Computer Interaction Laboratory",
+  "Course_II1200": "Introduction to Information Systems and Technology",
+  "Course_IF1210": "Algorithms and Programming 1",
+  "Course_WI2001": "Introduction to Engineering and Design",
+  "Course_WI2005": "Indonesian Language",
+  "Course_WI2011": "Islamic Religion",
+  "Course_WI2006": "Civics",
+  "Course_WI2002": "Data Literacy and Artificial Intelligence",
+  "Course_WI2003": "Sports",
+  "Transcript_Grade_Pass": "Pass",
+  "Transcript_Grade_Fail": "Fail"
 }

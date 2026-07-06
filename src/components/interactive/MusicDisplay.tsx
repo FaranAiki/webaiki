@@ -30,7 +30,7 @@ interface MusicDisplayProps {
   youtubeItems?: PlaylistItem[]; 
   error?: string;
   lang?: string;
-  dict?: Record<string, string>;
+  dict?: import('@/components/layout/Translator').TranslationDict;
 }
 
 export default function MusicDisplay({ youtubeItems = [], error, lang, dict = {} }: MusicDisplayProps) {

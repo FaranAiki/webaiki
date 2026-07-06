@@ -38,11 +38,17 @@
   "Faran_Vision_Mission_3": "Кроме того, я отдаю приоритет ценностям добра, которые широко, глобально и рационально признаны. Я делаю это, чтобы доказать достоинство значения моего имени — <i>двигаться вперед и прогрессировать</i>, как индивидуально, так и в группе.",
   "All": "Все",
   "Portfolio": "Портфолио",
-  "Portfolio_Summary_Description": "Краткое описание профессионального опыта и достижений Мухаммада Фарана Айки",
+  "Portfolio_Summary_Description": [
+    "Краткое описание профессионального опыта и достижений Мухаммада Фарана Айки"
+  ],
   "Portfolio_Summary_Quote": "Кураторская подборка профессионального опыта и высокоэффективных проектов.",
-  "Portfolio_Description": "Полное профессиональное портфолио и основные достижения Мухаммада Фарана Айки",
+  "Portfolio_Description": [
+    "Полное профессиональное портфолио и основные достижения Мухаммада Фарана Айки"
+  ],
   "Full_Portfolio": "Полное портфолио",
-  "Share_Description": "Посмотрите персональный сайт Фарана Айки!",
+  "Share_Description": [
+    "Посмотрите персональный сайт Фарана Айки!"
+  ],
   "Profile": "Профиль",
   "Experience": "Опыт",
   "Artwork": "Творчество",
@@ -137,58 +143,146 @@
   "Dutch": "Голландский",
   "Hausa": "Хауса",
   "Make_Interactive_UAS": "Интерактивное обучение для UAS MA1101 ITB",
-  "Make_Interactive_UAS_Description": "Разработка приложения на базе Flutter/Dart для помощи студентам в подготовке к итоговому экзамену по математическому анализу I в Бандунгском технологическом институте с использованием интерактивных виджетов и искусственного интеллекта Gemini для углубления понимания через визуализацию сложных концепций.",
+  "Make_Interactive_UAS_Description": [
+    "Создал интерактивный инструмент для изучения математики с использованием Flutter, Dart и FL Chart.",
+    "Динамически визуализировал сложные математические концепции для улучшения понимания учащимися.",
+    "Разработал адаптивный и удобный интерфейс для плавного взаимодействия."
+  ],
   "Make_Website": "Персональный сайт faranaiki.id",
-  "Make_Website_Description": "Создание основного персонального сайта с использованием NextJS, TailwindCSS и Vercel (для тестирования) в качестве «витрины» идентичности, охватывающей мое личное развитие.",
+  "Make_Website_Description": [
+    "Разработал динамичный и высокопроизводительный сайт-портфолио с использованием NextJS, TailwindCSS и TypeScript.",
+    "Реализовал плавную прокрутку и анимацию с помощью Lenis и Framer-Motion.",
+    "Спроектировал надежную структуру внутренней базы данных с использованием Drizzle и SQL."
+  ],
   "Make_Nihwm": "Оконный менеджер NihWM",
-  "Make_Nihwm_Description": "Создание оконного менеджера, являющегося производным (форком) динамического оконного менеджера (dwm) на языке C с использованием библиотеки XOrg для использования в Arch Linux; используется по сей день, так как был персонализирован.",
+  "Make_Nihwm_Description": [
+    "Разработал 'nihwm', легкий оконный менеджер X11, написанный полностью на C для Linux.",
+    "Реализовал основные функции управления окнами и обработки ввода с использованием XOrg.",
+    "Оптимизировал кодовую базу для минимального потребления ресурсов и высокой скорости реагирования."
+  ],
   "Lidia_Project": "Анализ данных социально-экономической интеграции для «Индонезии Эмас 2045»",
-  "Lidia_Project_Description": "Проект интеграции данных (LIDIA) на провинциальном уровне с использованием процессов ETL и расширенного статистического анализа (дескриптивного, диагностического, прогностического и прескриптивного). Анализирует взаимосвязь между чистым коэффицитом охвата школьным обучением, ИРЧП, расходами на душу населения, задержкой роста и средним количеством лет обучения для разработки научно обоснованных политических рекомендаций.",
+  "Lidia_Project_Description": [
+    "Спроектировал конвейер ETL с использованием Python, Pandas и Jupyter Notebook.",
+    "Интегрировал Gemini-CLI для расширения возможностей обработки данных.",
+    "Оптимизировал рабочие процессы с данными, значительно сократив время ручной обработки."
+  ],
   "Alkyl_Compiler": "Язык программирования и компилятор Alkyl",
-  "Alkyl_Compiler_Description": "Alkyl — это язык программирования, впервые написанный на языке C с использованием LLVM-IR. Проект направлен на создание языка программирования, который легче генерировать с помощью искусственного интеллекта, но который также читаем для человека. Его синтаксис похож на C, но без лишней многословности/проще.",
+  "Alkyl_Compiler_Description": [
+    "Спроектировал и реализовал пользовательский компилятор с нуля с использованием C и LLVM.",
+    "Использовал Valgrind и GDB для строгого управления памятью и отладки.",
+    "Транслировал языковые конструкции высокого уровня в эффективный машинный код."
+  ],
   "Impact_Module_Author": "Автор математического модуля IMPACT 6.0",
-  "Impact_Module_Author_Description": "Написал учебный материал по математике, включая системы линейных уравнений и линейных неравенств, линейные графики, функции и многочлены, по 4 задачи в каждой: 2 на индонезийском для SSU, 2 на английском для IUP. Кроме того, подготовил 20 задач для Try Out IUP.",
+  "Impact_Module_Author_Description": [
+    "Написал комплексные учебные модули для олимпиады IMPACT 6.0.",
+    "Разработал сложные наборы задач и решений для лучших учеников старших классов.",
+    "Сотрудничал с академическими коллегами для обеспечения высоких стандартов качества контента."
+  ],
   "SAT_Tutor": "Репетитор SAT по математике и вербальной части (контракт)",
-  "SAT_Tutor_Description": "Регулярное еженедельное обучение вербальной части и математике SAT группе из шести старшеклассников, а также оценка результатов предварительного и последующего тестирования при поддержке Kobi Education.",
+  "SAT_Tutor_Description": [
+    "Обучал студентов математике и английскому языку SAT, предоставляя комплексные уроки и индивидуальные стратегии.",
+    "Направлял студентов в достижении их целей для поступления в зарубежные университеты."
+  ],
   "Compile_Module_Author": "Создатель модуля COMPILE STEI-K UTBK",
-  "Compile_Module_Author_Description": "Создание двух модулей с количественной и индуктивной тематикой в подтесте «Общие рассуждения» для запуска программы COMPILE 2026, организованной STEI-K 2025.",
+  "Compile_Module_Author_Description": [
+    "Написал учебные модули для программы подготовки COMPILE UTBK.",
+    "Составил обширные практические вопросы для подготовки студентов к национальным вступительным экзаменам.",
+    "Способствовал лучшему пониманию сложных тем с помощью подробных объяснений."
+  ],
   "Software_Engineer": "Инженер-программист (фронтенд Flutter)",
-  "Software_Engineer_Description": "Создание и поддержка интерактивных виджетов, таких как интерактивные графики, интерактивная статистика для визуализации данных и разделитель слов для упрощения процесса обучения с использованием Flutter.",
+  "Software_Engineer_Description": [
+    "Разрабатывал и поддерживал основные функции платформы Analitica в качестве инженера-программиста.",
+    "Оптимизировал производительность приложения и оптимизировал кодовую базу для лучшей масштабируемости.",
+    "Сотрудничал с межфункциональными командами для создания высококачественных программных решений."
+  ],
   "Mathematics_Private_Tutor": "Частный репетитор по математике",
-  "Mathematics_Private_Tutor_Description": "Проведение индивидуальных занятий со студентами по олимпиадной математике для конкурсов средних школ. Разработка персонализированных планов уроков, чтобы помочь студентам достичь своих академических целей и улучшить понимание сложных концепций.",
+  "Mathematics_Private_Tutor_Description": [
+    "Проводил индивидуальные занятия по математике с упором на темы олимпиадного уровня.",
+    "Оценивал прогресс учащихся и адаптировал методы преподавания с учетом индивидуальных слабостей.",
+    "Стимулировал аналитическое мышление и передовые навыки решения проблем у студентов."
+  ],
   "Education_Team": "Команда по образованию",
-  "Education_Team_Description": "Помощь в создании учебных материалов, таких как «Общая математика», и подготовка 600 задач по физике, химии и математике для академического теста (TKA) в старших классах. Поддержка планирования и реализации программ обучения для студентов и профессионалов, а также помощь в использовании искусственного интеллекта.",
+  "Education_Team_Description": [
+    "Внес вклад в образовательную команду Analitica, разрабатывая специализированный образовательный контент.",
+    "Анализировал данные об успеваемости учащихся для улучшения учебных материалов.",
+    "Поддерживал создание инструментов оценки, используемых тысячами студентов."
+  ],
   "ITB": "Бандунгский технологический институт",
   "Sponsorship_Wisokto_ITB": "Спонсорство октябрьского выпуска ITB 2025, комитет WisNight и продвижение Nipis Madu",
-  "Sponsorship_Wisokto_ITB_Description": "Взаимодействие с несколькими компаниями для сотрудничества на церемонии выпуска в октябре 2025 года в Бандунгском технологическом институте, такими как Mamikos. Кроме того, работа в качестве члена комитета, помогающего в проведении мероприятия WisNight, например, транспортировка семи коробок Nipis Madu. Затем создание четырех рекламных видеороликов Nipis Madu при содействии других членов комитета.",
+  "Sponsorship_Wisokto_ITB_Description": [
+    "Определял и устанавливал стратегические партнерские отношения и искал спонсоров у различных сторон."
+  ],
   "Impact_Web_Lead": "Руководитель группы веб-разработки Web Impact 6.0",
-  "Impact_Web_Lead_Description": "Управление веб-сайтом олимпиады IMPACT 6.0 от Школы электротехники и информатики - вычисления, предназначенного для соревнований старшеклассников, включая управление фронтендом, бэкендом, Moodles и Judgels. Кроме того, фронтенд-фреймворк использует NextJS, TailwindCSS и TypeScript, а бэкенд использует базу данных SQL Supabase с объектно-реляционным отображением Drizzle.",
+  "Impact_Web_Lead_Description": [
+    "Разработал надежное full-stack приложение с использованием NextJS, TailwindCSS и TypeScript для высокопроизводительного фронтенда.",
+    "Спроектировал внутреннюю архитектуру с использованием базы данных Supabase SQL в сочетании с Prisma ORM для надежного и масштабируемого управления данными.",
+    "Администрировал платформы Moodle и Judgel для обеспечения бесперебойной конкурентной среды для всех участников.",
+    "Управлял и координировал команды разработки фронтенда и бэкенда для обеспечения эффективного выполнения проекта."
+  ],
   "Treasurer_SYNC": "Казначей мероприятия STEI-K Gathering",
   "STEI-K": "Школа электротехники и информатики - вычисления",
-  "Treasurer_SYNC_Description": "Обеспечение спонсорской поддержки в размере одного миллиона рупий для мероприятия факультета SYNC: Say Yes to New Connections и помощь в управлении финансами.",
+  "Treasurer_SYNC_Description": [
+    "Вел финансовые отчеты и бюджет для мероприятия SYNC STEI-K.",
+    "Обрабатывал транзакции, отслеживал расходы и составлял подробные финансовые отчеты.",
+    "Обеспечил прозрачное и эффективное распределение средств организации."
+  ],
   "IT_Club_Vice_Renpy": "Заместитель руководителя финального проекта IT-клуба 2024",
-  "IT_Club_Vice_Renpy_Description": "Курирование разработки визуальной новеллы на языке Python с использованием Ren'Py.",
+  "IT_Club_Vice_Renpy_Description": [
+    "Был вице-президентом, организовывал деятельность клуба и руководил его членами.",
+    "Обучал концепциям разработки игр с использованием движка визуальных новелл Ren'Py.",
+    "Обучал студентов логике программирования и интерактивному рассказыванию историй."
+  ],
   "IT_Club_Tutor": "Тьютор ИТ-клуба",
-  "IT_Club_Tutor_Description": "Обучение членов ИТ-клуба разработке на Python и веб-разработке.",
+  "IT_Club_Tutor_Description": [
+    "Обучал старшеклассников основам программирования и концепциям ИТ.",
+    "Разработал увлекательные планы уроков и практические упражнения по программированию.",
+    "Создавал среду совместного обучения и поддержки внутри клуба."
+  ],
   "Student_Club_Member": "Член студенческого клуба",
-  "Student_Club_Member_Description": "Активный член студенческого клуба SMA Negeri 1 города Депок, участие в конкурсах и олимпиадах, например, завоевание бронзовой медали на 19-м Национальном математическом конкурсе (KMNR).",
+  "Student_Club_Member_Description": [
+    "Принимал активное участие в мероприятиях и инициативах Student Club 1 Depok.",
+    "Сотрудничал со сверстниками для организации мероприятий по созданию сообщества.",
+    "Внес вклад в достижение целей клуба благодаря самоотверженной командной работе."
+  ],
   "English_Club_Member": "Член английского клуба",
-  "English_Club_Member_Description": "Создание и адаптация контента, такого как сказка «Гадкий утенок».",
+  "English_Club_Member_Description": [
+    "Улучшил навыки общения и публичных выступлений.",
+    "Помогал в создании контента, в том числе «Гадкого утенка»."
+  ],
   "NBK_Member": "Член клуба Nihongo Benkyoukai",
-  "NBK_Member_Description": "Участие в деятельности клуба, ориентированного на Японию, и изучение языка.",
+  "NBK_Member_Description": [
+    "Изучал японский язык и культуру как член Nihongo Benkyoukai."
+  ],
   "PARAS": "Дизайнер логотипа и редактор сценария для PARAS Glorigion 1445H",
-  "PARAS_Description": "Разработка основного логотипа мероприятия PARAS (Paket Ramadan Spesial) Glorigion 2024 в сотрудничестве с другими дизайнерами, а также вычитка и редактирование макета сценария для ведущего.",
+  "PARAS_Description": [
+    "Внес свой вклад в организацию мероприятия PARAS в SMA Negeri 1 Kota Depok.",
+    "Сотрудничал в разработке и создании логотипа мероприятия.",
+    "Помогал в разработке и редактировании сценария для ведущего церемонии (MC)."
+  ],
   "Concerto": "Координатор финального этапа конкурса Concerto",
-  "Concerto_Description": "Создание, вычитка, координация и контроль конкурсных вопросов по таким предметам, как математика, естествознание (IPA) и обществознание (IPS), подготовленных для финального этапа конкурса.",
+  "Concerto_Description": [
+    "Управлял проведением мероприятий и логистикой встречи студенческого клуба Concerto.",
+    "Сотрудничал с членами команды для планирования и проведения увлекательных мероприятий.",
+    "Занимался регистрацией участников и оказывал поддержку на месте."
+  ],
   "Paragon_Scholarship_Title": "Стипендиат программы Paragon Scholarship Program Excellence 2025 года",
-  "Paragon_Scholarship_Desc": "Получатель стипендии Paragon (Paragon Scholarship Program Excellence) 2025 года.",
+  "Paragon_Scholarship_Desc": [
+    "Награжден высококонкурентной стипендией Paragon за академические успехи и лидерский потенциал.",
+    "Участвовал в тренингах по лидерству и программах развития сообщества."
+  ],
   "PT Paragon": "PT Paragon",
   "ALTH_Project": "ALTH: Я забыл отметиться",
-  "ALTH_Project_Description": "ALTH (Aku Lupa Tandai Hadir) — это инновационное приложение, специально разработанное для студентов ITB для решения частой проблемы забывания отметки о присутствии. Разработанное с использованием Flutter и интеграции Burp Suite, приложение автоматически отправляет сигналы GET на портал SIX и обрабатывает данные через файлы cookie, полученные с помощью аутентификации Microsoft SSO. Хотя оно обладает технической возможностью отправлять сигналы POST, ALTH создано с высокой степенью честности как инструмент интеллектуального напоминания, а не для манипуляций с посещаемостью.",
+  "ALTH_Project_Description": [
+    "Провел анализ в Burp Suite для понимания использования SSO и файлов cookie.",
+    "Разработал приложение-напоминание о посещаемости с использованием Flutter и Dart для студентов Бандунгского технологического института."
+  ],
   "": "",
   "Navigation": "Навигация",
   "GDG_ITB_Title": "Google Developer Group Campus on ITB - Product Manager Explorer",
-  "GDG_ITB_Description": "Изучение основ управления продуктами, проведение исследований пользователей и помощь в разработке дорожных карт продуктов для технологических инициатив в университетской среде.",
+  "GDG_ITB_Description": [
+    "Изучил управление продуктами от базовых до продвинутых концепций.",
+    "Научился сопереживать пользователям и понимать их потребности."
+  ],
   "Presentation_Mode": "Режим презентации",
   "Presentation_Modern": "Современный",
   "Presentation_Cinematic": "Кинематографический",
@@ -204,13 +298,19 @@
   "Sultan_PDF_Creating": "Создание Sultan PDF...",
   "Sultan_PDF_Ready": "Sultan PDF готов!",
   "Sultan_PDF_Failed": "Ошибка создания PDF.",
-  "Sultan_PDF_Description": "Векторный PDF высокого качества.",
+  "Sultan_PDF_Description": [
+    "Векторный PDF высокого качества."
+  ],
   "Sultan_PDF_Download": "Загрузка...",
   "Estimating": "Оценка...",
   "Dismiss": "Закрыть",
   "Cancel": "Отмена",
   "National_Statistics_Competition_Prep": "Подготовка к Национальной олимпиаде по статистике",
-  "National_Statistics_Competition_Prep_Description": "Изучение аналитических и статистических методов, таких как ARIMA, ANOVA, линейная регрессия и строгое тестирование гипотез в рамках подготовки к Национальной олимпиаде по статистике.",
+  "National_Statistics_Competition_Prep_Description": [
+    "Подготовил и смоделировал статистические данные с использованием теории вероятностей, SARIMAX и MANOVA.",
+    "Написал обширные скрипты для анализа данных на Python и Jupyter Notebooks.",
+    "Визуализировал сложные наборы данных для получения действенных идей для соревнований."
+  ],
   "Open": "Открыть",
   "Not_Available": "Недоступно",
   "No_Documents_Available": "Нет доступных документов.",
@@ -222,14 +322,30 @@
   "Upload_Photo": "Загрузить фото",
   "Title": "Заголовок",
   "Image_Optional": "Изображение (опционально)",
-  "SEO_Home_Description": "Official site of Muhammad Faran Aiki - STI ITB student, Software Engineer, and SAT Tutor. Explore my portfolio, experiences, and insights here.",
-  "SEO_Work_Description": "Professional history of Muhammad Faran Aiki as a Software Engineer at Analitica, SAT Tutor at Kobi Education, and other tech roles.",
-  "SEO_Project_Description": "A collection of technical projects by Muhammad Faran Aiki, ranging from the Alkyl compiler to the ALTH Flutter app and Indonesian socio-economic data integration.",
-  "SEO_Organization_Description": "Organizational experience of Muhammad Faran Aiki at GDG ITB, STEI-K, and various committees at Bandung Institute of Technology.",
-  "SEO_Award_Description": "Awards and scholarships received by Muhammad Faran Aiki, including the 2025 Paragon Scholarship Excellence Program.",
-  "SEO_College_Description": "Documentation of the academic journey, course materials, and study notes of Muhammad Faran Aiki at STI STEI-K ITB.",
-  "SEO_Certificate_Description": "Professional certifications and courses completed by Muhammad Faran Aiki in software development and other skills.",
-  "SEO_Literature_Description": "Literary works including poems, short stories, and essays written by Muhammad Faran Aiki in Indonesian and English.",
+  "SEO_Home_Description": [
+    "Official site of Muhammad Faran Aiki - STI ITB student, Software Engineer, and SAT Tutor. Explore my portfolio, experiences, and insights here."
+  ],
+  "SEO_Work_Description": [
+    "Professional history of Muhammad Faran Aiki as a Software Engineer at Analitica, SAT Tutor at Kobi Education, and other tech roles."
+  ],
+  "SEO_Project_Description": [
+    "A collection of technical projects by Muhammad Faran Aiki, ranging from the Alkyl compiler to the ALTH Flutter app and Indonesian socio-economic data integration."
+  ],
+  "SEO_Organization_Description": [
+    "Organizational experience of Muhammad Faran Aiki at GDG ITB, STEI-K, and various committees at Bandung Institute of Technology."
+  ],
+  "SEO_Award_Description": [
+    "Awards and scholarships received by Muhammad Faran Aiki, including the 2025 Paragon Scholarship Excellence Program."
+  ],
+  "SEO_College_Description": [
+    "Documentation of the academic journey, course materials, and study notes of Muhammad Faran Aiki at STI STEI-K ITB."
+  ],
+  "SEO_Certificate_Description": [
+    "Professional certifications and courses completed by Muhammad Faran Aiki in software development and other skills."
+  ],
+  "SEO_Literature_Description": [
+    "Literary works including poems, short stories, and essays written by Muhammad Faran Aiki in Indonesian and English."
+  ],
   "Original": "Оригинал",
   "Timeline": "Хронология",
   "Grid": "Сетка",
@@ -238,9 +354,17 @@
   "Click_To_Close": "Нажмите, чтобы закрыть",
   "Logo_Alt": "Логотип Фарана Айки",
   "Jump_Game_Project": "Jump! Game",
-  "Jump_Game_Description": "A simple platformer like Geometry Dash I made with C# and Visual Studio. My parents actually played this game too! From this project, I also learned how to use FPS and Time.deltaTime properly.",
+  "Jump_Game_Description": [
+    "Создал сложную игру-платформер с использованием C# и Visual Studio.",
+    "Реализовал механику прыжков на основе физики и обнаружение столкновений.",
+    "Разработал макеты уровней и интегрировал системы подсчета очков для улучшения игрового процесса."
+  ],
   "Below_Below_Project": "Below Below",
-  "Below_Below_Description": "A narrative-driven mining exploration game where you are reincarnated as a mining slave. It features a hybrid of 2D exploration and 3D mining mechanics, dynamic world generation, and complex survival systems like crafting and NPC interactions. Built with Godot 4.2 and GDScript.",
+  "Below_Below_Description": [
+    "Спроектировал и запрограммировал увлекательную видеоигру «Below Below» с использованием Godot 4.2 и GDScript.",
+    "Разработал игровую механику, физические взаимодействия и элементы управления игроком.",
+    "Создал пользовательские пиксельные рисунки и интегрировал звуковые эффекты для целостного опыта."
+  ],
   "Point_System_Summary": "Point System Summary",
   "Total_Points": "Total Points",
   "Important_Highlights": "Important Highlights",
@@ -286,7 +410,11 @@
   "Indonesia": "Индонезия",
   "Semester": "Семестр",
   "Olive_Divergence": "Olive Divergence",
-  "Olive_Divergence_Desc": "A fork of the 0.1.x version of Olive Video Editor, focusing on feature experimentation and community-driven development.",
+  "Olive_Divergence_Desc": [
+    "Запрограммировал 'Olive Divergence' с использованием C++ и фреймворка Qt.",
+    "Спроектировал графический интерфейс пользователя с богатыми визуальными элементами и пользовательскими виджетами.",
+    "Эффективно управлял состоянием приложения и потоком данных в цикле событий Qt."
+  ],
   "Resume": "Resume",
   "Education": "Образование",
   "Data": "Данные",
@@ -315,7 +443,9 @@
   "Faq": "FAQ",
   "Other": "Другое",
   "Hire_Me": "Нанять меня",
-  "Hire_Me_Description": "Сотрудничайте или наймите Мухаммеда Фаран Айки для вашего проекта.",
+  "Hire_Me_Description": [
+    "Сотрудничайте или наймите Мухаммеда Фаран Айки для вашего проекта."
+  ],
   "Company": "Компания",
   "Reason_Hiring": "Причина найма",
   "Hire_Success": "Запрос на найм успешно отправлен!",
@@ -332,7 +462,9 @@
   "Require_Login": "Вы должны войти для доступа к этой странице.",
   "Don_t_have_account": "Нет аккаунта?",
   "Already_have_account": "Уже есть аккаунт?",
-  "Not_Found_Description": "Ой! Страница, которую вы ищете, затерялась в другом измерении.",
+  "Not_Found_Description": [
+    "Ой! Страница, которую вы ищете, затерялась в другом измерении."
+  ],
   "Job_Title": "Должность",
   "Location": "Местоположение",
   "Job_Type": "Тип занятости",
@@ -372,14 +504,28 @@
   "Uploading": "Mengunggah...",
   "ONMIPA_Award_Title": "Серебряная Медаль ONMIPA-PT 2026 по Математике",
   "ONMIPA_Award_Company": "Kemendikti & Belmawa",
-  "ONMIPA_Award_Desc": "ONMIPA-PT — самая престижная студенческая научная олимпиада в Индонезии, охватывающая математику, физику, химию и биологию. Я успешно завоевал серебряную медаль в категории «Математика». Это достижение считается аномалией, так как я был студентом 2-го семестра по специальности «Информационные системы и технологии» (STI) и соревновался на национальном уровне со студентами факультетов чистой математики.",
+  "ONMIPA_Award_Desc": [
+    "Завоевал серебряную медаль на престижном конкурсе по математике ONMIPA-PT 2026.",
+    "Продемонстрировал исключительные навыки решения проблем и владение сложными математическими концепциями.",
+    "Соревновался с лучшими студентами университетов на национальном уровне, достигнув выдающихся результатов, несмотря на то, что еще учился на втором семестре программы \"Информационные системы и технологии\"."
+  ],
   "Delete": "Удалить",
   "Tech_Reference": "Архитектурная справка",
-  "Framework_Desc": "Построено на Next.js 15 с использованием новейшего App Router, React Server Components (RSC) и Turbopack для молниеносной производительности.",
-  "Styling_Desc": "Пользовательские стили с использованием Vanilla CSS и Tailwind CSS, с акцентом на уникальную эстетику и поддержку нескольких тем (Modern, Cinematic, Editorial).",
-  "Database_Desc": "Serverless управление базой данных с использованием Drizzle ORM и PostgreSQL на Supabase, обеспечивающее целостность и масштабируемость данных.",
-  "Localization_Desc": "Полная поддержка i18n для более чем 18 языков, обеспечивающая доступность и удобство для глобальной аудитории.",
-  "Holistic_Approach_Desc": "Целостный подход к разработке программного обеспечения, сочетающий современные веб-стандарты, строгую типизацию (TypeScript) и дизайн, ориентированный на производительность.",
+  "Framework_Desc": [
+    "Построено на Next.js 15 с использованием новейшего App Router, React Server Components (RSC) и Turbopack для молниеносной производительности."
+  ],
+  "Styling_Desc": [
+    "Пользовательские стили с использованием Vanilla CSS и Tailwind CSS, с акцентом на уникальную эстетику и поддержку нескольких тем (Modern, Cinematic, Editorial)."
+  ],
+  "Database_Desc": [
+    "Serverless управление базой данных с использованием Drizzle ORM и PostgreSQL на Supabase, обеспечивающее целостность и масштабируемость данных."
+  ],
+  "Localization_Desc": [
+    "Полная поддержка i18n для более чем 18 языков, обеспечивающая доступность и удобство для глобальной аудитории."
+  ],
+  "Holistic_Approach_Desc": [
+    "Целостный подход к разработке программного обеспечения, сочетающий современные веб-стандарты, строгую типизацию (TypeScript) и дизайн, ориентированный на производительность."
+  ],
   "Suggestions": "Предложения",
   "Read_More": "Читать далее",
   "Location_Online": "Онлайн",
@@ -396,15 +542,21 @@
   "Back_To_News": "Kembali ke Berita",
   "Business_Requests": "Деловые запросы",
   "AI_Discovery_Title": "Цифровая Идентичность (Оптимизировано для ИИ)",
-  "AI_Discovery_Description": "Структурированная сводка для поисковых систем и искусственного интеллекта (LLMs).",
+  "AI_Discovery_Description": [
+    "Структурированная сводка для поисковых систем и искусственного интеллекта (LLMs)."
+  ],
   "Professional_Pitch_Title": "Почему Стоит Сотрудничать с Faran Aiki?",
   "Professional_Pitch_Text": "Как студент ITB по специальности \"Информационные системы и технологии\" с реальным опытом разработки программного обеспечения и национальными достижениями в математике, я предлагаю уникальное сочетание логической остроты, технической креативности и стремления к росту. Независимо от того, создаю ли я сложные системы или решаю математические задачи, я всегда нацелен на достижение высоких результатов.",
   "Hire_Already_Submitted": "Вы уже отправили запрос. Вы можете отредактировать его ниже.",
   "Recaptcha_Protected": "Защищено reCAPTCHA. Применяются {privacy} и {terms}.",
   "Privacy": "Конфиденциальность",
   "Terms": "Условия",
-  "Superskill_Project": "Superskill",
-  "Superskill_Description": "Superskill — это игра на базе Flutter, предназначенная для тренировки логики, мышления, математических способностей и многого другого.",
+  "Superskill_Project": "Cognitive Garden",
+  "Superskill_Description": [
+    "Разработал Cognitive Garden, сложное кроссплатформенное приложение с использованием Flutter и Dart.",
+    "Создал игры, которые тренируют когнитивные функции и стимулируют работу мозга.",
+    "Спроектировал интуитивно понятный и привлекательный пользовательский интерфейс с богатой анимацией."
+  ],
   "Terminal_Title": "Konsol Terminal",
   "Skills_Languages": "Языки Программирования",
   "Skills_Frameworks": "Фреймворки и Библиотеки",
@@ -413,8 +565,16 @@
   "Data_Science": "Sains Data",
   "Compilers": "Desain Kompilator",
   "Algorithms": "Algoritma & Struktur Data",
-  "Education_ITB_Description": "Получает степень бакалавра в области информационных систем и технологий.",
-  "Education_SMA_Description": "Окончил с упором на Kurikulum Merdeka: Informatika.",
+  "Education_ITB_Description": [
+    "Получаю степень бакалавра в области информационных систем и технологий.",
+    "Поддерживаю высокую успеваемость с акцентом на программную инженерию и науку о данных.",
+    "Активно участвую в технических проектах и студенческих организациях."
+  ],
+  "Education_SMA_Description": [
+    "Окончил школу с акцентом на Kurikulum Merdeka: Информатика.",
+    "Отличился в информатике, математике и естественных науках.",
+    "Активно участвовал в ИТ и академических внеклассных клубах."
+  ],
   "Or_Continue_With": "Или продолжить с",
   "Loading": "Загрузка...",
   "Full_Description_Portfolio": "Полное Описание (Портфолио)",
@@ -449,7 +609,9 @@
   "Sitemap_Hover_Node": "Наведите курсор на узел",
   "Sitemap_Preview_Instruction": "Наведите курсор на любой узел графа, чтобы увидеть предварительный просмотр этой страницы.",
   "Preview": "Предпросмотр",
-  "SEO_Timeline_Description": "Полный график карьеры, образования, организации и проектов Фарана Аики.",
+  "SEO_Timeline_Description": [
+    "Полный график карьеры, образования, организации и проектов Фарана Аики."
+  ],
   "Skip_To_Content": "Перейти к основному контенту",
   "Locked": "Заблокировано",
   "GDGOC ITB_Product Manager": "GDGOC ITB Менеджер по продукту",
@@ -465,7 +627,9 @@
   "No_Results_Found": "Ничего не найдено.",
   "Searching": "Поиск...",
   "Offline_Title": "Вы не в сети",
-  "Offline_Description": "Интернет не найден. Пожалуйста, проверьте свой Wi-Fi и интернет.",
+  "Offline_Description": [
+    "Интернет не найден. Пожалуйста, проверьте свой Wi-Fi и интернет."
+  ],
   "Offline_Retry": "Повторить",
   "Interest": "Interest",
   "Filter_All": "All",
@@ -486,11 +650,54 @@
   "No_Bookmarks": "No bookmarks yet.",
   "Bookmark_Added": "Successfully added to bookmarks!",
   "Bookmark_Removed": "Successfully removed from bookmarks!",
-  "My_Requests_Desc": "Manage your business & hire requests.",
-  "My_Feedbacks_Desc": "View or edit testimonials you left.",
-  "My_Preferences_Desc": "Open the global settings menu.",
+  "My_Requests_Desc": [
+    "Manage your business & hire requests."
+  ],
+  "My_Feedbacks_Desc": [
+    "View or edit testimonials you left."
+  ],
+  "My_Preferences_Desc": [
+    "Open the global settings menu."
+  ],
   "Joined": "Joined",
   "Public_Feedbacks": "Public Feedbacks",
   "No_Public_Feedbacks": "No public feedbacks yet.",
-  "Bookmarks_Description": "Here are all the items you have bookmarked."
+  "Bookmarks_Description": [
+    "Here are all the items you have bookmarked."
+  ],
+  "Academic_Transcript": "Академическая Справка",
+  "Transcript_Subtitle": "Бандунгский Технологический Институт • Информационные Системы и Технологии • Совокупный Средний Балл:",
+  "Transcript_IP": "Средний Балл:",
+  "Transcript_Passed_Credits": "Пройденные Кредиты:",
+  "Transcript_No": "№",
+  "Transcript_Code": "Код",
+  "Transcript_Course": "Курс",
+  "Transcript_Type": "Тип",
+  "Transcript_Credits": "Кредиты",
+  "Transcript_Grade": "Оценка",
+  "Transcript_Semester": "Пройденный Семестр",
+  "Transcript_Grade_Conversion": "Конверсия Оценок",
+  "Transcript_TPB": "Общий Подготовительный Год",
+  "Transcript_Sarjana": "Программа Бакалавриата",
+  "Transcript_Type_W": "Обязательный",
+  "Transcript_Type_P": "Электив По Специальности",
+  "Transcript_Type_L": "Электив Вне Специальности",
+  "Course_MA1101": "Математический Анализ I",
+  "Course_FI1101": "Базовая Физика I",
+  "Course_KI1101": "Базовая Химия I",
+  "Course_WI1101": "Панчасила (Государственная Идеология)",
+  "Course_WI1102": "Вычислительное Мышление",
+  "Course_WI1103": "Введение В Принципы Устойчивого Развития",
+  "Course_WI1111": "Лаборатория Базовой Физики",
+  "Course_WI1116": "Лаборатория Компьютерного Взаимодействия",
+  "Course_II1200": "Введение В Информационные Системы И Технологии",
+  "Course_IF1210": "Алгоритмы И Программирование 1",
+  "Course_WI2001": "Введение В Инженерию И Проектирование",
+  "Course_WI2005": "Индонезийский Язык",
+  "Course_WI2011": "Исламская Религия",
+  "Course_WI2006": "Граждановедение",
+  "Course_WI2002": "Грамотность Данных И Искусственный Интеллект",
+  "Course_WI2003": "Спорт",
+  "Transcript_Grade_Pass": "Сдано",
+  "Transcript_Grade_Fail": "Не сдано"
 }

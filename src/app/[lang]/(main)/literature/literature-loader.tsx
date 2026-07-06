@@ -19,7 +19,7 @@ export type LiteratureLoaderProps = {
   original_text?: string;
   timeline_text?: string;
   grid_text?: string;
-  dict?: Record<string, string>;
+  dict?: import('@/components/layout/Translator').TranslationDict;
   isLoggedIn?: boolean;
   bookmarkedItemIds?: string[];
 };

@@ -38,11 +38,17 @@
   "Faran_Vision_Mission_3": "Bugu da ƙari, ina kuma ba da fifiko ga dabi'un nagarta waɗanda aka yarda da su a ko'ina, a duniya, da kuma hankali. Ina yin haka ne don tabbatar da cancantan ma'anar sunansa, wanda shine <i>ci gaba da cigaba</i>, duka ɗaya bayan ɗaya da kuma a matsayin rukuni.",
   "All": "Duka",
   "Portfolio": "Ayyuka",
-  "Portfolio_Summary_Description": "Takaitaccen bayani kan ƙwarewar aiki da manyan ayyuka na Muhammad Faran Aiki",
+  "Portfolio_Summary_Description": [
+    "Takaitaccen bayani kan ƙwarewar aiki da manyan ayyuka na Muhammad Faran Aiki"
+  ],
   "Portfolio_Summary_Quote": "Zaɓaɓɓεν bayani kan ƙwarewar aiki da ayyukan da suka yi tasiri sosai.",
-  "Portfolio_Description": "Cikakken tarihin ƙwararru da manyan ayyuka na Muhammad Faran Aiki",
+  "Portfolio_Description": [
+    "Cikakken tarihin ƙwararru da manyan ayyuka na Muhammad Faran Aiki"
+  ],
   "Full_Portfolio": "Cikakken Portfolio",
-  "Share_Description": "Duba gidan yanar gizon Faran Aiki!",
+  "Share_Description": [
+    "Duba gidan yanar gizon Faran Aiki!"
+  ],
   "Profile": "Bayanan Mutum",
   "Experience": "Gogewa",
   "Artwork": "Ayyukan Fasaha",
@@ -137,58 +143,146 @@
   "Dutch": "Holanci",
   "Hausa": "Hausa",
   "Make_Interactive_UAS": "Koyon Sadarwa don UAS MA1101 ITB",
-  "Make_Interactive_UAS_Description": "Haɓaka aikace-aikacen da ke kan Flutter/Dart don taimaka wa ɗalibai wajen shirye-shiryen jarrabawar ƙarshe ta Calculus I a Cibiyar Fasaha ta Bandung.",
+  "Make_Interactive_UAS_Description": [
+    "Na gina kayan aikin koyon ilimin lissafi na mu'amala ta amfani da Flutter, Dart, da FL Chart.",
+    "An kalli rikitattun dabarun lissafi don taimakawa fahimtar ɗalibai.",
+    "Na tsara fasahar mu'amala mai sauƙin amfani."
+  ],
   "Make_Website": "Yanar Gizo na Keɓaɓɓe faranaiki.id",
-  "Make_Website_Description": "Ƙirƙirar babban rukunin yanar gizo na sirri ta amfani da NextJS, TailwindCSS, da Vercel.",
+  "Make_Website_Description": [
+    "An gina gidan yanar gizo mai saurin aiki da ƙarfi ta amfani da NextJS, TailwindCSS, da TypeScript.",
+    "An tsara tafiya mai santsi da wasanni ta amfani da Lenis da Framer-Motion.",
+    "An gina kyakkyawan tsarin rumbun adana bayanai na baya ta amfani da Drizzle da SQL."
+  ],
   "Make_Nihwm": "NihWM Window Manager",
-  "Make_Nihwm_Description": "Ƙirƙirar manajan taga wanda shine asalin (fork) na dynamic window manager (dwm) a yaren C.",
+  "Make_Nihwm_Description": [
+    "Na haɓaka 'nihwm', mai kula da taga mai sauƙin X11 wanda aka rubuta gaba ɗaya a C don Linux.",
+    "Na aiwatar da ainihin ayyukan gudanarwa na taga.",
+    "Na inganta lambar don ƙarancin amfani da albarkatu."
+  ],
   "Lidia_Project": "Nazarin Bayanan Haɗin Kan Tattalin Arziki ga Indonesiya Emas 2045",
-  "Lidia_Project_Description": "Aikin haɗin gwiwar bayanai (LIDIA) a matakin lardi ta amfani da hanyoyin ETL da nazarin kididdiga na ci gaba.",
+  "Lidia_Project_Description": [
+    "Na tsara tsarin ETL ta amfani da Python, Pandas, da Jupyter Notebook.",
+    "Na haɗa Gemini-CLI don haɓaka ƙarfin sarrafa bayanai.",
+    "Na sauƙaƙe tafiyar matakan aiki na bayanai, inda ya rage lokacin aiki sosai."
+  ],
   "Alkyl_Compiler": "Yaren Programming Alkyl da Compiler",
-  "Alkyl_Compiler_Description": "Yaren programming na Alkyl shine yaren programming da aka fara rubuta shi a C ta amfani da LLVM-IR.",
+  "Alkyl_Compiler_Description": [
+    "Na tsara da aiwatar da na'urar tattarawa daga karce ta amfani da C da LLVM.",
+    "An yi amfani da Valgrind da GDB don ingantaccen sarrafa ƙwaƙwalwa.",
+    "An fassara ginin harshe mai babban matsayi zuwa ingantaccen lambar na'ura."
+  ],
   "Impact_Module_Author": "Mawallafin Module na Mathematics na IMPACT 6.0",
-  "Impact_Module_Author_Description": "An rubuta kayan karatu na Lissafi, gami da tsarin daidaiton layi da rashin daidaiton layi.",
+  "Impact_Module_Author_Description": [
+    "Na rubuta cikakken tsarin ilimi don gasar IMPACT 6.0.",
+    "Na tsara tsauraran matsaloli da mafita don ƙalubalantar manyan ɗaliban sakandare.",
+    "Na yi haɗin gwiwa da abokan ilimi don tabbatar da ingantattun ka'idoji."
+  ],
   "SAT_Tutor": "Malami na SAT Math & Verbal (Kwangila)",
-  "SAT_Tutor_Description": "Koyar da SAT Verbal da Mathematics akai-akai kowane mako zuwa rukunin ɗaliban sakandare shida.",
+  "SAT_Tutor_Description": [
+    "Ya koyar da ɗalibai a SAT Math da Ingilishi, yana ba da cikakkun darussa da dabarun da aka tsara.",
+    "Ya jagoranci ɗalibai wajen cimma burinsu na samun gurbin karatu a jami'o'in ƙasashen waje."
+  ],
   "Compile_Module_Author": "COMPILE STEI-K UTBK Module Creator",
-  "Compile_Module_Author_Description": "Ƙirƙirar samfura guda biyu tare da jigogi na ƙididdiga da ƙididdiga.",
+  "Compile_Module_Author_Description": [
+    "Na rubuta tsarin koyo don shirin shiri na COMPILE UTBK.",
+    "Na tsara tambayoyin aiki da yawa don shirya ɗalibai don jarrabawar shiga jami'a ta ƙasa.",
+    "Na sauƙaƙe kyakkyawar fahimtar rikitattun batutuwa ta hanyar cikakken bayani."
+  ],
   "Software_Engineer": "Injiniyan Software (Front-End Flutter)",
-  "Software_Engineer_Description": "Ƙirƙira da kiyaye widgets masu ma'amala, kamar jadawali mai ma'amala, ƙididdiga masu ma'amala don ganin bayanai.",
+  "Software_Engineer_Description": [
+    "Na haɓaka da kiyaye mahimman siffofin dandamalin Analitica a matsayin Injin Ilimin Kwamfuta.",
+    "Na inganta aikin aikace-aikacen da sauƙaƙe lambar don ingantacciyar haɓakawa.",
+    "Na yi haɗin gwiwa tare da ƙungiyoyi don samar da mafita na software masu inganci."
+  ],
   "Mathematics_Private_Tutor": "Malami mai zaman kansa na Mathematics",
-  "Mathematics_Private_Tutor_Description": "Bayar da koyarwa ɗaya-da-ɗaya ga ɗalibai a fannin mathematics olympiad.",
+  "Mathematics_Private_Tutor_Description": [
+    "Na ba da zaman koyarwa na musamman na ilimin lissafi tare da mai da hankali kan batutuwan matakin Olympics.",
+    "Na tantance ci gaban ɗalibai da daidaita hanyoyin koyarwa don magance raunin kowane ɗalibi.",
+    "Na haɓaka tunanin nazari da dabarun warware matsaloli masu zurfi a cikin ɗalibai."
+  ],
   "Education_Team": "Ƙungiyar Ilimi",
-  "Education_Team_Description": "An taimaka wajen ƙirƙirar kayan ilimi, kamar General Mathematics.",
+  "Education_Team_Description": [
+    "Na ba da gudummawa ga Ƙungiyar Ilimi a Analitica ta hanyar haɓaka abubuwan ilimi na musamman.",
+    "Na yi nazarin bayanan ayyukan ɗalibai don tace da haɓaka kayan koyo.",
+    "Na goyi bayan ƙirƙirar kayan aikin kimantawa waɗanda dubban ɗalibai ke amfani da su."
+  ],
   "ITB": "Cibiyar Fasaha ta Bandung",
   "Sponsorship_Wisokto_ITB": "Tallafin Karatun Digiri na ITB Oktoba 2025, Kwamitin WisNight, da Tallata Nipis Madu",
-  "Sponsorship_Wisokto_ITB_Description": "Tuntuɓar kamfanoni da yawa don haɗin gwiwa a bikin kammala karatun digiri na Oktoba 2025.",
+  "Sponsorship_Wisokto_ITB_Description": [
+    "Ya gano kuma ya kafa haɗin gwiwa na dabaru kuma ya nemi tallafi daga bangarori daban-daban."
+  ],
   "Impact_Web_Lead": "Jagoran Ƙungiyar Haɓaka Yanar Gizo Impact 6.0",
-  "Impact_Web_Lead_Description": "Gudanar da gidan yanar gizon don olympiad IMPACT 6.0 ta Makarantar Injin Lantarki Informatika - Lissafi.",
+  "Impact_Web_Lead_Description": [
+    "Ya haɓaka ƙaƙƙarfan aikace-aikacen full-stack ta amfani da NextJS, TailwindCSS, da TypeScript don kyakkyawan frontend.",
+    "Ya tsara tsarin backend ta amfani da Supabase SQL database tare da Prisma ORM don ingantaccen sarrafa bayanai masu faɗi.",
+    "Ya gudanar da tsarin Moodle da Judgel don tabbatar da ingantaccen yanayi na gasa ga duk mahalarta.",
+    "Ya gudanar da kuma haɗa kan ƙungiyoyin haɓaka front-end da back-end don tabbatar da ingantaccen isar da aiki."
+  ],
   "Treasurer_SYNC": "Ma'ajin don taron STEI-K Gathering",
   "STEI-K": "Makarantar Injin Lantarki da Informatika - Lissafi",
-  "Treasurer_SYNC_Description": "An sami tallafin kuɗi miliyan ɗaya na rupiah don taron taron malamai SYNC.",
+  "Treasurer_SYNC_Description": [
+    "Na gudanar da bayanan kuɗi da kasafin kuɗi don taron SYNC STEI-K.",
+    "Na aiwatar da ma'amaloli, bin sawun kuɗaɗe, da shirya cikakkun rahotanni na kuɗi.",
+    "Na tabbatar da rarraba kuɗaɗe a fili kuma a bayyane."
+  ],
   "IT_Club_Vice_Renpy": "Mataimakin Manajan Aiki don IT Club Final Project 2024",
-  "IT_Club_Vice_Renpy_Description": "Kula da haɓaka wasan bidiyo na gani ta amfani da Ren'Py a yaren Python.",
+  "IT_Club_Vice_Renpy_Description": [
+    "Na yi aiki a matsayin Mataimakin Shugaban Kasa, tsara ayyukan kulob din da jagorantar membobin.",
+    "Na koyar da dabarun haɓaka wasan kwaikwayo ta amfani da Ren'Py.",
+    "Na ba wa ɗalibai shawara a fannin tsara shirye-shirye da labaru na mu'amala."
+  ],
   "IT_Club_Tutor": "Malami na Informatics Club",
-  "IT_Club_Tutor_Description": "Koyar da membobin kungiyar Informatics game da Python da haɓaka yanar gizo.",
+  "IT_Club_Tutor_Description": [
+    "Na koya wa ɗaliban makarantar sakandare ilimin kwamfuta da shirye-shirye.",
+    "Na haɓaka tsare-tsaren darasi masu ban sha'awa da ayyukan coding na aikace-aikace.",
+    "Na ƙirƙiro yanayin koyo na haɗin gwiwa a cikin kulob din."
+  ],
   "Student_Club_Member": "Memba na Kungiyar Dalibai",
-  "Student_Club_Member_Description": "Memba mai ƙwazo a ƙungiyar ɗalibai ta SMA Negeri 1 Depok City.",
+  "Student_Club_Member_Description": [
+    "Na shiga ciki sosai a abubuwan da ke faruwa a Kulob din Dalibai 1 na Depok.",
+    "Na haɗa kai da takwarorina wajen tsara ayyukan gina al'umma.",
+    "Na ba da gudummawa ga manufofin kulob din ta hanyar aikin ƙungiya."
+  ],
   "English_Club_Member": "Memba na English Club",
-  "English_Club_Member_Description": "Ƙirƙira da daidaita abun ciki, kamar tatsuniyar \"The Ugly Duckling\".",
+  "English_Club_Member_Description": [
+    "Inganta ƙwarewar sadarwa da magana a gaban jama'a.",
+    "Taimakawa wajen ƙirƙirar abun ciki, gami da 'The Ugly Duckling'."
+  ],
   "NBK_Member": "Memba na Nihongo Benkyoukai Club",
-  "NBK_Member_Description": "Halartar ayyukan kulob ɗin Jafananci da nazarin harshen.",
+  "NBK_Member_Description": [
+    "Karatun harshen da al'adun Japan a matsayin memba na Nihongo Benkyoukai."
+  ],
   "PARAS": "Mai zanen Logo da MC Script Editor don PARAS Glorigion 1445H",
-  "PARAS_Description": "Ya tsara babban logo don taron PARAS (Paket Ramadan Spesial) Glorigion 2024.",
+  "PARAS_Description": [
+    "Ya ba da gudummawa ga tsarin gudanar da taron PARAS a SMA Negeri 1 Kota Depok.",
+    "Ya ba da haɗin kai wajen tsarawa da fitar da tambarin taron.",
+    "Ya taimaka a rubutawa da kuma gyara rubutun Mai gabatar da shirye-shirye (MC)."
+  ],
   "Concerto": "Mai gudanarwa na Matakin Ƙarshe na Gasar Concerto",
-  "Concerto_Description": "An ƙirƙira, gyarawa, daidaitawa, da kuma kula da tambayoyin gasar.",
+  "Concerto_Description": [
+    "Na gudanar da ayyuka da dabaru don taron Kulob ɗin Ɗalibai na Concerto.",
+    "Na haɗa kai da membobin ƙungiyar don tsarawa da aiwatar da ayyuka masu ban sha'awa.",
+    "Na kula da rajistar masu halarta da ba da tallafi a wurin taron."
+  ],
   "Paragon_Scholarship_Title": "Wanda Ya Karɓi Tallafin Karatun Paragon Class of 2025",
-  "Paragon_Scholarship_Desc": "Wanda ya karɓi tallafin karatu na Paragon (Paragon Scholarship Program Excellence) Class of 2025.",
+  "Paragon_Scholarship_Desc": [
+    "An ba shi tallafin Paragon na gasa sosai saboda kyakkyawan ilimi da yuwuwar jagoranci.",
+    "Ya shiga cikin horon jagoranci da shirye-shiryen ci gaban al'umma."
+  ],
   "PT Paragon": "PT Paragon",
   "ALTH_Project": "ALTH: Aku Lupa Tandai Hadir",
-  "ALTH_Project_Description": "ALTH (Aku Lupa Tandai Hadir) wani aikace-aikace ne na kirkire-kirkire da aka tsara musamman ga daliban ITB.",
+  "ALTH_Project_Description": [
+    "An gudanar da bincike na Burp Suite don fahimtar amfani da SSO da Kukis.",
+    "An haɓaka aikace-aikacen tunatarwa na halarta ta amfani da Flutter da Dart ga ɗaliban Institut Teknologi Bandung."
+  ],
   "": "",
   "Navigation": "Kewayawa",
   "GDG_ITB_Title": "Google Developer Group Campus on ITB - Product Manager Explorer",
-  "GDG_ITB_Description": "Koyo asali na sarrafa samfura, gudanar da bincike na mai amfani, da kuma taimakawa wajen haɓaka hanyoyin samfuran.",
+  "GDG_ITB_Description": [
+    "An koyi game da Gudanar da Samfur daga na asali zuwa ra'ayoyi masu ci gaba.",
+    "An koyi fahimtar masu amfani da bukatun su."
+  ],
   "Presentation_Mode": "Yanayin Gabatarwa",
   "Presentation_Modern": "Na zamani",
   "Presentation_Cinematic": "Sinima",
@@ -204,13 +298,19 @@
   "Sultan_PDF_Creating": "Ana yin PDF...",
   "Sultan_PDF_Ready": "PDF ya shirya!",
   "Sultan_PDF_Failed": "PDF ya gaza.",
-  "Sultan_PDF_Description": "Ingantaccen tsarin PDF.",
+  "Sultan_PDF_Description": [
+    "Ingantaccen tsarin PDF."
+  ],
   "Sultan_PDF_Download": "Ana saukewa...",
   "Estimating": "Ana kiyatawa...",
   "Dismiss": "Bar shi",
   "Cancel": "Soke",
   "National_Statistics_Competition_Prep": "Shirye-shiryen Gasar Ƙididdiga ta Ƙasa",
-  "National_Statistics_Competition_Prep_Description": "Nazarin hanyoyin bincike da ƙididdiga kamar ARIMA, ANOVA, koma bayan layi, da tsauraran gwaje-gwajen hasashe a matsayin shiri don Gasar Ƙididdiga ta Ƙasa.",
+  "National_Statistics_Competition_Prep_Description": [
+    "Na shirya bayanai ta amfani da SARIMAX da MANOVA.",
+    "Na rubuta lambar Python don nazarin bayanai a cikin Jupyter Notebooks.",
+    "Na yi nazarin alkaluma don samo muhimman sakamako na gasar ƙasa."
+  ],
   "Open": "Buɗe",
   "Not_Available": "Babu shi",
   "No_Documents_Available": "Babu takardu.",
@@ -222,14 +322,30 @@
   "Upload_Photo": "Sanya Hoto",
   "Title": "Take",
   "Image_Optional": "Hoto (Na zaɓi)",
-  "SEO_Home_Description": "Shafin hukuma na Muhammad Faran Aiki - ɗalibin STI ITB, Injiniyan Software, da Malami na SAT.",
-  "SEO_Work_Description": "Tarihin sana'a na Muhammad Faran Aiki a matsayin Injiniyan Software a Analitica, Malami na SAT a Kobi Education.",
-  "SEO_Project_Description": "Tarin ayyukan fasaha na Muhammad Faran Aiki, tun daga Alkyl compiler zuwa ALTH Flutter app.",
-  "SEO_Organization_Description": "Kwarewar ƙungiya ta Muhammad Faran Aiki a GDG ITB, STEI-K, da kwamitoci daban-daban.",
-  "SEO_Award_Description": "Kyaututtuka da tallafin karatu da Muhammad Faran Aiki ya samu.",
-  "SEO_College_Description": "Takardun tafiyar ilimi, kayan darasi, da bayanan karatu na Muhammad Faran Aiki.",
-  "SEO_Certificate_Description": "Takaddun shaida na sana'a da darussan da Muhammad Faran Aiki ya kammala.",
-  "SEO_Literature_Description": "Ayyukan adabi da suka haɗa da waƙoƙi, gajerun labarai, da insha'i da Muhammad Faran Aiki ya rubuta.",
+  "SEO_Home_Description": [
+    "Shafin hukuma na Muhammad Faran Aiki - ɗalibin STI ITB, Injiniyan Software, da Malami na SAT."
+  ],
+  "SEO_Work_Description": [
+    "Tarihin sana'a na Muhammad Faran Aiki a matsayin Injiniyan Software a Analitica, Malami na SAT a Kobi Education."
+  ],
+  "SEO_Project_Description": [
+    "Tarin ayyukan fasaha na Muhammad Faran Aiki, tun daga Alkyl compiler zuwa ALTH Flutter app."
+  ],
+  "SEO_Organization_Description": [
+    "Kwarewar ƙungiya ta Muhammad Faran Aiki a GDG ITB, STEI-K, da kwamitoci daban-daban."
+  ],
+  "SEO_Award_Description": [
+    "Kyaututtuka da tallafin karatu da Muhammad Faran Aiki ya samu."
+  ],
+  "SEO_College_Description": [
+    "Takardun tafiyar ilimi, kayan darasi, da bayanan karatu na Muhammad Faran Aiki."
+  ],
+  "SEO_Certificate_Description": [
+    "Takaddun shaida na sana'a da darussan da Muhammad Faran Aiki ya kammala."
+  ],
+  "SEO_Literature_Description": [
+    "Ayyukan adabi da suka haɗa da waƙoƙi, gajerun labarai, da insha'i da Muhammad Faran Aiki ya rubuta."
+  ],
   "Original": "Asali",
   "Timeline": "Tsarin Lokaci",
   "Grid": "Tsarin Akwati",
@@ -238,9 +354,17 @@
   "Click_To_Close": "Danna don rufewa",
   "Logo_Alt": "Logo na Faran Aiki",
   "Jump_Game_Project": "Wasan Jump!",
-  "Jump_Game_Description": "Wasan platformer mai sauƙi kamar Geometry Dash da na yi da C# da Visual Studio.",
+  "Jump_Game_Description": [
+    "Na ƙirƙira wani wasan dandamali mai ban sha'awa ta amfani da C# da Visual Studio.",
+    "Na aiwatar da injinan tsalle-tsalle bisa ilimin kimiyyar lissafi.",
+    "Na tsara fasalin tsari na matakai don haɓaka jin daɗin wasan."
+  ],
   "Below_Below_Project": "Below Below",
-  "Below_Below_Description": "Wasan binciken hakar ma'adinai mai nuna labari inda aka sake haifuwar ku azaman bawan hakar ma'adinai.",
+  "Below_Below_Description": [
+    "Na tsara da tsara wasan bidiyo na 'Below Below' ta amfani da Godot 4.2.",
+    "Na haɓaka injin wasan, motsin kimiyya da sarrafa 'yan wasa.",
+    "Na ƙirƙiri zane-zanen pixel don wasan."
+  ],
   "Point_System_Summary": "Point System Summary",
   "Total_Points": "Total Points",
   "Important_Highlights": "Important Highlights",
@@ -286,7 +410,11 @@
   "Indonesia": "Indonesiya",
   "Semester": "Semester",
   "Olive_Divergence": "Olive Divergence",
-  "Olive_Divergence_Desc": "A fork of the 0.1.x version of Olive Video Editor, focusing on feature experimentation and community-driven development.",
+  "Olive_Divergence_Desc": [
+    "Na tsara 'Olive Divergence' ta amfani da C++ da Qt framework.",
+    "Na tsara tsarin gani mai amfani da maɓallan musamman.",
+    "Na gudanar da gudana na aikace-aikacen a cikin Qt."
+  ],
   "Resume": "Resume",
   "Education": "Ilimi",
   "Data": "Bayanai",
@@ -315,7 +443,9 @@
   "Faq": "FAQ",
   "Other": "Sauran",
   "Hire_Me": "Dauke ni aiki",
-  "Hire_Me_Description": "Collaborate with or hire Muhammad Faran Aiki for your project.",
+  "Hire_Me_Description": [
+    "Collaborate with or hire Muhammad Faran Aiki for your project."
+  ],
   "Company": "Company",
   "Reason_Hiring": "Reason for Hiring",
   "Hire_Success": "An aika buƙatar daukar ma'aikata cikin nasara!",
@@ -332,7 +462,9 @@
   "Require_Login": "Dole ne ka shiga shafin.",
   "Don_t_have_account": "Ba ka da asusu?",
   "Already_have_account": "Kana da asusu?",
-  "Not_Found_Description": "Kash! Shafin da kake nema ya bace.",
+  "Not_Found_Description": [
+    "Kash! Shafin da kake nema ya bace."
+  ],
   "Job_Title": "Job Title",
   "Location": "Location",
   "Job_Type": "Job Type",
@@ -372,14 +504,28 @@
   "Uploading": "Mengunggah...",
   "ONMIPA_Award_Title": "Lambar Azurfa ONMIPA-PT 2026 Lissafi",
   "ONMIPA_Award_Company": "Kemendikti & Belmawa",
-  "ONMIPA_Award_Desc": "ONMIPA-PT ita ce gasar kimiyya ta dalibai mafi daraja a Indonesia, wadda ta shafi Lissafi, Kimiyyar Physics, Chemistry, da Biology. Na yi nasarar lashe lambar azurfa a rukunin Lissafi. Wannan nasara ana daukarta a matsayin wani abu na daban domin ina dalibi ne a zangon karatu na biyu (semester 2) mai fannin Tsarin Bayanai da Fasaha (STI), ina takara a matakin kasa da daliban da suka kware a fannin lissafi zalla.",
+  "ONMIPA_Award_Desc": [
+    "Samun lambar Azurfa a babbar gasar ONMIPA-PT 2026 a Lissafi.",
+    "Nuna kwarewa ta musamman na warware matsaloli da kuma ƙwarewa a kan ra'ayoyin lissafi na gaba.",
+    "Yin gogayya da manyan ɗaliban jami'a a matakin ƙasa, tare da samun sakamako mai kyau duk da cewa har yanzu yana semester na biyu na shirin karatun Tsarin Bayanai da Fasaha."
+  ],
   "Delete": "Goge",
   "Tech_Reference": "Reference Na Tsarin Gine-gine",
-  "Framework_Desc": "An gina shi da Next.js 15, ta amfani da sabon App Router, React Server Components (RSC), da Turbopack don yin aiki cikin sauri.",
-  "Styling_Desc": "Salo na musamman ta amfani da Vanilla CSS da Tailwind CSS, tare da mai da hankali kan kyawu na musamman tare da tallafin jigogi da yawa (Modern, Cinematic, Editorial).",
-  "Database_Desc": "Gudanar da bayanan uwar garken ta amfani da Drizzle ORM tare da PostgreSQL da aka shirya akan Supabase, tabbatar da amincin bayanai da haɓaka.",
-  "Localization_Desc": "Cikakken tallafin i18n don harsuna 18+, tabbatar da sauƙin shiga da ƙwarewa mara kyau ga masu sauraro na duniya.",
-  "Holistic_Approach_Desc": "Hanyar injiniyan software gaba ɗaya wacce ta haɗa da ka'idodin yanar gizo na zamani, amincin nau'in TypeScript (TypeScript), da ƙira mai amfani da aiki.",
+  "Framework_Desc": [
+    "An gina shi da Next.js 15, ta amfani da sabon App Router, React Server Components (RSC), da Turbopack don yin aiki cikin sauri."
+  ],
+  "Styling_Desc": [
+    "Salo na musamman ta amfani da Vanilla CSS da Tailwind CSS, tare da mai da hankali kan kyawu na musamman tare da tallafin jigogi da yawa (Modern, Cinematic, Editorial)."
+  ],
+  "Database_Desc": [
+    "Gudanar da bayanan uwar garken ta amfani da Drizzle ORM tare da PostgreSQL da aka shirya akan Supabase, tabbatar da amincin bayanai da haɓaka."
+  ],
+  "Localization_Desc": [
+    "Cikakken tallafin i18n don harsuna 18+, tabbatar da sauƙin shiga da ƙwarewa mara kyau ga masu sauraro na duniya."
+  ],
+  "Holistic_Approach_Desc": [
+    "Hanyar injiniyan software gaba ɗaya wacce ta haɗa da ka'idodin yanar gizo na zamani, amincin nau'in TypeScript (TypeScript), da ƙira mai amfani da aiki."
+  ],
   "Suggestions": "Shawarwari",
   "Read_More": "Kara Karanta",
   "Location_Online": "Online",
@@ -396,15 +542,21 @@
   "Back_To_News": "Kembali ke Berita",
   "Business_Requests": "Bukatun Kasuwanci",
   "AI_Discovery_Title": "Sani na Dijital (An Inganta don AI)",
-  "AI_Discovery_Description": "Takaitaccen tsari don injunan bincike da fasahar leken asiri ta wucin gadi (LLMs).",
+  "AI_Discovery_Description": [
+    "Takaitaccen tsari don injunan bincike da fasahar leken asiri ta wucin gadi (LLMs)."
+  ],
   "Professional_Pitch_Title": "Me Yasa Zaku yi Aiki da Faran Aiki?",
   "Professional_Pitch_Text": "A matsayina na dalibin tsarin bayanai da fasaha na ITB tare da gogewar aikin injiniyan software na zahiri da nasarorin kasa a fannin lissafi, ina bayar da kwarewa ta musamman wajen kaifin hankali, kirkire-kirkire na fasaha, da sadaukarwa ga ci gaba. Ko wajen gina tsare-tsare masu sarkakiya ko warware matsalolin lissafi, na fi mayar da hankali kan sakamako masu tasiri mai inganci.",
   "Hire_Already_Submitted": "Kun riga kun aika da bukata. Kuna iya gyara ta a ƙasa.",
   "Recaptcha_Protected": "An kiyaye ta reCAPTCHA. {privacy} da {terms} sun shafi.",
   "Privacy": "Sirri",
   "Terms": "Sharuɗɗa",
-  "Superskill_Project": "Superskill",
-  "Superskill_Description": "Superskill wasa ne da aka tsara shi don horar da dabaru, tunani, ilimin lissafi da sauran su, wanda aka gina ta amfani da Flutter.",
+  "Superskill_Project": "Aljannar Hankali",
+  "Superskill_Description": [
+    "An haɓaka Aljannar Hankali, wani ingantaccen aikace-aikacen dandamali daban-daban ta amfani da Flutter da Dart.",
+    "An tsara wasannin da ke horar da fahimtar kwakwalwa da motsa kwakwalwa.",
+    "An tsara kyakkyawan tsarin mai amfani wanda ke da sauƙin fahimta tare da kyawawan wasanni."
+  ],
   "Terminal_Title": "Konsol Terminal",
   "Skills_Languages": "Harsunan Shirye-shirye",
   "Skills_Frameworks": "Tsare-tsare da Laburari",
@@ -413,8 +565,16 @@
   "Data_Science": "Sains Data",
   "Compilers": "Desain Kompilator",
   "Algorithms": "Algoritma & Struktur Data",
-  "Education_ITB_Description": "Yana karatun digiri na farko a fannin Tsarin Bayanai da Fasaha.",
-  "Education_SMA_Description": "Ya kammala karatu tare da mai da hankali kan Kurikulum Merdeka: Informatika.",
+  "Education_ITB_Description": [
+    "Ina yin digiri na farko a tsarin Bayanai da Fasaha.",
+    "Ina kiyaye ƙaƙƙarfan tsarin karatun da ke mayar da hankali kan kimiyyar kwamfuta.",
+    "Ina shiga cikin ayyukan fasaha da ƙungiyoyin ɗalibai."
+  ],
+  "Education_SMA_Description": [
+    "Na kammala karatu da Kurikulum Merdeka: Informatika.",
+    "Na nuna ƙwarewa a fannin ilimin lissafi da kwamfuta.",
+    "Na shiga cikin kulob ɗin makaranta na IT da ilimi."
+  ],
   "Or_Continue_With": "Ko Ci Gaba Da",
   "Loading": "Ana lodawa...",
   "Full_Description_Portfolio": "Cikakken Bayani (Fayil)",
@@ -449,7 +609,9 @@
   "Sitemap_Hover_Node": "Gwada linzamin kwamfuta akan kumburi",
   "Sitemap_Preview_Instruction": "Gwada linzamin kwamfuta akan kowane kumburi akan ginshiƙi don ganin samfoti kai tsaye na wannan shafin.",
   "Preview": "Samfoti",
-  "SEO_Timeline_Description": "Complete timeline of Faran Aiki's career, education, organization, and projects.",
+  "SEO_Timeline_Description": [
+    "Complete timeline of Faran Aiki's career, education, organization, and projects."
+  ],
   "Skip_To_Content": "Tsallaka zuwa babban abun ciki",
   "Locked": "Kulle",
   "GDGOC ITB_Product Manager": "GDGOC ITB Manajan Samfur",
@@ -465,7 +627,9 @@
   "No_Results_Found": "Ba a sami sakamako ba.",
   "Searching": "Ana bincike...",
   "Offline_Title": "Baka kan layi",
-  "Offline_Description": "Ba a sami intanet ba. Da fatan za a duba Wi-Fi ɗinka da intanet.",
+  "Offline_Description": [
+    "Ba a sami intanet ba. Da fatan za a duba Wi-Fi ɗinka da intanet."
+  ],
   "Offline_Retry": "Sake gwadawa",
   "Interest": "Interest",
   "Filter_All": "All",
@@ -486,11 +650,54 @@
   "No_Bookmarks": "No bookmarks yet.",
   "Bookmark_Added": "Successfully added to bookmarks!",
   "Bookmark_Removed": "Successfully removed from bookmarks!",
-  "My_Requests_Desc": "Manage your business & hire requests.",
-  "My_Feedbacks_Desc": "View or edit testimonials you left.",
-  "My_Preferences_Desc": "Open the global settings menu.",
+  "My_Requests_Desc": [
+    "Manage your business & hire requests."
+  ],
+  "My_Feedbacks_Desc": [
+    "View or edit testimonials you left."
+  ],
+  "My_Preferences_Desc": [
+    "Open the global settings menu."
+  ],
   "Joined": "Joined",
   "Public_Feedbacks": "Public Feedbacks",
   "No_Public_Feedbacks": "No public feedbacks yet.",
-  "Bookmarks_Description": "Here are all the items you have bookmarked."
+  "Bookmarks_Description": [
+    "Here are all the items you have bookmarked."
+  ],
+  "Academic_Transcript": "Takardar Shaidar Karatu",
+  "Transcript_Subtitle": "Institut Teknologi Bandung • Tsari da Fasahar Bayanai • Matsakaicin Makin Sakamako:",
+  "Transcript_IP": "Matsakaicin Maki:",
+  "Transcript_Passed_Credits": "Kiredit da aka Ci:",
+  "Transcript_No": "Lamba",
+  "Transcript_Code": "Lambar Kwas",
+  "Transcript_Course": "Kwas",
+  "Transcript_Type": "Iri",
+  "Transcript_Credits": "Kiredit",
+  "Transcript_Grade": "Maki",
+  "Transcript_Semester": "Zangon Karatu",
+  "Transcript_Grade_Conversion": "Canza Maki",
+  "Transcript_TPB": "Shekarar Shirye-shiryen Bai ɗaya",
+  "Transcript_Sarjana": "Shirin Digiri na Farko",
+  "Transcript_Type_W": "Wajibi",
+  "Transcript_Type_P": "Zabi Cikin Kwas",
+  "Transcript_Type_L": "Zabi Wajen Kwas",
+  "Course_MA1101": "Kalkulus I",
+  "Course_FI1101": "Fiziyya ta Farko I",
+  "Course_KI1101": "Kimiya ta Farko I",
+  "Course_WI1101": "Pancasila (Akidar Kasa)",
+  "Course_WI1102": "Tunanin Kwamfuta",
+  "Course_WI1103": "Gabatarwa ga Ka'idojin Dorewa",
+  "Course_WI1111": "Dakin Gwajin Fiziyya ta Farko",
+  "Course_WI1116": "Dakin Gwajin Mu'amala da Kwamfuta",
+  "Course_II1200": "Gabatarwa ga Tsari da Fasahar Bayanai",
+  "Course_IF1210": "Algorithm da Shirye-shirye 1",
+  "Course_WI2001": "Gabatarwa ga Injiniyanci da Tsari",
+  "Course_WI2005": "Harshen Indonesiya",
+  "Course_WI2011": "Addinin Musulunci",
+  "Course_WI2006": "Ilimin Dan Kasa",
+  "Course_WI2002": "Fahimtar Bayanai da Ilimin Fasahar Zamani",
+  "Course_WI2003": "Wasanni",
+  "Transcript_Grade_Pass": "Ci",
+  "Transcript_Grade_Fail": "Fadi"
 }

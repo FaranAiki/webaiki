@@ -16,7 +16,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Static Routes
   for (const route of routes) {
-    const alternates: Record<string, string> = {};
+    const alternates: import('@/components/layout/Translator').TranslationDict = {};
     for (const locale of locales) {
       alternates[locale] = `${SITE_URL}/${locale}${route}`;
     }
@@ -42,7 +42,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     });
 
     for (const item of newsItems) {
-      const alternates: Record<string, string> = {};
+      const alternates: import('@/components/layout/Translator').TranslationDict = {};
       for (const locale of locales) {
         alternates[locale] = `${SITE_URL}/${locale}/news/${item.id}`;
       }

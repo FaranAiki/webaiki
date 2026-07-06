@@ -137,58 +137,147 @@
   "Dutch": "Belanda",
   "Hausa": "Hausa",
   "Make_Interactive_UAS": "Pembelajaran Interaktif untuk UAS MA1101 ITB",
-  "Make_Interactive_UAS_Description": "Membuat aplikasi berbasis Flutter/Dart yang dapat membantu mahasiswa dalam persiapan ujian akhir semester mata kuliah Matematika Dasar I Institut Teknologi Bandung dengan menggunakan widget-widget interaktif dan juga kecerdasan buatan Gemini untuk membantu pemahaman yang lebih dalam dengan visualisasi konsep yang rumit.",
+  "Make_Interactive_UAS_Description": [
+    "Membangun alat pembelajaran matematika interaktif menggunakan Flutter, Dart, dan FL Chart.",
+    "Memvisualisasikan konsep matematika kompleks secara dinamis untuk membantu pemahaman siswa.",
+    "Merancang antarmuka yang responsif dan ramah pengguna untuk interaksi yang lancar."
+  ],
   "Make_Website": "Situs Personal faranaiki.id",
-  "Make_Website_Description": "Membuat situs utama personal dengan memakai NextJS, TailwindCSS, dan Vercel (sebagai testing) sebagai identitas yang mencakup perkembangan dari diri saya sendiri.",
+  "Make_Website_Description": [
+    "Merekayasa situs web portofolio yang dinamis dan berkinerja tinggi menggunakan NextJS, TailwindCSS, dan TypeScript.",
+    "Mengimplementasikan pengguliran dan animasi yang mulus menggunakan Lenis dan Framer-Motion.",
+    "Merancang struktur database backend yang kuat menggunakan Drizzle dan SQL."
+  ],
   "Make_Nihwm": "NihWM Window Manager",
-  "Make_Nihwm_Description": "Membuat sebuah window manager yang merupakan turunan (hasil fork) dari dynamic window manager (dwm) dalam bahasa C menggunakan library XOrg untuk penggunaan Arch Linux dan sampai sekarang masih dipakai karena sudah dipersonalisasi.",
+  "Make_Nihwm_Description": [
+    "Mengembangkan 'nihwm', window manager X11 ringan yang ditulis sepenuhnya dalam C untuk Linux.",
+    "Mengimplementasikan fungsionalitas manajemen jendela inti dan penanganan input menggunakan XOrg.",
+    "Mengoptimalkan basis kode untuk konsumsi sumber daya minimal dan responsivitas tinggi."
+  ],
   "Lidia_Project": "Analisis Data Integrasi Sosio-Ekonomi Indonesia Emas 2045",
-  "Lidia_Project_Description": "Proyek integrasi data (LIDIA) tingkat provinsi menggunakan proses ETL dan analisis statistik (deskriptif, diagnostik, prediktif, dan preskriptif). Menganalisis hubungan antara APM, IPM, Pengeluaran Per Kapita, Stunting, dan Rata-rata Lama Sekolah untuk menghasilkan rekomendasi kebijakan berbasis data.",
+  "Lidia_Project_Description": [
+    "Merekayasa pipeline ETL menggunakan Python, Pandas, dan Jupyter Notebook.",
+    "Mengintegrasikan Gemini-CLI untuk meningkatkan kemampuan pemrosesan data.",
+    "Menyederhanakan alur kerja data, secara signifikan mengurangi waktu pemrosesan manual."
+  ],
   "Alkyl_Compiler": "Bahasa Pemrograman dan Kompiler Alkyl",
-  "Alkyl_Compiler_Description": "Bahasa pemrograman Alkyl adalah bahasa pemrograman yang pertama kali ditulis dalam C menggunakan LLVM-IR. Proyek ini bertujuan untuk membuat bahasa pemrograman yang lebih mudah dihasilkan oleh kecerdasan buatan, tetapi juga dapat dibaca oleh manusia. Sintaksnya mirip dengan C, tetapi tanpa verbositas/lebih mudah.",
+  "Alkyl_Compiler_Description": [
+    "Merancang dan mengimplementasikan kompiler kustom dari awal menggunakan C dan LLVM.",
+    "Memanfaatkan Valgrind dan GDB untuk manajemen memori dan debugging yang ketat.",
+    "Menerjemahkan konstruksi bahasa tingkat tinggi menjadi kode mesin yang efisien."
+  ],
   "Impact_Module_Author": "Penulis Modul Matematika IMPACT 6.0",
-  "Impact_Module_Author_Description": "Menulis materi pembelajaran untuk Matematika, termasuk sistem persamaan linear dan pertidaksamaan linear, grafik linear, fungsi, dan polinomial dengan masing-masing 4 soal: 2 bahasa Indonesia untuk SSU, 2 bahasa Inggris untuk IUP. Selain itu, membuat 20 soal untuk Try Out IUP.",
+  "Impact_Module_Author_Description": [
+    "Menulis modul pendidikan komprehensif untuk Olimpiade IMPACT 6.0.",
+    "Merancang set soal dan solusi yang ketat untuk menantang siswa SMA terbaik.",
+    "Berkolaborasi dengan rekan akademis untuk memastikan standar konten berkualitas tinggi."
+  ],
   "SAT_Tutor": "Tutor SAT Math & Verbal (Kontrak)",
-  "SAT_Tutor_Description": "Mengajar SAT Verbal dan Mathematics secara rutin setiap minggu kepada kelompok berisi enam siswa SMA dan juga mengevaluasi hasil pretest dan posttest yang difasilitasi oleh Kobi Education.",
+  "SAT_Tutor_Description": [
+    "Mengajar siswa dalam Matematika dan Bahasa Inggris SAT, memberikan pelajaran komprehensif dan strategi yang disesuaikan.",
+    "Membimbing siswa dalam mencapai tujuan penerimaan perguruan tinggi luar negeri mereka."
+  ],
   "Compile_Module_Author": "Pembuat Modul COMPILE STEI-K UTBK",
-  "Compile_Module_Author_Description": "Membuat dua modul dengan tema Kuantitatif dan Induktif dalam subtes Penalaran Umum untuk menjalankan program COMPILE 2026 yang diselenggarakan oleh STEI-K 2025.",
+  "Compile_Module_Author_Description": [
+    "Menulis modul pembelajaran untuk program persiapan COMPILE UTBK.",
+    "Mengkurasi berbagai pertanyaan latihan untuk mempersiapkan siswa menghadapi ujian masuk universitas nasional.",
+    "Memfasilitasi pemahaman topik yang kompleks melalui penjelasan yang terperinci."
+  ],
   "Software_Engineer": "Insinyur Perangkat Lunak (Front End Flutter)",
-  "Software_Engineer_Description": "Membuat dan mengembangkan widget interaktif, seperti grafik interaktif, statistik interaktif untuk memvisualisasikan data, dan pemisah kata untuk kurva belajar yang lebih mudah menggunakan Flutter.",
+  "Software_Engineer_Description": [
+    "Mengembangkan dan memelihara fitur inti dari platform Analitica sebagai Software Engineer.",
+    "Mengoptimalkan kinerja aplikasi dan merampingkan basis kode untuk skalabilitas yang lebih baik.",
+    "Berkolaborasi dengan tim lintas fungsi untuk memberikan solusi perangkat lunak berkualitas tinggi."
+  ],
   "Mathematics_Private_Tutor": "Guru Les Privat Matematika",
-  "Mathematics_Private_Tutor_Description": "Memberikan bimbingan belajar satu-satu kepada siswa dalam olimpiade matematika untuk kompetisi sekolah menengah. Mengembangkan rencana pelajaran yang dipersonalisasi untuk membantu siswa mencapai tujuan akademik mereka dan meningkatkan pemahaman mereka tentang konsep-konsep yang kompleks.",
+  "Mathematics_Private_Tutor_Description": [
+    "Menyampaikan sesi bimbingan matematika yang dipersonalisasi dengan fokus pada topik tingkat Olimpiade.",
+    "Mengevaluasi kemajuan siswa dan menyesuaikan metode pengajaran untuk mengatasi kelemahan individu.",
+    "Mendorong pemikiran analitis dan keterampilan pemecahan masalah tingkat lanjut pada siswa."
+  ],
   "Education_Team": "Tim Edukasi",
-  "Education_Team_Description": "Membantu dalam pembuatan materi konten pendidikan, seperti Matematika Wajib, dan membuat 600 soal fisika, kimia, dan matematika untuk Tes Kemampuan Akademik (TKA) sekolah menengah atas. Mendukung perencanaan dan pelaksanaan program pembelajaran untuk siswa dan para profesional, dan membantu dalam penggunaan kecerdasan buatan.",
+  "Education_Team_Description": [
+    "Berkontribusi pada Tim Edukasi di Analitica dengan mengembangkan konten pendidikan khusus.",
+    "Menganalisis data kinerja siswa untuk menyempurnakan dan meningkatkan materi pembelajaran.",
+    "Mendukung pembuatan alat penilaian yang digunakan oleh ribuan siswa."
+  ],
   "ITB": "Institut Teknologi Bandung",
   "Sponsorship_Wisokto_ITB": "Sponsorship Wisokto ITB 2025, Panitia WisNight, dan Promosi Nipis Madu",
-  "Sponsorship_Wisokto_ITB_Description": "Menghubungi dan mengontak beberapa perusahaan untuk bekerja sama dalam acara Wisuda Oktober 2025 Institut Teknologi Bandung, seperti Mamikos. Selain itu, menjadi panitia yang membantu dalam proses acara WisNight, seperti mengangkut tujuh kardus Nipis Madu. Kemudian, membuat empat video promosi Nipis Madu yang dibantu oleh panitia lainnya.",
+  "Sponsorship_Wisokto_ITB_Description": [
+    "Mengidentifikasi dan menjalin kerja sama strategis serta mencari sponsor dari berbagai pihak."
+  ],
   "Impact_Web_Lead": "Ketua Tim Pengembangan Web Impact 6.0",
-  "Impact_Web_Lead_Description": "Mengelola situs web untuk olimpiade IMPACT 6.0 oleh Sekolah Teknik Elektro Informatika - Komputasi, yang dibuat untuk kompetisi bagi siswa SMA, termasuk mengelola front end, back end, Moodle, dan Judgel. Selain itu, framework untuk frontend menggunakan NextJS, TailwindCSS, dan TypeScript, serta untuk backend menggunakan database SQL Supabase dengan Object-Relational Mapping Drizzle.",
+  "Impact_Web_Lead_Description": [
+    "Merancang dan mengelola front-end dan back-end dari situs web Olimpiade IMPACT 6.0, yang digunakan oleh lebih dari 400 tim (~1000 siswa SMA) di tingkat nasional.",
+    "Mengembangkan aplikasi full-stack yang tangguh menggunakan NextJS, TailwindCSS, dan TypeScript untuk frontend berkinerja tinggi.",
+    "Merekayasa arsitektur backend memanfaatkan database SQL Supabase dipasangkan dengan Prisma ORM untuk manajemen data yang andal dan terukur.",
+    "Mengelola platform Moodle dan Judgel untuk memastikan lingkungan kompetitif yang lancar bagi seluruh peserta.",
+    "Mengelola dan mengoordinasikan tim pengembangan front-end dan back-end untuk memastikan pengiriman proyek yang efisien."
+  ],
   "Treasurer_SYNC": "Bendahara Acara Gathering STEI-K",
   "STEI-K": "Sekolah Teknik Elektro dan Informatika - Komputasi",
-  "Treasurer_SYNC_Description": "Mendapatkan sponsorship senilai satu juta untuk acara perkumpulan fakultas SYNC: Say Yes to New Connections dan membantu dalam mengurus keuangan.",
+  "Treasurer_SYNC_Description": [
+    "Mengelola catatan keuangan dan penganggaran untuk Acara Kumpul SYNC STEI-K.",
+    "Memproses transaksi, melacak pengeluaran, dan menyiapkan laporan keuangan terperinci.",
+    "Memastikan alokasi dana organisasi yang transparan dan efisien."
+  ],
   "IT_Club_Vice_Renpy": "Wakil Ketua Pelaksana Projek Akhir IT Club 2024",
-  "IT_Club_Vice_Renpy_Description": "Mengawasi pembuatan permainan (gim) dalam bahasa Python menggunakan RenPy berbentuk visual novel.",
+  "IT_Club_Vice_Renpy_Description": [
+    "Menjabat sebagai Wakil Ketua, mengorganisir kegiatan klub dan membimbing anggota.",
+    "Mengajarkan konsep pengembangan game menggunakan mesin novel visual Ren'Py.",
+    "Membimbing siswa dalam logika pemrograman dan penceritaan interaktif."
+  ],
   "IT_Club_Tutor": "Pengajar Klub Informatika",
-  "IT_Club_Tutor_Description": "Mengajari anggota Klub Informatika mengenai Python dan pengembangan situs.",
+  "IT_Club_Tutor_Description": [
+    "Membimbing siswa SMA dalam pemrograman dasar dan konsep TI.",
+    "Mengembangkan rencana pelajaran yang menarik dan latihan pengkodean praktis.",
+    "Mendorong lingkungan belajar yang kolaboratif dan suportif di dalam klub."
+  ],
   "Student_Club_Member": "Anggota Klub Siswa",
-  "Student_Club_Member_Description": "Menjadi anggota dari Klub Siswa SMA Negeri 1 Kota Depok yang aktif mengikuti kontes dan olimpiade, seperti meraih medali perunggu dalam KMNR ke-19.",
+  "Student_Club_Member_Description": [
+    "Berpartisipasi aktif dalam acara dan inisiatif Student Club 1 Depok.",
+    "Berkolaborasi dengan rekan sebaya untuk mengorganisir kegiatan pembangunan komunitas.",
+    "Berkontribusi pada tujuan klub melalui kerja sama tim yang berdedikasi."
+  ],
   "English_Club_Member": "Anggota Klub Inggris",
-  "English_Club_Member_Description": "Membuat dan mengadaptasi konten-konten seperti cerita dongeng \"Ugly Duckling\".",
+  "English_Club_Member_Description": [
+    "Meningkatkan keterampilan komunikasi dan berbicara di depan umum.",
+    "Membantu dalam pembuatan konten, salah satunya 'The Ugly Duckling'."
+  ],
   "NBK_Member": "Anggota Klub Nihongo Benkyoukai",
-  "NBK_Member_Description": "Mengikuti kegiatan klub yang berorientasi Jepang dan mempelajari bahasanya.",
+  "NBK_Member_Description": [
+    "Mempelajari bahasa dan budaya Jepang sebagai anggota Nihongo Benkyoukai."
+  ],
   "PARAS": "Desainer Logo dan Penyunting Naskah MC PARAS Glorigion 1445H",
-  "PARAS_Description": "Mendesain logo utama dari acara PARAS (Paket Ramadan Spesial) Glorigion 2024 melalui kerja sama dengan desainer lainnya dan menyunting dan mengedit tata letak naskah untuk Master of Ceremony.",
+  "PARAS_Description": [
+    "Berkontribusi pada organisasi acara PARAS di SMA Negeri 1 Kota Depok.",
+    "Berkolaborasi dalam merancang dan memproduksi desain logo acara.",
+    "Turut serta membantu dalam penyusunan dan penyuntingan naskah pembawa acara (MC)."
+  ],
   "Concerto": "Penanggung Jawab Tingkat Final Lomba Concerto",
-  "Concerto_Description": "Membuat, mengoreksi, mengoordinasi, dan mengawasi soal-soal perlombaan, seperti Matematika, IPA, dan IPS, yang dibuat untuk tingkat final perlombaan.",
+  "Concerto_Description": [
+    "Mengelola operasi dan logistik acara untuk pertemuan Klub Siswa Concerto.",
+    "Berkolaborasi dengan anggota tim untuk merencanakan dan melaksanakan kegiatan yang menarik.",
+    "Menangani pendaftaran peserta dan memberikan dukungan di lokasi."
+  ],
   "Paragon_Scholarship_Title": "Paragon Scholarship Program Excellence Grantee Angkatan 2025",
-  "Paragon_Scholarship_Desc": "Penerima beasiswa Paragon (Paragon Scholarship Program Excellence) angkatan 2025.",
+  "Paragon_Scholarship_Desc": [
+    "Meraih Beasiswa Paragon yang sangat kompetitif atas keunggulan akademis dan potensi kepemimpinan.",
+    "Berpartisipasi dalam pelatihan kepemimpinan dan program pengembangan masyarakat."
+  ],
   "PT Paragon": "PT Paragon",
   "ALTH_Project": "ALTH: Aku Lupa Tandai Hadir",
-  "ALTH_Project_Description": "ALTH (Aku Lupa Tandai Hadir) adalah aplikasi inovatif yang dirancang khusus bagi mahasiswa ITB untuk mengatasi masalah kelalaian dalam melakukan presensi. Dikembangkan menggunakan Flutter dan memanfaatkan integrasi Burp Suite, aplikasi ini secara otomatis mengirimkan sinyal GET ke portal SIX dan memproses data melalui cookie hasil autentikasi Microsoft SSO. Walaupun memiliki kapabilitas teknis untuk mengirimkan sinyal POST, ALTH dikembangkan dengan integritas tinggi sebagai alat pengingat cerdas, bukan untuk manajemen kehadiran (titip absen).",
+  "ALTH_Project_Description": [
+    "Melakukan burpsuite untuk menganalisis cara penggunaan SSO dan Cookies",
+    "Mengembangkan aplikasi menggunakan Flutter dan Dart pengingat \"tandai hadir\" untuk mahasiswa Institut Teknologi Bandung"
+  ],
   "": "",
   "Navigation": "Navigasi",
   "GDG_ITB_Title": "Google Developer Group Campus on ITB - Product Manager Explorer",
-  "GDG_ITB_Description": "Mempelajari dasar-dasar manajemen produk, melakukan riset pengguna, dan membantu dalam penyusunan peta jalan produk untuk inisiatif teknologi di lingkungan kampus.",
+  "GDG_ITB_Description": [
+    "Belajar mengenai Product Management dari basic to advanced",
+    "Belajar berempati kepada pengguna"
+  ],
   "Presentation_Mode": "Mode Presentasi",
   "Presentation_Modern": "Modern",
   "Presentation_Cinematic": "Sinematik",
@@ -210,7 +299,11 @@
   "Dismiss": "Tutup",
   "Cancel": "Batal",
   "National_Statistics_Competition_Prep": "Persiapan Kompetisi Statistika Nasional",
-  "National_Statistics_Competition_Prep_Description": "Mempelajari metode analisis dan statistika seperti penggunaan ARIMA, ANOVA, regresi linier, dan pengujian hipotesis secara rigorous sebagai persiapan untuk Kompetisi Statistika Nasional.",
+  "National_Statistics_Competition_Prep_Description": [
+    "Mempersiapkan dan memodelkan data statistik menggunakan Probabilitas & Statistik, SARIMAX, dan MANOVA.",
+    "Memprogram skrip analisis data ekstensif menggunakan Python dan Jupyter Notebooks.",
+    "Memvisualisasikan kumpulan data kompleks untuk memperoleh wawasan yang dapat ditindaklanjuti untuk kompetisi nasional."
+  ],
   "Open": "Buka",
   "Not_Available": "Tidak tersedia",
   "No_Documents_Available": "Belum ada dokumen.",
@@ -238,9 +331,17 @@
   "Click_To_Close": "Klik untuk menutup",
   "Logo_Alt": "Logo Faran Aiki",
   "Jump_Game_Project": "Game Jump!",
-  "Jump_Game_Description": "Game platformer sederhana mirip Geometry Dash yang kubuat pakai C# dan Visual Studio. Orang tuaku dulu pernah mainin game ini juga. Dari sini, aku juga belajar penggunaan FPS/Time.deltaTime yang baik dan benar.",
+  "Jump_Game_Description": [
+    "Membuat permainan platformer yang menantang menggunakan C# dan Visual Studio.",
+    "Mengimplementasikan mekanika lompatan berbasis fisika dan deteksi tabrakan.",
+    "Merancang tata letak level dan mengintegrasikan sistem penilaian untuk meningkatkan gameplay."
+  ],
   "Below_Below_Project": "Below Below",
-  "Below_Below_Description": "Game eksplorasi tambang berbasis narasi di mana pemain bereinkarnasi sebagai budak tambang. Game ini menggabungkan eksplorasi 2D dan mekanik mining 3D, world generation dinamis, serta sistem survival yang kompleks seperti crafting dan interaksi NPC. Dibuat menggunakan Godot 4.2 dan GDScript.",
+  "Below_Below_Description": [
+    "Merancang dan memprogram 'Below Below', permainan video yang menarik menggunakan Godot 4.2 dan GDScript.",
+    "Mengembangkan mekanika permainan, interaksi fisika, dan kontrol pemain.",
+    "Membuat aset seni piksel kustom dan mengintegrasikan efek suara untuk pengalaman yang kohesif."
+  ],
   "Point_System_Summary": "Ringkasan Sistem Poin",
   "Total_Points": "Total Poin",
   "Important_Highlights": "Sorotan Penting",
@@ -286,7 +387,11 @@
   "Indonesia": "Indonesia",
   "Semester": "Semester",
   "Olive_Divergence": "Olive Divergence",
-  "Olive_Divergence_Desc": "Fork dari Olive Video Editor versi 0.1.x, berfokus pada eksperimen fitur dan pengembangan berbasis komunitas.",
+  "Olive_Divergence_Desc": [
+    "Memprogram 'Olive Divergence' menggunakan C++ dan kerangka kerja Qt.",
+    "Merancang antarmuka pengguna grafis dengan elemen visual yang kaya dan widget kustom.",
+    "Mengelola status aplikasi dan aliran data secara efisien dalam loop acara Qt."
+  ],
   "Resume": "Resume",
   "Education": "Pendidikan",
   "Data": "Data",
@@ -373,7 +478,11 @@
   "Content": "Isi",
   "ONMIPA_Award_Title": "Medali Perak ONMIPA-PT 2026 Bidang Matematika",
   "ONMIPA_Award_Company": "Kemendikti & Belmawa",
-  "ONMIPA_Award_Desc": "ONMIPA-PT adalah olimpiade sains tingkat mahasiswa paling bergengsi di Indonesia yang mencakup bidang Matematika, Fisika, Kimia, dan Biologi. Saya berhasil meraih medali perak (Silver Medal) pada bidang Matematika dalam kompetisi ini. Hal yang menjadikan pencapaian ini sebuah anomali adalah karena saya merupakan mahasiswa semester 2 dari jurusan Sistem dan Teknologi Informasi (STI) yang berhasil bersaing di level nasional melawan mahasiswa dari jurusan matematika murni.",
+  "ONMIPA_Award_Desc": [
+    "Meraih Medali Perak dalam kompetisi Matematika bergengsi ONMIPA-PT 2026.",
+    "Menunjukkan keterampilan pemecahan masalah yang luar biasa dan penguasaan konsep matematika tingkat lanjut.",
+    "Berkompetisi melawan mahasiswa universitas top secara nasional, mencetak prestasi unggul meski masih berada di semester dua program studi Sistem dan Teknologi Informasi."
+  ],
   "Delete": "Hapus",
   "Tech_Reference": "Referensi Arsitektur",
   "Framework_Desc": "Dibangun dengan Next.js 15, menggunakan App Router terbaru, React Server Components (RSC), dan Turbopack untuk performa yang sangat cepat.",
@@ -404,8 +513,12 @@
   "Recaptcha_Protected": "Dilindungi oleh reCAPTCHA. {privacy} & {terms} berlaku.",
   "Privacy": "Privasi",
   "Terms": "Ketentuan",
-  "Superskill_Project": "Superskill",
-  "Superskill_Description": "Superskill adalah game yang melatih logika, kemampuan berpikir, kemampuan numerik, dan sebagainya menggunakan Flutter.",
+  "Superskill_Project": "Cognitive Garden",
+  "Superskill_Description": [
+    "Mengembangkan Cognitive Garden, aplikasi lintas platform canggih menggunakan Flutter dan Dart.",
+    "Merancang permainan yang dapat melatih kognisi otak dan menstimulasi otak.",
+    "Merancang antarmuka pengguna yang intuitif dan menarik dengan animasi yang kaya."
+  ],
   "Terminal_Title": "Konsol Terminal",
   "Skills_Languages": "Bahasa Pemrograman",
   "Skills_Frameworks": "Kerangka Kerja & Pustaka",
@@ -414,8 +527,16 @@
   "Data_Science": "Sains Data",
   "Compilers": "Desain Kompilator",
   "Algorithms": "Algoritma & Struktur Data",
-  "Education_ITB_Description": "Menempuh gelar Sarjana di program studi Sistem dan Teknologi Informasi.",
-  "Education_SMA_Description": "Lulus dengan fokus pada Kurikulum Merdeka: Informatika.",
+  "Education_ITB_Description": [
+    "Mengejar gelar Sarjana Sistem dan Teknologi Informasi.",
+    "Mempertahankan catatan akademis yang kuat dengan fokus pada rekayasa perangkat lunak dan ilmu data.",
+    "Berpartisipasi aktif dalam proyek teknis dan organisasi mahasiswa."
+  ],
+  "Education_SMA_Description": [
+    "Lulus dengan fokus pada Kurikulum Merdeka: Informatika.",
+    "Berprestasi dalam bidang ilmu komputer, matematika, dan sains.",
+    "Berpartisipasi aktif dalam klub ekstrakurikuler TI dan akademik."
+  ],
   "Or_Continue_With": "Atau Lanjutkan Dengan",
   "Loading": "Memuat...",
   "Full_Description_Portfolio": "Deskripsi Lengkap (Portfolio)",
@@ -492,5 +613,40 @@
   "Message": "Pesan",
   "Success_Message": "Pesan berhasil dikirim!",
   "Error_Message": "Gagal mengirim pesan.",
-  "View_Project": "Lihat Proyek"
+  "View_Project": "Lihat Proyek",
+  "Academic_Transcript": "Transkrip Akademik",
+  "Transcript_Subtitle": "Institut Teknologi Bandung • Sistem dan Teknologi Informasi • IPK:",
+  "Transcript_IP": "IP:",
+  "Transcript_Passed_Credits": "SKS Lulus:",
+  "Transcript_No": "No",
+  "Transcript_Code": "Kode",
+  "Transcript_Course": "Mata Kuliah",
+  "Transcript_Type": "Sifat",
+  "Transcript_Credits": "SKS",
+  "Transcript_Grade": "Nilai",
+  "Transcript_Semester": "Semester Pengambilan",
+  "Transcript_Grade_Conversion": "Konversi Nilai",
+  "Transcript_TPB": "Tahap Persiapan Bersama",
+  "Transcript_Sarjana": "Tahap Sarjana",
+  "Transcript_Type_W": "Wajib",
+  "Transcript_Type_P": "Pilihan dalam Prodi",
+  "Transcript_Type_L": "Pilihan luar Prodi",
+  "Course_MA1101": "Matematika I",
+  "Course_FI1101": "Fisika Dasar I",
+  "Course_KI1101": "Kimia Dasar I",
+  "Course_WI1101": "Pancasila",
+  "Course_WI1102": "Berpikir Komputasional",
+  "Course_WI1103": "Pengantar Prinsip Keberlanjutan",
+  "Course_WI1111": "Laboratorium Fisika Dasar",
+  "Course_WI1116": "Laboratorium Interaksi Komputer",
+  "Course_II1200": "Pengantar Sistem dan Teknologi Informasi",
+  "Course_IF1210": "Algoritma dan Pemrograman 1",
+  "Course_WI2001": "Pengenalan Rekayasa dan Desain",
+  "Course_WI2005": "Bahasa Indonesia",
+  "Course_WI2011": "Agama Islam",
+  "Course_WI2006": "Kewarganegaraan",
+  "Course_WI2002": "Literasi Data dan Inteligensi Artifisial",
+  "Course_WI2003": "Olah Raga",
+  "Transcript_Grade_Pass": "Lulus",
+  "Transcript_Grade_Fail": "Gagal"
 }

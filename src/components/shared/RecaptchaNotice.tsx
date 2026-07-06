@@ -3,7 +3,7 @@
 import React from 'react';
 
 interface RecaptchaNoticeProps {
-  dict: Record<string, string>;
+  dict: import('@/components/layout/Translator').TranslationDict;
   className?: string;
 }
 

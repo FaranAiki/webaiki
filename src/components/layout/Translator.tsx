@@ -1,27 +1,47 @@
-import 'server-only'; // Ensures this only runs on the server
+import 'server-only';
 
-const dictionaries: Record<string, () => Promise<Record<string, string>>> = {
-  en: () => import('../../../public/locales/en.json').then((module) => module.default),
-  id: () => import('../../../public/locales/id.json').then((module) => module.default),
-  zh: () => import('../../../public/locales/zh.json').then((module) => module.default),
-  jp: () => import('../../../public/locales/jp.json').then((module) => module.default),
-  ru: () => import('../../../public/locales/ru.json').then((module) => module.default),
-  fr: () => import('../../../public/locales/fr.json').then((module) => module.default),
-  ar: () => import('../../../public/locales/ar.json').then((module) => module.default),
-  es: () => import('../../../public/locales/es.json').then((module) => module.default),
-  ko: () => import('../../../public/locales/ko.json').then((module) => module.default),
-  de: () => import('../../../public/locales/de.json').then((module) => module.default),
-  nl: () => import('../../../public/locales/nl.json').then((module) => module.default),
-  ha: () => import('../../../public/locales/ha.json').then((module) => module.default),
-  he: () => import('../../../public/locales/he.json').then((module) => module.default),
-  el: () => import('../../../public/locales/el.json').then((module) => module.default),
-  hi: () => import('../../../public/locales/hi.json').then((module) => module.default),
-  pt: () => import('../../../public/locales/pt.json').then((module) => module.default),
-  bn: () => import('../../../public/locales/bn.json').then((module) => module.default),
-  vi: () => import('../../../public/locales/vi.json').then((module) => module.default),
+import en from '../../../public/locales/en.json';
+import id from '../../../public/locales/id.json';
+import zh from '../../../public/locales/zh.json';
+import jp from '../../../public/locales/jp.json';
+import ru from '../../../public/locales/ru.json';
+import fr from '../../../public/locales/fr.json';
+import ar from '../../../public/locales/ar.json';
+import es from '../../../public/locales/es.json';
+import ko from '../../../public/locales/ko.json';
+import de from '../../../public/locales/de.json';
+import nl from '../../../public/locales/nl.json';
+import ha from '../../../public/locales/ha.json';
+import he from '../../../public/locales/he.json';
+import el from '../../../public/locales/el.json';
+import hi from '../../../public/locales/hi.json';
+import pt from '../../../public/locales/pt.json';
+import bn from '../../../public/locales/bn.json';
+import vi from '../../../public/locales/vi.json';
+
+export type TranslationDict = Record<string, string>;
+
+const dictionaries: Record<string, Record<string, string>> = {
+  en: en as unknown as Record<string, string>,
+  id: id as unknown as Record<string, string>,
+  zh: zh as unknown as Record<string, string>,
+  jp: jp as unknown as Record<string, string>,
+  ru: ru as unknown as Record<string, string>,
+  fr: fr as unknown as Record<string, string>,
+  ar: ar as unknown as Record<string, string>,
+  es: es as unknown as Record<string, string>,
+  ko: ko as unknown as Record<string, string>,
+  de: de as unknown as Record<string, string>,
+  nl: nl as unknown as Record<string, string>,
+  ha: ha as unknown as Record<string, string>,
+  he: he as unknown as Record<string, string>,
+  el: el as unknown as Record<string, string>,
+  hi: hi as unknown as Record<string, string>,
+  pt: pt as unknown as Record<string, string>,
+  bn: bn as unknown as Record<string, string>,
+  vi: vi as unknown as Record<string, string>,
 };
 
 export const getDictionary = async (locale: string): Promise<Record<string, string>> => {
-  const loader = dictionaries[locale] || dictionaries.en;
-  return loader();
+  return dictionaries[locale] || dictionaries.en;
 };

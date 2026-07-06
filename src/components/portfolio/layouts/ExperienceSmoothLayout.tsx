@@ -64,9 +64,19 @@ export default function ExperienceSmoothLayout() {
                                 </div>
                             </div>
                             <p className="text-xl font-medium italic text-theme-700 dark:text-theme-300 opacity-80">{job.company}</p>
-                            <HoverableWords className={`${justifyClass} ${descText} text-lg leading-relaxed`}>
-                                {formatCJK(job.description, lang)}
-                            </HoverableWords>
+                            <div className={`${justifyClass} ${descText} text-lg leading-relaxed`}>
+                                {Array.isArray(job.description) ? (
+                                    <ul className="list-disc pl-6 space-y-2">
+                                        {job.description.map((item, i) => (
+                                            <li key={i}>
+                                                <HoverableWords>{formatCJK(item, lang)}</HoverableWords>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                ) : (
+                                    <HoverableWords>{formatCJK(job.description, lang)}</HoverableWords>
+                                )}
+                            </div>
                         </div>
                         <div className="w-full md:w-1/2">
                             <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl transition-transform duration-700 group-hover:scale-[1.02] bg-theme-surface-strong">

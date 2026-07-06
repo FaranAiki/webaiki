@@ -25,6 +25,16 @@ const withPWA = withPWAInit({
         urlPattern: /^https:\/\/.*\.vercel\.app\/.*/,
         handler: 'NetworkOnly',
       },
+      {
+        // Don't intercept RSC payload requests
+        urlPattern: /.*_rsc=1.*/,
+        handler: 'NetworkOnly',
+      },
+      {
+        // Don't intercept fonts
+        urlPattern: /^\/_next\/static\/media\//,
+        handler: 'NetworkOnly',
+      },
     ],
   },
 });

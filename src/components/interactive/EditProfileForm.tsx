@@ -10,7 +10,7 @@ import { getErrorMessage } from '@/lib/errors';
 import { MessageSquare, Briefcase } from 'lucide-react';
 
 interface EditProfileFormProps {
-  dict: Record<string, string>;
+  dict: import('@/components/layout/Translator').TranslationDict;
   user: {
     email?: string;
     user_metadata?: {

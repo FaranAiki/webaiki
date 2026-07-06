@@ -99,9 +99,17 @@ export default function ExperiencePresentationLayout() {
                                         <BookmarkButton itemType="experience" itemId={job.title} initialBookmarked={bookmarkedItemIds.includes(job.title)} isLoggedIn={!!isLoggedIn} className="relative" />
                                     </div>
                                 </div>
-                                <HoverableWords className={`text-base md:text-lg ${justifyClass} ${descText} font-medium`}>
-                                    {job.description}
-                                </HoverableWords>
+                                <div className={`text-base md:text-lg ${justifyClass} ${descText} font-medium`}>
+                                    {Array.isArray(job.description) ? (
+                                        <ul className="list-disc pl-5 space-y-2">
+                                            {job.description.map((item, i) => (
+                                                <li key={i}><HoverableWords>{formatCJK(item, lang)}</HoverableWords></li>
+                                            ))}
+                                        </ul>
+                                    ) : (
+                                        <HoverableWords>{formatCJK(job.description, lang)}</HoverableWords>
+                                    )}
+                                </div>
 
                                 {job.url && (
                                     <a href={job.url} target="_blank" rel="noopener noreferrer" aria-label={`${translations?.visit_external_link_text} ${job.title}`} className="flex items-center gap-2 px-6 py-3 bg-theme-500 text-white rounded-full font-bold text-sm hover:bg-theme-600 transition-all w-fit shadow-lg hover:scale-105">
@@ -170,9 +178,17 @@ export default function ExperiencePresentationLayout() {
                                         <div className={`p-1 rounded-sm mb-4 inline-block bg-theme-surface-strong text-theme-700 dark:text-theme-300 text-xs font-black px-2 py-0.5`}>
                                             {job.date}
                                         </div>
-                                        <HoverableWords className={`text-lg md:text-xl leading-relaxed font-medium text-foreground`}>
-                                            {formatCJK(job.description, lang)}
-                                        </HoverableWords>
+                                        <div className={`text-lg md:text-xl leading-relaxed font-medium text-foreground`}>
+                                            {Array.isArray(job.description) ? (
+                                                <ul className="list-disc pl-5 space-y-2">
+                                                    {job.description.map((item, i) => (
+                                                        <li key={i}><HoverableWords>{formatCJK(item, lang)}</HoverableWords></li>
+                                                    ))}
+                                                </ul>
+                                            ) : (
+                                                <HoverableWords>{formatCJK(job.description, lang)}</HoverableWords>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -204,9 +220,17 @@ export default function ExperiencePresentationLayout() {
                                     </div>
 
                                     <div className="max-w-xl">
-                                        <HoverableWords className={`text-lg md:text-xl leading-relaxed font-medium text-inherit`}>
-                                            {job.description}
-                                        </HoverableWords>
+                                        <div className={`text-lg md:text-xl leading-relaxed font-medium text-inherit`}>
+                                            {Array.isArray(job.description) ? (
+                                                <ul className="list-disc pl-5 space-y-2">
+                                                    {job.description.map((item, i) => (
+                                                        <li key={i}><HoverableWords>{formatCJK(item, lang)}</HoverableWords></li>
+                                                    ))}
+                                                </ul>
+                                            ) : (
+                                                <HoverableWords>{formatCJK(job.description, lang)}</HoverableWords>
+                                            )}
+                                        </div>
 
                                         {job.url && (
                                             <a href={job.url} target="_blank" rel="noopener noreferrer" aria-label={`${translations?.visit_external_link_text} ${job.title}`} className="mt-8 flex items-center gap-2 px-6 py-3 bg-theme-500 text-white rounded-full font-bold text-sm hover:bg-theme-600 transition-all w-fit shadow-theme-shadow hover:scale-105">

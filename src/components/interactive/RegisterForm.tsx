@@ -11,7 +11,7 @@ import { getErrorMessage } from '@/lib/errors';
 import OAuthButtons from './OAuthButtons';
 
 interface RegisterFormProps {
-  dict: Record<string, string>;
+  dict: import('@/components/layout/Translator').TranslationDict;
   lang: string;
 }
 
