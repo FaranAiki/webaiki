@@ -1,70 +1,38 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { 
-  Inter, 
-  Roboto, 
-  Open_Sans, 
-  Lato, 
-  Montserrat, 
-  Merriweather, 
-  Playfair_Display,
-  Source_Sans_3,
-  JetBrains_Mono,
-  Roboto_Mono,
-  Fira_Code,
-  Dancing_Script,
-  Great_Vibes,
-  Caveat,
-  Bebas_Neue,
-  Space_Grotesk,
-  Comfortaa
-} from 'next/font/google';
+import { Inter, Roboto_Mono } from 'next/font/google';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter', preload: false });
-const roboto = Roboto({ weight: ['400', '700'], subsets: ['latin'], variable: '--font-roboto', preload: false });
-const openSans = Open_Sans({ subsets: ['latin'], variable: '--font-open-sans', preload: false });
-const lato = Lato({ weight: ['400', '700'], subsets: ['latin'], variable: '--font-lato', preload: false });
-const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-montserrat', preload: false });
-const merriweather = Merriweather({ weight: ['400', '700'], subsets: ['latin'], variable: '--font-merriweather', preload: false });
-const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', preload: false });
-const sourceSans = Source_Sans_3({ subsets: ['latin'], variable: '--font-source-sans', preload: false });
-const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrains-mono', preload: false });
-const robotoMono = Roboto_Mono({ subsets: ['latin'], variable: '--font-roboto-mono', preload: false });
-const firaCode = Fira_Code({ subsets: ['latin'], variable: '--font-fira-code', preload: false });
-const dancingScript = Dancing_Script({ subsets: ['latin'], variable: '--font-dancing-script', preload: false });
-const greatVibes = Great_Vibes({ weight: ['400'], subsets: ['latin'], variable: '--font-great-vibes', preload: false });
-const caveat = Caveat({ subsets: ['latin'], variable: '--font-caveat', preload: false });
-const bebasNeue = Bebas_Neue({ weight: ['400'], subsets: ['latin'], variable: '--font-bebas-neue', preload: false });
-const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-space-grotesk', preload: false });
-const comfortaa = Comfortaa({ subsets: ['latin'], variable: '--font-comfortaa', preload: false });
+// Only load the critical layout fonts via Next.js to prevent massive CSS bloat and preconnect bugs
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const robotoMono = Roboto_Mono({ subsets: ['latin'], variable: '--font-roboto-mono' });
 
 export const fonts = [
   { name: 'Default', variable: '', class: '' },
   // Modern Sans-Serif (The "Gacor" ones)
   { name: 'Inter', variable: inter.variable, class: inter.className },
-  { name: 'Space Grotesk', variable: spaceGrotesk.variable, class: spaceGrotesk.className },
-  { name: 'Montserrat', variable: montserrat.variable, class: montserrat.className },
-  { name: 'Open Sans', variable: openSans.variable, class: openSans.className },
-  { name: 'Roboto', variable: roboto.variable, class: roboto.className },
-  { name: 'Lato', variable: lato.variable, class: lato.className },
-  { name: 'Source Sans 3', variable: sourceSans.variable, class: sourceSans.className },
-  { name: 'Comfortaa', variable: comfortaa.variable, class: comfortaa.className },
-  { name: 'Bebas Neue', variable: bebasNeue.variable, class: bebasNeue.className },
+  { name: 'Space Grotesk', variable: '--font-space-grotesk', class: 'font-space-grotesk' },
+  { name: 'Montserrat', variable: '--font-montserrat', class: 'font-montserrat' },
+  { name: 'Open Sans', variable: '--font-open-sans', class: 'font-open-sans' },
+  { name: 'Roboto', variable: '--font-roboto', class: 'font-roboto' },
+  { name: 'Lato', variable: '--font-lato', class: 'font-lato' },
+  { name: 'Source Sans 3', variable: '--font-source-sans', class: 'font-source-sans' },
+  { name: 'Comfortaa', variable: '--font-comfortaa', class: 'font-comfortaa' },
+  { name: 'Bebas Neue', variable: '--font-bebas-neue', class: 'font-bebas-neue' },
   
   // High-End Serifs
-  { name: 'Playfair Display', variable: playfair.variable, class: playfair.className },
-  { name: 'Merriweather', variable: merriweather.variable, class: merriweather.className },
+  { name: 'Playfair Display', variable: '--font-playfair', class: 'font-playfair' },
+  { name: 'Merriweather', variable: '--font-merriweather', class: 'font-merriweather' },
 
   // Gacor Monospace (Coding vibe)
-  { name: 'JetBrains Mono', variable: jetbrainsMono.variable, class: jetbrainsMono.className },
-  { name: 'Fira Code', variable: firaCode.variable, class: firaCode.className },
+  { name: 'JetBrains Mono', variable: '--font-jetbrains-mono', class: 'font-jetbrains-mono' },
+  { name: 'Fira Code', variable: '--font-fira-code', class: 'font-fira-code' },
   { name: 'Roboto Mono', variable: robotoMono.variable, class: robotoMono.className },
 
   // Artistic & Decorative
-  { name: 'Dancing Script', variable: dancingScript.variable, class: dancingScript.className },
-  { name: 'Caveat', variable: caveat.variable, class: caveat.className },
-  { name: 'Great Vibes', variable: greatVibes.variable, class: greatVibes.className },
+  { name: 'Dancing Script', variable: '--font-dancing-script', class: 'font-dancing-script' },
+  { name: 'Caveat', variable: '--font-caveat', class: 'font-caveat' },
+  { name: 'Great Vibes', variable: '--font-great-vibes', class: 'font-great-vibes' },
 
   // The Meme / Legend
   { name: 'Comic Sans', variable: '--font-comic-sans', class: 'font-comic-sans' },
@@ -207,11 +175,28 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     
     // 1. Font Class on BODY (Global)
     fonts.forEach(f => {
-      if (f.class) body.classList.remove(f.class);
+      if (f.class && !f.class.startsWith('font-')) body.classList.remove(f.class);
     });
+    // Remove all dynamically injected font classes
+    body.className = body.className.replace(/\bfont-[a-zA-Z0-9-]+\b/g, '').trim();
+
     const activeFont = fonts.find(f => f.name === font);
     if (activeFont && activeFont.class) {
       body.classList.add(activeFont.class);
+      
+      // Inject Google Font dynamically if not a default Next.js font
+      if (activeFont.class.startsWith('font-') && activeFont.name !== 'Comic Sans') {
+        const fontId = 'dynamic-google-font';
+        let link = document.getElementById(fontId) as HTMLLinkElement;
+        if (!link) {
+          link = document.createElement('link');
+          link.id = fontId;
+          link.rel = 'stylesheet';
+          document.head.appendChild(link);
+        }
+        const formattedName = activeFont.name.replace(/ /g, '+');
+        link.href = `https://fonts.googleapis.com/css2?family=${formattedName}:wght@400;700&display=swap`;
+      }
     }
 
     // 2. Color Class on ROOT

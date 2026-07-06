@@ -35,6 +35,7 @@ export default async function NotFound() {
         <div className="flex flex-wrap items-center justify-center gap-4">
           <Link
             href={`/${lang}`}
+            prefetch={false}
             className="flex items-center space-x-2 px-6 py-3 rounded-full bg-theme-500 text-white font-bold hover:bg-theme-400 hover:scale-105 transition-all duration-200"
           >
             <Home size={20} />
@@ -42,6 +43,7 @@ export default async function NotFound() {
           </Link>
           <Link
             href={`/${lang}/portfolio`}
+            prefetch={false}
             className="flex items-center space-x-2 px-6 py-3 rounded-full bg-theme-surface border border-theme-border font-bold hover:bg-theme-surface-strong hover:scale-105 transition-all duration-200"
           >
             <Star size={20} className="text-theme-500" />
