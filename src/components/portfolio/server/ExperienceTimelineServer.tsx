@@ -75,7 +75,7 @@ export function ExperienceTimelineServer({
                                                 <div className="mb-2 flex items-center justify-between">
                                                     <TagBadge labels={job.tag} />
                                                     {/* BookmarkButton is a Client Component, we can interleave it! */}
-                                                    <div onClick={(e) => e.preventDefault()} onKeyDown={(e) => e.preventDefault()}>
+                                                    <div>
                                                         <BookmarkButton itemType="experience" itemId={job.title} initialBookmarked={bookmarkedItemIds.includes(job.title)} isLoggedIn={!!isLoggedIn} className="relative" />
                                                     </div>
                                                 </div>
@@ -143,8 +143,8 @@ export function ExperienceTimelineServer({
                                             </div>
                                             <div className="flex justify-between items-start mb-1">
                                                 <h2 className="text-lg font-black group-hover:text-theme-500 transition-colors leading-tight">{job.title}</h2>
-                                                <div onClick={(e) => e.preventDefault()} onKeyDown={(e) => e.preventDefault()}>
-                                                    <BookmarkButton itemType="experience" itemId={job.title} initialBookmarked={bookmarkedItemIds.includes(job.title)} isLoggedIn={!!isLoggedIn} className="relative !p-1.5" />
+                                                <div>
+                                                    <BookmarkButton itemType="experience" itemId={job.title} initialBookmarked={bookmarkedItemIds.includes(job.title)} isLoggedIn={!!isLoggedIn} className="relative" />
                                                 </div>
                                             </div>
                                             <div className="mb-2"><TagBadge labels={job.tag} /></div>
@@ -192,8 +192,8 @@ export function ExperienceTimelineServer({
                                 <span className="inline-block px-2 py-0.5 bg-theme-500/10 text-theme-700 dark:text-theme-300 rounded-md text-[10px] font-black uppercase mb-2">{job.year}</span>
                                 <div className="flex justify-between items-start mb-1">
                                     <h2 className="text-sm font-black text-foreground group-hover:text-theme-500 leading-tight">{job.title}</h2>
-                                    <div onClick={(e) => e.preventDefault()} onKeyDown={(e) => e.preventDefault()}>
-                                        <BookmarkButton itemType="experience" itemId={job.title} initialBookmarked={bookmarkedItemIds.includes(job.title)} isLoggedIn={!!isLoggedIn} className="relative !p-1.5" />
+                                    <div>
+                                        <BookmarkButton itemType="experience" itemId={job.title} initialBookmarked={bookmarkedItemIds.includes(job.title)} isLoggedIn={!!isLoggedIn} className="relative" />
                                     </div>
                                 </div>
                                 <p className="text-theme-700 dark:text-theme-300 font-bold italic text-xs mb-2">{job.company}</p>

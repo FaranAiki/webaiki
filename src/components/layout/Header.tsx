@@ -220,35 +220,40 @@ export default function Header(props: HeaderProps) {
                 const data = { user: session?.user };
                 if (data?.user) {
                     setUser(data.user);
-                    
-                    const reason = data.user.user_metadata?.registration_reason;
-                    const email = data.user.email;
-                    
-                    const newNavLinks = navLinks.map(link => ({
-                        ...link,
-                        subLinks: link.subLinks ? [...link.subLinks] : undefined
-                    }));
-                    const homeLink = newNavLinks[0];
-                    
-                    if (reason === 'HR' && homeLink.subLinks) {
-                        homeLink.subLinks.push({
-                            name: hire_me_label,
-                            href: '/hire-me',
-                            icon: <Handshake size={16} />
-                        });
-                    }
-                    if (email === 'faran.aiki.business@gmail.com' && homeLink.subLinks) {
-                        homeLink.subLinks.push({
-                            name: business_requests_label,
-                            href: '/business-requests',
-                            icon: <Briefcase size={16} />
-                        });
-                    }
-                    setDynamicNavLinks(newNavLinks);
                 }
             };
             fetchUser();
-        }, [navLinks, hire_me_label, business_requests_label]);
+        }, []); // Run only once on mount to avoid slow repeated login checks
+
+        // Sync navLinks when props change, and apply user-specific links if logged in
+        useEffect(() => {
+            const newNavLinks = navLinks.map(link => ({
+                ...link,
+                subLinks: link.subLinks ? [...link.subLinks] : undefined
+            }));
+            const homeLink = newNavLinks[0];
+            
+            if (user) {
+                const reason = user.user_metadata?.registration_reason;
+                const email = user.email;
+                
+                if (reason === 'HR' && homeLink.subLinks) {
+                    homeLink.subLinks.push({
+                        name: hire_me_label,
+                        href: '/hire-me',
+                        icon: <Handshake size={16} />
+                    });
+                }
+                if (email === 'faran.aiki.business@gmail.com' && homeLink.subLinks) {
+                    homeLink.subLinks.push({
+                        name: business_requests_label,
+                        href: '/business-requests',
+                        icon: <Briefcase size={16} />
+                    });
+                }
+            }
+            setDynamicNavLinks(newNavLinks);
+        }, [navLinks, hire_me_label, business_requests_label, user]);
 
         useEffect(() => {
             const down = (e: KeyboardEvent) => {
