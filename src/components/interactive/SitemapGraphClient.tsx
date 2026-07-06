@@ -38,6 +38,7 @@ export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientPro
   const [hoveredNode, setHoveredNode] = useState<GraphNode | null>(null);
   const [lockedNode, setLockedNode] = useState<GraphNode | null>(null);
   const initialCenterDone = useRef(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -58,10 +59,14 @@ export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientPro
       }
     };
     
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    
     const observer = new ResizeObserver(() => {
       // Use requestAnimationFrame to avoid ResizeObserver loop limit error
       window.requestAnimationFrame(() => {
         updateDimensions();
+        checkMobile();
       });
     });
     
@@ -74,6 +79,7 @@ export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientPro
     
     return () => {
       observer.disconnect();
+      window.removeEventListener('resize', checkMobile);
     };
   }, []);
 
@@ -159,7 +165,7 @@ export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientPro
 
         <ForceGraph2D
           ref={graphRef as never}
-          cooldownTicks={200}
+          cooldownTicks={isMobile ? 50 : 150}
           onEngineStop={() => {
             if (!initialCenterDone.current && graphRef.current) {
               graphRef.current.zoomToFit(400, 40);
@@ -248,13 +254,32 @@ export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientPro
         {/* Live Preview Iframe */}
         <div className="flex-1 relative bg-theme-base w-full h-full overflow-hidden">
           {displayNode ? (
+            isMobile ? (
+              <div className="w-full h-full flex flex-col items-center justify-center text-theme-muted text-sm font-medium p-6 text-center gap-6 bg-theme-surface-strong">
+                <div className="w-16 h-16 rounded-full bg-theme-border/50 flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </div>
+                <div className="space-y-2">
+                  <p className="font-bold text-foreground">{displayNode.name}</p>
+                  <p className="text-xs">{dict.Preview_Not_Available_Mobile || 'Preview is hidden on mobile to save battery and performance.'}</p>
+                </div>
+                <a 
+                  href={`/${lang}${displayNode.id === '/' ? '' : displayNode.id}`} 
+                  className="px-6 py-2.5 bg-theme-500 hover:bg-theme-600 text-white rounded-xl font-bold transition-colors shadow-sm"
+                >
+                  {dict.Visit || 'Visit Page'}
+                </a>
+              </div>
+            ) : (
              <iframe 
                key={displayNode.id}
                src={`/${lang}${displayNode.id === '/' ? '' : displayNode.id}`}
                className={`w-[125%] h-[125%] border-0 absolute top-0 left-0 bg-theme-base origin-top-left transition-opacity duration-300 ${lockedNode ? 'pointer-events-auto' : 'pointer-events-none'}`}
                style={{ transform: 'scale(0.8)' }}
                title={`Preview of ${displayNode.name}`}
+               loading="lazy"
              />
+            )
           ) : (
              <div className="w-full h-full flex flex-col items-center justify-center text-theme-muted text-sm font-medium p-6 text-center gap-4 bg-theme-surface-strong">
                <div className="w-16 h-16 rounded-full bg-theme-border/50 flex items-center justify-center animate-pulse">

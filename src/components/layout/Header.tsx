@@ -596,14 +596,14 @@ export default function Header(props: HeaderProps) {
                     {/* --- Mobile Title (Center) --- */}
                     <div className="md:hidden font-sans" >
                         {mobileTitle ? (
-                            <h1 className={`flex items-center justify-center transition-[colors,transform] duration-200 text-lg font-black nav-active-gacor whitespace-nowrap cursor-pointer opacity-95`}>
+                            <span className={`flex items-center justify-center transition-[colors,transform] duration-200 text-lg font-black nav-active-gacor whitespace-nowrap cursor-pointer opacity-95`}>
                                 {formatCJK(mobileTitle, current_lang)}
-                            </h1>
+                            </span>
                         ) : activeLink && (
-                            <h1 className={`flex items-center justify-center transition-[colors,transform] duration-200 text-lg font-black nav-active-gacor whitespace-nowrap cursor-pointer opacity-95`}>
+                            <span className={`flex items-center justify-center transition-[colors,transform] duration-200 text-lg font-black nav-active-gacor whitespace-nowrap cursor-pointer opacity-95`}>
                                 {activeLink.icon && <span className="mr-2 flex items-center scale-90">{activeLink.icon}</span>}
                                 {formatCJK(activeLink.name, current_lang)}
-                            </h1>
+                            </span>
                         )}
                     </div>
 
@@ -652,6 +652,7 @@ export default function Header(props: HeaderProps) {
                                                             <li key={subLink.href}>
                                                                 <Link
                                                                     href={getLocalizedHref(subLink.href)}
+                                                                    prefetch={false}
                                                                     className={`flex items-center px-5 py-3 text-[14px] hover:bg-theme-surface-strong/50 transition-[colors,transform] ${isSubActive
                                                                             ? `nav-active-gacor font-bold`
                                                                             : `${textColor} hover-gacor font-medium`
@@ -675,6 +676,7 @@ export default function Header(props: HeaderProps) {
                                     <li key={link.href}>
                                         <Link
                                             href={getLocalizedHref(link.href)}
+                                            prefetch={false}
                                             className={`flex items-center transition-colors duration-200
                                                 text-[15px] tracking-wide
                                                 ${isActive

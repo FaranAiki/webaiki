@@ -101,8 +101,7 @@ export const TimelineActiveImage = React.memo(({ activeJob, shimmer600x400 }: { 
                             blurDataURL={shimmer600x400}
                             alt={`${activeJob.title} at ${activeJob.company}`}
                             className="object-contain"
-                            priority={true}
-                            fetchPriority="high"
+                            priority={false}
                             quality={75}
                         />
                     )

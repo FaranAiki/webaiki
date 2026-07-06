@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from 'react';
 import { useParams, useSearchParams, usePathname } from 'next/navigation';
-import { initializeCookies, setCookies } from '@/app/actions';
 import { useTheme } from 'next-themes';
 
 export function CookieInitializer() {
@@ -16,7 +15,7 @@ export function CookieInitializer() {
   const processedParams = useRef<Set<string>>(new Set());
 
   useEffect(() => {
-    initializeCookies();
+    // initializeCookies() server action removed to prevent POST on every page load
   }, []);
 
   // Sync theme to cookie on change so server knows it on next load
@@ -36,7 +35,7 @@ export function CookieInitializer() {
       }, {});
 
       if (cookies['language'] !== lang && !processedParams.current.has(`lang-${lang}`)) {
-        setCookies('language', lang);
+        document.cookie = `language=${lang}; path=/; max-age=31536000; SameSite=Lax`;
         processedParams.current.add(`lang-${lang}`);
       }
 

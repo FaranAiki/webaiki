@@ -45,7 +45,7 @@ export default function ExperienceBentoLayout() {
                         lang={lang} 
                         justifyClass={justifyClass} 
                         click_to_close_text={translations?.click_to_close_text || "Click to close"} 
-                        priority={idx < 4} 
+                        priority={false}
                         isLoggedIn={isLoggedIn} 
                         bookmarkedItemIds={bookmarkedItemIds} 
                     />

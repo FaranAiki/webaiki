@@ -46,7 +46,7 @@ export default function CertificatesBentoLayout() {
                     titleColor={titleColor}
                     click_to_close_text={translations?.click_to_close_text || 'Click to close'}
                     spanClass={spanClass}
-                    priority={idx < 4}
+                    priority={false}
                     isLoggedIn={isLoggedIn}
                     isBookmarked={bookmarkedItemIds.includes(item.fileName)}
                 />

@@ -48,10 +48,10 @@ export default function CertificatesTimelineLayout() {
                             <a href={filePath} target="_blank" rel="noopener noreferrer" aria-label={`View ${fileName} certificate`} className="relative aspect-video w-full overflow-hidden">
                                 {filePath.endsWith('.pdf') ? (
                                     <div className="w-full h-full">
-                                        <PdfPreview fileUrl={filePath} priority={isPriority} />
+                                        <PdfPreview fileUrl={filePath} priority={false} />
                                     </div>
                                 ) : (
-                                    <Image src={filePath} alt={`${fileName} Certificate - Muhammad Faran Aiki Portfolio`} fill className="object-cover transition-transform group-hover:scale-105" sizes="(max-width: 768px) 100vw, 33vw" priority={isPriority} fetchPriority={isPriority ? "high" : "auto"} quality={85} />
+                                    <Image src={filePath} alt={`${fileName} Certificate - Muhammad Faran Aiki Portfolio`} fill className="object-cover transition-transform group-hover:scale-105" sizes="(max-width: 768px) 100vw, 33vw" priority={false} quality={85} />
                                 )}
                             </a>
                             <BookmarkButton 
