@@ -3,7 +3,7 @@
 import React from 'react';
 import { m as motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
-import HoverableWords from '@/components/shared/HoverableWords';
+// import HoverableWords from '@/components/shared/HoverableWords';
 import BookmarkButton from '@/components/interactive/BookmarkButton';
 
 import { formatCJK } from '@/lib/utils';
@@ -80,12 +80,12 @@ export default function ExperienceOriginalLayout() {
                                             <ul className="list-disc pl-5 space-y-1">
                                                 {job.description.map((item, idx) => (
                                                     <li key={idx}>
-                                                        <HoverableWords>{formatCJK(item, lang)}</HoverableWords>
+                                                        <span>{formatCJK(item, lang)}</span>
                                                     </li>
                                                 ))}
                                             </ul>
                                         ) : (
-                                            <HoverableWords>{formatCJK(job.description, lang)}</HoverableWords>
+                                            <span>{formatCJK(job.description, lang)}</span>
                                         )}
                                     </div>
                                 </motion.div>

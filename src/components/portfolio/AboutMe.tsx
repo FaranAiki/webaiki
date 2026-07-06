@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { shimmer, toBase64, formatCJK } from '@/lib/utils';
 import Image from 'next/image';
-import HoverableWords from '@/components/shared/HoverableWords';
+// import HoverableWords from '@/components/shared/HoverableWords';
 import FadeInSection from '@/components/shared/FadeInSection';
 import { m as motion, AnimatePresence } from 'framer-motion';
 import { useSettings } from '../providers/SettingsContext';
@@ -125,20 +125,20 @@ export function PortfolioAboutHeader(props: AboutMeProps) {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-4">
-            <HoverableWords className={`text-sm md:text-base leading-relaxed ${textClass}`}>
+            <div className={`text-sm md:text-base leading-relaxed ${textClass}`}>
               {formatCJK(props.about_text_1, props.lang)}
-            </HoverableWords>
+            </div>
             <div className="p-4 rounded-xl bg-theme-surface-strong border border-theme-border hover:scale-[1.02] transition-transform duration-300 group">
               <p className={`text-xs font-bold text-theme-700 dark:text-theme-300 mb-2 group-hover:text-theme-600 dark:group-hover:text-theme-200 transition-colors`}>{props.about_philosophy_title}</p>
-              <HoverableWords className={`text-sm italic ${textClass} opacity-80 group-hover:opacity-100 transition-opacity`}>
+              <div className={`text-sm italic ${textClass} opacity-80 group-hover:opacity-100 transition-opacity`}>
                 {formatCJK(props.about_philosophy, props.lang)}
-              </HoverableWords>
+              </div>
             </div>
           </div>
           <div className="space-y-4">
-            <HoverableWords className={`text-sm md:text-base leading-relaxed ${textClass}`}>
+            <div className={`text-sm md:text-base leading-relaxed ${textClass}`}>
               {formatCJK(props.about_text_2, props.lang)}
-            </HoverableWords>
+            </div>
             <div className="space-y-3">
                {[props.about_principle_1, props.about_principle_2, props.about_principle_3].filter(p => p && p.trim() !== "").map((p, i) => (
                  <motion.div 
@@ -147,9 +147,9 @@ export function PortfolioAboutHeader(props: AboutMeProps) {
                     whileHover={{ x: 4 }}
                  >
                    <span className="w-1.5 h-1.5 rounded-full bg-theme-500 mt-1.5 shrink-0 group-hover:bg-theme-400 group-hover:scale-125 transition-all" />
-                   <HoverableWords className={`text-xs md:text-sm ${textClass} opacity-90 group-hover:opacity-100 transition-all`}>
+                   <div className={`text-xs md:text-sm ${textClass} opacity-90 group-hover:opacity-100 transition-all`}>
                       {formatCJK(p, props.lang)}
-                   </HoverableWords>
+                   </div>
                  </motion.div>
                ))}
             </div>
@@ -180,12 +180,12 @@ export function AboutSection(props: AboutSubSectionProps) {
               <span className="nav-active-gacor">{props.about_title}</span>
             </h1>
             <div className="space-y-4">
-              <HoverableWords className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}>
+              <div className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}>
                 {formatCJK(props.about_text_1, props.lang)}
-              </HoverableWords>
-              <HoverableWords className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}>
+              </div>
+              <div className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}>
                 {formatCJK(props.about_text_2, props.lang)}
-              </HoverableWords>
+              </div>
             </div>
           </div>
 
@@ -239,11 +239,11 @@ export function PhilosophySection(props: AboutSubSectionProps) {
             <h2 className={`${props.isCompact ? 'text-xl md:text-2xl' : 'text-3xl md:text-4xl'} font-bold ${titleClass} mb-6 hover:opacity-85 transition-opacity`}>
               <span className="nav-active-gacor">{props.about_philosophy_title}</span>
             </h2>
-            <HoverableWords
+            <div
               className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass} font-medium`}
             >
               {formatCJK(props.about_philosophy, props.lang)}
-            </HoverableWords>
+            </div>
           </div>
 
           <div className="flex-shrink-0 transform-gpu">
@@ -276,12 +276,12 @@ export function PrinciplesSection(props: AboutSubSectionProps) {
             </h2>
             <div className="space-y-4">
               {[props.about_principle_1, props.about_principle_2, props.about_principle_3].filter(p => p && p.trim() !== "").map((p, i) => (
-                <HoverableWords
+                <div
                     key={i}
                     className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}
                 >
                     {formatCJK(p, props.lang)}
-                </HoverableWords>
+                </div>
               ))}
             </div>
           </div>
@@ -316,21 +316,21 @@ export function VisionMissionSection(props: AboutSubSectionProps) {
               <span className="nav-active-gacor">{props.about_vision_mission_title}</span>
             </h2>
             <div className="space-y-4">
-              <HoverableWords
+              <div
                   className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}
               >
                   {formatCJK(props.about_vision_mission_1, props.lang)}
-              </HoverableWords>
-              <HoverableWords
+              </div>
+              <div
                   className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}
               >
                   {formatCJK(props.about_vision_mission_2, props.lang)}
-              </HoverableWords>
-              <HoverableWords
+              </div>
+              <div
                   className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}
               >
                   {formatCJK(props.about_vision_mission_3, props.lang)}
-              </HoverableWords>
+              </div>
             </div>
           </div>
 

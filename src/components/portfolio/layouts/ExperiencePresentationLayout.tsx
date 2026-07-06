@@ -4,7 +4,7 @@ import { PresentationLayoutType } from '../ExperienceDisplayer';
 import React, { useMemo } from 'react';
 import Image from 'next/image';
 import { ExternalLink, LayoutPanelLeft, Rows, Briefcase } from 'lucide-react';
-import HoverableWords from '@/components/shared/HoverableWords';
+// import HoverableWords from '@/components/shared/HoverableWords';
 import BookmarkButton from '@/components/interactive/BookmarkButton';
 import FadeInSection from '@/components/shared/FadeInSection';
 import { formatCJK } from '@/lib/utils';
@@ -103,11 +103,11 @@ export default function ExperiencePresentationLayout() {
                                     {Array.isArray(job.description) ? (
                                         <ul className="list-disc pl-5 space-y-2">
                                             {job.description.map((item, i) => (
-                                                <li key={i}><HoverableWords>{formatCJK(item, lang)}</HoverableWords></li>
+                                                <li key={i}><span>{formatCJK(item, lang)}</span></li>
                                             ))}
                                         </ul>
                                     ) : (
-                                        <HoverableWords>{formatCJK(job.description, lang)}</HoverableWords>
+                                        <span>{formatCJK(job.description, lang)}</span>
                                     )}
                                 </div>
 
@@ -182,11 +182,11 @@ export default function ExperiencePresentationLayout() {
                                             {Array.isArray(job.description) ? (
                                                 <ul className="list-disc pl-5 space-y-2">
                                                     {job.description.map((item, i) => (
-                                                        <li key={i}><HoverableWords>{formatCJK(item, lang)}</HoverableWords></li>
+                                                        <li key={i}><span>{formatCJK(item, lang)}</span></li>
                                                     ))}
                                                 </ul>
                                             ) : (
-                                                <HoverableWords>{formatCJK(job.description, lang)}</HoverableWords>
+                                                <span>{formatCJK(job.description, lang)}</span>
                                             )}
                                         </div>
                                     </div>
@@ -224,11 +224,11 @@ export default function ExperiencePresentationLayout() {
                                             {Array.isArray(job.description) ? (
                                                 <ul className="list-disc pl-5 space-y-2">
                                                     {job.description.map((item, i) => (
-                                                        <li key={i}><HoverableWords>{formatCJK(item, lang)}</HoverableWords></li>
+                                                        <li key={i}><span>{formatCJK(item, lang)}</span></li>
                                                     ))}
                                                 </ul>
                                             ) : (
-                                                <HoverableWords>{formatCJK(job.description, lang)}</HoverableWords>
+                                                <span>{formatCJK(job.description, lang)}</span>
                                             )}
                                         </div>
 

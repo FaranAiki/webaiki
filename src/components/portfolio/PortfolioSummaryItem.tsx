@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Calendar, ExternalLink, ChevronDown, ChevronUp, Trash2 } from 'lucide-react';
-import HoverableWords from '../shared/HoverableWords';
+// import HoverableWords from '../shared/HoverableWords';
 import { m as motion, AnimatePresence } from 'framer-motion';
 import { useSettings } from '../providers/SettingsContext';
 
@@ -120,7 +120,7 @@ export default function PortfolioSummaryItem({
       return (
         <ul className="list-disc pl-4 space-y-1 mt-1 text-xs md:text-sm text-[var(--text-muted)] leading-relaxed">
           {description.map((item, idx) => (
-            <li key={idx}><HoverableWords className="">{item}</HoverableWords></li>
+            <li key={idx}><span>{item}</span></li>
           ))}
         </ul>
       );
@@ -130,9 +130,9 @@ export default function PortfolioSummaryItem({
     const cleanBrief = cleanText(textToClean);
     
     return (
-      <HoverableWords className="text-xs md:text-sm text-[var(--text-muted)] leading-relaxed">
+      <div className="text-xs md:text-sm text-[var(--text-muted)] leading-relaxed">
         {cleanBrief}
-      </HoverableWords>
+      </div>
     );
   };
 

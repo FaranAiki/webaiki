@@ -4,7 +4,7 @@ import React, { useMemo } from 'react';
 import { m as motion } from 'framer-motion';
 import Image from 'next/image';
 import { ExternalLink } from 'lucide-react';
-import HoverableWords from '@/components/shared/HoverableWords';
+// import HoverableWords from '@/components/shared/HoverableWords';
 import BookmarkButton from '@/components/interactive/BookmarkButton';
 import { formatCJK } from '@/lib/utils';
 import { useExperienceContext } from '../ExperienceContext';
@@ -69,12 +69,12 @@ export default function ExperienceSmoothLayout() {
                                     <ul className="list-disc pl-6 space-y-2">
                                         {job.description.map((item, i) => (
                                             <li key={i}>
-                                                <HoverableWords>{formatCJK(item, lang)}</HoverableWords>
+                                                <span>{formatCJK(item, lang)}</span>
                                             </li>
                                         ))}
                                     </ul>
                                 ) : (
-                                    <HoverableWords>{formatCJK(job.description, lang)}</HoverableWords>
+                                    <span>{formatCJK(job.description, lang)}</span>
                                 )}
                             </div>
                         </div>
