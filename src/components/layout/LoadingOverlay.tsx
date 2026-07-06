@@ -13,7 +13,7 @@ interface LoadingOverlayProps {
 // Trigger HMR update
 export default function LoadingOverlay({ label, isBot }: LoadingOverlayProps) {
   const [mounted, setMounted] = useState(false);
-  const [internalVisible, setInternalVisible] = useState(true);
+  const [internalVisible, setInternalVisible] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
   
   const isGlobalLoading = useAppStore((state) => state.isGlobalLoading);

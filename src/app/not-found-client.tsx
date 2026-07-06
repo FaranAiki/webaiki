@@ -4,6 +4,9 @@ import { Search } from "lucide-react";
 import { useSettings } from "@/components/providers/SettingsContext";
 import { getThemeLogoFilter } from "@/lib/utils";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export function NotFoundLogo() {
   const settings = useSettings();
@@ -44,6 +47,77 @@ export function NotFoundSearchButton({ placeholder }: { placeholder: string }) {
           <kbd className="px-2 py-1 bg-theme-surface border border-theme-border rounded text-xs font-mono font-bold">K</kbd>
         </div>
       </button>
+    </div>
+  );
+}
+
+const validRoutes = [
+  "portfolio", "news", "work", "project", "music", "literature",
+  "academic-transcript", "timeline", "organization", "award",
+  "hire-me", "social", "website", "certificate", "all", "identity",
+  "feedback", "login", "register", "edit-profile", "latest"
+];
+
+function levenshtein(a: string, b: string): number {
+  if (a.length === 0) return b.length;
+  if (b.length === 0) return a.length;
+
+  const matrix = Array(b.length + 1).fill(null).map(() => Array(a.length + 1).fill(0));
+
+  for (let i = 0; i <= a.length; i++) matrix[0][i] = i;
+  for (let j = 0; j <= b.length; j++) matrix[j][0] = j;
+
+  for (let j = 1; j <= b.length; j++) {
+    for (let i = 1; i <= a.length; i++) {
+      const indicator = a[i - 1] === b[j - 1] ? 0 : 1;
+      matrix[j][i] = Math.min(
+        matrix[j][i - 1] + 1,
+        matrix[j - 1][i] + 1,
+        matrix[j - 1][i - 1] + indicator
+      );
+    }
+  }
+  return matrix[b.length][a.length];
+}
+
+export function NotFoundSuggester({ lang, label }: { lang: string, label: string }) {
+  const pathname = usePathname();
+  const [suggestion, setSuggestion] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!pathname) return;
+    
+    const segments = pathname.split('/').filter(Boolean);
+    const lastSegment = segments[segments.length - 1] || "";
+    
+    if (lastSegment.length > 2) {
+      let bestMatch = null;
+      let minDistance = Infinity;
+
+      for (const route of validRoutes) {
+        const dist = levenshtein(lastSegment.toLowerCase(), route.toLowerCase());
+        if (dist < minDistance) {
+          minDistance = dist;
+          bestMatch = route;
+        }
+      }
+
+      const threshold = lastSegment.length > 5 ? 3 : 2;
+      if (bestMatch && minDistance <= threshold && minDistance > 0) {
+        setSuggestion(bestMatch);
+      }
+    }
+  }, [pathname]);
+
+  if (!suggestion) return null;
+
+  return (
+    <div className="mt-2 mb-8 p-4 bg-theme-500/10 border border-theme-500/20 rounded-xl text-theme-500 animate-in fade-in slide-in-from-bottom-2">
+      {label}{" "}
+      <Link href={`/${lang}/${suggestion}`} className="font-bold underline underline-offset-4 hover:text-theme-600 transition-colors">
+        /{suggestion}
+      </Link>
+      ?
     </div>
   );
 }

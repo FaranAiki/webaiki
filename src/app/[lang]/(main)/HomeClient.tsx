@@ -132,7 +132,7 @@ export default function HomeClient({ dict, children }: HomeClientProps) {
           <DynamicHero dict={dict} isReady={isReady} isLgScreen={isLgScreen} isMdScreen={isMdScreen} parts={parts} />
 
         {/* Fake Search Bar to open Command Palette */}
-        <FadeInSection delay={isReady ? 1.4 : 0}>
+        <FadeInSection delay={isReady ? 0.2 : 0}>
           <section className="w-full no-print mt-4 md:mt-8 flex justify-center" aria-labelledby="search-heading">
             <h2 id="search-heading" className="sr-only">{dict.Search_About_Faran || "Search Faran Aiki Content"}</h2>
             <button
@@ -152,7 +152,7 @@ export default function HomeClient({ dict, children }: HomeClientProps) {
         </FadeInSection>
 
         {/* Latest Activity Section */}
-        <FadeInSection delay={isReady ? 1.6 : 0}>
+        <FadeInSection delay={isReady ? 0.4 : 0}>
           {children}
         </FadeInSection>
       </div>

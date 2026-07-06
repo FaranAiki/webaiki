@@ -1,5 +1,5 @@
 import { getDictionary } from '@/components/layout/Translator';
-import { NotFoundLogo, NotFoundSearchButton } from "../not-found-client";
+import { NotFoundLogo, NotFoundSearchButton, NotFoundSuggester } from "../not-found-client";
 import Link from "next/link";
 import { Home, Star } from "lucide-react";
 
@@ -26,9 +26,11 @@ export default async function NotFound() {
           {dict.Not_Found}
         </h1>
 
-        <p className="text-lg text-theme-muted mb-12 max-w-md mx-auto">
+        <p className="text-lg text-theme-muted mb-4 max-w-md mx-auto">
           {dict.Not_Found_Description || "Ups! Halaman yang Anda cari sepertinya sedang tersesat di dimensi lain."}
         </p>
+        
+        <NotFoundSuggester lang={lang} label={dict.Did_You_Mean || "Apakah maksud Anda:"} />
 
         <NotFoundSearchButton placeholder={dict.Command_Palette_Search_Placeholder || "Type a command or search portfolio..."} />
 
