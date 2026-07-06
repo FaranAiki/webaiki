@@ -24,6 +24,7 @@ export default function LatestActivity({ lang, dict, initialNews }: LatestActivi
         </div>
         <Link
           href={`/${lang}/news`}
+          prefetch={false}
           aria-label="View all latest activity and news"
           className="flex items-center gap-2 text-sm font-bold text-theme-500 hover:text-theme-400 transition-colors group"
         >
@@ -90,6 +91,7 @@ export default function LatestActivity({ lang, dict, initialNews }: LatestActivi
 
                   <Link
                     href={`/${lang}/news`}
+                    prefetch={false}
                     aria-label={`Read more about ${item.title}`}
                     className="text-sm font-black tracking-widest text-theme-muted group-hover:text-theme-500 transition-colors"
                   >

@@ -67,7 +67,8 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
       try {
         const { createClient } = await import('@/utils/supabase/client');
         const supabase = createClient();
-        const { data: { user } } = await supabase.auth.getUser();
+        const { data: { session } } = await supabase.auth.getSession();
+        const user = session?.user;
         if (user?.email === 'faran.aiki.business@gmail.com') {
           setIsAdminState(true);
         }

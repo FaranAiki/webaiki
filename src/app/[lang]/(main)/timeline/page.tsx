@@ -3,8 +3,10 @@ import { createClient } from '@/utils/supabase/server';
 import { getBookmarks } from '@/app/bookmark-actions';
 
 import "../../../globals.css";
+import { Suspense } from "react";
 import { getDictionary } from '@/components/layout/Translator';
-import ExperiencesClient from '@/components/portfolio/ExperienceDisplayer';
+import ExperiencesClient, { Experience, Job } from '@/components/portfolio/ExperienceDisplayer';
+import { ExperienceTimelineServer } from '@/components/portfolio/server/ExperienceTimelineServer';
 
 import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema, getPersonSchema } from '@/lib/seo';
 
@@ -39,15 +41,20 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
-export default async function TimelinePage({params }: { params: Promise<{ lang: string }> }) {
-  const { lang } = await params;
-  const dict = await getDictionary(lang);
+function TimelineSkeleton() {
+  return (
+    <div className="w-full max-w-7xl mx-auto px-4 mt-10">
+      <div className="w-full h-[80vh] bg-black/5 dark:bg-white/5 rounded-2xl animate-pulse"></div>
+    </div>
+  );
+}
 
+async function SuspendedTimelineContent({ lang, dict }: { lang: string, dict: Record<string, string> }) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   const isLoggedIn = !!user;
   const bookmarks = isLoggedIn ? await getBookmarks(user.id) : [];
-  const experienceBookmarks = bookmarks.filter(b => b.itemType === 'experience').map(b => b.itemId);
+  const experienceBookmarks = bookmarks.filter((b: { itemType: string, itemId: string }) => b.itemType === 'experience').map((b: { itemType: string, itemId: string }) => b.itemId);
 
   const work = getWorkExperiences(dict);
   const edu = getEducationExperiences(dict);
@@ -55,11 +62,8 @@ export default async function TimelinePage({params }: { params: Promise<{ lang: 
   const org = getOrganizationExperiences(dict);
   const award = getAwardExperiences(dict);
 
-  // Merge all experiences by year
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const mergedMap = new Map<string, any[]>();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const addJobs = (experiences: any[]) => {
+  const mergedMap = new Map<string, Job[]>();
+  const addJobs = (experiences: Experience[]) => {
     experiences.forEach(exp => {
       const year = exp.year;
       if (!mergedMap.has(year)) mergedMap.set(year, []);
@@ -75,7 +79,7 @@ export default async function TimelinePage({params }: { params: Promise<{ lang: 
 
   const certs = await getCertificatesData(lang);
   Object.entries(certs).forEach(([category, years]) => {
-    Object.entries(years).forEach(([year, files]) => {
+    Object.entries(years as Record<string, Record<string, { path: string, point?: number }>>).forEach(([year, files]) => {
       if (!mergedMap.has(year)) mergedMap.set(year, []);
       const jobs = Object.entries(files).map(([fileName, data]) => ({
         date: year,
@@ -99,6 +103,41 @@ export default async function TimelinePage({params }: { params: Promise<{ lang: 
     }))
     .sort((a, b) => parseInt(b.year) - parseInt(a.year)); // Sort years descending
 
+  return (
+      <div className="pt-[12px] w-full px-4 md:px-0">
+        <ExperiencesClient 
+        isLoggedIn={isLoggedIn}
+        bookmarkedItemIds={experienceBookmarks}
+        layout="timeline"
+        experiences={allExperiences} 
+        lang={lang} 
+        canChange={true} 
+        original_text={dict.Original}
+        timeline_text={dict.Timeline}
+        grid_text={dict.Grid}
+        bento_text={dict.Bento}
+        smooth_text={dict.Smooth}
+        click_to_close_text={dict.Click_To_Close}
+        modern_text={dict.Presentation_Modern}
+        cinematic_text={dict.Presentation_Cinematic}
+        editorial_text={dict.Presentation_Editorial}
+        visit_external_link_text={dict.Visit_External_Link}
+        timelineLayout={
+          <ExperienceTimelineServer 
+            experiences={allExperiences} 
+            isLoggedIn={isLoggedIn} 
+            bookmarkedItemIds={experienceBookmarks} 
+          />
+        }
+      />
+      </div>
+  );
+}
+
+export default async function TimelinePage({params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang);
+
   const personSchema = getPersonSchema(lang);
   const breadcrumbSchema = getBreadcrumbSchema([
     { name: dict.Home, item: `/${lang}` },
@@ -119,26 +158,9 @@ export default async function TimelinePage({params }: { params: Promise<{ lang: 
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="pt-[12px] w-full px-4 md:px-0">
-        <ExperiencesClient 
-        isLoggedIn={isLoggedIn}
-        bookmarkedItemIds={experienceBookmarks}
-        layout="timeline"
-        experiences={allExperiences} 
-        lang={lang} 
-        canChange={true} 
-        original_text={dict.Original}
-        timeline_text={dict.Timeline}
-        grid_text={dict.Grid}
-        bento_text={dict.Bento}
-        smooth_text={dict.Smooth}
-        click_to_close_text={dict.Click_To_Close}
-        modern_text={dict.Presentation_Modern}
-        cinematic_text={dict.Presentation_Cinematic}
-        editorial_text={dict.Presentation_Editorial}
-        visit_external_link_text={dict.Visit_External_Link}
-      />
-      </div>
+      <Suspense fallback={<TimelineSkeleton />}>
+        <SuspendedTimelineContent lang={lang} dict={dict} />
+      </Suspense>
     </main>
   );
 }

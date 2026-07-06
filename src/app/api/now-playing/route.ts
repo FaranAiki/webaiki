@@ -32,8 +32,8 @@ const getAccessToken = async () => {
   return response.json();
 };
 
-// Add a short cache header so the edge/CDN can serve this without hammering Spotify
-export const revalidate = 30;
+// Force this API route to be dynamic to prevent build failures from fetch timeouts
+export const dynamic = 'force-dynamic';
 
 // The main GET handler for our API route
 export async function GET() {

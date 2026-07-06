@@ -1,5 +1,4 @@
 import "../globals.css";
-import Script from 'next/script'
 import { Suspense } from 'react';
 
 import { ProvidersConfigurator } from "@/components/providers/Providers";

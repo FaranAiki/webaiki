@@ -67,7 +67,7 @@ export const TimelineActiveImage = React.memo(({ activeJob, shimmer600x400 }: { 
             return;
         }
         const timer = setInterval(() => {
-            setCurrentImageIndex((prev) => (prev + 1) % activeJob.image.length);
+            setCurrentImageIndex((prev) => (prev + 1) % activeJob.image!.length);
         }, 12000);
         return () => clearInterval(timer);
     }, [activeJob]);
@@ -157,11 +157,11 @@ export const BentoCard = React.memo(({ job, spanClass, cardBorder, inactiveCardB
             className={`${spanClass} relative rounded-3xl overflow-hidden group border ${cardBorder} ${inactiveCardBg} shadow-sm hover:shadow-xl cursor-pointer transform-gpu`}
         >
             {hasImage ? (
-                job.image[0].toLowerCase().endsWith('.pdf') ? (
-                    <PdfRenderer url={job.image[0]} isExpanded={isExpanded} priority={priority} />
+                job.image![0].toLowerCase().endsWith('.pdf') ? (
+                    <PdfRenderer url={job.image![0]} isExpanded={isExpanded} priority={priority} />
                 ) : (
                     <Image
-                        src={job.image[0]}
+                        src={job.image![0]}
                         alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`}
                         fill
                         priority={priority}

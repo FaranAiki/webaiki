@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import "../../../globals.css";
 import { getDictionary } from '@/components/layout/Translator';
 import type { Experience, Job } from '@/components/portfolio/ExperienceDisplayer';
 import type { CertificateData } from '@/components/portfolio/CertificatesContext';
 import type { CollectionsData } from '@/components/portfolio/InteractiveCollections';
-import { PortfolioAboutHeader } from '@/components/portfolio/AboutMe';
+import { PortfolioAboutHeader } from '@/components/portfolio/PortfolioAboutHeader';
 import dynamic from 'next/dynamic';
 import { Github, Linkedin, Instagram, Twitter, Youtube, Share2 } from 'lucide-react';
 import Image from 'next/image';
@@ -57,13 +58,17 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 }
 
 
-export default async function AllHighlightsPage({params }: { params: Promise<{ lang: string }> }) {
-  const { lang } = await params;
-  const dict = await getDictionary(lang);
-  const faranPhotos = await getFaranAikiPhoto();
-  
+function AllContentSkeleton() {
+  return (
+    <div className="space-y-6 container mx-auto px-4 sm:px-8 mt-10">
+      <div className="w-48 h-8 bg-black/10 dark:bg-white/10 rounded-lg animate-pulse mb-6"></div>
+      <div className="w-full h-64 bg-black/5 dark:bg-white/5 rounded-2xl animate-pulse"></div>
+      <div className="w-full h-64 bg-black/5 dark:bg-white/5 rounded-2xl animate-pulse mt-6"></div>
+    </div>
+  );
+}
 
-
+async function SuspendedAllContent({ lang, dict }: { lang: string, dict: Record<string, string> }) {
   const workExp = getWorkExperiences(dict);
   const projectExp = getProjectExperiences(dict);
   const orgExp = getOrganizationExperiences(dict);
@@ -76,11 +81,10 @@ export default async function AllHighlightsPage({params }: { params: Promise<{ l
   const { data: { user } } = await supabase.auth.getUser();
   const isLoggedIn = !!user;
   const bookmarks = isLoggedIn ? await getBookmarks(user.id) : [];
-  const certificateBookmarks = bookmarks.filter(b => b.itemType === 'certificate').map(b => b.itemId);
-  const experienceBookmarks = bookmarks.filter(b => b.itemType === 'experience').map(b => b.itemId);
-  const collectionBookmarks = bookmarks.filter(b => b.itemType === 'collection').map(b => b.itemId);
+  const certificateBookmarks = bookmarks.filter((b: { itemType: string, itemId: string }) => b.itemType === 'certificate').map((b: { itemType: string, itemId: string }) => b.itemId);
+  const experienceBookmarks = bookmarks.filter((b: { itemType: string, itemId: string }) => b.itemType === 'experience').map((b: { itemType: string, itemId: string }) => b.itemId);
+  const collectionBookmarks = bookmarks.filter((b: { itemType: string, itemId: string }) => b.itemType === 'collection').map((b: { itemType: string, itemId: string }) => b.itemId);
   
-
   // Filtering function for Experience structure (Point >= 80)
   const filterImportantExp = (exps: Experience[]): Experience[] => {
     return exps.map(yearGroup => ({
@@ -187,6 +191,181 @@ export default async function AllHighlightsPage({params }: { params: Promise<{ l
     { question: dict.FAQ_Faran_Q6, answer: dict.FAQ_Faran_A6 },
   ];
 
+  return (
+    <div className="space-y-6">
+      {/* Work & Projects - High Impact Full Width */}
+      {importantWork.length > 0 && (
+        <section id="work" className="space-y-2">
+          <div className="container mx-auto px-4 sm:px-8">
+              <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
+                  <Briefcase size={18} className="text-theme-500" />
+                  <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Work}</h2>
+              </div>
+          </div>
+          <div className="pt-[12px] w-full px-4 md:px-0">
+            <ExperiencesClient
+              experiences={importantWork}
+              lang={lang}
+              layout="bento"
+              canChange={false}
+              click_to_close_text={dict.Click_To_Close}
+              modern_text={dict.Presentation_Modern}
+              cinematic_text={dict.Presentation_Cinematic}
+              editorial_text={dict.Presentation_Editorial}
+              visit_external_link_text={dict.Visit_External_Link}
+              isLoggedIn={isLoggedIn}
+              bookmarkedItemIds={experienceBookmarks}
+            />
+          </div>
+        </section>
+      )}
+
+      {importantProjects.length > 0 && (
+        <section id="projects" className="space-y-2">
+          <div className="container mx-auto px-4 sm:px-8">
+              <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
+                  <Code size={18} className="text-theme-500" />
+                  <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Project}</h2>
+              </div>
+          </div>
+          <div className="pt-[12px] w-full px-4 md:px-0">
+            <ExperiencesClient
+              experiences={importantProjects}
+              lang={lang}
+              layout="original"
+              canChange={false}
+              click_to_close_text={dict.Click_To_Close}
+              modern_text={dict.Presentation_Modern}
+              cinematic_text={dict.Presentation_Cinematic}
+              editorial_text={dict.Presentation_Editorial}
+              visit_external_link_text={dict.Visit_External_Link}
+              isLoggedIn={isLoggedIn}
+              bookmarkedItemIds={experienceBookmarks}
+            />
+          </div>
+        </section>
+      )}
+
+      {/* Side-by-Side Organizations and Awards on Desktop */}
+      {(importantOrg.length > 0 || importantAwards.length > 0) && (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 container mx-auto px-4 sm:px-8">
+          {importantOrg.length > 0 && (
+            <section id="organizations" className="space-y-2">
+              <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
+                  <Users size={18} className="text-theme-500" />
+                  <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Organization}</h2>
+              </div>
+              <div className="lg:contents">
+                <div className="pt-[12px] w-full px-4 md:px-0">
+                  <ExperiencesClient
+                    experiences={importantOrg}
+                    lang={lang}
+                    layout="timeline"
+                    canChange={false}
+                    click_to_close_text={dict.Click_To_Close}
+                    modern_text={dict.Presentation_Modern}
+                    cinematic_text={dict.Presentation_Cinematic}
+                    editorial_text={dict.Presentation_Editorial}
+                    visit_external_link_text={dict.Visit_External_Link}
+                    isLoggedIn={isLoggedIn}
+                    bookmarkedItemIds={experienceBookmarks}
+                  />
+                </div>
+              </div>
+            </section>
+          )}
+
+          {importantAwards.length > 0 && (
+            <section id="awards" className="space-y-2">
+              <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
+                  <Trophy size={18} className="text-theme-500" />
+                  <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Award}</h2>
+              </div>
+              <div className="lg:contents">
+                <div className="pt-[12px] w-full px-4 md:px-0">
+                  <ExperiencesClient
+                    experiences={importantAwards}
+                    lang={lang}
+                    layout="timeline"
+                    canChange={false}
+                    click_to_close_text={dict.Click_To_Close}
+                    modern_text={dict.Presentation_Modern}
+                    cinematic_text={dict.Presentation_Cinematic}
+                    editorial_text={dict.Presentation_Editorial}
+                    visit_external_link_text={dict.Visit_External_Link}
+                    isLoggedIn={isLoggedIn}
+                    bookmarkedItemIds={experienceBookmarks}
+                  />
+                </div>
+              </div>
+            </section>
+          )}
+        </div>
+      )}
+
+      {/* Certificates - Visual Grid */}
+      {Object.keys(importantCerts).length > 0 && (
+        <section id="certificates" className="space-y-4">
+          <div className="container mx-auto px-4 sm:px-8">
+              <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
+                  <FileCheck size={18} className="text-theme-500" />
+                  <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Certificate}</h2>
+              </div>
+          </div>
+          <CertificatesDisplay certificates={importantCerts} lang={lang} allTranslation={dict.All} click_to_close_text={dict.Click_To_Close} isLoggedIn={isLoggedIn} bookmarkedItemIds={certificateBookmarks} />
+        </section>
+      )}
+
+      {/* Highlighted Materials - Side-by-Side on Desktop */}
+      {(Object.keys(importantCollege).length > 0 || Object.keys(importantLiterature).length > 0) && (
+        <section id="highlights" className="space-y-4 container mx-auto px-4 sm:px-8">
+          <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
+              <Star size={18} className="text-theme-500" />
+              <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Important_Highlights}</h2>
+          </div>            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {Object.keys(importantCollege).length > 0 && (
+                  <InteractiveCollections data={importantCollege} lang={lang} force_click={true} isLoggedIn={isLoggedIn} bookmarkedItemIds={collectionBookmarks} />
+              )}
+              {Object.keys(importantLiterature).length > 0 && (
+                  <InteractiveCollections data={importantLiterature} lang={lang} force_click={true} isLoggedIn={isLoggedIn} bookmarkedItemIds={collectionBookmarks} />
+              )}
+          </div>
+        </section>
+      )}
+
+      {/* Social Media Section */}
+      <section id="social" className="space-y-4 container mx-auto px-4 sm:px-8 pb-12">
+          <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
+              <Share2 size={18} className="text-theme-500" />
+              <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Social}</h2>
+          </div>
+          <div className="bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-3xl overflow-hidden">
+              <SocialDisplay customLinks={importantSocialLinks} hidePresentation={true} dict={dict} />
+          </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="container mx-auto px-4 sm:px-8 pb-20">
+          <FAQ title={dict.FAQ_Faran_Title} items={faranFaqs} />
+      </section>
+    </div>
+  );
+}
+
+export default async function AllHighlightsPage({params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang);
+  const faranPhotos = await getFaranAikiPhoto();
+  
+  const faranFaqs = [
+    { question: dict.FAQ_Faran_Q1, answer: dict.FAQ_Faran_A1 },
+    { question: dict.FAQ_Faran_Q2, answer: dict.FAQ_Faran_A2 },
+    { question: dict.FAQ_Faran_Q3, answer: dict.FAQ_Faran_A3 },
+    { question: dict.FAQ_Faran_Q4, answer: dict.FAQ_Faran_A4 },
+    { question: dict.FAQ_Faran_Q5, answer: dict.FAQ_Faran_A5 },
+    { question: dict.FAQ_Faran_Q6, answer: dict.FAQ_Faran_A6 },
+  ];
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -237,165 +416,11 @@ export default async function AllHighlightsPage({params }: { params: Promise<{ l
           />
         </section>
 
-        {/* Professional Content - High Point Highlights */}
-        <div className="space-y-6">
-          {/* Work & Projects - High Impact Full Width */}
-          {importantWork.length > 0 && (
-            <section id="work" className="space-y-2">
-              <div className="container mx-auto px-4 sm:px-8">
-                  <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
-                      <Briefcase size={18} className="text-theme-500" />
-                      <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Work}</h2>
-                  </div>
-              </div>
-              <div className="pt-[12px] w-full px-4 md:px-0">
-        <ExperiencesClient
-                experiences={importantWork}
-                lang={lang}
-                layout="bento"
-                canChange={false}
-                click_to_close_text={dict.Click_To_Close}
-                modern_text={dict.Presentation_Modern}
-                cinematic_text={dict.Presentation_Cinematic}
-                editorial_text={dict.Presentation_Editorial}
-            visit_external_link_text={dict.Visit_External_Link}
-                isLoggedIn={isLoggedIn}
-                bookmarkedItemIds={experienceBookmarks}
-              />
-      </div>
-            </section>
-          )}
-
-          {importantProjects.length > 0 && (
-            <section id="projects" className="space-y-2">
-              <div className="container mx-auto px-4 sm:px-8">
-                  <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
-                      <Code size={18} className="text-theme-500" />
-                      <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Project}</h2>
-                  </div>
-              </div>
-              <div className="pt-[12px] w-full px-4 md:px-0">
-        <ExperiencesClient
-                experiences={importantProjects}
-                lang={lang}
-                layout="original"
-                canChange={false}
-                click_to_close_text={dict.Click_To_Close}
-                modern_text={dict.Presentation_Modern}
-                cinematic_text={dict.Presentation_Cinematic}
-                editorial_text={dict.Presentation_Editorial}
-            visit_external_link_text={dict.Visit_External_Link}
-                isLoggedIn={isLoggedIn}
-                bookmarkedItemIds={experienceBookmarks}
-              />
-      </div>
-            </section>
-          )}
-
-          {/* Side-by-Side Organizations and Awards on Desktop */}
-          {(importantOrg.length > 0 || importantAwards.length > 0) && (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 container mx-auto px-4 sm:px-8">
-              {importantOrg.length > 0 && (
-                <section id="organizations" className="space-y-2">
-                  <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
-                      <Users size={18} className="text-theme-500" />
-                      <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Organization}</h2>
-                  </div>
-                  <div className="lg:contents">
-                    <div className="pt-[12px] w-full px-4 md:px-0">
-        <ExperiencesClient
-                      experiences={importantOrg}
-                      lang={lang}
-                      layout="timeline"
-                      canChange={false}
-                      click_to_close_text={dict.Click_To_Close}
-                      modern_text={dict.Presentation_Modern}
-                      cinematic_text={dict.Presentation_Cinematic}
-                      editorial_text={dict.Presentation_Editorial}
-            visit_external_link_text={dict.Visit_External_Link}
-                      isLoggedIn={isLoggedIn}
-                      bookmarkedItemIds={experienceBookmarks}
-                    />
-      </div>
-                  </div>
-                </section>
-              )}
-
-              {importantAwards.length > 0 && (
-                <section id="awards" className="space-y-2">
-                  <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
-                      <Trophy size={18} className="text-theme-500" />
-                      <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Award}</h2>
-                  </div>
-                  <div className="lg:contents">
-                    <div className="pt-[12px] w-full px-4 md:px-0">
-        <ExperiencesClient
-                      experiences={importantAwards}
-                      lang={lang}
-                      layout="timeline"
-                      canChange={false}
-                      click_to_close_text={dict.Click_To_Close}
-                      modern_text={dict.Presentation_Modern}
-                      cinematic_text={dict.Presentation_Cinematic}
-                      editorial_text={dict.Presentation_Editorial}
-            visit_external_link_text={dict.Visit_External_Link}
-                      isLoggedIn={isLoggedIn}
-                      bookmarkedItemIds={experienceBookmarks}
-                    />
-      </div>
-                  </div>
-                </section>
-              )}
-            </div>
-          )}
-
-          {/* Certificates - Visual Grid */}
-          {Object.keys(importantCerts).length > 0 && (
-            <section id="certificates" className="space-y-4">
-              <div className="container mx-auto px-4 sm:px-8">
-                  <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
-                      <FileCheck size={18} className="text-theme-500" />
-                      <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Certificate}</h2>
-                  </div>
-              </div>
-              <CertificatesDisplay certificates={importantCerts} lang={lang} allTranslation={dict.All} click_to_close_text={dict.Click_To_Close} isLoggedIn={isLoggedIn} bookmarkedItemIds={certificateBookmarks} />
-            </section>
-          )}
-
-          {/* Highlighted Materials - Side-by-Side on Desktop */}
-          {(Object.keys(importantCollege).length > 0 || Object.keys(importantLiterature).length > 0) && (
-            <section id="highlights" className="space-y-4 container mx-auto px-4 sm:px-8">
-              <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
-                  <Star size={18} className="text-theme-500" />
-                  <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Important_Highlights}</h2>
-              </div>            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  {Object.keys(importantCollege).length > 0 && (
-                      <InteractiveCollections data={importantCollege} lang={lang} force_click={true} isLoggedIn={isLoggedIn} bookmarkedItemIds={collectionBookmarks} />
-                  )}
-                  {Object.keys(importantLiterature).length > 0 && (
-                      <InteractiveCollections data={importantLiterature} lang={lang} force_click={true} isLoggedIn={isLoggedIn} bookmarkedItemIds={collectionBookmarks} />
-                  )}
-              </div>
-            </section>
-          )}
-
-          {/* Social Media Section */}
-          <section id="social" className="space-y-4 container mx-auto px-4 sm:px-8 pb-12">
-              <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
-                  <Share2 size={18} className="text-theme-500" />
-                  <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Social}</h2>
-              </div>
-              <div className="bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-3xl overflow-hidden">
-                  <SocialDisplay customLinks={importantSocialLinks} hidePresentation={true} dict={dict} />
-              </div>
-          </section>
-
-          {/* FAQ Section */}
-          <section className="container mx-auto px-4 sm:px-8 pb-20">
-              <FAQ title={dict.FAQ_Faran_Title} items={faranFaqs} />
-          </section>
-          </div>
-          </PageEntrance>
-          </main>
-          );
-          }
+        {/* Streaming Data Section via Suspense */}
+        <Suspense fallback={<AllContentSkeleton />}>
+          <SuspendedAllContent lang={lang} dict={dict} />
+        </Suspense>
+      </PageEntrance>
+    </main>
+  );
+}

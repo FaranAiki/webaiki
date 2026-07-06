@@ -17,7 +17,7 @@ const withPWA = withPWAInit({
       {
         // Don't intercept next-image requests with Service Worker in production
         // to prevent unexpected errors due to opaque responses.
-        urlPattern: /^\/_next\/image\//,
+        urlPattern: /^\/_next\/image\?/,
         handler: 'NetworkOnly',
       },
       {

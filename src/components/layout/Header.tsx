@@ -216,7 +216,8 @@ export default function Header(props: HeaderProps) {
             const fetchUser = async () => {
                 const { createClient } = await import('@/utils/supabase/client');
                 const supabase = createClient();
-                const { data } = await supabase.auth.getUser();
+                const { data: { session } } = await supabase.auth.getSession();
+                const data = { user: session?.user };
                 if (data?.user) {
                     setUser(data.user);
                     
@@ -515,7 +516,7 @@ export default function Header(props: HeaderProps) {
                         aria-label={logo_alt}
                         className={`transition-[colors,transform,opacity] shadow-md border border-theme-border opacity-100 hover:opacity-80 scale-100 hover:scale-110 cursor-pointer rounded-full overflow-hidden transform-gpu flex`}>
                         <Image
-                            src='/icon.ico'
+                            src='/images/icons/icon-192x192.png'
                             alt={logo_alt}
                             title={logo_alt}
                             width={32}
@@ -846,6 +847,7 @@ export default function Header(props: HeaderProps) {
                             ) : (
                                 <Link
                                     href={getLocalizedHref('/login')}
+                                    prefetch={false}
                                     title={login_label}
                                     aria-label={login_label}
                                     className={`
@@ -925,6 +927,7 @@ export default function Header(props: HeaderProps) {
                                                                 <li key={subLink.href}>
                                                                     <Link
                                                                         href={getLocalizedHref(subLink.href)}
+                                                                        prefetch={false}
                                                                         onClick={() => setMobileMenuOpen(false)}
                                                                         className={`flex items-center text-[16px] transition-[colors,transform] duration-300 ${isActive
                                                                                 ? `${activeText} font-bold`
@@ -947,6 +950,7 @@ export default function Header(props: HeaderProps) {
                                             <li key={link.href}>
                                                 <Link
                                                     href={getLocalizedHref(link.href)}
+                                                    prefetch={false}
                                                     onClick={() => setMobileMenuOpen(false)}
                                                     className={`flex items-center text-lg transition-[colors,transform] duration-300 ${isActive
                                                             ? `${activeText} font-bold`
@@ -1056,6 +1060,7 @@ export default function Header(props: HeaderProps) {
                                             <div className="flex flex-col space-y-4 px-2">
                                                 <Link
                                                     href={getLocalizedHref('/login')}
+                                                    prefetch={false}
                                                     onClick={() => setMobileMenuOpen(false)}
                                                     className={`flex items-center w-full text-lg font-bold ${textColor} transition-colors duration-300 hover:text-theme-600`}
                                                 >
@@ -1064,6 +1069,7 @@ export default function Header(props: HeaderProps) {
                                                 </Link>
                                                 <Link
                                                     href={getLocalizedHref('/register')}
+                                                    prefetch={false}
                                                     onClick={() => setMobileMenuOpen(false)}
                                                     className={`flex items-center w-full text-lg font-bold ${textColor} transition-colors duration-300 hover:text-theme-600`}
                                                 >

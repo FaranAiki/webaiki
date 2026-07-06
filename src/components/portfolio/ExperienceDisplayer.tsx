@@ -30,7 +30,7 @@ export type Job = {
     title: string;
     company: string;
     description: string | string[];
-    image: string[];
+    image?: string[];
     url?: string;
     year?: string;
     point?: number;
@@ -63,6 +63,7 @@ interface ExperiencesClientProps {
     visit_external_link_text?: string;
     isLoggedIn?: boolean;
     bookmarkedItemIds?: string[];
+    timelineLayout?: React.ReactNode;
 }
 
 export default function ExperiencesClient({
@@ -81,7 +82,8 @@ export default function ExperiencesClient({
     editorial_text = 'Editorial',
     visit_external_link_text = 'Visit external link for',
     isLoggedIn = false,
-    bookmarkedItemIds = []
+    bookmarkedItemIds = [],
+    timelineLayout
 }: ExperiencesClientProps) {
     const [currentLayout, setCurrentLayout] = useState<LayoutType>(layout);
     const { isPresentationMode } = usePresentation();
@@ -132,7 +134,7 @@ export default function ExperiencesClient({
                     <FadeInSection>
                         <div className="container mx-auto max-w-6xl">
                             {currentLayout === 'original' && <ExperienceOriginalLayout />}
-                            {currentLayout === 'timeline' && <ExperienceTimelineLayout />}
+                            {currentLayout === 'timeline' && (timelineLayout || <ExperienceTimelineLayout />)}
                             {currentLayout === 'grid' && <ExperienceGridLayout />}
                             {currentLayout === 'bento' && <ExperienceBentoLayout />}
                             {currentLayout === 'smooth' && <ExperienceSmoothLayout />}

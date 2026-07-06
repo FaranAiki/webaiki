@@ -179,7 +179,7 @@ export const defaultSocialLinks: SocialLink[] = [
     },
   ];
 
-export default function SocialDisplay({ customLinks, hidePresentation = false, dict = {} }: SocialDisplayProps) {
+export default function SocialDisplay({ customLinks, hidePresentation = false }: SocialDisplayProps) {
   const { isPresentationMode } = usePresentation();
   
   // Static/CSS-variable based styles to prevent flicker

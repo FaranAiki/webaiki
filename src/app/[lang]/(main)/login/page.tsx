@@ -5,10 +5,11 @@ import { redirect } from 'next/navigation';
 
 export default async function LoginPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang);
-  
   const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const [dict, { data: { user } }] = await Promise.all([
+    getDictionary(lang),
+    supabase.auth.getUser()
+  ]);
 
   if (user) {
     redirect(`/${lang}`);

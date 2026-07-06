@@ -1,14 +1,19 @@
-"use client";
-
-import React, { useMemo } from 'react';
+import React from 'react';
 import Image from 'next/image';
-import { useExperienceContext } from '../ExperienceContext';
 import BookmarkButton from '@/components/interactive/BookmarkButton';
-import { TagBadge, PdfRenderer } from './ExperienceShared';
+import { TagBadge, PdfRenderer } from '../layouts/ExperienceShared';
+import type { Experience } from '../ExperienceDisplayer';
 
-export default function ExperienceTimelineLayout() {
-    const { paginatedExperiences, bookmarkedItemIds, isLoggedIn } = useExperienceContext();
-    const allJobs = useMemo(() => paginatedExperiences.flatMap(e => e.jobs), [paginatedExperiences]);
+export function ExperienceTimelineServer({ 
+    experiences, 
+    bookmarkedItemIds = [], 
+    isLoggedIn = false 
+}: { 
+    experiences: Experience[], 
+    bookmarkedItemIds?: string[], 
+    isLoggedIn?: boolean 
+}) {
+    const allJobs = experiences.flatMap(e => e.jobs);
 
     return (
         <div className="relative w-full py-10 overflow-hidden font-sans">
@@ -46,7 +51,13 @@ export default function ExperienceTimelineLayout() {
                                                     <div className="w-3 h-3 rounded-full bg-theme-500 animate-pulse" />
                                                 </div>
                                             </div>
-                                            <div className="w-full mt-4 flex-grow bg-theme-surface/90 backdrop-blur-md border border-theme-border rounded-3xl p-4 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group text-left cursor-pointer" onClick={() => job.url && window.open(job.url, '_blank')}>
+                                            {/* We replace onClick window.open with an anchor tag wrapping the card for Server Component */}
+                                            <a 
+                                                href={job.url || undefined} 
+                                                target={job.url ? "_blank" : undefined}
+                                                rel="noopener noreferrer"
+                                                className="w-full mt-4 flex-grow bg-theme-surface/90 backdrop-blur-md border border-theme-border rounded-3xl p-4 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group text-left block"
+                                            >
                                                 {job.image && job.image.length > 0 && (
                                                     <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-4 bg-theme-surface-strong">
                                                         {isPdf ? (
@@ -63,7 +74,8 @@ export default function ExperienceTimelineLayout() {
                                                 <h2 className="text-base lg:text-lg font-black mb-1 group-hover:text-theme-500 transition-colors leading-tight">{job.title}</h2>
                                                 <div className="mb-2 flex items-center justify-between">
                                                     <TagBadge labels={job.tag} />
-                                                    <div onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()}>
+                                                    {/* BookmarkButton is a Client Component, we can interleave it! */}
+                                                    <div onClick={(e) => e.preventDefault()} onKeyDown={(e) => e.preventDefault()}>
                                                         <BookmarkButton itemType="experience" itemId={job.title} initialBookmarked={bookmarkedItemIds.includes(job.title)} isLoggedIn={!!isLoggedIn} className="relative" />
                                                     </div>
                                                 </div>
@@ -77,7 +89,7 @@ export default function ExperienceTimelineLayout() {
                                                         <p>{job.description}</p>
                                                     )}
                                                 </div>
-                                            </div>
+                                            </a>
                                         </div>
                                     )
                                 })}
@@ -110,7 +122,12 @@ export default function ExperienceTimelineLayout() {
                                                 <div className="w-3 h-3 rounded-full bg-theme-500 animate-pulse" />
                                             </div>
                                         </div>
-                                        <div className="w-full mt-4 flex-grow bg-theme-surface/90 backdrop-blur-md border border-theme-border rounded-3xl p-5 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group text-left cursor-pointer" onClick={() => job.url && window.open(job.url, '_blank')}>
+                                        <a 
+                                            href={job.url || undefined} 
+                                            target={job.url ? "_blank" : undefined}
+                                            rel="noopener noreferrer"
+                                            className="w-full mt-4 flex-grow bg-theme-surface/90 backdrop-blur-md border border-theme-border rounded-3xl p-5 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group text-left block"
+                                        >
                                             {job.image && job.image.length > 0 && (
                                                 <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-4 bg-theme-surface-strong">
                                                     {job.image[0].toLowerCase().endsWith('.pdf') ? (
@@ -126,7 +143,7 @@ export default function ExperienceTimelineLayout() {
                                             </div>
                                             <div className="flex justify-between items-start mb-1">
                                                 <h2 className="text-lg font-black group-hover:text-theme-500 transition-colors leading-tight">{job.title}</h2>
-                                                <div onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()}>
+                                                <div onClick={(e) => e.preventDefault()} onKeyDown={(e) => e.preventDefault()}>
                                                     <BookmarkButton itemType="experience" itemId={job.title} initialBookmarked={bookmarkedItemIds.includes(job.title)} isLoggedIn={!!isLoggedIn} className="relative !p-1.5" />
                                                 </div>
                                             </div>
@@ -141,7 +158,7 @@ export default function ExperienceTimelineLayout() {
                                                     <p>{job.description}</p>
                                                 )}
                                             </div>
-                                        </div>
+                                        </a>
                                     </div>
                                 )
                             })}
@@ -155,9 +172,14 @@ export default function ExperienceTimelineLayout() {
                 <div className="absolute left-7 top-10 bottom-10 w-1 bg-theme-500/30 z-0" />
                 <div className="space-y-8">
                     {allJobs.map((job, idx) => (
-                        <div key={`mob-${idx}`} className="relative pl-12 pr-2 flex flex-col w-full cursor-pointer group" onClick={() => job.url && window.open(job.url, '_blank')}>
+                        <div key={`mob-${idx}`} className="relative pl-12 pr-2 flex flex-col w-full group">
                             <div className="absolute left-5 top-5 w-5 h-5 rounded-full bg-theme-surface border-4 border-theme-500 shadow-[0_0_10px_rgba(var(--color-theme-500),0.5)] z-10" />
-                            <div className="w-full bg-theme-surface/90 backdrop-blur-md border border-theme-border rounded-2xl p-4 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:-translate-y-1 text-left">
+                            <a 
+                                href={job.url || undefined} 
+                                target={job.url ? "_blank" : undefined}
+                                rel="noopener noreferrer"
+                                className="w-full bg-theme-surface/90 backdrop-blur-md border border-theme-border rounded-2xl p-4 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:-translate-y-1 text-left block"
+                            >
                                 {job.image && job.image.length > 0 && (
                                     <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-3 bg-theme-surface-strong">
                                         {job.image[0].toLowerCase().endsWith('.pdf') ? (
@@ -170,7 +192,7 @@ export default function ExperienceTimelineLayout() {
                                 <span className="inline-block px-2 py-0.5 bg-theme-500/10 text-theme-700 dark:text-theme-300 rounded-md text-[10px] font-black uppercase mb-2">{job.year}</span>
                                 <div className="flex justify-between items-start mb-1">
                                     <h2 className="text-sm font-black text-foreground group-hover:text-theme-500 leading-tight">{job.title}</h2>
-                                    <div onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()}>
+                                    <div onClick={(e) => e.preventDefault()} onKeyDown={(e) => e.preventDefault()}>
                                         <BookmarkButton itemType="experience" itemId={job.title} initialBookmarked={bookmarkedItemIds.includes(job.title)} isLoggedIn={!!isLoggedIn} className="relative !p-1.5" />
                                     </div>
                                 </div>
@@ -184,7 +206,7 @@ export default function ExperienceTimelineLayout() {
                                         <p>{job.description}</p>
                                     )}
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     ))}
                 </div>

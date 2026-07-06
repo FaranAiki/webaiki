@@ -28,10 +28,29 @@ export default async function NewsPage({ params }: { params: Promise<{ lang: str
     getNews()
   ]);
 
+  const newsDict = {
+    News: dict.News,
+    Post_News: dict.Post_News,
+    Drop_Here: dict.Drop_Here,
+    Title: dict.Title,
+    Image_Optional: dict.Image_Optional,
+    Upload_Photo: dict.Upload_Photo,
+    Content: dict.Content,
+    Waiting: dict.Waiting,
+    Send: dict.Send,
+    Delete: dict.Delete,
+    News_Deleted: dict.News_Deleted,
+    News_Submitted: dict.News_Submitted,
+    Latest_News: dict.Latest_News,
+    Search_News: dict.Search_News,
+    No_News: dict.No_News,
+    Read_More: dict.Read_More
+  };
+
   return (
     <main className="container mx-auto px-4 md:px-8 pt-32 pb-16 min-h-screen">
       <NewsDisplay 
-        dict={dict} 
+        dict={newsDict as import('@/components/layout/Translator').TranslationDict} 
         lang={lang} 
         isAdmin={false} 
         initialNews={JSON.parse(JSON.stringify(news))} 
