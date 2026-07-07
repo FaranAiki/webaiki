@@ -35,7 +35,7 @@ import { Briefcase, Code, Users, Trophy, FileCheck, Star } from 'lucide-react';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','all']);
+  const dict = await getDictionary(lang);
   const baseMetadata = getBaseMetadata();
 
   return {
@@ -349,7 +349,7 @@ async function SuspendedAllContent({ lang, dict }: { lang: string, dict: Record<
 
 export default async function AllHighlightsPage({params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','all']);
+  const dict = await getDictionary(lang);
   const faranPhotos = await getFaranAikiPhoto();
   
   const faranFaqs = [

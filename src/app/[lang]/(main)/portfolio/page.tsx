@@ -24,7 +24,7 @@ import FAQ from '@/components/portfolio/FAQ';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','portfolio']);
+  const dict = await getDictionary(lang);
   const baseMetadata = getBaseMetadata();
 
   return {
@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
 export default async function PortfolioSummaryPage({params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','portfolio']);
+  const dict = await getDictionary(lang);
   
 
   const workExp = getWorkExperiences(dict).flatMap(y => y.jobs);

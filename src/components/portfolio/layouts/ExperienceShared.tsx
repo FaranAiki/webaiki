@@ -131,7 +131,7 @@ export interface BentoCardProps {
 export const BentoCard = React.memo(({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, justifyClass, click_to_close_text, priority, isLoggedIn, bookmarkedItemIds = [] }: BentoCardProps) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const hasImage = job.image && job.image.length > 0;
-    const itemId = `exp-${job.title.toLowerCase().replace(/\s+/g, '-')}`;
+    const itemId = `exp-${((job.title || "").toLowerCase()).replace(/\s+/g, '-')}`;
 
     const handleBoxClick = () => {
         if (job.url && !isExpanded) {

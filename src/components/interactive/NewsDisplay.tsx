@@ -53,7 +53,7 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
     if (searchQuery.trim() !== '') {
       const q = searchQuery.toLowerCase();
       result = result.filter(n => 
-        n.title.toLowerCase().includes(q) || 
+        ((n.title || "").toLowerCase()).includes(q) || 
         n.content.toLowerCase().includes(q)
       );
     }

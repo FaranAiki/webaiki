@@ -48,7 +48,7 @@ export default function ExperienceOriginalLayout() {
                             {experience.jobs.map((job, index) => (
                                 <motion.div
                                     key={`${experience.year}-${index}`}
-                                    id={`exp-${job.title.toLowerCase().replace(/\s+/g, '-')}`}
+                                    id={`exp-${((job.title || "").toLowerCase()).replace(/\s+/g, '-')}`}
                                     variants={{
                                         hidden: { opacity: 0, y: 15 },
                                         show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100 } }

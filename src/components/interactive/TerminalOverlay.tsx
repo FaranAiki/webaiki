@@ -26,10 +26,6 @@ interface TerminalOverlayProps {
   lang: string;
   dict: import('@/components/layout/Translator').TranslationDict;
   username: string | null;
-  workExperiences: JobItem[];
-  projectExperiences: JobItem[];
-  organizationExperiences: JobItem[];
-  awardExperiences: JobItem[];
   pageRoutes: TerminalPageRoute[];
 }
 
@@ -49,13 +45,27 @@ export default function TerminalOverlay({
   lang, 
   dict, 
   username,
-  workExperiences,
-  projectExperiences,
-  organizationExperiences,
-  awardExperiences,
   pageRoutes
 }: TerminalOverlayProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [workExperiences, setWorkExperiences] = useState<JobItem[]>([]);
+  const [projectExperiences, setProjectExperiences] = useState<JobItem[]>([]);
+  const [organizationExperiences, setOrganizationExperiences] = useState<JobItem[]>([]);
+  const [awardExperiences, setAwardExperiences] = useState<JobItem[]>([]);
+  const [hasLoadedData, setHasLoadedData] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (isOpen && !hasLoadedData) {
+      getTerminalData(lang).then(data => {
+        setWorkExperiences(data.workExp);
+        setProjectExperiences(data.projectExp);
+        setOrganizationExperiences(data.orgExp);
+        setAwardExperiences(data.awardExp);
+        setHasLoadedData(true);
+      });
+    }
+  }, [isOpen, hasLoadedData, lang]);
+
   const [isMaximized, setIsMaximized] = useState<boolean>(false);
   const [cwd, setCwd] = useState<string>('/');
   const [input, setInput] = useState<string>('');
@@ -156,13 +166,13 @@ ${awardExperiences.map(a => `- ${a.title} @ ${a.company} (${a.date})\n  ${a.desc
       if (route.slug === '') return;
 
       if (route.slug === 'work') {
-        const fileNames = workExperiences.map(w => `${w.company.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${w.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.txt`);
+        const fileNames = workExperiences.map(w => `${((w.company || "").toLowerCase()).replace(/[^a-z0-9]/g, '-')}-${((w.title || "").toLowerCase()).replace(/[^a-z0-9]/g, '-')}.txt`);
         fs['/work'] = {
           type: 'dir',
           children: Array.from(new Set(fileNames))
         };
         workExperiences.forEach(w => {
-          const fileName = `${w.company.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${w.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.txt`;
+          const fileName = `${((w.company || "").toLowerCase()).replace(/[^a-z0-9]/g, '-')}-${((w.title || "").toLowerCase()).replace(/[^a-z0-9]/g, '-')}.txt`;
           fs[`/work/${fileName}`] = {
             type: 'file',
             content: `${w.title} (${w.date})
@@ -173,13 +183,13 @@ Tags: ${w.tag?.join(', ') || ''}`
           };
         });
       } else if (route.slug === 'project') {
-        const fileNames = projectExperiences.map(p => `${p.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.txt`);
+        const fileNames = projectExperiences.map(p => `${((p.title || "").toLowerCase()).replace(/[^a-z0-9]/g, '-')}.txt`);
         fs['/project'] = {
           type: 'dir',
           children: Array.from(new Set(fileNames))
         };
         projectExperiences.forEach(p => {
-          const fileName = `${p.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.txt`;
+          const fileName = `${((p.title || "").toLowerCase()).replace(/[^a-z0-9]/g, '-')}.txt`;
           fs[`/project/${fileName}`] = {
             type: 'file',
             content: `${p.title} (${p.date})
@@ -191,13 +201,13 @@ Tags: ${p.tag?.join(', ') || ''}`
           };
         });
       } else if (route.slug === 'organization') {
-        const fileNames = organizationExperiences.map(o => `${o.company.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${o.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.txt`);
+        const fileNames = organizationExperiences.map(o => `${((o.company || "").toLowerCase()).replace(/[^a-z0-9]/g, '-')}-${((o.title || "").toLowerCase()).replace(/[^a-z0-9]/g, '-')}.txt`);
         fs['/organization'] = {
           type: 'dir',
           children: Array.from(new Set(fileNames))
         };
         organizationExperiences.forEach(o => {
-          const fileName = `${o.company.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${o.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.txt`;
+          const fileName = `${((o.company || "").toLowerCase()).replace(/[^a-z0-9]/g, '-')}-${((o.title || "").toLowerCase()).replace(/[^a-z0-9]/g, '-')}.txt`;
           fs[`/organization/${fileName}`] = {
             type: 'file',
             content: `${o.title} (${o.date})
@@ -208,13 +218,13 @@ Tags: ${o.tag?.join(', ') || ''}`
           };
         });
       } else if (route.slug === 'award') {
-        const fileNames = awardExperiences.map(a => `${a.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.txt`);
+        const fileNames = awardExperiences.map(a => `${((a.title || "").toLowerCase()).replace(/[^a-z0-9]/g, '-')}.txt`);
         fs['/award'] = {
           type: 'dir',
           children: Array.from(new Set(fileNames))
         };
         awardExperiences.forEach(a => {
-          const fileName = `${a.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.txt`;
+          const fileName = `${((a.title || "").toLowerCase()).replace(/[^a-z0-9]/g, '-')}.txt`;
           fs[`/award/${fileName}`] = {
             type: 'file',
             content: `${a.title} (${a.date})

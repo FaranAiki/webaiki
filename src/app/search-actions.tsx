@@ -69,12 +69,12 @@ export async function getSuggestions(lang: string, count: number = 5): Promise<S
   try {
     const work = getWorkExperiences(dict) as YearGroup[];
     work.forEach(y => y.jobs.forEach(j => dynamicPool.push({
-      title: j.title, company: j.company, description: j.description, type: 'work', url: `/${lang}/work#exp-${j.title.toLowerCase().replace(/\s+/g, '-')}`
+      title: j.title, company: j.company, description: j.description, type: 'work', url: `/${lang}/work#exp-${((j.title || "").toLowerCase()).replace(/\s+/g, '-')}`
     })));
 
     const projects = getProjectExperiences(dict) as YearGroup[];
     projects.forEach(y => y.jobs.forEach(j => dynamicPool.push({
-      title: j.title, company: j.company, description: j.description, type: 'project', url: `/${lang}/project#exp-${j.title.toLowerCase().replace(/\s+/g, '-')}`
+      title: j.title, company: j.company, description: j.description, type: 'project', url: `/${lang}/project#exp-${((j.title || "").toLowerCase()).replace(/\s+/g, '-')}`
     })));
   } catch {
     // Fallback if data fetching fails
@@ -220,7 +220,7 @@ export async function getFullSearchPool(lang: string): Promise<SearchResult[]> {
       yearGroup.jobs.forEach((job) => {
 
 
-        const anchor = `#exp-${job.title.toLowerCase().replace(/\s+/g, '-')}`;
+        const anchor = `#exp-${((job.title || "").toLowerCase()).replace(/\s+/g, '-')}`;
         pool.push({
           title: job.title,
           company: job.company,
