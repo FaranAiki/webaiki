@@ -52,7 +52,7 @@ const DynamicHero = React.memo(({ dict, isReady, isLgScreen, isMdScreen, parts }
               <span className="invisible select-none pointer-events-none whitespace-nowrap nav-active-gacor">
                 {cyclingData[wordIndex].word.trim()}
               </span>
-              <AnimatePresence mode="popLayout">
+              <AnimatePresence mode="popLayout" initial={false}>
                 <motion.span
                   key={wordIndex}
                   initial={{ y: 30, opacity: 0 }}
@@ -70,7 +70,7 @@ const DynamicHero = React.memo(({ dict, isReady, isLgScreen, isMdScreen, parts }
       </div>
       <div className="hidden md:flex flex-shrink-0 relative md:w-64 md:h-64 items-center justify-center">
         {isMdScreen && (
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="wait" initial={false}>
               <motion.div
                   key={wordIndex}
                   initial={{ opacity: 0, scale: 0.8, y: 15 }}

@@ -238,7 +238,7 @@ export default function Header(props: HeaderProps) {
         }, []);
 
         useEffect(() => {
-            let subscription: any = null;
+            let subscription: { unsubscribe: () => void } | null = null;
             const initAuth = async () => {
                 const { createClient } = await import('@/utils/supabase/client');
                 const supabase = createClient();

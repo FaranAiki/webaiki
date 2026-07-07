@@ -7,7 +7,7 @@ import { SettingsProvider } from "./SettingsContext";
 import QueryProvider from "./QueryProvider";
 import dynamic from "next/dynamic";
 const SmoothScroll = dynamic(() => import("./SmoothScroll"), { ssr: false });
-import LoadingOverlay from "../layout/LoadingOverlay";
+
 import { usePathname, useSearchParams } from "next/navigation";
 import { useAppStore } from "@/lib/store";
 import { LazyMotion, domAnimation } from "framer-motion";
@@ -70,7 +70,7 @@ export function Providers({ children, nonce, isBot }: { children: React.ReactNod
                     <GlobalLoadingReset />
                     <UserBookmarkProvider />
                   </Suspense>
-                  <LoadingOverlay label={loadingLabel} isBot={isBot} />
+
                   {children}
                 </LazyMotion>
               </ThemeProvider>

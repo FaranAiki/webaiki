@@ -5,39 +5,7 @@ import "../../globals.css";
 import { getDictionary } from '@/components/layout/Translator';
 import dynamic from 'next/dynamic';
 const TerminalOverlay = dynamic(() => import("@/components/interactive/TerminalOverlay"));
-import {
-  getWorkExperiences,
-  getProjectExperiences,
-  getOrganizationExperiences,
-  getAwardExperiences
-} from '@/lib/data';
 
-import {
-  Home,
-  User,
-  Share2,
-  FileCheck,
-  Briefcase,
-  Users,
-  Trophy,
-  Palette,
-  Music,
-  BookOpen,
-  GraduationCap,
-  Compass,
-  Code,
-  Star,
-  LayoutGrid,
-  Fingerprint,
-  Globe,
-  Handshake,
-  MessageSquare,
-  Newspaper,
-  MoreHorizontal,
-  Network,
-  History,
-  FileText
-} from 'lucide-react';
 
 export default async function RootLayout({
   children,

@@ -63,7 +63,7 @@ export default function Background({ carousel, showOverlay = true }: BackgroundP
       alt: `Background image ${currentIndex + 1} - Muhammad Faran Aiki Portfolio`,
       fill: true,
       sizes: "100vw",
-      quality: 85,
+      quality: 50,
       priority: currentIndex === 0,
       loading: (currentIndex === 0 ? "eager" : "lazy") as "eager" | "lazy",
       fetchPriority: (currentIndex === 0 ? "high" : "auto") as "high" | "auto",
@@ -97,7 +97,7 @@ export default function Background({ carousel, showOverlay = true }: BackgroundP
   return (
     <div className={`presentation-background sticky top-0 left-0 w-full h-screen -mb-[100vh] z-[-1] pointer-events-none transform-gpu contain-strict overflow-hidden bg-theme-bg dark:bg-theme-bg-dark transition-colors duration-1000`}>
       <div className={`w-full h-full absolute inset-0 transform-gpu`} style={{ backfaceVisibility: 'hidden' }}>
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="wait" initial={false}>
             <motion.div
                 key={currentIndex}
                 initial={{ opacity: currentIndex === 0 ? 0.8 : 0 }}

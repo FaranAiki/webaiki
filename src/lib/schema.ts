@@ -49,7 +49,7 @@ export const users = pgTable('User', {
   registrationReason: registrationReasonEnum('registrationReason').default('VISITOR').notNull(),
   createdAt: timestamp('createdAt', { mode: 'date' }).defaultNow().notNull(),
   updatedAt: timestamp('updatedAt', { mode: 'date' }).defaultNow().notNull(),
-}, (table) => [
+}, (_table) => [
   pgPolicy('Enable RLS', { as: 'permissive', for: 'all', to: 'public', using: sql`false` }),
   pgPolicy('Public profiles are viewable by everyone', { as: 'permissive', for: 'select', to: 'public', using: sql`true` }),
   pgPolicy('Users can insert their own profile', { as: 'permissive', for: 'insert', to: 'public', withCheck: sql`(select auth.uid()) = id` }),

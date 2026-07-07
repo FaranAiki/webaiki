@@ -6,6 +6,7 @@ import { Terminal as TerminalIcon, X, Maximize2, Minimize2 } from 'lucide-react'
 import { usePathname } from 'next/navigation';
 import { usePresentation } from '../providers/PresentationContext';
 import { defaultSocialLinks } from '../portfolio/SocialDisplay';
+import { getTerminalData } from '@/app/terminal-actions';
 
 interface JobItem {
   title: string;
@@ -56,7 +57,7 @@ export default function TerminalOverlay({
 
   useEffect(() => {
     if (isOpen && !hasLoadedData) {
-      getTerminalData(lang).then(data => {
+      getTerminalData(lang).then((data: { workExp: JobItem[], projectExp: JobItem[], orgExp: JobItem[], awardExp: JobItem[] }) => {
         setWorkExperiences(data.workExp);
         setProjectExperiences(data.projectExp);
         setOrganizationExperiences(data.orgExp);

@@ -6,6 +6,8 @@ import { getNews, getFeedbacks } from '@/app/actions';
 import { NewsItem } from '@/lib/types';
 import LatestActivity from '@/components/interactive/LatestActivity';
 
+export const revalidate = 3600;
+
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website']);
