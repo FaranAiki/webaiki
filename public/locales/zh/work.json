@@ -1,0 +1,54 @@
+{
+  "SEO_Work_Description": [
+    "Professional history of Muhammad Faran Aiki as a Software Engineer at Analitica, SAT Tutor at Kobi Education, and other tech roles."
+  ],
+  "Work": "工作",
+  "Impact_Module_Author": "IMPACT 6.0 数学模块作者",
+  "Impact_Module_Author_Description": [
+    "为IMPACT 6.0奥林匹克竞赛编写了全面的教育模块。",
+    "设计了严格的问题集和解决方案，以挑战顶尖的高中生。",
+    "与学术同行合作，确保高质量的内容标准。"
+  ],
+  "Compile_Module_Author": "COMPILE STEI-K UTBK 模块创建者",
+  "Compile_Module_Author_Description": [
+    "为COMPILE UTBK备考项目编写了学习模块。",
+    "策划了大量的练习题，为学生准备全国大学入学考试。",
+    "通过详细的解释促进对复杂主题的更好理解。"
+  ],
+  "Job_Type_Freelance": "自由职业",
+  "SAT_Tutor": "SAT 数学与言语导师（合同制）",
+  "SAT_Tutor_Description": [
+    "教授SAT数学和英语，提供全面的课程和量身定制的策略。",
+    "指导学生实现其海外大学录取的申请目标。"
+  ],
+  "Software_Engineer": "软件工程师 (前端 Flutter)",
+  "Software_Engineer_Description": [
+    "作为软件工程师开发并维护了Analitica平台的核心功能。",
+    "优化了应用程序性能，并简化了代码库以实现更好的可扩展性。",
+    "与跨职能团队合作，提供高质量的软件解决方案。"
+  ],
+  "Mathematics_Private_Tutor": "数学私教",
+  "Mathematics_Private_Tutor_Description": [
+    "提供个性化的数学辅导课程，专注于奥林匹克级别的课题。",
+    "评估学生的进步，并定制教学方法以解决个人的弱点。",
+    "培养学生的分析思维和高级解决问题的能力。"
+  ],
+  "Education_Team": "教育团队",
+  "Education_Team_Description": [
+    "通过开发专业的教育内容，为Analitica的教育团队做出了贡献。",
+    "分析了学生的表现数据，以完善和改进学习材料。",
+    "支持了数千名学生使用的评估工具的创建。"
+  ],
+  "IT_Club_Tutor": "信息学俱乐部导师",
+  "IT_Club_Tutor_Description": [
+    "辅导高中生的基础编程和IT概念。",
+    "开发了引人入胜的课程计划和实用的编码练习。",
+    "在俱乐部内营造了协作和支持的学习环境。"
+  ],
+  "Education_Tutoring": "Education & Tutoring",
+  "Tutoring_SAT": "Tutoring in SAT Math",
+  "Tutoring_Olympiad": "Tutoring in Olympiad Mathematics",
+  "Tutoring_Math": "Tutoring in Mathematics",
+  "Tutoring_Python": "Tutoring in Programming (Python)",
+  "Tutoring_Web": "Tutoring in Web Development"
+}

@@ -1,0 +1,54 @@
+{
+  "SEO_Work_Description": [
+    "Professional history of Muhammad Faran Aiki as a Software Engineer at Analitica, SAT Tutor at Kobi Education, and other tech roles."
+  ],
+  "Work": "العمل",
+  "Impact_Module_Author": "مؤلف وحدة الرياضيات IMPACT 6.0",
+  "Impact_Module_Author_Description": [
+    "تأليف وحدات تعليمية شاملة لأولمبياد IMPACT 6.0.",
+    "تصميم مجموعات مسائل وحلول صارمة لتحدي كبار طلاب المدارس الثانوية.",
+    "التعاون مع الزملاء الأكاديميين لضمان معايير جودة المحتوى العالية."
+  ],
+  "Compile_Module_Author": "مبدع وحدة COMPILE STEI-K UTBK",
+  "Compile_Module_Author_Description": [
+    "تأليف وحدات تعليمية لبرنامج التحضير COMPILE UTBK.",
+    "تنسيق أسئلة تدريبية مكثفة لإعداد الطلاب لامتحانات القبول بالجامعات الوطنية.",
+    "تسهيل فهم أفضل للمواضيع المعقدة من خلال شروحات مفصلة."
+  ],
+  "Job_Type_Freelance": "عمل حر",
+  "SAT_Tutor": "مدرس SAT Math & Verbal (عقد)",
+  "SAT_Tutor_Description": [
+    "قمت بتدريس الطلاب في الرياضيات واللغة الإنجليزية في اختبار SAT، مع تقديم دروس شاملة واستراتيجيات مصممة خصيصًا.",
+    "وجهت الطلاب لتحقيق أهدافهم في القبول في الجامعات الأجنبية."
+  ],
+  "Software_Engineer": "مهندس برمجيات (واجهة أمامية Flutter)",
+  "Software_Engineer_Description": [
+    "تطوير وصيانة الميزات الأساسية لمنصة Analitica كمهندس برمجيات.",
+    "تحسين أداء التطبيق وتبسيط قاعدة الكود لتحسين قابلية التوسع.",
+    "التعاون مع فرق متعددة التخصصات لتقديم حلول برمجية عالية الجودة."
+  ],
+  "Mathematics_Private_Tutor": "مدرس خصوصي للرياضيات",
+  "Mathematics_Private_Tutor_Description": [
+    "تقديم جلسات دروس رياضيات مخصصة تركز على موضوعات مستوى الأولمبياد.",
+    "تقييم تقدم الطلاب وتخصيص طرق التدريس لمعالجة نقاط الضعف الفردية.",
+    "تعزيز التفكير التحليلي ومهارات حل المشكلات المتقدمة لدى الطلاب."
+  ],
+  "Education_Team": "فريق التعليم",
+  "Education_Team_Description": [
+    "المساهمة في فريق التعليم في Analitica من خلال تطوير محتوى تعليمي متخصص.",
+    "تحليل بيانات أداء الطلاب لتحسين وتطوير المواد التعليمية.",
+    "دعم إنشاء أدوات التقييم المستخدمة من قبل آلاف الطلاب."
+  ],
+  "IT_Club_Tutor": "مدرس نادي المعلوماتية",
+  "IT_Club_Tutor_Description": [
+    "تدريس طلاب المدارس الثانوية المفاهيم الأساسية للبرمجة وتكنولوجيا المعلومات.",
+    "تطوير خطط دروس تفاعلية وتمارين برمجة عملية.",
+    "تعزيز بيئة تعليمية تعاونية وداعمة داخل النادي."
+  ],
+  "Education_Tutoring": "Education & Tutoring",
+  "Tutoring_SAT": "Tutoring in SAT Math",
+  "Tutoring_Olympiad": "Tutoring in Olympiad Mathematics",
+  "Tutoring_Math": "Tutoring in Mathematics",
+  "Tutoring_Python": "Tutoring in Programming (Python)",
+  "Tutoring_Web": "Tutoring in Web Development"
+}

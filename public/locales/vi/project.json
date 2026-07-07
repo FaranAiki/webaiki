@@ -1,0 +1,72 @@
+{
+  "Loading_Python": "Downloading Python and Source Code....",
+  "Python_Web_Title": "Python Interactive Interface",
+  "Python_Terminal_Error": "CRITICAL ERROR: SharedArrayBuffer is not defined. Ensure Cross-Origin-Opener-Policy (COOP) and Cross-Origin-Embedder-Policy (COEP) headers are set on the server.",
+  "Python_Terminal_Finished": "--- Program Finished ---",
+  "Python_Terminal_Welcome": "Welcome to the Python Web Terminal!",
+  "Python_Terminal_Input_Too_Long": "Input too long!",
+  "SEO_Project_Description": [
+    "A collection of technical projects by Muhammad Faran Aiki, ranging from the Alkyl compiler to the ALTH Flutter app and Indonesian socio-economic data integration."
+  ],
+  "Project": "Project",
+  "Make_Interactive_UAS": "Interactive Learning for UAS MA1101 ITB",
+  "Make_Interactive_UAS_Description": [
+    "Xây dựng một công cụ học toán tương tác sử dụng Flutter, Dart và FL Chart.",
+    "Trực quan hóa các khái niệm toán học phức tạp một cách động lực để hỗ trợ sự hiểu biết của học sinh.",
+    "Thiết kế một giao diện phản hồi nhanh và thân thiện với người dùng để tương tác mượt mà."
+  ],
+  "Make_Nihwm": "NihWM Window Manager",
+  "Make_Nihwm_Description": [
+    "Phát triển 'nihwm', một trình quản lý cửa sổ X11 nhẹ được viết hoàn toàn bằng C cho Linux.",
+    "Triển khai các chức năng quản lý cửa sổ cốt lõi và xử lý đầu vào bằng XOrg.",
+    "Tối ưu hóa cơ sở mã để tiêu thụ tài nguyên tối thiểu và độ phản hồi cao."
+  ],
+  "Lidia_Project": "Socio-Economic Integration Data Analysis for Indonesia Emas 2045",
+  "Lidia_Project_Description": [
+    "Xây dựng đường ống dữ liệu ETL sử dụng Python, Pandas và Jupyter Notebook.",
+    "Tích hợp Gemini-CLI để nâng cao khả năng xử lý dữ liệu.",
+    "Hợp lý hóa quy trình làm việc với dữ liệu, giảm đáng kể thời gian xử lý thủ công."
+  ],
+  "Alkyl_Compiler": "Alkyl Programming Language and Compiler",
+  "Alkyl_Compiler_Description": [
+    "Kiến trúc và triển khai một trình biên dịch tùy chỉnh từ đầu sử dụng C và LLVM.",
+    "Sử dụng Valgrind và GDB để quản lý và gỡ lỗi bộ nhớ nghiêm ngặt.",
+    "Dịch các cấu trúc ngôn ngữ cấp cao thành mã máy hiệu quả."
+  ],
+  "ALTH_Project": "ALTH: Aku Lupa Tandai Hadir",
+  "ALTH_Project_Description": [
+    "Thực hiện phân tích bằng Burp Suite để hiểu cách sử dụng SSO và Cookies.",
+    "Phát triển ứng dụng nhắc nhở điểm danh sử dụng Flutter và Dart cho sinh viên Viện Công nghệ Bandung."
+  ],
+  "Jump_Game_Project": "Jump! Game",
+  "Below_Below_Project": "Below Below",
+  "Superskill_Project": "Cognitive Garden",
+  "View_Project": "View Project",
+  "National_Statistics_Competition_Prep": "Chuẩn bị cho Cuộc thi Thống kê Quốc gia",
+  "National_Statistics_Competition_Prep_Description": [
+    "Chuẩn bị và mô hình hóa dữ liệu thống kê bằng Xác suất & Thống kê, SARIMAX và MANOVA.",
+    "Lập trình các tập lệnh phân tích dữ liệu mở rộng bằng Python và Jupyter Notebooks.",
+    "Trực quan hóa các tập dữ liệu phức tạp để thu được hiểu biết có thể hành động cho cuộc thi."
+  ],
+  "Jump_Game_Description": [
+    "Tạo ra một trò chơi platformer đầy thử thách sử dụng C# và Visual Studio.",
+    "Triển khai cơ chế nhảy dựa trên vật lý và phát hiện va chạm.",
+    "Thiết kế bố cục cấp độ và tích hợp hệ thống tính điểm để tăng cường trải nghiệm chơi."
+  ],
+  "Below_Below_Description": [
+    "Thiết kế và lập trình 'Below Below', một trò chơi điện tử hấp dẫn sử dụng Godot 4.2 và GDScript.",
+    "Phát triển cơ chế trò chơi, tương tác vật lý và bộ điều khiển người chơi.",
+    "Tạo nghệ thuật pixel tùy chỉnh và tích hợp hiệu ứng âm thanh cho trải nghiệm nhất quán."
+  ],
+  "Olive_Divergence": "Olive Divergence",
+  "Olive_Divergence_Desc": [
+    "Lập trình 'Olive Divergence' sử dụng C++ và framework Qt.",
+    "Thiết kế giao diện đồ họa người dùng với các yếu tố hình ảnh phong phú và widget tùy chỉnh.",
+    "Quản lý trạng thái ứng dụng và luồng dữ liệu hiệu quả trong vòng lặp sự kiện Qt."
+  ],
+  "Superskill_Description": [
+    "Phát triển Cognitive Garden, một ứng dụng đa nền tảng phức tạp sử dụng Flutter và Dart.",
+    "Thiết kế các trò chơi rèn luyện nhận thức và kích thích trí não.",
+    "Thiết kế giao diện người dùng trực quan và hấp dẫn với các hình ảnh động phong phú."
+  ]
+}

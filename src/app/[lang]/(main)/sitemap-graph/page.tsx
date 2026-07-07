@@ -1,5 +1,9 @@
 import { getDictionary } from '@/components/layout/Translator';
-import SitemapGraphClient from '@/components/interactive/SitemapGraphClient';
+import dynamic from 'next/dynamic';
+
+const SitemapGraphClient = dynamic(() => import('@/components/interactive/SitemapGraphClient'), {
+  loading: () => <div className="w-full h-full min-h-[400px] flex items-center justify-center text-theme-300">Loading graph...</div>,
+});
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;

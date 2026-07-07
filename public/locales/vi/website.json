@@ -1,0 +1,27 @@
+{
+  "FAQ_Website_Q1": "What technologies power this site?",
+  "FAQ_Website_A1": "This website is built using Next.js (App Router), Tailwind CSS, Framer Motion, and TypeScript.",
+  "FAQ_Website_Q2": "What was the inspiration behind this website?",
+  "FAQ_Website_A2": "The creation of this site was inspired by the Chairman of STEI-K 2025.",
+  "FAQ_Website_Q3": "How is the performance of this website optimized?",
+  "FAQ_Website_A3": "The site is optimized for high performance, achieving near-perfect Core Web Vitals and robust SEO.",
+  "FAQ_Website_Q4": "Is this website accessible to a global audience?",
+  "FAQ_Website_A4": "Yes, it supports over 12 languages to ensure accessibility for a global audience.",
+  "FAQ_Website_Q5": "How is user privacy handled on this site?",
+  "FAQ_Website_A5": "The website respects user privacy with zero invasive tracking or data collection.",
+  "Framework_Desc": [
+    "Được xây dựng với Next.js 15, sử dụng App Router mới nhất, React Server Components (RSC) và Turbopack cho hiệu suất cực nhanh."
+  ],
+  "Styling_Desc": [
+    "Phong cách tùy chỉnh sử dụng Vanilla CSS và Tailwind CSS, tập trung vào thẩm mỹ độc đáo với hỗ trợ đa chủ đề (Modern, Cinematic, Editorial)."
+  ],
+  "Database_Desc": [
+    "Quản lý cơ sở dữ liệu serverless sử dụng Drizzle ORM với PostgreSQL được lưu trữ trên Supabase, đảm bảo tính toàn vẹn và khả năng mở rộng dữ liệu."
+  ],
+  "Localization_Desc": [
+    "Hỗ trợ i18n toàn diện cho hơn 18 ngữ, đảm bảo khả năng tiếp cận và trải nghiệm liền mạch cho khán giả toàn cầu."
+  ],
+  "Holistic_Approach_Desc": [
+    "Một phương pháp kỹ thuật phần mềm toàn diện kết hợp các tiêu chuẩn web hiện đại, tính an toàn kiểu nghiêm ngặt (TypeScript) và thiết kế định hướng hiệu suất."
+  ]
+}

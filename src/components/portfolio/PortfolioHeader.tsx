@@ -58,16 +58,16 @@ export default function PortfolioHeader({ title, resumeLabel, subtitle, about, s
 
         <div className="w-full border-t border-theme-border my-0.5"></div>
 
-        <div className="flex flex-row flex-wrap justify-center items-center gap-x-6 gap-y-1 w-full portfolio-social-links-ats">
+        <div className="flex flex-row flex-nowrap justify-center items-center gap-x-2 w-full portfolio-social-links-ats overflow-hidden">
           {socialLinks
             .filter(link => link.label !== 'Instagram')
             .map((link, i, arr) => (
             <React.Fragment key={i}>
-              <div className="flex items-center gap-1.5 text-theme-600 font-bold text-[12px]">
+              <div className="flex items-center gap-1.5 text-theme-600 font-bold text-[12px] whitespace-nowrap">
                 {link.url.replace('https://www.', '').replace('https://', '').replace('mailto:', '').replace(/\/$/, '')}
               </div>
               {i < arr.length - 1 && (
-                <span className="text-[var(--text-muted)] text-[11px] select-none">|</span>
+                <span className="text-[var(--text-muted)] text-[11px] select-none whitespace-nowrap">|</span>
               )}
             </React.Fragment>
           ))}

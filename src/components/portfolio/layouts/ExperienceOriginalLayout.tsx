@@ -80,12 +80,12 @@ export default function ExperienceOriginalLayout() {
                                             <ul className="list-disc pl-5 space-y-1">
                                                 {job.description.map((item, idx) => (
                                                     <li key={idx}>
-                                                        <span>{formatCJK(item, lang)}</span>
+                                                        <span><span dangerouslySetInnerHTML={{ __html: formatCJK(item, lang) }} /></span>
                                                     </li>
                                                 ))}
                                             </ul>
                                         ) : (
-                                            <span>{formatCJK(job.description, lang)}</span>
+                                            <span><span dangerouslySetInnerHTML={{ __html: formatCJK(job.description, lang) }} /></span>
                                         )}
                                     </div>
                                 </motion.div>

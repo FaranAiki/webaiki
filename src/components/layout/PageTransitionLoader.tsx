@@ -127,12 +127,12 @@ export default function PageTransitionLoader({ label }: { label: string }) {
               {/* Center Logo */}
               <div className="absolute inset-0 flex items-center justify-center animate-pulse">
                  <Image 
-                   src="/icon.ico" 
+                   src="/images/icons/icon-512x512.png?v=3" 
                    alt="Loading" 
-                   width={24} 
-                   height={24} 
+                   width={28} 
+                   height={28} 
                    unoptimized
-                   className="opacity-70 dark:opacity-90 invert-0 dark:invert hue-rotate-180 brightness-150 contrast-125" 
+                   className="opacity-70 dark:opacity-90 invert-0 dark:invert hue-rotate-180 brightness-150 contrast-125 object-center" 
                    style={{ filter: getThemeLogoFilter(colorTheme), transition: 'filter 0.3s ease-in-out' }}
                    priority 
                  />
@@ -173,14 +173,14 @@ export default function PageTransitionLoader({ label }: { label: string }) {
 
             {/* Mobile View - Linear */}
             <div className="flex md:hidden flex-col items-center justify-center gap-4 w-[200px]">
-              <div className="animate-pulse">
+              <div className="animate-pulse flex items-center justify-center">
                  <Image 
-                   src="/icon.ico" 
+                   src="/images/icons/icon-512x512.png?v=3" 
                    alt="Loading" 
-                   width={40} 
-                   height={40} 
+                   width={48} 
+                   height={48} 
                    unoptimized
-                   className="opacity-80 dark:opacity-100 invert-0 dark:invert hue-rotate-180 brightness-150 contrast-125 drop-shadow-2xl filter saturate-200" 
+                   className="opacity-80 dark:opacity-100 invert-0 dark:invert hue-rotate-180 brightness-150 contrast-125 drop-shadow-2xl filter saturate-200 object-center" 
                    style={{ filter: getThemeLogoFilter(colorTheme), transition: 'filter 0.3s ease-in-out' }}
                    priority 
                  />

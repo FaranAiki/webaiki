@@ -1,0 +1,43 @@
+{
+  "Portfolio_Summary_Description": [
+    "סיכום קומפקטי של החוויות המקצועיות והדגשים של מוחמד פארן אייקי"
+  ],
+  "Professional_Pitch_Title": "למה לשתף פעולה עם Faran Aiki?",
+  "Professional_Pitch_Text": "כסטודנט למערכות מידע וטכנולוגיה ב-ITB, עם ניסיון מעשי בהנדסת תוכנה והישגים לאומיים במתמטיקה, אני מציע שילוב ייחודי של חדות לוגית, יצירתיות טכנית ומסירות לצמיחה. בין אם מדובר בבניית מערכות מורכבות או בפתרון בעיות מתמטיות, אני מתמקד בתוצאות בעלות השפעה רבה.",
+  "Portfolio": "תיק עבודות",
+  "Portfolio_Summary_Quote": "סיכום אצור של חוויות מקצועיות ופרויקטים בעלי השפעה רבה.",
+  "Portfolio_Description": [
+    "תיק עבודות מקצועי מלא ודגשים של מוחמד פארן אייקי"
+  ],
+  "Full_Portfolio": "תיק עבודות מלא",
+  "Sultan_PDF_Creating": "יוצר PDF...",
+  "Sultan_PDF_Ready": "ה-PDF מוכן!",
+  "Sultan_PDF_Failed": "יצירת ה-PDF נכשלה.",
+  "Sultan_PDF_Description": [
+    "רינדור PDF וקטורי איכותי."
+  ],
+  "Sultan_PDF_Download": "מוריד...",
+  "Preparing_Portfolio": "מכין את האתר",
+  "Portfolio_Filter": "מסנן",
+  "Skills_Languages": "שפות תכנות",
+  "Skills_Frameworks": "מסגרות וספריות",
+  "Skills_Tools": "כלים וטכנולוגיות",
+  "Skills_Concepts": "כישורי ליבה",
+  "Skills_Sub_HighLevel": "High-level",
+  "Skills_Sub_LowLevel": "Low-level & Scripting",
+  "Skills_Sub_DataMarkup": "Data & Markup",
+  "Skills_Sub_Frontend": "Frontend & UI",
+  "Skills_Sub_Backend": "Backend & Data",
+  "Skills_Sub_Relational": "Relational & NoSQL",
+  "Skills_Sub_ORMs": "ORMs",
+  "Skills_Sub_VersionControl": "Version Control & OS",
+  "Skills_Sub_Deployment": "Deployment & Cloud",
+  "Skills_Sub_Engines": "Engines & Software",
+  "Skills_Sub_Debugging": "Debugging & Low-Level",
+  "Skills_Sub_Theoretical": "Theoretical",
+  "Skills_Sub_Applied": "Applied",
+  "Skills_Sub_Mathematics": "Mathematics",
+  "Skills_Sub_Technology": "Technology",
+  "Portfolio_GPA": "ממוצע ציונים:",
+  "Hover_To_Load": "רחף כדי לפתוח את הרשימה"
+}

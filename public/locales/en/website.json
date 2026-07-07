@@ -1,0 +1,17 @@
+{
+  "FAQ_Website_Q1": "What technology powers this website?",
+  "FAQ_Website_A1": "This website is built using Next.js (App Router), Tailwind CSS, Framer Motion, and TypeScript.",
+  "FAQ_Website_Q2": "What was the inspiration behind the creation of this website?",
+  "FAQ_Website_A2": "The creation of this site was inspired by the Chairman of STEI-K 2025.",
+  "FAQ_Website_Q3": "How is the performance of this website optimized?",
+  "FAQ_Website_A3": "This site is optimized for high performance, achieving near-perfect Core Web Vitals and strong SEO.",
+  "FAQ_Website_Q4": "Is this website accessible to a global audience?",
+  "FAQ_Website_A4": "Yes, this site supports over 12 languages to ensure accessibility for a global audience.",
+  "FAQ_Website_Q5": "How is user privacy handled on this site?",
+  "FAQ_Website_A5": "This website respects user privacy with zero invasive tracking or data collection.",
+  "Framework_Desc": "Built with Next.js 15, utilizing the latest App Router, React Server Components (RSC), and Turbopack for lightning-fast performance.",
+  "Styling_Desc": "Custom styles using Vanilla CSS and Tailwind CSS, focusing on a unique aesthetic with multi-theme support (Modern, Cinematic, Editorial).",
+  "Database_Desc": "Serverless database management using Drizzle ORM with PostgreSQL hosted on Supabase, ensuring data integrity and scalability.",
+  "Localization_Desc": "Comprehensive i18n support for 18+ languages, ensuring accessibility and a seamless experience for a global audience.",
+  "Holistic_Approach_Desc": "A holistic software engineering approach combining modern web standards, rigorous type safety (TypeScript), and performance-driven design."
+}

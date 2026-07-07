@@ -1,0 +1,54 @@
+{
+  "SEO_Work_Description": [
+    "Professional history of Muhammad Faran Aiki as a Software Engineer at Analitica, SAT Tutor at Kobi Education, and other tech roles."
+  ],
+  "Work": "職歴",
+  "Impact_Module_Author": "IMPACT 6.0 数学モジュール著者",
+  "Impact_Module_Author_Description": [
+    "IMPACT 6.0オリンピアードのための包括的な教育モジュールを執筆しました。",
+    "トップの高校生に挑戦するための厳密な問題セットと解決策を設計しました。",
+    "高品質のコンテンツ基準を確保するために、学術関係者と協力しました。"
+  ],
+  "Compile_Module_Author": "COMPILE STEI-K UTBK モジュール作成者",
+  "Compile_Module_Author_Description": [
+    "COMPILE UTBK準備プログラムの学習モジュールを執筆しました。",
+    "全国の大学入試に向けて生徒を準備するための広範な練習問題を厳選しました。",
+    "詳細な説明を通じて、複雑なトピックのより良い理解を促進しました。"
+  ],
+  "Job_Type_Freelance": "フリーランス",
+  "SAT_Tutor": "SAT数学・英語講師（契約）",
+  "SAT_Tutor_Description": [
+    "SATの数学と英語を指導し、包括的なレッスンとカスタマイズされた戦略を提供しました。",
+    "海外の大学進学という目標を達成できるよう、学生を指導しました。"
+  ],
+  "Software_Engineer": "ソフトウェアエンジニア（フロントエンド Flutter）",
+  "Software_Engineer_Description": [
+    "ソフトウェアエンジニアとして、Analiticaプラットフォームのコア機能を開発および保守しました。",
+    "アプリケーションのパフォーマンスを最適化し、スケーラビリティを向上させるためにコードベースを合理化しました。",
+    "高品質のソフトウェアソリューションを提供するために、部門横断的なチームと協力しました。"
+  ],
+  "Mathematics_Private_Tutor": "数学個人家庭教師",
+  "Mathematics_Private_Tutor_Description": [
+    "オリンピアードレベルのトピックに焦点を当てた、パーソナライズされた数学の個別指導セッションを提供しました。",
+    "生徒の進捗状況を評価し、個々の弱点に対処するために指導方法をカスタマイズしました。",
+    "生徒の分析的思考と高度な問題解決スキルを育成しました。"
+  ],
+  "Education_Team": "教育チーム",
+  "Education_Team_Description": [
+    "専門的な教育コンテンツを開発することにより、Analiticaの教育チームに貢献しました。",
+    "生徒のパフォーマンスデータを分析して、学習教材を改良および改善しました。",
+    "何千人もの生徒が使用する評価ツールの作成をサポートしました。"
+  ],
+  "IT_Club_Tutor": "情報学クラブ講師",
+  "IT_Club_Tutor_Description": [
+    "高校生に基礎的なプログラミングとITの概念を指導しました。",
+    "魅力的なレッスンプランと実践的なコーディング演習を開発しました。",
+    "クラブ内で協力的でサポート力のある学習環境を育みました。"
+  ],
+  "Education_Tutoring": "Education & Tutoring",
+  "Tutoring_SAT": "Tutoring in SAT Math",
+  "Tutoring_Olympiad": "Tutoring in Olympiad Mathematics",
+  "Tutoring_Math": "Tutoring in Mathematics",
+  "Tutoring_Python": "Tutoring in Programming (Python)",
+  "Tutoring_Web": "Tutoring in Web Development"
+}

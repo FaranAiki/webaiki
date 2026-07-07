@@ -1,0 +1,72 @@
+{
+  "Loading_Python": "Python und Quellcode werden heruntergeladen ....",
+  "Python_Web_Title": "Interaktive Python-Schnittstelle",
+  "Python_Terminal_Error": "KRITISCHER FEHLER: SharedArrayBuffer ist nicht definiert. Stellen Sie sicher, dass die Header Cross-Origin-Opener-Policy (COOP) und Cross-Origin-Embedder-Policy (COEP) auf dem Server gesetzt sind.",
+  "Python_Terminal_Finished": "--- Programm beendet ---",
+  "Python_Terminal_Welcome": "Willkommen im Python Web Terminal!",
+  "Python_Terminal_Input_Too_Long": "Eingabe zu lang!",
+  "SEO_Project_Description": [
+    "A collection of technical projects by Muhammad Faran Aiki, ranging from the Alkyl compiler to the ALTH Flutter app and Indonesian socio-economic data integration."
+  ],
+  "Project": "Projekt",
+  "Make_Interactive_UAS": "Interaktives Lernen für UAS MA1101 ITB",
+  "Make_Interactive_UAS_Description": [
+    "Erstellte ein interaktives Mathematik-Lerntool mit Flutter, Dart und FL Chart.",
+    "Visualisierte komplexe mathematische Konzepte dynamisch, um das Verständnis der Schüler zu fördern.",
+    "Entwarf eine reaktionsschnelle und benutzerfreundliche Oberfläche für nahtlose Interaktion."
+  ],
+  "Make_Nihwm": "NihWM Fenstermanager",
+  "Make_Nihwm_Description": [
+    "Entwickelte 'nihwm', einen leichtgewichtigen X11-Fenstermanager, der vollständig in C für Linux geschrieben wurde.",
+    "Implementierte Kernfunktionen der Fensterverwaltung und Eingabeverarbeitung mit XOrg.",
+    "Optimierte die Codebasis für minimalen Ressourcenverbrauch und hohe Reaktionsfähigkeit."
+  ],
+  "Lidia_Project": "Datenanalyse zur sozioökonomischen Integration für Indonesia Emas 2045",
+  "Lidia_Project_Description": [
+    "Entwickelte eine ETL-Pipeline mit Python, Pandas und Jupyter Notebook.",
+    "Integrierte die Gemini-CLI zur Verbesserung der Datenverarbeitungsfunktionen.",
+    "Optimierte Datenworkflows, wodurch die manuelle Verarbeitungszeit erheblich reduziert wurde."
+  ],
+  "Alkyl_Compiler": "Alkyl Programmiersprache und Compiler",
+  "Alkyl_Compiler_Description": [
+    "Entwarf und implementierte einen benutzerdefinierten Compiler von Grund auf mit C und LLVM.",
+    "Verwendete Valgrind und GDB für strenges Speichermanagement und Debugging.",
+    "Übersetzte Konstrukte höherer Programmiersprachen in effizienten Maschinencode."
+  ],
+  "ALTH_Project": "ALTH: Aku Lupa Tandai Hadir",
+  "ALTH_Project_Description": [
+    "Burp Suite-Analyse durchgeführt, um die Nutzung von SSO und Cookies zu verstehen.",
+    "Eine Anwesenheitserinnerungs-App mit Flutter und Dart für Studenten des Institut Teknologi Bandung entwickelt."
+  ],
+  "Jump_Game_Project": "Jump! Game",
+  "Below_Below_Project": "Below Below",
+  "Superskill_Project": "Kognitiver Garten",
+  "View_Project": "View Project",
+  "National_Statistics_Competition_Prep": "Vorbereitung auf den nationalen Statistikwettbewerb",
+  "National_Statistics_Competition_Prep_Description": [
+    "Bereitete statistische Daten auf und modellierte diese mithilfe von Wahrscheinlichkeitsrechnung, SARIMAX und MANOVA.",
+    "Programmierte umfangreiche Datenanalyseskripte mit Python und Jupyter Notebooks.",
+    "Visualisierte komplexe Datensätze, um umsetzbare Erkenntnisse für den nationalen Wettbewerb abzuleiten."
+  ],
+  "Jump_Game_Description": [
+    "Erstellte ein anspruchsvolles Platformer-Spiel mit C# und Visual Studio.",
+    "Implementierte physikbasierte Sprungmechaniken und Kollisionserkennung.",
+    "Entwarf Level-Layouts und integrierte Bewertungssysteme zur Verbesserung des Gameplays."
+  ],
+  "Below_Below_Description": [
+    "Entwarf und programmierte 'Below Below', ein fesselndes Videospiel mit Godot 4.2 und GDScript.",
+    "Entwickelte Spielmechaniken, physikalische Interaktionen und Spielersteuerungen.",
+    "Erstellte benutzerdefinierte Pixel-Art-Assets und integrierte Soundeffekte für ein kohärentes Erlebnis."
+  ],
+  "Olive_Divergence": "Olive Divergence",
+  "Olive_Divergence_Desc": [
+    "Programmierte 'Olive Divergence' mit C++ und dem Qt-Framework.",
+    "Entwarf eine grafische Benutzeroberfläche mit reichhaltigen visuellen Elementen und benutzerdefinierten Widgets.",
+    "Verwaltete den Anwendungsstatus und den Datenfluss effizient innerhalb der Qt-Ereignisschleife."
+  ],
+  "Superskill_Description": [
+    "Den Kognitiven Garten entwickelt, eine anspruchsvolle plattformübergreifende Anwendung mit Flutter und Dart.",
+    "Spiele entwickelt, die die kognitiven Fähigkeiten trainieren und das Gehirn stimulieren.",
+    "Eine intuitive und ansprechende Benutzeroberfläche mit reichhaltigen Animationen entworfen."
+  ]
+}

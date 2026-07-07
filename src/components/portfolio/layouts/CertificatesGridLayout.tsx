@@ -56,10 +56,10 @@ export default function CertificatesGridLayout() {
                 />
                 <div className="p-4">
                     <div className="flex justify-between items-start mb-1">
-                        <span className="text-sm font-bold text-gacor-smooth tracking-tighter">{formatCJK(item.category, lang)}</span>
+                        <span className="text-sm font-bold text-gacor-smooth tracking-tighter"><span dangerouslySetInnerHTML={{ __html: formatCJK(item.category, lang) }} /></span>
                         <span className={`text-sm font-mono text-theme-muted`}>{item.year}</span>
                     </div>
-                    <h2 className={`text-sm font-bold ${titleColor} hover-gacor line-clamp-1`}>{formatCJK(item.fileName, lang)}</h2>
+                    <h2 className={`text-sm font-bold ${titleColor} hover-gacor line-clamp-1`}><span dangerouslySetInnerHTML={{ __html: formatCJK(item.fileName, lang) }} /></h2>
                 </div>
             </motion.div>
         );})}

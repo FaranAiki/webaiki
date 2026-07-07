@@ -1,0 +1,27 @@
+{
+  "FAQ_Website_Q1": "Welche Technologien treiben diese Website an?",
+  "FAQ_Website_A1": "Diese Website wurde mit Next.js (App Router), Tailwind CSS, Framer Motion und TypeScript erstellt.",
+  "FAQ_Website_Q2": "Was war die Inspiration für diese Website?",
+  "FAQ_Website_A2": "Die Erstellung dieser Seite wurde durch den Vorsitzenden von STEI-K 2025 inspiriert.",
+  "FAQ_Website_Q3": "Wie wird die Leistung dieser Website optimiert?",
+  "FAQ_Website_A3": "Die Website ist für hohe Leistung optimiert und erreicht nahezu perfekte Core Web Vitals sowie ein robustes SEO.",
+  "FAQ_Website_Q4": "Ist diese Website für ein globales Publikum zugänglich?",
+  "FAQ_Website_A4": "Ja, sie unterstützt mehr als 12 Sprachen, um die Zugänglichkeit für ein globales Publikum zu gewährleisten.",
+  "FAQ_Website_Q5": "Wie wird der Datenschutz der Nutzer auf dieser Seite gehandhabt?",
+  "FAQ_Website_A5": "Die Website respektiert die Privatsphäre der Nutzer mit null invasivem Tracking oder Datenerfassung.",
+  "Framework_Desc": [
+    "Erstellt mit Next.js 15, unter Verwendung des neuesten App Routers, React Server Components (RSC) und Turbopack für blitzschnelle Performance."
+  ],
+  "Styling_Desc": [
+    "Benutzerdefinierte Stile mit Vanilla CSS und Tailwind CSS, mit Fokus auf eine einzigartige Ästhetik und Multi-Theme-Unterstützung (Modern, Cinematic, Editorial)."
+  ],
+  "Database_Desc": [
+    "Serverlose Datenbankverwaltung mit Drizzle ORM und PostgreSQL auf Supabase, um Datenintegrität und Skalierbarkeit zu gewährleisten."
+  ],
+  "Localization_Desc": [
+    "Umfassende i18n-Unterstützung für über 18 Sprachen, die Barrierefreiheit und ein nahtloses Erlebnis für ein globales Publikum gewährleistet."
+  ],
+  "Holistic_Approach_Desc": [
+    "Ein ganzheitlicher Software-Engineering-Ansatz, der moderne Webstandards, strenge Typsicherheit (TypeScript) und leistungsorientiertes Design kombiniert."
+  ]
+}

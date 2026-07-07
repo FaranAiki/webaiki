@@ -126,18 +126,18 @@ export function PortfolioAboutHeader(props: AboutMeProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-4">
             <div className={`text-sm md:text-base leading-relaxed ${textClass}`}>
-              {formatCJK(props.about_text_1, props.lang)}
+              <span dangerouslySetInnerHTML={{ __html: formatCJK(props.about_text_1, props.lang) }} />
             </div>
             <div className="p-4 rounded-xl bg-theme-surface-strong border border-theme-border hover:scale-[1.02] transition-transform duration-300 group">
               <p className={`text-xs font-bold text-theme-700 dark:text-theme-300 mb-2 group-hover:text-theme-600 dark:group-hover:text-theme-200 transition-colors`}>{props.about_philosophy_title}</p>
               <div className={`text-sm italic ${textClass} opacity-80 group-hover:opacity-100 transition-opacity`}>
-                {formatCJK(props.about_philosophy, props.lang)}
+                <span dangerouslySetInnerHTML={{ __html: formatCJK(props.about_philosophy, props.lang) }} />
               </div>
             </div>
           </div>
           <div className="space-y-4">
             <div className={`text-sm md:text-base leading-relaxed ${textClass}`}>
-              {formatCJK(props.about_text_2, props.lang)}
+              <span dangerouslySetInnerHTML={{ __html: formatCJK(props.about_text_2, props.lang) }} />
             </div>
             <div className="space-y-3">
                {[props.about_principle_1, props.about_principle_2, props.about_principle_3].filter(p => p && p.trim() !== "").map((p, i) => (
@@ -148,7 +148,7 @@ export function PortfolioAboutHeader(props: AboutMeProps) {
                  >
                    <span className="w-1.5 h-1.5 rounded-full bg-theme-500 mt-1.5 shrink-0 group-hover:bg-theme-400 group-hover:scale-125 transition-all" />
                    <div className={`text-xs md:text-sm ${textClass} opacity-90 group-hover:opacity-100 transition-all`}>
-                      {formatCJK(p, props.lang)}
+                      <span dangerouslySetInnerHTML={{ __html: formatCJK(p, props.lang) }} />
                    </div>
                  </motion.div>
                ))}
@@ -181,10 +181,10 @@ export function AboutSection(props: AboutSubSectionProps) {
             </h1>
             <div className="space-y-4">
               <div className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}>
-                {formatCJK(props.about_text_1, props.lang)}
+                <span dangerouslySetInnerHTML={{ __html: formatCJK(props.about_text_1, props.lang) }} />
               </div>
               <div className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}>
-                {formatCJK(props.about_text_2, props.lang)}
+                <span dangerouslySetInnerHTML={{ __html: formatCJK(props.about_text_2, props.lang) }} />
               </div>
             </div>
           </div>
@@ -242,7 +242,7 @@ export function PhilosophySection(props: AboutSubSectionProps) {
             <div
               className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass} font-medium`}
             >
-              {formatCJK(props.about_philosophy, props.lang)}
+              <span dangerouslySetInnerHTML={{ __html: formatCJK(props.about_philosophy, props.lang) }} />
             </div>
           </div>
 
@@ -280,7 +280,7 @@ export function PrinciplesSection(props: AboutSubSectionProps) {
                     key={i}
                     className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}
                 >
-                    {formatCJK(p, props.lang)}
+                    <span dangerouslySetInnerHTML={{ __html: formatCJK(p, props.lang) }} />
                 </div>
               ))}
             </div>
@@ -319,17 +319,17 @@ export function VisionMissionSection(props: AboutSubSectionProps) {
               <div
                   className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}
               >
-                  {formatCJK(props.about_vision_mission_1, props.lang)}
+                  <span dangerouslySetInnerHTML={{ __html: formatCJK(props.about_vision_mission_1, props.lang) }} />
               </div>
               <div
                   className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}
               >
-                  {formatCJK(props.about_vision_mission_2, props.lang)}
+                  <span dangerouslySetInnerHTML={{ __html: formatCJK(props.about_vision_mission_2, props.lang) }} />
               </div>
               <div
                   className={`${props.isCompact ? 'text-sm md:text-base' : 'text-lg md:text-xl'} ${textClass} ${justifyClass}`}
               >
-                  {formatCJK(props.about_vision_mission_3, props.lang)}
+                  <span dangerouslySetInnerHTML={{ __html: formatCJK(props.about_vision_mission_3, props.lang) }} />
               </div>
             </div>
           </div>

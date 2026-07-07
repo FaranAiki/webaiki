@@ -80,6 +80,27 @@ function levenshtein(a: string, b: string): number {
   return matrix[b.length][a.length];
 }
 
+const didYouMeanDict: Record<string, string> = {
+  en: "Did you mean:",
+  id: "Apakah maksud Anda:",
+  zh: "您是说：",
+  jp: "もしかして:",
+  ru: "Возможно, вы имели в виду:",
+  fr: "Vouliez-vous dire :",
+  ar: "هل تقصد:",
+  es: "¿Quisiste decir:",
+  ko: "다음을 찾으시나요:",
+  de: "Meinten Sie:",
+  nl: "Bedoelde u:",
+  ha: "Kuna nufin:",
+  he: "האם התכוונת ל:",
+  el: "Μήπως εννοούσατε:",
+  hi: "क्या आपका मतलब है:",
+  pt: "Você quis dizer:",
+  bn: "আপনি কি বোঝাতে চেয়েছেন:",
+  vi: "Có phải ý bạn là:",
+};
+
 export function NotFoundSuggester({ lang, label }: { lang: string, label: string }) {
   const pathname = usePathname();
   const [suggestion, setSuggestion] = useState<string | null>(null);
@@ -111,13 +132,21 @@ export function NotFoundSuggester({ lang, label }: { lang: string, label: string
 
   if (!suggestion) return null;
 
+  const currentLang = pathname?.split('/')[1] || lang;
+  const actualLang = didYouMeanDict[currentLang] ? currentLang : lang;
+  
+  // Use localized label if available, otherwise fallback to the provided label
+  const localizedLabel = didYouMeanDict[actualLang] || label;
+  
+  // Full domain URL format: https://faranaiki.id/id/work
+  const displayUrl = `https://faranaiki.id/${actualLang}/${suggestion}`;
+
   return (
     <div className="mt-2 mb-8 p-4 bg-theme-500/10 border border-theme-500/20 rounded-xl text-theme-500 animate-in fade-in slide-in-from-bottom-2">
-      {label}{" "}
-      <Link href={`/${lang}/${suggestion}`} className="font-bold underline underline-offset-4 hover:text-theme-600 transition-colors">
-        /{suggestion}
+      {localizedLabel}{" "}
+      <Link href={`/${actualLang}/${suggestion}`} className="font-bold underline underline-offset-4 hover:text-theme-600 transition-colors">
+        {displayUrl}
       </Link>
-      ?
     </div>
   );
 }

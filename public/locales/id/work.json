@@ -1,0 +1,52 @@
+{
+  "SEO_Work_Description": "Riwayat profesional Muhammad Faran Aiki sebagai Software Engineer di Analitica, Tutor SAT di Kobi Education, dan peran lainnya di bidang teknologi.",
+  "Work": "Pekerjaan",
+  "Impact_Module_Author": "Penulis Modul Matematika IMPACT 6.0",
+  "Impact_Module_Author_Description": [
+    "Menulis modul pendidikan komprehensif untuk Olimpiade IMPACT 6.0.",
+    "Merancang set soal dan solusi yang ketat untuk menantang siswa SMA terbaik.",
+    "Berkolaborasi dengan rekan akademis untuk memastikan standar konten berkualitas tinggi."
+  ],
+  "Compile_Module_Author": "Pembuat Modul COMPILE STEI-K UTBK",
+  "Compile_Module_Author_Description": [
+    "Menulis modul pembelajaran untuk program persiapan COMPILE UTBK.",
+    "Mengkurasi berbagai pertanyaan latihan untuk mempersiapkan siswa menghadapi ujian masuk universitas nasional.",
+    "Memfasilitasi pemahaman topik yang kompleks melalui penjelasan yang terperinci."
+  ],
+  "Job_Type_Freelance": "Pekerja Lepas",
+  "SAT_Tutor": "Tutor SAT Math & Verbal (Kontrak)",
+  "SAT_Tutor_Description": [
+    "Mengajar siswa dalam Matematika dan Bahasa Inggris SAT, memberikan pelajaran komprehensif dan strategi yang disesuaikan.",
+    "Membimbing siswa dalam mencapai tujuan penerimaan perguruan tinggi luar negeri mereka."
+  ],
+  "Software_Engineer": "Insinyur Perangkat Lunak (Front End Flutter)",
+  "Software_Engineer_Description": [
+    "Mengembangkan dan memelihara fitur inti dari platform Analitica sebagai Software Engineer.",
+    "Mengoptimalkan kinerja aplikasi dan merampingkan basis kode untuk skalabilitas yang lebih baik.",
+    "Berkolaborasi dengan tim lintas fungsi untuk memberikan solusi perangkat lunak berkualitas tinggi."
+  ],
+  "Mathematics_Private_Tutor": "Guru Les Privat Matematika",
+  "Mathematics_Private_Tutor_Description": [
+    "Menyampaikan sesi bimbingan matematika yang dipersonalisasi dengan fokus pada topik tingkat Olimpiade.",
+    "Mengevaluasi kemajuan siswa dan menyesuaikan metode pengajaran untuk mengatasi kelemahan individu.",
+    "Mendorong pemikiran analitis dan keterampilan pemecahan masalah tingkat lanjut pada siswa."
+  ],
+  "Education_Team": "Tim Edukasi",
+  "Education_Team_Description": [
+    "Berkontribusi pada Tim Edukasi di Analitica dengan mengembangkan konten pendidikan khusus.",
+    "Menganalisis data kinerja siswa untuk menyempurnakan dan meningkatkan materi pembelajaran.",
+    "Mendukung pembuatan alat penilaian yang digunakan oleh ribuan siswa."
+  ],
+  "IT_Club_Tutor": "Pengajar Klub Informatika",
+  "IT_Club_Tutor_Description": [
+    "Membimbing siswa SMA dalam pemrograman dasar dan konsep TI.",
+    "Mengembangkan rencana pelajaran yang menarik dan latihan pengkodean praktis.",
+    "Mendorong lingkungan belajar yang kolaboratif dan suportif di dalam klub."
+  ],
+  "Education_Tutoring": "Pendidikan & Bimbingan Belajar",
+  "Tutoring_SAT": "Tutor Matematika SAT",
+  "Tutoring_Olympiad": "Tutor Matematika Olimpiade",
+  "Tutoring_Math": "Tutor Matematika",
+  "Tutoring_Python": "Tutor Pemrograman (Python)",
+  "Tutoring_Web": "Tutor Pengembangan Web"
+}

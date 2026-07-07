@@ -1,0 +1,27 @@
+{
+  "FAQ_Website_Q1": "このサイトにはどのような技術が使われていますか？",
+  "FAQ_Website_A1": "Next.js (App Router)、Tailwind CSS、Framer Motion、TypeScriptを使用して構築されています。",
+  "FAQ_Website_Q2": "このウェブサイトの起源は何ですか？",
+  "FAQ_Website_A2": "2025年度STEI-K会長からインスピレーションを受けて制作されました。",
+  "FAQ_Website_Q3": "パフォーマンスはどうですか？",
+  "FAQ_Website_A3": "Core Web Vitalsでほぼ満点を獲得しており、強力なSEO対策も施されています。",
+  "FAQ_Website_Q4": "グローバル対応していますか？",
+  "FAQ_Website_A4": "12以上の言語をサポートしており、世界中のユーザーが利用可能です。",
+  "FAQ_Website_Q5": "プライバシーについてはどうですか？",
+  "FAQ_Website_A5": "侵襲的な追跡を一切行わず、ユーザーのプライバシーを尊重しています。",
+  "Framework_Desc": [
+    "Next.js 15で構築され、最新のApp Router、React Server Components (RSC)、およびTurbopackを利用して超高速なパフォーマンスを実現しています。"
+  ],
+  "Styling_Desc": [
+    "Vanilla CSSとTailwind CSSを使用したカスタムスタイル。マルチテーマ対応（モダン、シネマティック、エディトリアル）で独自の美学に焦点を当てています。"
+  ],
+  "Database_Desc": [
+    "SupabaseにホストされたPostgreSQLとDrizzle ORMを使用したサーバーレスデータベース管理により、データの整合性とスケーラビリティを確保しています。"
+  ],
+  "Localization_Desc": [
+    "18以上の言語をカバーする包括的なi18nサポート。グローバルなオーディエンスにアクセシビリティとシームレスな体験を提供します。"
+  ],
+  "Holistic_Approach_Desc": [
+    "現代のウェブ標準、厳格な型安全性 (TypeScript)、およびパフォーマンス重視の設計を組み合わせた、ホリスティックなソフトウェアエンジニアリングアプローチ。"
+  ]
+}

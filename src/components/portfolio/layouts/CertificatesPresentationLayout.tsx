@@ -53,7 +53,7 @@ export default function CertificatesPresentationLayout() {
         >
           <div className="flex flex-col items-center justify-center w-full max-w-6xl mx-auto p-4 pb-8">
             <h2 className="text-xl md:text-3xl font-black mb-6 text-center flex flex-wrap justify-center items-center gap-x-4">
-              <span className="text-theme-500">{formatCJK(slide.category, lang)}</span>
+              <span className="text-theme-500"><span dangerouslySetInnerHTML={{ __html: formatCJK(slide.category, lang) }} /></span>
               <span className="text-theme-muted">|</span>
               <span className={titleColor}>{slide.year}</span>
               {slide.totalParts && slide.totalParts > 1 && (
@@ -95,7 +95,7 @@ export default function CertificatesPresentationLayout() {
                       )}
                     </div>
                     <p className={`text-center font-bold text-sm md:text-xl lg:text-2xl text-inherit line-clamp-2 px-2 leading-tight`}>
-                      {formatCJK(fileName, lang)}
+                      <span dangerouslySetInnerHTML={{ __html: formatCJK(fileName, lang) }} />
                     </p>
                   </div>
                 );

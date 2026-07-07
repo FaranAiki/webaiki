@@ -75,14 +75,28 @@ export default async function HomePage({
     ]
   };
 
+  const homeDict = {
+    Word_See: dict.Word_See,
+    Word_Do: dict.Word_Do,
+    Word_Know: dict.Word_Know,
+    Word_Search: dict.Word_Search,
+    What_Do_You_Want_To_Base: dict.What_Do_You_Want_To_Base,
+    Search_About_Faran: dict.Search_About_Faran,
+    Command_Palette_Search_Placeholder: dict.Command_Palette_Search_Placeholder,
+    Latest_Activity: dict.Latest_Activity,
+    All: dict.All,
+    Read_More: dict.Read_More,
+    No_News: dict.No_News,
+  } as import('@/components/layout/Translator').TranslationDict;
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <HomeClient dict={dict}>
-        <LatestActivity lang={lang} dict={dict} initialNews={combinedActivity} />
+      <HomeClient dict={homeDict}>
+        <LatestActivity lang={lang} dict={homeDict} initialNews={combinedActivity} />
       </HomeClient>
     </>
   );

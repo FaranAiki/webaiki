@@ -1,0 +1,43 @@
+{
+  "Portfolio_Summary_Description": [
+    "Compact summary of Muhammad Faran Aiki's professional experiences and highlights"
+  ],
+  "Professional_Pitch_Title": "Tại Sao Nên Hợp Tác Với Faran Aiki?",
+  "Professional_Pitch_Text": "Là sinh viên ngành hệ thống thông tin và công nghệ tại ITB với kinh nghiệm thực tế về kỹ thuật phần mềm và những thành tích quốc gia về toán học, tôi mang đến sự kết hợp độc đáo giữa sự nhạy bén trong logic, tính sáng tạo kỹ thuật và sự cống hiến cho sự phát triển. Cho dù là xây dựng các hệ thống phức tạp hay giải quyết các bài toán, tôi luôn tập trung vào những kết quả mang lại tác động cao.",
+  "Portfolio": "Sản phẩm",
+  "Portfolio_Summary_Quote": "A curated summary of high-impact professional experiences and projects.",
+  "Portfolio_Description": [
+    "Full professional portfolio and highlights of Muhammad Faran Aiki"
+  ],
+  "Full_Portfolio": "Full Portfolio",
+  "Sultan_PDF_Creating": "Đang tạo PDF...",
+  "Sultan_PDF_Ready": "PDF đã sẵn sàng!",
+  "Sultan_PDF_Failed": "Tạo PDF thất bại.",
+  "Sultan_PDF_Description": [
+    "Kết xuất PDF vector chất lượng cao."
+  ],
+  "Sultan_PDF_Download": "Đang tải xuống...",
+  "Preparing_Portfolio": "Đang chuẩn bị hồ sơ",
+  "Portfolio_Filter": "Bộ lọc",
+  "Skills_Languages": "Ngôn ngữ Lập trình",
+  "Skills_Frameworks": "Framework & Thư viện",
+  "Skills_Tools": "Công cụ & Công nghệ",
+  "Skills_Concepts": "Năng lực Cốt lõi",
+  "Skills_Sub_HighLevel": "High-level",
+  "Skills_Sub_LowLevel": "Low-level & Scripting",
+  "Skills_Sub_DataMarkup": "Data & Markup",
+  "Skills_Sub_Frontend": "Frontend & UI",
+  "Skills_Sub_Backend": "Backend & Data",
+  "Skills_Sub_Relational": "Relational & NoSQL",
+  "Skills_Sub_ORMs": "ORMs",
+  "Skills_Sub_VersionControl": "Version Control & OS",
+  "Skills_Sub_Deployment": "Deployment & Cloud",
+  "Skills_Sub_Engines": "Engines & Software",
+  "Skills_Sub_Debugging": "Debugging & Low-Level",
+  "Skills_Sub_Theoretical": "Theoretical",
+  "Skills_Sub_Applied": "Applied",
+  "Skills_Sub_Mathematics": "Mathematics",
+  "Skills_Sub_Technology": "Technology",
+  "Portfolio_GPA": "GPA:",
+  "Hover_To_Load": "Di chuột để mở danh sách"
+}

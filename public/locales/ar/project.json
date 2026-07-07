@@ -1,0 +1,72 @@
+{
+  "Loading_Python": "جاري تحميل بايثون وكود المصدر....",
+  "Python_Web_Title": "واجهة بايثون التفاعلية",
+  "Python_Terminal_Error": "خطأ حرج: SharedArrayBuffer غير محدد. تأكد من ضبط ترويسات Cross-Origin-Opener-Policy (COOP) و Cross-Origin-Embedder-Policy (COEP) على الخادم.",
+  "Python_Terminal_Finished": "--- انتهى البرنامج ---",
+  "Python_Terminal_Welcome": "مرحباً بكم في محطة بايثون على الويب!",
+  "Python_Terminal_Input_Too_Long": "الإدخال طويل جداً!",
+  "SEO_Project_Description": [
+    "A collection of technical projects by Muhammad Faran Aiki, ranging from the Alkyl compiler to the ALTH Flutter app and Indonesian socio-economic data integration."
+  ],
+  "Project": "المشروع",
+  "Make_Interactive_UAS": "التعلم التفاعلي لـ UAS MA1101 ITB",
+  "Make_Interactive_UAS_Description": [
+    "بناء أداة تعليمية تفاعلية للرياضيات باستخدام Flutter و Dart و FL Chart.",
+    "تصور المفاهيم الرياضية المعقدة ديناميكيًا لمساعدة الطلاب على الفهم.",
+    "تصميم واجهة سريعة الاستجابة وسهلة الاستخدام لتفاعل سلس."
+  ],
+  "Make_Nihwm": "مدير النوافذ NihWM",
+  "Make_Nihwm_Description": [
+    "تطوير 'nihwm'، وهو مدير نوافذ X11 خفيف الوزن مكتوب بالكامل بلغة C لنظام التشغيل Linux.",
+    "تنفيذ وظائف إدارة النوافذ الأساسية ومعالجة الإدخال باستخدام XOrg.",
+    "تحسين قاعدة التعليمات البرمجية للحد الأدنى من استهلاك الموارد والاستجابة العالية."
+  ],
+  "Lidia_Project": "تحليل بيانات التكامل الاجتماعي والاقتصادي لإندونيسيا الذهبية 2045",
+  "Lidia_Project_Description": [
+    "هندسة مسار ETL باستخدام Python و Pandas و Jupyter Notebook.",
+    "دمج Gemini-CLI لتعزيز قدرات معالجة البيانات.",
+    "تبسيط سير عمل البيانات، مما قلل بشكل كبير من وقت المعالجة اليدوية."
+  ],
+  "Alkyl_Compiler": "لغة برمجة ومترجم Alkyl",
+  "Alkyl_Compiler_Description": [
+    "تصميم وتنفيذ مترجم مخصص من الصفر باستخدام C و LLVM.",
+    "استخدام Valgrind و GDB لإدارة الذاكرة الصارمة وتصحيح الأخطاء.",
+    "ترجمة تركيبات اللغات عالية المستوى إلى كود آلة فعال."
+  ],
+  "ALTH_Project": "ALTH: نسيان تسجيل الحضور",
+  "ALTH_Project_Description": [
+    "أجريت تحليل Burp Suite لفهم استخدام الدخول الموحد (SSO) وملفات تعريف الارتباط.",
+    "طورت تطبيق تذكير بالحضور باستخدام Flutter و Dart لطلاب معهد باندونغ للتكنولوجيا."
+  ],
+  "Jump_Game_Project": "Jump! Game",
+  "Below_Below_Project": "Below Below",
+  "Superskill_Project": "الحديقة المعرفية",
+  "View_Project": "View Project",
+  "National_Statistics_Competition_Prep": "الإعداد للمسابقة الوطنية للإحصاء",
+  "National_Statistics_Competition_Prep_Description": [
+    "إعداد ونمذجة البيانات الإحصائية باستخدام الاحتمالات والإحصاء و SARIMAX و MANOVA.",
+    "برمجة نصوص شاملة لتحليل البيانات باستخدام Python و Jupyter Notebooks.",
+    "تصور مجموعات البيانات المعقدة لاستخلاص رؤى قابلة للتنفيذ للمنافسة الوطنية."
+  ],
+  "Jump_Game_Description": [
+    "إنشاء لعبة منصات صعبة باستخدام C# و Visual Studio.",
+    "تنفيذ آليات القفز القائمة على الفيزياء واكتشاف الاصطدام.",
+    "تصميم تخطيطات المستويات ودمج أنظمة التسجيل لتحسين طريقة اللعب."
+  ],
+  "Below_Below_Description": [
+    "تصميم وبرمجة 'Below Below'، وهي لعبة فيديو جذابة باستخدام Godot 4.2 و GDScript.",
+    "تطوير آليات اللعبة والتفاعلات الفيزيائية وضوابط اللاعب.",
+    "إنشاء أصول فن البكسل المخصصة ودمج المؤثرات الصوتية لتجربة متماسكة."
+  ],
+  "Olive_Divergence": "Olive Divergence",
+  "Olive_Divergence_Desc": [
+    "برمجة 'Olive Divergence' باستخدام C++ وإطار عمل Qt.",
+    "تصميم واجهة مستخدم رسومية مع عناصر مرئية غنية وعناصر واجهة مستخدم مخصصة.",
+    "إدارة حالة التطبيق وتدفق البيانات بكفاءة داخل حلقة أحداث Qt."
+  ],
+  "Superskill_Description": [
+    "طورت الحديقة المعرفية، وهو تطبيق متطور متعدد المنصات باستخدام Flutter و Dart.",
+    "صممت ألعاباً تدرب الإدراك العقلي وتحفز الدماغ.",
+    "صممت واجهة مستخدم بديهية وجذابة مع رسوم متحركة غنية."
+  ]
+}

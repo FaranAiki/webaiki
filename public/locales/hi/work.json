@@ -1,0 +1,54 @@
+{
+  "SEO_Work_Description": [
+    "Professional history of Muhammad Faran Aiki as a Software Engineer at Analitica, SAT Tutor at Kobi Education, and other tech roles."
+  ],
+  "Work": "कार्य",
+  "Impact_Module_Author": "IMPACT 6.0 Mathematics Module Author",
+  "Impact_Module_Author_Description": [
+    "IMPACT 6.0 ओलंपियाड के लिए व्यापक शैक्षिक मॉड्यूल लिखे।",
+    "शीर्ष हाई स्कूल के छात्रों को चुनौती देने के लिए कठोर समस्या सेट और समाधान डिज़ाइन किए गए।",
+    "उच्च गुणवत्ता वाली सामग्री मानकों को सुनिश्चित करने के लिए अकादमिक साथियों के साथ सहयोग किया।"
+  ],
+  "Compile_Module_Author": "COMPILE STEI-K UTBK Module Creator",
+  "Compile_Module_Author_Description": [
+    "COMPILE UTBK तैयारी कार्यक्रम के लिए शिक्षण मॉड्यूल लिखे।",
+    "राष्ट्रीय विश्वविद्यालय प्रवेश परीक्षा के लिए छात्रों को तैयार करने के लिए व्यापक अभ्यास प्रश्नों को क्यूरेट किया गया।",
+    "विस्तृत स्पष्टीकरण के माध्यम से जटिल विषयों की बेहतर समझ को सुगम बनाया।"
+  ],
+  "Job_Type_Freelance": "फ्रीलांस",
+  "SAT_Tutor": "SAT Math & Verbal Tutor (Contract)",
+  "SAT_Tutor_Description": [
+    "सैट (SAT) गणित और अंग्रेजी में छात्रों को पढ़ाया, व्यापक पाठ और अनुरूप रणनीतियाँ प्रदान कीं।",
+    "छात्रों को विदेशी विश्वविद्यालय में प्रवेश के अपने लक्ष्यों को प्राप्त करने में मार्गदर्शन दिया।"
+  ],
+  "Software_Engineer": "सॉफ्टवेयर इंजीनियर",
+  "Software_Engineer_Description": [
+    "सॉफ्टवेयर इंजीनियर के रूप में एनालिटिका प्लेटफॉर्म की मुख्य विशेषताओं को विकसित और बनाए रखा।",
+    "एप्लिकेशन प्रदर्शन को अनुकूलित किया और बेहतर स्केलेबिलिटी के लिए कोडबेस को सुव्यवस्थित किया।",
+    "उच्च गुणवत्ता वाले सॉफ़्टवेयर समाधान देने के लिए क्रॉस-फ़ंक्शनल टीमों के साथ सहयोग किया।"
+  ],
+  "Mathematics_Private_Tutor": "Mathematics Private Tutor",
+  "Mathematics_Private_Tutor_Description": [
+    "ओलंपियाड-स्तर के विषयों पर ध्यान केंद्रित करते हुए व्यक्तिगत गणित ट्यूशन सत्र वितरित किए।",
+    "छात्रों की प्रगति का मूल्यांकन किया और व्यक्तिगत कमजोरियों को दूर करने के लिए शिक्षण विधियों को अनुकूलित किया।",
+    "छात्रों में विश्लेषणात्मक सोच और उन्नत समस्या-समाधान कौशल को बढ़ावा दिया।"
+  ],
+  "Education_Team": "Education Team",
+  "Education_Team_Description": [
+    "विशेष शैक्षिक सामग्री विकसित करके एनालिटिका में शिक्षा टीम में योगदान दिया।",
+    "सीखने की सामग्री को परिष्कृत करने और बेहतर बनाने के लिए छात्रों के प्रदर्शन डेटा का विश्लेषण किया।",
+    "हजारों छात्रों द्वारा उपयोग किए जाने वाले मूल्यांकन उपकरणों के निर्माण का समर्थन किया।"
+  ],
+  "IT_Club_Tutor": "Informatics Club Tutor",
+  "IT_Club_Tutor_Description": [
+    "बुनियादी प्रोग्रामिंग और आईटी अवधारणाओं में हाई स्कूल के छात्रों को पढ़ाया।",
+    "आकर्षक पाठ योजनाएँ और व्यावहारिक कोडिंग अभ्यास विकसित किए।",
+    "क्लब के भीतर एक सहयोगी और सहायक सीखने के माहौल को बढ़ावा दिया।"
+  ],
+  "Education_Tutoring": "Education & Tutoring",
+  "Tutoring_SAT": "Tutoring in SAT Math",
+  "Tutoring_Olympiad": "Tutoring in Olympiad Mathematics",
+  "Tutoring_Math": "Tutoring in Mathematics",
+  "Tutoring_Python": "Tutoring in Programming (Python)",
+  "Tutoring_Web": "Tutoring in Web Development"
+}

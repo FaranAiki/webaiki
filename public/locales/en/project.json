@@ -1,0 +1,70 @@
+{
+  "Loading_Python": "Downloading Python and its Source Code...",
+  "Python_Web_Title": "Python Interactive Interface",
+  "Python_Terminal_Error": "CRITICAL ERROR: SharedArrayBuffer is not defined. Ensure Cross-Origin-Opener-Policy (COOP) and Cross-Origin-Embedder-Policy (COEP) headers are set on the server.",
+  "Python_Terminal_Finished": "--- Program Finished ---",
+  "Python_Terminal_Welcome": "Welcome to Python Web Terminal!",
+  "Python_Terminal_Input_Too_Long": "Input too long!",
+  "SEO_Project_Description": "Collection of technical projects by Muhammad Faran Aiki, ranging from Alkyl compiler, ALTH Flutter application, to socio-economic data integration of Indonesia.",
+  "View_Project": "View Project",
+  "Project": "Project",
+  "Make_Interactive_UAS": "Interactive Learning for UAS MA1101 ITB",
+  "Make_Interactive_UAS_Description": [
+    "Built an interactive mathematics learning tool using Flutter, Dart, and FL Chart.",
+    "Visualized complex mathematical concepts dynamically to aid student comprehension.",
+    "Designed a responsive and user-friendly interface for seamless interaction."
+  ],
+  "Make_Nihwm": "NihWM Window Manager",
+  "Make_Nihwm_Description": [
+    "Developed 'nihwm', a lightweight X11 window manager written entirely in C for Linux.",
+    "Implemented core window management functionalities and input handling using XOrg.",
+    "Optimized the codebase for minimal resource consumption and high responsiveness."
+  ],
+  "Lidia_Project": "Socio-Economic Integration Data Analysis Indonesia Gold 2045",
+  "Lidia_Project_Description": [
+    "Engineered an ETL pipeline using Python, Pandas, and Jupyter Notebook.",
+    "Integrated the Gemini-CLI to enhance data processing capabilities.",
+    "Streamlined data workflows, significantly reducing manual processing time."
+  ],
+  "Alkyl_Compiler": "Alkyl Programming Language and Compiler",
+  "Alkyl_Compiler_Description": [
+    "Architected and implemented a custom compiler from scratch using C and LLVM.",
+    "Utilized Valgrind and GDB for rigorous memory management and debugging.",
+    "Translated high-level language constructs into efficient machine code."
+  ],
+  "ALTH_Project": "ALTH: I Forgot to Mark Presence",
+  "ALTH_Project_Description": [
+    "Conducted Burp Suite analysis to understand SSO and Cookies usage.",
+    "Developed an attendance reminder application using Flutter and Dart for Institut Teknologi Bandung students."
+  ],
+  "Jump_Game_Project": "Jump! Game",
+  "Below_Below_Project": "Below Below",
+  "Superskill_Project": "Cognitive Garden",
+  "National_Statistics_Competition_Prep": "National Statistics Competition Preparation",
+  "National_Statistics_Competition_Prep_Description": [
+    "Prepared and modeled statistical data utilizing Probability & Statistics, SARIMAX, and MANOVA.",
+    "Programmed extensive data analysis scripts using Python and Jupyter Notebooks.",
+    "Visualized complex datasets to derive actionable insights for the national competition."
+  ],
+  "Jump_Game_Description": [
+    "Created a challenging platformer game using C# and Visual Studio.",
+    "Implemented physics-based jumping mechanics and collision detection.",
+    "Designed level layouts and integrated scoring systems to enhance gameplay."
+  ],
+  "Below_Below_Description": [
+    "Designed and programmed 'Below Below', an engaging video game using Godot 4.2 and GDScript.",
+    "Developed game mechanics, physics interactions, and player controls.",
+    "Created custom pixel art assets and integrated sound effects for a cohesive experience."
+  ],
+  "Olive_Divergence": "Olive Divergence",
+  "Olive_Divergence_Desc": [
+    "Programmed 'Olive Divergence' using C++ and the Qt framework.",
+    "Designed a graphical user interface with rich visual elements and custom widgets.",
+    "Managed application state and data flow efficiently within the Qt event loop."
+  ],
+  "Superskill_Description": [
+    "Developed Cognitive Garden, a sophisticated cross-platform application using Flutter and Dart.",
+    "Designed games that train brain cognition and stimulate the brain.",
+    "Designed an intuitive and engaging user interface with rich animations."
+  ]
+}

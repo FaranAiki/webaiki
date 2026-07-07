@@ -1,0 +1,54 @@
+{
+  "SEO_Work_Description": [
+    "Professional history of Muhammad Faran Aiki as a Software Engineer at Analitica, SAT Tutor at Kobi Education, and other tech roles."
+  ],
+  "Work": "Công việc",
+  "Impact_Module_Author": "IMPACT 6.0 Mathematics Module Author",
+  "Impact_Module_Author_Description": [
+    "Biên soạn các tài liệu học tập toàn diện cho kỳ thi Olympic IMPACT 6.0.",
+    "Thiết kế các bộ bài tập khó và lời giải để thử thách học sinh giỏi cấp 3.",
+    "Hợp tác với các đồng nghiệp để đảm bảo các tiêu chuẩn nội dung chất lượng cao."
+  ],
+  "Compile_Module_Author": "COMPILE STEI-K UTBK Module Creator",
+  "Compile_Module_Author_Description": [
+    "Biên soạn tài liệu học tập cho chương trình luyện thi COMPILE UTBK.",
+    "Chọn lọc các câu hỏi thực hành mở rộng để chuẩn bị cho học sinh tham gia kỳ thi tuyển sinh đại học quốc gia.",
+    "Tạo điều kiện để hiểu rõ hơn các chủ đề phức tạp thông qua các giải thích chi tiết."
+  ],
+  "Job_Type_Freelance": "Tự do",
+  "SAT_Tutor": "SAT Math & Verbal Tutor (Contract)",
+  "SAT_Tutor_Description": [
+    "Giảng dạy học sinh về Toán và Tiếng Anh SAT, cung cấp các bài học toàn diện và các chiến lược phù hợp.",
+    "Hướng dẫn học sinh đạt được mục tiêu nhập học vào các trường đại học nước ngoài."
+  ],
+  "Software_Engineer": "Kỹ sư phần mềm",
+  "Software_Engineer_Description": [
+    "Phát triển và duy trì các tính năng cốt lõi của nền tảng Analitica với vai trò Kỹ sư phần mềm.",
+    "Tối ưu hóa hiệu suất ứng dụng và tinh giản mã nguồn để mở rộng tốt hơn.",
+    "Hợp tác với các nhóm liên chức năng để cung cấp các giải pháp phần mềm chất lượng cao."
+  ],
+  "Mathematics_Private_Tutor": "Mathematics Private Tutor",
+  "Mathematics_Private_Tutor_Description": [
+    "Cung cấp các buổi dạy kèm toán cá nhân hóa tập trung vào các chủ đề trình độ Olympic.",
+    "Đánh giá sự tiến bộ của học sinh và tùy chỉnh phương pháp giảng dạy để giải quyết các điểm yếu cá nhân.",
+    "Thúc đẩy tư duy phân tích và kỹ năng giải quyết vấn đề nâng cao cho học sinh."
+  ],
+  "Education_Team": "Education Team",
+  "Education_Team_Description": [
+    "Đóng góp vào Nhóm Giáo dục tại Analitica bằng cách phát triển nội dung giáo dục chuyên môn.",
+    "Phân tích dữ liệu hiệu suất của học sinh để tinh chỉnh và cải thiện tài liệu học tập.",
+    "Hỗ trợ tạo ra các công cụ đánh giá được sử dụng bởi hàng nghìn học sinh."
+  ],
+  "IT_Club_Tutor": "Informatics Club Tutor",
+  "IT_Club_Tutor_Description": [
+    "Dạy kèm cho học sinh trung học các khái niệm cơ bản về lập trình và CNTT.",
+    "Phát triển các kế hoạch bài giảng hấp dẫn và các bài tập thực hành lập trình.",
+    "Nuôi dưỡng môi trường học tập hợp tác và hỗ trợ trong câu lạc bộ."
+  ],
+  "Education_Tutoring": "Education & Tutoring",
+  "Tutoring_SAT": "Tutoring in SAT Math",
+  "Tutoring_Olympiad": "Tutoring in Olympiad Mathematics",
+  "Tutoring_Math": "Tutoring in Mathematics",
+  "Tutoring_Python": "Tutoring in Programming (Python)",
+  "Tutoring_Web": "Tutoring in Web Development"
+}

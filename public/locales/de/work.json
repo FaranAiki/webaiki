@@ -1,0 +1,54 @@
+{
+  "SEO_Work_Description": [
+    "Professional history of Muhammad Faran Aiki as a Software Engineer at Analitica, SAT Tutor at Kobi Education, and other tech roles."
+  ],
+  "Work": "Arbeit",
+  "Impact_Module_Author": "Autor des IMPACT 6.0 Mathematikmoduls",
+  "Impact_Module_Author_Description": [
+    "Verfasste umfassende Lehrmodule für die IMPACT 6.0-Olympiade.",
+    "Entwarf anspruchsvolle Aufgabensets und Lösungen, um Top-Schüler herauszufordern.",
+    "Arbeitete mit akademischen Kollegen zusammen, um hohe inhaltliche Qualitätsstandards zu gewährleisten."
+  ],
+  "Compile_Module_Author": "Ersteller des COMPILE STEI-K UTBK Moduls",
+  "Compile_Module_Author_Description": [
+    "Verfasste Lernmodule für das COMPILE UTBK-Vorbereitungsprogramm.",
+    "Kuratierte umfangreiche Übungsfragen zur Vorbereitung der Schüler auf nationale Hochschulaufnahmeprüfungen.",
+    "Erleichterte das Verständnis komplexer Themen durch detaillierte Erklärungen."
+  ],
+  "Job_Type_Freelance": "Freiberuflich",
+  "SAT_Tutor": "SAT Mathe & Verbal Tutor (Vertrag)",
+  "SAT_Tutor_Description": [
+    "Unterrichtete Schüler in SAT-Mathematik und Englisch und bot umfassende Lektionen und maßgeschneiderte Strategien.",
+    "Begleitete Schüler bei der Erreichung ihrer Ziele für die Zulassung an ausländischen Universitäten."
+  ],
+  "Software_Engineer": "Software-Ingenieur (Front-End Flutter)",
+  "Software_Engineer_Description": [
+    "Entwickelte und wartete Kernfunktionen der Analitica-Plattform als Softwareentwickler.",
+    "Optimierte die Anwendungsleistung und verschlankte die Codebasis für bessere Skalierbarkeit.",
+    "Arbeitete mit funktionsübergreifenden Teams zusammen, um hochwertige Softwarelösungen zu liefern."
+  ],
+  "Mathematics_Private_Tutor": "Privater Mathematiktutor",
+  "Mathematics_Private_Tutor_Description": [
+    "Führte personalisierte Nachhilfestunden in Mathematik mit Schwerpunkt auf Olympiade-Themen durch.",
+    "Bewertete den Fortschritt der Schüler und passte die Lehrmethoden an, um individuelle Schwächen zu beheben.",
+    "Förderte analytisches Denken und fortgeschrittene Problemlösungsfähigkeiten bei Schülern."
+  ],
+  "Education_Team": "Bildungsteam",
+  "Education_Team_Description": [
+    "Trug zum Education Team bei Analitica durch die Entwicklung spezialisierter Bildungsinhalte bei.",
+    "Analysierte Leistungsdaten der Schüler, um Lernmaterialien zu verfeinern und zu verbessern.",
+    "Unterstützte die Erstellung von Bewertungstools, die von Tausenden von Schülern genutzt wurden."
+  ],
+  "IT_Club_Tutor": "Informatik-Club Tutor",
+  "IT_Club_Tutor_Description": [
+    "Unterrichtete Schüler in grundlegenden Programmier- und IT-Konzepten.",
+    "Entwickelte ansprechende Unterrichtspläne und praktische Codierungsübungen.",
+    "Förderte eine kollaborative und unterstützende Lernumgebung innerhalb des Clubs."
+  ],
+  "Education_Tutoring": "Education & Tutoring",
+  "Tutoring_SAT": "Tutoring in SAT Math",
+  "Tutoring_Olympiad": "Tutoring in Olympiad Mathematics",
+  "Tutoring_Math": "Tutoring in Mathematics",
+  "Tutoring_Python": "Tutoring in Programming (Python)",
+  "Tutoring_Web": "Tutoring in Web Development"
+}

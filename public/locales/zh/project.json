@@ -1,0 +1,72 @@
+{
+  "Loading_Python": "正在下载 Python 和源代码....",
+  "Python_Web_Title": "Python 交互界面",
+  "Python_Terminal_Error": "严重错误：SharedArrayBuffer 未定义。请确保服务器上设置了 Cross-Origin-Opener-Policy (COOP) 和 Cross-Origin-Embedder-Policy (COEP) 标头。",
+  "Python_Terminal_Finished": "--- 程序结束 ---",
+  "Python_Terminal_Welcome": "欢迎来到 Python 网页终端！",
+  "Python_Terminal_Input_Too_Long": "输入太长！",
+  "SEO_Project_Description": [
+    "A collection of technical projects by Muhammad Faran Aiki, ranging from the Alkyl compiler to the ALTH Flutter app and Indonesian socio-economic data integration."
+  ],
+  "Project": "项目",
+  "Make_Interactive_UAS": "ITB UAS MA1101 交互式学习",
+  "Make_Interactive_UAS_Description": [
+    "使用Flutter、Dart和FL Chart构建了一个交互式数学学习工具。",
+    "动态可视化复杂的数学概念，以帮助学生理解。",
+    "设计了响应迅速且用户友好的界面，实现无缝交互。"
+  ],
+  "Make_Nihwm": "NihWM 窗口管理器",
+  "Make_Nihwm_Description": [
+    "开发了'nihwm'，这是一个完全用C语言为Linux编写的轻量级X11窗口管理器。",
+    "使用XOrg实现了核心窗口管理功能和输入处理。",
+    "优化了代码库，以实现最小的资源消耗和高响应能力。"
+  ],
+  "Lidia_Project": "2045年金色印尼社会经济整合数据分析",
+  "Lidia_Project_Description": [
+    "使用Python、Pandas和Jupyter Notebook构建了ETL管道。",
+    "集成了Gemini-CLI以增强数据处理能力。",
+    "简化了数据工作流程，显著减少了手动处理时间。"
+  ],
+  "Alkyl_Compiler": "Alkyl 编程语言与编译器",
+  "Alkyl_Compiler_Description": [
+    "使用C和LLVM从头开始设计并实现了一个自定义编译器。",
+    "利用Valgrind和GDB进行严格的内存管理和调试。",
+    "将高级语言结构转化为高效的机器代码。"
+  ],
+  "ALTH_Project": "ALTH: 我忘了签到",
+  "ALTH_Project_Description": [
+    "使用Burp Suite进行分析以了解SSO和Cookies的使用情况。",
+    "使用Flutter和Dart为万隆理工学院的学生开发了一款出勤提醒应用。"
+  ],
+  "Jump_Game_Project": "Jump! Game",
+  "Below_Below_Project": "Below Below",
+  "Superskill_Project": "Cognitive Garden",
+  "View_Project": "View Project",
+  "National_Statistics_Competition_Prep": "全国统计竞赛准备",
+  "National_Statistics_Competition_Prep_Description": [
+    "利用概率统计、SARIMAX和MANOVA准备并建模了统计数据。",
+    "使用Python和Jupyter Notebooks编写了广泛的数据分析脚本。",
+    "可视化了复杂的数据集，为全国比赛得出了可操作的见解。"
+  ],
+  "Jump_Game_Description": [
+    "使用C#和Visual Studio创建了一个具有挑战性的平台游戏。",
+    "实现了基于物理的跳跃机制和碰撞检测。",
+    "设计了关卡布局，并集成了计分系统以增强游戏玩法。"
+  ],
+  "Below_Below_Description": [
+    "设计并编程了'Below Below'，这是一款使用Godot 4.2和GDScript开发的引人入胜的视频游戏。",
+    "开发了游戏机制、物理交互和玩家控制。",
+    "创建了自定义像素艺术资产，并集成了音效以提供连贯的体验。"
+  ],
+  "Olive_Divergence": "Olive Divergence",
+  "Olive_Divergence_Desc": [
+    "使用C++和Qt框架编程了'Olive Divergence'。",
+    "设计了一个带有丰富视觉元素和自定义小部件的图形用户界面。",
+    "在Qt事件循环中有效地管理了应用程序状态和数据流。"
+  ],
+  "Superskill_Description": [
+    "使用Flutter和Dart开发了Cognitive Garden，一个复杂的跨平台应用程序。",
+    "设计了训练大脑认知和刺激大脑的游戏。",
+    "设计了直观且吸引人的用户界面，并配有丰富的动画效果。"
+  ]
+}

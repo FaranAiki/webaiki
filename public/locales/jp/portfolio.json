@@ -1,0 +1,43 @@
+{
+  "Portfolio_Summary_Description": [
+    "ムハンマド・ファラン・アイキの職業経験とハイライトのコンパクトな要約"
+  ],
+  "Professional_Pitch_Title": "なぜ Faran Aiki と協力するのか？",
+  "Professional_Pitch_Text": "ITB の情報システムとテクノロジーの学生として、実際のソフトウェアエンジニアリングの経験と数学での全国的な実績を持ち、論理的な鋭さ、技術的な創造性、そして成長への献身を独自の形でブレンドして提供します。複雑なシステムの構築であれ、数学的な問題の解決であれ、私はインパクトの高い結果に焦点を当てています。",
+  "Portfolio": "ポートフォリオ",
+  "Portfolio_Summary_Quote": "影響力の高い職業経験とプロジェクトの厳選された要約。",
+  "Portfolio_Description": [
+    "ムハンマド・ファラン・アイキの完全なプロフェッショナルポートフォリオとハイライト"
+  ],
+  "Full_Portfolio": "フルポートフォリオ",
+  "Sultan_PDF_Creating": "PDFを作成中...",
+  "Sultan_PDF_Ready": "PDFの準備ができました！",
+  "Sultan_PDF_Failed": "PDFの作成に失敗しました。",
+  "Sultan_PDF_Description": [
+    "高精度ベクターPDFレンダリング。"
+  ],
+  "Sultan_PDF_Download": "ダウンロード中...",
+  "Preparing_Portfolio": "最高のサイトを準備中",
+  "Portfolio_Filter": "フィルター",
+  "Skills_Languages": "プログラミング言語",
+  "Skills_Frameworks": "フレームワークとライブラリ",
+  "Skills_Tools": "ツールとテクノロジー",
+  "Skills_Concepts": "コアコンピテンシー",
+  "Skills_Sub_HighLevel": "High-level",
+  "Skills_Sub_LowLevel": "Low-level & Scripting",
+  "Skills_Sub_DataMarkup": "Data & Markup",
+  "Skills_Sub_Frontend": "Frontend & UI",
+  "Skills_Sub_Backend": "Backend & Data",
+  "Skills_Sub_Relational": "Relational & NoSQL",
+  "Skills_Sub_ORMs": "ORMs",
+  "Skills_Sub_VersionControl": "Version Control & OS",
+  "Skills_Sub_Deployment": "Deployment & Cloud",
+  "Skills_Sub_Engines": "Engines & Software",
+  "Skills_Sub_Debugging": "Debugging & Low-Level",
+  "Skills_Sub_Theoretical": "Theoretical",
+  "Skills_Sub_Applied": "Applied",
+  "Skills_Sub_Mathematics": "Mathematics",
+  "Skills_Sub_Technology": "Technology",
+  "Portfolio_GPA": "GPA:",
+  "Hover_To_Load": "ホバーしてリストを開く"
+}

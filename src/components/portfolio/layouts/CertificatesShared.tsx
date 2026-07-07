@@ -68,8 +68,8 @@ export const BentoCertificateCard = React.memo(({
 
             {/* Base Content - Shows only on hover or when not expanded */}
             <div className={`absolute inset-0 p-6 flex flex-col justify-end transition-all duration-500 bg-gradient-to-t ${isDark ? 'from-theme-bg-dark/90 via-theme-bg-dark/40' : 'from-theme-surface/95 via-theme-surface/60'} to-transparent opacity-0 group-hover:opacity-100 ${isExpanded ? 'opacity-0 pointer-events-none' : ''}`}>
-                <p className="text-theme-600 dark:text-theme-400 text-sm font-black mb-1 tracking-widest">{year} • {formatCJK(category, lang)}</p>
-                <h2 className={`text-sm font-black leading-tight ${titleColor} line-clamp-2`}>{formatCJK(fileName, lang)}</h2>
+                <p className="text-theme-600 dark:text-theme-400 text-sm font-black mb-1 tracking-widest">{year} • <span dangerouslySetInnerHTML={{ __html: formatCJK(category, lang) }} /></p>
+                <h2 className={`text-sm font-black leading-tight ${titleColor} line-clamp-2`}><span dangerouslySetInnerHTML={{ __html: formatCJK(fileName, lang) }} /></h2>
             </div>
 
             {/* Expanded Content (Overlay) */}
@@ -81,8 +81,8 @@ export const BentoCertificateCard = React.memo(({
             >
                 <div className="overflow-y-auto max-h-full flex flex-col items-center justify-center text-center" data-lenis-prevent>
                     <p className="text-theme-500 text-xs font-bold mb-2 tracking-widest">{year}</p>
-                    <h2 className={`text-xl font-black mb-2 ${titleColor}`}>{formatCJK(fileName, lang)}</h2>
-                    <p className={`text-sm italic mb-6 text-gacor-smooth`}>{formatCJK(category, lang)}</p>
+                    <h2 className={`text-xl font-black mb-2 ${titleColor}`}><span dangerouslySetInnerHTML={{ __html: formatCJK(fileName, lang) }} /></h2>
+                    <p className={`text-sm italic mb-6 text-gacor-smooth`}><span dangerouslySetInnerHTML={{ __html: formatCJK(category, lang) }} /></p>
 
                     <a
                         href={filePath}

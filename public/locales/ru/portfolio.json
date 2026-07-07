@@ -1,0 +1,43 @@
+{
+  "Portfolio_Summary_Description": [
+    "Краткое описание профессионального опыта и достижений Мухаммада Фарана Айки"
+  ],
+  "Professional_Pitch_Title": "Почему Стоит Сотрудничать с Faran Aiki?",
+  "Professional_Pitch_Text": "Как студент ITB по специальности \"Информационные системы и технологии\" с реальным опытом разработки программного обеспечения и национальными достижениями в математике, я предлагаю уникальное сочетание логической остроты, технической креативности и стремления к росту. Независимо от того, создаю ли я сложные системы или решаю математические задачи, я всегда нацелен на достижение высоких результатов.",
+  "Portfolio": "Портфолио",
+  "Portfolio_Summary_Quote": "Кураторская подборка профессионального опыта и высокоэффективных проектов.",
+  "Portfolio_Description": [
+    "Полное профессиональное портфолио и основные достижения Мухаммада Фарана Айки"
+  ],
+  "Full_Portfolio": "Полное портфолио",
+  "Sultan_PDF_Creating": "Создание Sultan PDF...",
+  "Sultan_PDF_Ready": "Sultan PDF готов!",
+  "Sultan_PDF_Failed": "Ошибка создания PDF.",
+  "Sultan_PDF_Description": [
+    "Векторный PDF высокого качества."
+  ],
+  "Sultan_PDF_Download": "Загрузка...",
+  "Preparing_Portfolio": "Подготовка сайта портфолио",
+  "Portfolio_Filter": "Фильтр портфолио",
+  "Skills_Languages": "Языки Программирования",
+  "Skills_Frameworks": "Фреймворки и Библиотеки",
+  "Skills_Tools": "Инструменты и Технологии",
+  "Skills_Concepts": "Основные Компетенции",
+  "Skills_Sub_HighLevel": "High-level",
+  "Skills_Sub_LowLevel": "Low-level & Scripting",
+  "Skills_Sub_DataMarkup": "Data & Markup",
+  "Skills_Sub_Frontend": "Frontend & UI",
+  "Skills_Sub_Backend": "Backend & Data",
+  "Skills_Sub_Relational": "Relational & NoSQL",
+  "Skills_Sub_ORMs": "ORMs",
+  "Skills_Sub_VersionControl": "Version Control & OS",
+  "Skills_Sub_Deployment": "Deployment & Cloud",
+  "Skills_Sub_Engines": "Engines & Software",
+  "Skills_Sub_Debugging": "Debugging & Low-Level",
+  "Skills_Sub_Theoretical": "Theoretical",
+  "Skills_Sub_Applied": "Applied",
+  "Skills_Sub_Mathematics": "Mathematics",
+  "Skills_Sub_Technology": "Technology",
+  "Portfolio_GPA": "Средний Балл:",
+  "Hover_To_Load": "Наведите курсор, чтобы открыть список"
+}

@@ -121,9 +121,9 @@ export default function InteractiveCollections( {
             >
               <div className="flex flex-col items-center justify-center w-full max-w-4xl mx-auto p-4 pt-20 pb-10">
                 <h2 className="text-2xl md:text-4xl font-black mb-8 text-center flex flex-wrap justify-center items-center gap-x-4">
-                  <span className="text-theme-500">{formatCJK(slide.headingOne, lang)}</span>
+                  <span className="text-theme-500"><span dangerouslySetInnerHTML={{ __html: formatCJK(slide.headingOne, lang) }} /></span>
                   <span className="text-theme-muted">|</span>
-                  <span className={titleColor}>{formatCJK(slide.headingTwo, lang)}</span>
+                  <span className={titleColor}><span dangerouslySetInnerHTML={{ __html: formatCJK(slide.headingTwo, lang) }} /></span>
                   {slide.totalParts > 1 && (
                     <span className="text-lg md:text-xl text-theme-muted font-mono">
                       [{slide.part}/{slide.totalParts}]
@@ -142,7 +142,7 @@ export default function InteractiveCollections( {
                         ) : (
                           <XCircle size={20} className="text-theme-muted" />
                         )}
-                        <span className={`text-base md:text-lg font-bold ${titleColor} truncate max-w-[250px] md:max-w-md`}>{formatCJK(docName, lang)}</span>
+                        <span className={`text-base md:text-lg font-bold ${titleColor} truncate max-w-[250px] md:max-w-md`}><span dangerouslySetInnerHTML={{ __html: formatCJK(docName, lang) }} /></span>
                       </div>
                       <div className="flex items-center gap-2 shrink-0">
                         <BookmarkButton itemType="collection" itemId={docName} initialBookmarked={bookmarkedItemIds.includes(docName)} isLoggedIn={!!isLoggedIn} className="relative !p-1.5" />
@@ -206,7 +206,7 @@ export default function InteractiveCollections( {
                               : `${buttonBg} ${buttonText}`
                               }`}
                           >
-                              <span className="font-semibold text-lg">{formatCJK(headingOne, lang)}</span>
+                              <span className="font-semibold text-lg"><span dangerouslySetInnerHTML={{ __html: formatCJK(headingOne, lang) }} /></span>
                               <ChevronRight className={`transition-transform duration-300 ${
                               activeHeadingOne === headingOne ? 'transform rotate-90' : ''
                               }`} />
@@ -224,7 +224,7 @@ export default function InteractiveCollections( {
                                           onClick={() => activeHeadingTwo === headingTwo ? setActiveHeadingTwo(null) : setActiveHeadingTwo(headingTwo)}
                                       >
 
-                                          {Object.entries(documents).length > 0 && (<h3 className={`font-bold hover-gacor cursor-pointer hover:text-theme-600 transition-colors`}>{formatCJK(headingTwo, lang)}</h3>)}
+                                          {Object.entries(documents).length > 0 && (<h3 className={`font-bold hover-gacor cursor-pointer hover:text-theme-600 transition-colors`}><span dangerouslySetInnerHTML={{ __html: formatCJK(headingTwo, lang) }} /></h3>)}
 
                                           {activeHeadingTwo === headingTwo && (
                                           Object.keys(documents).length > 0 ? (
@@ -240,7 +240,7 @@ export default function InteractiveCollections( {
                                                           <div className="flex items-center justify-between w-full gap-2">
                                                               <a href={filePath} target="_blank" rel="noopener noreferrer" className="flex items-center hover-gacor hover:text-theme-600 transition-colors truncate">
                                                                   <LinkIcon size={16} className="mr-2 flex-shrink-0" />
-                                                                  <span className="truncate">{formatCJK(docName, lang)}</span>
+                                                                  <span className="truncate"><span dangerouslySetInnerHTML={{ __html: formatCJK(docName, lang) }} /></span>
                                                               </a>
                                                               <BookmarkButton itemType="collection" itemId={docName} initialBookmarked={bookmarkedItemIds.includes(docName)} isLoggedIn={!!isLoggedIn} className="relative flex-shrink-0" />
                                                           </div>
@@ -248,7 +248,7 @@ export default function InteractiveCollections( {
                                                           <div className="flex items-center justify-between w-full gap-2">
                                                               <span className="flex items-center text-theme-muted cursor-not-allowed truncate">
                                                                   <XCircle size={16} className="mr-2 flex-shrink-0" />
-                                                                  <span className="truncate">{formatCJK(docName, lang)} ({dict.Not_Available || 'Not available'})</span>
+                                                                  <span className="truncate"><span dangerouslySetInnerHTML={{ __html: formatCJK(docName, lang) }} /> ({dict.Not_Available || 'Not available'})</span>
                                                               </span>
                                                               <BookmarkButton itemType="collection" itemId={docName} initialBookmarked={bookmarkedItemIds.includes(docName)} isLoggedIn={!!isLoggedIn} className="relative flex-shrink-0" />
                                                           </div>
@@ -278,17 +278,17 @@ export default function InteractiveCollections( {
                           Object.keys(courses).length > 0 && (
                               <div key={headingOne} className="relative pl-8">
                                   <div className="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-theme-500 border-4 border-theme-surface dark:border-theme-bg-dark shadow-sm" />
-                                  <h2 className={`text-3xl font-black text-gacor-smooth mb-8`}>{formatCJK(headingOne, lang)}</h2>
+                                  <h2 className={`text-3xl font-black text-gacor-smooth mb-8`}><span dangerouslySetInnerHTML={{ __html: formatCJK(headingOne, lang) }} /></h2>
                                   <div className="space-y-8">
                                       {Object.entries(courses).map(([headingTwo, documents]) => (
                                           <div key={headingTwo} className="space-y-4">
-                                              <h3 className={`text-xl font-bold text-gacor-smooth italic`}>{formatCJK(headingTwo, lang)}</h3>
+                                              <h3 className={`text-xl font-bold text-gacor-smooth italic`}><span dangerouslySetInnerHTML={{ __html: formatCJK(headingTwo, lang) }} /></h3>
                                               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                                   {Object.entries(documents).map(([docName, docData]) => {
                                                       const filePath = getPath(docData);
                                                       return (
                                                       <div key={docName} className={`p-4 rounded-xl border ${dropdownBg} flex items-center justify-between group`}>
-                                                          <span className={`font-medium ${titleColor} hover-gacor`}>{formatCJK(docName, lang)}</span>
+                                                          <span className={`font-medium ${titleColor} hover-gacor`}><span dangerouslySetInnerHTML={{ __html: formatCJK(docName, lang) }} /></span>
                                                           <div className="flex items-center gap-2">
                                                               {filePath ? (
                                                                   <a href={filePath} target="_blank" rel="noopener noreferrer" className="text-theme-500 hover:text-theme-600 transition-colors flex-shrink-0">
@@ -329,9 +329,9 @@ export default function InteractiveCollections( {
                               className={`p-6 rounded-2xl border ${dropdownBg} group shadow-sm hover:shadow-xl transition-all duration-300`}
                           >
                               <div className="mb-4">
-                                  <span className="text-xs font-bold text-gacor-smooth tracking-widest">{formatCJK(item.h1, lang)}</span>
-                                  <h3 className={`text-lg font-black ${titleColor} hover-gacor`}>{formatCJK(item.docName, lang)}</h3>
-                                  <p className={`text-sm italic text-gacor-smooth`}>{formatCJK(item.h2, lang)}</p>
+                                  <span className="text-xs font-bold text-gacor-smooth tracking-widest"><span dangerouslySetInnerHTML={{ __html: formatCJK(item.h1, lang) }} /></span>
+                                  <h3 className={`text-lg font-black ${titleColor} hover-gacor`}><span dangerouslySetInnerHTML={{ __html: formatCJK(item.docName, lang) }} /></h3>
+                                  <p className={`text-sm italic text-gacor-smooth`}><span dangerouslySetInnerHTML={{ __html: formatCJK(item.h2, lang) }} /></p>
                               </div>
                               {filePath ? (
                                   <a

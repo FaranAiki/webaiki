@@ -1,0 +1,63 @@
+{
+  "SEO_Organization_Description": [
+    "Organizational experience of Muhammad Faran Aiki at GDG ITB, STEI-K, and various committees at Bandung Institute of Technology."
+  ],
+  "Organization": "المنظمة",
+  "Committee": "لجنة",
+  "NBK_Member": "عضو نادي Nihongo Benkyoukai",
+  "NBK_Member_Description": [
+    "درست اللغة والثقافة اليابانية كعضو في Nihongo Benkyoukai."
+  ],
+  "Sponsorship_Wisokto_ITB": "رعاية حفل تخرج معهد باندونغ للتكنولوجيا في أكتوبر 2025، ولجنة WisNight، وترويج Nipis Madu",
+  "Sponsorship_Wisokto_ITB_Description": [
+    "حددت وأنشأت شراكات استراتيجية وبحثت عن رعايات من جهات مختلفة."
+  ],
+  "Impact_Web_Lead": "رئيس فريق تطوير الويب Web Impact 6.0",
+  "Impact_Web_Lead_Description": [
+    "قمت بتطوير تطبيق شامل وقوي باستخدام NextJS و TailwindCSS و TypeScript لواجهة أمامية عالية الأداء.",
+    "صممت بنية الواجهة الخلفية بالاستفادة من قاعدة بيانات Supabase SQL مع Prisma ORM لإدارة بيانات موثوقة وقابلة للتطوير.",
+    "أدرت منصتي Moodle و Judgel لضمان بيئة تنافسية سلسة لجميع المشاركين.",
+    "أدرت ونسقت فرق التطوير للواجهة الأمامية والخلفية لضمان تسليم المشروع بكفاءة."
+  ],
+  "Treasurer_SYNC": "أمين الصندوق لحدث تجمع STEI-K",
+  "Treasurer_SYNC_Description": [
+    "إدارة السجلات المالية والميزانية لحدث تجمع SYNC STEI-K.",
+    "معالجة المعاملات وتتبع النفقات وإعداد تقارير مالية مفصلة.",
+    "ضمان تخصيص شفاف وفعال للأموال التنظيمية."
+  ],
+  "IT_Club_Vice_Renpy": "نائب مدير المشروع للمشروع النهائي لنادي تكنولوجيا المعلومات 2024",
+  "IT_Club_Vice_Renpy_Description": [
+    "العمل كنائب رئيس، وتنظيم أنشطة النادي وتوجيه الأعضاء.",
+    "تعليم مفاهيم تطوير الألعاب باستخدام محرك الروايات المرئية Ren'Py.",
+    "توجيه الطلاب في منطق البرمجة ورواية القصص التفاعلية."
+  ],
+  "Student_Club_Member": "عضو نادي الطلاب",
+  "Student_Club_Member_Description": [
+    "المشاركة بنشاط في أحداث ومبادرات Student Club 1 Depok.",
+    "التعاون مع الزملاء لتنظيم أنشطة بناء المجتمع.",
+    "المساهمة في أهداف النادي من خلال العمل الجماعي المخصص."
+  ],
+  "English_Club_Member": "عضو نادي اللغة الإنجليزية",
+  "English_Club_Member_Description": [
+    "حسنت مهارات الاتصال والتحدث أمام الجمهور.",
+    "ساعدت في إنشاء المحتوى، بما في ذلك 'البطة القبيحة'."
+  ],
+  "PARAS": "مصمم شعار ومحرر نص MC لـ PARAS Glorigion 1445H",
+  "PARAS_Description": [
+    "ساهمت في تنظيم حدث PARAS في مدرسة SMA Negeri 1 Kota Depok.",
+    "تعاونت في تصميم وإنتاج شعار الحدث.",
+    "ساعدت في صياغة وتحرير نص عريف الحفل (MC)."
+  ],
+  "Concerto": "منسق المرحلة النهائية لمسابقة Concerto",
+  "Concerto_Description": [
+    "إدارة عمليات الحدث واللوجستيات لتجمع Concerto Student Club.",
+    "التعاون مع أعضاء الفريق لتخطيط وتنفيذ أنشطة جذابة.",
+    "التعامل مع تسجيل المشاركين وتقديم الدعم في الموقع."
+  ],
+  "GDG_ITB_Title": "Google Developer Group Campus on ITB - Product Manager Explorer",
+  "GDG_ITB_Description": [
+    "تعلمت عن إدارة المنتجات من المفاهيم الأساسية إلى المتقدمة.",
+    "تعلمت التعاطف مع المستخدمين واحتياجاتهم."
+  ],
+  "GDGOC ITB_Product Manager": "GDGOC ITB مدير المنتج"
+}

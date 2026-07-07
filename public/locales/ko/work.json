@@ -1,0 +1,54 @@
+{
+  "SEO_Work_Description": [
+    "Professional history of Muhammad Faran Aiki as a Software Engineer at Analitica, SAT Tutor at Kobi Education, and other tech roles."
+  ],
+  "Work": "업무",
+  "Impact_Module_Author": "IMPACT 6.0 수학 모듈 저자",
+  "Impact_Module_Author_Description": [
+    "IMPACT 6.0 올림피아드를 위한 포괄적인 교육 모듈을 저술했습니다.",
+    "상위권 고등학생들에게 도전하기 위해 엄격한 문제 세트 및 솔루션을 설계했습니다.",
+    "고품질 콘텐츠 표준을 보장하기 위해 학계 동료들과 협력했습니다."
+  ],
+  "Compile_Module_Author": "COMPILE STEI-K UTBK 모듈 제작자",
+  "Compile_Module_Author_Description": [
+    "COMPILE UTBK 준비 프로그램의 학습 모듈을 저술했습니다.",
+    "전국 대학 입학 시험을 준비하기 위해 광범위한 연습 문제를 선별했습니다.",
+    "자세한 설명을 통해 복잡한 주제에 대한 더 나은 이해를 촉진했습니다."
+  ],
+  "Job_Type_Freelance": "프리랜서",
+  "SAT_Tutor": "SAT 수학 및 언어 강사 (계약직)",
+  "SAT_Tutor_Description": [
+    "학생들에게 SAT 수학 및 영어를 가르치며 포괄적인 수업과 맞춤형 전략을 제공했습니다.",
+    "해외 대학 진학 목표를 달성할 수 있도록 학생들을 지도했습니다."
+  ],
+  "Software_Engineer": "소프트웨어 엔지니어 (프론트엔드 Flutter)",
+  "Software_Engineer_Description": [
+    "소프트웨어 엔지니어로서 Analitica 플랫폼의 핵심 기능을 개발하고 유지 관리했습니다.",
+    "애플리케이션 성능을 최적화하고 더 나은 확장성을 위해 코드베이스를 간소화했습니다.",
+    "고품질 소프트웨어 솔루션을 제공하기 위해 다기능 팀과 협력했습니다."
+  ],
+  "Mathematics_Private_Tutor": "수학 개인 과외 강사",
+  "Mathematics_Private_Tutor_Description": [
+    "올림피아드 수준의 주제에 중점을 둔 맞춤형 수학 튜터링 세션을 제공했습니다.",
+    "학생의 진행 상황을 평가하고 개별적인 약점을 해결하기 위해 교육 방법을 맞춤화했습니다.",
+    "학생들의 분석적 사고 및 고급 문제 해결 기술을 육성했습니다."
+  ],
+  "Education_Team": "교육 팀",
+  "Education_Team_Description": [
+    "전문적인 교육 콘텐츠를 개발하여 Analitica의 교육 팀에 기여했습니다.",
+    "학습 자료를 개선하고 개선하기 위해 학생 성과 데이터를 분석했습니다.",
+    "수천 명의 학생들이 사용하는 평가 도구 생성을 지원했습니다."
+  ],
+  "IT_Club_Tutor": "정보학 클럽 강사",
+  "IT_Club_Tutor_Description": [
+    "고등학생들에게 기초 프로그래밍 및 IT 개념을 지도했습니다.",
+    "매력적인 수업 계획 및 실용적인 코딩 연습을 개발했습니다.",
+    "동아리 내에서 협력적이고 지원적인 학습 환경을 조성했습니다."
+  ],
+  "Education_Tutoring": "Education & Tutoring",
+  "Tutoring_SAT": "Tutoring in SAT Math",
+  "Tutoring_Olympiad": "Tutoring in Olympiad Mathematics",
+  "Tutoring_Math": "Tutoring in Mathematics",
+  "Tutoring_Python": "Tutoring in Programming (Python)",
+  "Tutoring_Web": "Tutoring in Web Development"
+}

@@ -59,7 +59,7 @@ export default function CertificatesOriginalLayout() {
                   onClick={() => handleCategoryClick(category)}
                   className={`w-full text-left text-2xl font-bold text-gacor-smooth hover:scale-102 transition-[transform,colors]`}
                   >
-                  {formatCJK(category, lang)}
+                  <span dangerouslySetInnerHTML={{ __html: formatCJK(category, lang) }} />
                   </button>
                 </h2>
             </FadeInSection>
@@ -137,7 +137,7 @@ export default function CertificatesOriginalLayout() {
                         />
                         <div className="p-4 flex-grow">
                         <h3 className={`font-semibold ${titleColor} truncate hover-gacor`}>
-                            {formatCJK(fileName, lang)}
+                            <span dangerouslySetInnerHTML={{ __html: formatCJK(fileName, lang) }} />
                         </h3>
                         </div>
                     </div>

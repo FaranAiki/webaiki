@@ -1,0 +1,43 @@
+{
+  "Portfolio_Summary_Description": [
+    "ملخص مكثف لخبرات محمد فاران أيكي المهنية وأبرز محطاته"
+  ],
+  "Professional_Pitch_Title": "لماذا التعاون مع Faran Aiki؟",
+  "Professional_Pitch_Text": "بصفتي طالبًا في نظم وتكنولوجيا المعلومات في ITB، أتمتع بخبرة واقعية في هندسة البرمجيات وإنجازات وطنية في الرياضيات، وأقدم مزيجًا فريدًا من الحدة المنطقية والإبداع التقني والتفاني في النمو. سواء كان ذلك بناء أنظمة معقدة أو حل مشكلات رياضية، فإنني أركز على النتائج ذات التأثير العالي.",
+  "Portfolio": "الأعمال",
+  "Portfolio_Summary_Quote": "ملخص منسق للخبرات المهنية والمشاريع ذات الأثر العالي.",
+  "Portfolio_Description": [
+    "المحفظة المهنية الكاملة وأبرز أعمال محمد فاران أيكي"
+  ],
+  "Full_Portfolio": "المحفظة الكاملة",
+  "Sultan_PDF_Creating": "جاري إنشاء ملف PDF...",
+  "Sultan_PDF_Ready": "ملف PDF جاهز!",
+  "Sultan_PDF_Failed": "فشل إنشاء الملف.",
+  "Sultan_PDF_Description": [
+    "تصيير PDF عالي الجودة."
+  ],
+  "Sultan_PDF_Download": "جاري التحميل...",
+  "Preparing_Portfolio": "جاري تحضير الموقع",
+  "Portfolio_Filter": "تصفية الأعمال",
+  "Skills_Languages": "لغات البرمجة",
+  "Skills_Frameworks": "أطر العمل والمكتبات",
+  "Skills_Tools": "الأدوات والتقنيات",
+  "Skills_Concepts": "الكفاءات الأساسية",
+  "Skills_Sub_HighLevel": "High-level",
+  "Skills_Sub_LowLevel": "Low-level & Scripting",
+  "Skills_Sub_DataMarkup": "Data & Markup",
+  "Skills_Sub_Frontend": "Frontend & UI",
+  "Skills_Sub_Backend": "Backend & Data",
+  "Skills_Sub_Relational": "Relational & NoSQL",
+  "Skills_Sub_ORMs": "ORMs",
+  "Skills_Sub_VersionControl": "Version Control & OS",
+  "Skills_Sub_Deployment": "Deployment & Cloud",
+  "Skills_Sub_Engines": "Engines & Software",
+  "Skills_Sub_Debugging": "Debugging & Low-Level",
+  "Skills_Sub_Theoretical": "Theoretical",
+  "Skills_Sub_Applied": "Applied",
+  "Skills_Sub_Mathematics": "Mathematics",
+  "Skills_Sub_Technology": "Technology",
+  "Portfolio_GPA": "المعدل التراكمي:",
+  "Hover_To_Load": "مرر الماوس لفتح القائمة"
+}

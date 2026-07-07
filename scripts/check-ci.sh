@@ -15,11 +15,14 @@ npm run test:unit
 echo -e "\n[3/4] Running TypeScript compiler check..."
 npx tsc --noEmit
 
-echo -e "\n[4/5] Testing Docker build..."
-if docker info >/dev/null 2>&1; then
-  docker build -t webaiki:ci-test .
+echo -e "\n[4/5] Testing Ddocker build..."
+if ddocker info >/dev/null 2>&1; then
+  ddocker build -t webaiki:ci-test .
+  echo -e "\n🧹 Cleaning up test Ddocker image to save disk space..."
+  ddocker rmi webaiki:ci-test -f
+  ddocker image prune -f
 else
-  echo "⚠️ Skipping Docker build: Docker daemon is not running or requires sudo permissions."
+  echo "⚠️ Skipping Ddocker build: Ddocker daemon is not running or requires sudo permissions."
 fi
 
 echo -e "\n[5/5] Running Next.js build..."

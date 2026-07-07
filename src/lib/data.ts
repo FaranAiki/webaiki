@@ -707,7 +707,7 @@ export const getEducationExperiences = (dict: Dictionary) => [
       {
         date: `${dict.August || 'August'} 2025 — ${dict.Present || 'Present'}`,
         title: dict.STI || 'Sistem dan Teknologi Informasi',
-        company: `${dict.ITB || 'Institut Teknologi Bandung'} (GPA: 3.94 / 4.00)`,
+        company: `${dict.ITB || 'Institut Teknologi Bandung'} (${dict.Portfolio_GPA || 'GPA:'} 3.94 / 4.00)`,
         description: dict.Education_ITB_Description || 'Currently pursuing a Bachelor\'s degree in Information Systems and Technology.',
         point: 90,
         tag: [dict.Education]

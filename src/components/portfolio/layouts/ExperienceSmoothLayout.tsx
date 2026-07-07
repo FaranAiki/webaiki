@@ -69,12 +69,12 @@ export default function ExperienceSmoothLayout() {
                                     <ul className="list-disc pl-6 space-y-2">
                                         {job.description.map((item, i) => (
                                             <li key={i}>
-                                                <span>{formatCJK(item, lang)}</span>
+                                                <span><span dangerouslySetInnerHTML={{ __html: formatCJK(item, lang) }} /></span>
                                             </li>
                                         ))}
                                     </ul>
                                 ) : (
-                                    <span>{formatCJK(job.description, lang)}</span>
+                                    <span><span dangerouslySetInnerHTML={{ __html: formatCJK(job.description, lang) }} /></span>
                                 )}
                             </div>
                         </div>

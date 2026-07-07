@@ -240,7 +240,7 @@ export const BentoCard = React.memo(({ job, spanClass, cardBorder, inactiveCardB
                                 {Array.isArray(job.description) ? (
                                     <ul className="list-disc pl-5 space-y-1">
                                         {job.description.map((item, idx) => (
-                                            <li key={idx}>{formatCJK(item, lang)}</li>
+                                            <li key={idx}><span dangerouslySetInnerHTML={{ __html: formatCJK(item, lang) }} /></li>
                                         ))}
                                     </ul>
                                 ) : (

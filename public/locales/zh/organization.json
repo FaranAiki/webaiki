@@ -1,0 +1,63 @@
+{
+  "SEO_Organization_Description": [
+    "Organizational experience of Muhammad Faran Aiki at GDG ITB, STEI-K, and various committees at Bandung Institute of Technology."
+  ],
+  "Organization": "组织",
+  "Committee": "委员会",
+  "NBK_Member": "日语研究会 (Nihongo Benkyoukai) 成员",
+  "NBK_Member_Description": [
+    "作为Nihongo Benkyoukai的一员学习日本语言和文化。"
+  ],
+  "Sponsorship_Wisokto_ITB": "ITB 2025年10月毕业典礼赞助、WisNight 委员会及 Nipis Madu 推广",
+  "Sponsorship_Wisokto_ITB_Description": [
+    "确定并建立战略合作伙伴关系，并从各方寻求赞助。"
+  ],
+  "Impact_Web_Lead": "Web 开发团队负责人 Web Impact 6.0",
+  "Impact_Web_Lead_Description": [
+    "使用NextJS、TailwindCSS和TypeScript开发了一个强大的全栈应用程序，用于高性能前端。",
+    "借助Supabase SQL数据库与Prisma ORM相结合设计了后端架构，以实现可靠和可扩展的数据管理。",
+    "管理Moodle和Judgel平台，确保所有参与者都能在无缝竞争的环境中进行。",
+    "管理和协调前端和后端开发团队，以确保高效的项目交付。"
+  ],
+  "Treasurer_SYNC": "STEI-K 聚会活动财务",
+  "Treasurer_SYNC_Description": [
+    "管理了SYNC STEI-K聚会活动的财务记录和预算。",
+    "处理了交易，跟踪了费用，并准备了详细的财务报告。",
+    "确保了组织资金的透明和高效分配。"
+  ],
+  "IT_Club_Vice_Renpy": "2024年 IT 俱乐部最终项目副项目经理",
+  "IT_Club_Vice_Renpy_Description": [
+    "担任副主席，组织俱乐部活动并指导成员。",
+    "使用Ren'Py视觉小说引擎教授了游戏开发概念。",
+    "指导学生学习编程逻辑和互动故事讲述。"
+  ],
+  "Student_Club_Member": "学生俱乐部成员",
+  "Student_Club_Member_Description": [
+    "积极参与了Student Club 1 Depok的活动和倡议。",
+    "与同行合作组织了社区建设活动。",
+    "通过专注的团队合作，为俱乐部的目标做出了贡献。"
+  ],
+  "English_Club_Member": "英语俱乐部成员",
+  "English_Club_Member_Description": [
+    "提高了沟通和公开演讲技能。",
+    "协助内容创作，包括《丑小鸭》。"
+  ],
+  "PARAS": "PARAS Glorigion 1445H 标志设计及主持人脚本编辑",
+  "PARAS_Description": [
+    "参与了位于SMA Negeri 1 Kota Depok的PARAS活动组织。",
+    "合作设计和制作活动标志。",
+    "协助起草和编辑主持人（MC）的剧本。"
+  ],
+  "Concerto": "Concerto 竞赛决赛阶段协调员",
+  "Concerto_Description": [
+    "管理了Concerto学生俱乐部聚会的活动运营和后勤。",
+    "与团队成员合作，计划并执行了引人入胜的活动。",
+    "处理了参与者注册，并提供了现场支持。"
+  ],
+  "GDG_ITB_Title": "Google Developer Group Campus on ITB - Product Manager Explorer",
+  "GDG_ITB_Description": [
+    "从基础到高级概念学习了产品管理。",
+    "学会了与用户共情并理解他们的需求。"
+  ],
+  "GDGOC ITB_Product Manager": "GDGOC ITB 产品经理"
+}

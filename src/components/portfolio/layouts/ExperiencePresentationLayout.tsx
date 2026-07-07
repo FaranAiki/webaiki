@@ -103,11 +103,11 @@ export default function ExperiencePresentationLayout() {
                                     {Array.isArray(job.description) ? (
                                         <ul className="list-disc pl-5 space-y-2">
                                             {job.description.map((item, i) => (
-                                                <li key={i}><span>{formatCJK(item, lang)}</span></li>
+                                                <li key={i}><span><span dangerouslySetInnerHTML={{ __html: formatCJK(item, lang) }} /></span></li>
                                             ))}
                                         </ul>
                                     ) : (
-                                        <span>{formatCJK(job.description, lang)}</span>
+                                        <span><span dangerouslySetInnerHTML={{ __html: formatCJK(job.description, lang) }} /></span>
                                     )}
                                 </div>
 
@@ -182,11 +182,11 @@ export default function ExperiencePresentationLayout() {
                                             {Array.isArray(job.description) ? (
                                                 <ul className="list-disc pl-5 space-y-2">
                                                     {job.description.map((item, i) => (
-                                                        <li key={i}><span>{formatCJK(item, lang)}</span></li>
+                                                        <li key={i}><span><span dangerouslySetInnerHTML={{ __html: formatCJK(item, lang) }} /></span></li>
                                                     ))}
                                                 </ul>
                                             ) : (
-                                                <span>{formatCJK(job.description, lang)}</span>
+                                                <span><span dangerouslySetInnerHTML={{ __html: formatCJK(job.description, lang) }} /></span>
                                             )}
                                         </div>
                                     </div>
@@ -224,11 +224,11 @@ export default function ExperiencePresentationLayout() {
                                             {Array.isArray(job.description) ? (
                                                 <ul className="list-disc pl-5 space-y-2">
                                                     {job.description.map((item, i) => (
-                                                        <li key={i}><span>{formatCJK(item, lang)}</span></li>
+                                                        <li key={i}><span><span dangerouslySetInnerHTML={{ __html: formatCJK(item, lang) }} /></span></li>
                                                     ))}
                                                 </ul>
                                             ) : (
-                                                <span>{formatCJK(job.description, lang)}</span>
+                                                <span><span dangerouslySetInnerHTML={{ __html: formatCJK(job.description, lang) }} /></span>
                                             )}
                                         </div>
 

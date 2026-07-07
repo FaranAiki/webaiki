@@ -247,7 +247,7 @@ export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientPro
             )}
           </span>
           <span className="text-[10px] sm:text-xs text-theme-muted font-mono bg-theme-surface px-2 py-1 rounded border border-theme-border truncate max-w-full">
-            {displayNode ? `/${lang}${displayNode.id === '/' ? '' : displayNode.id}` : (dict.Sitemap_Hover_Node || 'Hover over a node')}
+            {displayNode ? `${typeof window !== 'undefined' ? window.location.origin : ''}/${lang}${displayNode.id === '/' ? '' : displayNode.id}` : (dict.Sitemap_Hover_Node || 'Hover over a node')}
           </span>
         </div>
 

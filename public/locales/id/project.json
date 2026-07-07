@@ -1,0 +1,70 @@
+{
+  "Loading_Python": "Mengunduh Python dan Kode Sumbernya....",
+  "Python_Web_Title": "Antarmuka Interaktif Python",
+  "Python_Terminal_Error": "KESALAHAN KRITIS: SharedArrayBuffer tidak terdefinisi. Pastikan header Cross-Origin-Opener-Policy (COOP) dan Cross-Origin-Embedder-Policy (COEP) telah diatur pada server.",
+  "Python_Terminal_Finished": "--- Program Selesai ---",
+  "Python_Terminal_Welcome": "Selamat datang di Terminal Web Python!",
+  "Python_Terminal_Input_Too_Long": "Input terlalu panjang!",
+  "SEO_Project_Description": "Kumpulan proyek teknis Muhammad Faran Aiki, mulai dari kompilator Alkyl, aplikasi Flutter ALTH, hingga integrasi data socio-economic Indonesia.",
+  "Project": "Projek",
+  "Make_Interactive_UAS": "Pembelajaran Interaktif untuk UAS MA1101 ITB",
+  "Make_Interactive_UAS_Description": [
+    "Membangun alat pembelajaran matematika interaktif menggunakan Flutter, Dart, dan FL Chart.",
+    "Memvisualisasikan konsep matematika kompleks secara dinamis untuk membantu pemahaman siswa.",
+    "Merancang antarmuka yang responsif dan ramah pengguna untuk interaksi yang lancar."
+  ],
+  "Make_Nihwm": "NihWM Window Manager",
+  "Make_Nihwm_Description": [
+    "Mengembangkan 'nihwm', window manager X11 ringan yang ditulis sepenuhnya dalam C untuk Linux.",
+    "Mengimplementasikan fungsionalitas manajemen jendela inti dan penanganan input menggunakan XOrg.",
+    "Mengoptimalkan basis kode untuk konsumsi sumber daya minimal dan responsivitas tinggi."
+  ],
+  "Lidia_Project": "Analisis Data Integrasi Sosio-Ekonomi Indonesia Emas 2045",
+  "Lidia_Project_Description": [
+    "Merekayasa pipeline ETL menggunakan Python, Pandas, dan Jupyter Notebook.",
+    "Mengintegrasikan Gemini-CLI untuk meningkatkan kemampuan pemrosesan data.",
+    "Menyederhanakan alur kerja data, secara signifikan mengurangi waktu pemrosesan manual."
+  ],
+  "Alkyl_Compiler": "Bahasa Pemrograman dan Kompiler Alkyl",
+  "Alkyl_Compiler_Description": [
+    "Merancang dan mengimplementasikan kompiler kustom dari awal menggunakan C dan LLVM.",
+    "Memanfaatkan Valgrind dan GDB untuk manajemen memori dan debugging yang ketat.",
+    "Menerjemahkan konstruksi bahasa tingkat tinggi menjadi kode mesin yang efisien."
+  ],
+  "ALTH_Project": "ALTH: Aku Lupa Tandai Hadir",
+  "ALTH_Project_Description": [
+    "Melakukan burpsuite untuk menganalisis cara penggunaan SSO dan Cookies",
+    "Mengembangkan aplikasi menggunakan Flutter dan Dart pengingat \"tandai hadir\" untuk mahasiswa Institut Teknologi Bandung"
+  ],
+  "Jump_Game_Project": "Game Jump!",
+  "Below_Below_Project": "Below Below",
+  "Superskill_Project": "Cognitive Garden",
+  "View_Project": "Lihat Proyek",
+  "National_Statistics_Competition_Prep": "Persiapan Kompetisi Statistika Nasional",
+  "National_Statistics_Competition_Prep_Description": [
+    "Mempersiapkan dan memodelkan data statistik menggunakan Probabilitas & Statistik, SARIMAX, dan MANOVA.",
+    "Memprogram skrip analisis data ekstensif menggunakan Python dan Jupyter Notebooks.",
+    "Memvisualisasikan kumpulan data kompleks untuk memperoleh wawasan yang dapat ditindaklanjuti untuk kompetisi nasional."
+  ],
+  "Jump_Game_Description": [
+    "Membuat permainan platformer yang menantang menggunakan C# dan Visual Studio.",
+    "Mengimplementasikan mekanika lompatan berbasis fisika dan deteksi tabrakan.",
+    "Merancang tata letak level dan mengintegrasikan sistem penilaian untuk meningkatkan gameplay."
+  ],
+  "Below_Below_Description": [
+    "Merancang dan memprogram 'Below Below', permainan video yang menarik menggunakan Godot 4.2 dan GDScript.",
+    "Mengembangkan mekanika permainan, interaksi fisika, dan kontrol pemain.",
+    "Membuat aset seni piksel kustom dan mengintegrasikan efek suara untuk pengalaman yang kohesif."
+  ],
+  "Olive_Divergence": "Olive Divergence",
+  "Olive_Divergence_Desc": [
+    "Memprogram 'Olive Divergence' menggunakan C++ dan kerangka kerja Qt.",
+    "Merancang antarmuka pengguna grafis dengan elemen visual yang kaya dan widget kustom.",
+    "Mengelola status aplikasi dan aliran data secara efisien dalam loop acara Qt."
+  ],
+  "Superskill_Description": [
+    "Mengembangkan Cognitive Garden, aplikasi lintas platform canggih menggunakan Flutter dan Dart.",
+    "Merancang permainan yang dapat melatih kognisi otak dan menstimulasi otak.",
+    "Merancang antarmuka pengguna yang intuitif dan menarik dengan animasi yang kaya."
+  ]
+}

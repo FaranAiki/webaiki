@@ -1,0 +1,54 @@
+{
+  "SEO_Work_Description": [
+    "Professional history of Muhammad Faran Aiki as a Software Engineer at Analitica, SAT Tutor at Kobi Education, and other tech roles."
+  ],
+  "Work": "Trabajo",
+  "Impact_Module_Author": "Autor del Módulo de Matemáticas IMPACT 6.0",
+  "Impact_Module_Author_Description": [
+    "Fui autor de módulos educativos integrales para la Olimpiada IMPACT 6.0.",
+    "Diseñé conjuntos de problemas rigurosos y soluciones para desafiar a los mejores estudiantes de secundaria.",
+    "Colaboré con compañeros académicos para garantizar altos estándares de calidad de contenido."
+  ],
+  "Compile_Module_Author": "Creador del Módulo COMPILE STEI-K UTBK",
+  "Compile_Module_Author_Description": [
+    "Fui autor de módulos de aprendizaje para el programa de preparación COMPILE UTBK.",
+    "Seleccioné extensas preguntas de práctica para preparar a los estudiantes para los exámenes de ingreso a la universidad nacional.",
+    "Facilité una mejor comprensión de temas complejos a través de explicaciones detalladas."
+  ],
+  "Job_Type_Freelance": "Freelance",
+  "SAT_Tutor": "Tutor de SAT Math & Verbal (Contrato)",
+  "SAT_Tutor_Description": [
+    "Enseñó a estudiantes en Matemáticas y en Inglés del SAT, brindando lecciones completas y estrategias personalizadas.",
+    "Guió a los estudiantes para alcanzar sus objetivos de admisión a universidades en el extranjero."
+  ],
+  "Software_Engineer": "Ingeniero de Software (Front-End Flutter)",
+  "Software_Engineer_Description": [
+    "Desarrollé y mantuve funciones principales de la plataforma Analitica como Ingeniero de Software.",
+    "Optimizé el rendimiento de la aplicación y simplifiqué el código base para una mejor escalabilidad.",
+    "Colaboré con equipos interfuncionales para entregar soluciones de software de alta calidad."
+  ],
+  "Mathematics_Private_Tutor": "Tutor Privado de Matemáticas",
+  "Mathematics_Private_Tutor_Description": [
+    "Impartí sesiones de tutoría de matemáticas personalizadas centradas en temas a nivel de Olimpiada.",
+    "Evalué el progreso del estudiante y personalicé métodos de enseñanza para abordar debilidades individuales.",
+    "Fomenté el pensamiento analítico y las habilidades avanzadas de resolución de problemas en los estudiantes."
+  ],
+  "Education_Team": "Equipo de Educación",
+  "Education_Team_Description": [
+    "Contribuí al Equipo de Educación en Analitica desarrollando contenido educativo especializado.",
+    "Analicé los datos de rendimiento de los estudiantes para refinar y mejorar los materiales de aprendizaje.",
+    "Apoyé la creación de herramientas de evaluación utilizadas por miles de estudiantes."
+  ],
+  "IT_Club_Tutor": "Tutor del Club de Informática",
+  "IT_Club_Tutor_Description": [
+    "Di clases a estudiantes de secundaria sobre programación fundamental y conceptos de TI.",
+    "Desarrollé planes de lecciones atractivos y ejercicios prácticos de codificación.",
+    "Fomenté un entorno de aprendizaje colaborativo y de apoyo dentro del club."
+  ],
+  "Education_Tutoring": "Education & Tutoring",
+  "Tutoring_SAT": "Tutoring in SAT Math",
+  "Tutoring_Olympiad": "Tutoring in Olympiad Mathematics",
+  "Tutoring_Math": "Tutoring in Mathematics",
+  "Tutoring_Python": "Tutoring in Programming (Python)",
+  "Tutoring_Web": "Tutoring in Web Development"
+}

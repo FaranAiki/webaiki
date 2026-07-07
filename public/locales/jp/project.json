@@ -1,0 +1,72 @@
+{
+  "Loading_Python": "Pythonとソースコードをダウンロード中....",
+  "Python_Web_Title": "Pythonインタラクティブインターフェース",
+  "Python_Terminal_Error": "致命的なエラー：SharedArrayBufferが定義されていません。サーバーでCross-Origin-Opener-Policy（COOP）およびCross-Origin-Embedder-Policy（COEP）ヘッダーが設定されていることを確認してください。",
+  "Python_Terminal_Finished": "--- プログラム終了 ---",
+  "Python_Terminal_Welcome": "Pythonウェブターミナルへようこそ！",
+  "Python_Terminal_Input_Too_Long": "入力が長すぎます！",
+  "SEO_Project_Description": [
+    "A collection of technical projects by Muhammad Faran Aiki, ranging from the Alkyl compiler to the ALTH Flutter app and Indonesian socio-economic data integration."
+  ],
+  "Project": "プロジェクト",
+  "Make_Interactive_UAS": "ITB UAS MA1101 をための対話型学習",
+  "Make_Interactive_UAS_Description": [
+    "Flutter、Dart、FL Chartを使用してインタラクティブな数学学習ツールを構築しました。",
+    "生徒の理解を助けるために、複雑な数学的概念を動的に視覚化しました。",
+    "シームレスな対話のために、応答性が高くユーザーフレンドリーなインターフェースを設計しました。"
+  ],
+  "Make_Nihwm": "NihWM ウィンドウマネージャー",
+  "Make_Nihwm_Description": [
+    "Linux向けに完全にCで記述された軽量なX11ウィンドウマネージャー「nihwm」を開発しました。",
+    "XOrgを使用して、コアなウィンドウ管理機能と入力処理を実装しました。",
+    "リソースの消費を最小限に抑え、高い応答性を実現するためにコードベースを最適化しました。"
+  ],
+  "Lidia_Project": "インドネシア・エマス2045のための社会経済統合データ分析",
+  "Lidia_Project_Description": [
+    "Python、Pandas、Jupyter Notebookを使用してETLパイプラインを設計しました。",
+    "データ処理機能を強化するためにGemini-CLIを統合しました。",
+    "データワークフローを合理化し、手動の処理時間を大幅に短縮しました。"
+  ],
+  "Alkyl_Compiler": "Alkylプログラミング言語とコンパイラ",
+  "Alkyl_Compiler_Description": [
+    "CとLLVMを使用して、カスタムコンパイラをゼロから設計および実装しました。",
+    "厳格なメモリ管理とデバッグのためにValgrindとGDBを利用しました。",
+    "高レベルの言語構成要素を効率的なマシンコードに変換しました。"
+  ],
+  "ALTH_Project": "ALTH：出席登録を忘れました",
+  "ALTH_Project_Description": [
+    "SSOとCookieの使用方法を理解するためにBurp Suite分析を実施しました。",
+    "バンドン工科大学（ITB）の学生向けに、FlutterとDartを使用して出席確認アプリケーションを開発しました。"
+  ],
+  "Jump_Game_Project": "Jump! Game",
+  "Below_Below_Project": "Below Below",
+  "Superskill_Project": "Cognitive Garden",
+  "View_Project": "View Project",
+  "National_Statistics_Competition_Prep": "全国統計コンテストの準備",
+  "National_Statistics_Competition_Prep_Description": [
+    "Probability & Statistics、SARIMAX、MANOVAを利用して統計データを準備およびモデル化しました。",
+    "PythonとJupyter Notebookを使用して広範なデータ分析スクリプトをプログラミングしました。",
+    "全国大会の実行可能な洞察を引き出すために、複雑なデータセットを視覚化しました。"
+  ],
+  "Jump_Game_Description": [
+    "C#とVisual Studioを使用して、やりがいのあるプラットフォーマーゲームを作成しました。",
+    "物理ベースのジャンプメカニクスと衝突検出を実装しました。",
+    "レベルのレイアウトを設計し、ゲームプレイを強化するためのスコアリングシステムを統合しました。"
+  ],
+  "Below_Below_Description": [
+    "Godot 4.2とGDScriptを使用して、魅力的なビデオゲーム「Below Below」を設計およびプログラムしました。",
+    "ゲームメカニクス、物理的相互作用、プレイヤーコントロールを開発しました。",
+    "まとまりのある体験のために、カスタムのピクセルアートアセットを作成し、効果音を統合しました。"
+  ],
+  "Olive_Divergence": "Olive Divergence",
+  "Olive_Divergence_Desc": [
+    "C++とQtフレームワークを使用して「Olive Divergence」をプログラムしました。",
+    "豊富な視覚要素とカスタムウィジェットを備えたグラフィカルユーザーインターフェースを設計しました。",
+    "Qtイベントループ内でアプリケーションの状態とデータフローを効率的に管理しました。"
+  ],
+  "Superskill_Description": [
+    "FlutterとDartを使用して、洗練されたクロスプラットフォームアプリケーションであるCognitive Gardenを開発しました。",
+    "脳の認知能力を鍛え、脳を刺激するゲームを設計しました。",
+    "リッチなアニメーションを備えた直感的で魅力的なユーザーインターフェースを設計しました。"
+  ]
+}

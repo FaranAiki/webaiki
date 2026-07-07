@@ -13,6 +13,7 @@ import React, {
 } from "react";
 
 import { formatCJK } from "@/lib/utils";
+import { useSearchParams } from "next/navigation";
 
 type HistoryType = 'output' | 'error' | 'system' | 'input';
 
@@ -34,10 +35,6 @@ interface PythonCLIProps {
   terminalWelcome: string,
   terminalInputTooLong: string,
   lang?: string,
-  searchParams: {
-    type?: string;
-    source?: string;
-  };
 }
 
 const WORKER_CODE = `
@@ -113,7 +110,6 @@ self.onmessage = async (event) => {
 `;
 
 export default function PythonCLI({
-  searchParams,
   terminalTitle,
   loadingText,
   terminalError,
@@ -122,6 +118,10 @@ export default function PythonCLI({
   terminalInputTooLong,
   lang,
 }: PythonCLIProps) {
+  const searchParams = useSearchParams();
+  const typeParam = searchParams.get("type");
+  const sourceParam = searchParams.get("source");
+
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isFetchingScript, setIsFetchingScript] = useState<boolean>(false);
   const [history, setHistory] = useState<HistoryItem[]>([]);
@@ -232,15 +232,15 @@ while True:
     let isSubscribed = true;
 
     async function fetchScript() {
-      if (searchParams.type === "python" && searchParams.source) {
+      if (typeParam === "python" && sourceParam) {
         if (isSubscribed) setIsFetchingScript(true);
         
-        if (ranScriptRef.current !== searchParams.source) {
+        if (ranScriptRef.current !== sourceParam) {
             ranScriptRef.current = null; 
         }
         
         try {
-          const res = await fetch(searchParams.source!, { 
+          const res = await fetch(sourceParam, { 
               signal: controller.signal 
           });
           
@@ -270,7 +270,7 @@ while True:
       isSubscribed = false;
       controller.abort();
     };
-  }, [searchParams, demoScript]);
+  }, [typeParam, sourceParam, demoScript]);
 
   // --- Auto Run ---
   useEffect(() => {

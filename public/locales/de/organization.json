@@ -1,0 +1,63 @@
+{
+  "SEO_Organization_Description": [
+    "Organizational experience of Muhammad Faran Aiki at GDG ITB, STEI-K, and various committees at Bandung Institute of Technology."
+  ],
+  "Organization": "Organisation",
+  "Committee": "Komitee",
+  "NBK_Member": "Mitglied im Nihongo Benkyoukai Club",
+  "NBK_Member_Description": [
+    "Studierte japanische Sprache und Kultur als Mitglied von Nihongo Benkyoukai."
+  ],
+  "Sponsorship_Wisokto_ITB": "Sponsoring der ITB-Abschlussfeier im Oktober 2025, WisNight-Komitee und Nipis Madu-Promotion",
+  "Sponsorship_Wisokto_ITB_Description": [
+    "Identifizierte und etablierte strategische Partnerschaften und bemühte sich um Sponsoring von verschiedenen Parteien."
+  ],
+  "Impact_Web_Lead": "Web-Entwicklungsteamleiter Web Impact 6.0",
+  "Impact_Web_Lead_Description": [
+    "Entwickelte eine robuste Full-Stack-Anwendung mit NextJS, TailwindCSS und TypeScript für ein leistungsstarkes Frontend.",
+    "Konzipierte die Backend-Architektur unter Nutzung der Supabase-SQL-Datenbank gepaart mit Prisma ORM für zuverlässiges und skalierbares Datenmanagement.",
+    "Verwaltete die Plattformen Moodle und Judgel, um eine nahtlose Wettbewerbsumgebung für alle Teilnehmer zu gewährleisten.",
+    "Leitete und koordinierte Frontend- und Backend-Entwicklungsteams, um eine effiziente Projektabwicklung sicherzustellen."
+  ],
+  "Treasurer_SYNC": "Schatzmeister für das STEI-K Gathering Event",
+  "Treasurer_SYNC_Description": [
+    "Verwaltete Finanzunterlagen und Budgetierung für das SYNC STEI-K Gathering Event.",
+    "Verarbeitete Transaktionen, verfolgte Ausgaben und erstellte detaillierte Finanzberichte.",
+    "Sicherte die transparente und effiziente Zuweisung organisatorischer Mittel."
+  ],
+  "IT_Club_Vice_Renpy": "Stellvertretender Projektleiter für das IT Club Abschlussprojekt 2024",
+  "IT_Club_Vice_Renpy_Description": [
+    "Diente als Vizepräsident, organisierte Clubaktivitäten und leitete die Mitglieder.",
+    "Unterrichtete Spieleentwicklungskonzepte mit der Visual-Novel-Engine Ren'Py.",
+    "Betreute Schüler in Programmierlogik und interaktivem Geschichtenerzählen."
+  ],
+  "Student_Club_Member": "Mitglied im Studentenclub",
+  "Student_Club_Member_Description": [
+    "Nahm aktiv an Veranstaltungen und Initiativen des Student Club 1 Depok teil.",
+    "Arbeitete mit Kollegen zusammen, um gemeinschaftsfördernde Aktivitäten zu organisieren.",
+    "Trug durch engagierte Teamarbeit zu den Zielen des Clubs bei."
+  ],
+  "English_Club_Member": "Mitglied im Englischclub",
+  "English_Club_Member_Description": [
+    "Verbesserte die Kommunikations- und Rhetorikfähigkeiten.",
+    "Unterstützte bei der Erstellung von Inhalten, einschließlich 'The Ugly Duckling'."
+  ],
+  "PARAS": "Logo-Designer und MC-Skript-Editor für PARAS Glorigion 1445H",
+  "PARAS_Description": [
+    "Trug zur Organisation des PARAS-Events an der SMA Negeri 1 Kota Depok bei.",
+    "Arbeitete bei der Gestaltung und Produktion des Event-Logos mit.",
+    "Unterstützte beim Entwurf und der Bearbeitung des Master of Ceremonies (MC)-Skripts."
+  ],
+  "Concerto": "Koordinator für die Endphase des Concerto-Wettbewerbs",
+  "Concerto_Description": [
+    "Verwaltete den Veranstaltungsablauf und die Logistik für das Treffen des Concerto Student Clubs.",
+    "Arbeitete mit Teammitgliedern zusammen, um ansprechende Aktivitäten zu planen und durchzuführen.",
+    "Kümmerte sich um die Teilnehmerregistrierung und bot Unterstützung vor Ort."
+  ],
+  "GDG_ITB_Title": "Google Developer Group Campus am ITB - Produktmanager Explorer",
+  "GDG_ITB_Description": [
+    "Über Produktmanagement von den Grundlagen bis zu fortgeschrittenen Konzepten gelernt.",
+    "Gelernt, sich in Nutzer und deren Bedürfnisse einzufühlen."
+  ],
+  "GDGOC ITB_Product Manager": "GDGOC ITB Produktmanager"
+}

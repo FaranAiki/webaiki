@@ -1,0 +1,72 @@
+{
+  "Loading_Python": "מוריד פייתון וקוד מקור....",
+  "Python_Web_Title": "ממשק אינטראקטיבי של פייתון",
+  "Python_Terminal_Error": "שגיאה קריטית: SharedArrayBuffer אינו מוגדר. ודא שכותרות Cross-Origin-Opener-Policy (COOP) ו-Cross-Origin-Embedder-Policy (COEP) מוגדרות בשרת.",
+  "Python_Terminal_Finished": "--- התוכנית הסתיימה ---",
+  "Python_Terminal_Welcome": "ברוכים הבאים למסוף האינטרנט של פייתון!",
+  "Python_Terminal_Input_Too_Long": "קלט ארוך מדי!",
+  "SEO_Project_Description": [
+    "אוסף של פרויקטים טכניים מאת מוחמד פארן אייקי, החל מקומפיילר Alkyl ועד לאפליקציית ALTH Flutter ואינטגרציית נתונים סוציו-כלכליים של אינדונזיה."
+  ],
+  "Project": "פרויקט",
+  "Make_Interactive_UAS": "למידה אינטראקטיבית עבור UAS MA1101 ITB",
+  "Make_Interactive_UAS_Description": [
+    "בניתי כלי למידת מתמטיקה אינטראקטיבי באמצעות Flutter, Dart ו-FL Chart.",
+    "המחשה דינמית של מושגים מתמטיים מורכבים כדי לעזור להבנת התלמידים.",
+    "עיצבתי ממשק רספונסיבי וידידותי למשתמש לאינטראקציה חלקה."
+  ],
+  "Make_Nihwm": "NihWM Window Manager",
+  "Make_Nihwm_Description": [
+    "פיתחתי את 'nihwm', מנהל חלונות X11 קל משקל שנכתב כולו ב-C עבור לינוקס.",
+    "יישמתי פונקציות ליבה של ניהול חלונות וטיפול בקלט באמצעות XOrg.",
+    "ביצעתי אופטימיזציה של קוד המקור לצריכת משאבים מינימלית ותגובתיות גבוהה."
+  ],
+  "Lidia_Project": "ניתוח נתוני אינטגרציה סוציו-כלכלית עבור אינדונזיה אמאס 2045",
+  "Lidia_Project_Description": [
+    "הקמתי תהליך ETL באמצעות Python, Pandas ו-Jupyter Notebook.",
+    "שילבתי את Gemini-CLI כדי לשפר את יכולות עיבוד הנתונים.",
+    "ייעלתי את תהליכי העבודה של הנתונים, והפחתתי משמעותית את זמן העיבוד הידני."
+  ],
+  "Alkyl_Compiler": "שפת תכנות וקומפיילר Alkyl",
+  "Alkyl_Compiler_Description": [
+    "תכננתי ויישמתי מהדר (קומפיילר) מותאם אישית מאפס באמצעות C ו-LLVM.",
+    "השתמשתי ב-Valgrind וב-GDB לניהול זיכרון וניפוי באגים קפדני.",
+    "תרגמתי מבני שפה ברמה גבוהה לקוד מכונה יעיל."
+  ],
+  "ALTH_Project": "ALTH: Aku Lupa Tandai Hadir",
+  "ALTH_Project_Description": [
+    "ביצע ניתוח Burp Suite כדי להבין את השימוש ב-SSO ובעוגיות.",
+    "פיתח אפליקציית תזכורת נוכחות באמצעות Flutter ו-Dart עבור תלמידי Institut Teknologi Bandung."
+  ],
+  "Jump_Game_Project": "Jump! Game",
+  "Below_Below_Project": "Below Below",
+  "Superskill_Project": "גן קוגניטיבי",
+  "View_Project": "View Project",
+  "National_Statistics_Competition_Prep": "הכנה לתחרות הסטטיסטיקה הלאומית",
+  "National_Statistics_Competition_Prep_Description": [
+    "הכנתי ומדלתי נתונים סטטיסטיים תוך שימוש בהסתברות וסטטיסטיקה, SARIMAX ו-MANOVA.",
+    "תכנתתי סקריפטים נרחבים לניתוח נתונים באמצעות Python ו-Jupyter Notebooks.",
+    "המחשה חזותית של מערכי נתונים מורכבים כדי להפיק תובנות ניתנות לפעולה עבור התחרות הלאומית."
+  ],
+  "Jump_Game_Description": [
+    "יצרתי משחק פלטפורמה מאתגר באמצעות C# ו-Visual Studio.",
+    "יישמתי מכניקת קפיצה מבוססת פיזיקה וזיהוי התנגשויות.",
+    "עיצבתי פריסות שלבים ושילבתי מערכות ניקוד לשיפור המשחקיות."
+  ],
+  "Below_Below_Description": [
+    "תכננתי ותכנתתי את 'Below Below', משחק וידאו מרתק באמצעות Godot 4.2 ו-GDScript.",
+    "פיתחתי מכניקת משחק, אינטראקציות פיזיקליות ובקרות שחקן.",
+    "יצרתי נכסי פיקסל ארט מותאמים אישית ושילבתי אפקטים קוליים לחוויה מגובשת."
+  ],
+  "Olive_Divergence": "Olive Divergence",
+  "Olive_Divergence_Desc": [
+    "תכנתתי את 'Olive Divergence' באמצעות C++ ומסגרת Qt.",
+    "עיצבתי ממשק משתמש גרפי עם אלמנטים חזותיים עשירים ווידג'טים מותאמים אישית.",
+    "ניהלתי את מצב האפליקציה וזרימת הנתונים ביעילות בתוך לולאת האירועים של Qt."
+  ],
+  "Superskill_Description": [
+    "פיתח את הגן הקוגניטיבי, אפליקציה מתוחכמת חוצת פלטפורמות באמצעות Flutter ו-Dart.",
+    "עיצב משחקים המאמנים קוגניציה מוחית ומגרים את המוח.",
+    "עיצב ממשק משתמש אינטואיטיבי ומרתק עם אנימציות עשירות."
+  ]
+}

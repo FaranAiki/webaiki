@@ -1,0 +1,27 @@
+{
+  "FAQ_Website_Q1": "Welke tech-stack wordt gebruikt?",
+  "FAQ_Website_A1": "De site is gebouwd met Next.js (App Router), Tailwind CSS, Framer Motion en TypeScript.",
+  "FAQ_Website_Q2": "Wat is de oorsprong van deze website?",
+  "FAQ_Website_A2": "Geïnspireerd door de voorzitter van STEI-K 2025.",
+  "FAQ_Website_Q3": "Hoe zijn de prestaties?",
+  "FAQ_Website_A3": "Bijna perfecte Core Web Vitals en sterke SEO-optimalisatie.",
+  "FAQ_Website_Q4": "Wordt wereldwijd bereik ondersteund?",
+  "FAQ_Website_A4": "Ja, de website ondersteunt meer dan 12 talen.",
+  "FAQ_Website_Q5": "Hoe wordt er omgegaan met privacy?",
+  "FAQ_Website_A5": "We respecteren de privacy van gebruikers met nul invasieve tracking.",
+  "Framework_Desc": [
+    "Gebouwd met Next.js 15, gebruikmakend van de nieuwste App Router, React Server Components (RSC) Nederlandse en Turbopack voor bliksemsnelle prestaties."
+  ],
+  "Styling_Desc": [
+    "Aangepaste stijlen met Vanilla CSS and Tailwind CSS, met de nadruk op een unieke esthetiek met ondersteuning voor meerdere thema's (Modern, Cinematic, Editorial)."
+  ],
+  "Database_Desc": [
+    "Serverloos databasebeheer met Drizzle ORM met PostgreSQL gehost op Supabase, wat data-integriteit en schaalbaarheid garandeert."
+  ],
+  "Localization_Desc": [
+    "Uitgebreide i18n-ondersteuning voor meer dan 18 talen, wat toegankelijkheid en een naadloze ervaring voor een wereldwijd publiek garandeert."
+  ],
+  "Holistic_Approach_Desc": [
+    "Een holistische benadering van software-engineering die moderne webstandaarden, strikte typeveiligheid (TypeScript) en prestatiegericht ontwerp combineert."
+  ]
+}

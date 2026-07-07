@@ -53,16 +53,30 @@ export default function PortfolioEducation({ education, title }: PortfolioEducat
             const cleanDate = cleanText(edu.date);
             const cleanDescription = cleanText(isFullDescription ? edu.description : (edu.brief || edu.description));
 
+            const renderBoldText = (text: string) => {
+              // Match anything in parentheses that ends with a GPA number format (e.g., "(IPK: 3.94 / 4.00)" or "(Средний Балл: 3.94 / 4.00)")
+              const parts = text.split(/(\(.*?\s*[\d.]+\s*\/\s*[\d.]+\))/i);
+              if (parts.length === 1) return text;
+              return parts.map((part, idx) => {
+                if (/^\(.*?\s*[\d.]+\s*\/\s*[\d.]+\)$/i.test(part)) {
+                  // Keep the parentheses normal but bold the inside text
+                  const inner = part.slice(1, -1);
+                  return <React.Fragment key={idx}>(<strong className="font-bold text-theme-800 dark:text-theme-200">{inner}</strong>)</React.Fragment>;
+                }
+                return <span key={idx}>{part}</span>;
+              });
+            };
+
             return (
               <div key={`${edu.title}-${edu.company}-${edu.date}`} className="portfolio-summary-item py-0 relative group">
-                <div className="flex flex-wrap items-baseline gap-x-1 portfolio-item-header">
-                  <h3 className="font-bold text-foreground text-xs portfolio-item-title m-0">
+                <div className="portfolio-item-header leading-tight">
+                  <h3 className="font-bold text-foreground text-xs portfolio-item-title m-0 inline">
                     {edu.url ? (
                       <a
                         href={edu.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="hover:underline text-foreground"
+                        className="hover:underline text-foreground inline"
                       >
                         {cleanTitle}
                       </a>
@@ -70,19 +84,19 @@ export default function PortfolioEducation({ education, title }: PortfolioEducat
                       cleanTitle
                     )}
                   </h3>
-                  <span className="text-[var(--text-muted)] text-[11px] select-none">|</span>
-                  <span className="text-foreground text-[11px] font-medium tracking-tight portfolio-item-company">{cleanCompany}</span>
-                  <span className="text-[var(--text-muted)] text-[11px] select-none">|</span>
-                  <span className="text-[var(--text-muted)] text-[11px] font-medium tracking-tight portfolio-item-date">{cleanDate}</span>
+                  <span className="text-[var(--text-muted)] text-[11px] select-none mx-1">|</span>
+                  <span className="text-foreground text-[11px] font-medium tracking-tight portfolio-item-company inline">{renderBoldText(cleanCompany)}</span>
+                  <span className="text-[var(--text-muted)] text-[11px] select-none mx-1">|</span>
+                  <span className="text-[var(--text-muted)] text-[11px] font-medium tracking-tight portfolio-item-date inline">{cleanDate}</span>
                   <button
                     type="button"
                     onClick={() => {
                       setRemovedKeys((prev) => [...prev, `${edu.title}-${edu.company}-${edu.date}`]);
                     }}
-                    className="ml-auto p-1 hover:bg-red-500/10 rounded-md transition-colors text-theme-muted hover:text-red-500 no-print cursor-pointer opacity-0 group-hover:opacity-100 align-middle self-center"
+                    className="ml-2 inline-flex items-center justify-center p-0.5 text-[var(--text-muted)] hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity no-print"
                     title="Remove entry"
                   >
-                    <Trash2 size={12} />
+                    <Trash2 size={10} />
                   </button>
                 </div>
                 {cleanDescription && (
@@ -90,12 +104,12 @@ export default function PortfolioEducation({ education, title }: PortfolioEducat
                     {Array.isArray(cleanDescription) ? (
                       <ul className="list-none space-y-0.5 mt-1 text-xs text-[var(--text-muted)] leading-relaxed">
                         {cleanDescription.map((desc, i) => (
-                          <li key={i}>• {desc}</li>
+                          <li key={i}>• {renderBoldText(desc)}</li>
                         ))}
                       </ul>
                     ) : (
                       <p className="text-xs text-[var(--text-muted)] leading-relaxed">
-                        {cleanDescription}
+                        {renderBoldText(cleanDescription)}
                       </p>
                     )}
                   </div>

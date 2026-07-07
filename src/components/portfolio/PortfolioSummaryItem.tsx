@@ -77,14 +77,14 @@ export default function PortfolioSummaryItem({
 
     return (
       <div className="portfolio-summary-item py-0 relative group">
-        <div className="flex flex-wrap items-baseline gap-x-1 portfolio-item-header">
-          <h3 className="font-bold text-foreground text-xs portfolio-item-title m-0">
+        <div className="portfolio-item-header leading-tight">
+          <h3 className="font-bold text-foreground text-xs portfolio-item-title m-0 inline">
             {url ? (
               <a
                 href={url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:underline text-foreground"
+                className="hover:underline text-foreground inline"
               >
                 {cleanTitle}
               </a>
@@ -92,21 +92,18 @@ export default function PortfolioSummaryItem({
               cleanTitle
             )}
           </h3>
-          <span className="text-[var(--text-muted)] text-[11px] select-none">|</span>
-          <span className="text-foreground text-[11px] font-medium tracking-tight portfolio-item-company">{cleanCompany}</span>
-          <span className="text-[var(--text-muted)] text-[11px] select-none">|</span>
-          <span className="text-[var(--text-muted)] text-[11px] font-medium tracking-tight portfolio-item-date">{cleanDate}</span>
+          <span className="text-[var(--text-muted)] text-[11px] select-none mx-1">|</span>
+          <span className="text-foreground text-[11px] font-medium tracking-tight portfolio-item-company inline">{cleanCompany}</span>
+          <span className="text-[var(--text-muted)] text-[11px] select-none mx-1">|</span>
+          <span className="text-[var(--text-muted)] text-[11px] font-medium tracking-tight portfolio-item-date inline">{cleanDate}</span>
           {onRemove && (
             <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                onRemove();
-              }}
-              className="ml-auto p-1 hover:bg-red-500/10 rounded-md transition-colors text-theme-muted hover:text-red-500 no-print cursor-pointer opacity-0 group-hover:opacity-100 align-middle self-center"
-              title="Remove entry"
+              onClick={onRemove}
+              className="ml-2 inline-flex items-center justify-center p-0.5 text-[var(--text-muted)] hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity no-print"
+              title="Hide this item"
+              aria-label="Hide item"
             >
-              <Trash2 size={12} />
+              <Trash2 size={10} />
             </button>
           )}
         </div>

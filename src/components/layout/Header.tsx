@@ -521,13 +521,13 @@ export default function Header(props: HeaderProps) {
                         aria-label={logo_alt}
                         className={`transition-[colors,transform,opacity] shadow-md border border-theme-border opacity-100 hover:opacity-80 scale-100 hover:scale-110 cursor-pointer rounded-full overflow-hidden transform-gpu flex`}>
                         <Image
-                            src='/icon.ico'
+                            src='/images/icons/icon-512x512.png?v=3'
                             alt={logo_alt}
                             title={logo_alt}
                             width={32}
                             height={32}
                             unoptimized
-                            className="scale-[1.01]"
+                            className="scale-[1.01] object-center"
                             style={{ 
                                 filter: getThemeLogoFilter(settings?.color || ''),
                                 transition: 'filter 0.3s ease-in-out'

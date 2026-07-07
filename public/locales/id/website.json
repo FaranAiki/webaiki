@@ -1,0 +1,17 @@
+{
+  "FAQ_Website_Q1": "Teknologi apa yang menggerakkan situs ini?",
+  "FAQ_Website_A1": "Situs web ini dibangun menggunakan Next.js (App Router), Tailwind CSS, Framer Motion, dan TypeScript.",
+  "FAQ_Website_Q2": "Apa inspirasi di balik pembuatan situs web ini?",
+  "FAQ_Website_A2": "Pembuatan situs ini terinspirasi oleh Ketua STEI-K 2025.",
+  "FAQ_Website_Q3": "Bagaimana performa situs web ini dioptimalkan?",
+  "FAQ_Website_A3": "Situs ini dioptimalkan untuk performa tinggi, mencapai Core Web Vitals yang hampir sempurna dan SEO yang kuat.",
+  "FAQ_Website_Q4": "Apakah situs web ini dapat diakses oleh audiens global?",
+  "FAQ_Website_A4": "Ya, situs ini mendukung lebih dari 12 bahasa untuk memastikan aksesibilitas bagi audiens global.",
+  "FAQ_Website_Q5": "Bagaimana privasi pengguna ditangani di situs ini?",
+  "FAQ_Website_A5": "Situs web ini menghormati privasi pengguna dengan nol pelacakan invasif atau pengumpulan data.",
+  "Framework_Desc": "Dibangun dengan Next.js 15, menggunakan App Router terbaru, React Server Components (RSC), dan Turbopack untuk performa yang sangat cepat.",
+  "Styling_Desc": "Gaya kustom menggunakan Vanilla CSS dan Tailwind CSS, berfokus pada estetika unik dengan dukungan multi-tema (Modern, Cinematic, Editorial).",
+  "Database_Desc": "Manajemen database serverless menggunakan Drizzle ORM dengan PostgreSQL yang dihosting di Supabase, menjamin integritas data dan skalabilitas.",
+  "Localization_Desc": "Dukungan i18n komprehensif untuk 18+ bahasa, memastikan aksesibilitas dan pengalaman mulus bagi audiens global.",
+  "Holistic_Approach_Desc": "Pendekatan rekayasa perangkat lunak holistik yang menggabungkan standar web modern, keamanan tipe (TypeScript), dan desain berbasis performa."
+}

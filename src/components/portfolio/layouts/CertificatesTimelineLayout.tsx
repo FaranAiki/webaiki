@@ -31,7 +31,7 @@ export default function CertificatesTimelineLayout() {
                 <div className="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-theme-500 border-4 border-theme-surface dark:border-theme-bg-dark shadow-sm" />
                 <div className="flex flex-wrap items-baseline gap-x-4 mb-6">
                     <h2 className={`text-3xl font-black text-gacor-smooth`}>{item.year}</h2>
-                    <h3 className={`text-xl font-bold text-gacor-smooth`}>{formatCJK(item.category, lang)}</h3>
+                    <h3 className={`text-xl font-bold text-gacor-smooth`}><span dangerouslySetInnerHTML={{ __html: formatCJK(item.category, lang) }} /></h3>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {Object.entries(item.files).map(([fileName, fileData], fileIdx) => {
@@ -61,7 +61,7 @@ export default function CertificatesTimelineLayout() {
                                 isLoggedIn={isLoggedIn} 
                             />
                             <div className="p-3">
-                                <h4 className={`font-bold ${titleColor} hover-gacor line-clamp-1 text-sm`}>{formatCJK(fileName, lang)}</h4>
+                                <h4 className={`font-bold ${titleColor} hover-gacor line-clamp-1 text-sm`}><span dangerouslySetInnerHTML={{ __html: formatCJK(fileName, lang) }} /></h4>
                             </div>
                         </motion.div>
                     );})}

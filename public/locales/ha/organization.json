@@ -1,0 +1,63 @@
+{
+  "SEO_Organization_Description": [
+    "Kwarewar ƙungiya ta Muhammad Faran Aiki a GDG ITB, STEI-K, da kwamitoci daban-daban."
+  ],
+  "Organization": "Kungiyoyi",
+  "Committee": "Kwamiti",
+  "NBK_Member": "Memba na Nihongo Benkyoukai Club",
+  "NBK_Member_Description": [
+    "Karatun harshen da al'adun Japan a matsayin memba na Nihongo Benkyoukai."
+  ],
+  "Sponsorship_Wisokto_ITB": "Tallafin Karatun Digiri na ITB Oktoba 2025, Kwamitin WisNight, da Tallata Nipis Madu",
+  "Sponsorship_Wisokto_ITB_Description": [
+    "Ya gano kuma ya kafa haɗin gwiwa na dabaru kuma ya nemi tallafi daga bangarori daban-daban."
+  ],
+  "Impact_Web_Lead": "Jagoran Ƙungiyar Haɓaka Yanar Gizo Impact 6.0",
+  "Impact_Web_Lead_Description": [
+    "Ya haɓaka ƙaƙƙarfan aikace-aikacen full-stack ta amfani da NextJS, TailwindCSS, da TypeScript don kyakkyawan frontend.",
+    "Ya tsara tsarin backend ta amfani da Supabase SQL database tare da Prisma ORM don ingantaccen sarrafa bayanai masu faɗi.",
+    "Ya gudanar da tsarin Moodle da Judgel don tabbatar da ingantaccen yanayi na gasa ga duk mahalarta.",
+    "Ya gudanar da kuma haɗa kan ƙungiyoyin haɓaka front-end da back-end don tabbatar da ingantaccen isar da aiki."
+  ],
+  "Treasurer_SYNC": "Ma'ajin don taron STEI-K Gathering",
+  "Treasurer_SYNC_Description": [
+    "Na gudanar da bayanan kuɗi da kasafin kuɗi don taron SYNC STEI-K.",
+    "Na aiwatar da ma'amaloli, bin sawun kuɗaɗe, da shirya cikakkun rahotanni na kuɗi.",
+    "Na tabbatar da rarraba kuɗaɗe a fili kuma a bayyane."
+  ],
+  "IT_Club_Vice_Renpy": "Mataimakin Manajan Aiki don IT Club Final Project 2024",
+  "IT_Club_Vice_Renpy_Description": [
+    "Na yi aiki a matsayin Mataimakin Shugaban Kasa, tsara ayyukan kulob din da jagorantar membobin.",
+    "Na koyar da dabarun haɓaka wasan kwaikwayo ta amfani da Ren'Py.",
+    "Na ba wa ɗalibai shawara a fannin tsara shirye-shirye da labaru na mu'amala."
+  ],
+  "Student_Club_Member": "Memba na Kungiyar Dalibai",
+  "Student_Club_Member_Description": [
+    "Na shiga ciki sosai a abubuwan da ke faruwa a Kulob din Dalibai 1 na Depok.",
+    "Na haɗa kai da takwarorina wajen tsara ayyukan gina al'umma.",
+    "Na ba da gudummawa ga manufofin kulob din ta hanyar aikin ƙungiya."
+  ],
+  "English_Club_Member": "Memba na English Club",
+  "English_Club_Member_Description": [
+    "Inganta ƙwarewar sadarwa da magana a gaban jama'a.",
+    "Taimakawa wajen ƙirƙirar abun ciki, gami da 'The Ugly Duckling'."
+  ],
+  "PARAS": "Mai zanen Logo da MC Script Editor don PARAS Glorigion 1445H",
+  "PARAS_Description": [
+    "Ya ba da gudummawa ga tsarin gudanar da taron PARAS a SMA Negeri 1 Kota Depok.",
+    "Ya ba da haɗin kai wajen tsarawa da fitar da tambarin taron.",
+    "Ya taimaka a rubutawa da kuma gyara rubutun Mai gabatar da shirye-shirye (MC)."
+  ],
+  "Concerto": "Mai gudanarwa na Matakin Ƙarshe na Gasar Concerto",
+  "Concerto_Description": [
+    "Na gudanar da ayyuka da dabaru don taron Kulob ɗin Ɗalibai na Concerto.",
+    "Na haɗa kai da membobin ƙungiyar don tsarawa da aiwatar da ayyuka masu ban sha'awa.",
+    "Na kula da rajistar masu halarta da ba da tallafi a wurin taron."
+  ],
+  "GDG_ITB_Title": "Google Developer Group Campus on ITB - Product Manager Explorer",
+  "GDG_ITB_Description": [
+    "An koyi game da Gudanar da Samfur daga na asali zuwa ra'ayoyi masu ci gaba.",
+    "An koyi fahimtar masu amfani da bukatun su."
+  ],
+  "GDGOC ITB_Product Manager": "GDGOC ITB Manajan Samfur"
+}

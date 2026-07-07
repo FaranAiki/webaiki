@@ -1,0 +1,72 @@
+{
+  "Loading_Python": "Téléchargement de Python et du code source....",
+  "Python_Web_Title": "Interface interactive Python",
+  "Python_Terminal_Error": "ERREUR CRITIQUE : SharedArrayBuffer n'est pas défini. Assurez-vous que les en-têtes Cross-Origin-Opener-Policy (COOP) et Cross-Origin-Embedder-Policy (COEP) sont configurés sur le serveur.",
+  "Python_Terminal_Finished": "--- Programme terminé ---",
+  "Python_Terminal_Welcome": "Bienvenue dans le terminal Web Python !",
+  "Python_Terminal_Input_Too_Long": "Entrée trop longue !",
+  "SEO_Project_Description": [
+    "A collection of technical projects by Muhammad Faran Aiki, ranging from the Alkyl compiler to the ALTH Flutter app and Indonesian socio-economic data integration."
+  ],
+  "Project": "Projet",
+  "Make_Interactive_UAS": "Apprentissage interactif untuk UAS MA1101 ITB",
+  "Make_Interactive_UAS_Description": [
+    "Création d'un outil d'apprentissage interactif des mathématiques en utilisant Flutter, Dart et FL Chart.",
+    "Visualisation dynamique de concepts mathématiques complexes pour faciliter la compréhension des étudiants.",
+    "Conception d'une interface réactive et conviviale pour une interaction fluide."
+  ],
+  "Make_Nihwm": "Gestionnaire de fenêtres NihWM",
+  "Make_Nihwm_Description": [
+    "Développement de 'nihwm', un gestionnaire de fenêtres X11 léger écrit entièrement en C pour Linux.",
+    "Implémentation des fonctionnalités principales de gestion des fenêtres et de gestion des entrées avec XOrg.",
+    "Optimisation du code pour une consommation minimale des ressources et une grande réactivité."
+  ],
+  "Lidia_Project": "Analyse des données d'intégration socio-économique pour Indonesia Emas 2045",
+  "Lidia_Project_Description": [
+    "Conception d'un pipeline ETL utilisant Python, Pandas et Jupyter Notebook.",
+    "Intégration de Gemini-CLI pour améliorer les capacités de traitement des données.",
+    "Rationalisation des flux de données, réduisant considérablement le temps de traitement manuel."
+  ],
+  "Alkyl_Compiler": "Langage de programmation et compilateur Alkyl",
+  "Alkyl_Compiler_Description": [
+    "Conception et implémentation d'un compilateur personnalisé à partir de zéro utilisant C et LLVM.",
+    "Utilisation de Valgrind et GDB pour une gestion rigoureuse de la mémoire et le débogage.",
+    "Traduction des constructions de langage de haut niveau en code machine efficace."
+  ],
+  "ALTH_Project": "ALTH : J'ai oublié de marquer ma présence",
+  "ALTH_Project_Description": [
+    "A mené une analyse Burp Suite pour comprendre l'utilisation du SSO et des cookies.",
+    "A développé une application de rappel de présence utilisant Flutter et Dart pour les étudiants de l'Institut Teknologi Bandung."
+  ],
+  "Jump_Game_Project": "Jump! Game",
+  "Below_Below_Project": "Below Below",
+  "Superskill_Project": "Jardin Cognitif",
+  "View_Project": "View Project",
+  "National_Statistics_Competition_Prep": "Préparation au Concours National de Statistique",
+  "National_Statistics_Competition_Prep_Description": [
+    "Préparation et modélisation de données statistiques à l'aide des Probabilités et Statistiques, de SARIMAX et de MANOVA.",
+    "Programmation de vastes scripts d'analyse de données utilisant Python et Jupyter Notebooks.",
+    "Visualisation d'ensembles de données complexes pour en tirer des informations utiles pour la compétition nationale."
+  ],
+  "Jump_Game_Description": [
+    "Création d'un jeu de plateforme stimulant avec C# et Visual Studio.",
+    "Implémentation de mécaniques de saut basées sur la physique et de la détection des collisions.",
+    "Conception de la disposition des niveaux et intégration de systèmes de notation pour améliorer le gameplay."
+  ],
+  "Below_Below_Description": [
+    "Conception et programmation de 'Below Below', un jeu vidéo captivant utilisant Godot 4.2 et GDScript.",
+    "Développement de mécaniques de jeu, d'interactions physiques et de commandes de joueur.",
+    "Création de ressources pixel art personnalisées et intégration d'effets sonores pour une expérience cohérente."
+  ],
+  "Olive_Divergence": "Olive Divergence",
+  "Olive_Divergence_Desc": [
+    "Programmation de 'Olive Divergence' utilisant C++ et le framework Qt.",
+    "Conception d'une interface graphique avec des éléments visuels riches et des widgets personnalisés.",
+    "Gestion efficace de l'état de l'application et du flux de données au sein de la boucle d'événements Qt."
+  ],
+  "Superskill_Description": [
+    "A développé Jardin Cognitif, une application multiplateforme sophistiquée utilisant Flutter et Dart.",
+    "A conçu des jeux qui entraînent la cognition cérébrale et stimulent le cerveau.",
+    "A conçu une interface utilisateur intuitive et attrayante avec des animations riches."
+  ]
+}

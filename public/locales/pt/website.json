@@ -1,0 +1,27 @@
+{
+  "FAQ_Website_Q1": "What technologies power this site?",
+  "FAQ_Website_A1": "This website is built using Next.js (App Router), Tailwind CSS, Framer Motion, and TypeScript.",
+  "FAQ_Website_Q2": "What was the inspiration behind this website?",
+  "FAQ_Website_A2": "The creation of this site was inspired by the Chairman of STEI-K 2025.",
+  "FAQ_Website_Q3": "How is the performance of this website optimized?",
+  "FAQ_Website_A3": "The site is optimized for high performance, achieving near-perfect Core Web Vitals and robust SEO.",
+  "FAQ_Website_Q4": "Is this website accessible to a global audience?",
+  "FAQ_Website_A4": "Yes, it supports over 12 languages to ensure accessibility for a global audience.",
+  "FAQ_Website_Q5": "How is user privacy handled on this site?",
+  "FAQ_Website_A5": "The website respects user privacy with zero invasive tracking or data collection.",
+  "Framework_Desc": [
+    "Construído com Next.js 15, utilizando o mais recente App Router, React Server Components (RSC) e Turbopack para um desempenho ultrarrápido."
+  ],
+  "Styling_Desc": [
+    "Estilos personalizados usando Vanilla CSS e Tailwind CSS, focando em uma estética única com suporte multi-tema (Moderno, Cinemático, Editorial)."
+  ],
+  "Database_Desc": [
+    "Gerenciamento de banco de dados serverless usando Drizzle ORM com PostgreSQL hospedado no Supabase, garantindo integridade de dados e escalabilidade."
+  ],
+  "Localization_Desc": [
+    "Suporte abrangente a i18n para mais de 18 idiomas, garantindo acessibilidade e uma experiência perfeita para um público global."
+  ],
+  "Holistic_Approach_Desc": [
+    "Uma abordagem holística de engenharia de software que combina padrões web modernos, segurança de tipo rigorosa (TypeScript) e design voltado para o desempenho."
+  ]
+}

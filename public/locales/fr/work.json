@@ -1,0 +1,54 @@
+{
+  "SEO_Work_Description": [
+    "Professional history of Muhammad Faran Aiki as a Software Engineer at Analitica, SAT Tutor at Kobi Education, and other tech roles."
+  ],
+  "Work": "Travail",
+  "Impact_Module_Author": "Auteur du module de mathématiques IMPACT 6.0",
+  "Impact_Module_Author_Description": [
+    "Rédaction de modules éducatifs complets pour les olympiades IMPACT 6.0.",
+    "Conception d'ensembles de problèmes rigoureux et de solutions pour défier les meilleurs lycéens.",
+    "Collaboration avec des pairs académiques pour garantir des normes de qualité de contenu élevées."
+  ],
+  "Compile_Module_Author": "Créateur du module COMPILE STEI-K UTBK",
+  "Compile_Module_Author_Description": [
+    "Création de modules d'apprentissage pour le programme de préparation COMPILE UTBK.",
+    "Sélection de nombreuses questions pratiques pour préparer les étudiants aux examens nationaux d'entrée à l'université.",
+    "Facilitation d'une meilleure compréhension des sujets complexes grâce à des explications détaillées."
+  ],
+  "Job_Type_Freelance": "Freelance",
+  "SAT_Tutor": "Tuteur SAT Math & Verbal (Contrat)",
+  "SAT_Tutor_Description": [
+    "A enseigné aux étudiants en Mathématiques et en Anglais du SAT, en fournissant des leçons complètes et des stratégies adaptées.",
+    "A guidé les étudiants dans l'atteinte de leurs objectifs d'admission aux universités à l'étranger."
+  ],
+  "Software_Engineer": "Ingénieur Logiciel (Front-End Flutter)",
+  "Software_Engineer_Description": [
+    "Développement et maintenance des fonctionnalités de base de la plateforme Analitica en tant qu'ingénieur logiciel.",
+    "Optimisation des performances de l'application et rationalisation du code pour une meilleure évolutivité.",
+    "Collaboration avec des équipes interfonctionnelles pour fournir des solutions logicielles de haute qualité."
+  ],
+  "Mathematics_Private_Tutor": "Tuteur privé de mathématiques",
+  "Mathematics_Private_Tutor_Description": [
+    "Prestation de sessions de tutorat en mathématiques personnalisées axées sur des sujets de niveau Olympiade.",
+    "Évaluation des progrès des étudiants et adaptation des méthodes d'enseignement pour corriger les faiblesses individuelles.",
+    "Promotion de la pensée analytique et des compétences avancées en résolution de problèmes chez les étudiants."
+  ],
+  "Education_Team": "Équipe Éducation",
+  "Education_Team_Description": [
+    "Contribution à l'équipe éducative d'Analitica en développant un contenu éducatif spécialisé.",
+    "Analyse des données de performance des étudiants pour affiner et améliorer les supports d'apprentissage.",
+    "Soutien à la création d'outils d'évaluation utilisés par des milliers d'étudiants."
+  ],
+  "IT_Club_Tutor": "Tuteur du club d'informatique",
+  "IT_Club_Tutor_Description": [
+    "Soutien aux lycéens sur la programmation fondamentale et les concepts informatiques.",
+    "Développement de plans de cours captivants et d'exercices pratiques de codage.",
+    "Promotion d'un environnement d'apprentissage collaboratif et favorable au sein du club."
+  ],
+  "Education_Tutoring": "Education & Tutoring",
+  "Tutoring_SAT": "Tutoring in SAT Math",
+  "Tutoring_Olympiad": "Tutoring in Olympiad Mathematics",
+  "Tutoring_Math": "Tutoring in Mathematics",
+  "Tutoring_Python": "Tutoring in Programming (Python)",
+  "Tutoring_Web": "Tutoring in Web Development"
+}

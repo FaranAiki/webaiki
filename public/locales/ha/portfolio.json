@@ -1,0 +1,43 @@
+{
+  "Portfolio_Summary_Description": [
+    "Takaitaccen bayani kan ƙwarewar aiki da manyan ayyuka na Muhammad Faran Aiki"
+  ],
+  "Professional_Pitch_Title": "Me Yasa Zaku yi Aiki da Faran Aiki?",
+  "Professional_Pitch_Text": "A matsayina na dalibin tsarin bayanai da fasaha na ITB tare da gogewar aikin injiniyan software na zahiri da nasarorin kasa a fannin lissafi, ina bayar da kwarewa ta musamman wajen kaifin hankali, kirkire-kirkire na fasaha, da sadaukarwa ga ci gaba. Ko wajen gina tsare-tsare masu sarkakiya ko warware matsalolin lissafi, na fi mayar da hankali kan sakamako masu tasiri mai inganci.",
+  "Portfolio": "Ayyuka",
+  "Portfolio_Summary_Quote": "Zaɓaɓɓεν bayani kan ƙwarewar aiki da ayyukan da suka yi tasiri sosai.",
+  "Portfolio_Description": [
+    "Cikakken tarihin ƙwararru da manyan ayyuka na Muhammad Faran Aiki"
+  ],
+  "Full_Portfolio": "Cikakken Portfolio",
+  "Sultan_PDF_Creating": "Ana yin PDF...",
+  "Sultan_PDF_Ready": "PDF ya shirya!",
+  "Sultan_PDF_Failed": "PDF ya gaza.",
+  "Sultan_PDF_Description": [
+    "Ingantaccen tsarin PDF."
+  ],
+  "Sultan_PDF_Download": "Ana saukewa...",
+  "Preparing_Portfolio": "Ana shirya shafin",
+  "Portfolio_Filter": "Tace Ayyuka",
+  "Skills_Languages": "Harsunan Shirye-shirye",
+  "Skills_Frameworks": "Tsare-tsare da Laburari",
+  "Skills_Tools": "Kayan Aiki da Fasaha",
+  "Skills_Concepts": "Kwarewa na Asali",
+  "Skills_Sub_HighLevel": "High-level",
+  "Skills_Sub_LowLevel": "Low-level & Scripting",
+  "Skills_Sub_DataMarkup": "Data & Markup",
+  "Skills_Sub_Frontend": "Frontend & UI",
+  "Skills_Sub_Backend": "Backend & Data",
+  "Skills_Sub_Relational": "Relational & NoSQL",
+  "Skills_Sub_ORMs": "ORMs",
+  "Skills_Sub_VersionControl": "Version Control & OS",
+  "Skills_Sub_Deployment": "Deployment & Cloud",
+  "Skills_Sub_Engines": "Engines & Software",
+  "Skills_Sub_Debugging": "Debugging & Low-Level",
+  "Skills_Sub_Theoretical": "Theoretical",
+  "Skills_Sub_Applied": "Applied",
+  "Skills_Sub_Mathematics": "Mathematics",
+  "Skills_Sub_Technology": "Technology",
+  "Portfolio_GPA": "Matsakaicin Maki:",
+  "Hover_To_Load": "Kewaya don buɗe jeri"
+}

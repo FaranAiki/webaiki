@@ -1,0 +1,72 @@
+{
+  "Loading_Python": "Downloading Python and Source Code....",
+  "Python_Web_Title": "Python Interactive Interface",
+  "Python_Terminal_Error": "CRITICAL ERROR: SharedArrayBuffer is not defined. Ensure Cross-Origin-Opener-Policy (COOP) and Cross-Origin-Embedder-Policy (COEP) headers are set on the server.",
+  "Python_Terminal_Finished": "--- Program Finished ---",
+  "Python_Terminal_Welcome": "Welcome to the Python Web Terminal!",
+  "Python_Terminal_Input_Too_Long": "Input too long!",
+  "SEO_Project_Description": [
+    "A collection of technical projects by Muhammad Faran Aiki, ranging from the Alkyl compiler to the ALTH Flutter app and Indonesian socio-economic data integration."
+  ],
+  "Project": "Project",
+  "Make_Interactive_UAS": "Interactive Learning for UAS MA1101 ITB",
+  "Make_Interactive_UAS_Description": [
+    "फ़्लटर, डार्ट और FL चार्ट का उपयोग करके एक इंटरैक्टिव गणित सीखने का उपकरण बनाया।",
+    "छात्रों की समझ में सहायता के लिए जटिल गणितीय अवधारणाओं को गतिशील रूप से कल्पना की।",
+    "सहज बातचीत के लिए एक उत्तरदायी और उपयोगकर्ता के अनुकूल इंटरफ़ेस डिज़ाइन किया गया।"
+  ],
+  "Make_Nihwm": "NihWM Window Manager",
+  "Make_Nihwm_Description": [
+    "Linux के लिए पूरी तरह से C में लिखा गया 'nihwm' नामक एक हल्का X11 विंडो मैनेजर विकसित किया।",
+    "XOrg का उपयोग करके मुख्य विंडो प्रबंधन कार्यक्षमता और इनपुट हैंडलिंग लागू की गई।",
+    "न्यूनतम संसाधन खपत और उच्च प्रतिक्रियाशीलता के लिए कोडबेस को अनुकूलित किया।"
+  ],
+  "Lidia_Project": "Socio-Economic Integration Data Analysis for Indonesia Emas 2045",
+  "Lidia_Project_Description": [
+    "Python, Pandas और Jupyter Notebook का उपयोग करके एक ETL पाइपलाइन तैयार की।",
+    "डेटा प्रोसेसिंग क्षमताओं को बढ़ाने के लिए Gemini-CLI को एकीकृत किया।",
+    "मैनुअल प्रोसेसिंग समय को काफी कम करते हुए डेटा वर्कफ़्लो को सुव्यवस्थित किया।"
+  ],
+  "Alkyl_Compiler": "Alkyl Programming Language and Compiler",
+  "Alkyl_Compiler_Description": [
+    "C और LLVM का उपयोग करके खरोंच से एक कस्टम कंपाइलर को तैयार और लागू किया गया।",
+    "कठोर मेमोरी प्रबंधन और डिबगिंग के लिए Valgrind और GDB का उपयोग किया गया।",
+    "कुशल मशीन कोड में उच्च-स्तरीय भाषा निर्माण का अनुवाद किया।"
+  ],
+  "ALTH_Project": "ALTH: Aku Lupa Tandai Hadir",
+  "ALTH_Project_Description": [
+    "SSO और कुकीज़ के उपयोग को समझने के लिए Burp Suite विश्लेषण किया।",
+    "इंस्टीट्यूट टेक्नोलॉजी बांडुंग (ITB) के छात्रों के लिए Flutter और Dart का उपयोग करके एक उपस्थिति अनुस्मारक (attendance reminder) एप्लिकेशन विकसित किया।"
+  ],
+  "Jump_Game_Project": "Jump! Game",
+  "Below_Below_Project": "Below Below",
+  "Superskill_Project": "Cognitive Garden",
+  "View_Project": "View Project",
+  "National_Statistics_Competition_Prep": "राष्ट्रीय सांख्यिकी प्रतियोगिता की तैयारी",
+  "National_Statistics_Competition_Prep_Description": [
+    "Probability & Statistics, SARIMAX और MANOVA का उपयोग करके सांख्यिकीय डेटा तैयार और मॉडल किया गया।",
+    "Python और Jupyter Notebooks का उपयोग करके व्यापक डेटा विश्लेषण स्क्रिप्ट प्रोग्राम की गई।",
+    "राष्ट्रीय प्रतियोगिता के लिए कार्रवाई योग्य अंतर्दृष्टि प्राप्त करने के लिए जटिल डेटासेट की कल्पना की।"
+  ],
+  "Jump_Game_Description": [
+    "C# और Visual Studio का उपयोग करके एक चुनौतीपूर्ण प्लेटफ़ॉर्मर गेम बनाया।",
+    "भौतिकी-आधारित जंपिंग यांत्रिकी और टकराव का पता लगाने को लागू किया।",
+    "लेवल लेआउट डिज़ाइन किया गया और गेमप्ले को बढ़ाने के लिए स्कोरिंग सिस्टम को एकीकृत किया गया।"
+  ],
+  "Below_Below_Description": [
+    "Godot 4.2 और GDScript का उपयोग करके एक आकर्षक वीडियो गेम 'Below Below' को डिज़ाइन और प्रोग्राम किया गया।",
+    "गेम मैकेनिक्स, भौतिकी इंटरैक्शन और प्लेयर कंट्रोल विकसित किए।",
+    "कस्टम पिक्सेल आर्ट एसेट बनाए और एक सामंजस्यपूर्ण अनुभव के लिए ध्वनि प्रभावों को एकीकृत किया।"
+  ],
+  "Olive_Divergence": "Olive Divergence",
+  "Olive_Divergence_Desc": [
+    "C++ और Qt फ्रेमवर्क का उपयोग करके 'Olive Divergence' प्रोग्राम किया गया।",
+    "समृद्ध दृश्य तत्वों और कस्टम विगेट्स के साथ एक ग्राफिकल यूजर इंटरफेस तैयार किया।",
+    "Qt ईवेंट लूप के भीतर एप्लिकेशन स्थिति और डेटा प्रवाह को कुशलतापूर्वक प्रबंधित किया।"
+  ],
+  "Superskill_Description": [
+    "Flutter और Dart का उपयोग करके एक परिष्कृत क्रॉस-प्लेटफॉर्म एप्लिकेशन Cognitive Garden विकसित किया।",
+    "ऐसे गेम डिज़ाइन किए जो मस्तिष्क संज्ञान को प्रशिक्षित करते हैं और मस्तिष्क को उत्तेजित करते हैं।",
+    "समृद्ध एनिमेशन के साथ एक सहज और आकर्षक यूजर इंटरफेस (UI) डिजाइन किया।"
+  ]
+}

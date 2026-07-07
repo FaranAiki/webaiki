@@ -1,16 +1,11 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { Inter, Roboto_Mono } from 'next/font/google';
-
-// Only load the critical layout fonts via Next.js to prevent massive CSS bloat and preconnect bugs
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
-const robotoMono = Roboto_Mono({ subsets: ['latin'], variable: '--font-roboto-mono' });
 
 export const fonts = [
   { name: 'Default', variable: '', class: '' },
   // Modern Sans-Serif (The "Gacor" ones)
-  { name: 'Inter', variable: inter.variable, class: inter.className },
+  { name: 'Inter', variable: '--font-inter', class: 'font-inter' },
   { name: 'Space Grotesk', variable: '--font-space-grotesk', class: 'font-space-grotesk' },
   { name: 'Montserrat', variable: '--font-montserrat', class: 'font-montserrat' },
   { name: 'Open Sans', variable: '--font-open-sans', class: 'font-open-sans' },
@@ -27,7 +22,7 @@ export const fonts = [
   // Gacor Monospace (Coding vibe)
   { name: 'JetBrains Mono', variable: '--font-jetbrains-mono', class: 'font-jetbrains-mono' },
   { name: 'Fira Code', variable: '--font-fira-code', class: 'font-fira-code' },
-  { name: 'Roboto Mono', variable: robotoMono.variable, class: robotoMono.className },
+  { name: 'Roboto Mono', variable: '--font-roboto-mono', class: 'font-roboto-mono' },
 
   // Artistic & Decorative
   { name: 'Dancing Script', variable: '--font-dancing-script', class: 'font-dancing-script' },

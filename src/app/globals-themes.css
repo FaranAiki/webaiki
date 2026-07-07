@@ -260,3 +260,5 @@
 .font-dancing-script { font-family: "Dancing Script", cursive; }
 .font-caveat { font-family: "Caveat", cursive; }
 .font-great-vibes { font-family: "Great Vibes", cursive; }
+.font-inter { font-family: var(--font-inter), sans-serif; }
+.font-roboto-mono { font-family: var(--font-roboto-mono), monospace; }

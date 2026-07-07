@@ -1,0 +1,72 @@
+{
+  "Loading_Python": "Python en Broncode downloaden ....",
+  "Python_Web_Title": "Interactieve Python-interface",
+  "Python_Terminal_Error": "KRITIEKE FOUT: SharedArrayBuffer is niet gedefinieerd. Zorg ervoor dat de headers Cross-Origin-Opener-Policy (COOP) en Cross-Origin-Embedder-Policy (COEP) op de server zijn ingesteld.",
+  "Python_Terminal_Finished": "--- Programma Beëindigd ---",
+  "Python_Terminal_Welcome": "Welkom bij de Python Web Terminal!",
+  "Python_Terminal_Input_Too_Long": "Invoer te lang!",
+  "SEO_Project_Description": [
+    "A collection of technical projects by Muhammad Faran Aiki, ranging from the Alkyl compiler to the ALTH Flutter app and Indonesian socio-economic data integration."
+  ],
+  "Project": "Project",
+  "Make_Interactive_UAS": "Interactief Leren voor UAS MA1101 ITB",
+  "Make_Interactive_UAS_Description": [
+    "Een interactieve wiskundeleertool gebouwd met Flutter, Dart en FL Chart.",
+    "Complexe wiskundige concepten dynamisch gevisualiseerd om het begrip van studenten te bevorderen.",
+    "Een responsieve en gebruiksvriendelijke interface ontworpen voor naadloze interactie."
+  ],
+  "Make_Nihwm": "NihWM Window Manager",
+  "Make_Nihwm_Description": [
+    "'nihwm' ontwikkeld, een lichtgewicht X11-windowmanager volledig geschreven in C voor Linux.",
+    "Kernfunctionaliteiten voor vensterbeheer en invoerverwerking geïmplementeerd met XOrg.",
+    "De codebase geoptimaliseerd voor minimaal bronnenverbruik en hoge responsiviteit."
+  ],
+  "Lidia_Project": "Data-analyse van Sociaaleconomische Integratie voor Indonesia Emas 2045",
+  "Lidia_Project_Description": [
+    "Een ETL-pijplijn ontwikkeld met Python, Pandas en Jupyter Notebook.",
+    "De Gemini-CLI geïntegreerd om de mogelijkheden voor gegevensverwerking te verbeteren.",
+    "Dataworkflows gestroomlijnd, waardoor de handmatige verwerkingstijd aanzienlijk werd verminderd."
+  ],
+  "Alkyl_Compiler": "Alkyl Programmeertaal en Compiler",
+  "Alkyl_Compiler_Description": [
+    "Een aangepaste compiler vanaf nul ontworpen en geïmplementeerd met C en LLVM.",
+    "Valgrind en GDB gebruikt voor rigoureus geheugenbeheer en foutopsporing.",
+    "High-level taalconstructies vertaald naar efficiënte machinecode."
+  ],
+  "ALTH_Project": "ALTH: Aku Lupa Tandai Hadir",
+  "ALTH_Project_Description": [
+    "Voerde een Burp Suite-analyse uit om het gebruik van SSO en cookies te begrijpen.",
+    "Ontwikkelde een applicatie voor aanwezigheidsherinnering met behulp van Flutter en Dart voor studenten van Institut Teknologi Bandung (ITB)."
+  ],
+  "Jump_Game_Project": "Jump! Game",
+  "Below_Below_Project": "Below Below",
+  "Superskill_Project": "Cognitive Garden",
+  "View_Project": "View Project",
+  "National_Statistics_Competition_Prep": "Voorbereiding op de Nationale Statistiekwedstrijd",
+  "National_Statistics_Competition_Prep_Description": [
+    "Statistische gegevens voorbereid en gemodelleerd met behulp van Probability & Statistics, SARIMAX en MANOVA.",
+    "Uitgebreide scripts voor gegevensanalyse geprogrammeerd met Python en Jupyter Notebooks.",
+    "Complexe datasets gevisualiseerd om bruikbare inzichten voor de nationale competitie af te leiden."
+  ],
+  "Jump_Game_Description": [
+    "Een uitdagende platformgame gemaakt met C# en Visual Studio.",
+    "Op fysica gebaseerde springmechanica en botsingsdetectie geïmplementeerd.",
+    "Level-lay-outs ontworpen en scoresystemen geïntegreerd om de gameplay te verbeteren."
+  ],
+  "Below_Below_Description": [
+    "'Below Below' ontworpen en geprogrammeerd, een boeiende videogame met Godot 4.2 en GDScript.",
+    "Spelmechanica, fysieke interacties en spelerbesturing ontwikkeld.",
+    "Aangepaste pixelart-middelen gemaakt en geluidseffecten geïntegreerd voor een samenhangende ervaring."
+  ],
+  "Olive_Divergence": "Olive Divergence",
+  "Olive_Divergence_Desc": [
+    "'Olive Divergence' geprogrammeerd met C++ en het Qt-framework.",
+    "Een grafische gebruikersinterface ontworpen met rijke visuele elementen en aangepaste widgets.",
+    "Applicatiestatus en datastroom efficiënt beheerd binnen de Qt-gebeurtenislus."
+  ],
+  "Superskill_Description": [
+    "Ontwikkelde Cognitive Garden, een geavanceerde platformonafhankelijke applicatie met behulp van Flutter en Dart.",
+    "Ontwierp games die de cognitie van de hersenen trainen en de hersenen stimuleren.",
+    "Ontwierp een intuïtieve en boeiende gebruikersinterface met rijke animaties."
+  ]
+}

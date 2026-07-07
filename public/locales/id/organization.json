@@ -1,0 +1,62 @@
+{
+  "SEO_Organization_Description": "Pengalaman organisasi Muhammad Faran Aiki di GDG ITB, STEI-K, dan berbagai kepanitiaan di Institut Teknologi Bandung.",
+  "Organization": "Organisasi",
+  "Committee": "Kepanitiaan",
+  "NBK_Member": "Anggota Klub Nihongo Benkyoukai",
+  "NBK_Member_Description": [
+    "Mempelajari bahasa dan budaya Jepang sebagai anggota Nihongo Benkyoukai."
+  ],
+  "Sponsorship_Wisokto_ITB": "Sponsorship Wisokto ITB 2025, Panitia WisNight, dan Promosi Nipis Madu",
+  "Sponsorship_Wisokto_ITB_Description": [
+    "Mengidentifikasi dan menjalin kerja sama strategis serta mencari sponsor dari berbagai pihak."
+  ],
+  "Impact_Web_Lead": "Ketua Tim Pengembangan Web Impact 6.0",
+  "Impact_Web_Lead_Description": [
+    "Merancang dan mengelola front-end dan back-end dari situs web Olimpiade IMPACT 6.0, yang digunakan oleh lebih dari 400 tim (~1000 siswa SMA) di tingkat nasional.",
+    "Mengembangkan aplikasi full-stack yang tangguh menggunakan NextJS, TailwindCSS, dan TypeScript untuk frontend berkinerja tinggi.",
+    "Merekayasa arsitektur backend memanfaatkan database SQL Supabase dipasangkan dengan Prisma ORM untuk manajemen data yang andal dan terukur.",
+    "Mengelola platform Moodle dan Judgel untuk memastikan lingkungan kompetitif yang lancar bagi seluruh peserta.",
+    "Mengelola dan mengoordinasikan tim pengembangan front-end dan back-end untuk memastikan pengiriman proyek yang efisien."
+  ],
+  "Treasurer_SYNC": "Bendahara Acara Gathering STEI-K",
+  "Treasurer_SYNC_Description": [
+    "Mengelola catatan keuangan dan penganggaran untuk Acara Kumpul SYNC STEI-K.",
+    "Memproses transaksi, melacak pengeluaran, dan menyiapkan laporan keuangan terperinci.",
+    "Memastikan alokasi dana organisasi yang transparan dan efisien."
+  ],
+  "IT_Club_Vice_Renpy": "Wakil Ketua Pelaksana Projek Akhir IT Club 2024",
+  "IT_Club_Vice_Renpy_Description": [
+    "Menjabat sebagai Wakil Ketua, mengorganisir kegiatan klub dan membimbing anggota.",
+    "Mengajarkan konsep pengembangan game menggunakan mesin novel visual Ren'Py.",
+    "Membimbing siswa dalam logika pemrograman dan penceritaan interaktif."
+  ],
+  "Student_Club_Member": "Anggota Klub Siswa",
+  "Student_Club_Member_Description": [
+    "Berpartisipasi aktif dalam acara dan inisiatif Student Club 1 Depok.",
+    "Berkolaborasi dengan rekan sebaya untuk mengorganisir kegiatan pembangunan komunitas.",
+    "Berkontribusi pada tujuan klub melalui kerja sama tim yang berdedikasi."
+  ],
+  "English_Club_Member": "Anggota Klub Inggris",
+  "English_Club_Member_Description": [
+    "Meningkatkan keterampilan komunikasi dan berbicara di depan umum.",
+    "Membantu dalam pembuatan konten, salah satunya 'The Ugly Duckling'."
+  ],
+  "PARAS": "Desainer Logo dan Penyunting Naskah MC PARAS Glorigion 1445H",
+  "PARAS_Description": [
+    "Berkontribusi pada organisasi acara PARAS di SMA Negeri 1 Kota Depok.",
+    "Berkolaborasi dalam merancang dan memproduksi desain logo acara.",
+    "Turut serta membantu dalam penyusunan dan penyuntingan naskah pembawa acara (MC)."
+  ],
+  "Concerto": "Penanggung Jawab Tingkat Final Lomba Concerto",
+  "Concerto_Description": [
+    "Mengelola operasi dan logistik acara untuk pertemuan Klub Siswa Concerto.",
+    "Berkolaborasi dengan anggota tim untuk merencanakan dan melaksanakan kegiatan yang menarik.",
+    "Menangani pendaftaran peserta dan memberikan dukungan di lokasi."
+  ],
+  "GDG_ITB_Title": "Google Developer Group Campus on ITB - Product Manager Explorer",
+  "GDG_ITB_Description": [
+    "Belajar mengenai Product Management dari basic to advanced",
+    "Belajar berempati kepada pengguna"
+  ],
+  "GDGOC ITB_Product Manager": "GDGOC ITB Manajer Produk"
+}

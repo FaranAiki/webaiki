@@ -1,0 +1,43 @@
+{
+  "Portfolio_Summary_Description": [
+    "Compact summary of Muhammad Faran Aiki's professional experiences and highlights"
+  ],
+  "Professional_Pitch_Title": "Faran Aiki के साथ सहयोग क्यों करें?",
+  "Professional_Pitch_Text": "सॉफ्टवेयर इंजीनियरिंग में वास्तविक दुनिया के अनुभव और गणित में राष्ट्रीय उपलब्धियों के साथ एक आईटीबी (ITB) सूचना प्रणाली और प्रौद्योगिकी के छात्र के रूप में, मैं तार्किक तीक्ष्णता, तकनीकी रचनात्मकता और विकास के प्रति समर्पण का एक अनूठा मिश्रण प्रदान करता हूं। चाहे जटिल सिस्टम बनाना हो या गणितीय समस्याओं को हल करना हो, मेरा ध्यान उच्च-प्रभाव वाले परिणामों पर रहता है।",
+  "Portfolio": "पोर्टफोलियो",
+  "Portfolio_Summary_Quote": "A curated summary of high-impact professional experiences and projects.",
+  "Portfolio_Description": [
+    "Full professional portfolio and highlights of Muhammad Faran Aiki"
+  ],
+  "Full_Portfolio": "Full Portfolio",
+  "Sultan_PDF_Creating": "पीडीएफ बन रहा है...",
+  "Sultan_PDF_Ready": "पीडीएफ तैयार है!",
+  "Sultan_PDF_Failed": "पीडीएफ विफल।",
+  "Sultan_PDF_Description": [
+    "उच्च गुणवत्ता पीडीएफ रेंडरिंग।"
+  ],
+  "Sultan_PDF_Download": "डाउनलोड हो रहा है...",
+  "Preparing_Portfolio": "पोर्टफोलियो तैयार हो रहा है",
+  "Portfolio_Filter": "फ़िल्टर",
+  "Skills_Languages": "प्रोग्रामिंग भाषाएँ",
+  "Skills_Frameworks": "फ्रेमवर्क और लाइब्रेरीज़",
+  "Skills_Tools": "उपकरण और प्रौद्योगिकियां",
+  "Skills_Concepts": "मूल क्षमताएं",
+  "Skills_Sub_HighLevel": "High-level",
+  "Skills_Sub_LowLevel": "Low-level & Scripting",
+  "Skills_Sub_DataMarkup": "Data & Markup",
+  "Skills_Sub_Frontend": "Frontend & UI",
+  "Skills_Sub_Backend": "Backend & Data",
+  "Skills_Sub_Relational": "Relational & NoSQL",
+  "Skills_Sub_ORMs": "ORMs",
+  "Skills_Sub_VersionControl": "Version Control & OS",
+  "Skills_Sub_Deployment": "Deployment & Cloud",
+  "Skills_Sub_Engines": "Engines & Software",
+  "Skills_Sub_Debugging": "Debugging & Low-Level",
+  "Skills_Sub_Theoretical": "Theoretical",
+  "Skills_Sub_Applied": "Applied",
+  "Skills_Sub_Mathematics": "Mathematics",
+  "Skills_Sub_Technology": "Technology",
+  "Portfolio_GPA": "जीपीए:",
+  "Hover_To_Load": "सूची खोलने के लिए होवर करें"
+}

@@ -184,12 +184,12 @@ export function getBaseMetadata(dict: import('@/components/layout/Translator').T
     manifest: '/manifest.json',
     icons: {
       icon: [
-        { url: '/icon.ico' },
-        { url: '/favicon.ico' },
+        { url: '/icon.ico?v=3' },
+        { url: '/favicon.ico?v=3' },
       ],
-      shortcut: ['/favicon.ico'],
+      shortcut: ['/favicon.ico?v=3'],
       apple: [
-        { url: '/icon.ico' },
+        { url: '/icon.ico?v=3' },
       ],
     },
     appleWebApp: {
@@ -208,11 +208,14 @@ export function getPersonSchema(lang: string, description?: string) {
     "givenName": "Muhammad Faran",
     "familyName": "Aiki",
     "additionalName": ["Faran", "Aiki", "Muhammad Aiki"],
-    "alternateName": ["Faran ITB", "Faran ONMIPA", "FaranAiki", "mfaranaiki"],
+    "alternateName": ["Faran Aiki", "FaranAiki", "Faran ITB", "Faran ONMIPA", "mfaranaiki"],
     "url": SITE_URL,
     "image": `${SITE_URL}/images/og-preview.jpg`,
     "sameAs": [
       "https://github.com/FaranAiki",
+      "https://medium.com/@18225122",
+      "https://tlx.toki.id/profiles/FaranAiki",
+      "https://www.shazam.com/artist/muhammad-faran-aiki/1597498603",
       "https://www.linkedin.com/in/faranaiki/",
       "https://www.instagram.com/mfaranaiki/",
       "https://x.com/FaranAiki",
@@ -220,7 +223,7 @@ export function getPersonSchema(lang: string, description?: string) {
       "https://www.youtube.com/@FaranAiki",
       "https://myanimelist.net/profile/FaranAiki"
     ],
-    "jobTitle": "Software Engineer",
+    "jobTitle": "Software Engineer & ITB Student",
     "description": description || "Muhammad Faran Aiki is a Software Engineer, Mathematics Enthusiast, ONMIPA Medalist, and Computer Science Student at ITB (Institut Teknologi Bandung). He specializes in full-stack web development and data analysis.",
     "knowsAbout": ["Software Engineering", "Mathematics", "ONMIPA", "Python", "React", "Next.js", "Flutter", "Web Development"],
     "alumniOf": [

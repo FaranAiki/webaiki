@@ -1,0 +1,43 @@
+{
+  "Portfolio_Summary_Description": [
+    "Compact summary of Muhammad Faran Aiki's professional experiences and highlights"
+  ],
+  "Professional_Pitch_Title": "Por Que Colaborar com Faran Aiki?",
+  "Professional_Pitch_Text": "Como estudante de sistemas de informação e tecnologia do ITB, com experiência real em engenharia de software e conquistas nacionais em matemática, ofereço uma combinação única de acuidade lógica, criatividade técnica e dedicação ao crescimento. Seja construindo sistemas complexos ou resolvendo problemas matemáticos, meu foco são resultados de alto impacto.",
+  "Portfolio": "Portfólio",
+  "Portfolio_Summary_Quote": "A curated summary of high-impact professional experiences and projects.",
+  "Portfolio_Description": [
+    "Full professional portfolio and highlights of Muhammad Faran Aiki"
+  ],
+  "Full_Portfolio": "Full Portfolio",
+  "Sultan_PDF_Creating": "Criando PDF...",
+  "Sultan_PDF_Ready": "PDF pronto!",
+  "Sultan_PDF_Failed": "Falha no PDF.",
+  "Sultan_PDF_Description": [
+    "Renderização PDF de alta fidelidade."
+  ],
+  "Sultan_PDF_Download": "Baixando...",
+  "Preparing_Portfolio": "Preparando portfólio",
+  "Portfolio_Filter": "Filtro",
+  "Skills_Languages": "Linguagens de Programação",
+  "Skills_Frameworks": "Frameworks e Bibliotecas",
+  "Skills_Tools": "Ferramentas e Tecnologias",
+  "Skills_Concepts": "Competências Essenciais",
+  "Skills_Sub_HighLevel": "High-level",
+  "Skills_Sub_LowLevel": "Low-level & Scripting",
+  "Skills_Sub_DataMarkup": "Data & Markup",
+  "Skills_Sub_Frontend": "Frontend & UI",
+  "Skills_Sub_Backend": "Backend & Data",
+  "Skills_Sub_Relational": "Relational & NoSQL",
+  "Skills_Sub_ORMs": "ORMs",
+  "Skills_Sub_VersionControl": "Version Control & OS",
+  "Skills_Sub_Deployment": "Deployment & Cloud",
+  "Skills_Sub_Engines": "Engines & Software",
+  "Skills_Sub_Debugging": "Debugging & Low-Level",
+  "Skills_Sub_Theoretical": "Theoretical",
+  "Skills_Sub_Applied": "Applied",
+  "Skills_Sub_Mathematics": "Mathematics",
+  "Skills_Sub_Technology": "Technology",
+  "Portfolio_GPA": "GPA:",
+  "Hover_To_Load": "Passe o mouse para abrir a lista"
+}

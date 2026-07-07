@@ -1,0 +1,27 @@
+{
+  "FAQ_Website_Q1": "这个网站使用了哪些技术栈？",
+  "FAQ_Website_A1": "本网站采用 Next.js (App Router)、Tailwind CSS、Framer Motion 和 TypeScript 构建。",
+  "FAQ_Website_Q2": "这个网站的起源是什么？",
+  "FAQ_Website_A2": "受 2025 届 STEI-K 主席的启发而创作。",
+  "FAQ_Website_Q3": "网站的性能表现如何？",
+  "FAQ_Website_A3": "拥有近乎完美的 Core Web Vitals 指标和强大的 SEO 优化。",
+  "FAQ_Website_Q4": "网站支持全球访问吗？",
+  "FAQ_Website_A4": "是的，它支持超过 12 种语言，以实现全球覆盖。",
+  "FAQ_Website_Q5": "隐私是如何处理的？",
+  "FAQ_Website_A5": "尊重用户隐私，承诺零侵入性跟踪。",
+  "Framework_Desc": [
+    "使用 Next.js 15 构建，利用最新的 App Router、React Server Components (RSC) 和 Turbopack 实现极速性能。"
+  ],
+  "Styling_Desc": [
+    "使用 Vanilla CSS 和 Tailwind CSS 的自定义样式，专注于独特的审美，并支持多主题（现代、电影、社论）。"
+  ],
+  "Database_Desc": [
+    "使用 Drizzle ORM 和托管在 Supabase 上的 PostgreSQL 进行无服务器数据库管理，确保数据完整性和可扩展性。"
+  ],
+  "Localization_Desc": [
+    "对 18 多种语言的全面 i18n 支持，确保全球观众的可访问性和无缝体验。"
+  ],
+  "Holistic_Approach_Desc": [
+    "一种整体的软件工程方法，结合了现代 Web 标准、严格的类型安全 (TypeScript) 和性能驱动的设计。"
+  ]
+}

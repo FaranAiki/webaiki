@@ -1,0 +1,63 @@
+{
+  "SEO_Organization_Description": [
+    "Organizational experience of Muhammad Faran Aiki at GDG ITB, STEI-K, and various committees at Bandung Institute of Technology."
+  ],
+  "Organization": "組織",
+  "Committee": "委員会",
+  "NBK_Member": "日本語勉強会クラブメンバー",
+  "NBK_Member_Description": [
+    "日本語勉強会のメンバーとして日本語と日本文化を学びました。"
+  ],
+  "Sponsorship_Wisokto_ITB": "ITB 2025年10月卒業式スポンサーシップ、WisNight委員会、およびNipis Maduプロモーション",
+  "Sponsorship_Wisokto_ITB_Description": [
+    "戦略的パートナーシップを特定して確立し、様々な団体からスポンサーシップを獲得しました。"
+  ],
+  "Impact_Web_Lead": "Web開発チームリーダー Web Impact 6.0",
+  "Impact_Web_Lead_Description": [
+    "高性能なフロントエンドのためにNextJS、TailwindCSS、TypeScriptを使用して、堅牢なフルスタックアプリケーションを開発しました。",
+    "信頼性とスケーラビリティの高いデータ管理のために、Prisma ORMと組み合わせたSupabase SQLデータベースを活用してバックエンドアーキテクチャを構築しました。",
+    "すべての参加者にシームレスな競技環境を保証するため、MoodleとJudgelプラットフォームを管理しました。",
+    "効率的なプロジェクトの提供を確実にするため、フロントエンドとバックエンドの開発チームを管理・調整しました。"
+  ],
+  "Treasurer_SYNC": "STEI-K交流イベント会計",
+  "Treasurer_SYNC_Description": [
+    "SYNC STEI-K Gathering Eventの財務記録と予算編成を管理しました。",
+    "トランザクションを処理し、費用を追跡し、詳細な財務報告書を作成しました。",
+    "組織の資金の透明で効率的な割り当てを確保しました。"
+  ],
+  "IT_Club_Vice_Renpy": "2024年ITクラブ最終プロジェクト副プロジェクトマネージャー",
+  "IT_Club_Vice_Renpy_Description": [
+    "副会長を務め、クラブの活動を組織し、メンバーを指導しました。",
+    "Ren'Pyビジュアルノベルエンジンを使用してゲーム開発の概念を教えました。",
+    "プログラミングの論理とインタラクティブなストーリーテリングにおいて生徒を指導しました。"
+  ],
+  "Student_Club_Member": "学生クラブメンバー",
+  "Student_Club_Member_Description": [
+    "Student Club 1 Depokのイベントとイニシアチブに積極的に参加しました。",
+    "コミュニティ構築活動を組織するために仲間と協力しました。",
+    "献身的なチームワークを通じてクラブの目標に貢献しました。"
+  ],
+  "English_Club_Member": "英語クラブメンバー",
+  "English_Club_Member_Description": [
+    "コミュニケーション能力とスピーチのスキルを向上させました。",
+    "「みにくいアヒルの子」を含むコンテンツ制作を支援しました。"
+  ],
+  "PARAS": "PARAS Glorigion 1445H ロゴデザイナー兼MCスクリプトエディター",
+  "PARAS_Description": [
+    "SMA Negeri 1 Kota DepokでのPARASイベントの開催に貢献しました。",
+    "イベントのロゴのデザインと制作に協力しました。",
+    "司会者（MC）の台本の作成と編集を支援しました。"
+  ],
+  "Concerto": "Concertoコンペティション最終ステージコーディネーター",
+  "Concerto_Description": [
+    "Concerto Student Clubの集まりのためのイベント運営とロジスティクスを管理しました。",
+    "チームメンバーと協力して、魅力的な活動を計画し、実行しました。",
+    "参加者の登録を処理し、オンサイトでのサポートを提供しました。"
+  ],
+  "GDG_ITB_Title": "Google Developer Group Campus on ITB - Product Manager Explorer",
+  "GDG_ITB_Description": [
+    "基本から高度な概念までプロダクトマネジメントについて学びました。",
+    "ユーザーとそのニーズに共感することを学びました。"
+  ],
+  "GDGOC ITB_Product Manager": "GDGOC ITB プロダクトマネージャー"
+}

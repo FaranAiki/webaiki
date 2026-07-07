@@ -1,0 +1,72 @@
+{
+  "Loading_Python": "Ana zazzage Python da Lambar Tushen....",
+  "Python_Web_Title": "Python Interactive Interface",
+  "Python_Terminal_Error": "KUSKURE MAI TSANANI: SharedArrayBuffer ba a ayyana shi ba. Tabbatar an saita Cross-Origin-Opener-Policy (COOP) da Cross-Origin-Embedder-Policy (COEP) a kan uwar garke.",
+  "Python_Terminal_Finished": "--- Shirin ya gama ---",
+  "Python_Terminal_Welcome": "Barka da zuwa Python Web Terminal!",
+  "Python_Terminal_Input_Too_Long": "Shigar da ya yi tsayi da yawa!",
+  "SEO_Project_Description": [
+    "Tarin ayyukan fasaha na Muhammad Faran Aiki, tun daga Alkyl compiler zuwa ALTH Flutter app."
+  ],
+  "Project": "Ayyuka",
+  "Make_Interactive_UAS": "Koyon Sadarwa don UAS MA1101 ITB",
+  "Make_Interactive_UAS_Description": [
+    "Na gina kayan aikin koyon ilimin lissafi na mu'amala ta amfani da Flutter, Dart, da FL Chart.",
+    "An kalli rikitattun dabarun lissafi don taimakawa fahimtar ɗalibai.",
+    "Na tsara fasahar mu'amala mai sauƙin amfani."
+  ],
+  "Make_Nihwm": "NihWM Window Manager",
+  "Make_Nihwm_Description": [
+    "Na haɓaka 'nihwm', mai kula da taga mai sauƙin X11 wanda aka rubuta gaba ɗaya a C don Linux.",
+    "Na aiwatar da ainihin ayyukan gudanarwa na taga.",
+    "Na inganta lambar don ƙarancin amfani da albarkatu."
+  ],
+  "Lidia_Project": "Nazarin Bayanan Haɗin Kan Tattalin Arziki ga Indonesiya Emas 2045",
+  "Lidia_Project_Description": [
+    "Na tsara tsarin ETL ta amfani da Python, Pandas, da Jupyter Notebook.",
+    "Na haɗa Gemini-CLI don haɓaka ƙarfin sarrafa bayanai.",
+    "Na sauƙaƙe tafiyar matakan aiki na bayanai, inda ya rage lokacin aiki sosai."
+  ],
+  "Alkyl_Compiler": "Yaren Programming Alkyl da Compiler",
+  "Alkyl_Compiler_Description": [
+    "Na tsara da aiwatar da na'urar tattarawa daga karce ta amfani da C da LLVM.",
+    "An yi amfani da Valgrind da GDB don ingantaccen sarrafa ƙwaƙwalwa.",
+    "An fassara ginin harshe mai babban matsayi zuwa ingantaccen lambar na'ura."
+  ],
+  "ALTH_Project": "ALTH: Aku Lupa Tandai Hadir",
+  "ALTH_Project_Description": [
+    "An gudanar da bincike na Burp Suite don fahimtar amfani da SSO da Kukis.",
+    "An haɓaka aikace-aikacen tunatarwa na halarta ta amfani da Flutter da Dart ga ɗaliban Institut Teknologi Bandung."
+  ],
+  "Jump_Game_Project": "Wasan Jump!",
+  "Below_Below_Project": "Below Below",
+  "Superskill_Project": "Aljannar Hankali",
+  "View_Project": "View Project",
+  "National_Statistics_Competition_Prep": "Shirye-shiryen Gasar Ƙididdiga ta Ƙasa",
+  "National_Statistics_Competition_Prep_Description": [
+    "Na shirya bayanai ta amfani da SARIMAX da MANOVA.",
+    "Na rubuta lambar Python don nazarin bayanai a cikin Jupyter Notebooks.",
+    "Na yi nazarin alkaluma don samo muhimman sakamako na gasar ƙasa."
+  ],
+  "Jump_Game_Description": [
+    "Na ƙirƙira wani wasan dandamali mai ban sha'awa ta amfani da C# da Visual Studio.",
+    "Na aiwatar da injinan tsalle-tsalle bisa ilimin kimiyyar lissafi.",
+    "Na tsara fasalin tsari na matakai don haɓaka jin daɗin wasan."
+  ],
+  "Below_Below_Description": [
+    "Na tsara da tsara wasan bidiyo na 'Below Below' ta amfani da Godot 4.2.",
+    "Na haɓaka injin wasan, motsin kimiyya da sarrafa 'yan wasa.",
+    "Na ƙirƙiri zane-zanen pixel don wasan."
+  ],
+  "Olive_Divergence": "Olive Divergence",
+  "Olive_Divergence_Desc": [
+    "Na tsara 'Olive Divergence' ta amfani da C++ da Qt framework.",
+    "Na tsara tsarin gani mai amfani da maɓallan musamman.",
+    "Na gudanar da gudana na aikace-aikacen a cikin Qt."
+  ],
+  "Superskill_Description": [
+    "An haɓaka Aljannar Hankali, wani ingantaccen aikace-aikacen dandamali daban-daban ta amfani da Flutter da Dart.",
+    "An tsara wasannin da ke horar da fahimtar kwakwalwa da motsa kwakwalwa.",
+    "An tsara kyakkyawan tsarin mai amfani wanda ke da sauƙin fahimta tare da kyawawan wasanni."
+  ]
+}

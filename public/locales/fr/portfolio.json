@@ -1,0 +1,43 @@
+{
+  "Portfolio_Summary_Description": [
+    "Résumé compact des expériences professionnelles et des points forts de Muhammad Faran Aiki"
+  ],
+  "Professional_Pitch_Title": "Pourquoi Collaborer avec Faran Aiki ?",
+  "Professional_Pitch_Text": "En tant qu'étudiant en systèmes d'information et technologie à l'ITB, fort d'une expérience concrète en ingénierie logicielle et de réalisations nationales en mathématiques, j'offre un mélange unique de vivacité logique, de créativité technique et de dévouement à la croissance. Qu'il s'agisse de construire des systèmes complexes ou de résoudre des problèmes mathématiques, je me concentre sur des résultats à fort impact.",
+  "Portfolio": "Portfolio",
+  "Portfolio_Summary_Quote": "Un résumé organisé d'expériences professionnelles et de projets à fort impact.",
+  "Portfolio_Description": [
+    "Portfolio professionnel complet et points forts de Muhammad Faran Aiki"
+  ],
+  "Full_Portfolio": "Portfolio Complet",
+  "Sultan_PDF_Creating": "Création du PDF Sultan...",
+  "Sultan_PDF_Ready": "PDF Sultan prêt !",
+  "Sultan_PDF_Failed": "Échec du PDF.",
+  "Sultan_PDF_Description": [
+    "Rendu PDF vectoriel haute fidélité."
+  ],
+  "Sultan_PDF_Download": "Téléchargement...",
+  "Preparing_Portfolio": "Préparation du portfolio",
+  "Portfolio_Filter": "Filtre portfolio",
+  "Skills_Languages": "Langages de Programmation",
+  "Skills_Frameworks": "Frameworks et Bibliothèques",
+  "Skills_Tools": "Outils et Technologies",
+  "Skills_Concepts": "Compétences de Base",
+  "Skills_Sub_HighLevel": "High-level",
+  "Skills_Sub_LowLevel": "Low-level & Scripting",
+  "Skills_Sub_DataMarkup": "Data & Markup",
+  "Skills_Sub_Frontend": "Frontend & UI",
+  "Skills_Sub_Backend": "Backend & Data",
+  "Skills_Sub_Relational": "Relational & NoSQL",
+  "Skills_Sub_ORMs": "ORMs",
+  "Skills_Sub_VersionControl": "Version Control & OS",
+  "Skills_Sub_Deployment": "Deployment & Cloud",
+  "Skills_Sub_Engines": "Engines & Software",
+  "Skills_Sub_Debugging": "Debugging & Low-Level",
+  "Skills_Sub_Theoretical": "Theoretical",
+  "Skills_Sub_Applied": "Applied",
+  "Skills_Sub_Mathematics": "Mathematics",
+  "Skills_Sub_Technology": "Technology",
+  "Portfolio_GPA": "Moyenne :",
+  "Hover_To_Load": "Survolez pour ouvrir la liste"
+}

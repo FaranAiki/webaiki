@@ -1,0 +1,43 @@
+{
+  "Portfolio_Summary_Description": [
+    "Kompakte Zusammenfassung der beruflichen Erfahrungen und Highlights von Muhammad Faran Aiki"
+  ],
+  "Professional_Pitch_Title": "Warum mit Faran Aiki Zusammenarbeiten?",
+  "Professional_Pitch_Text": "Als ITB-Student im Bereich Informationssysteme und -technologie mit praktischer Erfahrung in der Softwareentwicklung und nationalen Erfolgen in Mathematik biete ich eine einzigartige Mischung aus logischer Schärfe, technischer Kreativität und dem Engagement für stetiges Wachstum. Ob beim Aufbau komplexer Systeme oder bei der Lösung mathematischer Probleme, mein Fokus liegt auf hochwirksamen Ergebnissen.",
+  "Portfolio": "Portfolio",
+  "Portfolio_Summary_Quote": "Eine kuratierte Zusammenfassung hochwirksamer beruflicher Erfahrungen und Projekte.",
+  "Portfolio_Description": [
+    "Vollständiges professionelles Portfolio und Highlights von Muhammad Faran Aiki"
+  ],
+  "Full_Portfolio": "Vollständiges Portfolio",
+  "Sultan_PDF_Creating": "Sultan PDF wird erstellt...",
+  "Sultan_PDF_Ready": "Sultan PDF bereit!",
+  "Sultan_PDF_Failed": "PDF-Erstellung fehlgeschlagen.",
+  "Sultan_PDF_Description": [
+    "Hochwertiges Vektor-PDF-Rendering."
+  ],
+  "Sultan_PDF_Download": "Herunterladen...",
+  "Preparing_Portfolio": "Portfolio wird vorbereitet",
+  "Portfolio_Filter": "Portfolio-Filter",
+  "Skills_Languages": "Programmiersprachen",
+  "Skills_Frameworks": "Frameworks & Bibliotheken",
+  "Skills_Tools": "Werkzeuge & Technologien",
+  "Skills_Concepts": "Kernkompetenzen",
+  "Skills_Sub_HighLevel": "High-level",
+  "Skills_Sub_LowLevel": "Low-level & Scripting",
+  "Skills_Sub_DataMarkup": "Data & Markup",
+  "Skills_Sub_Frontend": "Frontend & UI",
+  "Skills_Sub_Backend": "Backend & Data",
+  "Skills_Sub_Relational": "Relational & NoSQL",
+  "Skills_Sub_ORMs": "ORMs",
+  "Skills_Sub_VersionControl": "Version Control & OS",
+  "Skills_Sub_Deployment": "Deployment & Cloud",
+  "Skills_Sub_Engines": "Engines & Software",
+  "Skills_Sub_Debugging": "Debugging & Low-Level",
+  "Skills_Sub_Theoretical": "Theoretical",
+  "Skills_Sub_Applied": "Applied",
+  "Skills_Sub_Mathematics": "Mathematics",
+  "Skills_Sub_Technology": "Technology",
+  "Portfolio_GPA": "Notendurchschnitt:",
+  "Hover_To_Load": "Bewegen Sie den Mauszeiger, um die Liste zu öffnen"
+}

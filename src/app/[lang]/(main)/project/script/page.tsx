@@ -26,29 +26,23 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
-type ProjectPageProps = {
-  params: Promise<{ lang: string }>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-};
+import { Suspense } from "react";
 
-export default async function ProjectPage({ params, searchParams }: ProjectPageProps) {
+export default async function ProjectPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
-  const resolvedParams = await searchParams;
 
-  const serializedParams = {
-    type: typeof resolvedParams?.type === 'string' ? resolvedParams.type : undefined,
-    source: typeof resolvedParams?.source === 'string' ? resolvedParams.source : undefined,
-  };
-
-  return <PythonCLI 
-    searchParams={serializedParams} 
-    terminalTitle={dict.Python_Web_Title} 
-    loadingText={dict.Loading_Python} 
-    terminalError={dict.Python_Terminal_Error}
-    terminalFinished={dict.Python_Terminal_Finished}
-    terminalWelcome={dict.Python_Terminal_Welcome}
-    terminalInputTooLong={dict.Python_Terminal_Input_Too_Long}
-    lang={lang}
-  />;
+  return (
+    <Suspense fallback={<div className="min-h-screen p-4 flex items-center justify-center text-theme-300">{dict.Loading_Python || "Loading..."}</div>}>
+      <PythonCLI 
+        terminalTitle={dict.Python_Web_Title} 
+        loadingText={dict.Loading_Python} 
+        terminalError={dict.Python_Terminal_Error}
+        terminalFinished={dict.Python_Terminal_Finished}
+        terminalWelcome={dict.Python_Terminal_Welcome}
+        terminalInputTooLong={dict.Python_Terminal_Input_Too_Long}
+        lang={lang}
+      />
+    </Suspense>
+  );
 }

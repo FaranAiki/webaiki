@@ -1,0 +1,43 @@
+{
+  "Portfolio_Summary_Description": [
+    "Συνοπτική περίληψη των επαγγελματικών εμπειριών και των σημαντικότερων στιγμών του Muhammad Faran Aiki"
+  ],
+  "Professional_Pitch_Title": "Γιατί να Συνεργαστείτε με τον Faran Aiki;",
+  "Professional_Pitch_Text": "Ως φοιτητής συστημάτων πληροφορικής και τεχνολογίας του ITB με πραγματική εμπειρία στη μηχανική λογισμικού και εθνικά επιτεύγματα στα μαθηματικά, προσφέρω έναν μοναδικό συνδυασμό λογικής οξύτητας, τεχνικής δημιουργικότητας και αφοσίωσης στην εξέλιξη. Είτε πρόκειται για την κατασκευή πολύπλοκων συστημάτων είτε για την επίλυση μαθηματικών προβλημάτων, επικεντρώνομαι σε αποτελέσματα με υψηλό αντίκτυπο.",
+  "Portfolio": "Χαρτοφυλάκιο",
+  "Portfolio_Summary_Quote": "Μια επιμελημένη σύνοψη επαγγελματικών εμπειριών και έργων υψηλού αντίκτυπου.",
+  "Portfolio_Description": [
+    "Πλήρες επαγγελματικό χαρτοφυλάκιο και κορυφαίες στιγμές του Muhammad Faran Aiki"
+  ],
+  "Full_Portfolio": "Πλήρες Χαρτοφυλάκιο",
+  "Sultan_PDF_Creating": "Δημιουργία PDF...",
+  "Sultan_PDF_Ready": "Το PDF είναι έτοιμο!",
+  "Sultan_PDF_Failed": "Αποτυχία PDF.",
+  "Sultan_PDF_Description": [
+    "Απόδοση PDF υψηλής πιστότητας."
+  ],
+  "Sultan_PDF_Download": "Λήψη...",
+  "Preparing_Portfolio": "Προετοιμασία ιστοτόπου",
+  "Portfolio_Filter": "Φίλτρο",
+  "Skills_Languages": "Γλώσσες Προγραμματισμού",
+  "Skills_Frameworks": "Πλαίσια & Βιβλιοθήκες",
+  "Skills_Tools": "Εργαλεία & Τεχνολογίες",
+  "Skills_Concepts": "Βασικές Ικανότητες",
+  "Skills_Sub_HighLevel": "High-level",
+  "Skills_Sub_LowLevel": "Low-level & Scripting",
+  "Skills_Sub_DataMarkup": "Data & Markup",
+  "Skills_Sub_Frontend": "Frontend & UI",
+  "Skills_Sub_Backend": "Backend & Data",
+  "Skills_Sub_Relational": "Relational & NoSQL",
+  "Skills_Sub_ORMs": "ORMs",
+  "Skills_Sub_VersionControl": "Version Control & OS",
+  "Skills_Sub_Deployment": "Deployment & Cloud",
+  "Skills_Sub_Engines": "Engines & Software",
+  "Skills_Sub_Debugging": "Debugging & Low-Level",
+  "Skills_Sub_Theoretical": "Theoretical",
+  "Skills_Sub_Applied": "Applied",
+  "Skills_Sub_Mathematics": "Mathematics",
+  "Skills_Sub_Technology": "Technology",
+  "Portfolio_GPA": "Μέσος Όρος:",
+  "Hover_To_Load": "Κάντε αιώρηση για να ανοίξετε τη λίστα"
+}

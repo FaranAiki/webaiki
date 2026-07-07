@@ -1,0 +1,43 @@
+{
+  "Portfolio_Summary_Description": [
+    "Compact summary of Muhammad Faran Aiki's professional experiences and highlights"
+  ],
+  "Professional_Pitch_Title": "কেন ফারান আইকি (Faran Aiki)-এর সাথে সহযোগিতা করবেন?",
+  "Professional_Pitch_Text": "বাস্তব দুনিয়ার সফটওয়্যার ইঞ্জিনিয়ারিং অভিজ্ঞতা এবং গণিতে জাতীয় অর্জন সহ আইটিবি (ITB) ইনফরমেশন সিস্টেম এবং টেকনোলজির ছাত্র হিসেবে, আমি যৌক্তিক তীক্ষ্ণতা, প্রযুক্তিগত সৃজনশীলতা এবং বৃদ্ধির প্রতি উৎসর্গের এক অনন্য মিশ্রণ অফার করি। জটিল সিস্টেম তৈরি করা হোক বা গাণিতিক সমস্যা সমাধান করা হোক, আমি উচ্চ-প্রভাবশালী ফলাফলের দিকে মনোনিবেশ করি।",
+  "Portfolio": "পোর্টফোলিও",
+  "Portfolio_Summary_Quote": "A curated summary of high-impact professional experiences and projects.",
+  "Portfolio_Description": [
+    "Full professional portfolio and highlights of Muhammad Faran Aiki"
+  ],
+  "Full_Portfolio": "Full Portfolio",
+  "Sultan_PDF_Creating": "পিডিএফ তৈরি হচ্ছে...",
+  "Sultan_PDF_Ready": "পিডিএফ প্রস্তুত!",
+  "Sultan_PDF_Failed": "পিডিএফ ব্যর্থ।",
+  "Sultan_PDF_Description": [
+    "উচ্চ মানের পিডিএফ রেন্ডারিং।"
+  ],
+  "Sultan_PDF_Download": "ডাউনলোড হচ্ছে...",
+  "Preparing_Portfolio": "পোর্টফোলিও প্রস্তুত হচ্ছে",
+  "Portfolio_Filter": "ফিল্টার",
+  "Skills_Languages": "প্রোগ্রামিং ভাষা",
+  "Skills_Frameworks": "ফ্রেমওয়ার্ক এবং লাইব্রেরি",
+  "Skills_Tools": "টুলস এবং প্রযুক্তি",
+  "Skills_Concepts": "মূল দক্ষতা",
+  "Skills_Sub_HighLevel": "High-level",
+  "Skills_Sub_LowLevel": "Low-level & Scripting",
+  "Skills_Sub_DataMarkup": "Data & Markup",
+  "Skills_Sub_Frontend": "Frontend & UI",
+  "Skills_Sub_Backend": "Backend & Data",
+  "Skills_Sub_Relational": "Relational & NoSQL",
+  "Skills_Sub_ORMs": "ORMs",
+  "Skills_Sub_VersionControl": "Version Control & OS",
+  "Skills_Sub_Deployment": "Deployment & Cloud",
+  "Skills_Sub_Engines": "Engines & Software",
+  "Skills_Sub_Debugging": "Debugging & Low-Level",
+  "Skills_Sub_Theoretical": "Theoretical",
+  "Skills_Sub_Applied": "Applied",
+  "Skills_Sub_Mathematics": "Mathematics",
+  "Skills_Sub_Technology": "Technology",
+  "Portfolio_GPA": "সিজিপিএ:",
+  "Hover_To_Load": "তালিকা খুলতে হোভার করুন"
+}
