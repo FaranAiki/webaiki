@@ -10,7 +10,7 @@ import { getAwardExperiences } from '@/lib/data';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const dict = await getDictionary(lang);
+  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','award']);
   const baseMetadata = getBaseMetadata();
 
   return {
@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
 export default async function AwardPage({params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang);
+  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','award']);
 
   const isLoggedIn = false;
   const experienceBookmarks: string[] = [];

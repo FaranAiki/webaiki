@@ -6,15 +6,16 @@ export type TranslationDict = Record<string, string>;
 
 const memoryCache: Record<string, Record<string, string>> = {};
 
-export const getDictionary = async (locale: string): Promise<Record<string, string>> => {
-  if (memoryCache[locale]) {
-    return memoryCache[locale];
+export const getDictionary = async (locale: string, namespaces?: string[]): Promise<Record<string, string>> => {
+  const cacheKey = namespaces ? `${locale}_${namespaces.sort().join('_')}` : locale;
+  if (memoryCache[cacheKey]) {
+    return memoryCache[cacheKey];
   }
 
   try {
     const localeDir = path.join(process.cwd(), 'public', 'locales', locale);
     if (!fs.existsSync(localeDir)) {
-      if (locale !== 'en') return getDictionary('en');
+      if (locale !== 'en') return getDictionary('en', namespaces);
       return {};
     }
 
@@ -23,19 +24,22 @@ export const getDictionary = async (locale: string): Promise<Record<string, stri
 
     for (const file of files) {
       if (file.endsWith('.json')) {
-        const filePath = path.join(localeDir, file);
-        const content = fs.readFileSync(filePath, 'utf8');
-        const parsed = JSON.parse(content);
-        dict = { ...dict, ...parsed };
+        const namespace = file.replace('.json', '');
+        if (!namespaces || namespaces.includes(namespace)) {
+          const filePath = path.join(localeDir, file);
+          const content = fs.readFileSync(filePath, 'utf8');
+          const parsed = JSON.parse(content);
+          dict = { ...dict, ...parsed };
+        }
       }
     }
 
-    memoryCache[locale] = dict;
+    memoryCache[cacheKey] = dict;
     return dict;
   } catch (error) {
     console.error(`Failed to load dictionary for locale ${locale}:`, error);
     if (locale !== 'en') {
-      return getDictionary('en');
+      return getDictionary('en', namespaces);
     }
     return {};
   }

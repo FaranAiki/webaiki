@@ -521,7 +521,7 @@ export default function Header(props: HeaderProps) {
                         aria-label={logo_alt}
                         className={`transition-[colors,transform,opacity] shadow-md border border-theme-border opacity-100 hover:opacity-80 scale-100 hover:scale-110 cursor-pointer rounded-full overflow-hidden transform-gpu flex`}>
                         <Image
-                            src='/images/icons/icon-512x512.png?v=3'
+                            src='/images/icons/icon-64x64.webp?v=4'
                             alt={logo_alt}
                             title={logo_alt}
                             width={32}

@@ -5,7 +5,7 @@ import { academicTranscript, pointConversion } from '@/lib/transcript';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const dict = await getDictionary(lang);
+  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','academic-transcript']);
   const baseMetadata = getBaseMetadata();
 
   return {
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
 export default async function AcademicTranscriptPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang);
+  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','academic-transcript']);
 
   return (
     <main className="container mx-auto px-4 md:px-6 pt-24 pb-12 max-w-4xl min-h-screen">

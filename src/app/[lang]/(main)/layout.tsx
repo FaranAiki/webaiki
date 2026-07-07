@@ -48,7 +48,7 @@ export default async function RootLayout({
 }>) {
   // Use the url parameter directly and load dictionary asynchronously
   const { lang } = await params;
-  const dict = await getDictionary(lang);
+  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website']);
 
   const workExp = getWorkExperiences(dict).flatMap(y => y.jobs);
   const projectExp = getProjectExperiences(dict).flatMap(y => y.jobs);

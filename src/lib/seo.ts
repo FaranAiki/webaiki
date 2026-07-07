@@ -181,7 +181,7 @@ export function getBaseMetadata(dict: import('@/components/layout/Translator').T
       images: [`${SITE_URL}/api/og?title=Muhammad Faran Aiki`],
     },
     category: 'technology',
-    manifest: '/manifest.json',
+    manifest: '/manifest.webmanifest',
     icons: {
       icon: [
         { url: '/icon.ico?v=3' },

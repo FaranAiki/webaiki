@@ -127,7 +127,7 @@ export default function PageTransitionLoader({ label }: { label: string }) {
               {/* Center Logo */}
               <div className="absolute inset-0 flex items-center justify-center animate-pulse">
                  <Image 
-                   src="/images/icons/icon-512x512.png?v=3" 
+                   src="/images/icons/icon-64x64.webp?v=4" 
                    alt="Loading" 
                    width={28} 
                    height={28} 
@@ -175,7 +175,7 @@ export default function PageTransitionLoader({ label }: { label: string }) {
             <div className="flex md:hidden flex-col items-center justify-center gap-4 w-[200px]">
               <div className="animate-pulse flex items-center justify-center">
                  <Image 
-                   src="/images/icons/icon-512x512.png?v=3" 
+                   src="/images/icons/icon-64x64.webp?v=4" 
                    alt="Loading" 
                    width={48} 
                    height={48} 

@@ -6,7 +6,7 @@ import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema }
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const dict = await getDictionary(lang);
+  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','music']);
   const baseMetadata = getBaseMetadata();
 
   return {
@@ -30,7 +30,7 @@ const YOUTUBE_PLAYLIST_ITEMS_API = "https://www.googleapis.com/youtube/v3/playli
 
 export default async function MusicPage({params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang);
+  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','music']);
   
   let youtubeItems = [];
   let errorString = undefined;
