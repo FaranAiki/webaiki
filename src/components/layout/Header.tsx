@@ -238,17 +238,27 @@ export default function Header(props: HeaderProps) {
         }, []);
 
         useEffect(() => {
-            const fetchUser = async () => {
+            let subscription: any = null;
+            const initAuth = async () => {
                 const { createClient } = await import('@/utils/supabase/client');
                 const supabase = createClient();
+                
+                // Initial fetch
                 const { data: { session } } = await supabase.auth.getSession();
-                const data = { user: session?.user };
-                if (data?.user) {
-                    setUser(data.user);
-                }
+                setUser(session?.user || null);
+
+                // Listen for changes (login, logout)
+                const { data } = supabase.auth.onAuthStateChange((_event, session) => {
+                    setUser(session?.user || null);
+                });
+                subscription = data.subscription;
             };
-            fetchUser();
-        }, []); // Run only once on mount to avoid slow repeated login checks
+            initAuth();
+
+            return () => {
+                if (subscription) subscription.unsubscribe();
+            };
+        }, []); // Run only once on mount, but subscribe to all future changes
 
         // Sync navLinks when props change, and apply user-specific links if logged in
         useEffect(() => {
