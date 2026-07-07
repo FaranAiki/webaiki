@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation';
 
 export default async function HireMePage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','hire-me']);
+  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','hire-me']);
   
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();

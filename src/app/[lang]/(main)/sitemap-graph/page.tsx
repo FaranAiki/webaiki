@@ -7,7 +7,7 @@ const SitemapGraphClient = dynamic(() => import('@/components/interactive/Sitema
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','sitemap-graph']);
+  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','sitemap-graph']);
 
   return {
     title: `${dict.Sitemap_Graph || 'Sitemap Graph'} | FaranAiki`,
@@ -21,7 +21,7 @@ export default async function SitemapGraphPage({
   params: Promise<{ lang: string }>
 }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','sitemap-graph']);
+  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','sitemap-graph']);
 
   return (
     <main className="min-h-screen w-full flex flex-col items-center justify-center p-4 md:p-8 bg-theme-base pt-24 overflow-hidden relative">

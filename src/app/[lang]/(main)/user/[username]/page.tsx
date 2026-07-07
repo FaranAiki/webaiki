@@ -16,7 +16,7 @@ type GenerateMetadataProps = {
 
 export async function generateMetadata({ params }: GenerateMetadataProps): Promise<Metadata> {
   const { lang, username } = await params;
-  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','user']);
+  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','user']);
   const baseMetadata = getBaseMetadata(dict);
 
   const decodedUsername = decodeURIComponent(username);
@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: GenerateMetadataProps): Promi
 
 export default async function UserProfilePage({ params }: GenerateMetadataProps) {
   const { lang, username } = await params;
-  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','user']);
+  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','user']);
   
   const decodedUsername = decodeURIComponent(username);
   

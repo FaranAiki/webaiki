@@ -15,6 +15,27 @@ export default function PageTransitionLoader({ label }: { label: string }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const colorTheme = useAppStore((state) => state.color);
+  const isGlobalLoading = useAppStore((state) => state.isGlobalLoading);
+
+  useEffect(() => {
+    if (isGlobalLoading) {
+      setIsNavigating(true);
+      setProgress(0);
+      setIsFinished(false);
+    } else {
+      // Finish loading when global loading is explicitly set to false
+      setProgress(100);
+      setIsFinished(true);
+      const timer = setTimeout(() => {
+        setIsNavigating(false);
+        setTimeout(() => {
+          setProgress(0);
+          setIsFinished(false);
+        }, 150);
+      }, 50);
+      return () => clearTimeout(timer);
+    }
+  }, [isGlobalLoading]);
 
   const prevPathnameRef = useRef(pathname);
   const prevSearchParamsRef = useRef(searchParams?.toString());
@@ -35,8 +56,8 @@ export default function PageTransitionLoader({ label }: { label: string }) {
         setTimeout(() => {
           setProgress(0);
           setIsFinished(false);
-        }, 200);
-      }, 300); // 300ms to let the user see it hit 100%
+        }, 150);
+      }, 50); // Fast exit, don't hold the user hostage
       
       prevPathnameRef.current = pathname;
       prevSearchParamsRef.current = currentSearch;
@@ -127,7 +148,7 @@ export default function PageTransitionLoader({ label }: { label: string }) {
               {/* Center Logo */}
               <div className="absolute inset-0 flex items-center justify-center animate-pulse">
                  <Image 
-                   src="/images/icons/icon-64x64.webp?v=4" 
+                   src="/icon.svg?v=6" 
                    alt="Loading" 
                    width={28} 
                    height={28} 
@@ -175,7 +196,7 @@ export default function PageTransitionLoader({ label }: { label: string }) {
             <div className="flex md:hidden flex-col items-center justify-center gap-4 w-[200px]">
               <div className="animate-pulse flex items-center justify-center">
                  <Image 
-                   src="/images/icons/icon-64x64.webp?v=4" 
+                   src="/icon.svg?v=6" 
                    alt="Loading" 
                    width={48} 
                    height={48} 

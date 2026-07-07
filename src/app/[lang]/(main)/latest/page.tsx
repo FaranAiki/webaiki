@@ -4,7 +4,7 @@ import { getLanguageAlternates, getBaseMetadata, SITE_URL } from '@/lib/seo';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','latest']);
+  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','latest']);
   const baseMetadata = getBaseMetadata();
 
   return {

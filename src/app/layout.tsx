@@ -8,8 +8,8 @@ export const metadata = getBaseMetadata();
 
 import { Inter, Roboto_Mono } from 'next/font/google';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
-const robotoMono = Roboto_Mono({ subsets: ['latin'], variable: '--font-roboto-mono', display: 'swap' });
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap', preload: false });
+const robotoMono = Roboto_Mono({ subsets: ['latin'], variable: '--font-roboto-mono', display: 'swap', preload: false });
 
 export default async function RootLayout({
   children,

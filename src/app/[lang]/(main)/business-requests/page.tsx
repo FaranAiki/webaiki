@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default async function BusinessRequestsPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','business-requests']);
+  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','business-requests']);
   
   const supabase = await createClient();
   

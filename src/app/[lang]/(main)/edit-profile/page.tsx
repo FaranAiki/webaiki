@@ -7,7 +7,7 @@ import { redirect } from 'next/navigation';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','edit-profile']);
+  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','edit-profile']);
   
   const title = `${dict.Edit_Profile} - Muhammad Faran Aiki`;
   const description = "Update your profile settings.";
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
 export default async function EditProfilePage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','edit-profile']);
+  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','edit-profile']);
 
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();

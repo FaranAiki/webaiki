@@ -8,6 +8,7 @@ import { getBackgrounds } from "@/lib/data";
 import ClientOnlyWidgets from "@/components/providers/ClientOnlyWidgets";
 import { CookieInitializer } from "@/components/providers/CookieInitialize";
 import PageTransitionLoader from "@/components/layout/PageTransitionLoader";
+import LcpBackground from "@/components/layout/LcpBackground";
 
 export function generateStaticParams() {
   return LOCALES.map((lang) => ({ lang }));
@@ -39,6 +40,7 @@ export default async function BaseLayout({
       <Suspense fallback={null}>
         <CookieInitializer />
       </Suspense>
+      <LcpBackground desktopImage={backgrounds.desktop?.[0] || ''} mobileImage={backgrounds.mobile?.[0] || ''} />
       <ClientOnlyWidgets backgrounds={backgrounds} />
       <Suspense fallback={null}>
         <PageTransitionLoader label={dict.Loading} />

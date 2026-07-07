@@ -19,7 +19,7 @@ import {
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','timeline']);
+  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','timeline']);
   const baseMetadata = getBaseMetadata();
 
   return {
@@ -131,7 +131,7 @@ async function SuspendedTimelineContent({ lang, dict }: { lang: string, dict: Re
 
 export default async function TimelinePage({params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','timeline']);
+  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','timeline']);
 
   const personSchema = getPersonSchema(lang);
   const breadcrumbSchema = getBreadcrumbSchema([

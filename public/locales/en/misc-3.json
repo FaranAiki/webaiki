@@ -74,5 +74,19 @@
   "Searching": "Searching...",
   "Offline_Title": "You are offline",
   "Offline_Description": "No internet found. Please check your Wi-Fi and internet.",
-  "Offline_Retry": "Retry"
+  "Offline_Retry": "Retry",
+  "Hover_To_Load": "Hover to open the list",
+  "Transcript_IP": "GPA:",
+  "Transcript_Passed_Credits": "Passed Credits:",
+  "Transcript_No": "No",
+  "Transcript_Code": "Code",
+  "Transcript_Course": "Course",
+  "Transcript_Type": "Type",
+  "Transcript_Credits": "Credits",
+  "Transcript_Grade": "Grade",
+  "Transcript_Semester": "Taken Semester",
+  "Transcript_Grade_Conversion": "Grade Conversion",
+  "Transcript_Tahap_Persiapan_Bersama": "First Year Program",
+  "Transcript_Tahap_Sarjana": "Bachelor Program",
+  "Transcript_TPB": "First Year Program"
 }

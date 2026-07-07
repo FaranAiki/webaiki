@@ -73,5 +73,19 @@
   "Name": "Nama",
   "Message": "Pesan",
   "Success_Message": "Pesan berhasil dikirim!",
-  "Error_Message": "Gagal mengirim pesan."
+  "Error_Message": "Gagal mengirim pesan.",
+  "Hover_To_Load": "Arahkan kursor untuk membuka daftar",
+  "Transcript_IP": "IP:",
+  "Transcript_Passed_Credits": "SKS Lulus:",
+  "Transcript_No": "No",
+  "Transcript_Code": "Kode",
+  "Transcript_Course": "Mata Kuliah",
+  "Transcript_Type": "Sifat",
+  "Transcript_Credits": "SKS",
+  "Transcript_Grade": "Nilai",
+  "Transcript_Semester": "Semester",
+  "Transcript_Grade_Conversion": "Konversi Nilai",
+  "Transcript_Tahap_Persiapan_Bersama": "Tahap Persiapan Bersama",
+  "Transcript_Tahap_Sarjana": "Tahap Sarjana",
+  "Transcript_TPB": "Tahap Persiapan Bersama"
 }

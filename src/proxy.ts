@@ -17,7 +17,7 @@ const base_cspHeader = `
     base-uri 'none';
     form-action 'self';
     frame-ancestors 'self';
-    frame-src 'self' https://analitica-graph.web.app https://analitica-graph.firebaseapp.com https://open.spotify.com https://w.soundcloud.com https://www.google.com/recaptcha/ https://recaptcha.google.com/ https://platform.twitter.com https://syndication.twitter.com https://*.instagram.com https://www.instagram.com https://*.tiktok.com https://www.tiktok.com https://www.youtube.com;
+    frame-src 'self' https://analitica-graph.web.app https://analitica-graph.firebaseapp.com https://open.spotify.com https://w.soundcloud.com https://www.google.com/recaptcha/ https://recaptcha.google.com/ https://platform.twitter.com https://syndication.twitter.com https://*.instagram.com https://www.instagram.com https://*.tiktok.com https://www.tiktok.com https://www.youtube.com https://github.com https://www.linkedin.com https://*.linkedin.com https://linktr.ee https://myanimelist.net https://lichess.org https://*.quora.com https://www.reddit.com https://www.slideshare.net https://*.scribd.com https://line.me https://t.me https://x.com https://*.x.com;
     connect-src 'self' https://generativelanguage.googleapis.com https://cdn.jsdelivr.net https://faranaiki.id https://fonts.gstatic.com https://www.gstatic.com https://fonts.googleapis.com https://cloud.umami.is https://api-gateway.umami.dev https://gateway.umami.is https://unpkg.com https://ndutyvnkhavzchhjmzfm.supabase.co https://www.google.com/recaptcha/ https://www.google.com https://*.twitter.com https://*.instagram.com https://*.tiktok.com;
     worker-src 'self' blob:;
     ${process.env.NODE_ENV === 'production' ? 'upgrade-insecure-requests;' : ''}

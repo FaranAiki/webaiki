@@ -55,8 +55,8 @@ function GlobalLoadingReset() {
 /**
  * A stable outer provider that ensures hook execution order remains constant.
  */
-export function Providers({ children, nonce, isBot }: { children: React.ReactNode; nonce?: string; isBot?: boolean }) {
-  const [loadingLabel, setLoadingLabel] = useState<string | undefined>(undefined);
+export function Providers({ children, nonce, isBot: _isBot }: { children: React.ReactNode; nonce?: string; isBot?: boolean }) {
+  const [_loadingLabel, setLoadingLabel] = useState<string | undefined>(undefined);
 
   return (
     <ProvidersContext.Provider value={{ setLoadingLabel }}>

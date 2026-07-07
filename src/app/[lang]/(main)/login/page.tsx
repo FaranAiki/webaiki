@@ -7,7 +7,7 @@ export default async function LoginPage({ params }: { params: Promise<{ lang: st
   const { lang } = await params;
   const supabase = await createClient();
   const [dict, { data: { user } }] = await Promise.all([
-    getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','login']),
+    getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','login']),
     supabase.auth.getUser()
   ]);
 

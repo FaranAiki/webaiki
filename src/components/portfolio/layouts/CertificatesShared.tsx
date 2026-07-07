@@ -1,13 +1,12 @@
 "use client";
 
 import React, { useState } from 'react';
-import dynamic from 'next/dynamic';
+
 import Image from 'next/image';
 import { m as motion } from 'framer-motion';
 import BookmarkButton from '@/components/interactive/BookmarkButton';
 import { formatCJK } from '@/lib/utils';
 
-const PdfPreview = dynamic(() => import('@/components/interactive/PdfPreview'), { ssr: false });
 
 export const getPath = (data: string | { path: string; point: number }): string => {
   if (typeof data === 'string') return data;
@@ -43,11 +42,6 @@ export const BentoCertificateCard = React.memo(({
             className={`${spanClass} relative rounded-3xl overflow-hidden group transition-all duration-500 cursor-pointer h-full transform-gpu`}
         >
             <div className="absolute inset-0">
-                {filePath.endsWith('.pdf') ? (
-                    <div className={`w-full h-full transition-all duration-700 ${isExpanded ? 'scale-110 blur-sm brightness-[0.3]' : 'opacity-80 group-hover:opacity-100'}`}>
-                        <PdfPreview fileUrl={filePath} priority={isExpanded} />
-                    </div>
-                ) : (
                     <Image
                         src={filePath}
                         alt={`${fileName} Certificate Faran Aiki`}
@@ -56,7 +50,6 @@ export const BentoCertificateCard = React.memo(({
                         className={`object-cover transition-all duration-700 ${isExpanded ? 'scale-110 blur-sm brightness-[0.3]' : 'opacity-80 group-hover:opacity-100'}`}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
-                )}
             </div>
             
             <BookmarkButton 

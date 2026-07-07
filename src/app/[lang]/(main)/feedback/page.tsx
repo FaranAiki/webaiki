@@ -6,7 +6,7 @@ import { createClient } from '@/utils/supabase/server';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','feedback']);
+  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','feedback']);
   
   const title = `${dict.Feedback} - Muhammad Faran Aiki`;
   const description = dict.No_Feedback || "Share your feedback with us.";
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 export default async function FeedbackPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const [dict, userResult] = await Promise.all([
-    getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','feedback']),
+    getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','feedback']),
     createClient().then(supabase => supabase.auth.getUser())
   ]);
 

@@ -83,5 +83,19 @@
     "Open the global settings menu."
   ],
   "Joined": "Joined",
-  "Public_Feedbacks": "Public Feedbacks"
+  "Public_Feedbacks": "Public Feedbacks",
+  "Hover_To_Load": "Survolez pour ouvrir la liste",
+  "Transcript_IP": "GPA:",
+  "Transcript_Passed_Credits": "Passed Credits:",
+  "Transcript_No": "No",
+  "Transcript_Code": "Code",
+  "Transcript_Course": "Course",
+  "Transcript_Type": "Type",
+  "Transcript_Credits": "Credits",
+  "Transcript_Grade": "Grade",
+  "Transcript_Semester": "Taken Semester",
+  "Transcript_Grade_Conversion": "Grade Conversion",
+  "Transcript_Tahap_Persiapan_Bersama": "First Year Program",
+  "Transcript_Tahap_Sarjana": "Bachelor Program",
+  "Transcript_TPB": "First Year Program"
 }

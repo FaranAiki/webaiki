@@ -4,13 +4,10 @@ import React, { useState, useEffect, useMemo } from 'react';
 import Image from 'next/image';
 
 import { Briefcase, ExternalLink } from 'lucide-react';
-import { m as motion, AnimatePresence, useInView } from 'framer-motion';
-import dynamic from 'next/dynamic';
+import { m as motion, AnimatePresence } from 'framer-motion';
 import BookmarkButton from '@/components/interactive/BookmarkButton';
 import { formatCJK } from '@/lib/utils';
 import { Job } from '../ExperienceDisplayer';
-
-const PdfPreview = dynamic(() => import('@/components/interactive/PdfPreview'), { ssr: false });
 
 export const TagBadge = ({ labels }: { labels?: string[] }) => {
     if (!labels || labels.length === 0) return null;
@@ -40,20 +37,8 @@ export const PlaceholderIcon = ({ company }: { company: string }) => (
     </div>
 );
 
-export const PdfRenderer = ({ url, isExpanded, priority = false }: { url: string, isExpanded?: boolean, priority?: boolean }) => {
-    const ref = React.useRef(null);
-    const isInView = useInView(ref, { once: true, margin: "50px" });
+export const PdfRenderer = ({ url: _url, isExpanded: _isExpanded, priority: _priority = false }: { url: string, isExpanded?: boolean, priority?: boolean }) => null;
 
-    return (
-        <div ref={ref} className={`w-full h-full flex justify-center items-center overflow-hidden bg-theme-surface-strong ${isExpanded ? 'scale-110 blur-sm brightness-[0.3]' : 'group-hover:scale-105 transition-transform duration-700'}`}>
-            {(isInView || priority) ? (
-                <PdfPreview fileUrl={url} width={300} priority={priority} />
-            ) : (
-                <PlaceholderIcon company="..." />
-            )}
-        </div>
-    );
-};
 
 export const TimelineActiveImage = React.memo(({ activeJob, shimmer600x400 }: { activeJob: Job, shimmer600x400: string }) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -90,21 +75,17 @@ export const TimelineActiveImage = React.memo(({ activeJob, shimmer600x400 }: { 
                 className="w-full h-full relative"
             >
                 {hasValidImage ? (
-                    activeImageSrc!.toLowerCase().endsWith('.pdf') ? (
-                        <PdfRenderer url={activeImageSrc!} isExpanded={true} priority={false} />
-                    ) : (
-                        <Image
-                            fill
-                            sizes="(max-width: 768px) 80vw, (max-width: 1200px) 40vw, 30vw"
-                            src={activeImageSrc!}
-                            placeholder="blur"
-                            blurDataURL={shimmer600x400}
-                            alt={`${activeJob.title} at ${activeJob.company}`}
-                            className="object-contain"
-                            priority={false}
-                            quality={75}
-                        />
-                    )
+                    <Image
+                        fill
+                        sizes="(max-width: 768px) 80vw, (max-width: 1200px) 40vw, 30vw"
+                        src={activeImageSrc!}
+                        placeholder="blur"
+                        blurDataURL={shimmer600x400}
+                        alt={`${activeJob.title} at ${activeJob.company}`}
+                        className="object-contain"
+                        priority={false}
+                        quality={75}
+                    />
                 ) : (
                     <PlaceholderIcon company={activeJob.company} />
                 )}
@@ -157,23 +138,19 @@ export const BentoCard = React.memo(({ job, spanClass, cardBorder, inactiveCardB
             className={`${spanClass} relative rounded-3xl overflow-hidden group border ${cardBorder} ${inactiveCardBg} shadow-sm hover:shadow-xl cursor-pointer transform-gpu`}
         >
             {hasImage ? (
-                job.image![0].toLowerCase().endsWith('.pdf') ? (
-                    <PdfRenderer url={job.image![0]} isExpanded={isExpanded} priority={priority} />
-                ) : (
-                    <Image
-                        src={job.image![0]}
-                        alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`}
-                        fill
-                        priority={priority}
-                        fetchPriority={priority ? "high" : "auto"}
-                        quality={75}
-                        sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                        className={`object-cover transition-transform duration-700
-                            ${isExpanded
-                                ? (isDark ? 'scale-110 blur-sm brightness-[0.2]' : 'scale-110 blur-md opacity-20')
-                                : 'group-hover:scale-105 opacity-60 group-hover:opacity-100'}`}
-                    />
-                )
+                <Image
+                    src={job.image![0]}
+                    alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`}
+                    fill
+                    priority={priority}
+                    fetchPriority={priority ? "high" : "auto"}
+                    quality={75}
+                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    className={`object-cover transition-transform duration-700
+                        ${isExpanded
+                            ? (isDark ? 'scale-110 blur-sm brightness-[0.2]' : 'scale-110 blur-md opacity-20')
+                            : 'group-hover:scale-105 opacity-60 group-hover:opacity-100'}`}
+                />
             ) : (
                 <div className={`absolute inset-0 transition-opacity duration-700 ${isExpanded ? 'blur-sm brightness-[0.3]' : 'opacity-40 group-hover:opacity-80'}`}>
                     <PlaceholderIcon company={job.company} />

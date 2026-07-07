@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { setCookies } from '@/app/actions';
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, startTransition } from 'react';
 import ThemeToggle from '@/components/shared/ThemeToggle';
 import { useTheme } from 'next-themes';
 import dynamic from 'next/dynamic';
@@ -488,7 +488,9 @@ export default function Header(props: HeaderProps) {
         }
 
         setMobileMenuOpen(false);
-        router.push(newPathname);
+        startTransition(() => {
+            router.push(newPathname);
+        });
     };
 
     // Normalize Pathname by removing language prefix for internal matching
@@ -556,7 +558,7 @@ export default function Header(props: HeaderProps) {
                         aria-label={logo_alt}
                         className={`transition-[colors,transform,opacity] shadow-md border border-theme-border opacity-100 hover:opacity-80 scale-100 hover:scale-110 cursor-pointer rounded-full overflow-hidden transform-gpu flex`}>
                         <Image
-                            src='/images/icons/icon-64x64.webp?v=4'
+                            src='/icon.svg?v=6'
                             alt={logo_alt}
                             title={logo_alt}
                             width={32}

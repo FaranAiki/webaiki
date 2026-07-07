@@ -7,7 +7,7 @@ import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema }
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','social']);
+  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','social']);
   const baseMetadata = getBaseMetadata();
 
   return {
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
 export default async function SocialPage({params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','social']);
+  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','social']);
   
 
   const breadcrumbSchema = getBreadcrumbSchema([

@@ -14,7 +14,7 @@ export function NotFoundLogo() {
     <div className="absolute inset-0 flex items-center justify-center">
        <div className="w-24 h-24 md:w-32 md:h-32 relative rounded-full overflow-hidden border-4 border-theme-500/50 shadow-2xl bg-theme-surface flex items-center justify-center p-4">
           <Image
-            src="/icon.ico"
+            src="/icon.svg"
             alt="404 Not Found Faran Aiki Portfolio"
             width={80}
             height={80}

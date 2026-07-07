@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 export default async function NewsDetailPage({params }: { params: Promise<{ lang: string, id: string }> }) {
   const { lang, id } = await params;
   const [dict, news] = await Promise.all([
-    getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','news']),
+    getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','news']),
     getNewsItem(id)
   ]);
 

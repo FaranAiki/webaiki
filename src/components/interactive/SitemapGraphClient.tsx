@@ -53,7 +53,8 @@ export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientPro
         // Auto-recenter if we already did initial center
         if (initialCenterDone.current && graphRef.current) {
           setTimeout(() => {
-            if (graphRef.current) graphRef.current.zoomToFit(400, 20);
+            const currentIsMobile = window.innerWidth < 768;
+            if (graphRef.current) graphRef.current.zoomToFit(currentIsMobile ? 0 : 400, 20);
           }, 50);
         }
       }
@@ -165,10 +166,11 @@ export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientPro
 
         <ForceGraph2D
           ref={graphRef as never}
-          cooldownTicks={isMobile ? 50 : 150}
+          warmupTicks={isMobile ? 100 : 0}
+          cooldownTicks={isMobile ? 0 : 150}
           onEngineStop={() => {
             if (!initialCenterDone.current && graphRef.current) {
-              graphRef.current.zoomToFit(400, 40);
+              graphRef.current.zoomToFit(isMobile ? 0 : 400, 40);
               initialCenterDone.current = true;
             }
           }}
@@ -195,8 +197,8 @@ export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientPro
             
             if (gNode.x !== undefined && gNode.y !== undefined && graphRef.current) {
               // Center on node and zoom in slightly
-              graphRef.current.centerAt(gNode.x, gNode.y, 1000);
-              graphRef.current.zoom(1.5, 2000);
+              graphRef.current.centerAt(gNode.x, gNode.y, isMobile ? 0 : 1000);
+              graphRef.current.zoom(1.5, isMobile ? 0 : 2000);
             }
           }}
           // onBackgroundClick={() => {

@@ -6,6 +6,21 @@ import Image from 'next/image';
 import { usePresentation } from '../providers/PresentationContext';
 import { m as motion, Variants } from 'framer-motion';
 
+const MaskIcon = ({ src, colorClass }: { src: string, colorClass: string }) => (
+  <div 
+    className={`w-12 h-12 ${colorClass}`} 
+    style={{ 
+      maskImage: `url(${src})`,
+      WebkitMaskImage: `url(${src})`,
+      maskSize: 'contain',
+      WebkitMaskSize: 'contain',
+      maskRepeat: 'no-repeat',
+      WebkitMaskRepeat: 'no-repeat',
+      maskPosition: 'center',
+      WebkitMaskPosition: 'center'
+    }} 
+  />
+);
 
 export interface SocialLink {
   name: string;
@@ -21,48 +36,25 @@ interface SocialDisplayProps {
   dict?: import('@/components/layout/Translator').TranslationDict;
 }
 
-// Professional animation variants
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.05,
-      delayChildren: 0.1
-    }
-  }
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
+    },
+  },
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20, scale: 0.95 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    scale: 1,
-    transition: { 
-      type: "spring",
-      damping: 20,
-      stiffness: 100,
-      duration: 0.4
-    }
-  }
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { type: "spring", stiffness: 100, damping: 15 },
+  },
 };
-
-const MaskIcon = ({ src, colorClass }: { src: string, colorClass: string }) => (
-  <div 
-    className={`w-[48px] h-[48px] ${colorClass} transition-colors duration-300`} 
-    style={{ 
-      WebkitMaskImage: `url('${src}')`, 
-      WebkitMaskSize: 'contain', 
-      WebkitMaskRepeat: 'no-repeat', 
-      WebkitMaskPosition: 'center',
-      maskImage: `url('${src}')`,
-      maskSize: 'contain',
-      maskRepeat: 'no-repeat',
-      maskPosition: 'center'
-    }} 
-  />
-);
 
 export const defaultSocialLinks: SocialLink[] = [
     {
@@ -111,7 +103,7 @@ export const defaultSocialLinks: SocialLink[] = [
       name: "TikTok",
       username: "@faranaiki07",
       url: "https://www.tiktok.com/@faranaiki07",
-      icon: <Image alt="TikTok Faran Aiki Social Link" width="48" height="48" src="/images/social/tiktok.webp" className="dark:brightness-0 dark:invert" />,
+      icon: <Image alt="TikTok Faran Aiki Social Link" width={48} height={48} src="/images/social/tiktok.webp" className="dark:brightness-0 dark:invert" />,
       color: "hover:border-black"
     },
     {
@@ -132,7 +124,7 @@ export const defaultSocialLinks: SocialLink[] = [
       name: "Lichess",
       username: "FaranAiki",
       url: "https://lichess.org/@/FaranAiki",
-      icon: <Image alt="Lichess Faran Aiki Social Link" width="48" height="48" src="/images/social/lichess.webp" className="dark:brightness-0 dark:invert" />,
+      icon: <Image alt="Lichess Faran Aiki Social Link" width={48} height={48} src="/images/social/lichess.webp" className="dark:brightness-0 dark:invert" />,
       color: "hover:border-white"
     },
     {
@@ -179,8 +171,9 @@ export const defaultSocialLinks: SocialLink[] = [
     },
   ];
 
-export default function SocialDisplay({ customLinks, hidePresentation = false }: SocialDisplayProps) {
+export default function SocialDisplay({ customLinks, hidePresentation = false, dict }: SocialDisplayProps) {
   const { isPresentationMode } = usePresentation();
+  
   
   // Static/CSS-variable based styles to prevent flicker
   const containerClass = "text-foreground";

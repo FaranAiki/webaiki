@@ -95,13 +95,13 @@ export default function Background({ carousel, showOverlay = true }: BackgroundP
   }
 
   return (
-    <div className={`presentation-background sticky top-0 left-0 w-full h-screen -mb-[100vh] z-[-1] pointer-events-none transform-gpu contain-strict overflow-hidden bg-theme-bg dark:bg-theme-bg-dark transition-colors duration-1000`}>
+    <div className={`presentation-background sticky top-0 left-0 w-full h-screen -mb-[100vh] z-[-1] pointer-events-none transform-gpu contain-strict overflow-hidden bg-transparent transition-colors duration-1000`}>
       <div className={`w-full h-full absolute inset-0 transform-gpu`} style={{ backfaceVisibility: 'hidden' }}>
         <AnimatePresence mode="wait" initial={false}>
             <motion.div
                 key={currentIndex}
-                initial={{ opacity: currentIndex === 0 ? 0.8 : 0 }}
-                animate={{ opacity: 0.8 }}
+                initial={{ opacity: currentIndex === 0 ? 0 : 0 }}
+                animate={{ opacity: currentIndex === 0 ? 0 : 0.8 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.4, ease: "easeInOut" }}
                 className={`blur-[4px] absolute inset-0 w-full h-full scale-105 transform-gpu will-change-[opacity]` }
