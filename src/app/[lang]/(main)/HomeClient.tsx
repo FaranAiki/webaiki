@@ -43,11 +43,10 @@ const DynamicHero = React.memo(({ dict, isReady, isLgScreen, isMdScreen, parts }
       <div className="relative flex-1 z-1 text-center lg:text-left xs:pt-12 md:pt-6 lg:pt-0">
           <motion.h2
             className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tighter"
-            variants={containerVariants}
-            initial={false}
-            animate={isReady ? "visible" : "hidden"}
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
           >
-            <motion.span variants={partVariants} className="inline-block whitespace-pre-wrap nav-active-gacor">{parts[0]}</motion.span>
+            <motion.span initial={{ opacity: 1, y: 0 }} className="inline-block whitespace-pre-wrap nav-active-gacor">{parts[0]}</motion.span>
             <span className="inline-flex relative align-middle overflow-visible">
               <span className="invisible select-none pointer-events-none whitespace-nowrap nav-active-gacor">
                 {cyclingData[wordIndex].word.trim()}
@@ -65,7 +64,7 @@ const DynamicHero = React.memo(({ dict, isReady, isLgScreen, isMdScreen, parts }
                 </motion.span>
               </AnimatePresence>
             </span>
-            <motion.span variants={partVariants} className="inline-block whitespace-pre-wrap nav-active-gacor">{parts[1]}</motion.span>
+            <motion.span initial={{ opacity: 1, y: 0 }} className="inline-block whitespace-pre-wrap nav-active-gacor">{parts[1]}</motion.span>
           </motion.h2>
       </div>
       <div className="hidden md:flex flex-shrink-0 relative md:w-64 md:h-64 items-center justify-center">

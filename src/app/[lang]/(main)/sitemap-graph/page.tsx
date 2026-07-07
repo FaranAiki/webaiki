@@ -2,7 +2,7 @@ import { getDictionary } from '@/components/layout/Translator';
 import dynamic from 'next/dynamic';
 
 const SitemapGraphClient = dynamic(() => import('@/components/interactive/SitemapGraphClient'), {
-  loading: () => <div className="w-full h-full min-h-[400px] flex items-center justify-center text-theme-300">Loading graph...</div>,
+  loading: () => <div className="w-full min-h-[600px] md:h-[600px] flex items-center justify-center text-theme-300 animate-pulse bg-theme-surface">Loading interactive graph...</div>,
 });
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
@@ -25,7 +25,7 @@ export default async function SitemapGraphPage({
 
   return (
     <main className="min-h-screen w-full flex flex-col items-center justify-center p-4 md:p-8 bg-theme-base pt-24 overflow-hidden relative">
-      <div className="w-full max-w-6xl h-auto md:h-[600px] flex flex-col md:flex-row border border-theme-border rounded-2xl overflow-hidden bg-theme-surface shadow-2xl relative z-10">
+      <div className="w-full max-w-6xl min-h-[600px] md:h-[600px] flex flex-col md:flex-row border border-theme-border rounded-2xl overflow-hidden bg-theme-surface shadow-2xl relative z-10">
         <SitemapGraphClient dict={dict as import('@/components/layout/Translator').TranslationDict} lang={lang} />
       </div>
     </main>

@@ -131,7 +131,7 @@ export default function ExperiencesClient({
                 {isPresentationMode ? (
                     <ExperiencePresentationLayout />
                 ) : (
-                    <FadeInSection>
+                    <FadeInSection initialVisible={true}>
                         <div className="container mx-auto max-w-6xl">
                             {currentLayout === 'original' && <ExperienceOriginalLayout />}
                             {currentLayout === 'timeline' && (timelineLayout || <ExperienceTimelineLayout />)}

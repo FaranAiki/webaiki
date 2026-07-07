@@ -100,8 +100,8 @@ export default function Background({ carousel, showOverlay = true }: BackgroundP
         <AnimatePresence mode="wait" initial={false}>
             <motion.div
                 key={currentIndex}
-                initial={{ opacity: currentIndex === 0 ? 0 : 0 }}
-                animate={{ opacity: currentIndex === 0 ? 0 : 0.8 }}
+                initial={{ opacity: currentIndex === 0 ? 0.8 : 0 }}
+                animate={{ opacity: 0.8 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.4, ease: "easeInOut" }}
                 className={`blur-[4px] absolute inset-0 w-full h-full scale-105 transform-gpu will-change-[opacity]` }

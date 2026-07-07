@@ -10,7 +10,8 @@ const SmoothScroll = dynamic(() => import("./SmoothScroll"), { ssr: false });
 
 import { usePathname, useSearchParams } from "next/navigation";
 import { useAppStore } from "@/lib/store";
-import { LazyMotion, domAnimation } from "framer-motion";
+import { LazyMotion } from "framer-motion";
+const loadFeatures = () => import("framer-motion").then(res => res.domAnimation);
 import UserBookmarkProvider from "./UserBookmarkProvider";
 
 if (typeof window !== "undefined") {
@@ -65,7 +66,7 @@ export function Providers({ children, nonce, isBot: _isBot }: { children: React.
           <QueryProvider>
             <SmoothScroll>
               <ThemeProvider attribute="class" defaultTheme="system" enableSystem nonce={nonce}>
-                <LazyMotion features={domAnimation}>
+                <LazyMotion features={loadFeatures}>
                   <Suspense fallback={null}>
                     <GlobalLoadingReset />
                     <UserBookmarkProvider />

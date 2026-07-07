@@ -1,3 +1,4 @@
+export const dynamic = 'error';
 import type { Metadata } from "next";
 import { getDictionary } from '@/components/layout/Translator';
 import { getLanguageAlternates, getBaseMetadata, SITE_URL, getPersonSchema, getWebsiteSchema, getProfilePageSchema } from '@/lib/seo';
