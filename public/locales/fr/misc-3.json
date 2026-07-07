@@ -36,8 +36,6 @@
   "Or_Continue_With": "Ou Continuer Avec",
   "Loading": "Chargement...",
   "Drop_Here": "Lepaskan file di sini",
-  "Nav_Other": "Autre",
-  "Sitemap_Graph": "Graphique du plan du site",
   "View_Full_Profile": "Voir le profil complet",
   "Posts_By": "Publications de",
   "Subscribe": "S'abonner",
@@ -85,6 +83,5 @@
     "Open the global settings menu."
   ],
   "Joined": "Joined",
-  "Public_Feedbacks": "Public Feedbacks",
-  "Academic_Transcript": "Relevé de Notes"
+  "Public_Feedbacks": "Public Feedbacks"
 }

@@ -16,16 +16,10 @@ const SettingsPopup = dynamic(() => import('@/components/providers/SettingsPopup
 const CommandPalette = dynamic(() => import('@/components/interactive/CommandPalette').then(mod => mod.CommandPalette), { ssr: false });
 
 import {
-  Monitor,
-  MonitorPlay,
-  Share2,
-  Check,
-  LogIn,
-  LogOut,
-  User,
-  ChevronDown,
-  Handshake,
-  Briefcase
+  Monitor, MonitorPlay, Share2, Check, LogIn, LogOut, User, ChevronDown, Handshake, Briefcase,
+  Home, FileCheck, Users, Trophy, Palette, Music, BookOpen, GraduationCap, Compass, Code, 
+  Star, LayoutGrid, Fingerprint, Globe, MessageSquare, Newspaper, MoreHorizontal, Network, 
+  History, FileText
 } from 'lucide-react';
 
 import { usePresentation } from '@/components/providers/PresentationContext';
@@ -33,11 +27,42 @@ import { formatCJK, getThemeLogoFilter } from '@/lib/utils';
 import { useAppStore } from '@/lib/store';
 import { useAuthActions } from '@/app/auth-hooks';
 
+export function renderIcon(name?: string, size: number = 18) {
+  if (!name) return null;
+  switch (name) {
+    case 'home': return <Home size={size} />;
+    case 'user': return <User size={size} />;
+    case 'compass': return <Compass size={size} />;
+    case 'palette': return <Palette size={size} />;
+    case 'more': return <MoreHorizontal size={size} />;
+    case 'fingerprint': return <Fingerprint size={size} />;
+    case 'globe': return <Globe size={size} />;
+    case 'message': return <MessageSquare size={size} />;
+    case 'star': return <Star size={size} />;
+    case 'grid': return <LayoutGrid size={size} />;
+    case 'share': return <Share2 size={size} />;
+    case 'check': return <FileCheck size={size} />;
+    case 'news': return <Newspaper size={size} />;
+    case 'briefcase': return <Briefcase size={size} />;
+    case 'code': return <Code size={size} />;
+    case 'users': return <Users size={size} />;
+    case 'trophy': return <Trophy size={size} />;
+    case 'handshake': return <Handshake size={size} />;
+    case 'music': return <Music size={size} />;
+    case 'book': return <BookOpen size={size} />;
+    case 'cap': return <GraduationCap size={size} />;
+    case 'file': return <FileText size={size} />;
+    case 'history': return <History size={size} />;
+    case 'network': return <Network size={size} />;
+    default: return null;
+  }
+}
+
 export interface NavLink {
     name: string;
     href: string;
     subLinks?: NavLink[];
-    icon?: React.ReactNode;
+    iconName?: string;
 }
 
 interface HeaderProps {
@@ -241,14 +266,14 @@ export default function Header(props: HeaderProps) {
                     homeLink.subLinks.push({
                         name: hire_me_label,
                         href: '/hire-me',
-                        icon: <Handshake size={16} />
+                        iconName: 'handshake'
                     });
                 }
                 if (email === 'faran.aiki.business@gmail.com' && homeLink.subLinks) {
                     homeLink.subLinks.push({
                         name: business_requests_label,
                         href: '/business-requests',
-                        icon: <Briefcase size={16} />
+                        iconName: 'briefcase'
                     });
                 }
             }
@@ -607,7 +632,7 @@ export default function Header(props: HeaderProps) {
                             </span>
                         ) : activeLink && (
                             <span className={`flex items-center justify-center transition-[colors,transform] duration-200 text-lg font-black nav-active-gacor whitespace-nowrap cursor-pointer opacity-95`}>
-                                {activeLink.icon && <span className="mr-2 flex items-center scale-90">{activeLink.icon}</span>}
+                                {activeLink.iconName && <span className="mr-2 flex items-center scale-90">{renderIcon(activeLink.iconName)}</span>}
                                 {formatCJK(activeLink.name, current_lang)}
                             </span>
                         )}
@@ -644,7 +669,7 @@ export default function Header(props: HeaderProps) {
                                                         : `${textColor} font-medium hover-gacor group-hover:text-theme-600`
                                                     }`}
                                             >
-                                                {link.icon && <span className="mr-2 hidden lg:inline-block opacity-80 group-hover:opacity-100">{link.icon}</span>}
+                                                {link.iconName && <span className="mr-2 hidden lg:inline-block opacity-80 group-hover:opacity-100">{renderIcon(link.iconName)}</span>}
                                                 {formatCJK(link.name, current_lang)}
                                                 <ChevronDown />
                                             </button>
@@ -664,7 +689,7 @@ export default function Header(props: HeaderProps) {
                                                                             : `${textColor} hover-gacor font-medium`
                                                                         }`}
                                                                 >
-                                                                    {subLink.icon && <span className="mr-3 opacity-70 group-hover:opacity-100 hidden lg:inline-block scale-90">{subLink.icon}</span>}
+                                                                    {subLink.iconName && <span className="mr-3 opacity-70 group-hover:opacity-100 hidden lg:inline-block scale-90">{renderIcon(subLink.iconName)}</span>}
                                                                     {formatCJK(subLink.name, current_lang)}
                                                                 </Link>
                                                             </li>
@@ -690,7 +715,7 @@ export default function Header(props: HeaderProps) {
                                                     : `${textColor} font-medium hover-gacor`
                                                 }`}
                                         >
-                                            {link.icon && <span className="mr-2 hidden lg:inline-block opacity-80 group-hover:opacity-100">{link.icon}</span>}
+                                            {link.iconName && <span className="mr-2 hidden lg:inline-block opacity-80 group-hover:opacity-100">{renderIcon(link.iconName)}</span>}
                                             {formatCJK(link.name, current_lang)}
                                         </Link>
                                     </li>
@@ -922,7 +947,7 @@ export default function Header(props: HeaderProps) {
                                                         }}
                                                         className={`flex items-center text-sm font-bold text-theme-muted mb-4 text-left w-full`}
                                                     >
-                                                        {link.icon && <span className="mr-2 inline-block flex-shrink-0 opacity-70">{link.icon}</span>}
+                                                        {link.iconName && <span className="mr-2 inline-block flex-shrink-0 opacity-70">{renderIcon(link.iconName)}</span>}
                                                         {formatCJK(link.name, current_lang)}
                                                     </button>
                                                     <ul className="flex flex-col space-y-4 pl-4 border-l-2 border-theme-border">
@@ -939,7 +964,7 @@ export default function Header(props: HeaderProps) {
                                                                                 : `${textColor} font-medium hover:text-theme-600 hover:translate-x-1`
                                                                             }`}
                                                                     >
-                                                                        {subLink.icon && <span className="mr-3 scale-90 inline-block flex-shrink-0 opacity-70">{subLink.icon}</span>}
+                                                                        {subLink.iconName && <span className="mr-3 scale-90 inline-block flex-shrink-0 opacity-70">{renderIcon(subLink.iconName)}</span>}
                                                                         {formatCJK(subLink.name, current_lang)}
                                                                     </Link>
                                                                 </li>
@@ -962,7 +987,7 @@ export default function Header(props: HeaderProps) {
                                                             : `${textColor} font-semibold hover:text-theme-600`
                                                         }`}
                                                 >
-                                                    {link.icon && <span className="mr-3 inline-block flex-shrink-0 opacity-80">{link.icon}</span>}
+                                                    {link.iconName && <span className="mr-3 inline-block flex-shrink-0 opacity-80">{renderIcon(link.iconName)}</span>}
                                                     {formatCJK(link.name, current_lang)}
                                                 </Link>
                                             </li>

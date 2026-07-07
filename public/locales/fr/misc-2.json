@@ -6,7 +6,6 @@
     "Documentation of the academic journey, course materials, and study notes of Muhammad Faran Aiki at STI STEI-K ITB."
   ],
   "Original": "Original",
-  "Timeline": "Chronologie",
   "Grid": "Grille",
   "Bento": "Bento",
   "Smooth": "Lisible",
@@ -46,8 +45,6 @@
   "Filter_Top": "Top uniquement",
   "Top": "Top",
   "User": "Utilisateur",
-  "Identity": "Identité",
-  "Website": "Site Web",
   "Website_Summary": "Informations sur les technologies, les performances et l'objectif de ce site.",
   "What_Do_You_Want_To_Base": "Que voulez-vous {word}",
   "Word_See": "Voir",
@@ -59,7 +56,6 @@
   "Search_Placeholder": "Recherche ....",
   "Faq": "FAQ",
   "Other": "Autre",
-  "Hire_Me": "Recrutez-moi",
   "Hire_Me_Description": [
     "Collaborer avec ou recruter Muhammad Faran Aiki pour votre projet."
   ],
@@ -102,8 +98,6 @@
   "Update_Profile": "Mettre à jour",
   "Profile_Updated": "Profil mis à jour !",
   "Profile_Update_Error": "Échec de la mise à jour.",
-  "Feedback": "Commentaires",
-  "News": "Actualités",
   "Send": "Envoyer",
   "Rating": "Note",
   "Latest_News": "Dernières nouvelles"

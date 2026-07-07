@@ -6,7 +6,6 @@
     "Documentation of the academic journey, course materials, and study notes of Muhammad Faran Aiki at STI STEI-K ITB."
   ],
   "Original": "原创",
-  "Timeline": "时间线",
   "Grid": "网格",
   "Bento": "便当",
   "Smooth": "流畅",
@@ -46,8 +45,6 @@
   "Filter_Top": "仅精选",
   "Top": "顶部",
   "User": "用户",
-  "Identity": "身份",
-  "Website": "网站",
   "Website_Summary": "关于本网站的技术、性能和目的的信息。",
   "What_Do_You_Want_To_Base": "你想{word}什么",
   "Word_See": "看",
@@ -59,7 +56,6 @@
   "Search_Placeholder": "搜索中 ....",
   "Faq": "FAQ",
   "Other": "其他",
-  "Hire_Me": "雇佣我",
   "Hire_Me_Description": [
     "为您的项目与 Muhammad Faran Aiki 合作或雇佣他。"
   ],
@@ -102,8 +98,6 @@
   "Update_Profile": "更新资料",
   "Profile_Updated": "资料更新成功！",
   "Profile_Update_Error": "更新资料失败。",
-  "Feedback": "反馈",
-  "News": "新闻",
   "Send": "发送",
   "Rating": "评分",
   "Latest_News": "最新新闻"

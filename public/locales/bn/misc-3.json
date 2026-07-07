@@ -36,8 +36,6 @@
   "Or_Continue_With": "অথবা চালিয়ে যান",
   "Loading": "লোড হচ্ছে...",
   "Drop_Here": "Lepaskan file di sini",
-  "Nav_Other": "অন্যান্য",
-  "Sitemap_Graph": "সাইটম্যাপ গ্রাফ",
   "View_Full_Profile": "সম্পূর্ণ প্রোফাইল দেখুন",
   "Posts_By": "পোস্ট করেছেন",
   "Subscribe": "সাবস্ক্রাইব করুন",
@@ -85,6 +83,5 @@
     "Open the global settings menu."
   ],
   "Joined": "Joined",
-  "Public_Feedbacks": "Public Feedbacks",
-  "Academic_Transcript": "একাডেমিক ট্রান্সক্রিপ্ট"
+  "Public_Feedbacks": "Public Feedbacks"
 }

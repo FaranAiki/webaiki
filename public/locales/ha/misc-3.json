@@ -36,8 +36,6 @@
   "Or_Continue_With": "Ko Ci Gaba Da",
   "Loading": "Ana lodawa...",
   "Drop_Here": "Lepaskan file di sini",
-  "Nav_Other": "Sauran",
-  "Sitemap_Graph": "Tsarin Taswirar Yanar Gizo",
   "View_Full_Profile": "Duba Cikakken Furofayil",
   "Posts_By": "Rubuce-rubucen",
   "Subscribe": "Yi Subscribe",
@@ -85,6 +83,5 @@
     "Open the global settings menu."
   ],
   "Joined": "Joined",
-  "Public_Feedbacks": "Public Feedbacks",
-  "Academic_Transcript": "Takardar Shaidar Karatu"
+  "Public_Feedbacks": "Public Feedbacks"
 }

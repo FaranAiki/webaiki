@@ -6,7 +6,6 @@
     "Τεκμηρίωση της ακαδημαϊκής πορείας του Muhammad Faran Aiki."
   ],
   "Original": "Πρωτότυπο",
-  "Timeline": "Χρονολόγιο",
   "Grid": "Πλέγμα",
   "Bento": "Bento",
   "Smooth": "Ομαλό",
@@ -46,8 +45,6 @@
   "Filter_Top": "Μόνο κορυφαία",
   "Top": "Κορυφαία",
   "User": "Χρήστης",
-  "Identity": "Ταυτότητα",
-  "Website": "Ιστότοπος",
   "Website_Summary": "Πληροφορίες σχετικά με τις τεχνολογίες, την απόδοση και τον σκοπό αυτού του ιστότοπου.",
   "What_Do_You_Want_To_Base": "Τι θέλετε να {word}",
   "Word_See": "Δείτε",
@@ -59,7 +56,6 @@
   "Search_Placeholder": "Αναζήτηση ....",
   "Faq": "FAQ",
   "Other": "Άλλο",
-  "Hire_Me": "Προσλάβετε με",
   "Hire_Me_Description": [
     "Collaborate with or hire Muhammad Faran Aiki for your project."
   ],
@@ -102,8 +98,6 @@
   "Update_Profile": "Ενημέρωση προφίλ",
   "Profile_Updated": "Το προφίλ ενημερώθηκε!",
   "Profile_Update_Error": "Αποτυχία ενημέρωσης.",
-  "Feedback": "Σχόλια",
-  "News": "Νέα",
   "Send": "Αποστολή",
   "Rating": "Βαθμολογία",
   "Latest_News": "Τελευταία νέα"

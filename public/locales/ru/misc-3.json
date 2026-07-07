@@ -36,8 +36,6 @@
   "Or_Continue_With": "Или продолжить с",
   "Loading": "Загрузка...",
   "Drop_Here": "Lepaskan file di sini",
-  "Nav_Other": "Другое",
-  "Sitemap_Graph": "Граф карты сайта",
   "View_Full_Profile": "Смотреть полный профиль",
   "Posts_By": "Публикации",
   "Subscribe": "Подписаться",
@@ -85,6 +83,5 @@
     "Open the global settings menu."
   ],
   "Joined": "Joined",
-  "Public_Feedbacks": "Public Feedbacks",
-  "Academic_Transcript": "Академическая Справка"
+  "Public_Feedbacks": "Public Feedbacks"
 }

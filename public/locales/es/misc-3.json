@@ -36,8 +36,6 @@
   "Or_Continue_With": "O Continuar Con",
   "Loading": "Cargando...",
   "Drop_Here": "Lepaskan file di sini",
-  "Nav_Other": "Otro",
-  "Sitemap_Graph": "Gráfico del mapa del sitio",
   "View_Full_Profile": "Ver perfil completo",
   "Posts_By": "Publicaciones de",
   "Subscribe": "Suscribirse",
@@ -85,6 +83,5 @@
     "Open the global settings menu."
   ],
   "Joined": "Joined",
-  "Public_Feedbacks": "Public Feedbacks",
-  "Academic_Transcript": "Expediente Académico"
+  "Public_Feedbacks": "Public Feedbacks"
 }

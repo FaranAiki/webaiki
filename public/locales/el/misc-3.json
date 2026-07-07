@@ -36,8 +36,6 @@
   "Or_Continue_With": "Ή Συνεχίστε Με",
   "Loading": "Φόρτωση...",
   "Drop_Here": "Lepaskan file di sini",
-  "Nav_Other": "Άλλο",
-  "Sitemap_Graph": "Γράφημα χάρτη ιστότοπου",
   "View_Full_Profile": "Προβολή Πλήρους Προφίλ",
   "Posts_By": "Αναρτήσεις από",
   "Subscribe": "Εγγραφή",
@@ -85,6 +83,5 @@
     "Open the global settings menu."
   ],
   "Joined": "Joined",
-  "Public_Feedbacks": "Public Feedbacks",
-  "Academic_Transcript": "Ακαδημαϊκό Δελτίο"
+  "Public_Feedbacks": "Public Feedbacks"
 }

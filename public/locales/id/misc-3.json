@@ -1,7 +1,5 @@
 {
   "Uploading": "Mengunggah...",
-  "Feedback": "Umpan Balik",
-  "News": "Berita",
   "Send": "Kirim",
   "Rating": "Rating",
   "Latest_News": "Berita Terbaru",
@@ -36,8 +34,6 @@
   "Algorithms": "Algoritma & Struktur Data",
   "Or_Continue_With": "Atau Lanjutkan Dengan",
   "Loading": "Memuat...",
-  "Nav_Other": "Lainnya",
-  "Sitemap_Graph": "Grafik Peta Situs",
   "View_Full_Profile": "Lihat Profil Lengkap",
   "Posts_By": "Postingan oleh",
   "Subscribe": "Berlangganan",
@@ -77,6 +73,5 @@
   "Name": "Nama",
   "Message": "Pesan",
   "Success_Message": "Pesan berhasil dikirim!",
-  "Error_Message": "Gagal mengirim pesan.",
-  "Academic_Transcript": "Transkrip Akademik"
+  "Error_Message": "Gagal mengirim pesan."
 }

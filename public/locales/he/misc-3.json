@@ -36,8 +36,6 @@
   "Or_Continue_With": "או המשך עם",
   "Loading": "טוען...",
   "Drop_Here": "Lepaskan file di sini",
-  "Nav_Other": "אחר",
-  "Sitemap_Graph": "תרשים מפת אתר",
   "View_Full_Profile": "צפה בפרופיל המלא",
   "Posts_By": "פוסטים מאת",
   "Subscribe": "הירשם",
@@ -85,6 +83,5 @@
     "Open the global settings menu."
   ],
   "Joined": "Joined",
-  "Public_Feedbacks": "Public Feedbacks",
-  "Academic_Transcript": "גיליון ציונים אקדמי"
+  "Public_Feedbacks": "Public Feedbacks"
 }

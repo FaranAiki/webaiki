@@ -48,7 +48,7 @@ export default async function RootLayout({
 }>) {
   // Use the url parameter directly and load dictionary asynchronously
   const { lang } = await params;
-  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website']);
+  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website', 'navbar']);
 
 
   // Navigation Links with Icons
@@ -56,60 +56,60 @@ export default async function RootLayout({
     {
       name: dict.Home,
       href: '#',
-      icon: <Home size={18} />,
+      iconName: 'home',
       subLinks: [
-        { name: dict.Home, href: '/', icon: <Home size={16} /> },
-        { name: dict.Identity || 'Identity', href: '/identity', icon: <Fingerprint size={16} /> },
-        { name: dict.Website || 'Website', href: '/website', icon: <Globe size={16} /> },
-        { name: dict.Feedback || 'Feedback', href: '/feedback', icon: <MessageSquare size={16} /> },
+        { name: dict.Home, href: '/', iconName: 'home' },
+        { name: dict.Identity || 'Identity', href: '/identity', iconName: 'fingerprint' },
+        { name: dict.Website || 'Website', href: '/website', iconName: 'globe' },
+        { name: dict.Feedback || 'Feedback', href: '/feedback', iconName: 'message' },
       ]
     },
 
     {
       name: dict.Profile,
       href: '#',
-      icon: <User size={18} />,
+      iconName: 'user',
       subLinks: [
-        { name: dict.Portfolio || 'Portfolio', href: '/portfolio', icon: <Star size={16} /> },
-        { name: dict.All || 'All', href: '/all', icon: <LayoutGrid size={16} /> },
-        { name: dict.Social, href: '/social', icon: <Share2 size={16} /> },
-        { name: dict.Certificate, href:'/certificate', icon: <FileCheck size={16} /> },
-        { name: dict.News || 'News', href: '/news', icon: <Newspaper size={16} /> },
+        { name: dict.Portfolio || 'Portfolio', href: '/portfolio', iconName: 'star' },
+        { name: dict.All || 'All', href: '/all', iconName: 'grid' },
+        { name: dict.Social, href: '/social', iconName: 'share' },
+        { name: dict.Certificate, href:'/certificate', iconName: 'check' },
+        { name: dict.News || 'News', href: '/news', iconName: 'news' },
       ]
     },
 
     {
       name: dict.Experience,
       href: '#',
-      icon: <Compass size={18} />,
+      iconName: 'compass',
       subLinks: [
-        { name: dict.Work, href: '/work', icon: <Briefcase size={16} /> },
-        { name: dict.Project, href: '/project', icon: <Code size={16} /> },
-        { name: dict.Organization, href: '/organization', icon: <Users size={16} /> },
-        { name: dict.Award, href: '/award', icon: <Trophy size={16} /> },
-        { name: dict.Hire_Me, href: '/hire-me', icon: <Handshake size={16} /> },
+        { name: dict.Work, href: '/work', iconName: 'briefcase' },
+        { name: dict.Project, href: '/project', iconName: 'code' },
+        { name: dict.Organization, href: '/organization', iconName: 'users' },
+        { name: dict.Award, href: '/award', iconName: 'trophy' },
+        { name: dict.Hire_Me, href: '/hire-me', iconName: 'handshake' },
       ]
     },
 
     {
       name: dict.Artwork,
       href: '#',
-      icon: <Palette size={18} />,
+      iconName: 'palette',
       subLinks: [
-        { name: dict.Music, href: '/music', icon: <Music size={16} /> },
-        { name: dict.Literature, href:'/literature', icon: <BookOpen size={16} /> },
+        { name: dict.Music, href: '/music', iconName: 'music' },
+        { name: dict.Literature, href:'/literature', iconName: 'book' },
       ]
     },
 
     {
       name: dict.Nav_Other || 'Other',
       href: '#',
-      icon: <MoreHorizontal size={18} />,
+      iconName: 'more',
       subLinks: [
-        { name: dict.College, href: '/college', icon: <GraduationCap size={16} /> },
-        { name: dict.Academic_Transcript || 'Academic Transcript', href: '/academic-transcript', icon: <FileText size={16} /> },
-        { name: dict.Timeline || 'Timeline', href: '/timeline', icon: <History size={16} /> },
-        { name: dict.Sitemap_Graph || 'Sitemap Graph', href: '/sitemap-graph', icon: <Network size={16} /> }
+        { name: dict.College, href: '/college', iconName: 'cap' },
+        { name: dict.Academic_Transcript || 'Academic Transcript', href: '/academic-transcript', iconName: 'file' },
+        { name: dict.Timeline || 'Timeline', href: '/timeline', iconName: 'history' },
+        { name: dict.Sitemap_Graph || 'Sitemap Graph', href: '/sitemap-graph', iconName: 'network' }
       ]
     },
   ];

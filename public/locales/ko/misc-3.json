@@ -36,8 +36,6 @@
   "Or_Continue_With": "또는 다음으로 계속",
   "Loading": "로딩 중...",
   "Drop_Here": "Lepaskan file di sini",
-  "Nav_Other": "기타",
-  "Sitemap_Graph": "사이트맵 그래프",
   "View_Full_Profile": "전체 프로필 보기",
   "Posts_By": "게시물 작성자",
   "Subscribe": "구독",
@@ -85,6 +83,5 @@
     "Open the global settings menu."
   ],
   "Joined": "Joined",
-  "Public_Feedbacks": "Public Feedbacks",
-  "Academic_Transcript": "성적 증명서"
+  "Public_Feedbacks": "Public Feedbacks"
 }

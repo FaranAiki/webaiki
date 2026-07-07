@@ -36,8 +36,6 @@
   "Or_Continue_With": "أو الاستمرار مع",
   "Loading": "جاري التحميل...",
   "Drop_Here": "Lepaskan file di sini",
-  "Nav_Other": "أخرى",
-  "Sitemap_Graph": "رسم بياني لخريطة الموقع",
   "View_Full_Profile": "عرض الصفحة الشخصية الكاملة",
   "Posts_By": "منشورات بواسطة",
   "Subscribe": "اشترك",
@@ -85,6 +83,5 @@
     "Open the global settings menu."
   ],
   "Joined": "Joined",
-  "Public_Feedbacks": "Public Feedbacks",
-  "Academic_Transcript": "السجل الأكاديمي"
+  "Public_Feedbacks": "Public Feedbacks"
 }

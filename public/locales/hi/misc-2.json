@@ -6,7 +6,6 @@
     "Documentation of the academic journey, course materials, and study notes of Muhammad Faran Aiki at STI STEI-K ITB."
   ],
   "Original": "मूल",
-  "Timeline": "समयरेखा",
   "Grid": "ग्रिड",
   "Bento": "Bento",
   "Smooth": "Smooth",
@@ -46,8 +45,6 @@
   "Filter_Top": "केवल शीर्ष",
   "Top": "Top",
   "User": "उपयोगकर्ता",
-  "Identity": "पहचान",
-  "Website": "वेबसाइट",
   "Website_Summary": "Information about the technologies, performance, and purpose of this site.",
   "What_Do_You_Want_To_Base": "What do you want to {word}",
   "Word_See": "देखें",
@@ -59,7 +56,6 @@
   "Search_Placeholder": "खोज रहे हैं ....",
   "Faq": "FAQ",
   "Other": "अन्य",
-  "Hire_Me": "मुझे काम पर रखें",
   "Hire_Me_Description": [
     "अपने प्रोजेक्ट के लिए मुहम्मद फरान आयकी के साथ सहयोग करें या उन्हें नियुक्त करें।"
   ],
@@ -102,8 +98,6 @@
   "Update_Profile": "प्रोफ़ाइल अपडेट करें",
   "Profile_Updated": "प्रोफ़ाइल अपडेट सफल!",
   "Profile_Update_Error": "अपडेट विफल।",
-  "Feedback": "प्रतिक्रिया",
-  "News": "समाचार",
   "Send": "भेजें",
   "Rating": "रेटिंग",
   "Latest_News": "नवीनतम समाचार"

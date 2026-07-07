@@ -36,8 +36,6 @@
   "Or_Continue_With": "Of Ga Door Met",
   "Loading": "Laden...",
   "Drop_Here": "Lepaskan file di sini",
-  "Nav_Other": "Ander",
-  "Sitemap_Graph": "Sitemap-grafiek",
   "View_Full_Profile": "Bekijk volledig profiel",
   "Posts_By": "Berichten van",
   "Subscribe": "Abonneren",
@@ -85,6 +83,5 @@
     "Open the global settings menu."
   ],
   "Joined": "Joined",
-  "Public_Feedbacks": "Public Feedbacks",
-  "Academic_Transcript": "Academisch Transcript"
+  "Public_Feedbacks": "Public Feedbacks"
 }

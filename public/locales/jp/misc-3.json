@@ -36,8 +36,6 @@
   "Or_Continue_With": "または次で続行",
   "Loading": "読み込み中...",
   "Drop_Here": "Lepaskan file di sini",
-  "Nav_Other": "その他",
-  "Sitemap_Graph": "サイトマップグラフ",
   "View_Full_Profile": "完全なプロフィールを見る",
   "Posts_By": "の投稿",
   "Subscribe": "登録",
@@ -85,6 +83,5 @@
     "Open the global settings menu."
   ],
   "Joined": "Joined",
-  "Public_Feedbacks": "Public Feedbacks",
-  "Academic_Transcript": "成績証明書"
+  "Public_Feedbacks": "Public Feedbacks"
 }

@@ -44,8 +44,6 @@
   "Algorithms": "Algorithms & Data Structures",
   "Or_Continue_With": "Or Continue With",
   "Drop_Here": "Lepaskan file di sini",
-  "Nav_Other": "Other",
-  "Sitemap_Graph": "Sitemap Graph",
   "View_Full_Profile": "View Full Profile",
   "Posts_By": "Posts by",
   "Subscribe": "Subscribe",
@@ -76,6 +74,5 @@
   "Searching": "Searching...",
   "Offline_Title": "You are offline",
   "Offline_Description": "No internet found. Please check your Wi-Fi and internet.",
-  "Offline_Retry": "Retry",
-  "Academic_Transcript": "Academic Transcript"
+  "Offline_Retry": "Retry"
 }

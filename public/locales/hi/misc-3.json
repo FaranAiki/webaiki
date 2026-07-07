@@ -36,8 +36,6 @@
   "Or_Continue_With": "या इसके साथ जारी रखें",
   "Loading": "लोड हो रहा है...",
   "Drop_Here": "Lepaskan file di sini",
-  "Nav_Other": "अन्य",
-  "Sitemap_Graph": "साइटमैप ग्राफ़",
   "View_Full_Profile": "पूरी प्रोफ़ाइल देखें",
   "Posts_By": "की पोस्ट",
   "Subscribe": "सब्सक्राइब करें",
@@ -85,6 +83,5 @@
     "Open the global settings menu."
   ],
   "Joined": "Joined",
-  "Public_Feedbacks": "Public Feedbacks",
-  "Academic_Transcript": "शैक्षणिक ट्रांसक्रिप्ट"
+  "Public_Feedbacks": "Public Feedbacks"
 }

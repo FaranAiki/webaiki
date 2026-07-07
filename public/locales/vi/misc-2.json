@@ -6,7 +6,6 @@
     "Documentation of the academic journey, course materials, and study notes of Muhammad Faran Aiki at STI STEI-K ITB."
   ],
   "Original": "Gốc",
-  "Timeline": "Dòng thời gian",
   "Grid": "Lưới",
   "Bento": "Bento",
   "Smooth": "Smooth",
@@ -46,8 +45,6 @@
   "Filter_Top": "Chỉ nổi bật",
   "Top": "Top",
   "User": "Người dùng",
-  "Identity": "Danh tính",
-  "Website": "Trang web",
   "Website_Summary": "Information about the technologies, performance, and purpose of this site.",
   "What_Do_You_Want_To_Base": "What do you want to {word}",
   "Word_See": "Xem",
@@ -59,7 +56,6 @@
   "Search_Placeholder": "Đang tìm kiếm ....",
   "Faq": "FAQ",
   "Other": "Khác",
-  "Hire_Me": "Tuyển dụng",
   "Hire_Me_Description": [
     "Hợp tác hoặc thuê Muhammad Faran Aiki cho dự án của bạn."
   ],
@@ -102,8 +98,6 @@
   "Update_Profile": "Cập nhật hồ sơ",
   "Profile_Updated": "Đã cập nhật hồ sơ!",
   "Profile_Update_Error": "Cập nhật thất bại.",
-  "Feedback": "Phản hồi",
-  "News": "Tin tức",
   "Send": "Gửi",
   "Rating": "Đánh giá",
   "Latest_News": "Tin mới nhất"

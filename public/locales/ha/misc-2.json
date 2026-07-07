@@ -6,7 +6,6 @@
     "Takardun tafiyar ilimi, kayan darasi, da bayanan karatu na Muhammad Faran Aiki."
   ],
   "Original": "Asali",
-  "Timeline": "Tsarin Lokaci",
   "Grid": "Tsarin Akwati",
   "Bento": "Bento",
   "Smooth": "Santsi",
@@ -46,8 +45,6 @@
   "Filter_Top": "Manyan Ayyuka",
   "Top": "Saman",
   "User": "Mai amfani",
-  "Identity": "Sani",
-  "Website": "Shafin Yanar Gizo",
   "Website_Summary": "Bayanai game da fasahohi, aiki, da manufar wannan rukunin yanar gizon.",
   "What_Do_You_Want_To_Base": "Me kake son {word}",
   "Word_See": "Gani",
@@ -59,7 +56,6 @@
   "Search_Placeholder": "Neman ....",
   "Faq": "FAQ",
   "Other": "Sauran",
-  "Hire_Me": "Dauke ni aiki",
   "Hire_Me_Description": [
     "Collaborate with or hire Muhammad Faran Aiki for your project."
   ],
@@ -102,8 +98,6 @@
   "Update_Profile": "Sake Sabunta Bayani",
   "Profile_Updated": "An sabunta bayani!",
   "Profile_Update_Error": "An gaza sabunta bayani.",
-  "Feedback": "Ra'ayoyi",
-  "News": "Labarai",
   "Send": "Aika",
   "Rating": "Kima",
   "Latest_News": "Labaran Baya-bayan nan"

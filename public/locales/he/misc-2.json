@@ -6,7 +6,6 @@
     "תיעוד המסע האקדמי, חומרי הקורס והערות הלימוד של מוחמד פארן אייקי ב-STI STEI-K ITB."
   ],
   "Original": "מקור",
-  "Timeline": "ציר זמן",
   "Grid": "רשת",
   "Bento": "בנטו",
   "Smooth": "חלק",
@@ -46,8 +45,6 @@
   "Filter_Top": "רק מובילים",
   "Top": "עליון",
   "User": "משתמש",
-  "Identity": "זהות",
-  "Website": "אתר",
   "Website_Summary": "מידע על הטכנולוגיות, הביצועים והמטרה של אתר זה.",
   "What_Do_You_Want_To_Base": "מה אתה רוצה {word}",
   "Word_See": "לראות",
@@ -59,7 +56,6 @@
   "Search_Placeholder": "חיפוש ....",
   "Faq": "FAQ",
   "Other": "אחר",
-  "Hire_Me": "גייס אותי",
   "Hire_Me_Description": [
     "Collaborate with or hire Muhammad Faran Aiki for your project."
   ],
@@ -102,8 +98,6 @@
   "Update_Profile": "עדכן פרופיל",
   "Profile_Updated": "הפרופיל עודכן בהצלחה!",
   "Profile_Update_Error": "עדכון הפרופיל נכשל.",
-  "Feedback": "משוב",
-  "News": "חדשות",
   "Send": "שלח",
   "Rating": "דירוג",
   "Latest_News": "חדשות אחרונות"

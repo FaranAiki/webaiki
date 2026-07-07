@@ -36,8 +36,6 @@
   "Or_Continue_With": "Hoặc Tiếp Tục Với",
   "Loading": "Đang tải...",
   "Drop_Here": "Lepaskan file di sini",
-  "Nav_Other": "Khác",
-  "Sitemap_Graph": "Biểu đồ sơ đồ trang web",
   "View_Full_Profile": "Xem hồ sơ đầy đủ",
   "Posts_By": "Bài viết của",
   "Subscribe": "Đăng ký",
@@ -85,6 +83,5 @@
     "Open the global settings menu."
   ],
   "Joined": "Joined",
-  "Public_Feedbacks": "Public Feedbacks",
-  "Academic_Transcript": "Bảng Điểm Học Tập"
+  "Public_Feedbacks": "Public Feedbacks"
 }
