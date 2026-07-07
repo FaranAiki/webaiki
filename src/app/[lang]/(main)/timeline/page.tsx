@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { createClient } from '@/utils/supabase/server';
-import { getBookmarks } from '@/app/bookmark-actions';
 
 import "../../../globals.css";
 import { Suspense } from "react";
@@ -50,11 +48,8 @@ function TimelineSkeleton() {
 }
 
 async function SuspendedTimelineContent({ lang, dict }: { lang: string, dict: Record<string, string> }) {
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  const isLoggedIn = !!user;
-  const bookmarks = isLoggedIn ? await getBookmarks(user.id) : [];
-  const experienceBookmarks = bookmarks.filter((b: { itemType: string, itemId: string }) => b.itemType === 'experience').map((b: { itemType: string, itemId: string }) => b.itemId);
+  const isLoggedIn = false;
+  const experienceBookmarks: string[] = [];
 
   const work = getWorkExperiences(dict);
   const edu = getEducationExperiences(dict);

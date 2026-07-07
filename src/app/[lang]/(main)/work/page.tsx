@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { createClient } from '@/utils/supabase/server';
-import { getBookmarks } from '@/app/bookmark-actions';
 
 import "../../../globals.css";
 import { getDictionary } from '@/components/layout/Translator';
@@ -36,11 +34,8 @@ export default async function WorkExperiencesPage({params }: { params: Promise<{
   const { lang } = await params;
   const dict = await getDictionary(lang);
 
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  const isLoggedIn = !!user;
-  const bookmarks = isLoggedIn ? await getBookmarks(user.id) : [];
-  const experienceBookmarks = bookmarks.filter(b => b.itemType === 'experience').map(b => b.itemId);
+  const isLoggedIn = false;
+  const experienceBookmarks: string[] = [];
 
 
   const workExperiences = getWorkExperiences(dict);

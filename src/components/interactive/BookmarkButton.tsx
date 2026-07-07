@@ -5,23 +5,27 @@ import { Star } from 'lucide-react';
 import { toggleBookmark } from '@/app/bookmark-actions';
 
 
+import { useAppStore } from '@/lib/store';
+
 const BookmarkButton = React.memo(function BookmarkButton({ 
   itemType, 
   itemId, 
-  initialBookmarked,
-  isLoggedIn,
   className
 }: { 
   itemType: string, 
   itemId: string, 
-  initialBookmarked: boolean,
-  isLoggedIn: boolean,
+  initialBookmarked?: boolean,
+  isLoggedIn?: boolean,
   className?: string
 }) {
-  const [isBookmarked, setIsBookmarked] = useState(initialBookmarked);
+  const isLoggedInState = useAppStore(state => state.isLoggedIn);
+  const globalBookmarks = useAppStore(state => state.bookmarks);
+  const setBookmarks = useAppStore(state => state.setBookmarks);
+  
+  const isBookmarked = globalBookmarks.some(b => b.itemType === itemType && b.itemId === itemId);
   const [loading, setLoading] = useState(false);
 
-  if (!isLoggedIn) return null;
+  if (!isLoggedInState) return null;
 
   const handleToggle = async (e: React.MouseEvent) => {
     e.preventDefault();
@@ -29,11 +33,16 @@ const BookmarkButton = React.memo(function BookmarkButton({
     if (loading) return;
     setLoading(true);
     
-    setIsBookmarked(!isBookmarked);
+    // Optimistic update
+    const newBookmarks = isBookmarked 
+      ? globalBookmarks.filter(b => !(b.itemType === itemType && b.itemId === itemId))
+      : [...globalBookmarks, { itemType, itemId }];
+    setBookmarks(newBookmarks);
     
     const result = await toggleBookmark(itemType, itemId);
     if (result?.error) {
-      setIsBookmarked(isBookmarked);
+      // Revert on error
+      setBookmarks(globalBookmarks);
     }
     setLoading(false);
   };

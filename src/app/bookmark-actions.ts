@@ -54,3 +54,19 @@ export async function getBookmarks(userId: string) {
     return [];
   }
 }
+
+export async function getMyBookmarks() {
+  try {
+    const supabase = await createClient();
+    const { data: { user }, error: authError } = await supabase.auth.getUser();
+
+    if (authError || !user) {
+      return [];
+    }
+
+    return await getBookmarks(user.id);
+  } catch (error) {
+    console.error('Error in getMyBookmarks:', error);
+    return [];
+  }
+}

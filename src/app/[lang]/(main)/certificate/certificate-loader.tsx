@@ -13,10 +13,7 @@ type CertificateData = {
 
 // Use dynamic import for the component that needs browser APIs
 const CertificatesDisplay = dynamic(
-  () => import('@/components/portfolio/CertificatesDisplay'),
-  { 
-    ssr: false, // ssr: false is allowed here
-  }
+  () => import('@/components/portfolio/CertificatesDisplay')
 );
 
 // This component receives the server-fetched data as props
@@ -28,7 +25,9 @@ export default function CertificateLoader({
   timeline_text,
   grid_text,
   bento_text,
-  click_to_close_text 
+  click_to_close_text,
+  isLoggedIn,
+  bookmarkedItemIds
 }: { 
   certificates: CertificateData, 
   allTranslation: string, 
@@ -37,7 +36,9 @@ export default function CertificateLoader({
   timeline_text?: string,
   grid_text?: string,
   bento_text?: string,
-  click_to_close_text?: string
+  click_to_close_text?: string,
+  isLoggedIn?: boolean,
+  bookmarkedItemIds?: string[]
 }) {
   return <CertificatesDisplay 
     certificates={certificates} 
@@ -48,5 +49,7 @@ export default function CertificateLoader({
     grid_text={grid_text}
     bento_text={bento_text}
     click_to_close_text={click_to_close_text}
+    isLoggedIn={isLoggedIn}
+    bookmarkedItemIds={bookmarkedItemIds}
   />;
 }

@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
 import "../../../globals.css";
 
-import CertificatesDisplay from '@/components/portfolio/CertificatesDisplay';
+import CertificateLoader from './certificate-loader';
 import { getDictionary } from '@/components/layout/Translator';
 import { getCertificatesData } from '@/lib/data';
 import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema } from '@/lib/seo';
-import { createClient } from '@/utils/supabase/server';
-import { getBookmarks } from '@/app/bookmark-actions';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -36,11 +34,8 @@ export default async function CertificatePage({params }: { params: Promise<{ lan
   
   const certificates_data = await getCertificatesData(lang);
 
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  const isLoggedIn = !!user;
-  const bookmarks = isLoggedIn ? await getBookmarks(user.id) : [];
-  const bookmarkedItemIds = bookmarks.filter(b => b.itemType === 'certificate').map(b => b.itemId);
+  const isLoggedIn = false;
+  const bookmarkedItemIds: string[] = [];
 
   const breadcrumbSchema = getBreadcrumbSchema([
     { name: dict.Home, item: `/${lang}` },
@@ -54,7 +49,7 @@ export default async function CertificatePage({params }: { params: Promise<{ lan
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <CertificatesDisplay 
+      <CertificateLoader 
         certificates={certificates_data} 
         lang={lang} 
         allTranslation={dict.All} 

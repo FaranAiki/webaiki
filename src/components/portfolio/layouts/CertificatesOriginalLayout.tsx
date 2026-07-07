@@ -53,7 +53,7 @@ export default function CertificatesOriginalLayout() {
         return (
           <div key={category} className={`border-b ${borderColor} pb-4`}>
             {/* Category Title FadeIn */}
-            <FadeInSection delay={50} initialVisible={isFirstCategory}>
+            <FadeInSection delay={50} initialVisible={true}>
                 <h2 className="w-full">
                   <button
                   onClick={() => handleCategoryClick(category)}
@@ -70,7 +70,7 @@ export default function CertificatesOriginalLayout() {
             }`}
             >
             {/* Year Selection FadeIn */}
-            <FadeInSection delay={50} initialVisible={isFirstCategory}>
+            <FadeInSection delay={50} initialVisible={true}>
                 <div className="flex flex-wrap gap-2 mb-6">
                     <button
                     onClick={() => handleYearClick(category, 'All')}

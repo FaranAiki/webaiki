@@ -32,8 +32,6 @@ import {
 } from '@/lib/data';
 
 import { Briefcase, Code, Users, Trophy, FileCheck, Star } from 'lucide-react';
-import { createClient } from '@/utils/supabase/server';
-import { getBookmarks } from '@/app/bookmark-actions';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -77,13 +75,10 @@ async function SuspendedAllContent({ lang, dict }: { lang: string, dict: Record<
   const collegeData = await getCollectionsData(lang, 'college');
   const literatureData = await getCollectionsData(lang, 'literature');
 
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  const isLoggedIn = !!user;
-  const bookmarks = isLoggedIn ? await getBookmarks(user.id) : [];
-  const certificateBookmarks = bookmarks.filter((b: { itemType: string, itemId: string }) => b.itemType === 'certificate').map((b: { itemType: string, itemId: string }) => b.itemId);
-  const experienceBookmarks = bookmarks.filter((b: { itemType: string, itemId: string }) => b.itemType === 'experience').map((b: { itemType: string, itemId: string }) => b.itemId);
-  const collectionBookmarks = bookmarks.filter((b: { itemType: string, itemId: string }) => b.itemType === 'collection').map((b: { itemType: string, itemId: string }) => b.itemId);
+  const isLoggedIn = false;
+  const experienceBookmarks: string[] = [];
+  const certificateBookmarks: string[] = [];
+  const collectionBookmarks: string[] = [];
   
   // Filtering function for Experience structure (Point >= 80)
   const filterImportantExp = (exps: Experience[]): Experience[] => {

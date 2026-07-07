@@ -11,6 +11,7 @@ import LoadingOverlay from "../layout/LoadingOverlay";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useAppStore } from "@/lib/store";
 import { LazyMotion, domAnimation } from "framer-motion";
+import UserBookmarkProvider from "./UserBookmarkProvider";
 
 if (typeof window !== "undefined") {
   const originalError = console.error;
@@ -67,6 +68,7 @@ export function Providers({ children, nonce, isBot }: { children: React.ReactNod
                 <LazyMotion features={domAnimation}>
                   <Suspense fallback={null}>
                     <GlobalLoadingReset />
+                    <UserBookmarkProvider />
                   </Suspense>
                   <LoadingOverlay label={loadingLabel} isBot={isBot} />
                   {children}

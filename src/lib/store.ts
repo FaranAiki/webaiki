@@ -31,6 +31,12 @@ interface AppState {
   setIsFullDescription: (full: boolean) => void;
   portfolioFilter: 'all' | 'top' | string;
   setPortfolioFilter: (filter: 'all' | 'top' | string) => void;
+  
+  // User & Auth State
+  isLoggedIn: boolean;
+  setIsLoggedIn: (isLoggedIn: boolean) => void;
+  bookmarks: { itemType: string; itemId: string }[];
+  setBookmarks: (bookmarks: { itemType: string; itemId: string }[]) => void;
 }
 
 export const useAppStore = create<AppState>((set) => ({
@@ -64,4 +70,10 @@ export const useAppStore = create<AppState>((set) => ({
   setIsFullDescription: (isFullDescription) => set({ isFullDescription }),
   portfolioFilter: 'top',
   setPortfolioFilter: (portfolioFilter) => set({ portfolioFilter }),
+
+  // User & Auth Default State
+  isLoggedIn: false,
+  setIsLoggedIn: (isLoggedIn) => set({ isLoggedIn }),
+  bookmarks: [],
+  setBookmarks: (bookmarks) => set({ bookmarks }),
 }));
