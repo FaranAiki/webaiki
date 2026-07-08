@@ -92,5 +92,8 @@
   "Image": "छवि",
   "Upload_Photo": "फोटो अपलोड करें",
   "Title": "शीर्षक",
-  "Image_Optional": "छवि (वैकल्पिक)"
+  "Image_Optional": "छवि (वैकल्पिक)",
+  "Hover_To_Preview": "पूर्वावलोकन के लिए होवर करें",
+  "Hover_An_Experience": "विवरण देखने के लिए किसी अनुभव पर होवर करें",
+  "Visit_Project": "प्रोजेक्ट देखें"
 }

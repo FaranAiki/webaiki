@@ -11,7 +11,7 @@ export const revalidate = 3600;
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar']);
+  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','news']);
   const baseMetadata = getBaseMetadata(dict);
 
   const title = `Muhammad Faran Aiki (Faran) | ${dict.Software_Engineer || 'Software Engineer'} & ${dict.College || 'ITB Student'}`;
@@ -40,7 +40,7 @@ export default async function HomePage({
   params: Promise<{ lang: string }> 
 }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar']);
+  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','news']);
   
 
   let combinedActivity: NewsItem[] = [];

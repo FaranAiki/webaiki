@@ -92,5 +92,8 @@
   "Image": "Imagem",
   "Upload_Photo": "Enviar foto",
   "Title": "Título",
-  "Image_Optional": "Imagem (Opcional)"
+  "Image_Optional": "Imagem (Opcional)",
+  "Hover_To_Preview": "Passe o mouse para visualizar",
+  "Hover_An_Experience": "Passe o mouse sobre uma experiência para ver os detalhes",
+  "Visit_Project": "Visitar Projeto"
 }

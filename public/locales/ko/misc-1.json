@@ -92,5 +92,8 @@
   "Image": "이미지",
   "Upload_Photo": "사진 업로드",
   "Title": "제목",
-  "Image_Optional": "이미지 (선택 사항)"
+  "Image_Optional": "이미지 (선택 사항)",
+  "Hover_To_Preview": "미리 보려면 마우스를 올리세요",
+  "Hover_An_Experience": "자세히 보려면 경험 위에 마우스를 올리세요",
+  "Visit_Project": "프로젝트 방문"
 }

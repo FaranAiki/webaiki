@@ -92,5 +92,8 @@
   "Image": "Bild",
   "Upload_Photo": "Foto hochladen",
   "Title": "Titel",
-  "Image_Optional": "Bild (optional)"
+  "Image_Optional": "Bild (optional)",
+  "Hover_To_Preview": "Zum Vorschauen schweben",
+  "Hover_An_Experience": "Über eine Erfahrung schweben, um Details zu sehen",
+  "Visit_Project": "Projekt ansehen"
 }

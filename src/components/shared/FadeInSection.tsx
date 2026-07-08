@@ -39,7 +39,7 @@ export default function FadeInSection({
   };
 
   // CSS will handle skipping animations on mobile to ensure SSR works.
-  
+
   return (
     <motion.div
       initial={initialVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -60,7 +60,7 @@ export default function FadeInSection({
                     e.stopPropagation();
                     cycleSlideNumberFormat();
                 }}
-                className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-white dark:bg-theme-bg shadow-lg dark:shadow-none border border-black/10 dark:border-white/10 hover:scale-105 transition-all duration-300 cursor-pointer group"
+                className="flex items-center gap-1.5 px-4 py-2 rounded-full shadow-lg dark:shadow-none border border-black/10 dark:border-white/10 hover:scale-105 transition-all duration-300 cursor-pointer group"
               >
                 <span className="text-black dark:text-white font-black tabular-nums tracking-tighter group-hover:text-theme-500 transition-colors">
                   {formatNumber(slideIndex, totalSlides)}

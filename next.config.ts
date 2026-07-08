@@ -43,10 +43,6 @@ const nextConfig: NextConfig = {
   // Turbopack configuration to resolve root directory issues
   turbopack: {
     root: path.resolve('.'),
-    resolveAlias: {
-      canvas: './empty-module.js',
-      encoding: './empty-module.js',
-    },
   },
 
   // Set output to standalone for optimized production builds
@@ -70,7 +66,6 @@ const nextConfig: NextConfig = {
   },
   
   // Vercel OOM Fixes: Limit workers to prevent memory spikes during static generation
-  serverExternalPackages: ['pdfjs-dist'],
   experimental: {
     optimizePackageImports: [
       'lucide-react',
@@ -88,18 +83,6 @@ const nextConfig: NextConfig = {
       config: WebpackConfiguration,
       { dev, isServer }: { dev: boolean; isServer: boolean }
     ) => {
-      // Fix for pdfjs-dist canvas dependency
-      if (!config.resolve) {
-        config.resolve = {};
-      }
-      if (!config.resolve.alias) {
-        config.resolve.alias = {};
-      }
-      Object.assign(config.resolve.alias, {
-        canvas: false,
-        encoding: false,
-      });
-
       // Optimization: Remove comments from the minified output in production
       if (!dev && !isServer && config.optimization?.minimizer) {
         const minimizer = config.optimization.minimizer[0];
@@ -184,16 +167,6 @@ async headers() {
           value: 'public, max-age=31536000, immutable',
         },
       ],
-    },
-    {
-      // Optimization: Cache PDF worker script heavily
-      source: '/pdf.worker.min.mjs',
-      headers: [
-        {
-          key: 'Cache-Control',
-          value: 'public, max-age=31536000, immutable',
-        },
-      ],
     }
   ];
 },
@@ -202,7 +175,7 @@ async headers() {
   // Optimization: Support modern image formats
   formats: ['image/avif', 'image/webp'],
   // Add allowed qualities array for Next 16+
-  qualities: [25, 35, 50, 60, 75, 80, 85, 90, 100],
+  qualities: [25, 35, 50, 60, 70, 75, 80, 85, 90, 100],
   // Add intermediate sizes to prevent rounding up from 400px -> 640px
   imageSizes: [16, 32, 48, 64, 96, 128, 256, 300, 350, 384],
   deviceSizes: [400, 450, 500, 550, 640, 750, 828, 1080, 1200, 1920, 2048, 3840],

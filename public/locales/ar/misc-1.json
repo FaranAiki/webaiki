@@ -92,5 +92,8 @@
   "Image": "صورة",
   "Upload_Photo": "تحميل صورة",
   "Title": "العنوان",
-  "Image_Optional": "صورة (اختياري)"
+  "Image_Optional": "صورة (اختياري)",
+  "Hover_To_Preview": "مرر للتمهيد",
+  "Hover_An_Experience": "مرر على تجربة لرؤية التفاصيل",
+  "Visit_Project": "زيارة المشروع"
 }

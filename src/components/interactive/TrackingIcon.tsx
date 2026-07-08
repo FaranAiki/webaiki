@@ -35,7 +35,7 @@ export default function TrackingIcon({ type }: TrackerProps) {
     // Defer initial measurement to allow layout to settle
     updateRect();
     window.addEventListener('resize', updateRect);
-    
+
     // Debounce scroll to avoid layout thrashing
     let scrollTimeout: NodeJS.Timeout;
     const onScroll = () => {
@@ -90,7 +90,6 @@ export default function TrackingIcon({ type }: TrackerProps) {
       case 'do':
         return (
             <div className="relative w-24 h-24 md:w-40 md:h-40 flex items-center justify-center">
-                <HandMetal size={80} strokeWidth={1} className="opacity-20 md:w-32 md:h-32" />
                 <motion.div style={{ x: trackX, y: trackY }} className="absolute inset-0 flex items-center justify-center pointer-events-none text-theme-500">
                     <HandMetal size={64} strokeWidth={2} className="md:w-24 md:h-24 shadow-theme-shadow" />
                 </motion.div>
@@ -99,7 +98,6 @@ export default function TrackingIcon({ type }: TrackerProps) {
       case 'know':
         return (
             <div className="relative w-24 h-24 md:w-40 md:h-40 flex items-center justify-center">
-                <Lightbulb size={80} strokeWidth={1} className="opacity-20 md:w-32 md:h-32" />
                 <motion.div style={{ x: trackX, y: trackY }} className="absolute inset-0 flex items-center justify-center pointer-events-none text-theme-500">
                     <div className="relative">
                         <Lightbulb size={64} strokeWidth={2} className="md:w-24 md:h-24" />
@@ -111,7 +109,6 @@ export default function TrackingIcon({ type }: TrackerProps) {
       case 'search':
         return (
             <div className="relative w-24 h-24 md:w-40 md:h-40 flex items-center justify-center">
-                <Search size={80} strokeWidth={1} className="opacity-20 md:w-32 md:h-32" />
                 <motion.div style={{ x: trackX, y: trackY }} className="absolute inset-0 flex items-center justify-center pointer-events-none text-theme-500">
                     <Search size={64} strokeWidth={2} className="md:w-24 md:h-24" />
                 </motion.div>

@@ -11,7 +11,7 @@ import { redirect } from 'next/navigation';
 
 import dynamic from 'next/dynamic';
 
-const ExperiencesClient = dynamic(() => import('@/components/portfolio/ExperienceDisplayer'));
+const ExperiencesClient = dynamic(() => import('@/components/portfolio/ExperienceServerDisplayer'));
 const CertificatesDisplay = dynamic(() => import('@/components/portfolio/CertificatesDisplay'));
 const InteractiveCollections = dynamic(() => import('@/components/portfolio/InteractiveCollections'));
 const FAQ = dynamic(() => import('@/components/portfolio/FAQ'));
@@ -239,6 +239,9 @@ export default async function BookmarksPage({params }: { params: Promise<{ lang:
                 cinematic_text={dict.Presentation_Cinematic}
                 editorial_text={dict.Presentation_Editorial}
             visit_external_link_text={dict.Visit_External_Link}
+            hover_to_preview_text={dict.Hover_To_Preview}
+            hover_an_experience_text={dict.Hover_An_Experience}
+            visit_project_text={dict.Visit_Project}
                 isLoggedIn={isLoggedIn}
                 bookmarkedItemIds={experienceBookmarks}
               />
@@ -265,6 +268,9 @@ export default async function BookmarksPage({params }: { params: Promise<{ lang:
                 cinematic_text={dict.Presentation_Cinematic}
                 editorial_text={dict.Presentation_Editorial}
             visit_external_link_text={dict.Visit_External_Link}
+            hover_to_preview_text={dict.Hover_To_Preview}
+            hover_an_experience_text={dict.Hover_An_Experience}
+            visit_project_text={dict.Visit_Project}
                 isLoggedIn={isLoggedIn}
                 bookmarkedItemIds={experienceBookmarks}
               />
@@ -293,6 +299,9 @@ export default async function BookmarksPage({params }: { params: Promise<{ lang:
                       cinematic_text={dict.Presentation_Cinematic}
                       editorial_text={dict.Presentation_Editorial}
             visit_external_link_text={dict.Visit_External_Link}
+            hover_to_preview_text={dict.Hover_To_Preview}
+            hover_an_experience_text={dict.Hover_An_Experience}
+            visit_project_text={dict.Visit_Project}
                       isLoggedIn={isLoggedIn}
                       bookmarkedItemIds={experienceBookmarks}
                     />
@@ -319,6 +328,9 @@ export default async function BookmarksPage({params }: { params: Promise<{ lang:
                       cinematic_text={dict.Presentation_Cinematic}
                       editorial_text={dict.Presentation_Editorial}
             visit_external_link_text={dict.Visit_External_Link}
+            hover_to_preview_text={dict.Hover_To_Preview}
+            hover_an_experience_text={dict.Hover_An_Experience}
+            visit_project_text={dict.Visit_Project}
                       isLoggedIn={isLoggedIn}
                       bookmarkedItemIds={experienceBookmarks}
                     />

@@ -8,8 +8,8 @@ import { Job, Experience, LayoutType, PresentationLayoutType } from './Experienc
 interface ExperienceContextType {
     experiences: Experience[];
     paginatedExperiences: Experience[];
-    activeJob: Job;
-    setActiveJob: (job: Job) => void;
+    activeJob: Job | null;
+    setActiveJob: (job: Job | null) => void;
     currentLayout: LayoutType;
     setCurrentLayout: (layout: LayoutType) => void;
     presentationLayout: PresentationLayoutType;
@@ -52,7 +52,7 @@ export function ExperienceProvider({
 }) {
     const [currentLayout, setCurrentLayout] = useState<LayoutType>(layout);
     const [presentationLayout, setPresentationLayout] = useState<PresentationLayoutType>('modern');
-    const [activeJob, setActiveJob] = useState<Job>(experiences[0]?.jobs[0]);
+    const [activeJob, setActiveJob] = useState<Job | null>(null);
     const { resolvedTheme } = useTheme();
     const { textAlign } = useSettings();
     const [mounted, setMounted] = useState(false);

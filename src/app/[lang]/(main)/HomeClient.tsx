@@ -7,7 +7,7 @@ import FadeInSection from "@/components/shared/FadeInSection";
 
 const TrackingIcon = dynamic(() => import("../../../components/interactive/TrackingIcon"), { ssr: false });
 // SearchBar removed from here
-import { m as motion, AnimatePresence, Variants } from 'framer-motion';
+import { m as motion, AnimatePresence } from 'framer-motion';
 import { useAppStore } from '@/lib/store';
 
 const DynamicHero = React.memo(({ dict, isReady, isLgScreen, isMdScreen, parts }: { dict: import('@/components/layout/Translator').TranslationDict, isReady: boolean, isLgScreen: boolean, isMdScreen: boolean, parts: string[] }) => {

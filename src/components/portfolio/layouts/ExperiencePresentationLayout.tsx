@@ -12,9 +12,9 @@ import { useExperienceContext } from '../ExperienceContext';
 import { TagBadge, PdfRenderer, PlaceholderIcon } from './ExperienceShared';
 
 export default function ExperiencePresentationLayout() {
-    const { 
-        paginatedExperiences, 
-        bookmarkedItemIds, 
+    const {
+        paginatedExperiences,
+        bookmarkedItemIds,
         isLoggedIn,
         lang,
         descText,
@@ -23,9 +23,9 @@ export default function ExperiencePresentationLayout() {
         setPresentationLayout,
         translations
     } = useExperienceContext();
-    
+
     const allJobs = useMemo(() => paginatedExperiences.flatMap(e => e.jobs), [paginatedExperiences]);
-    
+
     const dateStyle = { fontVariantNumeric: 'tabular-nums' };
 
     const containerRef = React.useRef<HTMLDivElement>(null);
@@ -68,8 +68,8 @@ export default function ExperiencePresentationLayout() {
                             title={l.label}
                             className={`p-2 rounded-lg transition-all duration-200 ${
                                 presentationLayout === l.id
-                                    ? 'bg-theme-500 text-white shadow-md scale-105'
-                                    : 'text-theme-muted hover:text-theme-500 hover:bg-theme-surface-strong'
+                                    ? 'shadow-md scale-105'
+                                    : 'text-theme-muted hover:text-theme-500'
                             }`}
                         >
                             {l.icon}
@@ -82,7 +82,7 @@ export default function ExperiencePresentationLayout() {
             {allJobs.map((job, idx) => (
                 <FadeInSection
                     key={`pres-${idx}`}
-                    className="w-full min-w-full h-full flex-shrink-0 snap-center flex flex-col justify-center bg-theme-bg text-foreground"
+                    className="w-full min-w-full h-full flex-shrink-0 snap-center flex flex-col justify-center text-foreground"
                     slideIndex={idx + 1}
                     totalSlides={allJobs.length}
                 >
@@ -112,10 +112,10 @@ export default function ExperiencePresentationLayout() {
                                 </div>
 
                                 {job.url && (
-                                    <a href={job.url} target="_blank" rel="noopener noreferrer" aria-label={`${translations?.visit_external_link_text} ${job.title}`} className="flex items-center gap-2 px-6 py-3 bg-theme-500 text-white rounded-full font-bold text-sm hover:bg-theme-600 transition-all w-fit shadow-lg hover:scale-105">
-                                        <ExternalLink size={18} />
-                                        Visit Project
-                                    </a>
+                                        <a href={job.url} target="_blank" rel="noopener noreferrer" aria-label={`${translations?.visit_external_link_text} ${job.title}`} className="flex items-center gap-2 px-6 py-3 bg-theme-500 text-white rounded-full font-bold text-sm hover:bg-theme-600 transition-all w-fit shadow-lg hover:scale-105 print:hidden">
+                                            <ExternalLink size={18} />
+                                            {translations?.visit_project_text || "Visit Project"}
+                                        </a>
                                 )}
                             </div>
 
@@ -168,9 +168,9 @@ export default function ExperiencePresentationLayout() {
                                         </div>
 
                                         {job.url && (
-                                            <a href={job.url} target="_blank" rel="noopener noreferrer" aria-label={`${translations?.visit_external_link_text} ${job.title}`} className="mt-4 flex items-center gap-2 px-6 py-3 bg-theme-500 text-white rounded-full font-bold text-sm hover:bg-theme-600 transition-all w-fit shadow-theme-shadow">
+                                            <a href={job.url} target="_blank" rel="noopener noreferrer" className="mt-4 flex items-center gap-2 px-6 py-3 bg-theme-500 text-white rounded-full font-bold text-sm hover:bg-theme-600 transition-all w-fit shadow-theme-shadow print:hidden">
                                                 <ExternalLink size={18} />
-                                                Visit Project
+                                                {translations?.visit_project_text || "Visit Project"}
                                             </a>
                                         )}
                                     </div>
@@ -233,9 +233,9 @@ export default function ExperiencePresentationLayout() {
                                         </div>
 
                                         {job.url && (
-                                            <a href={job.url} target="_blank" rel="noopener noreferrer" aria-label={`${translations?.visit_external_link_text} ${job.title}`} className="mt-8 flex items-center gap-2 px-6 py-3 bg-theme-500 text-white rounded-full font-bold text-sm hover:bg-theme-600 transition-all w-fit shadow-theme-shadow hover:scale-105">
+                                            <a href={job.url} target="_blank" rel="noopener noreferrer" aria-label={`${translations?.visit_external_link_text} ${job.title}`} className="mt-8 flex items-center gap-2 px-6 py-3 bg-theme-500 text-white rounded-full font-bold text-sm hover:bg-theme-600 transition-all w-fit shadow-theme-shadow hover:scale-105 print:hidden">
                                                 <ExternalLink size={20} />
-                                                Explore Now
+                                                {translations?.visit_project_text || "Visit Project"}
                                             </a>
                                         )}
                                     </div>

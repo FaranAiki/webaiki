@@ -3,11 +3,12 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import Image from 'next/image';
 
-import { Briefcase, ExternalLink } from 'lucide-react';
+import { Briefcase, ExternalLink, MousePointer2 } from 'lucide-react';
 import { m as motion, AnimatePresence } from 'framer-motion';
 import BookmarkButton from '@/components/interactive/BookmarkButton';
 import { formatCJK } from '@/lib/utils';
 import { Job } from '../ExperienceDisplayer';
+import { useExperienceContext } from '../ExperienceContext';
 
 export const TagBadge = ({ labels }: { labels?: string[] }) => {
     if (!labels || labels.length === 0) return null;
@@ -40,7 +41,8 @@ export const PlaceholderIcon = ({ company }: { company: string }) => (
 export const PdfRenderer = ({ url: _url, isExpanded: _isExpanded, priority: _priority = false }: { url: string, isExpanded?: boolean, priority?: boolean }) => null;
 
 
-export const TimelineActiveImage = React.memo(({ activeJob, shimmer600x400 }: { activeJob: Job, shimmer600x400: string }) => {
+export const TimelineActiveImage = React.memo(({ activeJob, shimmer600x400 }: { activeJob: Job | null, shimmer600x400: string }) => {
+    const { translations } = useExperienceContext();
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     useEffect(() => {
@@ -67,14 +69,19 @@ export const TimelineActiveImage = React.memo(({ activeJob, shimmer600x400 }: { 
     return (
         <AnimatePresence mode="wait">
             <motion.div
-                key={activeImageSrc || activeJob.company}
+                key={activeJob ? (activeImageSrc || activeJob.company) : 'empty'}
                 initial={{ opacity: 0, scale: 1.05 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.5, ease: "easeInOut" }}
                 className="w-full h-full relative"
             >
-                {hasValidImage ? (
+                {!activeJob ? (
+                    <div className="w-full h-full flex flex-col items-center justify-center gap-4 bg-theme-surface border border-theme-border/50 rounded-lg">
+                        <MousePointer2 className="w-8 h-8 text-theme-muted/50 animate-bounce" />
+                        <span className="text-theme-muted font-bold tracking-widest text-md">{translations?.hover_to_preview_text || "Hover to preview"}</span>
+                    </div>
+                ) : hasValidImage ? (
                     <Image
                         fill
                         sizes="(max-width: 768px) 100vw, 600px"
@@ -110,6 +117,7 @@ export interface BentoCardProps {
 }
 
 export const BentoCard = React.memo(({ job, spanClass, cardBorder, inactiveCardBg, isDark, lang, justifyClass, click_to_close_text, priority, isLoggedIn, bookmarkedItemIds = [] }: BentoCardProps) => {
+    const { translations } = useExperienceContext();
     const [isExpanded, setIsExpanded] = useState(false);
     const hasImage = job.image && job.image.length > 0;
     const itemId = `exp-${((job.title || "").toLowerCase()).replace(/\s+/g, '-')}`;
@@ -231,10 +239,10 @@ export const BentoCard = React.memo(({ job, spanClass, cardBorder, inactiveCardB
                                         e.stopPropagation();
                                         window.open(job.url, '_blank', 'noopener,noreferrer');
                                     }}
-                                    className="mt-6 flex items-center gap-2 px-4 py-2 bg-theme-500 text-white rounded-full font-bold text-xs hover:bg-theme-600 transition-colors w-fit"
+                                    className="mt-6 flex items-center gap-2 px-4 py-2 bg-theme-500 text-white rounded-full font-bold text-xs hover:bg-theme-600 transition-colors w-fit print:hidden"
                                 >
                                     <ExternalLink size={14} />
-                                    Visit Project
+                                    {translations?.visit_project_text || "Visit Project"}
                                 </button>
                             )}
                         </div>

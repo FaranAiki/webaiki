@@ -92,5 +92,8 @@
   "Image": "Hình ảnh",
   "Upload_Photo": "Tải ảnh lên",
   "Title": "Tiêu đề",
-  "Image_Optional": "Hình ảnh (Tùy chọn)"
+  "Image_Optional": "Hình ảnh (Tùy chọn)",
+  "Hover_To_Preview": "Di chuột để xem trước",
+  "Hover_An_Experience": "Di chuột qua kinh nghiệm để xem chi tiết",
+  "Visit_Project": "Xem Dự án"
 }

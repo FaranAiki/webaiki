@@ -19,12 +19,18 @@ import dynamic from 'next/dynamic';
 
 
 import ExperienceOriginalLayout from './layouts/ExperienceOriginalLayout';
-import ExperienceBentoLayout from './layouts/ExperienceBentoLayout';
 
-const ExperienceTimelineLayout = dynamic(() => import('./layouts/ExperienceTimelineLayout'));
-const ExperienceGridLayout = dynamic(() => import('./layouts/ExperienceGridLayout'));
-const ExperienceSmoothLayout = dynamic(() => import('./layouts/ExperienceSmoothLayout'));
-const ExperiencePresentationLayout = dynamic(() => import('./layouts/ExperiencePresentationLayout'));
+const LoadingSpinner = () => (
+    <div className="w-full flex justify-center items-center py-24 min-h-[50vh]">
+        <div className="w-12 h-12 border-4 border-theme-500/20 border-t-theme-500 rounded-full animate-spin"></div>
+    </div>
+);
+
+const ExperienceBentoLayout = dynamic(() => import('./layouts/ExperienceBentoLayout'), { loading: () => <LoadingSpinner /> });
+const ExperienceTimelineLayout = dynamic(() => import('./layouts/ExperienceTimelineLayout'), { loading: () => <LoadingSpinner /> });
+const ExperienceGridLayout = dynamic(() => import('./layouts/ExperienceGridLayout'), { loading: () => <LoadingSpinner /> });
+const ExperienceSmoothLayout = dynamic(() => import('./layouts/ExperienceSmoothLayout'), { loading: () => <LoadingSpinner /> });
+const ExperiencePresentationLayout = dynamic(() => import('./layouts/ExperiencePresentationLayout'), { loading: () => <LoadingSpinner /> });
 
 export type Job = {
     date: string;
@@ -65,6 +71,10 @@ interface ExperiencesClientProps {
     isLoggedIn?: boolean;
     bookmarkedItemIds?: string[];
     timelineLayout?: React.ReactNode;
+    serverOriginalLayout?: React.ReactNode;
+    hover_to_preview_text?: string;
+    hover_an_experience_text?: string;
+    visit_project_text?: string;
 }
 
 export default function ExperiencesClient({
@@ -84,7 +94,11 @@ export default function ExperiencesClient({
     visit_external_link_text = 'Visit external link for',
     isLoggedIn = false,
     bookmarkedItemIds = [],
-    timelineLayout
+    timelineLayout,
+    serverOriginalLayout,
+    hover_to_preview_text = 'Hover to preview',
+    hover_an_experience_text = 'Hover an experience to see details',
+    visit_project_text = 'Visit Project'
 }: ExperiencesClientProps) {
     const [currentLayout, setCurrentLayout] = useState<LayoutType>(layout);
     const { isPresentationMode } = usePresentation();
@@ -107,7 +121,10 @@ export default function ExperiencesClient({
         modern_text,
         cinematic_text,
         editorial_text,
-        visit_external_link_text
+        visit_external_link_text,
+        hover_to_preview_text,
+        hover_an_experience_text,
+        visit_project_text
     };
 
     return (
@@ -134,7 +151,7 @@ export default function ExperiencesClient({
                 ) : (
                     <FadeInSection initialVisible={true}>
                         <div className="container mx-auto max-w-6xl">
-                            {currentLayout === 'original' && <ExperienceOriginalLayout />}
+                            {currentLayout === 'original' && (serverOriginalLayout || <ExperienceOriginalLayout />)}
                             {currentLayout === 'timeline' && (timelineLayout || <ExperienceTimelineLayout />)}
                             {currentLayout === 'grid' && <ExperienceGridLayout />}
                             {currentLayout === 'bento' && <ExperienceBentoLayout />}

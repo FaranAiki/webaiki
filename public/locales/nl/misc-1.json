@@ -92,5 +92,8 @@
   "Image": "Afbeelding",
   "Upload_Photo": "Foto uploaden",
   "Title": "Titel",
-  "Image_Optional": "Afbeelding (optioneel)"
+  "Image_Optional": "Afbeelding (optioneel)",
+  "Hover_To_Preview": "Zweef om te bekijken",
+  "Hover_An_Experience": "Zweef over een ervaring om details te zien",
+  "Visit_Project": "Bezoek Project"
 }

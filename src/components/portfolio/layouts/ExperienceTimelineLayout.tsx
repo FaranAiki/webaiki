@@ -57,7 +57,7 @@ export default function ExperienceTimelineLayout() {
                                                     </div>
                                                 )}
                                                 <div className="flex flex-wrap gap-2 mb-2 items-center">
-                                                    <span className="px-2 py-1 bg-theme-500/10 text-theme-700 dark:text-theme-300 rounded-md text-[10px] font-black uppercase border border-theme-500/20">{job.year}</span>
+                                                    <span className="px-2 py-1 bg-theme-500/10 text-theme-700 dark:text-theme-300 rounded-md text-[10px] font-black border border-theme-500/20">{job.year}</span>
                                                     <span className="text-[10px] font-bold text-theme-muted">{job.date}</span>
                                                 </div>
                                                 <h2 className="text-base lg:text-lg font-black mb-1 group-hover:text-theme-500 transition-colors leading-tight">{job.title}</h2>
@@ -121,7 +121,7 @@ export default function ExperienceTimelineLayout() {
                                                 </div>
                                             )}
                                             <div className="flex flex-wrap gap-2 mb-2 items-center">
-                                                <span className="px-2 py-1 bg-theme-500/10 text-theme-700 dark:text-theme-300 rounded-md text-[10px] font-black uppercase border border-theme-500/20">{job.year}</span>
+                                                <span className="px-2 py-1 bg-theme-500/10 text-theme-700 dark:text-theme-300 rounded-md text-[10px] font-black border border-theme-500/20">{job.year}</span>
                                                 <span className="text-[10px] font-bold text-theme-muted">{job.date}</span>
                                             </div>
                                             <div className="flex justify-between items-start mb-1">
@@ -167,7 +167,7 @@ export default function ExperienceTimelineLayout() {
                                         )}
                                     </div>
                                 )}
-                                <span className="inline-block px-2 py-0.5 bg-theme-500/10 text-theme-700 dark:text-theme-300 rounded-md text-[10px] font-black uppercase mb-2">{job.year}</span>
+                                <span className="inline-block px-2 py-0.5 bg-theme-500/10 text-theme-700 dark:text-theme-300 rounded-md text-[10px] font-black mb-2">{job.year}</span>
                                 <div className="flex justify-between items-start mb-1">
                                     <h2 className="text-sm font-black text-foreground group-hover:text-theme-500 leading-tight">{job.title}</h2>
                                     <div onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()}>

@@ -92,5 +92,8 @@
   "Image": "画像",
   "Upload_Photo": "写真をアップロード",
   "Title": "タイトル",
-  "Image_Optional": "画像（オプション）"
+  "Image_Optional": "画像（オプション）",
+  "Hover_To_Preview": "ホバーしてプレビュー",
+  "Hover_An_Experience": "ホバーして詳細を表示",
+  "Visit_Project": "プロジェクトを見る"
 }

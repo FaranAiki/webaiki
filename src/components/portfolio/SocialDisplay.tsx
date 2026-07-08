@@ -171,7 +171,7 @@ export const defaultSocialLinks: SocialLink[] = [
     },
   ];
 
-export default function SocialDisplay({ customLinks, hidePresentation = false, dict }: SocialDisplayProps) {
+export default function SocialDisplay({ customLinks, hidePresentation = false, dict: _dict }: SocialDisplayProps) {
   const { isPresentationMode } = usePresentation();
   
   

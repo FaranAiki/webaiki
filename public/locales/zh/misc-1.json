@@ -92,5 +92,8 @@
   "Image": "图片",
   "Upload_Photo": "上传照片",
   "Title": "标题",
-  "Image_Optional": "图片（可选）"
+  "Image_Optional": "图片（可选）",
+  "Hover_To_Preview": "悬停以预览",
+  "Hover_An_Experience": "悬停在经历上查看详情",
+  "Visit_Project": "访问项目"
 }

@@ -92,5 +92,8 @@
   "Image": "תמונה",
   "Upload_Photo": "העלאת תמונה",
   "Title": "כותרת",
-  "Image_Optional": "תמונה (אופציונלי)"
+  "Image_Optional": "תמונה (אופציונלי)",
+  "Hover_To_Preview": "העבר עכבר לתצוגה מקדימה",
+  "Hover_An_Experience": "העבר עכבר על חוויה לפרטים",
+  "Visit_Project": "בקר בפרויקט"
 }

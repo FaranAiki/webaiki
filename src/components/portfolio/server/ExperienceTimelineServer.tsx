@@ -4,14 +4,14 @@ import BookmarkButton from '@/components/interactive/BookmarkButton';
 import { TagBadge, PdfRenderer } from '../layouts/ExperienceShared';
 import type { Experience } from '../ExperienceDisplayer';
 
-export function ExperienceTimelineServer({ 
-    experiences, 
-    bookmarkedItemIds = [], 
-    isLoggedIn = false 
-}: { 
-    experiences: Experience[], 
-    bookmarkedItemIds?: string[], 
-    isLoggedIn?: boolean 
+export function ExperienceTimelineServer({
+    experiences,
+    bookmarkedItemIds = [],
+    isLoggedIn = false
+}: {
+    experiences: Experience[],
+    bookmarkedItemIds?: string[],
+    isLoggedIn?: boolean
 }) {
     const allJobs = experiences.flatMap(e => e.jobs);
 
@@ -52,8 +52,8 @@ export function ExperienceTimelineServer({
                                                 </div>
                                             </div>
                                             {/* We replace onClick window.open with an anchor tag wrapping the card for Server Component */}
-                                            <a 
-                                                href={job.url || undefined} 
+                                            <a
+                                                href={job.url || undefined}
                                                 target={job.url ? "_blank" : undefined}
                                                 rel="noopener noreferrer"
                                                 className="w-full mt-4 flex-grow bg-theme-surface/90 backdrop-blur-md border border-theme-border rounded-3xl p-4 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group text-left block"
@@ -68,7 +68,7 @@ export function ExperienceTimelineServer({
                                                     </div>
                                                 )}
                                                 <div className="flex flex-wrap gap-2 mb-2 items-center">
-                                                    <span className="px-2 py-1 bg-theme-500/10 text-theme-700 dark:text-theme-300 rounded-md text-[10px] font-black uppercase border border-theme-500/20">{job.year}</span>
+                                                    <span className="px-2 py-1 bg-theme-500/10 text-theme-700 dark:text-theme-300 rounded-md text-[10px] font-black border border-theme-500/20">{job.year}</span>
                                                     <span className="text-[10px] font-bold text-theme-muted">{job.date}</span>
                                                 </div>
                                                 <h2 className="text-base lg:text-lg font-black mb-1 group-hover:text-theme-500 transition-colors leading-tight">{job.title}</h2>
@@ -122,8 +122,8 @@ export function ExperienceTimelineServer({
                                                 <div className="w-3 h-3 rounded-full bg-theme-500 animate-pulse" />
                                             </div>
                                         </div>
-                                        <a 
-                                            href={job.url || undefined} 
+                                        <a
+                                            href={job.url || undefined}
                                             target={job.url ? "_blank" : undefined}
                                             rel="noopener noreferrer"
                                             className="w-full mt-4 flex-grow bg-theme-surface/90 backdrop-blur-md border border-theme-border rounded-3xl p-5 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group text-left block"
@@ -138,7 +138,7 @@ export function ExperienceTimelineServer({
                                                 </div>
                                             )}
                                             <div className="flex flex-wrap gap-2 mb-2 items-center">
-                                                <span className="px-2 py-1 bg-theme-500/10 text-theme-700 dark:text-theme-300 rounded-md text-[10px] font-black uppercase border border-theme-500/20">{job.year}</span>
+                                                <span className="px-2 py-1 bg-theme-500/10 text-theme-700 dark:text-theme-300 rounded-md text-[10px] font-black border border-theme-500/20">{job.year}</span>
                                                 <span className="text-[10px] font-bold text-theme-muted">{job.date}</span>
                                             </div>
                                             <div className="flex justify-between items-start mb-1">
@@ -174,8 +174,8 @@ export function ExperienceTimelineServer({
                     {allJobs.map((job, idx) => (
                         <div key={`mob-${idx}`} className="relative pl-12 pr-2 flex flex-col w-full group">
                             <div className="absolute left-5 top-5 w-5 h-5 rounded-full bg-theme-surface border-4 border-theme-500 shadow-[0_0_10px_rgba(var(--color-theme-500),0.5)] z-10" />
-                            <a 
-                                href={job.url || undefined} 
+                            <a
+                                href={job.url || undefined}
                                 target={job.url ? "_blank" : undefined}
                                 rel="noopener noreferrer"
                                 className="w-full bg-theme-surface/90 backdrop-blur-md border border-theme-border rounded-2xl p-4 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:-translate-y-1 text-left block"
@@ -189,7 +189,7 @@ export function ExperienceTimelineServer({
                                         )}
                                     </div>
                                 )}
-                                <span className="inline-block px-2 py-0.5 bg-theme-500/10 text-theme-700 dark:text-theme-300 rounded-md text-[10px] font-black uppercase mb-2">{job.year}</span>
+                                <span className="inline-block px-2 py-0.5 bg-theme-500/10 text-theme-700 dark:text-theme-300 rounded-md text-[10px] font-black mb-2">{job.year}</span>
                                 <div className="flex justify-between items-start mb-1">
                                     <h2 className="text-sm font-black text-foreground group-hover:text-theme-500 leading-tight">{job.title}</h2>
                                     <div>

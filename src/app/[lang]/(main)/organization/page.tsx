@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import "../../../globals.css";
 import { getDictionary } from '@/components/layout/Translator';
-import ExperiencesClient from '@/components/portfolio/ExperienceDisplayer';
+import ExperiencesClient from '@/components/portfolio/ExperienceServerDisplayer';
 
 import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema } from '@/lib/seo';
 
@@ -70,6 +70,9 @@ export default async function OrganizationExperiencesPage({params }: { params: P
         cinematic_text={dict.Presentation_Cinematic}
         editorial_text={dict.Presentation_Editorial}
             visit_external_link_text={dict.Visit_External_Link}
+            hover_to_preview_text={dict.Hover_To_Preview}
+            hover_an_experience_text={dict.Hover_An_Experience}
+            visit_project_text={dict.Visit_Project}
       />
       </div>
     </main>

@@ -59,7 +59,7 @@ export default function ExperienceOriginalLayout() {
                                     role={job.url ? "button" : "article"}
                                     tabIndex={job.url ? 0 : undefined}
                                     className={`p-6 rounded-lg border-2 shadow-sm group transform-gpu ${job.url ? 'cursor-pointer' : ''}
-                                        ${activeJob.title === job.title && activeJob.company === job.company
+                                        ${activeJob?.title === job.title && activeJob?.company === job.company
                                             ? `${activeCardBg}`
                                             : `${inactiveCardBg} ${cardBorder} hover:border-theme-500/50`
                                         }`}
@@ -101,8 +101,14 @@ export default function ExperienceOriginalLayout() {
                             <TimelineActiveImage activeJob={activeJob} shimmer600x400={shimmer600x400} />
                         </div>
                         <div className="mt-4 text-center">
-                            <h3 className={`text-2xl font-black ${mainText}`}>{activeJob.title}<TagBadge labels={activeJob.tag} /></h3>
-                            <p className="text-lg italic text-theme-800 dark:text-theme-200 font-medium">{activeJob.company}</p>
+                            {activeJob ? (
+                                <>
+                                    <h3 className={`text-2xl font-black ${mainText}`}>{activeJob.title}<TagBadge labels={activeJob.tag} /></h3>
+                                    <p className="text-lg italic text-theme-800 dark:text-theme-200 font-medium">{activeJob.company}</p>
+                                </>
+                            ) : (
+                                <p className="text-lg italic text-theme-muted font-medium">Hover an experience to see details</p>
+                            )}
                         </div>
                     </div>
                 </div>

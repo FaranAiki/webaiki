@@ -4,6 +4,7 @@ import "../../../globals.css";
 import { Suspense } from "react";
 import { getDictionary } from '@/components/layout/Translator';
 import ExperiencesClient, { Experience, Job } from '@/components/portfolio/ExperienceDisplayer';
+import ExperienceServerDisplayer from '@/components/portfolio/ExperienceServerDisplayer';
 import { ExperienceTimelineServer } from '@/components/portfolio/server/ExperienceTimelineServer';
 
 import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema, getPersonSchema } from '@/lib/seo';
@@ -100,7 +101,7 @@ async function SuspendedTimelineContent({ lang, dict }: { lang: string, dict: Re
 
   return (
       <div className="pt-[12px] w-full px-4 md:px-0">
-        <ExperiencesClient 
+        <ExperienceServerDisplayer
         isLoggedIn={isLoggedIn}
         bookmarkedItemIds={experienceBookmarks}
         layout="timeline"
@@ -117,6 +118,9 @@ async function SuspendedTimelineContent({ lang, dict }: { lang: string, dict: Re
         cinematic_text={dict.Presentation_Cinematic}
         editorial_text={dict.Presentation_Editorial}
         visit_external_link_text={dict.Visit_External_Link}
+            hover_to_preview_text={dict.Hover_To_Preview}
+            hover_an_experience_text={dict.Hover_An_Experience}
+            visit_project_text={dict.Visit_Project}
         timelineLayout={
           <ExperienceTimelineServer 
             experiences={allExperiences} 

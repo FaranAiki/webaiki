@@ -92,5 +92,8 @@
   "Image": "Gambar",
   "Upload_Photo": "Unggah Foto",
   "Title": "Judul",
-  "Image_Optional": "Gambar (Opsional)"
+  "Image_Optional": "Gambar (Opsional)",
+  "Hover_To_Preview": "Arahkan kursor untuk melihat",
+  "Hover_An_Experience": "Arahkan kursor pada pengalaman untuk melihat detail",
+  "Visit_Project": "Kunjungi Proyek"
 }

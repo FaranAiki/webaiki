@@ -92,5 +92,8 @@
   "Image": "ছবি",
   "Upload_Photo": "ছবি আপলোড করুন",
   "Title": "শিরোনাম",
-  "Image_Optional": "ছবি (ঐচ্ছিক)"
+  "Image_Optional": "ছবি (ঐচ্ছিক)",
+  "Hover_To_Preview": "প্রিভিউ দেখতে হোভার করুন",
+  "Hover_An_Experience": "বিস্তারিত দেখতে একটি অভিজ্ঞতার উপর হোভার করুন",
+  "Visit_Project": "প্রকল্প দেখুন"
 }
