@@ -129,3 +129,11 @@ code, pre, kbd, samp {
 }
 
 
+
+/* ATS vs Normal mode toggles */
+.is-ats-active .ats-header {
+  display: flex !important;
+}
+.is-ats-active .normal-header {
+  display: none !important;
+}

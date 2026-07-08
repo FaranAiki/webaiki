@@ -24,11 +24,14 @@ export type CollegeLoaderProps = {
   bookmarkedItemIds?: string[];
 };
 
+import CollectionsSkeleton from '@/components/portfolio/CollectionsSkeleton';
+
 // Use dynamic import for the component that needs browser APIs
 const CollegeDisplay = dynamic(
   () => import('@/components/portfolio/InteractiveCollections'),
   { 
     ssr: false, // ssr: false is allowed here
+    loading: () => <CollectionsSkeleton />
   }
 );
 

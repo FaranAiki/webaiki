@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import "../../../globals.css";
 import { Suspense } from "react";
 import { getDictionary } from '@/components/layout/Translator';
-import ExperiencesClient, { Experience, Job } from '@/components/portfolio/ExperienceDisplayer';
+import { Experience, Job } from '@/components/portfolio/ExperienceDisplayer';
 import ExperienceServerDisplayer from '@/components/portfolio/ExperienceServerDisplayer';
 import { ExperienceTimelineServer } from '@/components/portfolio/server/ExperienceTimelineServer';
 

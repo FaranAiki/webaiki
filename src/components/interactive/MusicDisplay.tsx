@@ -87,6 +87,7 @@ export default function MusicDisplay({ youtubeItems = [], error, lang, dict = {}
                     src="https://open.spotify.com/embed/artist/1PPAtm7YfRKghHpCqR3QZZ?utm_source=generator"
                     frameBorder="0"
                     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy"
                 ></iframe>
             </div>
           </div>
@@ -107,6 +108,7 @@ export default function MusicDisplay({ youtubeItems = [], error, lang, dict = {}
                     allow="autoplay"  
                     title="SoundCloud Player"
                     src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/667105430&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&visual=false&show_artwork=false"
+                    loading="lazy"
                 ></iframe>
             </div>
           </div>

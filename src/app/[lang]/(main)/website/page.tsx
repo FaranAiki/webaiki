@@ -59,16 +59,14 @@ export default async function WebsitePage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       
-      <FadeInSection>
-        <div className="space-y-8">
-            <h1 className="text-4xl md:text-6xl font-black nav-active-gacor tracking-tighter">
-                {dict.Website}
-            </h1>
-            <p className="text-xl md:text-2xl text-[var(--text-muted)] font-medium leading-relaxed">
-                {dict.Website_Summary}
-            </p>
-        </div>
-      </FadeInSection>
+      <div className="space-y-8">
+          <h1 className="text-4xl md:text-6xl font-black nav-active-gacor tracking-tighter">
+              {dict.Website}
+          </h1>
+          <p className="text-xl md:text-2xl text-[var(--text-muted)] font-medium leading-relaxed">
+              {dict.Website_Summary}
+          </p>
+      </div>
 
       <div className="mt-24">
         <FadeInSection>

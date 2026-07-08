@@ -1,7 +1,4 @@
-"use client";
-
 import React from 'react';
-import { useSettings } from '../providers/SettingsContext';
 
 interface SocialLink {
   icon: React.ReactNode;
@@ -23,23 +20,16 @@ const cleanText = (text: string) => {
 };
 
 export default function PortfolioHeader({ title, resumeLabel, subtitle, about, socialLinks }: PortfolioHeaderProps) {
-  const { isAtsMode } = useSettings();
+  const displaySubtitle = subtitle.replace('Muhammad Faran Aiki | ', '');
 
-  const displaySubtitle = isAtsMode ? subtitle.replace('Muhammad Faran Aiki | ', '') : subtitle;
+  const _cleanResumeLabel = cleanText(resumeLabel);
+  const cleanSubtitle = cleanText(displaySubtitle);
+  const cleanAbout = cleanText(about);
 
-  // Group social links into pairs for ATS mode (2 per row)
-  const groupedSocialLinks = [];
-  for (let i = 0; i < socialLinks.length; i += 2) {
-    groupedSocialLinks.push(socialLinks.slice(i, i + 2));
-  }
-
-  if (isAtsMode) {
-    const _cleanResumeLabel = cleanText(resumeLabel);
-    const cleanSubtitle = cleanText(displaySubtitle);
-    const cleanAbout = cleanText(about);
-
-    return (
-      <section className="flex flex-col items-center text-center gap-1 border-b border-theme-border pb-1 portfolio-header-section ats-header">
+  return (
+    <>
+      {/* ATS Mode Header */}
+      <section className="hidden ats-header flex-col items-center text-center gap-1 border-b border-theme-border pb-1 portfolio-header-section">
         <h1 className="text-3xl font-black tracking-tighter">
           Muhammad Faran Aiki
         </h1>
@@ -73,11 +63,9 @@ export default function PortfolioHeader({ title, resumeLabel, subtitle, about, s
           ))}
         </div>
       </section>
-    );
-  }
 
-  return (
-    <section className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-theme-border pb-3 portfolio-header-section">
+      {/* Normal Mode Header */}
+      <section className="flex normal-header flex-col md:flex-row md:items-end justify-between gap-4 border-b border-theme-border pb-3 portfolio-header-section">
       <div className="space-y-1">
         <h1 className="text-2xl md:text-3xl font-black tracking-tighter nav-active-gacor portfolio-title">
           {title}
@@ -109,5 +97,6 @@ export default function PortfolioHeader({ title, resumeLabel, subtitle, about, s
         ))}
       </div>
     </section>
+    </>
   );
 }
