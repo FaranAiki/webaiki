@@ -99,7 +99,7 @@ export function PortfolioAboutHeader(props: AboutMeProps) {
                       alt={props.faran_photo}
                       fill
                       className="object-cover"
-                      sizes="(max-width: 768px) 300px, 400px"
+                      sizes="(max-width: 768px) 160px, 250px"
                       priority
                       quality={75}
                       fetchPriority="high"
@@ -215,7 +215,7 @@ export function AboutSection(props: AboutSubSectionProps) {
                       hover:scale-[1.06]
                       scale-[1.01]
                     `}
-                    sizes="(max-width: 768px) 160px, 400px"
+                    sizes="(max-width: 768px) 160px, 250px"
                     quality={75}
                     priority={true}
                     fetchPriority="high"

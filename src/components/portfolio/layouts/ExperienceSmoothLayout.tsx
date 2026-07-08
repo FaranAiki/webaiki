@@ -59,7 +59,7 @@ export default function ExperienceSmoothLayout() {
                             <div className="flex items-center gap-3">
                                 <h2 className={`text-4xl md:text-5xl font-black ${mainText} group-hover:text-theme-500 leading-tight transition-colors`}>{job.title}<TagBadge labels={job.tag} /></h2>
                                 <div onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()} className="flex items-center gap-2">
-                                    <BookmarkButton itemType="experience" itemId={job.title} initialBookmarked={bookmarkedItemIds.includes(job.title)} isLoggedIn={!!isLoggedIn} className="relative" />
+                                    <BookmarkButton itemType="experience" itemId={job.image?.[0] ?? job.url ?? job.company ?? job.title} initialBookmarked={bookmarkedItemIds.includes(job.image?.[0] ?? job.url ?? job.company ?? job.title)} isLoggedIn={!!isLoggedIn} className="relative" />
                                     {job.url && <ExternalLink size={24} className="text-theme-500 opacity-0 group-hover:opacity-100 transition-all translate-y-2" />}
                                 </div>
                             </div>

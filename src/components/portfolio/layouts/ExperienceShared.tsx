@@ -167,8 +167,8 @@ export const BentoCard = React.memo(({ job, spanClass, cardBorder, inactiveCardB
 
             <BookmarkButton
                 itemType="experience"
-                itemId={job.title}
-                initialBookmarked={bookmarkedItemIds.includes(job.title)}
+                itemId={job.image?.[0] ?? job.url ?? job.company ?? job.title}
+                initialBookmarked={bookmarkedItemIds.includes(job.image?.[0] ?? job.url ?? job.company ?? job.title)}
                 isLoggedIn={!!isLoggedIn}
                 className="absolute top-4 right-4 z-20"
             />

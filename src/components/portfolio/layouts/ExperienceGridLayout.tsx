@@ -62,7 +62,7 @@ export default function ExperienceGridLayout() {
                     <div className="flex justify-between items-start mb-1 gap-2">
                         <h2 className={`text-xl font-black ${mainText} group-hover:text-theme-500 leading-tight`}>{job.title}<TagBadge labels={job.tag} /></h2>
                         <div className="flex items-center gap-1 shrink-0" onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()}>
-                            <BookmarkButton itemType="experience" itemId={job.title} initialBookmarked={bookmarkedItemIds.includes(job.title)} isLoggedIn={!!isLoggedIn} className="relative !p-1.5" />
+                            <BookmarkButton itemType="experience" itemId={job.image?.[0] ?? job.url ?? job.company ?? job.title} initialBookmarked={bookmarkedItemIds.includes(job.image?.[0] ?? job.url ?? job.company ?? job.title)} isLoggedIn={!!isLoggedIn} className="relative !p-1.5" />
                             {job.url && <ExternalLink size={14} className="text-theme-500 opacity-0 group-hover:opacity-100 transition-opacity" />}
                         </div>
                     </div>

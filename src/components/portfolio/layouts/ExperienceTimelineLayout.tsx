@@ -52,7 +52,7 @@ export default function ExperienceTimelineLayout() {
                                                         {isPdf ? (
                                                             <PdfRenderer url={job.image[0]} />
                                                         ) : (
-                                                            <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="(max-width: 768px) 90vw, (max-width: 1024px) 45vw, 25vw" quality={70} priority={allJobs.indexOf(job) < 4} className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                                                            <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="(max-width: 768px) 90vw, (max-width: 1024px) 30vw, 15vw" quality={70} priority={allJobs.indexOf(job) < 4} className="object-cover group-hover:scale-110 transition-transform duration-700" />
                                                         )}
                                                     </div>
                                                 )}
@@ -64,7 +64,7 @@ export default function ExperienceTimelineLayout() {
                                                 <div className="mb-2 flex items-center justify-between">
                                                     <TagBadge labels={job.tag} />
                                                     <div onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()}>
-                                                        <BookmarkButton itemType="experience" itemId={job.title} initialBookmarked={bookmarkedItemIds.includes(job.title)} isLoggedIn={!!isLoggedIn} className="relative" />
+                                                        <BookmarkButton itemType="experience" itemId={job.image?.[0] ?? job.url ?? job.company ?? job.title} initialBookmarked={bookmarkedItemIds.includes(job.image?.[0] ?? job.url ?? job.company ?? job.title)} isLoggedIn={!!isLoggedIn} className="relative" />
                                                     </div>
                                                 </div>
                                                 <p className="text-theme-700 dark:text-theme-300 font-bold italic text-xs mb-2">{job.company}</p>
@@ -116,7 +116,7 @@ export default function ExperienceTimelineLayout() {
                                                     {job.image[0].toLowerCase().endsWith('.pdf') ? (
                                                         <PdfRenderer url={job.image[0]} />
                                                     ) : (
-                                                        <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="(max-width: 768px) 90vw, (max-width: 1024px) 45vw, 25vw" quality={70} priority={allJobs.indexOf(job) < 4} className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                                                        <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="(max-width: 768px) 90vw, (max-width: 1024px) 30vw, 15vw" quality={70} priority={allJobs.indexOf(job) < 4} className="object-cover group-hover:scale-110 transition-transform duration-700" />
                                                     )}
                                                 </div>
                                             )}
@@ -127,7 +127,7 @@ export default function ExperienceTimelineLayout() {
                                             <div className="flex justify-between items-start mb-1">
                                                 <h2 className="text-lg font-black group-hover:text-theme-500 transition-colors leading-tight">{job.title}</h2>
                                                 <div onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()}>
-                                                    <BookmarkButton itemType="experience" itemId={job.title} initialBookmarked={bookmarkedItemIds.includes(job.title)} isLoggedIn={!!isLoggedIn} className="relative !p-1.5" />
+                                                    <BookmarkButton itemType="experience" itemId={job.image?.[0] ?? job.url ?? job.company ?? job.title} initialBookmarked={bookmarkedItemIds.includes(job.image?.[0] ?? job.url ?? job.company ?? job.title)} isLoggedIn={!!isLoggedIn} className="relative !p-1.5" />
                                                 </div>
                                             </div>
                                             <div className="mb-2"><TagBadge labels={job.tag} /></div>
@@ -163,7 +163,7 @@ export default function ExperienceTimelineLayout() {
                                         {job.image[0].toLowerCase().endsWith('.pdf') ? (
                                             <PdfRenderer url={job.image[0]} />
                                         ) : (
-                                            <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="(max-width: 768px) 90vw, (max-width: 1024px) 45vw, 25vw" quality={70} priority={idx < 4} className="object-cover" />
+                                            <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="(max-width: 768px) 90vw, (max-width: 1024px) 30vw, 15vw" quality={70} priority={idx < 4} className="object-cover" />
                                         )}
                                     </div>
                                 )}
@@ -171,7 +171,7 @@ export default function ExperienceTimelineLayout() {
                                 <div className="flex justify-between items-start mb-1">
                                     <h2 className="text-sm font-black text-foreground group-hover:text-theme-500 leading-tight">{job.title}</h2>
                                     <div onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()}>
-                                        <BookmarkButton itemType="experience" itemId={job.title} initialBookmarked={bookmarkedItemIds.includes(job.title)} isLoggedIn={!!isLoggedIn} className="relative !p-1.5" />
+                                        <BookmarkButton itemType="experience" itemId={job.image?.[0] ?? job.url ?? job.company ?? job.title} initialBookmarked={bookmarkedItemIds.includes(job.image?.[0] ?? job.url ?? job.company ?? job.title)} isLoggedIn={!!isLoggedIn} className="relative !p-1.5" />
                                     </div>
                                 </div>
                                 <p className="text-theme-700 dark:text-theme-300 font-bold italic text-xs mb-2">{job.company}</p>

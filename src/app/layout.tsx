@@ -22,7 +22,7 @@ export default async function RootLayout({
     <html lang={locale} suppressHydrationWarning>
       <head>
         <meta name="strix-verification" content="strix-verify-c06f1485383fb06c8ff307fe69f30458" />
-        <link rel="preconnect" href="https://open.spotify.com" />
+
         <link rel="preload" href="/icon.svg" as="image" />
 
         <script nonce={nonce} dangerouslySetInnerHTML={{

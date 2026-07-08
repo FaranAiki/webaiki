@@ -141,11 +141,11 @@ export default function PortfolioEducation({ education, title }: PortfolioEducat
                 <h3 className="text-sm font-bold text-foreground leading-snug">
                   {edu.title}
                 </h3>
-                <span className="text-[10px] font-medium text-theme-500 bg-theme-500/10 px-2 py-0.5 rounded-full shrink-0">
+                <span className="text-[10px] font-bold text-theme-700 dark:text-theme-300 bg-theme-500/15 px-2 py-0.5 rounded-full shrink-0">
                   {edu.date.split(' ').pop()}
                 </span>
               </div>
-              <p className="text-xs font-semibold text-theme-600 mb-1">{edu.company}</p>
+              <p className="text-xs font-semibold text-theme-700 dark:text-theme-300 mb-1">{edu.company}</p>
               {Array.isArray(edu.description) ? (
                 <ul className="list-disc list-outside ml-3 space-y-1 text-xs text-[var(--text-muted)] leading-relaxed">
                   {edu.description.map((desc, i) => (

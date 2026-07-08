@@ -85,7 +85,7 @@ export default async function BookmarksPage({params }: { params: Promise<{ lang:
   const filterImportantExp = (exps: Experience[]): Experience[] => {
     return exps.map(yearGroup => ({
       ...yearGroup,
-      jobs: yearGroup.jobs.filter((job: Job) => bookmarks.some(b => b.itemType === 'experience' && b.itemId === job.title))
+      jobs: yearGroup.jobs.filter((job: Job) => bookmarks.some(b => b.itemType === 'experience' && b.itemId === (job.image?.[0] ?? job.url ?? job.company ?? job.title)))
     })).filter(yearGroup => yearGroup.jobs.length > 0);
   };
 
@@ -371,21 +371,7 @@ export default async function BookmarksPage({params }: { params: Promise<{ lang:
             </section>
           )}
 
-          {/* Social Media Section */}
-          <section id="social" className="space-y-4 container mx-auto px-4 sm:px-8 pb-12">
-              <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
-                  <Share2 size={18} className="text-theme-500" />
-                  <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Social}</h2>
-              </div>
-              <div className="bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-3xl overflow-hidden">
-                  <SocialDisplay customLinks={importantSocialLinks} hidePresentation={true} dict={dict} />
-              </div>
-          </section>
 
-          {/* FAQ Section */}
-          <section className="container mx-auto px-4 sm:px-8 pb-20">
-              <FAQ title={dict.FAQ_Faran_Title} items={faranFaqs} />
-          </section>
           </div>
           </PageEntrance>
           </main>

@@ -96,7 +96,7 @@ export default function ExperiencePresentationLayout() {
                                     <h4 className="text-theme-700 dark:text-theme-300 text-xl md:text-2xl italic opacity-90">{job.company}</h4>
                                     <div className="flex items-center gap-2">
                                         <p style={dateStyle} className="text-base md:text-lg font-medium italic opacity-80">{job.date}</p>
-                                        <BookmarkButton itemType="experience" itemId={job.title} initialBookmarked={bookmarkedItemIds.includes(job.title)} isLoggedIn={!!isLoggedIn} className="relative" />
+                                        <BookmarkButton itemType="experience" itemId={job.image?.[0] ?? job.url ?? job.company ?? job.title} initialBookmarked={bookmarkedItemIds.includes(job.image?.[0] ?? job.url ?? job.company ?? job.title)} isLoggedIn={!!isLoggedIn} className="relative" />
                                     </div>
                                 </div>
                                 <div className={`text-base md:text-lg ${justifyClass} ${descText} font-medium`}>
@@ -164,7 +164,7 @@ export default function ExperiencePresentationLayout() {
                                         <h3 className={`text-3xl md:text-5xl font-black leading-[0.85] tracking-tighter text-foreground`}>{job.title}<TagBadge labels={job.tag} /></h3>
                                         <div className="flex items-center gap-4 mt-2">
                                             <h4 className="text-xl md:text-3xl text-theme-700 dark:text-theme-300 font-bold italic tracking-tight">{job.company}</h4>
-                                            <BookmarkButton itemType="experience" itemId={job.title} initialBookmarked={bookmarkedItemIds.includes(job.title)} isLoggedIn={!!isLoggedIn} className="relative" />
+                                            <BookmarkButton itemType="experience" itemId={job.image?.[0] ?? job.url ?? job.company ?? job.title} initialBookmarked={bookmarkedItemIds.includes(job.image?.[0] ?? job.url ?? job.company ?? job.title)} isLoggedIn={!!isLoggedIn} className="relative" />
                                         </div>
 
                                         {job.url && (
@@ -215,7 +215,7 @@ export default function ExperiencePresentationLayout() {
                                         </h3>
                                         <div className="flex items-center gap-4">
                                             <h4 className="text-xl md:text-2xl font-bold text-theme-700 dark:text-theme-300 italic tracking-tight">{job.company}</h4>
-                                            <BookmarkButton itemType="experience" itemId={job.title} initialBookmarked={bookmarkedItemIds.includes(job.title)} isLoggedIn={!!isLoggedIn} className="relative" />
+                                            <BookmarkButton itemType="experience" itemId={job.image?.[0] ?? job.url ?? job.company ?? job.title} initialBookmarked={bookmarkedItemIds.includes(job.image?.[0] ?? job.url ?? job.company ?? job.title)} isLoggedIn={!!isLoggedIn} className="relative" />
                                         </div>
                                     </div>
 
