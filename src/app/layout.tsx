@@ -6,10 +6,7 @@ import { getBaseMetadata, getFaqSchema } from "@/lib/seo";
 export const metadata = getBaseMetadata();
 
 
-import { Inter, Roboto_Mono } from 'next/font/google';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap', preload: true });
-const robotoMono = Roboto_Mono({ subsets: ['latin'], variable: '--font-roboto-mono', display: 'swap', preload: true });
 
 export default async function RootLayout({
   children,
@@ -34,7 +31,7 @@ export default async function RootLayout({
           `
         }} />
       </head>
-      <body className={`font-serif antialiased ${inter.variable} ${robotoMono.variable} ${isBot ? 'is-bot' : ''}`}>
+      <body className={`font-serif antialiased ${isBot ? 'is-bot' : ''}`}>
         <Providers nonce={nonce} isBot={isBot}>
           {children}
         </Providers>
