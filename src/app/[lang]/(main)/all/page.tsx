@@ -13,7 +13,7 @@ import Link from 'next/link';
 import FAQ from '@/components/portfolio/FAQ';
 import type { SocialLink } from '@/components/portfolio/SocialDisplay';
 
-const ExperiencesClient = dynamic(() => import('@/components/portfolio/ExperienceDisplayer'));
+import ExperiencesClient from '@/components/portfolio/ExperienceDisplayer';
 const CertificatesDisplay = dynamic(() => import('@/components/portfolio/CertificatesDisplay'));
 const InteractiveCollections = dynamic(() => import('@/components/portfolio/InteractiveCollections'));
 const SocialDisplay = dynamic(() => import('@/components/portfolio/SocialDisplay'));

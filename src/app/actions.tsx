@@ -221,7 +221,7 @@ const fetchFeedbacksFromDb = unstable_cache(
     });
   },
   ['feedbacks'],
-  { revalidate: 60, tags: ['feedbacks'] }
+  { revalidate: 3600, tags: ['feedbacks'] }
 );
 
 export const getFeedbacks = async () => {
@@ -379,7 +379,7 @@ const fetchNewsFromDb = unstable_cache(
     });
   },
   ['news'],
-  { revalidate: 30, tags: ['news'] }
+  { revalidate: 3600, tags: ['news'] }
 );
 
 export const getNews = async () => {
@@ -409,7 +409,7 @@ export const getNewsItem = async (id: string) => {
         });
       },
       [`news-${id}`],
-      { revalidate: 30, tags: ['news', `news-${id}`] }
+      { revalidate: 3600, tags: ['news', `news-${id}`] }
     );
     return await cachedFn(id);
   } catch (error) {

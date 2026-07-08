@@ -18,10 +18,11 @@ import { ExperienceProvider } from './ExperienceContext';
 import dynamic from 'next/dynamic';
 
 
-const ExperienceOriginalLayout = dynamic(() => import('./layouts/ExperienceOriginalLayout'));
+import ExperienceOriginalLayout from './layouts/ExperienceOriginalLayout';
+import ExperienceBentoLayout from './layouts/ExperienceBentoLayout';
+
 const ExperienceTimelineLayout = dynamic(() => import('./layouts/ExperienceTimelineLayout'));
 const ExperienceGridLayout = dynamic(() => import('./layouts/ExperienceGridLayout'));
-const ExperienceBentoLayout = dynamic(() => import('./layouts/ExperienceBentoLayout'));
 const ExperienceSmoothLayout = dynamic(() => import('./layouts/ExperienceSmoothLayout'));
 const ExperiencePresentationLayout = dynamic(() => import('./layouts/ExperiencePresentationLayout'));
 
