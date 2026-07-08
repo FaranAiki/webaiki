@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import FAQ from '@/components/portfolio/FAQ';
+import dynamic from 'next/dynamic';
+const FAQ = dynamic(() => import('@/components/portfolio/FAQ'));
+const FadeInSection = dynamic(() => import('@/components/shared/FadeInSection'));
 import { getDictionary } from '@/components/layout/Translator';
 import { getLanguageAlternates, getBaseMetadata, getWebsiteSchema, SITE_URL, getFaqSchema } from '@/lib/seo';
-import FadeInSection from "@/components/shared/FadeInSection";
 import { Cpu, Palette, Database, Languages, Activity } from 'lucide-react';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {

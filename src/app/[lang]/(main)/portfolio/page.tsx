@@ -20,7 +20,8 @@ import Link from 'next/link';
 import PortfolioExperienceList from '@/components/portfolio/PortfolioExperienceList';
 import PortfolioSkills from '@/components/portfolio/PortfolioSkills';
 import PortfolioEducation from '@/components/portfolio/PortfolioEducation';
-import FAQ from '@/components/portfolio/FAQ';
+import dynamicImport from 'next/dynamic';
+const FAQ = dynamicImport(() => import('@/components/portfolio/FAQ'));
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;

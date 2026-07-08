@@ -10,7 +10,7 @@ import dynamic from 'next/dynamic';
 import { Github, Linkedin, Instagram, Twitter, Youtube, Share2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import FAQ from '@/components/portfolio/FAQ';
+const FAQ = dynamic(() => import('@/components/portfolio/FAQ'));
 import type { SocialLink } from '@/components/portfolio/SocialDisplay';
 
 import ExperiencesClient from '@/components/portfolio/ExperienceServerDisplayer';

@@ -75,11 +75,18 @@
     "path": false,
     "os": false
   },
-  "browserslist": [
-    "not dead",
-    "Chrome >= 109",
-    "Safari >= 16.4",
-    "Firefox >= 115",
-    "Edge >= 109"
-  ]
+  "browserslist": {
+    "production": [
+      "Chrome >= 109",
+      "Safari >= 16.4",
+      "Firefox >= 115",
+      "Edge >= 109",
+      "iOS >= 16.4"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }

@@ -130,6 +130,7 @@ export function getBaseMetadata(dict: import('@/components/layout/Translator').T
       address: false,
       telephone: false,
     },
+    manifest: '/manifest.json',
     alternates: {
       languages: getLanguageAlternates(''),
     },
