@@ -41,9 +41,9 @@ export function PortfolioAboutHeader(props: PortfolioAboutHeaderProps) {
                 alt={props.faran_photo}
                 fill
                 className="object-cover absolute inset-0 z-0"
-                sizes="(max-width: 768px) 300px, 400px"
+                sizes="(max-width: 768px) 192px, (max-width: 1024px) 256px, 400px"
                 priority
-                quality={75}
+                quality={70}
                 fetchPriority="high"
               />
             )}
@@ -63,10 +63,10 @@ export function PortfolioAboutHeader(props: PortfolioAboutHeaderProps) {
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter nav-active-gacor leading-none cursor-default hover:opacity-80 transition-opacity">
             {props.about_title}
           </h1>
-          <p className="text-theme-500 font-bold tracking-tight text-xs md:text-sm flex gap-2 flex-wrap">
-            <span className="hover:text-theme-400 transition-colors cursor-default">{props.about_philosophy_title}</span>
+          <p className="text-theme-700 dark:text-theme-300 font-bold tracking-tight text-xs md:text-sm flex gap-2 flex-wrap">
+            <span className="hover:text-theme-600 dark:hover:text-theme-200 transition-colors cursor-default">{props.about_philosophy_title}</span>
             <span className="text-theme-muted">•</span>
-            <span className="hover:text-theme-400 transition-colors cursor-default">{props.about_vision_mission_title}</span>
+            <span className="hover:text-theme-600 dark:hover:text-theme-200 transition-colors cursor-default">{props.about_vision_mission_title}</span>
           </p>
         </div>
         

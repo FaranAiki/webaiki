@@ -77,14 +77,14 @@ export const TimelineActiveImage = React.memo(({ activeJob, shimmer600x400 }: { 
                 {hasValidImage ? (
                     <Image
                         fill
-                        sizes="(max-width: 768px) 80vw, (max-width: 1200px) 40vw, 30vw"
+                        sizes="(max-width: 768px) 100vw, 600px"
                         src={activeImageSrc!}
                         placeholder="blur"
                         blurDataURL={shimmer600x400}
                         alt={`${activeJob.title} at ${activeJob.company}`}
                         className="object-contain"
                         priority={false}
-                        quality={75}
+                        quality={70}
                     />
                 ) : (
                     <PlaceholderIcon company={activeJob.company} />
@@ -144,8 +144,8 @@ export const BentoCard = React.memo(({ job, spanClass, cardBorder, inactiveCardB
                     fill
                     priority={priority}
                     fetchPriority={priority ? "high" : "auto"}
-                    quality={75}
-                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    quality={70}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className={`object-cover transition-transform duration-700
                         ${isExpanded
                             ? (isDark ? 'scale-110 blur-sm brightness-[0.2]' : 'scale-110 blur-md opacity-20')

@@ -30,8 +30,8 @@ export function HeroImageCarousel({ photos, alt }: { photos: string[], alt: stri
           alt={alt}
           fill
           className="object-cover"
-          sizes="(max-width: 768px) 300px, 400px"
-          quality={75}
+          sizes="(max-width: 768px) 192px, (max-width: 1024px) 256px, 400px"
+          quality={70}
         />
       </motion.div>
     </AnimatePresence>
