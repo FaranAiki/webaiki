@@ -22,9 +22,9 @@
   ],
   "Lidia_Project": "Socio-Economic Integration Data Analysis for Indonesia Emas 2045",
   "Lidia_Project_Description": [
-    "Python, Pandas और Jupyter Notebook का उपयोग करके एक ETL पाइपलाइन तैयार की।",
-    "डेटा प्रोसेसिंग क्षमताओं को बढ़ाने के लिए Gemini-CLI को एकीकृत किया।",
-    "मैनुअल प्रोसेसिंग समय को काफी कम करते हुए डेटा वर्कफ़्लो को सुव्यवस्थित किया।"
+    "Engineered an ETL pipeline using Python, Pandas, and Jupyter Notebook from 5 different datasets.",
+    "Integrated Gemini-CLI to enhance data processing capabilities.",
+    "Streamlined data workflows, thereby significantly reducing manual processing time."
   ],
   "Alkyl_Compiler": "Alkyl Programming Language and Compiler",
   "Alkyl_Compiler_Description": [
@@ -34,8 +34,8 @@
   ],
   "ALTH_Project": "ALTH: Aku Lupa Tandai Hadir",
   "ALTH_Project_Description": [
-    "SSO और कुकीज़ के उपयोग को समझने के लिए Burp Suite विश्लेषण किया।",
-    "इंस्टीट्यूट टेक्नोलॉजी बांडुंग (ITB) के छात्रों के लिए Flutter और Dart का उपयोग करके एक उपस्थिति अनुस्मारक (attendance reminder) एप्लिकेशन विकसित किया।"
+    "Using Burp Suite to analyze the usage of SSO and Cookies",
+    "Developed a \"mark attendance\" reminder app for Institut Teknologi Bandung students using Flutter and Dart"
   ],
   "Jump_Game_Project": "Jump! Game",
   "Below_Below_Project": "Below Below",
@@ -64,8 +64,8 @@
     "Qt ईवेंट लूप के भीतर एप्लिकेशन स्थिति और डेटा प्रवाह को कुशलतापूर्वक प्रबंधित किया।"
   ],
   "Superskill_Description": [
-    "Flutter और Dart का उपयोग करके एक परिष्कृत क्रॉस-प्लेटफॉर्म एप्लिकेशन Cognitive Garden विकसित किया।",
-    "ऐसे गेम डिज़ाइन किए जो मस्तिष्क संज्ञान को प्रशिक्षित करते हैं और मस्तिष्क को उत्तेजित करते हैं।",
-    "समृद्ध एनिमेशन के साथ एक सहज और आकर्षक यूजर इंटरफेस (UI) डिजाइन किया।"
+    "Developed Cognitive Garden, a cutting-edge cross-platform application using Flutter and Dart.",
+    "Designed games that train brain cognition and stimulate the brain.",
+    "Designed an intuitive and engaging user interface with rich animations."
   ]
 }

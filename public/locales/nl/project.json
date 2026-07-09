@@ -22,9 +22,9 @@
   ],
   "Lidia_Project": "Data-analyse van Sociaaleconomische Integratie voor Indonesia Emas 2045",
   "Lidia_Project_Description": [
-    "Een ETL-pijplijn ontwikkeld met Python, Pandas en Jupyter Notebook.",
-    "De Gemini-CLI geïntegreerd om de mogelijkheden voor gegevensverwerking te verbeteren.",
-    "Dataworkflows gestroomlijnd, waardoor de handmatige verwerkingstijd aanzienlijk werd verminderd."
+    "Engineered an ETL pipeline using Python, Pandas, and Jupyter Notebook from 5 different datasets.",
+    "Integrated Gemini-CLI to enhance data processing capabilities.",
+    "Streamlined data workflows, thereby significantly reducing manual processing time."
   ],
   "Alkyl_Compiler": "Alkyl Programmeertaal en Compiler",
   "Alkyl_Compiler_Description": [
@@ -34,8 +34,8 @@
   ],
   "ALTH_Project": "ALTH: Aku Lupa Tandai Hadir",
   "ALTH_Project_Description": [
-    "Voerde een Burp Suite-analyse uit om het gebruik van SSO en cookies te begrijpen.",
-    "Ontwikkelde een applicatie voor aanwezigheidsherinnering met behulp van Flutter en Dart voor studenten van Institut Teknologi Bandung (ITB)."
+    "Using Burp Suite to analyze the usage of SSO and Cookies",
+    "Developed a \"mark attendance\" reminder app for Institut Teknologi Bandung students using Flutter and Dart"
   ],
   "Jump_Game_Project": "Jump! Game",
   "Below_Below_Project": "Below Below",
@@ -64,8 +64,8 @@
     "Applicatiestatus en datastroom efficiënt beheerd binnen de Qt-gebeurtenislus."
   ],
   "Superskill_Description": [
-    "Ontwikkelde Cognitive Garden, een geavanceerde platformonafhankelijke applicatie met behulp van Flutter en Dart.",
-    "Ontwierp games die de cognitie van de hersenen trainen en de hersenen stimuleren.",
-    "Ontwierp een intuïtieve en boeiende gebruikersinterface met rijke animaties."
+    "Developed Cognitive Garden, a cutting-edge cross-platform application using Flutter and Dart.",
+    "Designed games that train brain cognition and stimulate the brain.",
+    "Designed an intuitive and engaging user interface with rich animations."
   ]
 }

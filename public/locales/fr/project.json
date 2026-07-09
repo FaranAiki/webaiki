@@ -22,9 +22,9 @@
   ],
   "Lidia_Project": "Analyse des données d'intégration socio-économique pour Indonesia Emas 2045",
   "Lidia_Project_Description": [
-    "Conception d'un pipeline ETL utilisant Python, Pandas et Jupyter Notebook.",
-    "Intégration de Gemini-CLI pour améliorer les capacités de traitement des données.",
-    "Rationalisation des flux de données, réduisant considérablement le temps de traitement manuel."
+    "Engineered an ETL pipeline using Python, Pandas, and Jupyter Notebook from 5 different datasets.",
+    "Integrated Gemini-CLI to enhance data processing capabilities.",
+    "Streamlined data workflows, thereby significantly reducing manual processing time."
   ],
   "Alkyl_Compiler": "Langage de programmation et compilateur Alkyl",
   "Alkyl_Compiler_Description": [
@@ -34,8 +34,8 @@
   ],
   "ALTH_Project": "ALTH : J'ai oublié de marquer ma présence",
   "ALTH_Project_Description": [
-    "A mené une analyse Burp Suite pour comprendre l'utilisation du SSO et des cookies.",
-    "A développé une application de rappel de présence utilisant Flutter et Dart pour les étudiants de l'Institut Teknologi Bandung."
+    "Using Burp Suite to analyze the usage of SSO and Cookies",
+    "Developed a \"mark attendance\" reminder app for Institut Teknologi Bandung students using Flutter and Dart"
   ],
   "Jump_Game_Project": "Jump! Game",
   "Below_Below_Project": "Below Below",
@@ -64,8 +64,8 @@
     "Gestion efficace de l'état de l'application et du flux de données au sein de la boucle d'événements Qt."
   ],
   "Superskill_Description": [
-    "A développé Jardin Cognitif, une application multiplateforme sophistiquée utilisant Flutter et Dart.",
-    "A conçu des jeux qui entraînent la cognition cérébrale et stimulent le cerveau.",
-    "A conçu une interface utilisateur intuitive et attrayante avec des animations riches."
+    "Developed Cognitive Garden, a cutting-edge cross-platform application using Flutter and Dart.",
+    "Designed games that train brain cognition and stimulate the brain.",
+    "Designed an intuitive and engaging user interface with rich animations."
   ]
 }

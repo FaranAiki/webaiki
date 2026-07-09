@@ -22,9 +22,9 @@
   ],
   "Lidia_Project": "Socio-Economic Integration Data Analysis for Indonesia Emas 2045",
   "Lidia_Project_Description": [
-    "Python, Pandas, এবং Jupyter Notebook ব্যবহার করে একটি ETL পাইপলাইন তৈরি করেছি।",
-    "ডেটা প্রক্রিয়াকরণ ক্ষমতা বাড়ানোর জন্য Gemini-CLI সংহত করেছি।",
-    "ডেটা ওয়ার্কফ্লো স্ট্রিমলাইন করেছি, যা ম্যানুয়াল প্রক্রিয়াকরণের সময়কে উল্লেখযোগ্যভাবে হ্রাস করেছে।"
+    "Engineered an ETL pipeline using Python, Pandas, and Jupyter Notebook from 5 different datasets.",
+    "Integrated Gemini-CLI to enhance data processing capabilities.",
+    "Streamlined data workflows, thereby significantly reducing manual processing time."
   ],
   "Alkyl_Compiler": "Alkyl Programming Language and Compiler",
   "Alkyl_Compiler_Description": [
@@ -34,8 +34,8 @@
   ],
   "ALTH_Project": "ALTH: Aku Lupa Tandai Hadir",
   "ALTH_Project_Description": [
-    "SSO এবং Cookies এর ব্যবহার বুঝতে Burp Suite অ্যানালাইসিস পরিচালনা করেছি।",
-    "ইন্সটিটিউট টেকনোলজি বান্দুং এর শিক্ষার্থীদের জন্য Flutter এবং Dart ব্যবহার করে একটি উপস্থিতি অনুস্মারক অ্যাপ্লিকেশন তৈরি করেছি।"
+    "Using Burp Suite to analyze the usage of SSO and Cookies",
+    "Developed a \"mark attendance\" reminder app for Institut Teknologi Bandung students using Flutter and Dart"
   ],
   "Jump_Game_Project": "Jump! Game",
   "Below_Below_Project": "Below Below",
@@ -64,8 +64,8 @@
     "Qt ইভেন্ট লুপের মধ্যে অ্যাপ্লিকেশন স্টেট এবং ডেটা প্রবাহ দক্ষতার সাথে পরিচালনা করেছি।"
   ],
   "Superskill_Description": [
-    "Flutter এবং Dart ব্যবহার করে একটি অত্যাধুনিক ক্রস-প্ল্যাটফর্ম অ্যাপ্লিকেশন, কগনিটিভ গার্ডেন তৈরি করেছি।",
-    "এমন গেম ডিজাইন করেছি যা মস্তিষ্কের জ্ঞানকে প্রশিক্ষণ দেয় এবং মস্তিষ্ককে উদ্দীপিত করে।",
-    "সমৃদ্ধ অ্যানিমেশন সহ একটি সহজবোধ্য এবং আকর্ষণীয় ইউজার ইন্টারফেস ডিজাইন করেছি।"
+    "Developed Cognitive Garden, a cutting-edge cross-platform application using Flutter and Dart.",
+    "Designed games that train brain cognition and stimulate the brain.",
+    "Designed an intuitive and engaging user interface with rich animations."
   ]
 }

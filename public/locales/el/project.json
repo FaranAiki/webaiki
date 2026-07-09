@@ -22,9 +22,9 @@
   ],
   "Lidia_Project": "Ανάλυση Δεδομένων Κοινωνικο-Οικονομικής Ένταξης για την Ινδονησία Emas 2045",
   "Lidia_Project_Description": [
-    "Κατασκευή μιας ροής δεδομένων ETL χρησιμοποιώντας Python, Pandas και Jupyter Notebook.",
-    "Ενσωμάτωση του Gemini-CLI για τη βελτίωση των δυνατοτήτων επεξεργασίας δεδομένων.",
-    "Εξορθολογισμός των ροών εργασίας δεδομένων, μειώνοντας σημαντικά τον χειροκίνητο χρόνο επεξεργασίας."
+    "Engineered an ETL pipeline using Python, Pandas, and Jupyter Notebook from 5 different datasets.",
+    "Integrated Gemini-CLI to enhance data processing capabilities.",
+    "Streamlined data workflows, thereby significantly reducing manual processing time."
   ],
   "Alkyl_Compiler": "Γλώσσα Προγραμματισμού Alkyl και Μεταγλωττιστής",
   "Alkyl_Compiler_Description": [
@@ -34,8 +34,8 @@
   ],
   "ALTH_Project": "ALTH: Aku Lupa Tandai Hadir",
   "ALTH_Project_Description": [
-    "Διεξήγαγα ανάλυση με το Burp Suite για την κατανόηση της χρήσης SSO και Cookies.",
-    "Ανέπτυξα μια εφαρμογή υπενθύμισης παρουσιών χρησιμοποιώντας Flutter και Dart για φοιτητές του Institut Teknologi Bandung."
+    "Using Burp Suite to analyze the usage of SSO and Cookies",
+    "Developed a \"mark attendance\" reminder app for Institut Teknologi Bandung students using Flutter and Dart"
   ],
   "Jump_Game_Project": "Παιχνίδι Jump!",
   "Below_Below_Project": "Below Below",
@@ -64,8 +64,8 @@
     "Αποτελεσματική διαχείριση της κατάστασης της εφαρμογής και της ροής δεδομένων εντός του βρόχου συμβάντων του Qt."
   ],
   "Superskill_Description": [
-    "Ανέπτυξα τον Γνωστικό Κήπο, μια εξελιγμένη εφαρμογή πολλαπλών πλατφορμών χρησιμοποιώντας Flutter και Dart.",
-    "Σχεδίασα παιχνίδια που εκπαιδεύουν τη γνωστική λειτουργία και διεγείρουν τον εγκέφαλο.",
-    "Σχεδίασα μια διαισθητική και ελκυστική διεπαφή χρήστη με πλούσια κινούμενα σχέδια."
+    "Developed Cognitive Garden, a cutting-edge cross-platform application using Flutter and Dart.",
+    "Designed games that train brain cognition and stimulate the brain.",
+    "Designed an intuitive and engaging user interface with rich animations."
   ]
 }

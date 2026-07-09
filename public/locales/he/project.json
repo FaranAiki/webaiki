@@ -22,9 +22,9 @@
   ],
   "Lidia_Project": "ניתוח נתוני אינטגרציה סוציו-כלכלית עבור אינדונזיה אמאס 2045",
   "Lidia_Project_Description": [
-    "הקמתי תהליך ETL באמצעות Python, Pandas ו-Jupyter Notebook.",
-    "שילבתי את Gemini-CLI כדי לשפר את יכולות עיבוד הנתונים.",
-    "ייעלתי את תהליכי העבודה של הנתונים, והפחתתי משמעותית את זמן העיבוד הידני."
+    "Engineered an ETL pipeline using Python, Pandas, and Jupyter Notebook from 5 different datasets.",
+    "Integrated Gemini-CLI to enhance data processing capabilities.",
+    "Streamlined data workflows, thereby significantly reducing manual processing time."
   ],
   "Alkyl_Compiler": "שפת תכנות וקומפיילר Alkyl",
   "Alkyl_Compiler_Description": [
@@ -34,8 +34,8 @@
   ],
   "ALTH_Project": "ALTH: Aku Lupa Tandai Hadir",
   "ALTH_Project_Description": [
-    "ביצע ניתוח Burp Suite כדי להבין את השימוש ב-SSO ובעוגיות.",
-    "פיתח אפליקציית תזכורת נוכחות באמצעות Flutter ו-Dart עבור תלמידי Institut Teknologi Bandung."
+    "Using Burp Suite to analyze the usage of SSO and Cookies",
+    "Developed a \"mark attendance\" reminder app for Institut Teknologi Bandung students using Flutter and Dart"
   ],
   "Jump_Game_Project": "Jump! Game",
   "Below_Below_Project": "Below Below",
@@ -64,8 +64,8 @@
     "ניהלתי את מצב האפליקציה וזרימת הנתונים ביעילות בתוך לולאת האירועים של Qt."
   ],
   "Superskill_Description": [
-    "פיתח את הגן הקוגניטיבי, אפליקציה מתוחכמת חוצת פלטפורמות באמצעות Flutter ו-Dart.",
-    "עיצב משחקים המאמנים קוגניציה מוחית ומגרים את המוח.",
-    "עיצב ממשק משתמש אינטואיטיבי ומרתק עם אנימציות עשירות."
+    "Developed Cognitive Garden, a cutting-edge cross-platform application using Flutter and Dart.",
+    "Designed games that train brain cognition and stimulate the brain.",
+    "Designed an intuitive and engaging user interface with rich animations."
   ]
 }

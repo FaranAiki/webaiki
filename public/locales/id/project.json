@@ -20,9 +20,9 @@
   ],
   "Lidia_Project": "Analisis Data Integrasi Sosio-Ekonomi Indonesia Emas 2045",
   "Lidia_Project_Description": [
-    "Merekayasa pipeline ETL menggunakan Python, Pandas, dan Jupyter Notebook.",
+    "Merekayasa pipeline ETL menggunakan Python, Pandas, dan Jupyter Notebook dari 5 dataset berbeda.",
     "Mengintegrasikan Gemini-CLI untuk meningkatkan kemampuan pemrosesan data.",
-    "Menyederhanakan alur kerja data, secara signifikan mengurangi waktu pemrosesan manual."
+    "Menyederhanakan alur kerja data sehingga secara signifikan mengurangi waktu pemrosesan manual."
   ],
   "Alkyl_Compiler": "Bahasa Pemrograman dan Kompiler Alkyl",
   "Alkyl_Compiler_Description": [
@@ -32,7 +32,7 @@
   ],
   "ALTH_Project": "ALTH: Aku Lupa Tandai Hadir",
   "ALTH_Project_Description": [
-    "Melakukan burpsuite untuk menganalisis cara penggunaan SSO dan Cookies",
+    "Menggunakan Burp Suite untuk menganalisis cara penggunaan SSO dan Cookies",
     "Mengembangkan aplikasi menggunakan Flutter dan Dart pengingat \"tandai hadir\" untuk mahasiswa Institut Teknologi Bandung"
   ],
   "Jump_Game_Project": "Game Jump!",
@@ -62,7 +62,7 @@
     "Mengelola status aplikasi dan aliran data secara efisien dalam loop acara Qt."
   ],
   "Superskill_Description": [
-    "Mengembangkan Cognitive Garden, aplikasi lintas platform canggih menggunakan Flutter dan Dart.",
+    "Mengembangkan Cognitive Garden, yaitu aplikasi lintas platform canggih menggunakan Flutter dan Dart.",
     "Merancang permainan yang dapat melatih kognisi otak dan menstimulasi otak.",
     "Merancang antarmuka pengguna yang intuitif dan menarik dengan animasi yang kaya."
   ]

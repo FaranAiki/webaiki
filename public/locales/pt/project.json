@@ -22,9 +22,9 @@
   ],
   "Lidia_Project": "Socio-Economic Integration Data Analysis for Indonesia Emas 2045",
   "Lidia_Project_Description": [
-    "Engenhou um pipeline ETL usando Python, Pandas e Jupyter Notebook.",
-    "Integrou a Gemini-CLI para aprimorar os recursos de processamento de dados.",
-    "Otimizou fluxos de trabalho de dados, reduzindo significativamente o tempo de processamento manual."
+    "Engineered an ETL pipeline using Python, Pandas, and Jupyter Notebook from 5 different datasets.",
+    "Integrated Gemini-CLI to enhance data processing capabilities.",
+    "Streamlined data workflows, thereby significantly reducing manual processing time."
   ],
   "Alkyl_Compiler": "Alkyl Programming Language and Compiler",
   "Alkyl_Compiler_Description": [
@@ -34,8 +34,8 @@
   ],
   "ALTH_Project": "ALTH: Aku Lupa Tandai Hadir",
   "ALTH_Project_Description": [
-    "Conduziu análises no Burp Suite para entender o uso de SSO e Cookies.",
-    "Desenvolveu um aplicativo de lembrete de presença usando Flutter e Dart para estudantes do Institut Teknologi Bandung."
+    "Using Burp Suite to analyze the usage of SSO and Cookies",
+    "Developed a \"mark attendance\" reminder app for Institut Teknologi Bandung students using Flutter and Dart"
   ],
   "Jump_Game_Project": "Jump! Game",
   "Below_Below_Project": "Below Below",
@@ -64,8 +64,8 @@
     "Gerenciou o estado do aplicativo e o fluxo de dados de forma eficiente no loop de eventos Qt."
   ],
   "Superskill_Description": [
-    "Desenvolveu o Cognitive Garden, um aplicativo multiplataforma sofisticado usando Flutter e Dart.",
-    "Projetou jogos que treinam a cognição e estimulam o cérebro.",
-    "Projetou uma interface de usuário intuitiva e envolvente com animações ricas."
+    "Developed Cognitive Garden, a cutting-edge cross-platform application using Flutter and Dart.",
+    "Designed games that train brain cognition and stimulate the brain.",
+    "Designed an intuitive and engaging user interface with rich animations."
   ]
 }

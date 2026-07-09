@@ -15,13 +15,12 @@
     "Mengembangkan aplikasi full-stack yang tangguh menggunakan NextJS, TailwindCSS, dan TypeScript untuk frontend berkinerja tinggi.",
     "Merekayasa arsitektur backend memanfaatkan database SQL Supabase dipasangkan dengan Prisma ORM untuk manajemen data yang andal dan terukur.",
     "Mengelola platform Moodle dan Judgel untuk memastikan lingkungan kompetitif yang lancar bagi seluruh peserta.",
-    "Mengelola dan mengoordinasikan tim pengembangan front-end dan back-end untuk memastikan pengiriman proyek yang efisien."
+    "Mengelola dan mengoordinasikan tim beranggotakan 8 orang untuk memastikan pengiriman proyek yang efisien."
   ],
   "Treasurer_SYNC": "Bendahara Acara Gathering STEI-K",
   "Treasurer_SYNC_Description": [
-    "Mengelola catatan keuangan dan penganggaran untuk Acara Kumpul SYNC STEI-K.",
-    "Memproses transaksi, melacak pengeluaran, dan menyiapkan laporan keuangan terperinci.",
-    "Memastikan alokasi dana organisasi yang transparan dan efisien."
+    "Memastikan alokasi dana organisasi yang transparan dan efisien.",
+    "Mendapatkan 1+ juta hasil sponsorship dengan Analitica."
   ],
   "IT_Club_Vice_Renpy": "Wakil Ketua Pelaksana Projek Akhir IT Club 2024",
   "IT_Club_Vice_Renpy_Description": [
@@ -31,9 +30,7 @@
   ],
   "Student_Club_Member": "Anggota Klub Siswa",
   "Student_Club_Member_Description": [
-    "Berpartisipasi aktif dalam acara dan inisiatif Student Club 1 Depok.",
-    "Berkolaborasi dengan rekan sebaya untuk mengorganisir kegiatan pembangunan komunitas.",
-    "Berkontribusi pada tujuan klub melalui kerja sama tim yang berdedikasi."
+    "Berpartisipasi aktif dalam lomba-lomba Student Club 1 Depok."
   ],
   "English_Club_Member": "Anggota Klub Inggris",
   "English_Club_Member_Description": [
@@ -48,14 +45,13 @@
   ],
   "Concerto": "Penanggung Jawab Tingkat Final Lomba Concerto",
   "Concerto_Description": [
-    "Mengelola operasi dan logistik acara untuk pertemuan Klub Siswa Concerto.",
-    "Berkolaborasi dengan anggota tim untuk merencanakan dan melaksanakan kegiatan yang menarik.",
-    "Menangani pendaftaran peserta dan memberikan dukungan di lokasi."
+    "Mengorganisir pembuatan soal sebagai penanggung jawab bidang final.",
+    "Mempelajari bahwa menjadi ketua adalah tanggung jawab yang tinggi sehingga tidak bisa menyalahkan bawahan."
   ],
   "GDG_ITB_Title": "Google Developer Group Campus on ITB - Product Manager Explorer",
   "GDG_ITB_Description": [
-    "Belajar mengenai Product Management dari basic to advanced",
-    "Belajar berempati kepada pengguna"
+    "Mempelajari Manajemen Produk dari tingkat dasar hingga mahir.",
+    "Mempelajari cara berempati kepada pengguna."
   ],
   "GDGOC ITB_Product Manager": "GDGOC ITB Manajer Produk"
 }

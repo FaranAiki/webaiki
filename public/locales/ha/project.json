@@ -22,9 +22,9 @@
   ],
   "Lidia_Project": "Nazarin Bayanan Haɗin Kan Tattalin Arziki ga Indonesiya Emas 2045",
   "Lidia_Project_Description": [
-    "Na tsara tsarin ETL ta amfani da Python, Pandas, da Jupyter Notebook.",
-    "Na haɗa Gemini-CLI don haɓaka ƙarfin sarrafa bayanai.",
-    "Na sauƙaƙe tafiyar matakan aiki na bayanai, inda ya rage lokacin aiki sosai."
+    "Engineered an ETL pipeline using Python, Pandas, and Jupyter Notebook from 5 different datasets.",
+    "Integrated Gemini-CLI to enhance data processing capabilities.",
+    "Streamlined data workflows, thereby significantly reducing manual processing time."
   ],
   "Alkyl_Compiler": "Yaren Programming Alkyl da Compiler",
   "Alkyl_Compiler_Description": [
@@ -34,8 +34,8 @@
   ],
   "ALTH_Project": "ALTH: Aku Lupa Tandai Hadir",
   "ALTH_Project_Description": [
-    "An gudanar da bincike na Burp Suite don fahimtar amfani da SSO da Kukis.",
-    "An haɓaka aikace-aikacen tunatarwa na halarta ta amfani da Flutter da Dart ga ɗaliban Institut Teknologi Bandung."
+    "Using Burp Suite to analyze the usage of SSO and Cookies",
+    "Developed a \"mark attendance\" reminder app for Institut Teknologi Bandung students using Flutter and Dart"
   ],
   "Jump_Game_Project": "Wasan Jump!",
   "Below_Below_Project": "Below Below",
@@ -64,8 +64,8 @@
     "Na gudanar da gudana na aikace-aikacen a cikin Qt."
   ],
   "Superskill_Description": [
-    "An haɓaka Aljannar Hankali, wani ingantaccen aikace-aikacen dandamali daban-daban ta amfani da Flutter da Dart.",
-    "An tsara wasannin da ke horar da fahimtar kwakwalwa da motsa kwakwalwa.",
-    "An tsara kyakkyawan tsarin mai amfani wanda ke da sauƙin fahimta tare da kyawawan wasanni."
+    "Developed Cognitive Garden, a cutting-edge cross-platform application using Flutter and Dart.",
+    "Designed games that train brain cognition and stimulate the brain.",
+    "Designed an intuitive and engaging user interface with rich animations."
   ]
 }

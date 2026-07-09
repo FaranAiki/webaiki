@@ -20,9 +20,8 @@
   ],
   "Treasurer_SYNC": "STEI-K 聚会活动财务",
   "Treasurer_SYNC_Description": [
-    "管理了SYNC STEI-K聚会活动的财务记录和预算。",
-    "处理了交易，跟踪了费用，并准备了详细的财务报告。",
-    "确保了组织资金的透明和高效分配。"
+    "Ensuring transparent and efficient allocation of organizational funds.",
+    "Secured 1+ million sponsorship deal with Analitica."
   ],
   "IT_Club_Vice_Renpy": "2024年 IT 俱乐部最终项目副项目经理",
   "IT_Club_Vice_Renpy_Description": [
@@ -49,14 +48,13 @@
   ],
   "Concerto": "Concerto 竞赛决赛阶段协调员",
   "Concerto_Description": [
-    "管理了Concerto学生俱乐部聚会的活动运营和后勤。",
-    "与团队成员合作，计划并执行了引人入胜的活动。",
-    "处理了参与者注册，并提供了现场支持。"
+    "Organized question generation as the person in charge of the final round.",
+    "Learned that being a leader entails high responsibility and one cannot blame subordinates."
   ],
   "GDG_ITB_Title": "Google Developer Group Campus on ITB - Product Manager Explorer",
   "GDG_ITB_Description": [
-    "从基础到高级概念学习了产品管理。",
-    "学会了与用户共情并理解他们的需求。"
+    "Learning Product Management from basic to advanced.",
+    "Learning to empathize with users."
   ],
   "GDGOC ITB_Product Manager": "GDGOC ITB 产品经理"
 }

@@ -179,7 +179,7 @@ dirs.forEach(lang => {
       });
       
       if (modified) {
-        fs.writeFileSync(jsonPath, JSON.stringify(content, null, 2) + '\\n', 'utf8');
+        fs.writeFileSync(jsonPath, JSON.stringify(content, null, 2) + '\n', 'utf8');
       }
     }
   });

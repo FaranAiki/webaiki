@@ -21,9 +21,9 @@
   ],
   "Lidia_Project": "Socio-Economic Integration Data Analysis Indonesia Gold 2045",
   "Lidia_Project_Description": [
-    "Engineered an ETL pipeline using Python, Pandas, and Jupyter Notebook.",
-    "Integrated the Gemini-CLI to enhance data processing capabilities.",
-    "Streamlined data workflows, significantly reducing manual processing time."
+    "Engineered an ETL pipeline using Python, Pandas, and Jupyter Notebook from 5 different datasets.",
+    "Integrated Gemini-CLI to enhance data processing capabilities.",
+    "Streamlined data workflows, thereby significantly reducing manual processing time."
   ],
   "Alkyl_Compiler": "Alkyl Programming Language and Compiler",
   "Alkyl_Compiler_Description": [
@@ -33,8 +33,8 @@
   ],
   "ALTH_Project": "ALTH: I Forgot to Mark Presence",
   "ALTH_Project_Description": [
-    "Conducted Burp Suite analysis to understand SSO and Cookies usage.",
-    "Developed an attendance reminder application using Flutter and Dart for Institut Teknologi Bandung students."
+    "Using Burp Suite to analyze the usage of SSO and Cookies",
+    "Developed a \"mark attendance\" reminder app for Institut Teknologi Bandung students using Flutter and Dart"
   ],
   "Jump_Game_Project": "Jump! Game",
   "Below_Below_Project": "Below Below",
@@ -62,7 +62,7 @@
     "Managed application state and data flow efficiently within the Qt event loop."
   ],
   "Superskill_Description": [
-    "Developed Cognitive Garden, a sophisticated cross-platform application using Flutter and Dart.",
+    "Developed Cognitive Garden, a cutting-edge cross-platform application using Flutter and Dart.",
     "Designed games that train brain cognition and stimulate the brain.",
     "Designed an intuitive and engaging user interface with rich animations."
   ]

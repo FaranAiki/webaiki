@@ -22,9 +22,9 @@
   ],
   "Lidia_Project": "2045年金色印尼社会经济整合数据分析",
   "Lidia_Project_Description": [
-    "使用Python、Pandas和Jupyter Notebook构建了ETL管道。",
-    "集成了Gemini-CLI以增强数据处理能力。",
-    "简化了数据工作流程，显著减少了手动处理时间。"
+    "Engineered an ETL pipeline using Python, Pandas, and Jupyter Notebook from 5 different datasets.",
+    "Integrated Gemini-CLI to enhance data processing capabilities.",
+    "Streamlined data workflows, thereby significantly reducing manual processing time."
   ],
   "Alkyl_Compiler": "Alkyl 编程语言与编译器",
   "Alkyl_Compiler_Description": [
@@ -34,8 +34,8 @@
   ],
   "ALTH_Project": "ALTH: 我忘了签到",
   "ALTH_Project_Description": [
-    "使用Burp Suite进行分析以了解SSO和Cookies的使用情况。",
-    "使用Flutter和Dart为万隆理工学院的学生开发了一款出勤提醒应用。"
+    "Using Burp Suite to analyze the usage of SSO and Cookies",
+    "Developed a \"mark attendance\" reminder app for Institut Teknologi Bandung students using Flutter and Dart"
   ],
   "Jump_Game_Project": "Jump! Game",
   "Below_Below_Project": "Below Below",
@@ -64,8 +64,8 @@
     "在Qt事件循环中有效地管理了应用程序状态和数据流。"
   ],
   "Superskill_Description": [
-    "使用Flutter和Dart开发了Cognitive Garden，一个复杂的跨平台应用程序。",
-    "设计了训练大脑认知和刺激大脑的游戏。",
-    "设计了直观且吸引人的用户界面，并配有丰富的动画效果。"
+    "Developed Cognitive Garden, a cutting-edge cross-platform application using Flutter and Dart.",
+    "Designed games that train brain cognition and stimulate the brain.",
+    "Designed an intuitive and engaging user interface with rich animations."
   ]
 }
