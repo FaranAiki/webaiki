@@ -17,14 +17,15 @@ export function HeroImageCarousel({ photos, alt }: { photos: string[], alt: stri
 
   return (
     <AnimatePresence initial={false}>
-      <motion.div
-        key={currentIndex}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.8, ease: "easeInOut" }}
-        className="absolute inset-0 z-10 w-full h-full"
-      >
+      {currentIndex > 0 && (
+        <motion.div
+          key={currentIndex}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
+          className="absolute inset-0 z-10 w-full h-full"
+        >
         <Image
           src={`/images/photo_faran_aiki/${photos[currentIndex]}`}
           alt={alt}
@@ -33,7 +34,8 @@ export function HeroImageCarousel({ photos, alt }: { photos: string[], alt: stri
           sizes="(max-width: 768px) 160px, 250px"
           quality={70}
         />
-      </motion.div>
+        </motion.div>
+      )}
     </AnimatePresence>
   );
 }

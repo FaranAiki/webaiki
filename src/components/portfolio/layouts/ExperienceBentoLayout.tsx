@@ -24,7 +24,7 @@ export default function ExperienceBentoLayout() {
     return (
         <motion.div
             className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[300px]"
-            initial="hidden"
+            initial={priorityImages ? "show" : "hidden"}
             whileInView="show"
             viewport={{ once: true, margin: "-50px" }}
             variants={{

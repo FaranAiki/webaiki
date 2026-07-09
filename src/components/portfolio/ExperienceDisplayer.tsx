@@ -18,7 +18,7 @@ import { ExperienceProvider } from './ExperienceContext';
 import dynamic from 'next/dynamic';
 
 
-const ExperienceOriginalLayout = dynamic(() => import('./layouts/ExperienceOriginalLayout'), { loading: () => <LoadingSpinner /> });
+const ExperienceOriginalLayout = dynamic(() => import('./layouts/ExperienceOriginalLayout'));
 
 const LoadingSpinner = () => (
     <div className="w-full flex justify-center items-center py-24 min-h-[50vh]">
@@ -26,11 +26,11 @@ const LoadingSpinner = () => (
     </div>
 );
 
-const ExperienceBentoLayout = dynamic(() => import('./layouts/ExperienceBentoLayout'), { loading: () => <LoadingSpinner /> });
-const ExperienceTimelineLayout = dynamic(() => import('./layouts/ExperienceTimelineLayout'), { loading: () => <LoadingSpinner /> });
-const ExperienceGridLayout = dynamic(() => import('./layouts/ExperienceGridLayout'), { loading: () => <LoadingSpinner /> });
-const ExperienceSmoothLayout = dynamic(() => import('./layouts/ExperienceSmoothLayout'), { loading: () => <LoadingSpinner /> });
-const ExperiencePresentationLayout = dynamic(() => import('./layouts/ExperiencePresentationLayout'), { loading: () => <LoadingSpinner /> });
+const ExperienceBentoLayout = dynamic(() => import('./layouts/ExperienceBentoLayout'));
+const ExperienceTimelineLayout = dynamic(() => import('./layouts/ExperienceTimelineLayout'));
+const ExperienceGridLayout = dynamic(() => import('./layouts/ExperienceGridLayout'));
+const ExperienceSmoothLayout = dynamic(() => import('./layouts/ExperienceSmoothLayout'));
+const ExperiencePresentationLayout = dynamic(() => import('./layouts/ExperiencePresentationLayout'));
 
 export type Job = {
     date: string;

@@ -24,6 +24,7 @@ export default async function RootLayout({
         <meta name="strix-verification" content="strix-verify-c06f1485383fb06c8ff307fe69f30458" />
 
         {/* Font Preloads are now handled by next/font */}
+        <link rel="preload" href="/manifest.json" as="fetch" crossOrigin="anonymous" />
 
         <script nonce={nonce} dangerouslySetInnerHTML={{
           __html: `
