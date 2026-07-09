@@ -16,7 +16,8 @@ export default function ExperienceGridLayout() {
         cardBorder,
         inactiveCardBg,
         mainText,
-        shimmer600x400
+        shimmer600x400,
+        priorityImages
     } = useExperienceContext();
     
     const allJobs = useMemo(() => paginatedExperiences.flatMap(e => e.jobs), [paginatedExperiences]);
@@ -52,7 +53,7 @@ export default function ExperienceGridLayout() {
                             job.image[0].toLowerCase().endsWith('.pdf') ? (
                                 <PdfRenderer url={job.image[0]} />
                             ) : (
-                                <ClientOnlyImage src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px" quality={70} className="object-cover transition-transform group-hover:scale-105" priority={idx < 4} placeholder="blur" blurDataURL={shimmer600x400} />
+                                <ClientOnlyImage src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px" quality={70} className="object-cover transition-transform group-hover:scale-105" priority={priorityImages ? idx < 4 : false} placeholder="blur" blurDataURL={shimmer600x400} />
                             )
                         ) : (
                             <PlaceholderIcon company={job.company} />

@@ -25,7 +25,7 @@ const FAQ = dynamicImport(() => import('@/components/portfolio/FAQ'));
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const dict = await getDictionary(lang);
+  const dict = await getDictionary(lang, ['portfolio']);
   const baseMetadata = getBaseMetadata();
 
   return {
@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 export default async function PortfolioSummaryPage({params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
-  
+
 
   const workExp = getWorkExperiences(dict).flatMap(y => y.jobs);
   const projectExp = getProjectExperiences(dict).flatMap(y => y.jobs);
@@ -105,7 +105,7 @@ export default async function PortfolioSummaryPage({params }: { params: Promise<
       <PortfolioClientWrapper>
         <div className="space-y-6 portfolio-content-wrapper">
           <div className="portfolio-header-wrapper">
-            <PortfolioHeader 
+            <PortfolioHeader
               title={dict.Portfolio || 'Portfolio'}
               resumeLabel={`${dict.Resume || 'Resume'} Muhammad Faran Aiki`}
               subtitle={`Muhammad Faran Aiki | ${dict.STI}, ${dict.ITB}, ${dict.Indonesia}`}
@@ -118,7 +118,7 @@ export default async function PortfolioSummaryPage({params }: { params: Promise<
           <PortfolioEducation education={education} title={dict.Education || 'Education'} />
 
           {/* Experience Sections */}
-          <PortfolioExperienceList 
+          <PortfolioExperienceList
             workExperiences={workExp}
             projectExperiences={projectExp}
             organizationExperiences={orgExp}
@@ -158,13 +158,13 @@ export default async function PortfolioSummaryPage({params }: { params: Promise<
                   {dict.Professional_Pitch_Text}
               </p>
               <div className="mt-6 flex flex-wrap gap-4">
-                  <Link 
+                  <Link
                       href={`/${lang}/hire-me`}
                       className="px-6 py-2 rounded-xl bg-theme-800 dark:bg-theme-600 text-white font-bold text-sm hover:scale-105 transition-transform shadow-lg shadow-theme-500/20"
                   >
                       {dict.Hire_Me}
                   </Link>
-                  <Link 
+                  <Link
                       href={`/${lang}/social`}
                       className="px-6 py-2 rounded-xl bg-theme-surface-strong border border-theme-border font-bold text-sm hover:bg-theme-surface transition-colors"
                   >

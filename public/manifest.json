@@ -1,5 +1,5 @@
 {
-  "name": "Faran Aiki Portfolio",
+  "name": "Faran Aiki Personal Portfolio",
   "short_name": "Faran Aiki",
   "description": "Personal portfolio, resume, and blog of Muhammad Faran Aiki, an STI ITB student and Software Engineer.",
   "start_url": "/",
@@ -8,12 +8,12 @@
   "theme_color": "#0ea5e9",
   "icons": [
     {
-      "src": "/images/icons/icon-192x192.png?v=3",
+      "src": "/images/icons/icon-192x192.png?v=6",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/images/icons/icon-512x512.png?v=3",
+      "src": "/images/icons/icon-512x512.png?v=6",
       "sizes": "512x512",
       "type": "image/png"
     }

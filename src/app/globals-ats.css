@@ -74,13 +74,9 @@ body.ats-mode .portfolio-main section {
   overflow: visible !important;
 }
 
-/* Tighten Summary Items uniformly */
-body.ats-mode .portfolio-main .space-y-1,
-body.ats-mode .portfolio-main .space-y-2 {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 0px !important;
-  overflow: visible !important;
+body.ats-mode .portfolio-main .space-y-1 > :not([hidden]) ~ :not([hidden]),
+body.ats-mode .portfolio-main .space-y-2 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 0px !important;
 }
 
 body.ats-mode .portfolio-main .portfolio-grid > section {

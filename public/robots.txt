@@ -1,48 +1,22 @@
-# *
+# Global Rules (Berlaku untuk Googlebot dan bot umum lainnya)
 User-agent: *
 Allow: /
+Disallow: /api/
 
-# Explicitly allowed bots
+# Kumpulan Bot AI & Archiver (Dikelompokkan agar rapi dan tidak meng-override aturan API)
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: OAI-SearchBot
+User-agent: Anthropic-ai
+User-agent: Claude-Web
+User-agent: PerplexityBot
+User-agent: Google-Extended
 User-agent: bingbot
-Allow: /
-
 User-agent: DuckDuckBot
-Allow: /
-
 User-agent: archive.org_bot
 Allow: /
+Disallow: /api/
 
-# Google-Extended
-User-agent: Google-Extended
-Allow: /
-
-# GPTBot
-User-agent: GPTBot
-Allow: /
-
-# ChatGPT-User
-User-agent: ChatGPT-User
-Allow: /
-
-# OAI-SearchBot
-User-agent: OAI-SearchBot
-Allow: /
-
-# Anthropic-ai
-User-agent: Anthropic-ai
-Allow: /
-
-# Claude-Web
-User-agent: Claude-Web
-Allow: /
-
-# PerplexityBot
-User-agent: PerplexityBot
-Allow: /
-
-# Host
+# Host & Sitemap
 Host: https://faranaiki.id
-
-# Sitemaps
 Sitemap: https://faranaiki.id/sitemap.xml
-Sitemap: https://faranaiki.id/sitemap-news.xml

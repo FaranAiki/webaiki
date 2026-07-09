@@ -8,11 +8,17 @@ export type { CertificateData };
 import dynamic from 'next/dynamic';
 
 
-const CertificatesPresentationLayout = dynamic(() => import('./layouts/CertificatesPresentationLayout'));
-const CertificatesOriginalLayout = dynamic(() => import('./layouts/CertificatesOriginalLayout'));
-const CertificatesTimelineLayout = dynamic(() => import('./layouts/CertificatesTimelineLayout'));
-const CertificatesGridLayout = dynamic(() => import('./layouts/CertificatesGridLayout'));
-const CertificatesBentoLayout = dynamic(() => import('./layouts/CertificatesBentoLayout'));
+const LoadingSpinner = () => (
+    <div className="w-full flex justify-center items-center py-24 min-h-[50vh]">
+        <div className="w-12 h-12 border-4 border-theme-500/20 border-t-theme-500 rounded-full animate-spin"></div>
+    </div>
+);
+
+const CertificatesPresentationLayout = dynamic(() => import('./layouts/CertificatesPresentationLayout'), { loading: () => <LoadingSpinner /> });
+const CertificatesOriginalLayout = dynamic(() => import('./layouts/CertificatesOriginalLayout'), { loading: () => <LoadingSpinner /> });
+const CertificatesTimelineLayout = dynamic(() => import('./layouts/CertificatesTimelineLayout'), { loading: () => <LoadingSpinner /> });
+const CertificatesGridLayout = dynamic(() => import('./layouts/CertificatesGridLayout'), { loading: () => <LoadingSpinner /> });
+const CertificatesBentoLayout = dynamic(() => import('./layouts/CertificatesBentoLayout'), { loading: () => <LoadingSpinner /> });
 
 function CertificatesContent() {
   const { 

@@ -29,6 +29,7 @@ interface ExperienceContextType {
     shimmer600x400: string;
 
     translations: import('@/components/layout/Translator').TranslationDict;
+    priorityImages?: boolean;
 }
 
 const ExperienceContext = createContext<ExperienceContextType | undefined>(undefined);
@@ -40,7 +41,8 @@ export function ExperienceProvider({
     layout,
     isLoggedIn,
     bookmarkedItemIds,
-    translations
+    translations,
+    priorityImages = false
 }: { 
     children: React.ReactNode;
     experiences: Experience[];
@@ -49,6 +51,7 @@ export function ExperienceProvider({
     isLoggedIn: boolean;
     bookmarkedItemIds: string[];
     translations: import('@/components/layout/Translator').TranslationDict;
+    priorityImages?: boolean;
 }) {
     const [currentLayout, setCurrentLayout] = useState<LayoutType>(layout);
     const [presentationLayout, setPresentationLayout] = useState<PresentationLayoutType>('modern');
@@ -99,7 +102,8 @@ export function ExperienceProvider({
         inactiveCardBg,
         justifyClass,
         shimmer600x400,
-        translations
+        translations,
+        priorityImages
     };
 
     return (

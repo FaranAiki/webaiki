@@ -1,7 +1,7 @@
 export const dynamic = 'error';
 import type { Metadata } from "next";
 import { getDictionary } from '@/components/layout/Translator';
-import { getLanguageAlternates, getBaseMetadata, SITE_URL, getPersonSchema, getWebsiteSchema, getProfilePageSchema } from '@/lib/seo';
+import { getLanguageAlternates, getBaseMetadata, SITE_URL, getPersonSchema, getWebsiteSchema, getProfilePageSchema, getOrganizationSchema } from '@/lib/seo';
 
 import { getNews, getFeedbacks } from '@/app/actions';
 import { NewsItem } from '@/lib/types';
@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','news']);
   const baseMetadata = getBaseMetadata(dict);
 
-  const title = `Muhammad Faran Aiki (Faran) | ${dict.Software_Engineer || 'Software Engineer'} & ${dict.College || 'ITB Student'}`;
+  const title = `${dict.Software_Engineer || 'Software Engineer'} & ${dict.College || 'ITB Student'}`;
   const description = dict.SEO_Home_Description || `Portfolio of Muhammad Faran Aiki (Faran Aiki), a Software Engineer and student at Bandung Institute of Technology. Explore projects, work experience, and insights from Faran.`;
 
   return {
@@ -80,6 +80,7 @@ export default async function HomePage({
     "@graph": [
       getPersonSchema(lang),
       getWebsiteSchema(lang),
+      getOrganizationSchema(),
       getProfilePageSchema(lang)
     ]
   };

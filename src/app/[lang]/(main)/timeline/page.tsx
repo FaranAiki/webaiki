@@ -104,7 +104,7 @@ async function SuspendedTimelineContent({ lang, dict }: { lang: string, dict: Re
         <ExperienceServerDisplayer
         isLoggedIn={isLoggedIn}
         bookmarkedItemIds={experienceBookmarks}
-        layout="original"
+        layout="timeline"
         experiences={allExperiences}
         lang={lang}
         canChange={true}
@@ -128,6 +128,7 @@ async function SuspendedTimelineContent({ lang, dict }: { lang: string, dict: Re
             bookmarkedItemIds={experienceBookmarks}
           />
         }
+        priorityImages={true}
       />
       </div>
   );

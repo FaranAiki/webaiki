@@ -74,6 +74,7 @@ export default async function AwardPage({params }: { params: Promise<{ lang: str
             hover_to_preview_text={dict.Hover_To_Preview}
             hover_an_experience_text={dict.Hover_An_Experience}
             visit_project_text={dict.Visit_Project}
+            priorityImages={true}
       />
       </div>
     </main>

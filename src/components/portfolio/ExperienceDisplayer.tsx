@@ -75,6 +75,7 @@ interface ExperiencesClientProps {
     hover_to_preview_text?: string;
     hover_an_experience_text?: string;
     visit_project_text?: string;
+    priorityImages?: boolean;
 }
 
 export default function ExperiencesClient({
@@ -98,7 +99,8 @@ export default function ExperiencesClient({
     serverOriginalLayout,
     hover_to_preview_text = 'Hover to preview',
     hover_an_experience_text = 'Hover an experience to see details',
-    visit_project_text = 'Visit Project'
+    visit_project_text = 'Visit Project',
+    priorityImages = false
 }: ExperiencesClientProps) {
     const [currentLayout, setCurrentLayout] = useState<LayoutType>(layout);
     const { isPresentationMode } = usePresentation();
@@ -135,6 +137,7 @@ export default function ExperiencesClient({
             isLoggedIn={isLoggedIn}
             bookmarkedItemIds={bookmarkedItemIds}
             translations={translations}
+            priorityImages={priorityImages}
         >
             <div className={isPresentationMode ? "contents" : "w-full"}>
                 {canChange && !isPresentationMode && (

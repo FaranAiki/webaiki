@@ -24,8 +24,7 @@ interface DraggableExperienceListProps {
 
 
 
-function DraggableItem({ job, category, onRemove, ariaLabelTemplate }: { job: Job, category: string, onRemove: () => void, ariaLabelTemplate?: string }) {
-  const { isAtsMode } = useSettings();
+function DraggableItem({ job, onRemove, ariaLabelTemplate }: { job: Job, onRemove: () => void, ariaLabelTemplate?: string }) {
   const controls = useDragControls();
 
   return (
@@ -35,14 +34,15 @@ function DraggableItem({ job, category, onRemove, ariaLabelTemplate }: { job: Jo
       dragControls={controls}
       className="relative group"
     >
-      {!isAtsMode && (
-        <div 
-          onPointerDown={(e) => controls.start(e)}
-          className="absolute right-8 top-4 opacity-0 group-hover:opacity-100 transition-opacity flex items-center cursor-grab active:cursor-grabbing z-10"
-        >
-          <GripVertical size={16} className="text-theme-muted hover:text-theme-500" />
-        </div>
-      )}
+      <div 
+        onPointerDown={(e) => controls.start(e)}
+        className="absolute right-8 top-4 opacity-0 group-hover:opacity-100 transition-opacity flex items-center cursor-grab active:cursor-grabbing z-10"
+        aria-label={`Drag to reorder ${job.title}`}
+        role="button"
+        tabIndex={0}
+      >
+        <GripVertical size={16} className="text-theme-muted hover:text-theme-500" />
+      </div>
       <PortfolioSummaryItem
         title={job.title}
         company={job.company}
@@ -63,7 +63,6 @@ export default function DraggableExperienceList({ items, onReorder, onRemove, ar
         <DraggableItem
           key={`${category}-${job.title}-${job.company}-${job.date}`}
           job={job}
-          category={category}
           onRemove={() => onRemove(job)}
           ariaLabelTemplate={ariaLabelTemplate}
         />

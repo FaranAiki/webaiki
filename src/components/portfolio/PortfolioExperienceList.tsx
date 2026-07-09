@@ -6,7 +6,7 @@ import { useSettings } from '../providers/SettingsContext';
 import { Briefcase, Code, Users, Trophy } from 'lucide-react';
 import PortfolioSummaryItem from './PortfolioSummaryItem';
 
-const DraggableExperienceList = dynamic(() => import('./DraggableExperienceList'), { ssr: false });
+const DraggableExperienceList = dynamic(() => import('./DraggableExperienceList'));
 
 import { ExperienceTag } from '@/lib/types';
 
@@ -122,15 +122,6 @@ export default function PortfolioExperienceList({
   const [orderedProject, setOrderedProject] = useState<Job[]>([]);
   const [orderedOrg, setOrderedOrg] = useState<Job[]>([]);
   const [orderedAward, setOrderedAward] = useState<Job[]>([]);
-  
-  const [isDesktop, setIsDesktop] = useState(true); // default true for SSR, we will update on mount
-
-  useEffect(() => {
-    setIsDesktop(window.innerWidth > 768);
-    const handleResize = () => setIsDesktop(window.innerWidth > 768);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   useEffect(() => setOrderedWork(filteredWork), [filteredWork]);
   useEffect(() => setOrderedProject(filteredProject), [filteredProject]);
@@ -157,7 +148,7 @@ export default function PortfolioExperienceList({
             {!isAtsMode && <Briefcase size={12} className="text-theme-500" />}
             <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">{labels.Work}</h2>
           </div>
-          {isDesktop ? (
+          <div className="hidden md:block">
             <DraggableExperienceList
               items={orderedWork}
               onReorder={setOrderedWork}
@@ -165,22 +156,21 @@ export default function PortfolioExperienceList({
               ariaLabelTemplate={labels.Visit_External_Link}
               category="work"
             />
-          ) : (
-            <div className="space-y-1">
-              {orderedWork.map((job) => (
-                <PortfolioSummaryItem
-                  key={`${job.title}-${job.company}-${job.date}`}
-                  title={job.title}
-                  company={job.company}
-                  date={job.date}
-                  description={job.description}
-                  url={job.url}
-                  onRemove={() => handleRemove('work', job)}
-                  ariaLabelTemplate={labels.Visit_External_Link}
-                />
-              ))}
-            </div>
-          )}
+          </div>
+          <div className="block md:hidden space-y-1">
+            {orderedWork.map((job) => (
+              <PortfolioSummaryItem
+                key={`${job.title}-${job.company}-${job.date}`}
+                title={job.title}
+                company={job.company}
+                date={job.date}
+                description={job.description}
+                url={job.url}
+                onRemove={() => handleRemove('work', job)}
+                ariaLabelTemplate={labels.Visit_External_Link}
+              />
+            ))}
+          </div>
         </section>
       )}
 
@@ -191,7 +181,7 @@ export default function PortfolioExperienceList({
             {!isAtsMode && <Code size={12} className="text-theme-500" />}
             <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">{labels.Project}</h2>
           </div>
-          {isDesktop ? (
+          <div className="hidden md:block">
             <DraggableExperienceList
               items={orderedProject}
               onReorder={setOrderedProject}
@@ -199,22 +189,21 @@ export default function PortfolioExperienceList({
               ariaLabelTemplate={labels.Visit_External_Link}
               category="project"
             />
-          ) : (
-            <div className="space-y-1">
-              {orderedProject.map((job) => (
-                <PortfolioSummaryItem
-                  key={`${job.title}-${job.company}-${job.date}`}
-                  title={job.title}
-                  company={job.company}
-                  date={job.date}
-                  description={job.description}
-                  url={job.url}
-                  onRemove={() => handleRemove('project', job)}
-                  ariaLabelTemplate={labels.Visit_External_Link}
-                />
-              ))}
-            </div>
-          )}
+          </div>
+          <div className="block md:hidden space-y-1">
+            {orderedProject.map((job) => (
+              <PortfolioSummaryItem
+                key={`${job.title}-${job.company}-${job.date}`}
+                title={job.title}
+                company={job.company}
+                date={job.date}
+                description={job.description}
+                url={job.url}
+                onRemove={() => handleRemove('project', job)}
+                ariaLabelTemplate={labels.Visit_External_Link}
+              />
+            ))}
+          </div>
         </section>
       )}
 
@@ -225,7 +214,7 @@ export default function PortfolioExperienceList({
             {!isAtsMode && <Users size={12} className="text-theme-500" />}
             <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">{labels.Organization}</h2>
           </div>
-          {isDesktop ? (
+          <div className="hidden md:block">
             <DraggableExperienceList
               items={orderedOrg}
               onReorder={setOrderedOrg}
@@ -233,22 +222,21 @@ export default function PortfolioExperienceList({
               ariaLabelTemplate={labels.Visit_External_Link}
               category="org"
             />
-          ) : (
-            <div className="space-y-1">
-              {orderedOrg.map((job) => (
-                <PortfolioSummaryItem
-                  key={`${job.title}-${job.company}-${job.date}`}
-                  title={job.title}
-                  company={job.company}
-                  date={job.date}
-                  description={job.description}
-                  url={job.url}
-                  onRemove={() => handleRemove('org', job)}
-                  ariaLabelTemplate={labels.Visit_External_Link}
-                />
-              ))}
-            </div>
-          )}
+          </div>
+          <div className="block md:hidden space-y-1">
+            {orderedOrg.map((job) => (
+              <PortfolioSummaryItem
+                key={`${job.title}-${job.company}-${job.date}`}
+                title={job.title}
+                company={job.company}
+                date={job.date}
+                description={job.description}
+                url={job.url}
+                onRemove={() => handleRemove('org', job)}
+                ariaLabelTemplate={labels.Visit_External_Link}
+              />
+            ))}
+          </div>
         </section>
       )}
 
@@ -259,7 +247,7 @@ export default function PortfolioExperienceList({
             {!isAtsMode && <Trophy size={12} className="text-theme-500" />}
             <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">{labels.Award}</h2>
           </div>
-          {isDesktop ? (
+          <div className="hidden md:block">
             <DraggableExperienceList
               items={orderedAward}
               onReorder={setOrderedAward}
@@ -267,22 +255,21 @@ export default function PortfolioExperienceList({
               ariaLabelTemplate={labels.Visit_External_Link}
               category="award"
             />
-          ) : (
-            <div className="space-y-1">
-              {orderedAward.map((job) => (
-                <PortfolioSummaryItem
-                  key={`${job.title}-${job.company}-${job.date}`}
-                  title={job.title}
-                  company={job.company}
-                  date={job.date}
-                  description={job.description}
-                  url={job.url}
-                  onRemove={() => handleRemove('award', job)}
-                  ariaLabelTemplate={labels.Visit_External_Link}
-                />
-              ))}
-            </div>
-          )}
+          </div>
+          <div className="block md:hidden space-y-1">
+            {orderedAward.map((job) => (
+              <PortfolioSummaryItem
+                key={`${job.title}-${job.company}-${job.date}`}
+                title={job.title}
+                company={job.company}
+                date={job.date}
+                description={job.description}
+                url={job.url}
+                onRemove={() => handleRemove('award', job)}
+                ariaLabelTemplate={labels.Visit_External_Link}
+              />
+            ))}
+          </div>
         </section>
       )}
     </div>

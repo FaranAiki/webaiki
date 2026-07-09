@@ -1063,7 +1063,10 @@ export default function Header(props: HeaderProps) {
                                                     <button
                                                         onClick={() => {
                                                             setMobileMenuOpen(false);
-                                                            router.push(getLocalizedHref('/edit-profile'));
+                                                            setGlobalLoading(true);
+                                                            startTransition(() => {
+                                                                router.push(getLocalizedHref('/edit-profile'));
+                                                            });
                                                         }}
                                                         className={`flex items-center w-full text-lg font-semibold ${textColor} transition-colors duration-300 hover:text-theme-600 px-2`}
                                                     >
@@ -1074,7 +1077,10 @@ export default function Header(props: HeaderProps) {
                                                     <button
                                                         onClick={() => {
                                                             setMobileMenuOpen(false);
-                                                            router.push(getLocalizedHref('/bookmarks'));
+                                                            setGlobalLoading(true);
+                                                            startTransition(() => {
+                                                                router.push(getLocalizedHref('/bookmarks'));
+                                                            });
                                                         }}
                                                         className={`flex items-center w-full text-lg font-semibold ${textColor} transition-colors duration-300 hover:text-theme-600 px-2`}
                                                     >
@@ -1085,7 +1091,10 @@ export default function Header(props: HeaderProps) {
                                                     <button
                                                         onClick={() => {
                                                             setMobileMenuOpen(false);
-                                                            router.push(getLocalizedHref('/business-requests'));
+                                                            setGlobalLoading(true);
+                                                            startTransition(() => {
+                                                                router.push(getLocalizedHref('/business-requests'));
+                                                            });
                                                         }}
                                                         className={`flex items-center w-full text-lg font-semibold ${textColor} transition-colors duration-300 hover:text-theme-600 px-2`}
                                                     >
@@ -1096,7 +1105,10 @@ export default function Header(props: HeaderProps) {
                                                     <button
                                                         onClick={() => {
                                                             setMobileMenuOpen(false);
-                                                            router.push(getLocalizedHref('/feedback?filter=mine'));
+                                                            setGlobalLoading(true);
+                                                            startTransition(() => {
+                                                                router.push(getLocalizedHref('/feedback?filter=mine'));
+                                                            });
                                                         }}
                                                         className={`flex items-center w-full text-lg font-semibold ${textColor} transition-colors duration-300 hover:text-theme-600 px-2`}
                                                     >

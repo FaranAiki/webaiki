@@ -15,7 +15,8 @@ export default function ExperienceBentoLayout() {
         justifyClass,
         bookmarkedItemIds,
         isLoggedIn,
-        translations
+        translations,
+        priorityImages
     } = useExperienceContext();
     
     const allJobs = useMemo(() => paginatedExperiences.flatMap(e => e.jobs), [paginatedExperiences]);
@@ -43,9 +44,9 @@ export default function ExperienceBentoLayout() {
                         inactiveCardBg={inactiveCardBg} 
                         isDark={isDark} 
                         lang={lang} 
+                        priority={priorityImages ? idx < 4 : false}
                         justifyClass={justifyClass} 
                         click_to_close_text={translations?.click_to_close_text || "Click to close"} 
-                        priority={idx < 4}
                         isLoggedIn={isLoggedIn} 
                         bookmarkedItemIds={bookmarkedItemIds} 
                     />

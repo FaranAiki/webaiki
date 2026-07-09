@@ -213,6 +213,7 @@ async function SuspendedAllContent({ lang, dict }: { lang: string, dict: Record<
             visit_project_text={dict.Visit_Project}
               isLoggedIn={isLoggedIn}
               bookmarkedItemIds={experienceBookmarks}
+              priorityImages={true}
             />
           </div>
         </section>

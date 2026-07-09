@@ -20,10 +20,17 @@ function DraggableSkillItem({ cat, idx, handleDeleteCategory, handleDeleteItem }
          <div 
            onPointerDown={(e) => controls.start(e)}
            className="cursor-grab active:cursor-grabbing flex items-center h-full px-1"
+           aria-label="Drag to reorder category"
+           role="button"
+           tabIndex={0}
          >
            <GripVertical size={16} className="text-theme-muted hover:text-theme-500" />
          </div>
-         <button onClick={() => handleDeleteCategory(idx)} className="text-theme-muted hover:text-red-500">
+         <button 
+           onClick={() => handleDeleteCategory(idx)} 
+           className="text-theme-muted hover:text-red-500"
+           aria-label={`Delete category ${cat.category}`}
+         >
            <X size={16} />
          </button>
       </div>
@@ -44,7 +51,11 @@ function DraggableSkillItem({ cat, idx, handleDeleteCategory, handleDeleteItem }
                     className="flex items-center gap-1 px-2.5 py-0.5 rounded-md text-[11px] font-medium bg-theme-surface-strong border border-theme-border text-[var(--text-muted)] hover:border-theme-500 hover:text-theme-500 transition-all duration-200 select-none cursor-default group/item"
                   >
                     <span>{item}</span>
-                    <button onClick={() => handleDeleteItem(idx, iIdx, sIdx)} className="opacity-0 group-hover/item:opacity-100 hover:text-red-500 ml-1">
+                    <button 
+                      onClick={() => handleDeleteItem(idx, iIdx, sIdx)} 
+                      className="opacity-0 group-hover/item:opacity-100 hover:text-red-500 ml-1"
+                      aria-label={`Delete skill ${item}`}
+                    >
                       <X size={10} />
                     </button>
                   </div>
@@ -61,7 +72,11 @@ function DraggableSkillItem({ cat, idx, handleDeleteCategory, handleDeleteItem }
               className="flex items-center gap-1 px-2.5 py-0.5 rounded-md text-[11px] font-medium bg-theme-surface-strong border border-theme-border text-[var(--text-muted)] hover:border-theme-500 hover:text-theme-500 transition-all duration-200 select-none cursor-default group/item"
             >
               <span>{item}</span>
-              <button onClick={() => handleDeleteItem(idx, iIdx)} className="opacity-0 group-hover/item:opacity-100 hover:text-red-500 ml-1">
+              <button 
+                onClick={() => handleDeleteItem(idx, iIdx)} 
+                className="opacity-0 group-hover/item:opacity-100 hover:text-red-500 ml-1"
+                aria-label={`Delete skill ${item}`}
+              >
                 <X size={10} />
               </button>
             </div>

@@ -135,8 +135,17 @@ export default function PortfolioSummaryItem({
 
   return (
     <div
+      role="button"
+      tabIndex={0}
       className="group cursor-pointer transition-all duration-300 border-transparent hover:border-theme-500 pl-3 -ml-3 py-1 portfolio-summary-item"
       onClick={() => setIsOpen(!isOpen)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          setIsOpen(!isOpen);
+        }
+      }}
+      aria-expanded={showContent}
     >
       <div className="flex flex-wrap items-center justify-between gap-2 portfolio-item-header">
         <h3 className="font-bold text-foreground group-hover:text-theme-500 transition-colors leading-tight portfolio-item-title text-base">

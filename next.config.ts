@@ -104,18 +104,7 @@ const nextConfig: NextConfig = {
       config: WebpackConfiguration,
       { dev, isServer }: { dev: boolean; isServer: boolean }
     ) => {
-
-      // Optimization: Remove comments from the minified output in production
-      if (!dev && !isServer && config.optimization?.minimizer) {
-        const minimizer = config.optimization.minimizer[0];
-        if (minimizer && typeof minimizer === 'object' && 'options' in minimizer) {
-          const options = minimizer.options as { terserOptions?: { format?: { comments?: boolean } } };
-          if (options.terserOptions?.format) {
-            options.terserOptions.format.comments = false;
-          }
-        }
-      }
-
+      // Remove custom minimizer mutation which corrupts Next.js SWC minifier
       return config;
     },
 async headers() {
@@ -247,7 +236,20 @@ async headers() {
 
     const langPattern = '(en|id|zh|jp|ru|fr|ar|es|ko|de|nl|ha|he|el|hi|pt|bn|vi)';
 
-    const redirectList: { source: string; destination: string; permanent: boolean }[] = [];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const redirectList: any[] = [
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'www.faranaiki.id',
+          },
+        ],
+        destination: 'https://faranaiki.id/:path*',
+        permanent: true,
+      },
+    ];
 
     socials.forEach(({ slug, url }) => {
       // Root-level redirect: /slug

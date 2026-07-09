@@ -242,6 +242,19 @@ export function getWebsiteSchema(lang: string) {
   };
 }
 
+export function getOrganizationSchema() {
+  return {
+    "@type": "Organization",
+    "@id": `${SITE_URL}/#organization`,
+    "name": "Muhammad Faran Aiki",
+    "url": SITE_URL,
+    "logo": `${SITE_URL}/images/og-preview.jpg`,
+    "founder": {
+      "@id": `${SITE_URL}/#person`
+    }
+  };
+}
+
 export function getProfilePageSchema(_lang: string) {
   return {
     "@type": "ProfilePage",

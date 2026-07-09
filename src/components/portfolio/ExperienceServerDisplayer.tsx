@@ -24,6 +24,7 @@ interface ExperiencesServerProps {
     isLoggedIn?: boolean;
     bookmarkedItemIds?: string[];
     timelineLayout?: React.ReactNode;
+    priorityImages?: boolean;
 }
 
 export default function ExperienceServerDisplayer(props: ExperiencesServerProps) {
