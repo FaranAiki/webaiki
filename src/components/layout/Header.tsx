@@ -17,8 +17,8 @@ const CommandPalette = dynamic(() => import('@/components/interactive/CommandPal
 
 import {
   Monitor, MonitorPlay, Share2, Check, LogIn, LogOut, User, ChevronDown, Handshake, Briefcase,
-  Home, FileCheck, Users, Trophy, Palette, Music, BookOpen, GraduationCap, Compass, Code, 
-  Star, LayoutGrid, Fingerprint, Globe, MessageSquare, Newspaper, MoreHorizontal, Network, 
+  Home, FileCheck, Users, Trophy, Palette, Music, BookOpen, GraduationCap, Compass, Code,
+  Star, LayoutGrid, Fingerprint, Globe, MessageSquare, Newspaper, MoreHorizontal, Network,
   History, FileText
 } from 'lucide-react';
 
@@ -242,7 +242,7 @@ export default function Header(props: HeaderProps) {
             const initAuth = async () => {
                 const { createClient } = await import('@/utils/supabase/client');
                 const supabase = createClient();
-                
+
                 // Initial fetch
                 const { data: { session } } = await supabase.auth.getSession();
                 setUser(session?.user || null);
@@ -267,11 +267,11 @@ export default function Header(props: HeaderProps) {
                 subLinks: link.subLinks ? [...link.subLinks] : undefined
             }));
             const homeLink = newNavLinks[0];
-            
+
             if (user) {
                 const reason = user.user_metadata?.registration_reason;
                 const email = user.email;
-                
+
                 if (reason === 'HR' && homeLink.subLinks) {
                     homeLink.subLinks.push({
                         name: hire_me_label,
@@ -306,6 +306,7 @@ export default function Header(props: HeaderProps) {
         const [showShareSuccess, setShowShareSuccess] = useState(false);
         const isHeaderHoveredRef = useRef(false);
         const lastYPosRef = useRef(0);
+        const prevYPosRef = useRef(0);
         const tickingRef = useRef(false);
 
         const { resolvedTheme } = useTheme();
@@ -406,16 +407,21 @@ export default function Header(props: HeaderProps) {
     const updateHeaderVisibility = useCallback(() => {
         const currentYPos = window.scrollY;
 
-        // Use a larger threshold and only update if state actually changes
-        const isScrollingUp = currentYPos < lastYPosRef.current;
+        // Accurately determine scroll direction every frame
+        const isScrollingUp = currentYPos < prevYPosRef.current;
+        prevYPosRef.current = currentYPos;
 
         // Logic: Show if scrolling up, or if near top, OR if the header is currently being hovered
         const nextShouldShow = isScrollingUp || currentYPos < 50 || isHeaderHoveredRef.current;
 
-        if (nextShouldShow !== shouldShowHeader && Math.abs(currentYPos - lastYPosRef.current) > 20) {
-            setShouldShowHeader(nextShouldShow);
-            lastYPosRef.current = currentYPos;
-        } else if (Math.abs(currentYPos - lastYPosRef.current) > 100) {
+        if (nextShouldShow !== shouldShowHeader) {
+            // Apply a small threshold (20px) before actually toggling the header
+            if (Math.abs(currentYPos - lastYPosRef.current) > 20 || currentYPos < 50) {
+                setShouldShowHeader(nextShouldShow);
+                lastYPosRef.current = currentYPos;
+            }
+        } else {
+            // Reset threshold when continuing to scroll in the same direction
             lastYPosRef.current = currentYPos;
         }
 
@@ -451,7 +457,10 @@ export default function Header(props: HeaderProps) {
     const isDark = mounted && resolvedTheme === 'dark';
 
     // Dynamic Classes - Reduce backdrop-blur on mobile for performance
-    const headerBg = isDark ? 'bg-theme-bg-dark/90 border-theme-border' : 'bg-theme-surface/90 border-theme-border';
+    const headerBg = isDark
+        ? 'bg-theme-bg-dark/80 border-theme-border'
+        : 'bg-theme-surface/80 border-theme-border';
+
     const mobileMenuBg = isDark ? 'bg-theme-bg-dark/95' : 'bg-theme-surface-strong/95';
     const textColor = "text-[var(--text-muted)]";
     const activeText = isDark ? 'text-theme-400' : 'text-theme-600';
@@ -553,7 +562,7 @@ export default function Header(props: HeaderProps) {
                     <div
                         className="flex-1 flex items-center gap-4"
                     >
-                    <button 
+                    <button
                         onClick={() => router.push(getLocalizedHref('/all'))}
                         aria-label={logo_alt}
                         className={`transition-[colors,transform,opacity] shadow-md border border-theme-border opacity-100 hover:opacity-80 scale-100 hover:scale-110 cursor-pointer rounded-full overflow-hidden transform-gpu flex`}>
@@ -565,7 +574,7 @@ export default function Header(props: HeaderProps) {
                             height={32}
                             unoptimized
                             className="scale-[1.01] object-center"
-                            style={{ 
+                            style={{
                                 filter: getThemeLogoFilter(settings?.color || ''),
                                 transition: 'filter 0.3s ease-in-out'
                             }}
@@ -741,9 +750,9 @@ export default function Header(props: HeaderProps) {
 
                         <div className="hidden md:block">
                             {isCommandPaletteOpen && (
-                                <CommandPalette 
-                                    lang={current_lang} 
-                                    labels={commandPaletteLabels} 
+                                <CommandPalette
+                                    lang={current_lang}
+                                    labels={commandPaletteLabels}
                                     isOpen={isCommandPaletteOpen}
                                     onOpenChange={setIsCommandPaletteOpen}
                                 />
@@ -832,7 +841,7 @@ export default function Header(props: HeaderProps) {
                                                     <User size={16} className="mr-2" />
                                                     {edit_profile_label}
                                                 </button>
-                                                
+
                                                 <div className="h-px bg-theme-border/50 my-1 mx-2" />
 
                                                 <button

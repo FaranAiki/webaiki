@@ -5,6 +5,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { m as motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useAppStore } from "@/lib/store";
+import { createPortal } from "react-dom";
 
 import { getThemeLogoFilter } from "@/lib/utils";
 
@@ -129,7 +130,12 @@ export default function PageTransitionLoader({ label }: { label: string }) {
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference - (progress / 100) * circumference;
 
-  return (
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const content = (
     <AnimatePresence>
       {isNavigating && (
         <motion.div
@@ -137,7 +143,8 @@ export default function PageTransitionLoader({ label }: { label: string }) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-[10000] flex items-center justify-center bg-theme-bg/80 dark:bg-theme-bg-dark/80 backdrop-blur-sm"
+          className="fixed top-0 left-0 w-screen h-[100dvh] z-[10000] flex items-center justify-center bg-theme-bg/80 dark:bg-theme-bg-dark/80 backdrop-blur-sm pointer-events-auto"
+          style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, width: '100vw', height: '100vh' }}
         >
           <div className="relative flex flex-col items-center gap-6 px-10 py-8 rounded-[2rem] bg-theme-surface/60 shadow-[0_8px_32px_rgba(0,0,0,0.12)] border border-white/20 dark:border-white/10 backdrop-blur-2xl ring-1 ring-black/5 dark:ring-white/5 overflow-hidden">
             {/* Ambient Background Glow */}
@@ -224,5 +231,14 @@ export default function PageTransitionLoader({ label }: { label: string }) {
         </motion.div>
       )}
     </AnimatePresence>
+  );
+
+  if (!mounted) return null;
+  
+  // Mount directly to documentElement (<html>) to avoid any transforms on <body>
+  // that would trap position: fixed and break viewport positioning.
+  return createPortal(
+    content,
+    document.documentElement
   );
 }

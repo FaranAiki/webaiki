@@ -31,7 +31,8 @@ export const toBase64 = (str: string) =>
  * Hair space is the thinnest space available in Unicode.
  */
 export const formatCJK = (text: string, lang?: string) => {
-  if (!text || (lang !== 'zh' && lang !== 'jp' && lang !== 'ko')) return text;
+  if (!text) return "";
+  if (lang !== 'zh' && lang !== 'jp' && lang !== 'ko') return text;
   
   // \u200A is Hair Space - virtually invisible but helps justification
   // For Korean: \uAC00-\uD7AF (Hangul Syllables)

@@ -24,7 +24,7 @@ export function LayoutSwitcher<T extends string>({
     if (!canChange || options.length <= 1) return null;
 
     return (
-        <div className={`fixed bottom-8 right-8 z-[100] flex items-center p-1.5 rounded-xl border backdrop-blur-md shadow-lg transition-colors duration-300 border-theme-border print:hidden`}>
+        <div className={`fixed bottom-6 right-6 md:bottom-12 md:right-12 z-50 flex items-center p-1.5 rounded-xl border backdrop-blur-md shadow-lg bg-theme-bg/80 dark:bg-theme-bg-dark/80 transition-all duration-300 border-theme-border print:hidden hover:shadow-xl`}>
             <div className="flex gap-1">
                 {options.map((opt) => (
                     <button

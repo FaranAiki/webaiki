@@ -104,13 +104,15 @@ export default async function PortfolioSummaryPage({params }: { params: Promise<
       />
       <PortfolioClientWrapper>
         <div className="space-y-6 portfolio-content-wrapper">
-          <PortfolioHeader 
-            title={dict.Portfolio || 'Portfolio'}
-            resumeLabel={`${dict.Resume || 'Resume'} Muhammad Faran Aiki`}
-            subtitle={`Muhammad Faran Aiki | ${dict.STI}, ${dict.ITB}, ${dict.Indonesia}`}
-            about={dict.Faran_About_2}
-            socialLinks={socialLinks}
-          />
+          <div className="portfolio-header-wrapper">
+            <PortfolioHeader 
+              title={dict.Portfolio || 'Portfolio'}
+              resumeLabel={`${dict.Resume || 'Resume'} Muhammad Faran Aiki`}
+              subtitle={`Muhammad Faran Aiki | ${dict.STI}, ${dict.ITB}, ${dict.Indonesia}`}
+              about={dict.Faran_About_2}
+              socialLinks={socialLinks}
+            />
+          </div>
 
           {/* Education Section */}
           <PortfolioEducation education={education} title={dict.Education || 'Education'} />
@@ -145,7 +147,7 @@ export default async function PortfolioSummaryPage({params }: { params: Promise<
           <PortfolioSkills skills={skills} title={(dict['03Skill' as keyof typeof dict] as string) || 'Skills'} />
 
           {/* Professional Pitch / Sales Closing (Strategy #13) */}
-          <section className="bg-theme-surface/30 border border-theme-border rounded-2xl p-6 md:p-8 mt-12 mb-8 relative overflow-hidden group no-print">
+          <section className="bg-theme-surface/30 border border-theme-border rounded-2xl p-6 md:p-8 mt-12 mb-8 relative overflow-hidden group no-print professional-pitch-section">
               <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
                   <Briefcase size={80} />
               </div>
@@ -170,7 +172,7 @@ export default async function PortfolioSummaryPage({params }: { params: Promise<
           </section>
 
           {/* Footer Actions */}
-          <div className="pt-4 space-y-6 no-print">
+          <div className="pt-4 space-y-6 no-print portfolio-footer-actions">
               <div className="flex justify-center">
                   <Link
                       href={`/${lang}/all`}

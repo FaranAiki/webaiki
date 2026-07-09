@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from 'react';
-import Image from 'next/image';
-
+import { ClientOnlyImage } from './ClientOnlyImage';
 import { Briefcase, ExternalLink, MousePointer2 } from 'lucide-react';
 import { m as motion, AnimatePresence } from 'framer-motion';
 import BookmarkButton from '@/components/interactive/BookmarkButton';
@@ -82,7 +81,7 @@ export const TimelineActiveImage = React.memo(({ activeJob, shimmer600x400 }: { 
                         <span className="text-theme-muted font-bold tracking-widest text-md">{translations?.hover_to_preview_text || "Hover to preview"}</span>
                     </div>
                 ) : hasValidImage ? (
-                    <Image
+                    <ClientOnlyImage
                         fill
                         sizes="(max-width: 768px) 100vw, 600px"
                         src={activeImageSrc!}
@@ -146,14 +145,14 @@ export const BentoCard = React.memo(({ job, spanClass, cardBorder, inactiveCardB
             className={`${spanClass} relative rounded-3xl overflow-hidden group border ${cardBorder} ${inactiveCardBg} shadow-sm hover:shadow-xl cursor-pointer transform-gpu`}
         >
             {hasImage ? (
-                <Image
+                <ClientOnlyImage
                     src={job.image![0]}
                     alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`}
                     fill
                     priority={priority}
                     fetchPriority={priority ? "high" : "auto"}
                     quality={70}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
                     className={`object-cover transition-transform duration-700
                         ${isExpanded
                             ? (isDark ? 'scale-110 blur-sm brightness-[0.2]' : 'scale-110 blur-md opacity-20')

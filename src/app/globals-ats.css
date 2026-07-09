@@ -20,8 +20,12 @@ body.ats-mode main.portfolio-main {
   height: auto !important;
 }
 
+/* Hide normal header in ATS mode */
+body.ats-mode .normal-header {
+  display: none !important;
+}
+
 /* Force everything to be top-bottom */
-body.ats-mode .portfolio-header-section:not(.ats-header),
 body.ats-mode .portfolio-grid {
   display: flex !important;
   flex-direction: column !important;
@@ -144,6 +148,11 @@ body.ats-mode main.portfolio-main .FAQ_website_section,
 body.ats-mode main.portfolio-main section.border-t.border-theme-border.pt-6,
 body.ats-mode main.portfolio-main .pt-24 {
   padding-top: 0 !important;
+}
+
+body.ats-mode .professional-pitch-section,
+body.ats-mode .portfolio-footer-actions {
+  display: none !important;
 }
 
 body.ats-mode main.portfolio-main .pb-12 {

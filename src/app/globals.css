@@ -97,7 +97,6 @@ body a, body label, body section, body article, body blockquote {
 
 /* Base Body Style */
 body {
-  background-color: var(--background);
   color: var(--foreground);
 }
 
@@ -121,7 +120,7 @@ code, pre, kbd, samp {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-gradient-to-br from-theme-surface to-theme-bg dark:from-theme-surface-strong dark:to-theme-bg-dark bg-fixed min-h-screen text-foreground;
   }
   html {
     @apply font-serif;

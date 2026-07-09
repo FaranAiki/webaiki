@@ -2,7 +2,7 @@
 
 import React, { useMemo } from 'react';
 import { m as motion } from 'framer-motion';
-import Image from 'next/image';
+import { ClientOnlyImage } from './ClientOnlyImage';
 import { ExternalLink } from 'lucide-react';
 // import HoverableWords from '@/components/shared/HoverableWords';
 import BookmarkButton from '@/components/interactive/BookmarkButton';
@@ -84,7 +84,7 @@ export default function ExperienceSmoothLayout() {
                                     job.image[0].toLowerCase().endsWith('.pdf') ? (
                                         <PdfRenderer url={job.image[0]} isExpanded />
                                     ) : (
-                                        <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="(max-width: 768px) 80vw, (max-width: 1200px) 40vw, 20vw" quality={85} priority={false} className="object-cover" />
+                                        <ClientOnlyImage src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="(max-width: 768px) 80vw, (max-width: 1200px) 40vw, 20vw" quality={85} priority={false} className="object-cover" />
                                     )
                                 ) : (
                                     <PlaceholderIcon company={job.company} />

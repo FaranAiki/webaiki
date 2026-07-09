@@ -23,7 +23,7 @@ export default async function RootLayout({
       <head>
         <meta name="strix-verification" content="strix-verify-c06f1485383fb06c8ff307fe69f30458" />
 
-        <link rel="preload" href="/icon.svg" as="image" />
+        {/* Font Preloads are now handled by next/font */}
 
         <script nonce={nonce} dangerouslySetInnerHTML={{
           __html: `

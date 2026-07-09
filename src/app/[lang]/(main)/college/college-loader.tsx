@@ -30,7 +30,6 @@ import CollectionsSkeleton from '@/components/portfolio/CollectionsSkeleton';
 const CollegeDisplay = dynamic(
   () => import('@/components/portfolio/InteractiveCollections'),
   { 
-    ssr: false, // ssr: false is allowed here
     loading: () => <CollectionsSkeleton />
   }
 );

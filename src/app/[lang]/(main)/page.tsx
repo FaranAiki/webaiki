@@ -2,10 +2,14 @@ export const dynamic = 'error';
 import type { Metadata } from "next";
 import { getDictionary } from '@/components/layout/Translator';
 import { getLanguageAlternates, getBaseMetadata, SITE_URL, getPersonSchema, getWebsiteSchema, getProfilePageSchema } from '@/lib/seo';
-import HomeClient from "./HomeClient";
+
 import { getNews, getFeedbacks } from '@/app/actions';
 import { NewsItem } from '@/lib/types';
 import LatestActivity from '@/components/interactive/LatestActivity';
+
+import HomeHero from "@/components/home/HomeHero";
+import HomeSearchBar from "@/components/home/HomeSearchBar";
+import FadeInSection from "@/components/shared/FadeInSection";
 
 export const revalidate = 3600;
 
@@ -42,7 +46,6 @@ export default async function HomePage({
   const { lang } = await params;
   const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','news']);
   
-
   let combinedActivity: NewsItem[] = [];
   try {
     const [fetchedNews, fetchedFeedbacks] = await Promise.all([
@@ -92,15 +95,27 @@ export default async function HomePage({
     No_News: dict.No_News,
   } as import('@/components/layout/Translator').TranslationDict;
 
+  const baseText = dict.What_Do_You_Want_To_Base || "What do you want to {word}";
+  const parts = baseText.split("{word}");
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <HomeClient dict={homeDict}>
-        <LatestActivity lang={lang} dict={homeDict} initialNews={combinedActivity} />
-      </HomeClient>
+      <main className="min-h-[50vh] flex flex-col items-center justify-center px-4 md:px-8 pt-24 md:pt-12 pb-12">
+        <h1 className="sr-only">{dict.Search_About_Faran || "Search about Muhammad Faran Aiki"}</h1>
+        <div className="w-full max-w-6xl overflow-visible">
+          <HomeHero dict={homeDict} parts={parts} />
+          <HomeSearchBar dict={homeDict} />
+
+          {/* Latest Activity Section */}
+          <FadeInSection initialVisible={true}>
+            <LatestActivity lang={lang} dict={homeDict} initialNews={combinedActivity} />
+          </FadeInSection>
+        </div>
+      </main>
     </>
   );
 }

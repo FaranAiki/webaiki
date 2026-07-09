@@ -13,6 +13,7 @@ const withPWA = withPWAInit({
   workboxOptions: {
     // Disable dev logs to prevent noise
     disableDevLogs: true,
+    ignoreURLParametersMatching: [/^utm_/, /^fbclid$/, /^_rsc$/],
     runtimeCaching: [
       {
         // Don't intercept next-image requests with Service Worker in production
@@ -31,10 +32,28 @@ const withPWA = withPWAInit({
         handler: 'NetworkOnly',
       },
       {
+        // Don't intercept API routes
+        urlPattern: /^\/api\//,
+        handler: 'NetworkOnly',
+      },
+      {
         // Don't intercept fonts
         urlPattern: /^\/_next\/static\/media\//,
         handler: 'NetworkOnly',
       },
+      {
+        // Catch-all for navigations (pages) to prevent no-response error
+        urlPattern: /.*/,
+        handler: 'NetworkFirst',
+        options: {
+          cacheName: 'pages',
+          expiration: {
+            maxEntries: 50,
+            maxAgeSeconds: 86400, // 24 hours
+          },
+          networkTimeoutSeconds: 10,
+        },
+      }
     ],
   },
 });
@@ -83,6 +102,15 @@ const nextConfig: NextConfig = {
       config: WebpackConfiguration,
       { dev, isServer }: { dev: boolean; isServer: boolean }
     ) => {
+      // Force Webpack to ignore core-js polyfills
+      config.resolve = {
+        ...config.resolve,
+        alias: {
+          ...config.resolve?.alias,
+          'core-js': false,
+        },
+      };
+
       // Optimization: Remove comments from the minified output in production
       if (!dev && !isServer && config.optimization?.minimizer) {
         const minimizer = config.optimization.minimizer[0];

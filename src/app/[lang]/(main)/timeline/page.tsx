@@ -9,18 +9,18 @@ import { ExperienceTimelineServer } from '@/components/portfolio/server/Experien
 
 import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema, getPersonSchema } from '@/lib/seo';
 
-import { 
-  getWorkExperiences, 
-  getEducationExperiences, 
-  getProjectExperiences, 
-  getOrganizationExperiences, 
+import {
+  getWorkExperiences,
+  getEducationExperiences,
+  getProjectExperiences,
+  getOrganizationExperiences,
   getAwardExperiences,
   getCertificatesData
 } from '@/lib/data';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','timeline']);
+  const dict = await getDictionary(lang);
   const baseMetadata = getBaseMetadata();
 
   return {
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       description: dict.SEO_Timeline_Description || "Faran Aiki's Complete Timeline",
       url: `${SITE_URL}/${lang}/timeline`,
     },
-    alternates: { 
+    alternates: {
       canonical: `/${lang}/timeline`,
       languages: getLanguageAlternates('/timeline'),
     },
@@ -104,10 +104,10 @@ async function SuspendedTimelineContent({ lang, dict }: { lang: string, dict: Re
         <ExperienceServerDisplayer
         isLoggedIn={isLoggedIn}
         bookmarkedItemIds={experienceBookmarks}
-        layout="timeline"
-        experiences={allExperiences} 
-        lang={lang} 
-        canChange={true} 
+        layout="original"
+        experiences={allExperiences}
+        lang={lang}
+        canChange={true}
         original_text={dict.Original}
         timeline_text={dict.Timeline}
         grid_text={dict.Grid}
@@ -122,10 +122,10 @@ async function SuspendedTimelineContent({ lang, dict }: { lang: string, dict: Re
             hover_an_experience_text={dict.Hover_An_Experience}
             visit_project_text={dict.Visit_Project}
         timelineLayout={
-          <ExperienceTimelineServer 
-            experiences={allExperiences} 
-            isLoggedIn={isLoggedIn} 
-            bookmarkedItemIds={experienceBookmarks} 
+          <ExperienceTimelineServer
+            experiences={allExperiences}
+            isLoggedIn={isLoggedIn}
+            bookmarkedItemIds={experienceBookmarks}
           />
         }
       />
@@ -135,7 +135,7 @@ async function SuspendedTimelineContent({ lang, dict }: { lang: string, dict: Re
 
 export default async function TimelinePage({params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','timeline']);
+  const dict = await getDictionary(lang);
 
   const personSchema = getPersonSchema(lang);
   const breadcrumbSchema = getBreadcrumbSchema([

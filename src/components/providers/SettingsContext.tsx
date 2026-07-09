@@ -168,30 +168,69 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     const root = document.documentElement;
     const body = document.body;
     
-    // 1. Font Class on BODY (Global)
-    fonts.forEach(f => {
-      if (f.class && !f.class.startsWith('font-')) body.classList.remove(f.class);
-    });
-    // Remove all dynamically injected font classes
-    body.className = body.className.replace(/\bfont-[a-zA-Z0-9-]+\b/g, '').trim();
+    let isActive = true;
 
+    // 1. Font Class on BODY (Global)
     const activeFont = fonts.find(f => f.name === font);
-    if (activeFont && activeFont.class) {
-      body.classList.add(activeFont.class);
+    
+    const applyFontClasses = () => {
+      if (!isActive) return;
+      fonts.forEach(f => {
+        if (f.class && !f.class.startsWith('font-')) body.classList.remove(f.class);
+      });
+      // Remove all dynamically injected font classes
+      body.className = body.className.replace(/\bfont-[a-zA-Z0-9-]+\b/g, '').trim();
       
+      if (activeFont && activeFont.class) {
+        body.classList.add(activeFont.class);
+      }
+    };
+
+    if (activeFont && activeFont.class) {
       // Inject Google Font dynamically if not a default Next.js font
       if (activeFont.class.startsWith('font-') && activeFont.name !== 'Comic Sans') {
         const fontId = 'dynamic-google-font';
         let link = document.getElementById(fontId) as HTMLLinkElement;
+        let isNewLink = false;
+        
         if (!link) {
           link = document.createElement('link');
           link.id = fontId;
           link.rel = 'stylesheet';
-          document.head.appendChild(link);
+          isNewLink = true;
         }
+
         const formattedName = activeFont.name.replace(/ /g, '+');
-        link.href = `https://fonts.googleapis.com/css2?family=${formattedName}:wght@400;700&display=swap`;
+        const newHref = `https://fonts.googleapis.com/css2?family=${formattedName}:wght@400;700&display=swap`;
+        
+        if (link.href !== newHref) {
+          const handleFontLoad = async () => {
+            try {
+              // Wait for both regular and bold font files to actually download
+              await Promise.all([
+                document.fonts.load(`400 16px "${activeFont.name}"`),
+                document.fonts.load(`700 16px "${activeFont.name}"`)
+              ]);
+            } catch (e) {
+              console.warn("Font loading wait failed", e);
+            }
+            applyFontClasses();
+          };
+
+          link.onload = handleFontLoad;
+          link.href = newHref;
+          
+          if (isNewLink) {
+            document.head.appendChild(link);
+          }
+        } else {
+          applyFontClasses();
+        }
+      } else {
+        applyFontClasses();
       }
+    } else {
+      applyFontClasses();
     }
 
     // 2. Color Class on ROOT
@@ -213,6 +252,9 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     if (isExpandAll) body.classList.add('expand-all');
     else body.classList.remove('expand-all');
 
+    return () => {
+      isActive = false;
+    };
   }, [font, textAlign, textScale, letterSpacing, lineHeight, color, isAtsMode, isExpandAll, isFullDescription, portfolioFilter, mounted]);
 
   return (
