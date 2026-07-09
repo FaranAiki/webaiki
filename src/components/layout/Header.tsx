@@ -230,7 +230,7 @@ export default function Header(props: HeaderProps) {
         const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
         const [user, setUser] = useState<SupabaseUser | null>(null);
         const [dynamicNavLinks, setDynamicNavLinks] = useState<NavLink[]>(navLinks);
-
+        
         useEffect(() => {
             const handleOpenCommandPalette = () => setIsCommandPaletteOpen(true);
             window.addEventListener('open-command-palette', handleOpenCommandPalette);
@@ -238,27 +238,23 @@ export default function Header(props: HeaderProps) {
         }, []);
 
         useEffect(() => {
-            let subscription: { unsubscribe: () => void } | null = null;
-            const initAuth = async () => {
-                const { createClient } = await import('@/utils/supabase/client');
-                const supabase = createClient();
-
-                // Initial fetch
-                const { data: { session } } = await supabase.auth.getSession();
-                setUser(session?.user || null);
-
-                // Listen for changes (login, logout)
-                const { data } = supabase.auth.onAuthStateChange((_event, session) => {
-                    setUser(session?.user || null);
-                });
-                subscription = data.subscription;
+            let mounted = true;
+            const fetchUser = async () => {
+                try {
+                    const res = await fetch('/api/auth/user', { cache: 'no-store' });
+                    if (res.ok) {
+                        const data = await res.json();
+                        if (mounted) {
+                            setUser(data.user);
+                        }
+                    }
+                } catch (e) {
+                    console.error("Failed to fetch user auth state", e);
+                }
             };
-            initAuth();
-
-            return () => {
-                if (subscription) subscription.unsubscribe();
-            };
-        }, []); // Run only once on mount, but subscribe to all future changes
+            fetchUser();
+            return () => { mounted = false; };
+        }, []);
 
         // Sync navLinks when props change, and apply user-specific links if logged in
         useEffect(() => {
@@ -834,7 +830,10 @@ export default function Header(props: HeaderProps) {
                                                                                                 <button
                                                     onClick={() => {
                                                         setIsUserMenuOpen(false);
-                                                        router.push(getLocalizedHref('/edit-profile'));
+                                                        setGlobalLoading(true);
+                                                        startTransition(() => {
+                                                            router.push(getLocalizedHref('/edit-profile'));
+                                                        });
                                                     }}
                                                     className={`w-full text-left px-4 py-2 text-sm ${textColor} hover:bg-theme-surface-strong transition-colors flex items-center`}
                                                 >
@@ -847,7 +846,10 @@ export default function Header(props: HeaderProps) {
                                                 <button
                                                     onClick={() => {
                                                         setIsUserMenuOpen(false);
-                                                        router.push(getLocalizedHref('/bookmarks'));
+                                                        setGlobalLoading(true);
+                                                        startTransition(() => {
+                                                            router.push(getLocalizedHref('/bookmarks'));
+                                                        });
                                                     }}
                                                     className={`w-full text-left px-4 py-2 text-sm ${textColor} hover:bg-theme-surface-strong transition-colors flex items-center`}
                                                 >
@@ -859,7 +861,10 @@ export default function Header(props: HeaderProps) {
                                                 <button
                                                     onClick={() => {
                                                         setIsUserMenuOpen(false);
-                                                        router.push(getLocalizedHref('/business-requests'));
+                                                        setGlobalLoading(true);
+                                                        startTransition(() => {
+                                                            router.push(getLocalizedHref('/business-requests'));
+                                                        });
                                                     }}
                                                     className={`w-full text-left px-4 py-2 text-sm ${textColor} hover:bg-theme-surface-strong transition-colors flex items-center`}
                                                 >
@@ -871,7 +876,10 @@ export default function Header(props: HeaderProps) {
                                                 <button
                                                     onClick={() => {
                                                         setIsUserMenuOpen(false);
-                                                        router.push(getLocalizedHref('/feedback?filter=mine'));
+                                                        setGlobalLoading(true);
+                                                        startTransition(() => {
+                                                            router.push(getLocalizedHref('/feedback?filter=mine'));
+                                                        });
                                                     }}
                                                     className={`w-full text-left px-4 py-2 text-sm ${textColor} hover:bg-theme-surface-strong transition-colors flex items-center`}
                                                 >

@@ -1,9 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { createClient } from '@/utils/supabase/client';
 import { Github, Mail } from 'lucide-react';
-import { Provider } from '@supabase/supabase-js';
+import type { Provider } from '@supabase/supabase-js';
 
 interface OAuthButtonsProps {
   dict: import('@/components/layout/Translator').TranslationDict;
@@ -15,6 +14,7 @@ export default function OAuthButtons({ dict, lang }: OAuthButtonsProps) {
 
   const handleOAuth = async (provider: Provider) => {
     setLoadingProvider(provider);
+    const { createClient } = await import('@/utils/supabase/client');
     const supabase = createClient();
 
     // We use the same callback route that handles updating Drizzle db.

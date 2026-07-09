@@ -10,6 +10,9 @@ import LatestActivity from '@/components/interactive/LatestActivity';
 import HomeHero from "@/components/home/HomeHero";
 import HomeSearchBar from "@/components/home/HomeSearchBar";
 import FadeInSection from "@/components/shared/FadeInSection";
+import dynamicImport from "next/dynamic";
+
+const HomeTutorial = dynamicImport(() => import("@/components/home/HomeTutorial"));
 
 export const revalidate = 3600;
 
@@ -109,6 +112,7 @@ export default async function HomePage({
         <div className="w-full max-w-6xl overflow-visible">
           <HomeHero dict={homeDict} parts={parts} />
           <HomeSearchBar dict={homeDict} />
+          <HomeTutorial />
 
           {/* Latest Activity Section */}
           <FadeInSection initialVisible={true}>

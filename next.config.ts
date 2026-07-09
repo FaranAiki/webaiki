@@ -66,7 +66,7 @@ const nextConfig: NextConfig = {
 
   // Set output to standalone for optimized production builds
   output: "standalone",
-  
+
   // Security: Remove the X-Powered-By header to hide the tech stack
   poweredByHeader: false,
 
@@ -83,7 +83,9 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  
+
+  productionBrowserSourceMaps: true,
+
   // Vercel OOM Fixes: Limit workers to prevent memory spikes during static generation
   experimental: {
     optimizePackageImports: [
@@ -102,14 +104,6 @@ const nextConfig: NextConfig = {
       config: WebpackConfiguration,
       { dev, isServer }: { dev: boolean; isServer: boolean }
     ) => {
-      // Force Webpack to ignore core-js polyfills
-      config.resolve = {
-        ...config.resolve,
-        alias: {
-          ...config.resolve?.alias,
-          'core-js': false,
-        },
-      };
 
       // Optimization: Remove comments from the minified output in production
       if (!dev && !isServer && config.optimization?.minimizer) {
@@ -252,9 +246,9 @@ async headers() {
     ];
 
     const langPattern = '(en|id|zh|jp|ru|fr|ar|es|ko|de|nl|ha|he|el|hi|pt|bn|vi)';
-    
+
     const redirectList: { source: string; destination: string; permanent: boolean }[] = [];
-    
+
     socials.forEach(({ slug, url }) => {
       // Root-level redirect: /slug
       redirectList.push({
@@ -262,7 +256,7 @@ async headers() {
         destination: url,
         permanent: false,
       });
-      
+
       // Localized redirect: /[lang]/slug
       redirectList.push({
         source: `/:lang${langPattern}/${slug}`,

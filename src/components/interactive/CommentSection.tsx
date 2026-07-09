@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { formatCJK } from '@/lib/utils';
 import { MessageSquare, Send, Lock } from 'lucide-react';
-import { User } from '@supabase/supabase-js';
+import type { User } from '@supabase/supabase-js';
 
 interface Comment {
     id: string;

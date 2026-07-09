@@ -1,11 +1,9 @@
 'use client';
 
-import { createClient } from '@/utils/supabase/client';
 import { useRouter } from 'next/navigation';
-import { signInAction, signUpAction } from './auth-actions';
+import { signInAction, signUpAction, signOutAction } from './auth-actions';
 
 export function useAuthActions(lang: string) {
-  const supabase = createClient();
   const router = useRouter();
 
   const signIn = async (formData: FormData) => {
@@ -31,7 +29,7 @@ export function useAuthActions(lang: string) {
   };
 
   const signOut = async () => {
-    await supabase.auth.signOut();
+    await signOutAction();
     router.push(`/${lang}`);
     router.refresh();
   };

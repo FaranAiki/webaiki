@@ -18,7 +18,7 @@ import { ExperienceProvider } from './ExperienceContext';
 import dynamic from 'next/dynamic';
 
 
-import ExperienceOriginalLayout from './layouts/ExperienceOriginalLayout';
+const ExperienceOriginalLayout = dynamic(() => import('./layouts/ExperienceOriginalLayout'), { loading: () => <LoadingSpinner /> });
 
 const LoadingSpinner = () => (
     <div className="w-full flex justify-center items-center py-24 min-h-[50vh]">

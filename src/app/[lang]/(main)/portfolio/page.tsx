@@ -139,6 +139,8 @@ export default async function PortfolioSummaryPage({params }: { params: Promise<
               Language: dict.Language,
               User: dict.User,
               Filter_Top: dict.Filter_Top,
+              Filter_All: dict.Filter_All,
+              Portfolio_Filter: dict.Portfolio_Filter,
               Visit_External_Link: dict.Visit_External_Link
             }}
           />

@@ -65,12 +65,13 @@ export default function NewsDisplay({ dict, lang, isAdmin, initialNews = [] }: N
     // so it doesn't block the server-side rendering
     const checkAdmin = async () => {
       try {
-        const { createClient } = await import('@/utils/supabase/client');
-        const supabase = createClient();
-        const { data: { session } } = await supabase.auth.getSession();
-        const user = session?.user;
-        if (user?.email === 'faran.aiki.business@gmail.com') {
-          setIsAdminState(true);
+        const res = await fetch('/api/auth/user', { cache: 'no-store' });
+        if (res.ok) {
+          const data = await res.json();
+          const user = data.user;
+          if (user?.email === 'faran.aiki.business@gmail.com') {
+            setIsAdminState(true);
+          }
         }
       } catch (e) {
         console.error("Failed to check admin status", e);

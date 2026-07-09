@@ -1,0 +1,5 @@
+CREATE POLICY "Admins can manage all bookmarks" ON "Bookmark" AS PERMISSIVE FOR ALL TO "authenticated" USING ((exists (select 1 from "User" where id = (select auth.uid()) and role = 'ADMIN')));--> statement-breakpoint
+CREATE POLICY "Admins can manage all feedbacks" ON "Feedback" AS PERMISSIVE FOR ALL TO "authenticated" USING ((exists (select 1 from "User" where id = (select auth.uid()) and role = 'ADMIN')));--> statement-breakpoint
+CREATE POLICY "Admins can manage all hire requests" ON "HireRequest" AS PERMISSIVE FOR ALL TO "authenticated" USING ((exists (select 1 from "User" where id = (select auth.uid()) and role = 'ADMIN')));--> statement-breakpoint
+CREATE POLICY "Admins can manage all news" ON "News" AS PERMISSIVE FOR ALL TO "authenticated" USING ((exists (select 1 from "User" where id = (select auth.uid()) and role = 'ADMIN')));--> statement-breakpoint
+CREATE POLICY "Admins can manage all users" ON "User" AS PERMISSIVE FOR ALL TO "authenticated" USING ((exists (select 1 from "User" where id = (select auth.uid()) and role = 'ADMIN')));

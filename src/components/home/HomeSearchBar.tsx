@@ -13,6 +13,7 @@ export default function HomeSearchBar({ dict }: HomeSearchBarProps) {
       <section className="w-full no-print mt-4 md:mt-8 flex justify-center" aria-labelledby="search-heading">
         <h2 id="search-heading" className="sr-only">{dict.Search_About_Faran || "Search Faran Aiki Content"}</h2>
         <button
+          id="tutorial-search-target"
           type="button"
           onClick={() => document.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }))}
           className="group relative flex w-full max-w-2xl items-center gap-3 rounded-full border border-theme-border bg-theme-surface-strong/50 px-6 py-4 text-left shadow-sm transition-all hover:border-theme-500 hover:bg-theme-surface hover:shadow-theme-shadow"
@@ -24,7 +25,7 @@ export default function HomeSearchBar({ dict }: HomeSearchBarProps) {
           <span className="flex-1 text-[var(--text-muted)] text-sm font-medium tracking-wide">
             {dict.Command_Palette_Search_Placeholder || "Type a command or search portfolio..."}
           </span>
-          <kbd className="hidden md:inline-flex h-6 items-center gap-1 font-mono text-[11px] font-black nav-active-gacor opacity-100 transition-colors tracking-widest">
+          <kbd className="hidden md:inline-flex h-6 items-center gap-1 text-[11px] font-black font-sans nav-active-gacor opacity-100 transition-colors tracking-widest">
             Ctrl + K
           </kbd>
         </button>

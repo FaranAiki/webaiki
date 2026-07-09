@@ -1,9 +1,12 @@
 "use client";
 
-import React, { useMemo, useCallback, useState } from 'react';
+import React, { useMemo, useCallback, useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import { useSettings } from '../providers/SettingsContext';
 import { Briefcase, Code, Users, Trophy } from 'lucide-react';
 import PortfolioSummaryItem from './PortfolioSummaryItem';
+
+const DraggableExperienceList = dynamic(() => import('./DraggableExperienceList'), { ssr: false });
 
 import { ExperienceTag } from '@/lib/types';
 
@@ -52,6 +55,8 @@ interface PortfolioExperienceListProps {
     Language: string;
     User: string;
     Filter_Top: string;
+    Filter_All?: string;
+    Portfolio_Filter?: string;
     Visit_External_Link?: string;
   };
 }
@@ -63,7 +68,7 @@ export default function PortfolioExperienceList({
   awardExperiences,
   labels
 }: PortfolioExperienceListProps) {
-  const { portfolioFilter, isAtsMode } = useSettings();
+  const { portfolioFilter, setPortfolioFilter, isAtsMode } = useSettings();
 
   const [removedKeys, setRemovedKeys] = useState<string[]>([]);
 
@@ -76,7 +81,7 @@ export default function PortfolioExperienceList({
     let filtered = jobs.filter(
       (j) => !removedKeys.includes(`${category}-${j.title}-${j.company}-${j.date}`)
     );
-    
+
     if (portfolioFilter === 'top') {
       filtered = filtered.filter(j => (j.point || 0) >= 80);
     } else if (portfolioFilter !== 'all') {
@@ -84,7 +89,7 @@ export default function PortfolioExperienceList({
       const targetLabel = labels[portfolioFilter as keyof typeof labels];
       filtered = filtered.filter(j => targetLabel && j.tag?.includes(targetLabel));
     }
-    
+
     return filtered.sort((a, b) => {
       // For sorting, we still use the enum-based CATEGORY_ORDER
       // We need to find which enum key corresponds to the translated string
@@ -96,14 +101,14 @@ export default function PortfolioExperienceList({
 
       const keyA = findEnumKey(a.tag?.[0]);
       const keyB = findEnumKey(b.tag?.[0]);
-      
+
       const orderA = CATEGORY_ORDER[keyA] || 999;
       const orderB = CATEGORY_ORDER[keyB] || 999;
-      
+
       if (orderA !== orderB) {
         return orderA - orderB;
       }
-      
+
       return (b.point || 0) - (a.point || 0);
     });
   }, [portfolioFilter, labels, removedKeys]);
@@ -112,6 +117,25 @@ export default function PortfolioExperienceList({
   const filteredProject = useMemo(() => filterJobs(projectExperiences, 'project'), [projectExperiences, filterJobs]);
   const filteredOrg = useMemo(() => filterJobs(organizationExperiences, 'org'), [organizationExperiences, filterJobs]);
   const filteredAward = useMemo(() => filterJobs(awardExperiences, 'award'), [awardExperiences, filterJobs]);
+
+  const [orderedWork, setOrderedWork] = useState<Job[]>([]);
+  const [orderedProject, setOrderedProject] = useState<Job[]>([]);
+  const [orderedOrg, setOrderedOrg] = useState<Job[]>([]);
+  const [orderedAward, setOrderedAward] = useState<Job[]>([]);
+  
+  const [isDesktop, setIsDesktop] = useState(true); // default true for SSR, we will update on mount
+
+  useEffect(() => {
+    setIsDesktop(window.innerWidth > 768);
+    const handleResize = () => setIsDesktop(window.innerWidth > 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => setOrderedWork(filteredWork), [filteredWork]);
+  useEffect(() => setOrderedProject(filteredProject), [filteredProject]);
+  useEffect(() => setOrderedOrg(filteredOrg), [filteredOrg]);
+  useEffect(() => setOrderedAward(filteredAward), [filteredAward]);
 
   const hasAnyExperience = filteredWork.length > 0 || filteredProject.length > 0 || filteredOrg.length > 0 || filteredAward.length > 0;
 
@@ -124,7 +148,8 @@ export default function PortfolioExperienceList({
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 portfolio-grid">
+    <div className="portfolio-experience-wrapper">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 portfolio-grid">
       {/* Work Summary */}
       {filteredWork.length > 0 && (
         <section className="space-y-1">
@@ -132,20 +157,30 @@ export default function PortfolioExperienceList({
             {!isAtsMode && <Briefcase size={12} className="text-theme-500" />}
             <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">{labels.Work}</h2>
           </div>
-          <div className="space-y-1">
-            {filteredWork.map((job) => (
-              <PortfolioSummaryItem
-                key={`${job.title}-${job.company}-${job.date}`}
-                title={job.title}
-                company={job.company}
-                date={job.date}
-                description={job.description}
-                url={job.url}
-                onRemove={() => handleRemove('work', job)}
-                ariaLabelTemplate={labels.Visit_External_Link}
-              />
-            ))}
-          </div>
+          {isDesktop ? (
+            <DraggableExperienceList
+              items={orderedWork}
+              onReorder={setOrderedWork}
+              onRemove={(job) => handleRemove('work', job)}
+              ariaLabelTemplate={labels.Visit_External_Link}
+              category="work"
+            />
+          ) : (
+            <div className="space-y-1">
+              {orderedWork.map((job) => (
+                <PortfolioSummaryItem
+                  key={`${job.title}-${job.company}-${job.date}`}
+                  title={job.title}
+                  company={job.company}
+                  date={job.date}
+                  description={job.description}
+                  url={job.url}
+                  onRemove={() => handleRemove('work', job)}
+                  ariaLabelTemplate={labels.Visit_External_Link}
+                />
+              ))}
+            </div>
+          )}
         </section>
       )}
 
@@ -156,20 +191,30 @@ export default function PortfolioExperienceList({
             {!isAtsMode && <Code size={12} className="text-theme-500" />}
             <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">{labels.Project}</h2>
           </div>
-          <div className="space-y-1">
-            {filteredProject.map((job) => (
-              <PortfolioSummaryItem
-                key={`${job.title}-${job.company}-${job.date}`}
-                title={job.title}
-                company={job.company}
-                date={job.date}
-                description={job.description}
-                url={job.url}
-                onRemove={() => handleRemove('project', job)}
-                ariaLabelTemplate={labels.Visit_External_Link}
-              />
-            ))}
-          </div>
+          {isDesktop ? (
+            <DraggableExperienceList
+              items={orderedProject}
+              onReorder={setOrderedProject}
+              onRemove={(job) => handleRemove('project', job)}
+              ariaLabelTemplate={labels.Visit_External_Link}
+              category="project"
+            />
+          ) : (
+            <div className="space-y-1">
+              {orderedProject.map((job) => (
+                <PortfolioSummaryItem
+                  key={`${job.title}-${job.company}-${job.date}`}
+                  title={job.title}
+                  company={job.company}
+                  date={job.date}
+                  description={job.description}
+                  url={job.url}
+                  onRemove={() => handleRemove('project', job)}
+                  ariaLabelTemplate={labels.Visit_External_Link}
+                />
+              ))}
+            </div>
+          )}
         </section>
       )}
 
@@ -180,20 +225,30 @@ export default function PortfolioExperienceList({
             {!isAtsMode && <Users size={12} className="text-theme-500" />}
             <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">{labels.Organization}</h2>
           </div>
-          <div className="space-y-1">
-            {filteredOrg.map((job) => (
-              <PortfolioSummaryItem
-                key={`${job.title}-${job.company}-${job.date}`}
-                title={job.title}
-                company={job.company}
-                date={job.date}
-                description={job.description}
-                url={job.url}
-                onRemove={() => handleRemove('org', job)}
-                ariaLabelTemplate={labels.Visit_External_Link}
-              />
-            ))}
-          </div>
+          {isDesktop ? (
+            <DraggableExperienceList
+              items={orderedOrg}
+              onReorder={setOrderedOrg}
+              onRemove={(job) => handleRemove('org', job)}
+              ariaLabelTemplate={labels.Visit_External_Link}
+              category="org"
+            />
+          ) : (
+            <div className="space-y-1">
+              {orderedOrg.map((job) => (
+                <PortfolioSummaryItem
+                  key={`${job.title}-${job.company}-${job.date}`}
+                  title={job.title}
+                  company={job.company}
+                  date={job.date}
+                  description={job.description}
+                  url={job.url}
+                  onRemove={() => handleRemove('org', job)}
+                  ariaLabelTemplate={labels.Visit_External_Link}
+                />
+              ))}
+            </div>
+          )}
         </section>
       )}
 
@@ -204,22 +259,33 @@ export default function PortfolioExperienceList({
             {!isAtsMode && <Trophy size={12} className="text-theme-500" />}
             <h2 className="text-lg font-black nav-active-gacor tracking-wider text-theme-muted">{labels.Award}</h2>
           </div>
-          <div className="space-y-1">
-            {filteredAward.map((job) => (
-              <PortfolioSummaryItem
-                key={`${job.title}-${job.company}-${job.date}`}
-                title={job.title}
-                company={job.company}
-                date={job.date}
-                description={job.description}
-                url={job.url}
-                onRemove={() => handleRemove('award', job)}
-                ariaLabelTemplate={labels.Visit_External_Link}
-              />
-            ))}
-          </div>
+          {isDesktop ? (
+            <DraggableExperienceList
+              items={orderedAward}
+              onReorder={setOrderedAward}
+              onRemove={(job) => handleRemove('award', job)}
+              ariaLabelTemplate={labels.Visit_External_Link}
+              category="award"
+            />
+          ) : (
+            <div className="space-y-1">
+              {orderedAward.map((job) => (
+                <PortfolioSummaryItem
+                  key={`${job.title}-${job.company}-${job.date}`}
+                  title={job.title}
+                  company={job.company}
+                  date={job.date}
+                  description={job.description}
+                  url={job.url}
+                  onRemove={() => handleRemove('award', job)}
+                  ariaLabelTemplate={labels.Visit_External_Link}
+                />
+              ))}
+            </div>
+          )}
         </section>
       )}
+    </div>
     </div>
   );
 }

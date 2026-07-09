@@ -143,3 +143,10 @@ export async function signUpAction(formData: FormData, captchaToken?: string) {
 
   return { success: true };
 }
+
+export async function signOutAction() {
+  const supabase = await createClient();
+  await supabase.auth.signOut();
+  return { success: true };
+}
+

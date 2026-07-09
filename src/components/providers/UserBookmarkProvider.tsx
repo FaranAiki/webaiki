@@ -3,7 +3,6 @@
 import { useEffect } from 'react';
 import { useAppStore } from '@/lib/store';
 import { getMyBookmarks } from '@/app/bookmark-actions';
-import { createClient } from '@/utils/supabase/client';
 
 export default function UserBookmarkProvider() {
   const setIsLoggedIn = useAppStore((state) => state.setIsLoggedIn);
@@ -11,15 +10,21 @@ export default function UserBookmarkProvider() {
 
   useEffect(() => {
     const initData = async () => {
-      const supabase = createClient();
-      const { data: { user } } = await supabase.auth.getUser();
-      if (user) {
-        setIsLoggedIn(true);
-        const bookmarks = await getMyBookmarks();
-        setBookmarks(bookmarks.map(b => ({ itemType: b.itemType, itemId: b.itemId })));
-      } else {
-        setIsLoggedIn(false);
-        setBookmarks([]);
+      try {
+        const res = await fetch('/api/auth/user', { cache: 'no-store' });
+        if (res.ok) {
+          const data = await res.json();
+          if (data.user) {
+            setIsLoggedIn(true);
+            const bookmarks = await getMyBookmarks();
+            setBookmarks(bookmarks.map(b => ({ itemType: b.itemType, itemId: b.itemId })));
+          } else {
+            setIsLoggedIn(false);
+            setBookmarks([]);
+          }
+        }
+      } catch (e) {
+        console.error("Failed to fetch bookmarks auth", e);
       }
     };
     initData();

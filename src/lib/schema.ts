@@ -52,8 +52,9 @@ export const users = pgTable('User', {
 }, (_table) => [
   pgPolicy('Enable RLS', { as: 'permissive', for: 'all', to: 'public', using: sql`false` }),
   pgPolicy('Public profiles are viewable by everyone', { as: 'permissive', for: 'select', to: 'public', using: sql`true` }),
-  pgPolicy('Users can insert their own profile', { as: 'permissive', for: 'insert', to: 'public', withCheck: sql`(select auth.uid()) = id` }),
-  pgPolicy('Users can update own profile', { as: 'permissive', for: 'update', to: 'authenticated', using: sql`(select auth.uid()) = id` })
+  pgPolicy('Users can insert their own profile', { as: 'permissive', for: 'insert', to: 'public', withCheck: sql`auth.uid() = id` }),
+  pgPolicy('Users can update own profile', { as: 'permissive', for: 'update', to: 'authenticated', using: sql`auth.uid() = id` }),
+  pgPolicy('Admins can manage all users', { as: 'permissive', for: 'all', to: 'authenticated', using: sql`(exists (select 1 from "User" where id = auth.uid() and role = 'ADMIN'))` })
 ]);
 
 export const feedbacks = pgTable('Feedback', {
@@ -69,9 +70,10 @@ export const feedbacks = pgTable('Feedback', {
   index('Feedback_userId_idx').on(table.userId),
   pgPolicy('Enable RLS', { as: 'permissive', for: 'all', to: 'public', using: sql`false` }),
   pgPolicy('Feedbacks are viewable by everyone', { as: 'permissive', for: 'select', to: 'public', using: sql`"isPublic" = true` }),
-  pgPolicy('Users can insert own feedback', { as: 'permissive', for: 'insert', to: 'authenticated', withCheck: sql`(select auth.uid()) = "userId"` }),
-  pgPolicy('Users can update own feedback', { as: 'permissive', for: 'update', to: 'authenticated', using: sql`(select auth.uid()) = "userId"` }),
-  pgPolicy('Users can delete own feedback', { as: 'permissive', for: 'delete', to: 'authenticated', using: sql`(select auth.uid()) = "userId"` }),
+  pgPolicy('Users can insert own feedback', { as: 'permissive', for: 'insert', to: 'authenticated', withCheck: sql`auth.uid() = "userId"` }),
+  pgPolicy('Users can update own feedback', { as: 'permissive', for: 'update', to: 'authenticated', using: sql`auth.uid() = "userId"` }),
+  pgPolicy('Users can delete own feedback', { as: 'permissive', for: 'delete', to: 'authenticated', using: sql`auth.uid() = "userId"` }),
+  pgPolicy('Admins can manage all feedbacks', { as: 'permissive', for: 'all', to: 'authenticated', using: sql`(exists (select 1 from "User" where id = auth.uid() and role = 'ADMIN'))` })
 ]);
 
 export const news = pgTable('News', {
@@ -87,9 +89,10 @@ export const news = pgTable('News', {
   index('News_authorId_idx').on(table.authorId),
   pgPolicy('Enable RLS', { as: 'permissive', for: 'all', to: 'public', using: sql`false` }),
   pgPolicy('News viewable by everyone', { as: 'permissive', for: 'select', to: 'public', using: sql`"isPublic" = true` }),
-  pgPolicy('Only authors can insert', { as: 'permissive', for: 'insert', to: 'authenticated', withCheck: sql`(select auth.uid()) = "authorId"` }),
-  pgPolicy('Only authors can update', { as: 'permissive', for: 'update', to: 'authenticated', using: sql`(select auth.uid()) = "authorId"` }),
-  pgPolicy('Only authors can delete', { as: 'permissive', for: 'delete', to: 'authenticated', using: sql`(select auth.uid()) = "authorId"` }),
+  pgPolicy('Only authors can insert', { as: 'permissive', for: 'insert', to: 'authenticated', withCheck: sql`auth.uid() = "authorId"` }),
+  pgPolicy('Only authors can update', { as: 'permissive', for: 'update', to: 'authenticated', using: sql`auth.uid() = "authorId"` }),
+  pgPolicy('Only authors can delete', { as: 'permissive', for: 'delete', to: 'authenticated', using: sql`auth.uid() = "authorId"` }),
+  pgPolicy('Admins can manage all news', { as: 'permissive', for: 'all', to: 'authenticated', using: sql`(exists (select 1 from "User" where id = auth.uid() and role = 'ADMIN'))` })
 ]);
 
 export const usersRelations = relations(users, ({ many }) => ({
@@ -129,10 +132,11 @@ export const hireRequests = pgTable('HireRequest', {
 }, (table) => [
   index('HireRequest_userId_idx').on(table.userId),
   pgPolicy('Enable RLS', { as: 'permissive', for: 'all', to: 'public', using: sql`false` }),
-  pgPolicy('Users can view own hire requests', { as: 'permissive', for: 'select', to: 'authenticated', using: sql`(select auth.uid()) = "userId"` }),
-  pgPolicy('Users can insert own hire requests', { as: 'permissive', for: 'insert', to: 'authenticated', withCheck: sql`(select auth.uid()) = "userId"` }),
-  pgPolicy('Users can update own hire requests', { as: 'permissive', for: 'update', to: 'authenticated', using: sql`(select auth.uid()) = "userId"` }),
-  pgPolicy('Users can delete own hire requests', { as: 'permissive', for: 'delete', to: 'authenticated', using: sql`(select auth.uid()) = "userId"` }),
+  pgPolicy('Users can view own hire requests', { as: 'permissive', for: 'select', to: 'authenticated', using: sql`auth.uid() = "userId"` }),
+  pgPolicy('Users can insert own hire requests', { as: 'permissive', for: 'insert', to: 'authenticated', withCheck: sql`auth.uid() = "userId"` }),
+  pgPolicy('Users can update own hire requests', { as: 'permissive', for: 'update', to: 'authenticated', using: sql`auth.uid() = "userId"` }),
+  pgPolicy('Users can delete own hire requests', { as: 'permissive', for: 'delete', to: 'authenticated', using: sql`auth.uid() = "userId"` }),
+  pgPolicy('Admins can manage all hire requests', { as: 'permissive', for: 'all', to: 'authenticated', using: sql`(exists (select 1 from "User" where id = auth.uid() and role = 'ADMIN'))` })
 ]);
 
 export const hireRequestsRelations = relations(hireRequests, ({ one }) => ({
@@ -152,9 +156,10 @@ export const bookmarks = pgTable('Bookmark', {
   index('Bookmark_userId_idx').on(table.userId),
   index('Bookmark_itemType_itemId_idx').on(table.itemType, table.itemId),
   pgPolicy('Enable RLS', { as: 'permissive', for: 'all', to: 'public', using: sql`false` }),
-  pgPolicy('Users can view own bookmarks', { as: 'permissive', for: 'select', to: 'authenticated', using: sql`(select auth.uid()) = "userId"` }),
-  pgPolicy('Users can insert own bookmarks', { as: 'permissive', for: 'insert', to: 'authenticated', withCheck: sql`(select auth.uid()) = "userId"` }),
-  pgPolicy('Users can delete own bookmarks', { as: 'permissive', for: 'delete', to: 'authenticated', using: sql`(select auth.uid()) = "userId"` }),
+  pgPolicy('Users can view own bookmarks', { as: 'permissive', for: 'select', to: 'authenticated', using: sql`auth.uid() = "userId"` }),
+  pgPolicy('Users can insert own bookmarks', { as: 'permissive', for: 'insert', to: 'authenticated', withCheck: sql`auth.uid() = "userId"` }),
+  pgPolicy('Users can delete own bookmarks', { as: 'permissive', for: 'delete', to: 'authenticated', using: sql`auth.uid() = "userId"` }),
+  pgPolicy('Admins can manage all bookmarks', { as: 'permissive', for: 'all', to: 'authenticated', using: sql`(exists (select 1 from "User" where id = auth.uid() and role = 'ADMIN'))` })
 ]);
 
 export const bookmarksRelations = relations(bookmarks, ({ one }) => ({
