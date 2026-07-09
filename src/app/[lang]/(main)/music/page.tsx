@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "../../../globals.css";
 import dynamic from 'next/dynamic';
-const MusicDisplay = dynamic(() => import('@/components/interactive/MusicDisplay'), { ssr: false });
+const MusicDisplay = dynamic(() => import('@/components/interactive/MusicDisplay'));
 import { getDictionary } from '@/components/layout/Translator';
 import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema } from '@/lib/seo';
 
