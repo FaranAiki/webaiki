@@ -198,6 +198,7 @@ export default function SocialDisplay({ customLinks, hidePresentation = false, d
           href={link.url}
           target="_blank"
           rel="noopener noreferrer"
+          aria-label={`Visit Muhammad Faran Aiki's profile on ${link.name}`}
           className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-8' : 'rounded-lg p-6'} flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-2 ${presentationMode ? 'hover:scale-[1.02]' : ''} ${link.color} w-full shadow-sm hover:shadow-lg`}
       >
           <div className={`text-${presentationMode ? 'base' : 'sm'} ${usernameClass} mb-4 transition-colors`}>

@@ -146,6 +146,15 @@ export function getBaseMetadata(dict: import('@/components/layout/Translator').T
         'max-snippet': -1,
       },
     },
+    icons: {
+      icon: [
+        { url: '/favicon.ico' },
+        { url: '/icon.svg', type: 'image/svg+xml' },
+      ],
+      apple: [
+        { url: '/apple-icon.png' }
+      ]
+    },
     verification: {
       google: 'xZMulZsvn0xj7TrxhEN8O9KLWSmNIfx6tqFtOpbgOV4',
       yandex: '19e93e9065247166',
