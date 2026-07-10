@@ -51,7 +51,7 @@ export default function CertificatesTimelineLayout() {
                                         <PdfPreview fileUrl={filePath} priority={false} />
                                     </div>
                                 ) : (
-                                    <Image src={filePath} alt={`${fileName} Certificate - Muhammad Faran Aiki Portfolio`} fill className="object-cover transition-transform group-hover:scale-105" sizes="(max-width: 768px) 100vw, 33vw" priority={false} quality={85} />
+                                    <Image src={filePath} alt={`${fileName} Certificate`} fill className="object-cover transition-transform group-hover:scale-105" sizes="(max-width: 768px) 100vw, 33vw" priority={false} quality={85} />
                                 )}
                             </a>
                             <BookmarkButton 

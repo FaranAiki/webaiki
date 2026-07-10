@@ -147,7 +147,7 @@ export const BentoCard = React.memo(({ job, spanClass, cardBorder, inactiveCardB
             {hasImage ? (
                 <ClientOnlyImage
                     src={job.image![0]}
-                    alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`}
+                    alt={`${job.title} at ${job.company}`}
                     fill
                     priority={priority}
                     fetchPriority={priority ? "high" : "auto"}

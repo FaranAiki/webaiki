@@ -66,7 +66,7 @@ export const defaultSocialLinks: SocialLink[] = [
     },
     {
       name: "LinkedIn",
-      username: "Muhammad Faran Aiki",
+      username: "Muhammad",
       url: "https://www.linkedin.com/in/faranaiki/",
       icon: <Linkedin size={48} className="text-theme-500" />,
       color: "hover:border-theme-500"
@@ -94,7 +94,7 @@ export const defaultSocialLinks: SocialLink[] = [
     },
     {
       name: "YouTube",
-      username: "Muhammad Faran Aiki",
+      username: "Muhammad",
       url: "https://www.youtube.com/@FaranAiki",
       icon: <Youtube size={48} className="text-red-600" />,
       color: "hover:border-red-600"
@@ -129,7 +129,7 @@ export const defaultSocialLinks: SocialLink[] = [
     },
     {
       name: "Quora",
-      username: "Muhammad Faran Aiki",
+      username: "Muhammad",
       url: "https://id.quora.com/profile/Muhammad-Faran-Aiki-4",
       icon: <MaskIcon src="/images/social/quora.webp" colorClass="bg-red-600 dark:bg-red-500" />,
       color: "hover:border-red-600"
@@ -150,7 +150,7 @@ export const defaultSocialLinks: SocialLink[] = [
     },
     {
       name: "Scribd",
-      username: "Muhammad Faran Aiki",
+      username: "Muhammad",
       url: "https://id.scribd.com/user/530310522/Muhammad-Faran-Aiki",
       icon: <MaskIcon src="/images/social/scribd.webp" colorClass="bg-teal-600 dark:bg-teal-400" />,
       color: "hover:border-green-300"

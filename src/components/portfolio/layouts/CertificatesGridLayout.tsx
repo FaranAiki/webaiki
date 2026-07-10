@@ -45,7 +45,7 @@ export default function CertificatesGridLayout() {
                           <PdfPreview fileUrl={filePath} />
                       </div>
                   ) : (
-                      <Image src={filePath} alt={`${item.fileName} Certificate - Muhammad Faran Aiki Portfolio`} fill className="object-cover" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw" />
+                      <Image src={filePath} alt={`${item.fileName} Certificate`} fill className="object-cover" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw" />
                   )}
                 </a>
                 <BookmarkButton 

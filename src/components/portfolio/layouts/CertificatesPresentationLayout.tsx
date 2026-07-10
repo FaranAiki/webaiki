@@ -87,7 +87,7 @@ export default function CertificatesPresentationLayout() {
                       ) : (
                         <Image
                           src={filePath}
-                          alt={`${fileName} Certificate Faran Aiki`}
+                          alt={`${fileName} Certificate`}
                           fill
                           className="object-contain scale-[1.01]"
                           sizes="(max-width: 768px) 100vw, 33vw"

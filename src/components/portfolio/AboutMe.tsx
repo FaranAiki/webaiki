@@ -290,7 +290,7 @@ export function PrinciplesSection(props: AboutSubSectionProps) {
             <div className={`relative ${props.isCompact ? 'w-32 h-32 md:w-40 md:h-40' : 'w-56 h-56 md:w-72 md:h-72'} transform-gpu`}>
               <Image
                 src={`/images/tree.webp`}
-                alt="Guiding Principles Tree - Muhammad Faran Aiki Portfolio"
+                alt="Guiding Principles Tree"
                 fill
                 placeholder="blur"
                 blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(288, 288))}`}

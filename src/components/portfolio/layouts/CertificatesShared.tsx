@@ -44,7 +44,7 @@ export const BentoCertificateCard = React.memo(({
             <div className="absolute inset-0">
                     <Image
                         src={filePath}
-                        alt={`${fileName} Certificate Faran Aiki`}
+                        alt={`${fileName} Certificate`}
                         fill
                         priority={priority} fetchPriority={priority ? "high" : "auto"}
                         className={`object-cover transition-all duration-700 ${isExpanded ? 'scale-110 blur-sm brightness-[0.3]' : 'opacity-80 group-hover:opacity-100'}`}

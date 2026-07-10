@@ -63,7 +63,7 @@ export function ExperienceTimelineServer({
                                                         {isPdf ? (
                                                             <PdfRenderer url={job.image[0]} />
                                                         ) : (
-                                                            <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="(max-width: 768px) 80vw, (max-width: 1200px) 30vw, 15vw" quality={85} priority={rowIdx === 0 && idx === 0} className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                                                            <Image src={job.image[0]} alt={`${job.title} at ${job.company}`} fill sizes="(max-width: 768px) 80vw, (max-width: 1200px) 30vw, 15vw" quality={85} priority={rowIdx === 0 && idx === 0} className="object-cover group-hover:scale-110 transition-transform duration-700" />
                                                         )}
                                                     </div>
                                                 )}
@@ -133,7 +133,7 @@ export function ExperienceTimelineServer({
                                                     {job.image[0].toLowerCase().endsWith('.pdf') ? (
                                                         <PdfRenderer url={job.image[0]} />
                                                     ) : (
-                                                        <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="(max-width: 768px) 80vw, (max-width: 1200px) 30vw, 15vw" quality={85} priority={rowIdx === 0 && idx === 0} className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                                                        <Image src={job.image[0]} alt={`${job.title} at ${job.company}`} fill sizes="(max-width: 768px) 80vw, (max-width: 1200px) 30vw, 15vw" quality={85} priority={rowIdx === 0 && idx === 0} className="object-cover group-hover:scale-110 transition-transform duration-700" />
                                                     )}
                                                 </div>
                                             )}
@@ -185,7 +185,7 @@ export function ExperienceTimelineServer({
                                         {job.image[0].toLowerCase().endsWith('.pdf') ? (
                                             <PdfRenderer url={job.image[0]} />
                                         ) : (
-                                            <Image src={job.image[0]} alt={`${job.title} at ${job.company} - Muhammad Faran Aiki Portfolio`} fill sizes="(max-width: 768px) 80vw, (max-width: 1200px) 30vw, 15vw" quality={85} priority={idx === 0} className="object-cover" />
+                                            <Image src={job.image[0]} alt={`${job.title} at ${job.company}`} fill sizes="(max-width: 768px) 80vw, (max-width: 1200px) 30vw, 15vw" quality={85} priority={idx === 0} className="object-cover" />
                                         )}
                                     </div>
                                 )}
