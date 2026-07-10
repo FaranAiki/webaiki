@@ -100,5 +100,10 @@
   "Profile_Update_Error": "Profilaktualisierung fehlgeschlagen.",
   "Send": "Senden",
   "Rating": "Bewertung",
-  "Latest_News": "Neueste Nachrichten"
+  "Latest_News": "Neueste Nachrichten",
+  "Change": "Ganti",
+  "Click_To_Upload": "Klik untuk unggah",
+  "Drop_Here": "Lepaskan file di sini",
+  "Your_Name_Placeholder": "Nama Anda",
+  "Username_Placeholder": "nama_pengguna"
 }

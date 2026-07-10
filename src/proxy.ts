@@ -108,6 +108,10 @@ export async function proxy(request: NextRequest) {
     response.headers.set('Cross-Origin-Embedder-Policy', 'unsafe-none');
   }
 
+  const userAgent = request.headers.get('user-agent') || '';
+  const isBot = /bot|googlebot|lighthouse|google-hub|google-structured-data-testing-tool|bingbot|yandexbot|duckduckbot|slurp|ia_archiver|HeadlessChrome|Chrome-Lighthouse/i.test(userAgent);
+  response.headers.set('x-is-bot', isBot ? 'true' : 'false');
+
   return response;
 }
 

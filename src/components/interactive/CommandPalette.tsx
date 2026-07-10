@@ -109,6 +109,7 @@ export function CommandPalette({ lang, labels, isOpen, onOpenChange }: { lang: s
     } else {
       setResults(suggestions);
       setLoading(false);
+      return undefined;
     }
   }, [query, pool, suggestions]);
 

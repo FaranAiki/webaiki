@@ -100,5 +100,10 @@
   "Profile_Update_Error": "فشل تحديث الملف الشخصي.",
   "Send": "إرسال",
   "Rating": "التقييم",
-  "Latest_News": "آخر الأخبار"
+  "Latest_News": "آخر الأخبار",
+  "Change": "Ganti",
+  "Click_To_Upload": "Klik untuk unggah",
+  "Drop_Here": "Lepaskan file di sini",
+  "Your_Name_Placeholder": "Nama Anda",
+  "Username_Placeholder": "nama_pengguna"
 }

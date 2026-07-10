@@ -100,5 +100,10 @@
   "Profile_Update_Error": "更新に失敗しました。",
   "Send": "送信",
   "Rating": "評価",
-  "Latest_News": "最新ニュース"
+  "Latest_News": "最新ニュース",
+  "Change": "Ganti",
+  "Click_To_Upload": "Klik untuk unggah",
+  "Drop_Here": "Lepaskan file di sini",
+  "Your_Name_Placeholder": "Nama Anda",
+  "Username_Placeholder": "nama_pengguna"
 }

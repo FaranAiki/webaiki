@@ -191,6 +191,7 @@ export function PresentationProvider({
       if (style) {
         style.remove();
       }
+      return undefined;
     }
   }, [isPresentationMode]);
 

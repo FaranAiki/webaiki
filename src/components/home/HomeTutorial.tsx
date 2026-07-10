@@ -45,6 +45,7 @@ export default function HomeTutorial() {
       const timer = setTimeout(() => setStep('done'), 600);
       return () => clearTimeout(timer);
     }
+    return undefined;
   }, [step]);
 
   if (step === 'idle' || step === 'done' || !rect) return null;

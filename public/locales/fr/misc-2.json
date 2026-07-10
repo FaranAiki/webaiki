@@ -100,5 +100,10 @@
   "Profile_Update_Error": "Échec de la mise à jour.",
   "Send": "Envoyer",
   "Rating": "Note",
-  "Latest_News": "Dernières nouvelles"
+  "Latest_News": "Dernières nouvelles",
+  "Change": "Ganti",
+  "Click_To_Upload": "Klik untuk unggah",
+  "Drop_Here": "Lepaskan file di sini",
+  "Your_Name_Placeholder": "Nama Anda",
+  "Username_Placeholder": "nama_pengguna"
 }

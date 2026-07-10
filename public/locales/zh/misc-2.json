@@ -100,5 +100,10 @@
   "Profile_Update_Error": "更新资料失败。",
   "Send": "发送",
   "Rating": "评分",
-  "Latest_News": "最新新闻"
+  "Latest_News": "最新新闻",
+  "Change": "Ganti",
+  "Click_To_Upload": "Klik untuk unggah",
+  "Drop_Here": "Lepaskan file di sini",
+  "Your_Name_Placeholder": "Nama Anda",
+  "Username_Placeholder": "nama_pengguna"
 }

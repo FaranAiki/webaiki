@@ -23,6 +23,7 @@ export default function PageTransitionLoader({ label }: { label: string }) {
       setIsNavigating(true);
       setProgress(0);
       setIsFinished(false);
+      return undefined;
     } else {
       // Finish loading when global loading is explicitly set to false
       setProgress(100);
@@ -70,6 +71,7 @@ export default function PageTransitionLoader({ label }: { label: string }) {
       prevPathnameRef.current = pathname;
       prevSearchParamsRef.current = currentSearch;
     }
+    return undefined;
   }, [pathname, searchParams, isNavigating]);
 
   // Handle progressive fake loading

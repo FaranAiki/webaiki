@@ -16,7 +16,8 @@
     "Phát triển một ứng dụng full-stack mạnh mẽ sử dụng NextJS, TailwindCSS và TypeScript cho frontend hiệu suất cao.",
     "Thiết kế kiến trúc backend tận dụng cơ sở dữ liệu Supabase SQL kết hợp với Prisma ORM để quản lý dữ liệu đáng tin cậy và có thể mở rộng.",
     "Quản lý các nền tảng Moodle và Judgel để đảm bảo môi trường cạnh tranh liền mạch cho tất cả người tham gia.",
-    "Quản lý và điều phối các nhóm phát triển front-end và back-end để đảm bảo tiến độ dự án hiệu quả."
+    "Quản lý và điều phối các nhóm phát triển front-end và back-end để đảm bảo tiến độ dự án hiệu quả.",
+    "Mengelola dan mengoordinasikan tim beranggotakan 8 orang untuk memastikan pengiriman proyek yang efisien."
   ],
   "Treasurer_SYNC": "Treasurer for the STEI-K Gathering Event",
   "Treasurer_SYNC_Description": [
