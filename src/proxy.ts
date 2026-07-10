@@ -79,13 +79,13 @@ export async function proxy(request: NextRequest) {
   // Optimasi Algoritma: Skip updateSession untuk navigasi client-side (RSC)
   // karena Next.js memanggil middleware pada setiap klik link (RSC request).
   // Memanggil Supabase API di setiap klik akan membuat transisi halaman lemot (+300ms).
-  const isClientNavigation = request.headers.get('rsc') === '1' || request.headers.get('next-router-prefetch') === '1';
+  // (Note: Currently disabled because it broke auth state sync for client navigations)
   
   const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
   request.headers.set('x-nonce', nonce);
 
   let response = NextResponse.next({ request });
-  if (hasAuthCookie && !isClientNavigation) {
+  if (hasAuthCookie) {
     response = await updateSession(request);
   }
 

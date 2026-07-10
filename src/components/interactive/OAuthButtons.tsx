@@ -13,17 +13,29 @@ export default function OAuthButtons({ dict, lang }: OAuthButtonsProps) {
   const [loadingProvider, setLoadingProvider] = useState<Provider | null>(null);
 
   const handleOAuth = async (provider: Provider) => {
-    setLoadingProvider(provider);
-    const { createClient } = await import('@/utils/supabase/client');
-    const supabase = createClient();
+    try {
+      setLoadingProvider(provider);
+      const { createClient } = await import('@/utils/supabase/client');
+      const supabase = createClient();
 
-    // We use the same callback route that handles updating Drizzle db.
-    await supabase.auth.signInWithOAuth({
-      provider,
-      options: {
-        redirectTo: `${window.location.origin}/api/auth/callback?next=/${lang}/all`,
-      },
-    });
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider,
+        options: {
+          redirectTo: `${window.location.origin}/api/auth/callback?next=/${lang}/all`,
+        },
+      });
+
+      if (error) {
+        console.error("Supabase OAuth Error:", error);
+        alert(`Gagal login: ${error.message}`);
+        setLoadingProvider(null);
+      }
+    } catch (err: unknown) {
+      console.error("Fatal OAuth Error:", err);
+      const errorMessage = err instanceof Error ? err.message : 'Gagal memuat client Supabase';
+      alert(`Terjadi kesalahan sistem: ${errorMessage}`);
+      setLoadingProvider(null);
+    }
   };
 
   const providers: { id: Provider; icon: React.ReactNode; color: string; label: string }[] = [
