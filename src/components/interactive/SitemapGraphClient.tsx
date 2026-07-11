@@ -43,39 +43,32 @@ export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientPro
   useEffect(() => {
     setMounted(true);
     
-    // Auto-resize graph to fit container
-    const updateDimensions = () => {
-      if (containerRef.current) {
-        setDimensions({
-          width: containerRef.current.clientWidth,
-          height: containerRef.current.clientHeight
-        });
-        // Auto-recenter if we already did initial center
-        if (initialCenterDone.current && graphRef.current) {
-          setTimeout(() => {
-            const currentIsMobile = window.innerWidth < 768;
-            if (graphRef.current) graphRef.current.zoomToFit(currentIsMobile ? 0 : 400, 20);
-          }, 50);
-        }
-      }
-    };
-    
+
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
     
-    const observer = new ResizeObserver(() => {
+    const observer = new ResizeObserver((entries) => {
       // Use requestAnimationFrame to avoid ResizeObserver loop limit error
       window.requestAnimationFrame(() => {
-        updateDimensions();
+        if (entries.length > 0) {
+          const entry = entries[0];
+          setDimensions({
+            width: entry.contentRect.width,
+            height: entry.contentRect.height
+          });
+          if (initialCenterDone.current && graphRef.current) {
+            setTimeout(() => {
+              const currentIsMobile = window.innerWidth < 768;
+              if (graphRef.current) graphRef.current.zoomToFit(currentIsMobile ? 0 : 400, 20);
+            }, 50);
+          }
+        }
         checkMobile();
       });
     });
     
     if (containerRef.current) {
       observer.observe(containerRef.current);
-      window.requestAnimationFrame(() => {
-        updateDimensions();
-      });
     }
     
     return () => {
@@ -166,8 +159,8 @@ export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientPro
 
         <ForceGraph2D
           ref={graphRef as never}
-          warmupTicks={isMobile ? 100 : 0}
-          cooldownTicks={isMobile ? 0 : 150}
+          warmupTicks={0}
+          cooldownTicks={150}
           onEngineStop={() => {
             if (!initialCenterDone.current && graphRef.current) {
               graphRef.current.zoomToFit(isMobile ? 0 : 400, 40);

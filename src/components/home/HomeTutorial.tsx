@@ -29,8 +29,10 @@ export default function HomeTutorial() {
     if (step === 'hero') {
       const el = document.getElementById('tutorial-hero-target');
       if (el) {
-        const bounds = el.getBoundingClientRect();
-        setRect({ x: bounds.x - 10, y: bounds.y - 10, w: bounds.width + 20, h: bounds.height + 20 });
+        requestAnimationFrame(() => {
+          const bounds = el.getBoundingClientRect();
+          setRect({ x: bounds.x - 10, y: bounds.y - 10, w: bounds.width + 20, h: bounds.height + 20 });
+        });
       }
 
       const timer = setTimeout(() => setStep('search'), 600); // 0.6s total to give 0.1s gap
@@ -38,8 +40,10 @@ export default function HomeTutorial() {
     } else if (step === 'search') {
       const el = document.getElementById('tutorial-search-target');
       if (el) {
-        const bounds = el.getBoundingClientRect();
-        setRect({ x: bounds.x - 10, y: bounds.y - 10, w: bounds.width + 20, h: bounds.height + 20 });
+        requestAnimationFrame(() => {
+          const bounds = el.getBoundingClientRect();
+          setRect({ x: bounds.x - 10, y: bounds.y - 10, w: bounds.width + 20, h: bounds.height + 20 });
+        });
       }
 
       const timer = setTimeout(() => setStep('done'), 600);

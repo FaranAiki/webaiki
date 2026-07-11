@@ -26,8 +26,8 @@ export default function TrackingEye() {
       });
     };
 
-    // Defer initial measurement to allow layout to settle
-    updateRect();
+    // Defer initial measurement to allow layout to settle and paint first
+    setTimeout(updateRect, 0);
     window.addEventListener('resize', updateRect);
     
     let scrollTimeout: NodeJS.Timeout;

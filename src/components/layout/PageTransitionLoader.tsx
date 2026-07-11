@@ -184,15 +184,15 @@ export default function PageTransitionLoader({ label }: { label: string }) {
             {/* Ambient Background Glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-theme-500/20 blur-3xl rounded-full pointer-events-none" />
 
+            {/* Unified Logo */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center animate-pulse pointer-events-none z-10 md:top-[calc(50%-14px)]">
+               <LogoIcon 
+                 className="w-12 h-12 md:w-7 md:h-7 opacity-80 md:opacity-70 dark:opacity-100 md:dark:opacity-90 drop-shadow-2xl md:drop-shadow-none"
+               />
+            </div>
+
             {/* Desktop View - Circular */}
             <div className="hidden md:flex relative items-center justify-center w-16 h-16">
-              {/* Center Logo */}
-              <div className="absolute inset-0 flex items-center justify-center animate-pulse">
-                 <LogoIcon 
-                   size={28}
-                   className="opacity-70 dark:opacity-90"
-                 />
-              </div>
 
               {/* Progress SVG */}
               <svg className="w-full h-full transform -rotate-90 overflow-visible">
@@ -229,12 +229,6 @@ export default function PageTransitionLoader({ label }: { label: string }) {
 
             {/* Mobile View - Linear */}
             <div className="flex md:hidden flex-col items-center justify-center gap-4 w-[200px]">
-              <div className="animate-pulse flex items-center justify-center">
-                 <LogoIcon 
-                   size={48}
-                   className="opacity-80 dark:opacity-100 drop-shadow-2xl"
-                 />
-              </div>
               <div className="w-full h-1.5 bg-theme-muted/10 dark:bg-theme-muted/20 rounded-full">
                 <div 
                   className="h-full bg-gradient-to-r from-[var(--gacor-1)] via-[var(--gacor-2)] to-[var(--gacor-3)] transition-all duration-300 ease-out rounded-full"

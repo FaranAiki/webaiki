@@ -1,31 +1,12 @@
 "use client";
 
 import React from 'react';
-import Image from 'next/image';
-import { useSettings } from '@/components/providers/SettingsContext';
 
 interface LogoIconProps extends React.SVGProps<SVGSVGElement> {
   size?: number | string;
 }
 
 export default function LogoIcon({ size = 256, className, ...props }: LogoIconProps) {
-  const settings = useSettings();
-  const isBlue = !settings?.color || settings.color === 'blue';
-
-  if (isBlue) {
-    return (
-      <Image
-        src="/icon.svg?v=6"
-        alt="Logo"
-        width={typeof size === 'number' ? size : parseInt(size, 10)}
-        height={typeof size === 'number' ? size : parseInt(size, 10)}
-        unoptimized
-        priority
-        className={className}
-      />
-    );
-  }
-
   return (
     <svg 
       width={size} 

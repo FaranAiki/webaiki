@@ -32,8 +32,8 @@ export default function TrackingIcon({ type }: TrackerProps) {
       });
     };
 
-    // Defer initial measurement to allow layout to settle
-    updateRect();
+    // Defer initial measurement to allow layout to settle and paint first
+    setTimeout(updateRect, 0);
     window.addEventListener('resize', updateRect);
 
     // Debounce scroll to avoid layout thrashing

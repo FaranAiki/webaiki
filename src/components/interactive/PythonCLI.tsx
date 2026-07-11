@@ -288,7 +288,11 @@ while True:
 
   useEffect(() => {
     if (terminalContainerRef.current) {
-      terminalContainerRef.current.scrollTop = terminalContainerRef.current.scrollHeight;
+      setTimeout(() => {
+        if (terminalContainerRef.current) {
+          terminalContainerRef.current.scrollTop = terminalContainerRef.current.scrollHeight;
+        }
+      }, 0);
     }
   }, [history, isWaitingForInput]);
 
