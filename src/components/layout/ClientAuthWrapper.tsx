@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState, createContext, useContext } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import { createClient } from '@/utils/supabase/client';
 import type { User as SupabaseUser } from '@supabase/supabase-js';
 
 const AuthContext = createContext<{ user: SupabaseUser | null, loading: boolean }>({ user: null, loading: true });
@@ -28,6 +27,7 @@ export default function ClientAuthWrapper({
   useEffect(() => {
     let mounted = true;
     const checkUser = async () => {
+      const { createClient } = await import('@/utils/supabase/client');
       const supabase = createClient();
       const { data: { user } } = await supabase.auth.getUser();
       

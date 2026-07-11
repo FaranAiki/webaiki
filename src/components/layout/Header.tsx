@@ -11,7 +11,6 @@ import dynamic from 'next/dynamic';
 import { useSettings } from '@/components/providers/SettingsContext';
 import type { User as SupabaseUser } from '@supabase/supabase-js';
 import { m as motion, AnimatePresence } from 'framer-motion';
-import { createClient } from '@/utils/supabase/client';
 
 const SettingsPopup = dynamic(() => import('@/components/providers/SettingsPopup'), { ssr: false });
 const CommandPalette = dynamic(() => import('@/components/interactive/CommandPalette').then(mod => mod.CommandPalette), { ssr: false });
@@ -253,6 +252,7 @@ export default function Header(props: HeaderProps) {
             let mounted = true;
             const fetchUser = async () => {
                 try {
+                    const { createClient } = await import('@/utils/supabase/client');
                     const supabase = createClient();
                     const { data: { user }, error } = await supabase.auth.getUser();
                     if (mounted) {

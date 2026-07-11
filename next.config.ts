@@ -183,7 +183,7 @@ async headers() {
   // Optimization: Support modern image formats
   formats: ['image/avif', 'image/webp'],
   // Add allowed qualities array for Next 16+
-  qualities: [50, 75, 100],
+  qualities: [50, 60, 70, 75, 85, 100],
   // Use default sensible sizes to avoid massive srcset string generation
   imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],

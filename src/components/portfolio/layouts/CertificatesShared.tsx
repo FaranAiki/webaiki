@@ -48,7 +48,7 @@ export const BentoCertificateCard = React.memo(({
                         fill
                         priority={priority} fetchPriority={priority ? "high" : "auto"}
                         className={`object-cover transition-all duration-700 ${isExpanded ? 'scale-110 blur-sm brightness-[0.3]' : 'opacity-80 group-hover:opacity-100'}`}
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
                     />
             </div>
             

@@ -152,7 +152,7 @@ export const BentoCard = React.memo(({ job, spanClass, cardBorder, inactiveCardB
                     priority={priority}
                     fetchPriority={priority ? "high" : "auto"}
                     quality={70}
-                    sizes="(max-width: 768px) 90vw, (max-width: 1200px) 45vw, 33vw"
+                    sizes="(max-width: 768px) 90vw, (max-width: 1200px) 45vw, 400px"
                     className={`object-cover transition-transform duration-700
                         ${isExpanded
                             ? (isDark ? 'scale-110 blur-sm brightness-[0.2]' : 'scale-110 blur-md opacity-20')
