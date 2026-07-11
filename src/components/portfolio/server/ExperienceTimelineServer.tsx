@@ -2,7 +2,22 @@ import React from 'react';
 import Image from 'next/image';
 import BookmarkButton from '@/components/interactive/BookmarkButton';
 import { TagBadge, PdfRenderer } from '../layouts/ExperienceShared';
-import type { Experience } from '../ExperienceDisplayer';
+import type { Experience, Job } from '../ExperienceDisplayer';
+
+const CardWrapper = ({ job, children, className }: { job: Job, children: React.ReactNode, className: string }) => {
+    if (job.url) {
+        return (
+            <a href={job.url} target="_blank" rel="noopener noreferrer" className={className}>
+                {children}
+            </a>
+        );
+    }
+    return (
+        <div className={className}>
+            {children}
+        </div>
+    );
+};
 
 export function ExperienceTimelineServer({
     experiences,
@@ -52,10 +67,8 @@ export function ExperienceTimelineServer({
                                                 </div>
                                             </div>
                                             {/* We replace onClick window.open with an anchor tag wrapping the card for Server Component */}
-                                            <a
-                                                href={job.url || undefined}
-                                                target={job.url ? "_blank" : undefined}
-                                                rel="noopener noreferrer"
+                                            <CardWrapper
+                                                job={job}
                                                 className="w-full mt-4 flex-grow bg-theme-surface/90 backdrop-blur-md border border-theme-border rounded-3xl p-4 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group text-left block"
                                             >
                                                 {job.image && job.image.length > 0 && (
@@ -89,7 +102,7 @@ export function ExperienceTimelineServer({
                                                         <p>{job.description}</p>
                                                     )}
                                                 </div>
-                                            </a>
+                                            </CardWrapper>
                                         </div>
                                     )
                                 })}
@@ -122,10 +135,8 @@ export function ExperienceTimelineServer({
                                                 <div className="w-3 h-3 rounded-full bg-theme-500 animate-pulse" />
                                             </div>
                                         </div>
-                                        <a
-                                            href={job.url || undefined}
-                                            target={job.url ? "_blank" : undefined}
-                                            rel="noopener noreferrer"
+                                        <CardWrapper
+                                            job={job}
                                             className="w-full mt-4 flex-grow bg-theme-surface/90 backdrop-blur-md border border-theme-border rounded-3xl p-5 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group text-left block"
                                         >
                                             {job.image && job.image.length > 0 && (
@@ -158,7 +169,7 @@ export function ExperienceTimelineServer({
                                                     <p>{job.description}</p>
                                                 )}
                                             </div>
-                                        </a>
+                                        </CardWrapper>
                                     </div>
                                 )
                             })}
@@ -174,10 +185,8 @@ export function ExperienceTimelineServer({
                     {allJobs.map((job, idx) => (
                         <div key={`mob-${idx}`} className="relative pl-12 pr-2 flex flex-col w-full group">
                             <div className="absolute left-5 top-5 w-5 h-5 rounded-full bg-theme-surface border-4 border-theme-500 shadow-[0_0_10px_rgba(var(--color-theme-500),0.5)] z-10" />
-                            <a
-                                href={job.url || undefined}
-                                target={job.url ? "_blank" : undefined}
-                                rel="noopener noreferrer"
+                            <CardWrapper
+                                job={job}
                                 className="w-full bg-theme-surface/90 backdrop-blur-md border border-theme-border rounded-2xl p-4 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:-translate-y-1 text-left block"
                             >
                                 {job.image && job.image.length > 0 && (
@@ -206,7 +215,7 @@ export function ExperienceTimelineServer({
                                         <p>{job.description}</p>
                                     )}
                                 </div>
-                            </a>
+                            </CardWrapper>
                         </div>
                     ))}
                 </div>

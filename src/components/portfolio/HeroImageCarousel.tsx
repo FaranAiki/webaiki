@@ -32,7 +32,7 @@ export function HeroImageCarousel({ photos, alt }: { photos: string[], alt: stri
           fill
           className="object-cover"
           sizes="(max-width: 768px) 160px, 250px"
-          quality={70}
+          quality={60}
         />
         </motion.div>
       )}
