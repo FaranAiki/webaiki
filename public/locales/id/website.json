@@ -13,5 +13,12 @@
   "Styling_Desc": "Gaya kustom menggunakan Vanilla CSS dan Tailwind CSS, berfokus pada estetika unik dengan dukungan multi-tema (Modern, Cinematic, Editorial).",
   "Database_Desc": "Manajemen database serverless menggunakan Drizzle ORM dengan PostgreSQL yang dihosting di Supabase, menjamin integritas data dan skalabilitas.",
   "Localization_Desc": "Dukungan i18n komprehensif untuk 18+ bahasa, memastikan aksesibilitas dan pengalaman mulus bagi audiens global.",
-  "Holistic_Approach_Desc": "Pendekatan rekayasa perangkat lunak holistik yang menggabungkan standar web modern, keamanan tipe (TypeScript), dan desain berbasis performa."
+  "Holistic_Approach_Desc": "Pendekatan rekayasa perangkat lunak holistik yang menggabungkan standar web modern, keamanan tipe (TypeScript), dan desain berbasis performa.",
+  "Framework_Title": "Next.js 15 Framework",
+  "Styling_Title": "Gaya UI/UX Kustom",
+  "Database_Title": "PostgreSQL & Drizzle",
+  "Localization_Title": "Lokalisasi Global (i18n)",
+  "Holistic_Title": "Rekayasa Holistik",
+  "Performance_Score_Title": "Skor Benchmark Tinggi",
+  "Performance_Score_Desc": "Mencapai skor 92 untuk Performa, dan sempurna 100 untuk Aksesibilitas, Praktik Terbaik, dan SEO. Divalidasi melalui DebugBear, memastikan rata-rata waktu muat yang luar biasa dan core web vitals yang solid."
 }

@@ -23,5 +23,12 @@
   ],
   "Holistic_Approach_Desc": [
     "Hanyar injiniyan software gaba ɗaya wacce ta haɗa da ka'idodin yanar gizo na zamani, amincin nau'in TypeScript (TypeScript), da ƙira mai amfani da aiki."
-  ]
+  ],
+  "Framework_Title": "Next.js 15 Framework",
+  "Styling_Title": "Tsarin UI/UX na Musamman",
+  "Database_Title": "PostgreSQL & Drizzle",
+  "Localization_Title": "Fassarar Duniya (i18n)",
+  "Holistic_Title": "Cikakken Injiniya",
+  "Performance_Score_Title": "Babban Ma'aunin Ayyuka",
+  "Performance_Score_Desc": "Samun maki 92 don Ayyuka, da 100 cikakke don Samun dama, Kyawawan Ayyuka, da SEO. Tabbatacce ta hanyar DebugBear."
 }

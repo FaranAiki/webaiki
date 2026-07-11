@@ -4,7 +4,8 @@ const FAQ = dynamic(() => import('@/components/portfolio/FAQ'));
 const FadeInSection = dynamic(() => import('@/components/shared/FadeInSection'));
 import { getDictionary } from '@/components/layout/Translator';
 import { getLanguageAlternates, getBaseMetadata, getWebsiteSchema, SITE_URL, getFaqSchema } from '@/lib/seo';
-import { Cpu, Palette, Database, Languages, Activity } from 'lucide-react';
+import { Cpu, Palette, Database, Languages, Activity, CheckCircle2 } from 'lucide-react';
+import Image from 'next/image';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -83,7 +84,7 @@ export default async function WebsitePage({
                 <div className="mb-6 p-3 bg-theme-500/10 text-theme-500 w-fit rounded-2xl group-hover:scale-110 transition-transform">
                   <Cpu size={32} />
                 </div>
-                <h3 className="text-xl font-bold mb-3">Next.js 15 Framework</h3>
+                <h3 className="text-xl font-bold mb-3">{dict.Framework_Title}</h3>
                 <p className="text-theme-muted leading-relaxed">
                   {dict.Framework_Desc}
                 </p>
@@ -94,7 +95,7 @@ export default async function WebsitePage({
                 <div className="mb-6 p-3 bg-theme-500/10 text-theme-500 w-fit rounded-2xl group-hover:scale-110 transition-transform">
                   <Palette size={32} />
                 </div>
-                <h3 className="text-xl font-bold mb-3">Custom UI/UX Styling</h3>
+                <h3 className="text-xl font-bold mb-3">{dict.Styling_Title}</h3>
                 <p className="text-theme-muted leading-relaxed">
                   {dict.Styling_Desc}
                 </p>
@@ -105,7 +106,7 @@ export default async function WebsitePage({
                 <div className="mb-6 p-3 bg-theme-500/10 text-theme-500 w-fit rounded-2xl group-hover:scale-110 transition-transform">
                   <Database size={32} />
                 </div>
-                <h3 className="text-xl font-bold mb-3">PostgreSQL & Drizzle</h3>
+                <h3 className="text-xl font-bold mb-3">{dict.Database_Title}</h3>
                 <p className="text-theme-muted leading-relaxed">
                   {dict.Database_Desc}
                 </p>
@@ -116,7 +117,7 @@ export default async function WebsitePage({
                 <div className="mb-6 p-3 bg-theme-500/10 text-theme-500 w-fit rounded-2xl group-hover:scale-110 transition-transform">
                   <Languages size={32} />
                 </div>
-                <h3 className="text-xl font-bold mb-3">Global Localization (i18n)</h3>
+                <h3 className="text-xl font-bold mb-3">{dict.Localization_Title}</h3>
                 <p className="text-theme-muted leading-relaxed">
                   {dict.Localization_Desc}
                 </p>
@@ -129,11 +130,33 @@ export default async function WebsitePage({
                     <Activity size={40} />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-black mb-3">Holistic Engineering</h3>
+                    <h3 className="text-2xl font-black mb-3">{dict.Holistic_Title}</h3>
                     <p className="text-theme-muted leading-relaxed text-lg max-w-3xl">
                       {dict.Holistic_Approach_Desc}
                     </p>
                   </div>
+                </div>
+              </div>
+            </div>
+            <div className="mt-16 bg-theme-surface border border-theme-border rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all group">
+              <div className="grid grid-cols-1 md:grid-cols-2">
+                <div className="relative h-64 md:h-auto w-full bg-theme-surface-strong">
+                  <Image 
+                    src="/documents/website/debug_bear_0.webp" 
+                    alt="DebugBear Performance Score Benchmarks"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </div>
+                <div className="p-8 md:p-12 flex flex-col justify-center">
+                  <div className="mb-6 p-3 bg-green-500/10 text-green-500 w-fit rounded-2xl">
+                    <CheckCircle2 size={32} />
+                  </div>
+                  <h3 className="text-2xl font-black mb-4">{dict.Performance_Score_Title}</h3>
+                  <p className="text-theme-muted leading-relaxed text-lg">
+                    {dict.Performance_Score_Desc}
+                  </p>
                 </div>
               </div>
             </div>

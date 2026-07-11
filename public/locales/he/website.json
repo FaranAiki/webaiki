@@ -23,5 +23,12 @@
   ],
   "Holistic_Approach_Desc": [
     "גישה הוליסטית להנדסת תוכנה המשלבת תקני אינטרנט מודרניים, בטיחות טיפוסים קפדנית (TypeScript) ועיצוב מונחה ביצועים."
-  ]
+  ],
+  "Framework_Title": "Next.js 15 Framework",
+  "Styling_Title": "עיצוב ממשק משתמש/חווית משתמש מותאם אישית",
+  "Database_Title": "PostgreSQL & Drizzle",
+  "Localization_Title": "לוקליזציה עולמית (i18n)",
+  "Holistic_Title": "הנדסה הוליסטית",
+  "Performance_Score_Title": "מדדי ביצועים גבוהים",
+  "Performance_Score_Desc": "השגת ציון 92 עבור ביצועים, ו-100 מושלם עבור נגישות, שיטות מומלצות וקידום אתרים (SEO). אומת באמצעות DebugBear, המבטיח זמני טעינה יוצאי דופן."
 }

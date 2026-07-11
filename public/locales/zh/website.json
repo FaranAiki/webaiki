@@ -23,5 +23,12 @@
   ],
   "Holistic_Approach_Desc": [
     "一种整体的软件工程方法，结合了现代 Web 标准、严格的类型安全 (TypeScript) 和性能驱动的设计。"
-  ]
+  ],
+  "Framework_Title": "Next.js 15 Framework",
+  "Styling_Title": "自定义 UI/UX 样式",
+  "Database_Title": "PostgreSQL & Drizzle",
+  "Localization_Title": "全球本地化 (i18n)",
+  "Holistic_Title": "整体工程",
+  "Performance_Score_Title": "高性能基准测试",
+  "Performance_Score_Desc": "性能得分为92，无障碍、最佳实践和SEO获得完美的100分。通过DebugBear验证，确保卓越的平均加载时间。"
 }

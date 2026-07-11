@@ -23,5 +23,12 @@
   ],
   "Holistic_Approach_Desc": [
     "एक समग्र सॉफ्टवेयर इंजीनियरिंग दृष्टिकोण जो आधुनिक वेब मानकों, कठोर प्रकार सुरक्षा (TypeScript) और प्रदर्शन-संचालित डिजाइन को जोड़ता है।"
-  ]
+  ],
+  "Framework_Title": "Next.js 15 Framework",
+  "Styling_Title": "कस्टम यूआई/यूएक्स स्टाइलिंग",
+  "Database_Title": "PostgreSQL & Drizzle",
+  "Localization_Title": "वैश्विक स्थानीयकरण (i18n)",
+  "Holistic_Title": "समग्र इंजीनियरिंग",
+  "Performance_Score_Title": "उच्च प्रदर्शन मानक",
+  "Performance_Score_Desc": "प्रदर्शन के लिए 92 स्कोर प्राप्त करना, और सुलभता, सर्वोत्तम प्रथाओं और एसईओ के लिए एकदम सही 100। DebugBear के माध्यम से मान्य, असाधारण लोड समय सुनिश्चित करना।"
 }

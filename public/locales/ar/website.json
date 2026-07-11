@@ -23,5 +23,12 @@
   ],
   "Holistic_Approach_Desc": [
     "نهج هندسة برمجيات شامل يجمع بين معايير الويب الحديثة، وسلامة الأنواع الصارمة (TypeScript)، والتصميم القائم على الأداء."
-  ]
+  ],
+  "Framework_Title": "Next.js 15 Framework",
+  "Styling_Title": "تصميم واجهة المستخدم",
+  "Database_Title": "PostgreSQL & Drizzle",
+  "Localization_Title": "توطين عالمي (i18n)",
+  "Holistic_Title": "هندسة شاملة",
+  "Performance_Score_Title": "معايير الأداء العالية",
+  "Performance_Score_Desc": "تحقيق درجة 92 في الأداء، و 100 كاملة في إمكانية الوصول، وأفضل الممارسات، وتحسين محركات البحث (SEO). تم التحقق من خلال DebugBear، مما يضمن أوقات تحميل استثنائية."
 }

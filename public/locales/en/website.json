@@ -13,5 +13,12 @@
   "Styling_Desc": "Custom styles using Vanilla CSS and Tailwind CSS, focusing on a unique aesthetic with multi-theme support (Modern, Cinematic, Editorial).",
   "Database_Desc": "Serverless database management using Drizzle ORM with PostgreSQL hosted on Supabase, ensuring data integrity and scalability.",
   "Localization_Desc": "Comprehensive i18n support for 18+ languages, ensuring accessibility and a seamless experience for a global audience.",
-  "Holistic_Approach_Desc": "A holistic software engineering approach combining modern web standards, rigorous type safety (TypeScript), and performance-driven design."
+  "Holistic_Approach_Desc": "A holistic software engineering approach combining modern web standards, rigorous type safety (TypeScript), and performance-driven design.",
+  "Framework_Title": "Next.js 15 Framework",
+  "Styling_Title": "Custom UI/UX Styling",
+  "Database_Title": "PostgreSQL & Drizzle",
+  "Localization_Title": "Global Localization (i18n)",
+  "Holistic_Title": "Holistic Engineering",
+  "Performance_Score_Title": "High Performance Benchmarks",
+  "Performance_Score_Desc": "Achieving scores of 92 for Performance, and perfect 100s for Accessibility, Best Practices, and SEO. Validated through DebugBear, ensuring exceptional average load times and solid core web vitals."
 }

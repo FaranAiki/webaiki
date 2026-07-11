@@ -23,5 +23,12 @@
   ],
   "Holistic_Approach_Desc": [
     "Ein ganzheitlicher Software-Engineering-Ansatz, der moderne Webstandards, strenge Typsicherheit (TypeScript) und leistungsorientiertes Design kombiniert."
-  ]
+  ],
+  "Framework_Title": "Next.js 15 Framework",
+  "Styling_Title": "Benutzerdefiniertes UI/UX-Styling",
+  "Database_Title": "PostgreSQL & Drizzle",
+  "Localization_Title": "Globale Lokalisierung (i18n)",
+  "Holistic_Title": "Ganzheitliche Technik",
+  "Performance_Score_Title": "Hohe Leistungsbenchmarks",
+  "Performance_Score_Desc": "Erreichen von 92 Punkten für Leistung und perfekten 100 Punkten für Zugänglichkeit, Best Practices und SEO. Validiert durch DebugBear, was außergewöhnliche Ladezeiten gewährleistet."
 }

@@ -23,5 +23,12 @@
   ],
   "Holistic_Approach_Desc": [
     "現代のウェブ標準、厳格な型安全性 (TypeScript)、およびパフォーマンス重視の設計を組み合わせた、ホリスティックなソフトウェアエンジニアリングアプローチ。"
-  ]
+  ],
+  "Framework_Title": "Next.js 15 Framework",
+  "Styling_Title": "カスタムUI/UXスタイリング",
+  "Database_Title": "PostgreSQL & Drizzle",
+  "Localization_Title": "グローバルローカリゼーション (i18n)",
+  "Holistic_Title": "ホリスティックエンジニアリング",
+  "Performance_Score_Title": "高パフォーマンスのベンチマーク",
+  "Performance_Score_Desc": "パフォーマンスで92のスコアを達成し、アクセシビリティ、ベストプラクティス、SEOで完璧な100を達成。DebugBearで検証され、並外れた平均ロード時間を保証します。"
 }

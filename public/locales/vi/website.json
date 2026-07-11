@@ -23,5 +23,12 @@
   ],
   "Holistic_Approach_Desc": [
     "Một phương pháp kỹ thuật phần mềm toàn diện kết hợp các tiêu chuẩn web hiện đại, tính an toàn kiểu nghiêm ngặt (TypeScript) và thiết kế định hướng hiệu suất."
-  ]
+  ],
+  "Framework_Title": "Next.js 15 Framework",
+  "Styling_Title": "Tùy chỉnh phong cách UI/UX",
+  "Database_Title": "PostgreSQL & Drizzle",
+  "Localization_Title": "Bản địa hóa toàn cầu (i18n)",
+  "Holistic_Title": "Kỹ thuật toàn diện",
+  "Performance_Score_Title": "Điểm chuẩn hiệu suất cao",
+  "Performance_Score_Desc": "Đạt số điểm 92 cho Hiệu suất và 100 điểm tuyệt đối cho Khả năng truy cập, Phương pháp hay nhất và SEO. Được xác thực qua DebugBear, đảm bảo thời gian tải vượt trội."
 }

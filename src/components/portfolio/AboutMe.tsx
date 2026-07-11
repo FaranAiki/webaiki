@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { shimmer, toBase64, formatCJK } from '@/lib/utils';
 import Image from 'next/image';
 // import HoverableWords from '@/components/shared/HoverableWords';
@@ -8,6 +8,7 @@ import FadeInSection from '@/components/shared/FadeInSection';
 import { m as motion, AnimatePresence } from 'framer-motion';
 import { useSettings } from '../providers/SettingsContext';
 import { usePresentation } from '../providers/PresentationContext';
+import { useAppStore } from '@/lib/store';
 
 export type AboutMeProps = {
   carouselPhotos: string[];
@@ -356,17 +357,89 @@ export function VisionMissionSection(props: AboutSubSectionProps) {
 
 export default function AboutMe(props: AboutMeProps) {
   const { isPresentationMode } = useAboutLayout(props);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const setScrollLocked = useAppStore((state) => state.setScrollLocked);
+
+  useEffect(() => {
+    if (!isPresentationMode) return;
+    const el = containerRef.current;
+    if (!el) return;
+    
+    let isScrolling = false;
+    let scrollTimeout: NodeJS.Timeout;
+    
+    const onWheel = (e: WheelEvent) => {
+        if (e.deltaY === 0) return;
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+            e.preventDefault();
+            if (isScrolling) return;
+            
+            isScrolling = true;
+            el.scrollBy({ left: e.deltaY > 0 ? el.clientWidth : -el.clientWidth, behavior: 'smooth' });
+            
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                isScrolling = false;
+            }, 500);
+        }
+    };
+    
+    el.addEventListener('wheel', onWheel, { passive: false });
+    return () => {
+        el.removeEventListener('wheel', onWheel);
+        clearTimeout(scrollTimeout);
+    };
+  }, [isPresentationMode]);
+
+  useEffect(() => {
+    if (!isPresentationMode) return;
+    document.body.style.overflow = 'hidden';
+    setScrollLocked(true);
+    return () => {
+        document.body.style.overflow = '';
+        setScrollLocked(false);
+    };
+  }, [isPresentationMode, setScrollLocked]);
+
+  if (isPresentationMode) {
+    return (
+      <div className="w-full relative h-[calc(100vh-6rem)] -mt-16 md:-mt-8">
+         <div ref={containerRef} className="w-full h-full relative presentation-container flex overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth hide-scrollbar">
+            <div className="w-full min-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-4 md:p-12">
+               <div className="w-full max-w-6xl max-h-full overflow-hidden hide-scrollbar py-8 flex flex-col justify-center">
+                 <AboutSection {...props} isCompact={false} isPresentationMode={true} />
+               </div>
+            </div>
+            <div className="w-full min-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-4 md:p-12">
+               <div className="w-full max-w-6xl max-h-full overflow-hidden hide-scrollbar py-8 flex flex-col justify-center">
+                 <PhilosophySection {...props} isCompact={false} isPresentationMode={true} />
+               </div>
+            </div>
+            <div className="w-full min-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-4 md:p-12">
+               <div className="w-full max-w-6xl max-h-full overflow-hidden hide-scrollbar py-8 flex flex-col justify-center">
+                 <PrinciplesSection {...props} isCompact={false} isPresentationMode={true} />
+               </div>
+            </div>
+            <div className="w-full min-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-4 md:p-12">
+               <div className="w-full max-w-6xl max-h-full overflow-hidden hide-scrollbar py-8 flex flex-col justify-center">
+                 <VisionMissionSection {...props} isCompact={false} isPresentationMode={true} />
+               </div>
+            </div>
+         </div>
+      </div>
+    );
+  }
 
   return (
-    <div className={`w-full ${props.isCompact ? 'py-4' : 'py-8'} md:px-5 ${isPresentationMode ? 'presentation-container' : ''}`}>
+    <div className={`w-full ${props.isCompact ? 'py-4' : 'py-8'} md:px-5`}>
       <AboutSection {...props} />
-      {!isPresentationMode && <SectionSeparator isCompact={props.isCompact} />}
+      <SectionSeparator isCompact={props.isCompact} />
       
       <PhilosophySection {...props} />
-      {!isPresentationMode && <SectionSeparator isCompact={props.isCompact} />}
+      <SectionSeparator isCompact={props.isCompact} />
       
       <PrinciplesSection {...props} />
-      {!isPresentationMode && <SectionSeparator isCompact={props.isCompact} />}
+      <SectionSeparator isCompact={props.isCompact} />
       
       <VisionMissionSection {...props} />
     </div>

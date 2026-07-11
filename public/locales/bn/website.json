@@ -23,5 +23,12 @@
   ],
   "Holistic_Approach_Desc": [
     "একটি সামগ্রিক সফটওয়্যার ইঞ্জিনিয়ারিং পদ্ধতি যা আধুনিক ওয়েব স্ট্যান্ডার্ড, কঠোর টাইপ সেফটি (TypeScript) এবং পারফরম্যান্স-চালিত ডিজাইনকে একত্রিত করে।"
-  ]
+  ],
+  "Framework_Title": "Next.js 15 Framework",
+  "Styling_Title": "কাস্টম UI/UX স্টাইলিং",
+  "Database_Title": "PostgreSQL & Drizzle",
+  "Localization_Title": "গ্লোবাল লোকালাইজেশন (i18n)",
+  "Holistic_Title": "হোলিস্টিক ইঞ্জিনিয়ারিং",
+  "Performance_Score_Title": "উচ্চ পারফরম্যান্স বেঞ্চমার্ক",
+  "Performance_Score_Desc": "পারফরম্যান্সের জন্য ৯২ স্কোর এবং অ্যাক্সেসিবিলিটি, সেরা অনুশীলন এবং এসইও-র জন্য নিখুঁত ১০০ স্কোর অর্জন। DebugBear-এর মাধ্যমে যাচাইকৃত, যা চমৎকার লোড টাইম নিশ্চিত করে।"
 }

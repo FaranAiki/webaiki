@@ -7,9 +7,9 @@ import { usePresentation } from '../providers/PresentationContext';
 import { m as motion, Variants } from 'framer-motion';
 
 const MaskIcon = ({ src, colorClass }: { src: string, colorClass: string }) => (
-  <div 
-    className={`w-12 h-12 ${colorClass}`} 
-    style={{ 
+  <div
+    className={`w-12 h-12 ${colorClass}`}
+    style={{
       maskImage: `url(${src})`,
       WebkitMaskImage: `url(${src})`,
       maskSize: 'contain',
@@ -18,7 +18,7 @@ const MaskIcon = ({ src, colorClass }: { src: string, colorClass: string }) => (
       WebkitMaskRepeat: 'no-repeat',
       maskPosition: 'center',
       WebkitMaskPosition: 'center'
-    }} 
+    }}
   />
 );
 
@@ -57,6 +57,13 @@ const itemVariants: Variants = {
 };
 
 export const defaultSocialLinks: SocialLink[] = [
+    {
+      name: "dev.to",
+      username: "FaranAiki",
+      url: "https://dev.to/faranaiki",
+      icon: <MaskIcon src="/images/social/devto.svg" colorClass="bg-black dark:bg-white" />,
+      color: "hover:border-neutral-500"
+    },
     {
       name: "GitHub",
       username: "FaranAiki",
@@ -173,8 +180,8 @@ export const defaultSocialLinks: SocialLink[] = [
 
 export default function SocialDisplay({ customLinks, hidePresentation = false, dict: _dict }: SocialDisplayProps) {
   const { isPresentationMode } = usePresentation();
-  
-  
+
+
   // Static/CSS-variable based styles to prevent flicker
   const containerClass = "text-foreground";
   const cardBg = "bg-[var(--card-bg)] border-[var(--card-border)] backdrop-blur-sm shadow-sm hover:shadow-lg";
@@ -189,7 +196,7 @@ export default function SocialDisplay({ customLinks, hidePresentation = false, d
     );
   };
 
-  const socialChunks = chunkArray(socialLinks, 4);
+  const socialChunks = chunkArray(socialLinks, 16);
   const showPresentation = isPresentationMode && !hidePresentation;
 
   const renderCard = (link: SocialLink, presentationMode: boolean) => {
@@ -199,7 +206,7 @@ export default function SocialDisplay({ customLinks, hidePresentation = false, d
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`Visit Muhammad Faran Aiki's profile on ${link.name}`}
-          className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-8' : 'rounded-lg p-6'} flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-2 ${presentationMode ? 'hover:scale-[1.02]' : ''} ${link.color} w-full shadow-sm hover:shadow-lg`}
+          className={`group ${cardBg} border ${presentationMode ? 'rounded-2xl p-6 md:p-8' : 'rounded-lg p-4 sm:p-6'} flex flex-col items-center justify-center text-center transition-all duration-300 hover:-translate-y-2 ${presentationMode ? 'hover:scale-[1.02]' : ''} ${link.color} w-full h-full shadow-sm hover:shadow-lg`}
       >
           <div className={`text-${presentationMode ? 'base' : 'sm'} ${usernameClass} mb-4 transition-colors`}>
           {link.username}
@@ -221,8 +228,8 @@ export default function SocialDisplay({ customLinks, hidePresentation = false, d
       {showPresentation && (
         <div className="presentation-container">
           {socialChunks.map((chunk, chunkIdx) => (
-            <motion.div 
-              key={`social-slide-${chunkIdx}`} 
+            <motion.div
+              key={`social-slide-${chunkIdx}`}
               className="w-full h-full flex-shrink-0 flex items-center justify-center presentation-section"
               variants={containerVariants}
               initial="hidden"
@@ -230,9 +237,9 @@ export default function SocialDisplay({ customLinks, hidePresentation = false, d
               viewport={{ once: true, amount: 0.1 }}
             >
               <div className={`container mx-auto max-w-5xl ${containerClass} px-4`}>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-center justify-center">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 items-stretch justify-center">
                   {chunk.map((link) => (
-                    <motion.div key={link.name} className="h-full" variants={itemVariants}>
+                    <motion.div key={link.name} className="h-full w-full flex" variants={itemVariants}>
                       {renderCard(link, true)}
                     </motion.div>
                   ))}
@@ -244,17 +251,17 @@ export default function SocialDisplay({ customLinks, hidePresentation = false, d
       )}
 
       {!showPresentation && (
-        <motion.div 
-          className="block w-full h-full flex items-center justify-center py-12 md:py-20"
+        <motion.div
+          className="block w-full h-full flex items-center justify-center py-12 md:py-24"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.05 }}
         >
-          <div className={`container mx-auto max-w-5xl ${containerClass}`}>
-            <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-6 p-4 space-y-6">
+          <div className={`container mx-auto max-w-6xl ${containerClass} px-4 md:px-8`}>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 items-stretch">
               {socialLinks.map((link, idx) => (
-                <motion.div key={link.name} className="break-inside-avoid w-full" initial={idx < 4 ? "visible" : undefined} variants={itemVariants}>
+                <motion.div key={link.name} className="w-full flex" initial={idx < 4 ? "visible" : undefined} variants={itemVariants}>
                   {renderCard(link, false)}
                 </motion.div>
               ))}
