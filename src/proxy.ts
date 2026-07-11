@@ -69,7 +69,7 @@ export async function proxy(request: NextRequest) {
     }
 
     request.nextUrl.pathname = `/${locale}${pathname === '/' ? '' : pathname}`;
-    return NextResponse.redirect(request.nextUrl);
+    return NextResponse.rewrite(request.nextUrl);
   }
 
   // 3. For non-redirected requests, handle session and security

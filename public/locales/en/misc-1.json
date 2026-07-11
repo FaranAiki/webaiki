@@ -156,5 +156,9 @@
   "Image": "Gambar",
   "Upload_Photo": "Unggah Foto",
   "Title": "Judul",
-  "Image_Optional": "Gambar (Opsional)"
+  "Image_Optional": "Gambar (Opsional)",
+  "Color_Grey": "Grey",
+  "Color_Red": "Red",
+  "Color_Teal": "Teal",
+  "Color_Gold": "Gold"
 }

@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { m as motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
+import LogoIcon from "@/components/ui/LogoIcon";
 import { useAppStore } from "@/lib/store";
 import { createPortal } from "react-dom";
 
@@ -156,15 +156,9 @@ export default function PageTransitionLoader({ label }: { label: string }) {
             <div className="hidden md:flex relative items-center justify-center w-16 h-16">
               {/* Center Logo */}
               <div className="absolute inset-0 flex items-center justify-center animate-pulse">
-                 <Image 
-                   src="/icon.svg?v=6" 
-                   alt="Loading" 
-                   width={28} 
-                   height={28} 
-                   unoptimized
-                   className="opacity-70 dark:opacity-90 invert-0 dark:invert hue-rotate-180 brightness-150 contrast-125 object-center" 
-                   style={{ filter: getThemeLogoFilter(colorTheme), transition: 'filter 0.3s ease-in-out' }}
-                   priority 
+                 <LogoIcon 
+                   size={28}
+                   className="opacity-70 dark:opacity-90"
                  />
               </div>
 
@@ -204,15 +198,9 @@ export default function PageTransitionLoader({ label }: { label: string }) {
             {/* Mobile View - Linear */}
             <div className="flex md:hidden flex-col items-center justify-center gap-4 w-[200px]">
               <div className="animate-pulse flex items-center justify-center">
-                 <Image 
-                   src="/icon.svg?v=6" 
-                   alt="Loading" 
-                   width={48} 
-                   height={48} 
-                   unoptimized
-                   className="opacity-80 dark:opacity-100 invert-0 dark:invert hue-rotate-180 brightness-150 contrast-125 drop-shadow-2xl filter saturate-200 object-center" 
-                   style={{ filter: getThemeLogoFilter(colorTheme), transition: 'filter 0.3s ease-in-out' }}
-                   priority 
+                 <LogoIcon 
+                   size={48}
+                   className="opacity-80 dark:opacity-100 drop-shadow-2xl"
                  />
               </div>
               <div className="w-full h-1.5 bg-theme-muted/10 dark:bg-theme-muted/20 rounded-full">

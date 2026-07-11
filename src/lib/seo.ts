@@ -131,6 +131,10 @@ export function getBaseMetadata(dict: import('@/components/layout/Translator').T
       telephone: false,
     },
     manifest: '/manifest.json',
+    icons: {
+      icon: '/logo.png',
+      apple: '/apple-icon.png',
+    },
     alternates: {
       languages: getLanguageAlternates(''),
     },
@@ -248,7 +252,7 @@ export function getOrganizationSchema() {
     "@id": `${SITE_URL}/#organization`,
     "name": "Muhammad Faran Aiki",
     "url": SITE_URL,
-    "logo": `${SITE_URL}/images/og-preview.jpg`,
+    "logo": `${SITE_URL}/logo.png`,
     "founder": {
       "@id": `${SITE_URL}/#person`
     }

@@ -104,8 +104,16 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         return { r: 147, g: 51, b: 234 }; // purple-600
       case 'orange':
         return { r: 234, g: 88, b: 12 }; // orange-600
-      case 'mono':
+      case 'grey':
         return { r: 100, g: 116, b: 139 }; // slate-500
+      case 'mono':
+        return { r: 0, g: 0, b: 0 }; // black
+      case 'red':
+        return { r: 239, g: 68, b: 68 }; // red-500
+      case 'teal':
+        return { r: 20, g: 184, b: 166 }; // teal-500
+      case 'gold':
+        return { r: 217, g: 119, b: 6 }; // amber-600
       default:
         return { r: 8, g: 145, b: 178 }; // theme-600
     }
@@ -234,7 +242,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     }
 
     // 2. Color Class on ROOT
-    root.classList.remove('theme-pink', 'theme-blue', 'theme-green', 'theme-purple', 'theme-orange', 'theme-mono');
+    root.classList.remove('theme-pink', 'theme-blue', 'theme-green', 'theme-purple', 'theme-orange', 'theme-mono', 'theme-grey', 'theme-red', 'theme-teal', 'theme-gold');
     root.classList.add(`theme-${color}`);
 
     // 3. Global Settings via CSS variables on root

@@ -3,8 +3,7 @@
 import Link from "next/link";
 import { Home, Star } from "lucide-react";
 import { useSettings } from "@/components/providers/SettingsContext";
-import { getThemeLogoFilter } from "@/lib/utils";
-import Image from "next/image";
+import LogoIcon from "@/components/ui/LogoIcon";
 
 interface NotFoundClientProps {
   dict: import('@/components/layout/Translator').TranslationDict;
@@ -25,17 +24,9 @@ export default function NotFoundClient({ dict, lang }: NotFoundClientProps) {
         </div>
         <div className="absolute inset-0 flex items-center justify-center">
            <div className="w-24 h-24 md:w-32 md:h-32 relative rounded-full overflow-hidden border-4 border-theme-500/50 shadow-2xl bg-theme-surface flex items-center justify-center p-4">
-              <Image
-                src="/icon.svg"
-                alt="404 Not Found Faran Aiki Portfolio"
-                width={80}
-                height={80}
-                unoptimized
+              <LogoIcon
+                size={80}
                 className="object-contain"
-                style={{ 
-                  filter: getThemeLogoFilter(settings?.color || ''),
-                  transition: 'filter 0.3s ease-in-out'
-                }}
               />
            </div>
         </div>

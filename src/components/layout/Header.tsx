@@ -23,7 +23,8 @@ import {
 } from 'lucide-react';
 
 import { usePresentation } from '@/components/providers/PresentationContext';
-import { formatCJK, getThemeLogoFilter } from '@/lib/utils';
+import { formatCJK } from '@/lib/utils';
+import LogoIcon from '@/components/ui/LogoIcon';
 import { useAppStore } from '@/lib/store';
 import { useAuthActions } from '@/app/auth-hooks';
 
@@ -141,7 +142,11 @@ interface HeaderProps {
         Color_Green: string;
         Color_Purple: string;
         Color_Orange: string;
+        Color_Grey: string;
         Color_Mono: string;
+        Color_Red: string;
+        Color_Teal: string;
+        Color_Gold: string;
         Advanced_Section: string;
         ATS_Friendly: string;
         Expand_All: string;
@@ -230,7 +235,7 @@ export default function Header(props: HeaderProps) {
         const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
         const [user, setUser] = useState<SupabaseUser | null>(null);
         const [dynamicNavLinks, setDynamicNavLinks] = useState<NavLink[]>(navLinks);
-        
+
         useEffect(() => {
             const handleOpenCommandPalette = () => setIsCommandPaletteOpen(true);
             window.addEventListener('open-command-palette', handleOpenCommandPalette);
@@ -552,6 +557,14 @@ export default function Header(props: HeaderProps) {
                     border-b shadow-theme-shadow
                 `}
             >
+                <div
+                    className="absolute inset-0 z-[-1] pointer-events-none opacity-[0.02] dark:opacity-[0.01]"
+                    style={{
+                        backgroundImage: "url('/images/background/pattern_02.avif')",
+                        backgroundRepeat: 'repeat',
+                        backgroundSize: '626px 626px'
+                    }}
+                />
                 <div className="w-full flex items-center justify-between mx-auto px-4 sm:px-8 py-4">
 
                     {/* Left section (Logo + Presentation Toggle) */}
@@ -562,19 +575,9 @@ export default function Header(props: HeaderProps) {
                         onClick={() => router.push(getLocalizedHref('/all'))}
                         aria-label={logo_alt}
                         className={`transition-[colors,transform,opacity] shadow-md border border-theme-border opacity-100 hover:opacity-80 scale-100 hover:scale-110 cursor-pointer rounded-full overflow-hidden transform-gpu flex`}>
-                        <Image
-                            src='/icon.svg?v=6'
-                            alt={logo_alt}
-                            title={logo_alt}
-                            width={32}
-                            height={32}
-                            unoptimized
-                            className="scale-[1.01] object-center"
-                            style={{
-                                filter: getThemeLogoFilter(settings?.color || ''),
-                                transition: 'filter 0.3s ease-in-out'
-                            }}
-                            priority={true}
+                        <LogoIcon
+                            size={32}
+                            className="scale-[1.01]"
                         />
                     </button>
 
@@ -670,14 +673,7 @@ export default function Header(props: HeaderProps) {
                                         <li key={link.name} className="relative group">
                                             <button
                                                 onClick={(e) => {
-                                                    if (hasSubLinks) {
-                                                        const isTouch = typeof window !== 'undefined' && (window.matchMedia("(pointer: coarse)").matches || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent));
-                                                        if (!isTouch) {
-                                                            router.push(getLocalizedHref(link.subLinks![0].href));
-                                                        } else {
-                                                            e.preventDefault();
-                                                        }
-                                                    }
+                                                    e.preventDefault();
                                                 }}
                                                 className={`flex items-center transition-[colors,transform] duration-200
                                                     text-[15px] tracking-wide
@@ -692,7 +688,7 @@ export default function Header(props: HeaderProps) {
                                             </button>
 
                                             {/* Dropdown Menu */}
-                                            <div className="absolute top-full left-1/2 transform -translate-x-1/2 pt-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-[colors,transform,opacity] duration-200 ease-in-out">
+                                            <div className="absolute top-full left-1/2 transform -translate-x-1/2 pt-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-[colors,transform,opacity] duration-200 ease-in-out">
                                                 <ul className={`${dropdownBg} rounded-xl shadow-xl py-3 min-w-[200px] ring-1 ring-black/5`}>
                                                     {link.subLinks!.map((subLink) => {
                                                         const isSubActive = normalizedPathname === subLink.href;
@@ -948,6 +944,14 @@ export default function Header(props: HeaderProps) {
                             transition={{ type: "spring", damping: 25, stiffness: 200 }}
                             className={`no-scrollbar fixed top-0 right-0 h-full w-[85%] max-w-sm ${mobileMenuBg} md:backdrop-blur-xl shadow-2xl z-[60] md:hidden overflow-y-auto`}
                         >
+                            <div
+                                className="absolute inset-0 z-[-1] pointer-events-none opacity-[0.02] dark:opacity-[0.02]"
+                                style={{
+                                    backgroundImage: "url('/images/background/pattern_02.avif')",
+                                    backgroundRepeat: 'repeat',
+                                    backgroundSize: '626px 626px'
+                                }}
+                            />
                             <div className="absolute top-4 right-4 z-[70]">
                                 <button
                                     onClick={() => setMobileMenuOpen(false)}

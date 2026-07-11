@@ -24,10 +24,10 @@ export default async function BaseLayout({
   children: React.ReactNode;
   params: Promise<{ lang: string }>;
 }>) {
-  
+
   const { lang } = await params;
   const dict = await getDictionary(lang);
-  
+
   const nonce = "";
   const isBot = false; // We can't detect bot on server for static pages, but the inline script handles it on client.
 
@@ -35,7 +35,7 @@ export default async function BaseLayout({
     <html lang={lang} suppressHydrationWarning className={isBot ? 'is-bot' : ''}>
       <head>
         <meta name="strix-verification" content="strix-verify-c06f1485383fb06c8ff307fe69f30458" />
-        
+
         <script nonce={nonce} dangerouslySetInnerHTML={{
           __html: `
             if (/bot|googlebot|lighthouse|google-hub|google-structured-data-testing-tool|bingbot|yandexbot|duckduckbot|slurp|ia_archiver|HeadlessChrome|Chrome-Lighthouse/i.test(navigator.userAgent)) {
@@ -46,13 +46,13 @@ export default async function BaseLayout({
       </head>
       <body className="font-serif antialiased">
         <Providers nonce={nonce} isBot={isBot}>
-          <a 
-            href="#main-content" 
+          <a
+            href="#main-content"
             className="sr-only focus:not-sr-only focus:absolute focus:z-[100000] focus:p-4 focus:bg-background focus:text-foreground focus:outline-2 focus:outline-offset-2 focus:outline-theme-500 rounded-br-lg shadow-lg"
           >
             {dict.Skip_To_Content || "Skip to main content"}
           </a>
-          <ProvidersConfigurator 
+          <ProvidersConfigurator
             loadingLabel={dict.Preparing_Portfolio}
           />
           <Suspense fallback={null}>
@@ -62,8 +62,18 @@ export default async function BaseLayout({
           <div id="main-content">
             {children}
           </div>
+
+          {/* Static Pattern Background (Zero JS bloat) */}
+          <div
+            className="fixed inset-0 z-[-10] pointer-events-none opacity-[0.16] dark:opacity-[0.09]"
+            style={{
+              backgroundImage: "url('/images/background/pattern_01.avif')",
+              backgroundRepeat: 'repeat',
+              backgroundSize: '740px 493px'
+            }}
+          />
         </Providers>
-        
+
         <Script
           id="faq-schema"
           type="application/ld+json"

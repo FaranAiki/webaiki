@@ -40,7 +40,11 @@ interface SettingsPopupProps {
     Color_Green: string;
     Color_Purple: string;
     Color_Orange: string;
+    Color_Grey: string;
     Color_Mono: string;
+    Color_Red: string;
+    Color_Teal: string;
+    Color_Gold: string;
     Advanced_Section: string;
     ATS_Friendly: string;
     Expand_All: string;
@@ -180,7 +184,11 @@ export default function SettingsPopup({
     { name: 'green', class: 'bg-[#16a34a]', label: labels.Color_Green },
     { name: 'purple', class: 'bg-[#9333ea]', label: labels.Color_Purple },
     { name: 'orange', class: 'bg-[#ea580c]', label: labels.Color_Orange },
-    { name: 'mono', class: 'bg-[#64748b]', label: labels.Color_Mono },
+    { name: 'gold', class: 'bg-[#d97706]', label: labels.Color_Gold },
+    { name: 'grey', class: 'bg-[#64748b]', label: labels.Color_Grey },
+    { name: 'mono', class: 'bg-[#000000] border-gray-500 dark:bg-[#ffffff]', label: labels.Color_Mono },
+    { name: 'red', class: 'bg-[#ef4444]', label: labels.Color_Red },
+    { name: 'teal', class: 'bg-[#14b8a6]', label: labels.Color_Teal },
   ];
 
   const currentFontClass = fonts.find(f => f.name === font)?.class || '';
@@ -278,7 +286,7 @@ export default function SettingsPopup({
           <Palette size={14} />
           {labels.Color_Variant}
         </div>
-        <div className="flex gap-3">
+        <div className="grid grid-cols-5 gap-3">
           {colors.map((c) => (
             <button
               key={c.name}
