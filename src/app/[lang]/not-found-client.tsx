@@ -11,7 +11,6 @@ interface NotFoundClientProps {
 }
 
 export default function NotFoundClient({ dict, lang }: NotFoundClientProps) {
-  const settings = useSettings();
   return (
     <div
       className="w-full flex flex-col items-center animate-in fade-in slide-in-from-bottom-4 duration-500"

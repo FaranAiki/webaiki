@@ -137,7 +137,7 @@ export default function PortfolioSummaryItem({
     <div
       role="button"
       tabIndex={0}
-      className="group cursor-pointer transition-all duration-300 border-transparent hover:border-theme-500 pl-3 -ml-3 py-1 portfolio-summary-item"
+      className="group cursor-pointer transition-all duration-300 border-transparent hover:border-theme-500 pl-3 -ml-3 py-2 min-h-[44px] portfolio-summary-item"
       onClick={() => setIsOpen(!isOpen)}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -152,21 +152,21 @@ export default function PortfolioSummaryItem({
           {title}
         </h3>
 
-        <div className="flex items-center gap-2 shrink-0 portfolio-item-actions">
+        <div className="flex items-center gap-1 shrink-0 portfolio-item-actions">
             {url && (
               <a
                 href={url}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={ariaLabelTemplate ? `${ariaLabelTemplate}${title}` : `Visit external link for ${title}`}
-                className="p-1 hover:bg-theme-500/10 rounded-md transition-colors portfolio-item-link"
+                className="p-2 min-h-[44px] min-w-[44px] flex items-center justify-center hover:bg-theme-500/10 rounded-md transition-colors portfolio-item-link"
                 onClick={(e) => e.stopPropagation()}
               >
-                <ExternalLink size={14} className="text-theme-muted" />
+                <ExternalLink size={16} className="text-theme-muted" />
               </a>
             )}
-            <div className="text-theme-muted portfolio-item-chevron">
-                {showContent ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+            <div className="p-2 min-h-[44px] min-w-[44px] flex items-center justify-center text-theme-muted portfolio-item-chevron">
+                {showContent ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
             </div>
         </div>
       </div>

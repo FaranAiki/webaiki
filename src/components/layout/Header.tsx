@@ -13,7 +13,10 @@ import type { User as SupabaseUser } from '@supabase/supabase-js';
 import { m as motion, AnimatePresence } from 'framer-motion';
 
 const SettingsPopup = dynamic(() => import('@/components/providers/SettingsPopup'), { ssr: false });
-const CommandPalette = dynamic(() => import('@/components/interactive/CommandPalette').then(mod => mod.CommandPalette), { ssr: false });
+const CommandPalette = dynamic(() => import('@/components/interactive/CommandPalette').then(mod => mod.CommandPalette), { 
+  ssr: false,
+  loading: () => <div className="fixed inset-0 z-50 cursor-wait bg-black/20 backdrop-blur-sm transition-all flex items-start justify-center pt-[15vh] sm:pt-[20vh]" />
+});
 
 import {
   Monitor, MonitorPlay, Share2, Check, LogIn, LogOut, User, ChevronDown, Handshake, Briefcase,
@@ -258,8 +261,8 @@ export default function Header(props: HeaderProps) {
                     if (mounted) {
                         setUser(user || null);
                     }
-                } catch (e) {
-                    console.error("Failed to fetch user auth state", e);
+                } catch (_error) {
+                    console.error("Failed to fetch user auth state", _error);
                 }
             };
             fetchUser();
@@ -317,8 +320,7 @@ export default function Header(props: HeaderProps) {
 
         const { resolvedTheme } = useTheme();
         const [mounted, setMounted] = useState(false);
-        const { isPresentationMode, togglePresentationMode } = usePresentation();
-        const settings = useSettings();
+        const isPresentationMode = useAppStore((state) => state.isPresentationMode);
         const setScrollLocked = useAppStore((state) => state.setScrollLocked);
         const setGlobalLoading = useAppStore((state) => state.setGlobalLoading);
 
@@ -550,12 +552,13 @@ export default function Header(props: HeaderProps) {
 
     return (
         <>
-            <motion.header
-                initial={{ y: 0 }}
-                animate={{ y: shouldShowHeader ? 0 : -100 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
+            <header
                 onMouseEnter={() => { isHeaderHoveredRef.current = true; }}
                 onMouseLeave={() => { isHeaderHoveredRef.current = false; }}
+                style={{
+                    transform: shouldShowHeader ? 'translateY(0)' : 'translateY(-100px)',
+                    transition: 'transform 0.3s ease-in-out'
+                }}
                 className={`
                     w-full fixed top-0 left-0 right-0 z-40
                     ${headerBg} md:backdrop-blur-md
@@ -926,7 +929,7 @@ export default function Header(props: HeaderProps) {
 
                         </div>
                 </div>
-            </motion.header>
+            </header>
 
             {/* --- Mobile Sidebar Navigation --- */}
             <AnimatePresence>

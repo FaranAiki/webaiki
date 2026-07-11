@@ -7,47 +7,67 @@ import FadeInSection from '@/components/shared/FadeInSection';
 import { formatCJK } from '@/lib/utils';
 import { useCertificatesContext } from '../CertificatesContext';
 import { getPath } from './CertificatesShared';
+import { useAppStore } from '@/lib/store';
 
 const PdfPreview = dynamic(() => import('@/components/interactive/PdfPreview'), { ssr: false });
 
 export default function CertificatesPresentationLayout() {
-  const { 
+  const {
     allSlides,
     lang,
     titleColor,
     cardBg
   } = useCertificatesContext();
 
+  const setScrollLocked = useAppStore((state) => state.setScrollLocked);
   const containerRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
       const el = containerRef.current;
       if (!el) return;
+
+      let isScrolling = false;
+      let scrollTimeout: NodeJS.Timeout;
+
       const onWheel = (e: WheelEvent) => {
           if (e.deltaY === 0) return;
           if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
               e.preventDefault();
+              if (isScrolling) return;
+
+              isScrolling = true;
               el.scrollBy({ left: e.deltaY > 0 ? window.innerWidth : -window.innerWidth, behavior: 'smooth' });
+
+              clearTimeout(scrollTimeout);
+              scrollTimeout = setTimeout(() => {
+                  isScrolling = false;
+              }, 500);
           }
       };
+
       el.addEventListener('wheel', onWheel, { passive: false });
-      return () => el.removeEventListener('wheel', onWheel);
+      return () => {
+          el.removeEventListener('wheel', onWheel);
+          clearTimeout(scrollTimeout);
+      };
   }, []);
 
   React.useEffect(() => {
-      // Prevent body vertical scroll
+      // Prevent body vertical scroll and lock Lenis
       document.body.style.overflow = 'hidden';
+      setScrollLocked(true);
       return () => {
           document.body.style.overflow = '';
+          setScrollLocked(false);
       };
-  }, []);
+  }, [setScrollLocked]);
 
   return (
     <div ref={containerRef} className="w-full h-[calc(100vh-6rem)] relative presentation-container flex overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth">
       {allSlides.map((slide, idx) => (
         <FadeInSection
           key={`${slide.category}-${slide.year}-p${slide.part}`}
-          className="w-full min-w-full h-full flex-shrink-0 snap-center flex flex-col justify-center bg-white dark:bg-theme-bg shadow-2xl dark:shadow-none text-black dark:text-white"
+          className="w-full min-w-full h-full flex-shrink-0 snap-center flex flex-col justify-center shadow-2xl dark:shadow-none text-black dark:text-white"
           slideIndex={idx + 1}
           totalSlides={allSlides.length}
         >

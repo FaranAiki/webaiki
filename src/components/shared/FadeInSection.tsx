@@ -1,8 +1,8 @@
 "use client";
 
-import React from 'react';
-import { m as motion } from 'framer-motion';
+import React, { useMemo } from 'react';
 import { usePresentation } from '../providers/PresentationContext';
+import { useInView } from '@/hooks/useInView';
 
 interface FadeInSectionProps {
   children: React.ReactNode;
@@ -38,15 +38,24 @@ export default function FadeInSection({
     return num.toString().padStart(totalDigits, '0');
   };
 
+  // Memoize options to avoid continuous re-rendering
+  const options = useMemo(() => ({ rootMargin: '100px' }), []);
+  const { ref, isInView } = useInView<HTMLDivElement>(options);
+  const isVisible = initialVisible || isInView;
+  
+  const style = delay ? { transitionDelay: `${delay}ms` } : {};
+
   // CSS will handle skipping animations on mobile to ensure SSR works.
 
   return (
-    <motion.div
-      initial={initialVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: delay / 1000, ease: "easeOut" }}
-      className={`relative overflow-visible ${className} ${isPresentationMode ? 'presentation-section' : ''}`}
+    <div
+      ref={ref}
+      style={style}
+      className={`relative overflow-visible transition-all duration-700 ease-out transform
+        ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} 
+        ${className} 
+        ${isPresentationMode ? 'presentation-section' : ''}
+      `}
     >
       {isPresentationMode ? (
         <div className="relative w-full h-full flex items-center justify-center text-black dark:text-white">
@@ -78,6 +87,6 @@ export default function FadeInSection({
           {children}
         </>
       )}
-    </motion.div>
+    </div>
   );
   }

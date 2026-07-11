@@ -3,6 +3,7 @@
 import React, { useEffect, useState, useRef, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import { useTheme } from 'next-themes';
+import { useUserInteraction } from '@/hooks/useUserInteraction';
 
 // Dynamically import react-force-graph-2d since it relies on window/canvas
 const ForceGraph2D = dynamic(() => import('react-force-graph-2d'), { ssr: false });
@@ -32,7 +33,7 @@ interface ForceGraphMethods {
 export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientProps) {
   const { theme, systemTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const [deferGraph, setDeferGraph] = useState(false);
+  const deferGraph = useUserInteraction(2500); // Defer graph init until user interaction or 2.5s
   const graphRef = useRef<ForceGraphMethods | undefined>(undefined);
   const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
   const containerRef = useRef<HTMLDivElement>(null);
@@ -43,12 +44,11 @@ export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientPro
 
   useEffect(() => {
     setMounted(true);
-    // Defer graph initialization to reduce Main Thread Blocking time
-    const timer = setTimeout(() => setDeferGraph(true), 300);
     
-
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    const checkMobile = (e?: MediaQueryListEvent) => setIsMobile(e ? e.matches : mediaQuery.matches);
     checkMobile();
+    mediaQuery.addEventListener('change', checkMobile);
     
     const observer = new ResizeObserver((entries) => {
       // Use requestAnimationFrame to avoid ResizeObserver loop limit error
@@ -61,12 +61,10 @@ export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientPro
           });
           if (initialCenterDone.current && graphRef.current) {
             setTimeout(() => {
-              const currentIsMobile = window.innerWidth < 768;
-              if (graphRef.current) graphRef.current.zoomToFit(currentIsMobile ? 0 : 400, 20);
+              if (graphRef.current) graphRef.current.zoomToFit(mediaQuery.matches ? 0 : 400, 20);
             }, 50);
           }
         }
-        checkMobile();
       });
     });
     
@@ -75,9 +73,8 @@ export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientPro
     }
     
     return () => {
-      clearTimeout(timer);
       observer.disconnect();
-      window.removeEventListener('resize', checkMobile);
+      mediaQuery.removeEventListener('change', checkMobile);
     };
   }, []);
 
@@ -165,7 +162,7 @@ export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientPro
           <ForceGraph2D
           ref={graphRef as never}
           warmupTicks={0}
-          cooldownTicks={150}
+          cooldownTicks={50}
           onEngineStop={() => {
             if (!initialCenterDone.current && graphRef.current) {
               graphRef.current.zoomToFit(isMobile ? 0 : 400, 40);

@@ -7,7 +7,7 @@ import LogoIcon from "@/components/ui/LogoIcon";
 import { useAppStore } from "@/lib/store";
 import { createPortal } from "react-dom";
 
-import { getThemeLogoFilter } from "@/lib/utils";
+
 
 export default function PageTransitionLoader({ label }: { label: string }) {
   const [isNavigating, setIsNavigating] = useState(false);
@@ -15,7 +15,6 @@ export default function PageTransitionLoader({ label }: { label: string }) {
   const [isFinished, setIsFinished] = useState(false);
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const colorTheme = useAppStore((state) => state.color);
   const isGlobalLoading = useAppStore((state) => state.isGlobalLoading);
 
   useEffect(() => {

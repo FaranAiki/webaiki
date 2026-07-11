@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Newspaper, ArrowRight, User, Calendar } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { NewsItem } from '@/lib/types';
+import { useUserInteraction } from '@/hooks/useUserInteraction';
 
 interface LatestActivityProps {
   lang: string;
@@ -13,13 +14,9 @@ interface LatestActivityProps {
 }
 
 export default function LatestActivity({ lang, dict, initialNews }: LatestActivityProps) {
-  const [isDeferred, setIsDeferred] = useState(false);
+  const isDeferred = useUserInteraction(1500); // Wait 1.5s or interaction
 
-  useEffect(() => {
-    // Defer heavy rendering to allow the browser to paint the hero first and reduce TBT
-    const timer = setTimeout(() => setIsDeferred(true), 100);
-    return () => clearTimeout(timer);
-  }, []);
+  // Removed useEffect as state is handled by useUserInteraction
 
   return (
     <section className="mt-8 md:mt-20 w-full no-print">

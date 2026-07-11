@@ -151,7 +151,7 @@ export function CommandPalette({ lang, labels, isOpen, onOpenChange }: { lang: s
         onOpenChange={onOpenChange}
         shouldFilter={false}
         label={labels.placeholder}
-        className="fixed inset-0 z-50 flex items-start justify-center pt-[15vh] bg-black/40 backdrop-blur-sm sm:pt-[20vh] transition-opacity duration-300"
+        className={`fixed inset-0 z-50 flex items-start justify-center pt-[15vh] bg-black/40 backdrop-blur-sm sm:pt-[20vh] transition-opacity duration-300 ${redirecting || loading ? 'cursor-wait' : ''}`}
       >
         <motion.div 
           initial={{ opacity: 0, scale: 0.95, y: 10 }}
@@ -169,7 +169,7 @@ export function CommandPalette({ lang, labels, isOpen, onOpenChange }: { lang: s
               value={query}
               onValueChange={setQuery}
               placeholder={labels.placeholder} 
-              className="flex h-12 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-[var(--text-muted)] text-[var(--text-main)]"
+              className={`flex h-12 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-[var(--text-muted)] text-[var(--text-main)] ${loading || redirecting ? 'cursor-wait' : ''}`}
             />
             {loading && <Loader2 className="animate-spin text-theme-500 mr-2" size={18} />}
             <button 
@@ -192,7 +192,7 @@ export function CommandPalette({ lang, labels, isOpen, onOpenChange }: { lang: s
                     key={`search-${idx}`} 
                     value={result.title + result.description}
                     onSelect={() => navigateToResult(result)} 
-                    className="flex cursor-pointer items-start gap-3 rounded-md px-2 py-2 text-sm text-[var(--text-main)] hover:bg-[var(--hover-bg)] aria-selected:bg-[var(--hover-bg)]"
+                    className={`flex ${redirecting ? 'cursor-wait' : 'cursor-pointer'} items-start gap-3 rounded-md px-2 py-2 text-sm text-[var(--text-main)] hover:bg-[var(--hover-bg)] aria-selected:bg-[var(--hover-bg)]`}
                   >
                     <div className="mt-0.5 text-theme-500 shrink-0">
                       {redirecting === result.url ? <Loader2 size={16} className="animate-spin" /> : getTypeIcon(result.type)}
