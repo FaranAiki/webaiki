@@ -5,9 +5,7 @@
   "Python_Terminal_Finished": "--- プログラム終了 ---",
   "Python_Terminal_Welcome": "Pythonウェブターミナルへようこそ！",
   "Python_Terminal_Input_Too_Long": "入力が長すぎます！",
-  "SEO_Project_Description": [
-    "A collection of technical projects by Muhammad Faran Aiki, ranging from the Alkyl compiler to the ALTH Flutter app and Indonesian socio-economic data integration."
-  ],
+  "SEO_Project_Description": "A collection of Muhammad Faran Aiki's technical projects, ranging from the Alkyl compiler, ALTH Flutter application, to Indonesia socio-economic data integration. Discover innovative software solutions.",
   "Make_Interactive_UAS": "ITB UAS MA1101 をための対話型学習",
   "Make_Interactive_UAS_Description": [
     "Flutter、Dart、FL Chartを使用してインタラクティブな数学学習ツールを構築しました。",

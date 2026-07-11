@@ -1,12 +1,17 @@
+const fs = require('fs');
+const path = require('path');
+
 const apiKey = "db704865e1924ab39875da0d14ac0b6a";
 const host = "faranaiki.id";
 
-// URL yang mau di-index secara instan (Halaman Utama)
+// Baca semua folder bahasa dari public/locales
+const localesDir = path.join(__dirname, '../public/locales');
+const locales = fs.readdirSync(localesDir).filter(f => fs.statSync(path.join(localesDir, f)).isDirectory());
+
+// URL yang mau di-index secara instan (Halaman Utama + Semua Bahasa)
 const urlList = [
   `https://${host}/`,
-  `https://${host}/id`,
-  `https://${host}/en`,
-  `https://${host}/zh`
+  ...locales.map(lang => `https://${host}/${lang}`)
 ];
 
 const payload = {

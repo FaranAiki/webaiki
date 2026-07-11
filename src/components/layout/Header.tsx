@@ -8,7 +8,6 @@ import { useState, useEffect, useRef, useCallback, startTransition } from 'react
 import ThemeToggle from '@/components/shared/ThemeToggle';
 import { useTheme } from 'next-themes';
 import dynamic from 'next/dynamic';
-import { useSettings } from '@/components/providers/SettingsContext';
 import type { User as SupabaseUser } from '@supabase/supabase-js';
 import { m as motion, AnimatePresence } from 'framer-motion';
 
@@ -17,15 +16,13 @@ const CommandPalette = dynamic(() => import('@/components/interactive/CommandPal
   ssr: false,
   loading: () => <div className="fixed inset-0 z-50 cursor-wait bg-black/20 backdrop-blur-sm transition-all flex items-start justify-center pt-[15vh] sm:pt-[20vh]" />
 });
-
 import {
-  Monitor, MonitorPlay, Share2, Check, LogIn, LogOut, User, ChevronDown, Handshake, Briefcase,
+  Share2, Check, LogIn, LogOut, User, ChevronDown, Handshake, Briefcase,
   Home, FileCheck, Users, Trophy, Palette, Music, BookOpen, GraduationCap, Compass, Code,
   Star, LayoutGrid, Fingerprint, Globe, MessageSquare, Newspaper, MoreHorizontal, Network,
   History, FileText
 } from 'lucide-react';
 
-import { usePresentation } from '@/components/providers/PresentationContext';
 import { formatCJK } from '@/lib/utils';
 import LogoIcon from '@/components/ui/LogoIcon';
 import { useAppStore } from '@/lib/store';
@@ -223,7 +220,6 @@ export default function Header(props: HeaderProps) {
         he_lang,
         el_lang,
         commandPaletteLabels,
-        presentation_mode,
         navigation_label,
         logo_alt,
         share_copied,
@@ -257,7 +253,7 @@ export default function Header(props: HeaderProps) {
                 try {
                     const { createClient } = await import('@/utils/supabase/client');
                     const supabase = createClient();
-                    const { data: { user }, error } = await supabase.auth.getUser();
+                    const { data: { user } } = await supabase.auth.getUser();
                     if (mounted) {
                         setUser(user || null);
                     }
@@ -608,28 +604,6 @@ export default function Header(props: HeaderProps) {
                                 {showShareSuccess ? <Check size={20} strokeWidth={2} /> : <Share2 size={20} strokeWidth={2} />}
                             </button>
                         </div>
-
-                        {/* Presentation Mode Toggle */}
-                        {(normalizedPathname !== '/' && normalizedPathname !== '/portfolio' && normalizedPathname !== '/all' && normalizedPathname !== '/login' && normalizedPathname !== '/register' && normalizedPathname !== '/hire-me' && normalizedPathname !== '/social') && (
-                            <div className="hidden md:flex items-center justify-center ml-4 self-center">
-                                <button
-                                    onClick={togglePresentationMode}
-                                    title={presentation_mode}
-                                    aria-label={presentation_mode}
-                                    className={`
-                                        flex items-center justify-center transition-all duration-300 p-2 rounded-full
-                                        ${(mounted && isPresentationMode)
-                                            ? 'text-theme-500 bg-theme-500/10 scale-110 drop-shadow-[0_0_8px_rgba(6,182,212,0.4)]'
-                                            : isDark
-                                                ? 'text-theme-muted hover:text-theme-400 hover:bg-theme-surface-strong'
-                                                : 'text-theme-muted hover:text-theme-600 hover:bg-theme-surface-strong'
-                                        }
-                                    `}
-                                >
-                                    {(mounted && isPresentationMode) ? <MonitorPlay size={24} strokeWidth={2} /> : <Monitor size={24} strokeWidth={2} />}
-                                </button>
-                            </div>
-                        )}
 
                         {/* Share Button (Desktop) */}
                         <div className="hidden md:flex items-center justify-center ml-2 self-center">

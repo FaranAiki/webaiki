@@ -5,9 +5,7 @@
   "Python_Terminal_Finished": "--- Shirin ya gama ---",
   "Python_Terminal_Welcome": "Barka da zuwa Python Web Terminal!",
   "Python_Terminal_Input_Too_Long": "Shigar da ya yi tsayi da yawa!",
-  "SEO_Project_Description": [
-    "Tarin ayyukan fasaha na Muhammad Faran Aiki, tun daga Alkyl compiler zuwa ALTH Flutter app."
-  ],
+  "SEO_Project_Description": "A collection of Muhammad Faran Aiki's technical projects, ranging from the Alkyl compiler, ALTH Flutter application, to Indonesia socio-economic data integration. Discover innovative software solutions.",
   "Make_Interactive_UAS": "Koyon Sadarwa don UAS MA1101 ITB",
   "Make_Interactive_UAS_Description": [
     "Na gina kayan aikin koyon ilimin lissafi na mu'amala ta amfani da Flutter, Dart, da FL Chart.",

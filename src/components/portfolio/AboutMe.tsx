@@ -419,11 +419,7 @@ export default function AboutMe(props: AboutMeProps) {
                  <AboutSection {...props} isCompact={false} isPresentationMode={true} />
                </div>
             </div>
-            <div className="w-full min-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-4 md:p-12">
-               <div className="w-full max-w-6xl max-h-full overflow-hidden hide-scrollbar py-8 flex flex-col justify-center">
-                 <AboutSection {...props} isCompact={false} isPresentationMode={true} />
-               </div>
-            </div>
+
             
             {loadDeferred && (
               <>

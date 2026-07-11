@@ -5,9 +5,7 @@
   "Python_Terminal_Finished": "--- Το πρόγραμμα ολοκληρώθηκε ---",
   "Python_Terminal_Welcome": "Καλώς ήρθατε στο Python Web Terminal!",
   "Python_Terminal_Input_Too_Long": "Η είσοδος είναι πολύ μεγάλη!",
-  "SEO_Project_Description": [
-    "Μια συλλογή τεχνικών έργων του Muhammad Faran Aiki."
-  ],
+  "SEO_Project_Description": "A collection of Muhammad Faran Aiki's technical projects, ranging from the Alkyl compiler, ALTH Flutter application, to Indonesia socio-economic data integration. Discover innovative software solutions.",
   "Make_Interactive_UAS": "Διαδραστική Μάθηση για UAS MA1101 ITB",
   "Make_Interactive_UAS_Description": [
     "Κατασκευή ενός διαδραστικού εργαλείου εκμάθησης μαθηματικών χρησιμοποιώντας Flutter, Dart και FL Chart.",

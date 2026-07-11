@@ -184,6 +184,7 @@ async function SuspendedAllContent({ lang, dict }: { lang: string, dict: Record<
     { question: dict.FAQ_Faran_Q4, answer: dict.FAQ_Faran_A4 },
     { question: dict.FAQ_Faran_Q5, answer: dict.FAQ_Faran_A5 },
     { question: dict.FAQ_Faran_Q6, answer: dict.FAQ_Faran_A6 },
+    { question: dict.FAQ_Faran_Q7, answer: dict.FAQ_Faran_A7 },
   ];
 
   return (

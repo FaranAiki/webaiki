@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { Home, Star } from "lucide-react";
-import { useSettings } from "@/components/providers/SettingsContext";
 import LogoIcon from "@/components/ui/LogoIcon";
 
 interface NotFoundClientProps {
