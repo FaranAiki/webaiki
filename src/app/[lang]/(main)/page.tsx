@@ -117,7 +117,7 @@ export default async function HomePage({
 
           {/* Latest Activity Section */}
           <FadeInSection initialVisible={true}>
-            <LatestActivity lang={lang} dict={homeDict} initialNews={combinedActivity} />
+            <LatestActivity lang={lang} dict={homeDict} initialNews={combinedActivity.slice(0, 3)} />
           </FadeInSection>
         </div>
       </main>

@@ -225,7 +225,14 @@ export default async function RootLayout({
       </div>
       <TerminalOverlay
         lang={lang}
-        dict={dict}
+        dict={{
+          STI: dict.STI,
+          ITB: dict.ITB,
+          Faran_About_1: dict.Faran_About_1,
+          Faran_About_2: dict.Faran_About_2,
+          Paragon_Scholarship_Title: dict.Paragon_Scholarship_Title,
+          Terminal_Title: dict.Terminal_Title
+        }}
         username={null}
         pageRoutes={terminalPageRoutes}
       />

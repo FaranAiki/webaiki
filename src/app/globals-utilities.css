@@ -114,8 +114,8 @@
   }
 
   /* Hide reCAPTCHA v3 Badge */
-  .grecaptcha-badge { 
-    visibility: hidden !important; 
+  .grecaptcha-badge {
+    visibility: hidden !important;
   }
 
   .no-select {
@@ -152,3 +152,20 @@
     to { opacity: 0; }
   }
 }
+
+  .group:hover .group-hover-gacor-text {
+    background: linear-gradient(
+      90deg,
+      var(--gacor-1),
+      var(--gacor-2),
+      var(--gacor-3),
+      var(--gacor-1)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    filter: drop-shadow(0 0 1px rgba(6, 182, 212, 0.2));
+  }
+  .group:hover .group-hover-gacor-svg {
+    color: var(--gacor-svg) !important;
+    filter: drop-shadow(0 0 1px rgba(6, 182, 212, 0.4));
+  }

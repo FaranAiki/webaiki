@@ -112,6 +112,10 @@ export default function PageTransitionLoader({ label }: { label: string }) {
       // External links don't trigger internal loader
       if (currentUrl.origin !== targetUrl.origin) return;
 
+      // Don't intercept files (downloads or direct media access)
+      if (target.hasAttribute('download')) return;
+      if (/\.(pdf|xml|json|txt|csv|zip|tar|gz|rar|png|jpe?g|gif|svg|avif|webp|mp4|webm)$/i.test(targetUrl.pathname)) return;
+
       // Same page navigation (e.g. hash changes)
       if (currentUrl.pathname === targetUrl.pathname && currentUrl.search === targetUrl.search) {
         return;
@@ -125,8 +129,36 @@ export default function PageTransitionLoader({ label }: { label: string }) {
     };
 
     document.addEventListener('click', handleAnchorClick);
-    return () => document.removeEventListener('click', handleAnchorClick);
+    
+    // Handle BFCache (Back-Forward Cache) restores
+    const handlePageShow = (e: PageTransitionEvent) => {
+      if (e.persisted) {
+        setIsNavigating(false);
+        setProgress(0);
+        setIsFinished(false);
+      }
+    };
+    window.addEventListener('pageshow', handlePageShow);
+    
+    return () => {
+      document.removeEventListener('click', handleAnchorClick);
+      window.removeEventListener('pageshow', handlePageShow);
+    };
   }, []);
+
+  // Safety fallback timeout: if navigating takes too long (e.g., a silent download or failed redirect),
+  // forcefully reset the loader after 8 seconds so the user isn't permanently stuck.
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    if (isNavigating && !isFinished) {
+      timeoutId = setTimeout(() => {
+        setIsNavigating(false);
+        setProgress(0);
+        setIsFinished(false);
+      }, 8000);
+    }
+    return () => clearTimeout(timeoutId);
+  }, [isNavigating, isFinished]);
 
   const radius = 20;
   const circumference = 2 * Math.PI * radius;
