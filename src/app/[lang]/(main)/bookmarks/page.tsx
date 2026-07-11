@@ -36,11 +36,11 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   return {
     ...baseMetadata,
     title: `${dict.My_Bookmarks || 'My Bookmarks'} | Faran Aiki`,
-    description: dict.Portfolio_Description || "Full professional portfolio and highlights of Muhammad Faran Aiki",
+    description: dict.SEO_Bookmarks_Description || "A curated collection of bookmarks and resources saved by Muhammad Faran Aiki. Discover insightful articles, useful developer tools, and interesting web references.",
     openGraph: {
       ...baseMetadata.openGraph,
       title: `${dict.My_Bookmarks || 'My Bookmarks'} | Faran Aiki`,
-      description: dict.Portfolio_Description || "Full professional portfolio and highlights of Muhammad Faran Aiki",
+      description: dict.SEO_Bookmarks_Description || "A curated collection of bookmarks and resources saved by Muhammad Faran Aiki. Discover insightful articles, useful developer tools, and interesting web references.",
       url: `${SITE_URL}/${lang}/all`,
     },
     alternates: {

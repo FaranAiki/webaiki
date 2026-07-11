@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 
 export default function HomeTutorial() {
   const [step, setStep] = useState<'idle' | 'hero' | 'search' | 'done'>('idle');

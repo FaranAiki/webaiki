@@ -52,7 +52,7 @@ export default function ExperienceTimelineLayout() {
                                                         {isPdf ? (
                                                             <PdfRenderer url={job.image[0]} />
                                                         ) : (
-                                                            <ClientOnlyImage src={job.image[0]} alt={`${job.title} at ${job.company}`} fill sizes="(max-width: 768px) 50vw, 250px" quality={60} priority={priorityImages ? allJobs.indexOf(job) < 4 : false} className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                                                            <ClientOnlyImage src={job.image[0]} alt={`${job.title} at ${job.company}`} fill sizes="(max-width: 768px) 120px, 250px" quality={60} priority={priorityImages ? allJobs.indexOf(job) < 4 : false} fetchPriority={priorityImages && allJobs.indexOf(job) < 4 ? 'high' : 'auto'} className="object-cover group-hover:scale-110 transition-transform duration-700" />
                                                         )}
                                                     </div>
                                                 )}
@@ -116,7 +116,7 @@ export default function ExperienceTimelineLayout() {
                                                     {job.image[0].toLowerCase().endsWith('.pdf') ? (
                                                         <PdfRenderer url={job.image[0]} />
                                                     ) : (
-                                                        <ClientOnlyImage src={job.image[0]} alt={`${job.title} at ${job.company}`} fill sizes="(max-width: 768px) 50vw, 250px" quality={60} priority={priorityImages ? allJobs.indexOf(job) < 4 : false} className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                                                        <ClientOnlyImage src={job.image[0]} alt={`${job.title} at ${job.company}`} fill sizes="(max-width: 768px) 120px, 250px" quality={60} priority={priorityImages ? allJobs.indexOf(job) < 4 : false} fetchPriority={priorityImages && allJobs.indexOf(job) < 4 ? 'high' : 'auto'} className="object-cover group-hover:scale-110 transition-transform duration-700" />
                                                     )}
                                                 </div>
                                             )}
@@ -163,7 +163,7 @@ export default function ExperienceTimelineLayout() {
                                         {job.image[0].toLowerCase().endsWith('.pdf') ? (
                                             <PdfRenderer url={job.image[0]} />
                                         ) : (
-                                            <ClientOnlyImage src={job.image[0]} alt={`${job.title} at ${job.company}`} fill sizes="(max-width: 768px) 50vw, 250px" quality={60} priority={priorityImages ? idx < 4 : false} className="object-cover" />
+                                            <ClientOnlyImage src={job.image[0]} alt={`${job.title} at ${job.company}`} fill sizes="(max-width: 768px) 120px, 250px" quality={60} priority={priorityImages ? idx < 4 : false} fetchPriority={priorityImages && idx < 4 ? 'high' : 'auto'} className="object-cover" />
                                         )}
                                     </div>
                                 )}

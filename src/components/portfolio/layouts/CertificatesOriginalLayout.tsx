@@ -13,6 +13,7 @@ import { getPath } from './CertificatesShared';
 const PdfPreview = dynamic(() => import('@/components/interactive/PdfPreview'), { ssr: false });
 
 export default function CertificatesOriginalLayout() {
+  const [openedSet, setOpenedSet] = React.useState<Set<string>>(new Set());
   const { 
     certificates,
     lang,
@@ -36,6 +37,10 @@ export default function CertificatesOriginalLayout() {
     <div className="space-y-6">
       {Object.entries(certificates).map(([category, yearsData], categoryIndex) => {
         const isOpen = openCategories.includes(category);
+        if (isOpen && !openedSet.has(category)) {
+          setOpenedSet(prev => new Set(prev).add(category));
+        }
+        const hasBeenOpened = openedSet.has(category) || isOpen;
         const activeYear = selectedYears[category] || (categoryYears[category][0] || 'All');
 
         const filteredFiles = (() => {
@@ -69,8 +74,10 @@ export default function CertificatesOriginalLayout() {
                 isOpen ? 'max-h-[10000px] mt-4' : 'max-h-0'
             }`}
             >
-            {/* Year Selection FadeIn */}
-            <FadeInSection delay={50} initialVisible={true}>
+            {hasBeenOpened && (
+              <>
+                {/* Year Selection FadeIn */}
+                <FadeInSection delay={50} initialVisible={true}>
                 <div className="flex flex-wrap gap-2 mb-6">
                     <button
                     onClick={() => handleYearClick(category, 'All')}
@@ -144,6 +151,8 @@ export default function CertificatesOriginalLayout() {
                 </PopRotateSection>
                 );})}
             </div>
+              </>
+            )}
             </div>
           </div>
         );

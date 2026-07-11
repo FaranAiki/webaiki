@@ -13,11 +13,11 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   return {
     ...baseMetadata,
     title: `${dict.Music} | Faran Aiki`,
-    description: "Faran Aiki's music made using either LMMS or other DAW",
+    description: dict.SEO_Music_Description || "Listen to original music compositions by Muhammad Faran Aiki. Explore a diverse collection of tracks, including lo-fi beats and electronic music produced using LMMS and other digital audio workstations.",
     openGraph: {
       ...baseMetadata.openGraph,
       title: `${dict.Music} | Faran Aiki`,
-      description: "Faran Aiki's music made using either LMMS or other DAW",
+      description: dict.SEO_Music_Description || "Listen to original music compositions by Muhammad Faran Aiki. Explore a diverse collection of tracks, including lo-fi beats and electronic music produced using LMMS and other digital audio workstations.",
       url: `${SITE_URL}/${lang}/music`,
     },
     alternates: {

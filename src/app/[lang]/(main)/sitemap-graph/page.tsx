@@ -10,7 +10,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
   return {
     title: `${dict.Sitemap_Graph || 'Sitemap Graph'} | FaranAiki`,
-    description: "Visual relationship graph of FaranAiki's personal website.",
+    description: dict.SEO_Sitemap_Graph_Description || "Explore the visual relationship graph of Muhammad Faran Aiki's personal interactive website. Navigate through an interactive 3D map of pages, projects, and resources available on the site.",
   };
 }
 

@@ -100,7 +100,7 @@ export function PortfolioAboutHeader(props: AboutMeProps) {
                       alt={props.faran_photo}
                       fill
                       className="object-cover"
-                      sizes="(max-width: 768px) 160px, 250px"
+                      sizes="(max-width: 768px) 120px, 250px"
                       priority
                       quality={60}
                       fetchPriority="high"
@@ -216,7 +216,7 @@ export function AboutSection(props: AboutSubSectionProps) {
                       hover:scale-[1.06]
                       scale-[1.01]
                     `}
-                    sizes="(max-width: 768px) 160px, 250px"
+                    sizes="(max-width: 768px) 120px, 400px"
                     quality={60}
                     priority={true}
                     fetchPriority="high"
@@ -359,6 +359,15 @@ export default function AboutMe(props: AboutMeProps) {
   const { isPresentationMode } = useAboutLayout(props);
   const containerRef = useRef<HTMLDivElement>(null);
   const setScrollLocked = useAppStore((state) => state.setScrollLocked);
+  const [loadDeferred, setLoadDeferred] = useState(false);
+
+  useEffect(() => {
+    // Split main thread work: yield to browser paint before rendering heavy sections
+    const timer = setTimeout(() => {
+      setLoadDeferred(true);
+    }, 50);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     if (!isPresentationMode) return;
@@ -412,19 +421,29 @@ export default function AboutMe(props: AboutMeProps) {
             </div>
             <div className="w-full min-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-4 md:p-12">
                <div className="w-full max-w-6xl max-h-full overflow-hidden hide-scrollbar py-8 flex flex-col justify-center">
-                 <PhilosophySection {...props} isCompact={false} isPresentationMode={true} />
+                 <AboutSection {...props} isCompact={false} isPresentationMode={true} />
                </div>
             </div>
-            <div className="w-full min-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-4 md:p-12">
-               <div className="w-full max-w-6xl max-h-full overflow-hidden hide-scrollbar py-8 flex flex-col justify-center">
-                 <PrinciplesSection {...props} isCompact={false} isPresentationMode={true} />
-               </div>
-            </div>
-            <div className="w-full min-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-4 md:p-12">
-               <div className="w-full max-w-6xl max-h-full overflow-hidden hide-scrollbar py-8 flex flex-col justify-center">
-                 <VisionMissionSection {...props} isCompact={false} isPresentationMode={true} />
-               </div>
-            </div>
+            
+            {loadDeferred && (
+              <>
+                <div className="w-full min-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-4 md:p-12">
+                   <div className="w-full max-w-6xl max-h-full overflow-hidden hide-scrollbar py-8 flex flex-col justify-center">
+                     <PhilosophySection {...props} isCompact={false} isPresentationMode={true} />
+                   </div>
+                </div>
+                <div className="w-full min-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-4 md:p-12">
+                   <div className="w-full max-w-6xl max-h-full overflow-hidden hide-scrollbar py-8 flex flex-col justify-center">
+                     <PrinciplesSection {...props} isCompact={false} isPresentationMode={true} />
+                   </div>
+                </div>
+                <div className="w-full min-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-4 md:p-12">
+                   <div className="w-full max-w-6xl max-h-full overflow-hidden hide-scrollbar py-8 flex flex-col justify-center">
+                     <VisionMissionSection {...props} isCompact={false} isPresentationMode={true} />
+                   </div>
+                </div>
+              </>
+            )}
          </div>
       </div>
     );
@@ -433,15 +452,19 @@ export default function AboutMe(props: AboutMeProps) {
   return (
     <div className={`w-full ${props.isCompact ? 'py-4' : 'py-8'} md:px-5`}>
       <AboutSection {...props} />
-      <SectionSeparator isCompact={props.isCompact} />
       
-      <PhilosophySection {...props} />
-      <SectionSeparator isCompact={props.isCompact} />
-      
-      <PrinciplesSection {...props} />
-      <SectionSeparator isCompact={props.isCompact} />
-      
-      <VisionMissionSection {...props} />
+      {loadDeferred && (
+        <>
+          <SectionSeparator isCompact={props.isCompact} />
+          <PhilosophySection {...props} />
+          
+          <SectionSeparator isCompact={props.isCompact} />
+          <PrinciplesSection {...props} />
+          
+          <SectionSeparator isCompact={props.isCompact} />
+          <VisionMissionSection {...props} />
+        </>
+      )}
     </div>
   );
 }

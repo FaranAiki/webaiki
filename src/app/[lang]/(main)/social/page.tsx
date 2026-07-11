@@ -13,11 +13,11 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   return {
     ...baseMetadata,
     title: `${dict.Social} | Faran Aiki`,
-    description: "Faran Aiki's social media links and profiles",
+    description: dict.SEO_Social_Description || "Connect with Muhammad Faran Aiki across various platforms. Discover his official social media links, professional profiles on LinkedIn, GitHub, DEV.to, and more.",
     openGraph: {
       ...baseMetadata.openGraph,
       title: `${dict.Social} | Faran Aiki`,
-      description: "Faran Aiki's social media links and profiles",
+      description: dict.SEO_Social_Description || "Connect with Muhammad Faran Aiki across various platforms. Discover his official social media links, professional profiles on LinkedIn, GitHub, DEV.to, and more.",
       url: `${SITE_URL}/${lang}/social`,
     },
     alternates: {

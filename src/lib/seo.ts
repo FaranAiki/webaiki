@@ -230,19 +230,35 @@ export function getPersonSchema(lang: string, description?: string) {
     ],
     "award": [
       "ONMIPA Matematika Medalist"
-    ]
+    ],
+    "homeLocation": {
+      "@type": "Place",
+      "name": "Bandung, Indonesia",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bandung",
+        "addressRegion": "West Java",
+        "addressCountry": "ID"
+      }
+    }
   };
 }
 
-export function getWebsiteSchema(lang: string) {
+export function getWebsiteSchema(lang: string, path: string = '') {
+  const currentUrl = `${SITE_URL}/${lang}${path}`;
   return {
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
-    "url": SITE_URL,
+    "url": currentUrl,
     "name": "Muhammad Faran Aiki - Personal Website",
     "alternateName": ["Faran Aiki", "Faran", "Aiki", "webaiki", "web aiki"],
     "publisher": { "@id": `${SITE_URL}/#person` },
     "inLanguage": lang,
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": `${SITE_URL}/${lang}/search?q={search_term_string}`,
+      "query-input": "required name=search_term_string"
+    }
   };
 }
 

@@ -49,7 +49,7 @@ export default async function WebsitePage({
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
-      getWebsiteSchema(lang),
+      getWebsiteSchema(lang, '/website'),
       getFaqSchema(websiteFaqs),
     ]
   };

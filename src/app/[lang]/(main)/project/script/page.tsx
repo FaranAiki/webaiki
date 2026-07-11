@@ -8,15 +8,16 @@ import { getLanguageAlternates, getBaseMetadata, SITE_URL } from '@/lib/seo';
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const baseMetadata = getBaseMetadata();
+  const dict = await getDictionary(lang);
 
   return {
     ...baseMetadata,
     title: "Faran Aiki's Project",
-    description: "Faran Aiki's project history and others",
+    description: dict.SEO_Script_Description || "Dive into Muhammad Faran Aiki's comprehensive scripting projects, automation history, and command-line utilities. Explore various open-source contributions and technical problem-solving scripts.",
     openGraph: {
       ...baseMetadata.openGraph,
       title: "Faran Aiki's Project",
-      description: "Faran Aiki's project history and others",
+      description: dict.SEO_Script_Description || "Dive into Muhammad Faran Aiki's comprehensive scripting projects, automation history, and command-line utilities. Explore various open-source contributions and technical problem-solving scripts.",
       url: `${SITE_URL}/${lang}/project/script`,
     },
     alternates: { 

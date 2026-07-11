@@ -32,6 +32,7 @@ interface ForceGraphMethods {
 export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientProps) {
   const { theme, systemTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [deferGraph, setDeferGraph] = useState(false);
   const graphRef = useRef<ForceGraphMethods | undefined>(undefined);
   const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
   const containerRef = useRef<HTMLDivElement>(null);
@@ -42,6 +43,8 @@ export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientPro
 
   useEffect(() => {
     setMounted(true);
+    // Defer graph initialization to reduce Main Thread Blocking time
+    const timer = setTimeout(() => setDeferGraph(true), 300);
     
 
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -72,6 +75,7 @@ export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientPro
     }
     
     return () => {
+      clearTimeout(timer);
       observer.disconnect();
       window.removeEventListener('resize', checkMobile);
     };
@@ -157,7 +161,8 @@ export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientPro
           ))}
         </ul>
 
-        <ForceGraph2D
+        {deferGraph ? (
+          <ForceGraph2D
           ref={graphRef as never}
           warmupTicks={0}
           cooldownTicks={150}
@@ -223,6 +228,11 @@ export default function SitemapGraphClient({ dict, lang }: SitemapGraphClientPro
             ctx.fillText(label, gNode.x, gNode.y + gNode.val / 2 + 2 + bckgDimensions[1] / 2);
           }}
         />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-theme-muted animate-pulse">
+            Loading Graph...
+          </div>
+        )}
       </div>
 
       <div className="w-full md:w-[35%] h-[300px] md:h-full bg-theme-surface-strong relative overflow-hidden flex flex-col">

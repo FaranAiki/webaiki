@@ -41,11 +41,11 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   return {
     ...baseMetadata,
     title: `${dict.All || 'All'} | Faran Aiki`,
-    description: dict.Portfolio_Description || "Full professional portfolio and highlights of Muhammad Faran Aiki",
+    description: dict.Portfolio_Description || "Explore the complete professional portfolio of Muhammad Faran Aiki. Discover a comprehensive showcase of software engineering projects, research papers, awards, and work experiences.",
     openGraph: {
       ...baseMetadata.openGraph,
       title: `${dict.All || 'All'} | Faran Aiki`,
-      description: dict.Portfolio_Description || "Full professional portfolio and highlights of Muhammad Faran Aiki",
+      description: dict.Portfolio_Description || "Explore the complete professional portfolio of Muhammad Faran Aiki. Discover a comprehensive showcase of software engineering projects, research papers, awards, and work experiences.",
       url: `${SITE_URL}/${lang}/all`,
     },
     alternates: {

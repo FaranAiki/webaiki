@@ -63,7 +63,7 @@ export default async function IdentityPage({
     "@context": "https://schema.org",
     "@graph": [
       getPersonSchema(lang, dict.Faran_About_1?.replace(/<[^>]*>/g, '')),
-      getWebsiteSchema(lang),
+      getWebsiteSchema(lang, '/identity'),
       getFaqSchema(faranFaqs),
     ]
   };

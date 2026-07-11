@@ -79,7 +79,7 @@ export default async function HomePage({
     "@context": "https://schema.org",
     "@graph": [
       getPersonSchema(lang),
-      getWebsiteSchema(lang),
+      getWebsiteSchema(lang, ''),
       getOrganizationSchema(),
       getProfilePageSchema(lang)
     ]

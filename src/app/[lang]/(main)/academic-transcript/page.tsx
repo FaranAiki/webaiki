@@ -11,11 +11,11 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   return {
     ...baseMetadata,
     title: `${dict.Academic_Transcript || 'Academic Transcript'} | Faran Aiki`,
-    description: "Academic Transcript of Muhammad Faran Aiki from Institut Teknologi Bandung.",
+    description: dict.SEO_Academic_Transcript_Description || "Official academic transcript and course records of Muhammad Faran Aiki from the Institut Teknologi Bandung (ITB)",
     openGraph: {
       ...baseMetadata.openGraph,
       title: `${dict.Academic_Transcript || 'Academic Transcript'} | Faran Aiki`,
-      description: "Academic Transcript of Muhammad Faran Aiki from Institut Teknologi Bandung.",
+      description: dict.SEO_Academic_Transcript_Description || "Official academic transcript and course records of Muhammad Faran Aiki from the Institut Teknologi Bandung (ITB)",
       url: `${SITE_URL}/${lang}/academic-transcript`,
     },
     alternates: {

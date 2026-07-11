@@ -1,4 +1,6 @@
-import React from 'react';
+"use client";
+
+import React, { useState, useEffect } from 'react';
 import { Newspaper, ArrowRight, User, Calendar } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -11,6 +13,14 @@ interface LatestActivityProps {
 }
 
 export default function LatestActivity({ lang, dict, initialNews }: LatestActivityProps) {
+  const [isDeferred, setIsDeferred] = useState(false);
+
+  useEffect(() => {
+    // Defer heavy rendering to allow the browser to paint the hero first and reduce TBT
+    const timer = setTimeout(() => setIsDeferred(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section className="mt-8 md:mt-20 w-full no-print">
       <div className="flex items-center justify-between mb-8">
@@ -34,30 +44,36 @@ export default function LatestActivity({ lang, dict, initialNews }: LatestActivi
       </div>
 
       {initialNews.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-in">
-          {initialNews.map((item, idx) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-in min-h-[300px]">
+          {isDeferred && initialNews.map((item, idx) => (
             <div
               key={item.id}
               className="group flex flex-col bg-theme-surface border border-theme-border rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 h-full"
             >
-              {item.image ? (
-                <div className="relative h-48 overflow-hidden">
-                  <Image
-                    src={item.image}
-                    alt={`${item.title} - Highlight Muhammad Faran Aiki Portfolio`}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    priority={idx === 0}
-                    loading={idx === 0 ? "eager" : "lazy"}
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-theme-bg/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                </div>
-              ) : (
-                <div className="h-48 bg-theme-surface-strong flex items-center justify-center text-theme-muted/30">
+              <div className="relative h-48 overflow-hidden bg-theme-surface-strong flex items-center justify-center text-theme-muted/30">
+                {item.image ? (
+                  <>
+                    <Image
+                      src={item.image}
+                      alt={`${item.title} - Highlight Muhammad Faran Aiki Portfolio`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      priority={idx === 0}
+                      loading={idx === 0 ? "eager" : "lazy"}
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                        if (e.currentTarget.parentElement) {
+                          e.currentTarget.parentElement.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-newspaper opacity-30"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>';
+                        }
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-theme-bg/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                  </>
+                ) : (
                   <Newspaper size={48} />
-                </div>
-              )}
+                )}
+              </div>
 
               <div className="p-5 md:p-6 flex flex-col flex-1">
                 <div className="flex items-center gap-2 mb-3 text-sm font-bold tracking-widest text-theme-muted">
@@ -81,7 +97,18 @@ export default function LatestActivity({ lang, dict, initialNews }: LatestActivi
                   <div className="flex items-center gap-2">
                     <div className="w-6 h-6 rounded-full overflow-hidden border border-theme-border bg-theme-surface-strong flex items-center justify-center">
                       {item.author.avatarUrl ? (
-                        <Image src={item.author.avatarUrl} alt="Author Faran Aiki Portfolio" width={24} height={24} />
+                        <Image 
+                          src={item.author.avatarUrl} 
+                          alt="Author Faran Aiki Portfolio" 
+                          width={24} 
+                          height={24} 
+                          onError={(e) => {
+                            e.currentTarget.style.display = 'none';
+                            if (e.currentTarget.parentElement) {
+                              e.currentTarget.parentElement.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user text-theme-muted"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
+                            }
+                          }}
+                        />
                       ) : (
                         <User size={12} className="text-theme-muted" />
                       )}
