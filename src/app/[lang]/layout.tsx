@@ -44,9 +44,21 @@ export default async function BaseLayout({
           `
         }} />
 
+        {/* AI Discovery Link */}
+        <link rel="alternate" type="text/plain" href="/llms-full.txt" title="LLM-friendly text representation of this website" />
+        <link rel="alternate" type="text/plain" href="/llms.txt" title="Core AI instruction set" />
+
         {/* LCP Preloads */}
         <link rel="preload" as="image" href="/images/background/pattern_01.avif" type="image/avif" fetchPriority="high" />
         <link rel="preload" as="image" href="/images/background/pattern_02.avif" type="image/avif" fetchPriority="high" />
+
+        {/* Fallback for JS Disabled Users (Prevent Blank Canvas from FadeInSection) */}
+        <noscript>
+          <style>{`
+            .opacity-0 { opacity: 1 !important; }
+            .translate-y-8 { transform: translateY(0) !important; }
+          `}</style>
+        </noscript>
       </head>
       <body className="font-serif antialiased">
         <Providers nonce={nonce} isBot={isBot}>

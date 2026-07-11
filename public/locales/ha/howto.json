@@ -1,0 +1,238 @@
+[
+  {
+    "name": "Yadda ake Gina Kwamfuta na Musamman don Harshen Alkyl",
+    "description": "Jagorar mataki-mataki don rubuta mai nazari na lexical, parser, da janareta na lamba don yaren shirye-shiryen Alkyl.",
+    "totalTime": "PT4H",
+    "tools": [
+      "C++ Compiler",
+      "Flex & Bison",
+      "LLVM"
+    ],
+    "steps": [
+      {
+        "name": "Nazarin Lexical",
+        "text": "Ƙayyade alamu don Alkyl kuma samar da lexer ta amfani da Flex.",
+        "url": "https://faranaiki.id/project/alkyl#step-1"
+      },
+      {
+        "name": "Fassarar Magana",
+        "text": "Ƙirƙiri dokokin nahawu kuma gina Abstract Syntax Tree (AST) ta amfani da Bison.",
+        "url": "https://faranaiki.id/project/alkyl#step-2"
+      },
+      {
+        "name": "Code Generation",
+        "text": "Matsa AST don fitar da Wakilin Matsakaici na LLVM (IR).",
+        "url": "https://faranaiki.id/project/alkyl#step-3"
+      }
+    ]
+  },
+  {
+    "name": "Yadda Ake Gyara Zazzagewar Layout a Next.js",
+    "description": "Jagorar mataki-mataki don cire ma'aunin DOM na aiki tare da gyara shimfidar wuri.",
+    "totalTime": "PT15M",
+    "tools": [
+      "Chrome DevTools",
+      "Next.js Environment"
+    ],
+    "steps": [
+      {
+        "name": "Gano Kwallon Kwallon",
+        "text": "Bude Chrome DevTools, je zuwa Performance tab, kuma yi rikodin nauyin shafi don nemo sake kwararar tilas.",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "Dakata Ma'aunin DOM",
+        "text": "Matsar da getBoundingClientRect() kira cikin buƙatunAnimationFrame ko tosheTimeout.",
+        "url": "https://faranaiki.id/project/script#step-2"
+      }
+    ]
+  },
+  {
+    "name": "Yadda ake Haɓaka Mahimmancin Yanar Gizon Mahimmanci don Fayiloli",
+    "description": "Inganta maki LCP, CLS, da TBT a cikin Next.js 14 don cimma cikakkiyar makin Hasken Haske 100.",
+    "totalTime": "PT1H",
+    "tools": [
+      "Lighthouse",
+      "Next.js 14"
+    ],
+    "steps": [
+      {
+        "name": "Inganta Hotuna",
+        "text": "Yi amfani da Next.js gaba/bangaren hoto tare da fifiko da ɗaukoPriority don hotuna na sama-da-ninka.",
+        "url": "https://faranaiki.id/project#step-1"
+      },
+      {
+        "name": "Rage TBT",
+        "text": "Tsayar da rubutun ɓangare na uku marasa mahimmanci kuma yi amfani da amfani da React don ɗaukakawar UI mai nauyi.",
+        "url": "https://faranaiki.id/project#step-2"
+      }
+    ]
+  },
+  {
+    "name": "Yadda ake cin Gasar Lissafin ONMIPA",
+    "description": "Dabaru na nazari da dabarun warware matsaloli don ONMIPA-PT.",
+    "totalTime": "P6M",
+    "tools": [
+      "Calculus Textbooks",
+      "Past Papers",
+      "Study Group"
+    ],
+    "steps": [
+      {
+        "name": "Jagora Mahimmanci",
+        "text": "Tabbatar da ƙwaƙƙwaran fahimtar Bincike na Gaskiya, Algebra Linear, da Complex Variables.",
+        "url": "https://faranaiki.id/award#step-1"
+      },
+      {
+        "name": "Warware Takardun da suka gabata",
+        "text": "Yi aiki tare da ONMIPA takaddun da suka gabata daga shekarun baya a ƙarƙashin ƙayyadaddun yanayi.",
+        "url": "https://faranaiki.id/award#step-2"
+      }
+    ]
+  },
+  {
+    "name": "Yadda Ake Gina Palette Na Musamman A Cikin React",
+    "description": "Ƙirƙirar palette mai sauƙi, mai sauri, kuma mai sarrafa madanni ta amfani da React da Framer Motion.",
+    "totalTime": "PT2H",
+    "tools": [
+      "React",
+      "Framer Motion",
+      "Lucide Icons"
+    ],
+    "steps": [
+      {
+        "name": "Gudanar da Jiha",
+        "text": "Yi amfani da kantin sayar da duniya (Zustand ko yanayi) don sarrafa buɗe/kusa da yanayin palette.",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "Masu Sauraron Allon madannai",
+        "text": "Haɗa mai sauraron taron don Ctrl+K ko Cmd+K don kunna palette.",
+        "url": "https://faranaiki.id/project/script#step-2"
+      },
+      {
+        "name": "Bincike mai ban tsoro",
+        "text": "Aiwatar da algorithm bincike mai ban mamaki don tace umarni bisa shigar da mai amfani.",
+        "url": "https://faranaiki.id/project/script#step-3"
+      }
+    ]
+  },
+  {
+    "name": "Yadda ake Aiwatar da i18n a Next.js App Router",
+    "description": "Jagoran mataki-mataki don tallafawa yarukan gida da yawa a hankali a cikin na'ura mai ba da hanya tsakanin hanyoyin sadarwa na Next.js App.",
+    "totalTime": "PT3H",
+    "tools": [
+      "Next.js 14",
+      "JSON Dictionary",
+      "Middleware"
+    ],
+    "steps": [
+      {
+        "name": "Ƙirƙiri Middleware",
+        "text": "Yi amfani da Next.js Middleware don gano yaren da mai amfani ya fi so kuma a tura su zuwa madaidaicin hanyar gida.",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "Load Dictionaries",
+        "text": "Ƙirƙiri ayyukan async don ɗauko madaidaicin ƙamus na JSON bisa ma'aunin URL.",
+        "url": "https://faranaiki.id/project/script#step-2"
+      }
+    ]
+  },
+  {
+    "name": "Yadda ake Ƙirƙirar Hotunan Taswirar Yanar Gizon 3D Mai Mu'amala",
+    "description": "Yi tunanin tsarin haɗin yanar gizo na ciki ta amfani da react-force-graph-3d.",
+    "totalTime": "PT2H",
+    "tools": [
+      "react-force-graph-3d",
+      "Three.js",
+      "Next.js"
+    ],
+    "steps": [
+      {
+        "name": "Taswirar Nodes",
+        "text": "Cire duk hanyoyin haɗin ciki da shafuka don ƙirƙirar saitin bayanan haɗin gwiwa.",
+        "url": "https://faranaiki.id/sitemap-graph#step-1"
+      },
+      {
+        "name": "Sanya Graph",
+        "text": "Shigar da saitin bayanai zuwa ForceGraph3D kuma keɓance launukan kumburi da girma.",
+        "url": "https://faranaiki.id/sitemap-graph#step-2"
+      }
+    ]
+  },
+  {
+    "name": "Yadda ake Miƙa URLs zuwa Bing IndexNow",
+    "description": "Sanar da Bing ta atomatik da sauran injunan bincike lokacin da abun cikin ku ya canza ta amfani da IndexNow API.",
+    "totalTime": "PT30M",
+    "tools": [
+      "Node.js",
+      "IndexNow API Key"
+    ],
+    "steps": [
+      {
+        "name": "Ƙirƙirar Maɓallin API",
+        "text": "Ƙirƙirar maɓallin hex mai haruffa 32 kuma karɓe shi a tushen yankinku azaman fayil txt.",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "Aika Buƙatun POST",
+        "text": "Yi amfani da debo don aika kaya na JSON mai ɗauke da duk sabbin URLs ɗinku zuwa ƙarshen IndexNow.",
+        "url": "https://faranaiki.id/project/script#step-2"
+      }
+    ]
+  },
+  {
+    "name": "Yadda ake Samar da Lo-Fi Beats tare da LMMS",
+    "description": "Jagorar mafari don tsara kiɗan lo-fi hip hop mai annashuwa ta amfani da buɗaɗɗen DAWs.",
+    "totalTime": "PT3H",
+    "tools": [
+      "LMMS",
+      "Vinyl Crackle Samples",
+      "Electric Piano VST"
+    ],
+    "steps": [
+      {
+        "name": "Saita Tempo",
+        "text": "Saita BPM aikin ku tsakanin 70 da 90.",
+        "url": "https://faranaiki.id/music#step-1"
+      },
+      {
+        "name": "Ƙirƙiri maƙallan maƙallan",
+        "text": "Yi amfani da maƙallan jazzy na 7 ko na 9 akan kayan aikin piano na lantarki tare da ɗan ƙarami.",
+        "url": "https://faranaiki.id/music#step-2"
+      },
+      {
+        "name": "Ƙara Ganguna",
+        "text": "Shirya hutun ganga mai ƙura tare da jujjuyawa mara ƙididdigewa.",
+        "url": "https://faranaiki.id/music#step-3"
+      }
+    ]
+  },
+  {
+    "name": "Yadda ake Rubuta Nazarin Harka na Fasaha",
+    "description": "Rubuta ayyukan injiniyan software ɗinku yadda ya kamata don masu daukar ma'aikata da masu haɓakawa.",
+    "totalTime": "PT2H",
+    "tools": [
+      "Markdown",
+      "Mermaid.js"
+    ],
+    "steps": [
+      {
+        "name": "Bayyana Matsala",
+        "text": "Fara da bayyana a sarari ƙalubalen fasaha ko buƙatun kasuwanci.",
+        "url": "https://faranaiki.id/portfolio#step-1"
+      },
+      {
+        "name": "Bayyana Magani",
+        "text": "Cikakkun abubuwan gine-gine, fasahar da aka yi amfani da su, da aiwatar da mataki-mataki.",
+        "url": "https://faranaiki.id/portfolio#step-2"
+      },
+      {
+        "name": "Hana Tasirin",
+        "text": "Samar da ma'auni, kamar haɓaka aiki ko haɓakar mai amfani, don tabbatar da nasarar.",
+        "url": "https://faranaiki.id/portfolio#step-3"
+      }
+    ]
+  }
+]

@@ -1,0 +1,238 @@
+[
+  {
+    "name": "如何为 Alkyl 语言构建自定义编译器",
+    "description": "为 Alkyl 编程语言编写词法分析器、解析器和代码生成器的分步指南。",
+    "totalTime": "PT4H",
+    "tools": [
+      "C++ Compiler",
+      "Flex & Bison",
+      "LLVM"
+    ],
+    "steps": [
+      {
+        "name": "词法分析",
+        "text": "定义 Alkyl 的标记并使用 Flex 生成词法分析器。",
+        "url": "https://faranaiki.id/project/alkyl#step-1"
+      },
+      {
+        "name": "语法分析",
+        "text": "使用 Bison 创建语法规则并构建抽象语法树 (AST)。",
+        "url": "https://faranaiki.id/project/alkyl#step-2"
+      },
+      {
+        "name": "代码生成",
+        "text": "遍历 AST 以发出 LLVM 中间表示 (IR)。",
+        "url": "https://faranaiki.id/project/alkyl#step-3"
+      }
+    ]
+  },
+  {
+    "name": "如何修复 Next.js 中的布局抖动",
+    "description": "删除同步 DOM 测量和修复布局抖动的分步指南。",
+    "totalTime": "PT15M",
+    "tools": [
+      "Chrome DevTools",
+      "Next.js Environment"
+    ],
+    "steps": [
+      {
+        "name": "识别瓶颈",
+        "text": "打开 Chrome DevTools，转到“性能”选项卡，并记录页面加载以查找强制回流。",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "推迟 DOM 测量",
+        "text": "将 getBoundingClientRect() 调用移至 requestAnimationFrame 或 setTimeout 块内。",
+        "url": "https://faranaiki.id/project/script#step-2"
+      }
+    ]
+  },
+  {
+    "name": "如何优化投资组合的核心网络生命力",
+    "description": "提高 Next.js 14 中的 LCP、CLS 和 TBT 分数，以达到完美的 100 Lighthouse 分数。",
+    "totalTime": "PT1H",
+    "tools": [
+      "Lighthouse",
+      "Next.js 14"
+    ],
+    "steps": [
+      {
+        "name": "优化图像",
+        "text": "使用带有优先级的 Next.js next/image 组件，并使用 fetchPriority 来获取首屏图像。",
+        "url": "https://faranaiki.id/project#step-1"
+      },
+      {
+        "name": "减少技术性贸易壁垒",
+        "text": "推迟非关键的第三方脚本并使用 React 的 useTransition 进行大量 UI 更新。",
+        "url": "https://faranaiki.id/project#step-2"
+      }
+    ]
+  },
+  {
+    "name": "如何赢得 ONMIPA 数学竞赛",
+    "description": "印度尼西亚国家数学奥林匹克竞赛 (ONMIPA-PT) 的学习策略和解决问题的技巧。",
+    "totalTime": "P6M",
+    "tools": [
+      "Calculus Textbooks",
+      "Past Papers",
+      "Study Group"
+    ],
+    "steps": [
+      {
+        "name": "掌握基础知识",
+        "text": "确保充分掌握实分析、线性代数和复变量。",
+        "url": "https://faranaiki.id/award#step-1"
+      },
+      {
+        "name": "解决过去的论文",
+        "text": "在规定的条件下使用 ONMIPA 往年的试卷进行练习。",
+        "url": "https://faranaiki.id/award#step-2"
+      }
+    ]
+  },
+  {
+    "name": "如何在 React 中构建自定义命令面板",
+    "description": "使用 React 和 Framer Motion 创建可访问、快速且键盘驱动的命令面板。",
+    "totalTime": "PT2H",
+    "tools": [
+      "React",
+      "Framer Motion",
+      "Lucide Icons"
+    ],
+    "steps": [
+      {
+        "name": "状态管理",
+        "text": "使用全局存储（Zustand 或 Context）来管理调色板的打开/关闭状态。",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "键盘监听器",
+        "text": "附加 Ctrl+K 或 Cmd+K 的事件侦听器以触发调色板。",
+        "url": "https://faranaiki.id/project/script#step-2"
+      },
+      {
+        "name": "模糊搜索",
+        "text": "实施模糊搜索算法以根据用户输入过滤命令。",
+        "url": "https://faranaiki.id/project/script#step-3"
+      }
+    ]
+  },
+  {
+    "name": "如何在 Next.js App Router 中实现 i18n",
+    "description": "在 Next.js App Router 中动态支持多种本地化语言的分步指南。",
+    "totalTime": "PT3H",
+    "tools": [
+      "Next.js 14",
+      "JSON Dictionary",
+      "Middleware"
+    ],
+    "steps": [
+      {
+        "name": "创建中间件",
+        "text": "使用 Next.js 中间件检测用户的首选语言并将其重定向到正确的区域设置路径。",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "加载字典",
+        "text": "创建异步函数以根据 URL 参数获取正确的 JSON 字典。",
+        "url": "https://faranaiki.id/project/script#step-2"
+      }
+    ]
+  },
+  {
+    "name": "如何创建交互式 3D 站点地图",
+    "description": "使用react-force-graph-3d可视化网站的内部链接结构。",
+    "totalTime": "PT2H",
+    "tools": [
+      "react-force-graph-3d",
+      "Three.js",
+      "Next.js"
+    ],
+    "steps": [
+      {
+        "name": "映射节点",
+        "text": "提取所有内部链接和页面以创建节点链接数据集。",
+        "url": "https://faranaiki.id/sitemap-graph#step-1"
+      },
+      {
+        "name": "渲染图表",
+        "text": "将数据集传递到 ForceGraph3D 并自定义节点颜色和大小。",
+        "url": "https://faranaiki.id/sitemap-graph#step-2"
+      }
+    ]
+  },
+  {
+    "name": "如何向 Bing IndexNow 提交 URL",
+    "description": "当您的内容发生更改时，使用 IndexNow API 自动通知 Bing 和其他搜索引擎。",
+    "totalTime": "PT30M",
+    "tools": [
+      "Node.js",
+      "IndexNow API Key"
+    ],
+    "steps": [
+      {
+        "name": "生成API密钥",
+        "text": "生成 32 个字符的十六进制密钥并将其作为 txt 文件托管在域的根目录下。",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "发送 POST 请求",
+        "text": "使用 fetch 将包含所有更新的 URL 的 JSON 负载发送到 IndexNow 端点。",
+        "url": "https://faranaiki.id/project/script#step-2"
+      }
+    ]
+  },
+  {
+    "name": "如何使用 LMMS 制作 Lo-Fi 节拍",
+    "description": "使用开源 DAW 创作轻松的低保真嘻哈音乐的初学者指南。",
+    "totalTime": "PT3H",
+    "tools": [
+      "LMMS",
+      "Vinyl Crackle Samples",
+      "Electric Piano VST"
+    ],
+    "steps": [
+      {
+        "name": "设定节奏",
+        "text": "将项目 BPM 设置在 70 到 90 之间。",
+        "url": "https://faranaiki.id/music#step-1"
+      },
+      {
+        "name": "创建和弦",
+        "text": "在电钢琴乐器上使用带有轻微失谐的爵士七和弦和九和弦。",
+        "url": "https://faranaiki.id/music#step-2"
+      },
+      {
+        "name": "添加鼓",
+        "text": "编写一个带有轻微未量化摇摆感的尘土飞扬的鼓声。",
+        "url": "https://faranaiki.id/music#step-3"
+      }
+    ]
+  },
+  {
+    "name": "如何撰写技术案例研究",
+    "description": "为招聘人员和开发人员有效记录您的软件工程项目。",
+    "totalTime": "PT2H",
+    "tools": [
+      "Markdown",
+      "Mermaid.js"
+    ],
+    "steps": [
+      {
+        "name": "定义问题",
+        "text": "首先清楚地解释技术挑战或业务需求。",
+        "url": "https://faranaiki.id/portfolio#step-1"
+      },
+      {
+        "name": "解释解决方案",
+        "text": "详细说明架构、使用的技术以及逐步实施。",
+        "url": "https://faranaiki.id/portfolio#step-2"
+      },
+      {
+        "name": "突出影响",
+        "text": "提供性能改进或用户增长等指标来证明成功。",
+        "url": "https://faranaiki.id/portfolio#step-3"
+      }
+    ]
+  }
+]

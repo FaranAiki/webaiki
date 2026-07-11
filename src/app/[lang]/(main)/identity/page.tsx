@@ -126,7 +126,7 @@ export default async function IdentityPage({
         />
       </section>
 
-      <div className="mt-32 md:mt-48 max-w-2xl">
+      <div className="mt-32 md:mt-48 max-w-3xl mx-auto">
         <FAQ id="faq-faran" title={dict.FAQ_Faran_Title} items={faranFaqs} />
       </div>
     </main>

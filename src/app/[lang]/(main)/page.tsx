@@ -13,12 +13,14 @@ import FadeInSection from "@/components/shared/FadeInSection";
 import dynamicImport from "next/dynamic";
 
 const HomeTutorial = dynamicImport(() => import("@/components/home/HomeTutorial"));
+import { PortfolioAboutHeader } from '@/components/portfolio/PortfolioAboutHeader';
+import { getFaranAikiPhoto } from '@/lib/data';
 
 export const revalidate = 3600;
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','news']);
+  const dict = await getDictionary(lang);
   const baseMetadata = getBaseMetadata(dict);
 
   const title = `${dict.Software_Engineer || 'Software Engineer'} & ${dict.College || 'ITB Student'}`;
@@ -42,20 +44,21 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 }
 
 export default async function HomePage({
-  params 
-}: { 
-  params: Promise<{ lang: string }> 
+  params
+}: {
+  params: Promise<{ lang: string }>
 }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','news']);
-  
+  const dict = await getDictionary(lang);
+  const faranPhotos = await getFaranAikiPhoto();
+
   let combinedActivity: NewsItem[] = [];
   try {
     const [fetchedNews, fetchedFeedbacks] = await Promise.all([
       getNews(),
       getFeedbacks()
     ]);
-    
+
     const mappedFeedbacks = (fetchedFeedbacks || []).map((fb: { id: string, content: string, image: string | null, createdAt: Date, user?: { id: string, name: string | null, avatarUrl: string | null } | null }) => ({
       id: fb.id,
       title: dict.Feedback_From ? `${dict.Feedback_From} ${fb.user?.name || 'Anonymous'}` : `Feedback from ${fb.user?.name || 'Anonymous'}`,
@@ -110,7 +113,7 @@ export default async function HomePage({
       />
       <main className="min-h-[50vh] flex flex-col items-center justify-center px-4 md:px-8 pt-24 md:pt-12 pb-12">
         <h1 className="sr-only">{dict.Search_About_Faran || "Search about Muhammad Faran Aiki"}</h1>
-        <div className="w-full max-w-6xl overflow-visible">
+        <div className="md:pt-0 pt-24 w-full max-w-6xl overflow-visible">
           <HomeHero dict={homeDict} parts={parts} />
           <HomeSearchBar dict={homeDict} />
           <HomeTutorial />
@@ -118,6 +121,29 @@ export default async function HomePage({
           {/* Latest Activity Section */}
           <FadeInSection initialVisible={true}>
             <LatestActivity lang={lang} dict={homeDict} initialNews={combinedActivity.slice(0, 3)} />
+          </FadeInSection>
+
+          <FadeInSection initialVisible={true}>
+            <div className="md:mt-16 mt-32 pt-12 w-full pt-8 border-t border-black/10 dark:border-white/10">
+              <PortfolioAboutHeader
+                carouselPhotos={faranPhotos}
+                faran_photo={dict.Faran_Photo || "Faran Aiki Photo"}
+                about_title={dict.About_Me}
+                about_text_1={dict.Faran_About_1}
+                about_text_2={dict.Faran_About_2}
+                about_philosophy_title={dict.Faran_Philosophy_Title}
+                about_philosophy={dict.Faran_Philosophy}
+                about_principle_title={dict.Faran_Principle_Title}
+                about_principle_1={dict.Faran_Principle_1}
+                about_principle_2={dict.Faran_Principle_2}
+                about_principle_3=""
+                about_vision_mission_title={dict.Faran_Vision_Mission_Title}
+                about_vision_mission_1={dict.Faran_Vision_Mission_1}
+                about_vision_mission_2={dict.Faran_Vision_Mission_2}
+                about_vision_mission_3={dict.Faran_Vision_Mission_3}
+                lang={lang}
+              />
+            </div>
           </FadeInSection>
         </div>
       </main>

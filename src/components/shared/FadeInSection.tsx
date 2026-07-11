@@ -38,14 +38,20 @@ export default function FadeInSection({
     return num.toString().padStart(totalDigits, '0');
   };
 
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
   // Memoize options to avoid continuous re-rendering
   const options = useMemo(() => ({ rootMargin: '100px' }), []);
   const { ref, isInView } = useInView<HTMLDivElement>(options);
-  const isVisible = initialVisible || isInView;
+  
+  // CRITICAL: Make content fully visible on server (SSR) and before hydration.
+  // This prevents the "blank canvas" issue on slow networks where JS takes a while to load.
+  const isVisible = !mounted || initialVisible || isInView;
   
   const style = delay ? { transitionDelay: `${delay}ms` } : {};
-
-  // CSS will handle skipping animations on mobile to ensure SSR works.
 
   return (
     <div

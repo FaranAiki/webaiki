@@ -1,0 +1,238 @@
+[
+  {
+    "name": "Cách xây dựng trình biên dịch tùy chỉnh cho ngôn ngữ Alkyl",
+    "description": "Hướng dẫn từng bước cách viết trình phân tích từ vựng, trình phân tích cú pháp và trình tạo mã cho ngôn ngữ lập trình Alkyl.",
+    "totalTime": "PT4H",
+    "tools": [
+      "C++ Compiler",
+      "Flex & Bison",
+      "LLVM"
+    ],
+    "steps": [
+      {
+        "name": "Phân tích từ vựng",
+        "text": "Xác định mã thông báo cho Alkyl và tạo từ vựng bằng Flex.",
+        "url": "https://faranaiki.id/project/alkyl#step-1"
+      },
+      {
+        "name": "Phân tích cú pháp",
+        "text": "Tạo các quy tắc ngữ pháp và xây dựng Cây cú pháp trừu tượng (AST) bằng Bison.",
+        "url": "https://faranaiki.id/project/alkyl#step-2"
+      },
+      {
+        "name": "Tạo mã",
+        "text": "Đi qua AST để phát ra Biểu diễn trung gian LLVM (IR).",
+        "url": "https://faranaiki.id/project/alkyl#step-3"
+      }
+    ]
+  },
+  {
+    "name": "Cách khắc phục lỗi bố cục trong Next.js",
+    "description": "Hướng dẫn từng bước để loại bỏ các phép đo DOM đồng bộ và sửa lỗi hỏng bố cục.",
+    "totalTime": "PT15M",
+    "tools": [
+      "Chrome DevTools",
+      "Next.js Environment"
+    ],
+    "steps": [
+      {
+        "name": "Xác định nút cổ chai",
+        "text": "Mở Chrome DevTools, chuyển đến tab Hiệu suất và ghi lại quá trình tải trang để tìm các bản chỉnh sửa bắt buộc.",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "Trì hoãn các phép đo DOM",
+        "text": "Di chuyển các lệnh gọi getBoundingClientRect() bên trong khối requestAnimationFrame hoặc setTimeout.",
+        "url": "https://faranaiki.id/project/script#step-2"
+      }
+    ]
+  },
+  {
+    "name": "Cách tối ưu hóa các chỉ số quan trọng về trang web cho danh mục đầu tư",
+    "description": "Cải thiện điểm LCP, CLS và TBT trong Next.js 14 để đạt được điểm 100 Lighthouse hoàn hảo.",
+    "totalTime": "PT1H",
+    "tools": [
+      "Lighthouse",
+      "Next.js 14"
+    ],
+    "steps": [
+      {
+        "name": "Tối ưu hóa hình ảnh",
+        "text": "Sử dụng thành phần hình ảnh/tiếp theo của Next.js với mức độ ưu tiên và tìm nạpƯu tiên cho các hình ảnh trong màn hình đầu tiên.",
+        "url": "https://faranaiki.id/project#step-1"
+      },
+      {
+        "name": "Giảm TBT",
+        "text": "Trì hoãn các tập lệnh không quan trọng của bên thứ ba và sử dụng useTransition của React để cập nhật giao diện người dùng nặng.",
+        "url": "https://faranaiki.id/project#step-2"
+      }
+    ]
+  },
+  {
+    "name": "Làm thế nào để chiến thắng cuộc thi toán học ONMIPA",
+    "description": "Nghiên cứu chiến lược và kỹ thuật giải toán cho kỳ thi Olympic toán quốc gia Indonesia (ONMIPA-PT).",
+    "totalTime": "P6M",
+    "tools": [
+      "Calculus Textbooks",
+      "Past Papers",
+      "Study Group"
+    ],
+    "steps": [
+      {
+        "name": "Nắm vững các nguyên tắc cơ bản",
+        "text": "Đảm bảo nắm vững Phân tích thực, Đại số tuyến tính và Biến phức.",
+        "url": "https://faranaiki.id/award#step-1"
+      },
+      {
+        "name": "Giải quyết các giấy tờ trước đây",
+        "text": "Thực hành với các bài thi ONMIPA trước đây của những năm trước trong điều kiện có thời gian.",
+        "url": "https://faranaiki.id/award#step-2"
+      }
+    ]
+  },
+  {
+    "name": "Cách xây dựng bảng lệnh tùy chỉnh trong React",
+    "description": "Tạo bảng lệnh có thể truy cập, nhanh chóng và được điều khiển bằng bàn phím bằng React và Framer Motion.",
+    "totalTime": "PT2H",
+    "tools": [
+      "React",
+      "Framer Motion",
+      "Lucide Icons"
+    ],
+    "steps": [
+      {
+        "name": "Quản lý nhà nước",
+        "text": "Sử dụng cửa hàng toàn cầu (Zustand hoặc Context) để quản lý trạng thái mở/đóng của bảng màu.",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "Trình nghe bàn phím",
+        "text": "Đính kèm trình xử lý sự kiện cho Ctrl+K hoặc Cmd+K để kích hoạt bảng màu.",
+        "url": "https://faranaiki.id/project/script#step-2"
+      },
+      {
+        "name": "Tìm kiếm mờ",
+        "text": "Triển khai thuật toán tìm kiếm mờ để lọc các lệnh dựa trên đầu vào của người dùng.",
+        "url": "https://faranaiki.id/project/script#step-3"
+      }
+    ]
+  },
+  {
+    "name": "Cách triển khai i18n trong Bộ định tuyến ứng dụng Next.js",
+    "description": "Hướng dẫn từng bước để hỗ trợ linh hoạt nhiều ngôn ngữ được bản địa hóa trong Bộ định tuyến ứng dụng Next.js.",
+    "totalTime": "PT3H",
+    "tools": [
+      "Next.js 14",
+      "JSON Dictionary",
+      "Middleware"
+    ],
+    "steps": [
+      {
+        "name": "Tạo phần mềm trung gian",
+        "text": "Sử dụng Next.js Middleware để phát hiện ngôn ngữ ưa thích của người dùng và chuyển hướng họ đến đường dẫn ngôn ngữ chính xác.",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "Tải từ điển",
+        "text": "Tạo các hàm không đồng bộ để tìm nạp từ điển JSON chính xác dựa trên tham số URL.",
+        "url": "https://faranaiki.id/project/script#step-2"
+      }
+    ]
+  },
+  {
+    "name": "Cách tạo biểu đồ sơ đồ trang web 3D tương tác",
+    "description": "Trực quan hóa cấu trúc liên kết nội bộ của trang web bằng cách sử dụng Reac-force-graph-3d.",
+    "totalTime": "PT2H",
+    "tools": [
+      "react-force-graph-3d",
+      "Three.js",
+      "Next.js"
+    ],
+    "steps": [
+      {
+        "name": "Ánh xạ các nút",
+        "text": "Trích xuất tất cả các liên kết nội bộ và các trang để tạo tập dữ liệu liên kết nút.",
+        "url": "https://faranaiki.id/sitemap-graph#step-1"
+      },
+      {
+        "name": "Kết xuất đồ thị",
+        "text": "Chuyển tập dữ liệu vào ForceGraph3D và tùy chỉnh màu sắc cũng như kích thước nút.",
+        "url": "https://faranaiki.id/sitemap-graph#step-2"
+      }
+    ]
+  },
+  {
+    "name": "Cách gửi URL tới Bing IndexNow",
+    "description": "Tự động thông báo cho Bing và các công cụ tìm kiếm khác khi nội dung của bạn thay đổi bằng API IndexNow.",
+    "totalTime": "PT30M",
+    "tools": [
+      "Node.js",
+      "IndexNow API Key"
+    ],
+    "steps": [
+      {
+        "name": "Tạo khóa API",
+        "text": "Tạo khóa hex gồm 32 ký tự và lưu trữ khóa đó ở gốc tên miền của bạn dưới dạng tệp txt.",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "Gửi yêu cầu POST",
+        "text": "Sử dụng tìm nạp để gửi tải trọng JSON chứa tất cả các URL đã cập nhật của bạn tới điểm cuối IndexNow.",
+        "url": "https://faranaiki.id/project/script#step-2"
+      }
+    ]
+  },
+  {
+    "name": "Cách tạo nhịp Lo-Fi bằng LMMS",
+    "description": "Hướng dẫn dành cho người mới bắt đầu cách sáng tác nhạc hip hop lo-fi thư giãn bằng cách sử dụng DAW nguồn mở.",
+    "totalTime": "PT3H",
+    "tools": [
+      "LMMS",
+      "Vinyl Crackle Samples",
+      "Electric Piano VST"
+    ],
+    "steps": [
+      {
+        "name": "Đặt nhịp độ",
+        "text": "Đặt BPM dự án của bạn trong khoảng từ 70 đến 90.",
+        "url": "https://faranaiki.id/music#step-1"
+      },
+      {
+        "name": "Tạo hợp âm",
+        "text": "Sử dụng hợp âm thứ 7 hoặc thứ 9 vui nhộn trên nhạc cụ piano điện với độ lệch nhẹ.",
+        "url": "https://faranaiki.id/music#step-2"
+      },
+      {
+        "name": "Thêm trống",
+        "text": "Lập trình một tiếng trống bụi bặm với cảm giác xoay hơi không được kiểm soát.",
+        "url": "https://faranaiki.id/music#step-3"
+      }
+    ]
+  },
+  {
+    "name": "Cách viết một nghiên cứu trường hợp kỹ thuật",
+    "description": "Ghi lại các dự án kỹ thuật phần mềm của bạn một cách hiệu quả cho các nhà tuyển dụng và nhà phát triển.",
+    "totalTime": "PT2H",
+    "tools": [
+      "Markdown",
+      "Mermaid.js"
+    ],
+    "steps": [
+      {
+        "name": "Xác định vấn đề",
+        "text": "Bắt đầu bằng cách giải thích rõ ràng thách thức kỹ thuật hoặc nhu cầu kinh doanh.",
+        "url": "https://faranaiki.id/portfolio#step-1"
+      },
+      {
+        "name": "Giải thích giải pháp",
+        "text": "Chi tiết kiến ​​trúc, công nghệ được sử dụng và triển khai từng bước.",
+        "url": "https://faranaiki.id/portfolio#step-2"
+      },
+      {
+        "name": "Làm nổi bật tác động",
+        "text": "Cung cấp các số liệu, chẳng hạn như cải thiện hiệu suất hoặc tăng trưởng người dùng, để chứng minh sự thành công.",
+        "url": "https://faranaiki.id/portfolio#step-3"
+      }
+    ]
+  }
+]

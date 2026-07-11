@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import "../../../globals.css";
-import { getDictionary } from '@/components/layout/Translator';
+import { getDictionary, getHowTos } from '@/components/layout/Translator';
 import type { Experience, Job } from '@/components/portfolio/ExperienceDisplayer';
 import type { CertificateData } from '@/components/portfolio/CertificatesContext';
 import type { CollectionsData } from '@/components/portfolio/InteractiveCollections';
@@ -18,7 +18,7 @@ const CertificatesDisplay = dynamic(() => import('@/components/portfolio/Certifi
 const InteractiveCollections = dynamic(() => import('@/components/portfolio/InteractiveCollections'));
 const SocialDisplay = dynamic(() => import('@/components/portfolio/SocialDisplay'));
 
-import { getLanguageAlternates, getBaseMetadata, getPersonSchema, getBreadcrumbSchema, getFaqSchema, SITE_URL } from '@/lib/seo';
+import { getLanguageAlternates, getBaseMetadata, getPersonSchema, getBreadcrumbSchema, getFaqSchema, getHowToSchema, SITE_URL } from '@/lib/seo';
 import PageEntrance from "@/components/shared/PageEntrance";
 
 import {
@@ -365,6 +365,7 @@ export default async function AllHighlightsPage({params }: { params: Promise<{ l
   const { lang } = await params;
   const dict = await getDictionary(lang);
   const faranPhotos = await getFaranAikiPhoto();
+  const howTos = await getHowTos(lang);
   
   const faranFaqs = [
     { question: dict.FAQ_Faran_Q1, answer: dict.FAQ_Faran_A1 },
@@ -384,6 +385,7 @@ export default async function AllHighlightsPage({params }: { params: Promise<{ l
         { name: dict.All || 'All', item: `/${lang}/all` },
       ]),
       getFaqSchema(faranFaqs),
+      ...howTos.map(getHowToSchema),
     ]
   };
 

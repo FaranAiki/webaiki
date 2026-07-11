@@ -1,0 +1,238 @@
+[
+  {
+    "name": "Hoe u een aangepaste compiler voor Alkyl-taal bouwt",
+    "description": "Een stapsgewijze handleiding voor het schrijven van een lexicale analysator, parser en codegenerator voor de programmeertaal Alkyl.",
+    "totalTime": "PT4H",
+    "tools": [
+      "C++ Compiler",
+      "Flex & Bison",
+      "LLVM"
+    ],
+    "steps": [
+      {
+        "name": "Lexicale analyse",
+        "text": "Definieer de tokens voor Alkyl en genereer de lexer met Flex.",
+        "url": "https://faranaiki.id/project/alkyl#step-1"
+      },
+      {
+        "name": "Syntaxis parseren",
+        "text": "Creëer de grammaticaregels en construeer de Abstract Syntax Tree (AST) met behulp van Bison.",
+        "url": "https://faranaiki.id/project/alkyl#step-2"
+      },
+      {
+        "name": "Codegeneratie",
+        "text": "Doorkruis de AST om LLVM Intermediate Representation (IR) uit te zenden.",
+        "url": "https://faranaiki.id/project/alkyl#step-3"
+      }
+    ]
+  },
+  {
+    "name": "Hoe u layout-thrashing in Next.js kunt oplossen",
+    "description": "Een stapsgewijze handleiding voor het verwijderen van synchrone DOM-metingen en het oplossen van layout-thrassing.",
+    "totalTime": "PT15M",
+    "tools": [
+      "Chrome DevTools",
+      "Next.js Environment"
+    ],
+    "steps": [
+      {
+        "name": "Identificeer het knelpunt",
+        "text": "Open Chrome DevTools, ga naar het tabblad Prestaties en registreer het laden van de pagina om geforceerde herhalingen te vinden.",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "DOM-metingen uitstellen",
+        "text": "Verplaats getBoundingClientRect()-aanroepen binnen een requestAnimationFrame- of setTimeout-blok.",
+        "url": "https://faranaiki.id/project/script#step-2"
+      }
+    ]
+  },
+  {
+    "name": "Hoe u kernwebvitalen voor portefeuilles kunt optimaliseren",
+    "description": "Verbeter LCP-, CLS- en TBT-scores in Next.js 14 om een ​​perfecte Lighthouse-score van 100 te behalen.",
+    "totalTime": "PT1H",
+    "tools": [
+      "Lighthouse",
+      "Next.js 14"
+    ],
+    "steps": [
+      {
+        "name": "Optimaliseer afbeeldingen",
+        "text": "Gebruik de component Next.js next/image met prioriteit en fetchPriority voor afbeeldingen boven de vouw.",
+        "url": "https://faranaiki.id/project#step-1"
+      },
+      {
+        "name": "Verminder TBT",
+        "text": "Stel niet-kritieke scripts van derden uit en gebruik React's useTransition voor zware UI-updates.",
+        "url": "https://faranaiki.id/project#step-2"
+      }
+    ]
+  },
+  {
+    "name": "Hoe u de ONMIPA-wiskundewedstrijd kunt winnen",
+    "description": "Studiestrategieën en probleemoplossende technieken voor de Indonesische nationale wiskundeolympiade (ONMIPA-PT).",
+    "totalTime": "P6M",
+    "tools": [
+      "Calculus Textbooks",
+      "Past Papers",
+      "Study Group"
+    ],
+    "steps": [
+      {
+        "name": "Beheers de grondbeginselen",
+        "text": "Zorg voor een goed begrip van reële analyse, lineaire algebra en complexe variabelen.",
+        "url": "https://faranaiki.id/award#step-1"
+      },
+      {
+        "name": "Los eerdere papieren op",
+        "text": "Oefen met ONMIPA-papieren uit voorgaande jaren onder getimede omstandigheden.",
+        "url": "https://faranaiki.id/award#step-2"
+      }
+    ]
+  },
+  {
+    "name": "Hoe u een aangepast opdrachtenpalet bouwt in React",
+    "description": "Creëer een toegankelijk, snel en toetsenbordgestuurd opdrachtenpalet met React en Framer Motion.",
+    "totalTime": "PT2H",
+    "tools": [
+      "React",
+      "Framer Motion",
+      "Lucide Icons"
+    ],
+    "steps": [
+      {
+        "name": "Staatsbeheer",
+        "text": "Gebruik een globale winkel (Zustand of Context) om de open/dicht-status van het palet te beheren.",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "Toetsenbordluisteraars",
+        "text": "Voeg een gebeurtenislistener toe voor Ctrl+K of Cmd+K om het palet te activeren.",
+        "url": "https://faranaiki.id/project/script#step-2"
+      },
+      {
+        "name": "Vage zoekopdracht",
+        "text": "Implementeer een fuzzy zoekalgoritme om opdrachten te filteren op basis van gebruikersinvoer.",
+        "url": "https://faranaiki.id/project/script#step-3"
+      }
+    ]
+  },
+  {
+    "name": "Hoe i18n te implementeren in Next.js App Router",
+    "description": "Stapsgewijze handleiding voor het dynamisch ondersteunen van meerdere gelokaliseerde talen in de Next.js App Router.",
+    "totalTime": "PT3H",
+    "tools": [
+      "Next.js 14",
+      "JSON Dictionary",
+      "Middleware"
+    ],
+    "steps": [
+      {
+        "name": "Middleware maken",
+        "text": "Gebruik Next.js Middleware om de voorkeurstaal van de gebruiker te detecteren en deze om te leiden naar het juiste landinstellingspad.",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "Woordenboeken laden",
+        "text": "Maak asynchrone functies om het juiste JSON-woordenboek op te halen op basis van de URL-parameter.",
+        "url": "https://faranaiki.id/project/script#step-2"
+      }
+    ]
+  },
+  {
+    "name": "Hoe u een interactieve 3D-sitemapgrafiek maakt",
+    "description": "Visualiseer de interne linkstructuur van een website met behulp van react-force-graph-3d.",
+    "totalTime": "PT2H",
+    "tools": [
+      "react-force-graph-3d",
+      "Three.js",
+      "Next.js"
+    ],
+    "steps": [
+      {
+        "name": "Breng de knooppunten in kaart",
+        "text": "Extraheer alle interne links en pagina's om een ​​knooppuntlinkgegevensset te maken.",
+        "url": "https://faranaiki.id/sitemap-graph#step-1"
+      },
+      {
+        "name": "Geef de grafiek weer",
+        "text": "Geef de dataset door aan ForceGraph3D en pas de kleuren en afmetingen van de knooppunten aan.",
+        "url": "https://faranaiki.id/sitemap-graph#step-2"
+      }
+    ]
+  },
+  {
+    "name": "URL's indienen bij Bing IndexNow",
+    "description": "Stel Bing en andere zoekmachines automatisch op de hoogte wanneer uw inhoud verandert met behulp van de IndexNow API.",
+    "totalTime": "PT30M",
+    "tools": [
+      "Node.js",
+      "IndexNow API Key"
+    ],
+    "steps": [
+      {
+        "name": "Genereer API-sleutel",
+        "text": "Genereer een hexadecimale sleutel van 32 tekens en host deze als txt-bestand in de hoofdmap van uw domein.",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "POST-verzoek verzenden",
+        "text": "Gebruik fetch om een ​​JSON-payload met al uw bijgewerkte URL's naar het IndexNow-eindpunt te verzenden.",
+        "url": "https://faranaiki.id/project/script#step-2"
+      }
+    ]
+  },
+  {
+    "name": "Hoe Lo-Fi Beats te produceren met LMMS",
+    "description": "Een beginnershandleiding voor het componeren van ontspannende lofi-hiphopmuziek met behulp van open-source DAW's.",
+    "totalTime": "PT3H",
+    "tools": [
+      "LMMS",
+      "Vinyl Crackle Samples",
+      "Electric Piano VST"
+    ],
+    "steps": [
+      {
+        "name": "Stel het tempo in",
+        "text": "Stel de BPM van uw project in tussen 70 en 90.",
+        "url": "https://faranaiki.id/music#step-1"
+      },
+      {
+        "name": "Maak de akkoorden",
+        "text": "Gebruik jazzy 7e of 9e akkoorden op een elektrisch piano-instrument met een lichte ontstemming.",
+        "url": "https://faranaiki.id/music#step-2"
+      },
+      {
+        "name": "Voeg de drums toe",
+        "text": "Programmeer een stoffige drumbreak met een enigszins ongekwantificeerd swinggevoel.",
+        "url": "https://faranaiki.id/music#step-3"
+      }
+    ]
+  },
+  {
+    "name": "Hoe u een technische casestudy schrijft",
+    "description": "Documenteer uw software-engineeringprojecten effectief voor recruiters en ontwikkelaars.",
+    "totalTime": "PT2H",
+    "tools": [
+      "Markdown",
+      "Mermaid.js"
+    ],
+    "steps": [
+      {
+        "name": "Definieer het probleem",
+        "text": "Begin met het duidelijk uitleggen van de technische uitdaging of zakelijke behoefte.",
+        "url": "https://faranaiki.id/portfolio#step-1"
+      },
+      {
+        "name": "Leg de oplossing uit",
+        "text": "Geef details over de architectuur, de gebruikte technologieën en de stapsgewijze implementatie.",
+        "url": "https://faranaiki.id/portfolio#step-2"
+      },
+      {
+        "name": "Markeer de impact",
+        "text": "Geef statistieken op, zoals prestatieverbeteringen of gebruikersgroei, om het succes te bewijzen.",
+        "url": "https://faranaiki.id/portfolio#step-3"
+      }
+    ]
+  }
+]

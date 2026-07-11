@@ -1,0 +1,238 @@
+[
+  {
+    "name": "كيفية بناء مترجم مخصص للغة الكيل",
+    "description": "دليل خطوة بخطوة لكتابة محلل معجمي ومحلل ومولد أكواد للغة برمجة ألكيل.",
+    "totalTime": "PT4H",
+    "tools": [
+      "C++ Compiler",
+      "Flex & Bison",
+      "LLVM"
+    ],
+    "steps": [
+      {
+        "name": "التحليل المعجمي",
+        "text": "حدد الرموز المميزة لـ Alkyl وقم بإنشاء المعجم باستخدام Flex.",
+        "url": "https://faranaiki.id/project/alkyl#step-1"
+      },
+      {
+        "name": "تحليل بناء الجملة",
+        "text": "قم بإنشاء القواعد النحوية وإنشاء شجرة بناء الجملة المجردة (AST) باستخدام Bison.",
+        "url": "https://faranaiki.id/project/alkyl#step-2"
+      },
+      {
+        "name": "توليد الكود",
+        "text": "اجتياز AST لإصدار التمثيل المتوسط ​​LLVM (IR).",
+        "url": "https://faranaiki.id/project/alkyl#step-3"
+      }
+    ]
+  },
+  {
+    "name": "كيفية إصلاح تحطيم التخطيط في Next.js",
+    "description": "دليل خطوة بخطوة لإزالة قياسات DOM المتزامنة وإصلاح سحق التخطيط.",
+    "totalTime": "PT15M",
+    "tools": [
+      "Chrome DevTools",
+      "Next.js Environment"
+    ],
+    "steps": [
+      {
+        "name": "تحديد عنق الزجاجة",
+        "text": "افتح Chrome DevTools، وانتقل إلى علامة التبويب \"الأداء\"، وقم بتسجيل تحميل الصفحة للعثور على عمليات إعادة التدفق القسري.",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "تأجيل قياسات DOM",
+        "text": "انقل مكالمات getBoundingClientRect() داخل requestAnimationFrame أو كتلة setTimeout.",
+        "url": "https://faranaiki.id/project/script#step-2"
+      }
+    ]
+  },
+  {
+    "name": "كيفية تحسين مؤشرات الويب الأساسية للمحافظ",
+    "description": "قم بتحسين درجات LCP وCLS وTBT في Next.js 14 لتحقيق درجة 100 Lighthouse المثالية.",
+    "totalTime": "PT1H",
+    "tools": [
+      "Lighthouse",
+      "Next.js 14"
+    ],
+    "steps": [
+      {
+        "name": "تحسين الصور",
+        "text": "استخدم مكون Next.js التالي/الصورة مع الأولوية وfetchPriority للصور الموجودة في الجزء العلوي من الصفحة.",
+        "url": "https://faranaiki.id/project#step-1"
+      },
+      {
+        "name": "تقليل مركبات ثلاثي بوتيل القصدير",
+        "text": "قم بتأجيل البرامج النصية غير الهامة التابعة لجهات خارجية واستخدم React's useTransition لتحديثات واجهة المستخدم الثقيلة.",
+        "url": "https://faranaiki.id/project#step-2"
+      }
+    ]
+  },
+  {
+    "name": "كيفية الفوز بمسابقة ONMIPA للرياضيات",
+    "description": "استراتيجيات الدراسة وتقنيات حل المشكلات للأولمبياد الوطني الإندونيسي للرياضيات (ONMIPA-PT).",
+    "totalTime": "P6M",
+    "tools": [
+      "Calculus Textbooks",
+      "Past Papers",
+      "Study Group"
+    ],
+    "steps": [
+      {
+        "name": "إتقان الأساسيات",
+        "text": "تأكد من فهم قوي للتحليل الحقيقي والجبر الخطي والمتغيرات المعقدة.",
+        "url": "https://faranaiki.id/award#step-1"
+      },
+      {
+        "name": "حل الأوراق الماضية",
+        "text": "تدرب على أوراق ONMIPA السابقة من السنوات السابقة في ظل ظروف محددة.",
+        "url": "https://faranaiki.id/award#step-2"
+      }
+    ]
+  },
+  {
+    "name": "كيفية إنشاء لوحة أوامر مخصصة في React",
+    "description": "أنشئ لوحة أوامر يمكن الوصول إليها وسريعة ومعتمدة على لوحة المفاتيح باستخدام React وFramer Motion.",
+    "totalTime": "PT2H",
+    "tools": [
+      "React",
+      "Framer Motion",
+      "Lucide Icons"
+    ],
+    "steps": [
+      {
+        "name": "إدارة الدولة",
+        "text": "استخدم متجرًا عالميًا (Zustand أو context) لإدارة حالة الفتح/الإغلاق للوحة الألوان.",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "مستمعي لوحة المفاتيح",
+        "text": "قم بإرفاق مستمع الأحداث بالضغط على Ctrl+K أو Cmd+K لتشغيل اللوحة.",
+        "url": "https://faranaiki.id/project/script#step-2"
+      },
+      {
+        "name": "بحث غامض",
+        "text": "قم بتنفيذ خوارزمية بحث غامضة لتصفية الأوامر بناءً على إدخال المستخدم.",
+        "url": "https://faranaiki.id/project/script#step-3"
+      }
+    ]
+  },
+  {
+    "name": "كيفية تنفيذ i18n في جهاز توجيه تطبيق Next.js",
+    "description": "دليل خطوة بخطوة لدعم لغات محلية متعددة ديناميكيًا في جهاز توجيه التطبيقات Next.js.",
+    "totalTime": "PT3H",
+    "tools": [
+      "Next.js 14",
+      "JSON Dictionary",
+      "Middleware"
+    ],
+    "steps": [
+      {
+        "name": "إنشاء الوسيطة",
+        "text": "استخدم البرنامج الوسيط Next.js لاكتشاف اللغة المفضلة للمستخدم وإعادة توجيهه إلى المسار المحلي الصحيح.",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "تحميل القواميس",
+        "text": "قم بإنشاء وظائف غير متزامنة لجلب قاموس JSON الصحيح بناءً على معلمة URL.",
+        "url": "https://faranaiki.id/project/script#step-2"
+      }
+    ]
+  },
+  {
+    "name": "كيفية إنشاء رسم بياني تفاعلي لخريطة الموقع ثلاثي الأبعاد",
+    "description": "تصور بنية الارتباط الداخلي لموقع الويب باستخدام React-force-graph-3d.",
+    "totalTime": "PT2H",
+    "tools": [
+      "react-force-graph-3d",
+      "Three.js",
+      "Next.js"
+    ],
+    "steps": [
+      {
+        "name": "خريطة العقد",
+        "text": "قم باستخراج جميع الروابط والصفحات الداخلية لإنشاء مجموعة بيانات رابط العقدة.",
+        "url": "https://faranaiki.id/sitemap-graph#step-1"
+      },
+      {
+        "name": "تقديم الرسم البياني",
+        "text": "قم بتمرير مجموعة البيانات إلى ForceGraph3D وقم بتخصيص ألوان وأحجام العقدة.",
+        "url": "https://faranaiki.id/sitemap-graph#step-2"
+      }
+    ]
+  },
+  {
+    "name": "كيفية إرسال عناوين URL إلى Bing IndexNow",
+    "description": "قم بإخطار Bing ومحركات البحث الأخرى تلقائيًا عندما يتغير المحتوى الخاص بك باستخدام IndexNow API.",
+    "totalTime": "PT30M",
+    "tools": [
+      "Node.js",
+      "IndexNow API Key"
+    ],
+    "steps": [
+      {
+        "name": "إنشاء مفتاح API",
+        "text": "قم بإنشاء مفتاح سداسي عشري مكون من 32 حرفًا واستضفه في جذر المجال الخاص بك كملف txt.",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "إرسال طلب آخر",
+        "text": "استخدم الجلب لإرسال حمولة JSON تحتوي على جميع عناوين URL المحدثة إلى نقطة نهاية IndexNow.",
+        "url": "https://faranaiki.id/project/script#step-2"
+      }
+    ]
+  },
+  {
+    "name": "كيفية إنتاج إيقاعات Lo-Fi باستخدام LMMS",
+    "description": "دليل المبتدئين لتأليف موسيقى الهيب هوب المريحة باستخدام منصات العمل الصوتية مفتوحة المصدر.",
+    "totalTime": "PT3H",
+    "tools": [
+      "LMMS",
+      "Vinyl Crackle Samples",
+      "Electric Piano VST"
+    ],
+    "steps": [
+      {
+        "name": "ضبط الإيقاع",
+        "text": "اضبط BPM لمشروعك بين 70 و90.",
+        "url": "https://faranaiki.id/music#step-1"
+      },
+      {
+        "name": "إنشاء الحبال",
+        "text": "استخدم الحبال السابعة أو التاسعة الجازية على آلة البيانو الكهربائية مع عزف بسيط.",
+        "url": "https://faranaiki.id/music#step-2"
+      },
+      {
+        "name": "أضف الطبول",
+        "text": "قم ببرمجة استراحة الطبلة المتربة مع إحساس التأرجح غير المحدود قليلاً.",
+        "url": "https://faranaiki.id/music#step-3"
+      }
+    ]
+  },
+  {
+    "name": "كيفية كتابة دراسة حالة فنية",
+    "description": "قم بتوثيق مشاريع هندسة البرمجيات الخاصة بك بشكل فعال لمسؤولي التوظيف والمطورين.",
+    "totalTime": "PT2H",
+    "tools": [
+      "Markdown",
+      "Mermaid.js"
+    ],
+    "steps": [
+      {
+        "name": "تحديد المشكلة",
+        "text": "ابدأ بشرح التحدي الفني أو احتياجات العمل بوضوح.",
+        "url": "https://faranaiki.id/portfolio#step-1"
+      },
+      {
+        "name": "اشرح الحل",
+        "text": "قم بتفصيل البنية والتقنيات المستخدمة والتنفيذ خطوة بخطوة.",
+        "url": "https://faranaiki.id/portfolio#step-2"
+      },
+      {
+        "name": "تسليط الضوء على التأثير",
+        "text": "قم بتوفير مقاييس، مثل تحسينات الأداء أو نمو المستخدم، لإثبات النجاح.",
+        "url": "https://faranaiki.id/portfolio#step-3"
+      }
+    ]
+  }
+]

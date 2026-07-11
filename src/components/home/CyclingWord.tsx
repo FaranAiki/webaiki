@@ -24,7 +24,7 @@ export default function CyclingWord({ dict, onTypeChange }: CyclingWordProps) {
   useEffect(() => {
     setIsReady(true);
     setIsLgScreen(window.innerWidth >= 1024);
-    
+
     const handleResize = () => setIsLgScreen(window.innerWidth >= 1024);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -56,7 +56,7 @@ export default function CyclingWord({ dict, onTypeChange }: CyclingWordProps) {
           <motion.span
             key={wordIndex}
             initial={{ y: 30, opacity: 0 }}
-            animate={{ y: isLgScreen ? -4.75 : -2.75, opacity: 1 }}
+            animate={{ y: isLgScreen ? -4.75 : -2.35, opacity: 1 }}
             exit={{ y: -30, opacity: 0 }}
             transition={{ type: "spring", stiffness: 200, damping: 18 }}
             className="absolute inset-0 flex items-center justify-center lg:justify-start text-theme-500 whitespace-nowrap nav-active-gacor lowercase"

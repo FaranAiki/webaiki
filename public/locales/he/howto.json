@@ -1,0 +1,238 @@
+[
+  {
+    "name": "כיצד לבנות מהדר מותאם אישית עבור שפת Alkyl",
+    "description": "מדריך שלב אחר שלב לכתיבת מנתח מילוני, מנתח ומחולל קוד לשפת התכנות Alkyl.",
+    "totalTime": "PT4H",
+    "tools": [
+      "C++ Compiler",
+      "Flex & Bison",
+      "LLVM"
+    ],
+    "steps": [
+      {
+        "name": "ניתוח לקסיקלי",
+        "text": "הגדר את האסימונים עבור Alkyl וצור את lexer באמצעות Flex.",
+        "url": "https://faranaiki.id/project/alkyl#step-1"
+      },
+      {
+        "name": "ניתוח תחביר",
+        "text": "צור את כללי הדקדוק ובנה את עץ התחביר המופשט (AST) באמצעות Bison.",
+        "url": "https://faranaiki.id/project/alkyl#step-2"
+      },
+      {
+        "name": "יצירת קוד",
+        "text": "חצו את ה-AST כדי לפלוט ייצוג ביניים של LLVM (IR).",
+        "url": "https://faranaiki.id/project/alkyl#step-3"
+      }
+    ]
+  },
+  {
+    "name": "כיצד לתקן חבטת פריסה ב-Next.js",
+    "description": "מדריך שלב אחר שלב להסרת מדידות DOM סינכרוניות ותיקון חבטות פריסה.",
+    "totalTime": "PT15M",
+    "tools": [
+      "Chrome DevTools",
+      "Next.js Environment"
+    ],
+    "steps": [
+      {
+        "name": "זהה את צוואר הבקבוק",
+        "text": "פתח את Chrome DevTools, עבור לכרטיסייה ביצועים ותעד את טעינת העמוד כדי למצוא זרימות חוזרות מאולצות.",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "דחה מדידות DOM",
+        "text": "העבר קריאות getBoundingClientRect() בתוך בלוק requestAnimationFrame או setTimeout.",
+        "url": "https://faranaiki.id/project/script#step-2"
+      }
+    ]
+  },
+  {
+    "name": "כיצד לבצע אופטימיזציה של חיוני ליבה באינטרנט עבור תיקים",
+    "description": "שפר את ציוני ה-LCP, CLS וה-TBT ב-Next.js 14 כדי להשיג ציון מושלם של 100 Lighthouse.",
+    "totalTime": "PT1H",
+    "tools": [
+      "Lighthouse",
+      "Next.js 14"
+    ],
+    "steps": [
+      {
+        "name": "בצע אופטימיזציה של תמונות",
+        "text": "השתמש ברכיב Next.js next/image עם עדיפות ו-fetchPriority לתמונות בחלק העליון והקבוע.",
+        "url": "https://faranaiki.id/project#step-1"
+      },
+      {
+        "name": "הפחת TBT",
+        "text": "דחה סקריפטים לא קריטיים של צד שלישי והשתמש ב-React UseTransition עבור עדכוני ממשק משתמש כבדים.",
+        "url": "https://faranaiki.id/project#step-2"
+      }
+    ]
+  },
+  {
+    "name": "כיצד לזכות בתחרות המתמטיקה של ONMIPA",
+    "description": "לימוד אסטרטגיות וטכניקות לפתרון בעיות לאולימפיאדת המתמטיקה הלאומית של אינדונזיה (ONMIPA-PT).",
+    "totalTime": "P6M",
+    "tools": [
+      "Calculus Textbooks",
+      "Past Papers",
+      "Study Group"
+    ],
+    "steps": [
+      {
+        "name": "לשלוט ביסודות",
+        "text": "הבטח הבנה חזקה של ניתוח אמיתי, אלגברה לינארית ומשתנים מורכבים.",
+        "url": "https://faranaiki.id/award#step-1"
+      },
+      {
+        "name": "פתור מסמכי עבר",
+        "text": "תרגל עם מאמרים קודמים של ONMIPA משנים קודמות בתנאים מתוזמנים.",
+        "url": "https://faranaiki.id/award#step-2"
+      }
+    ]
+  },
+  {
+    "name": "כיצד לבנות פלטת פקודות מותאמת אישית ב-React",
+    "description": "צור פלטת פקודות נגישה, מהירה ומונעת מקלדת באמצעות React ו-Framer Motion.",
+    "totalTime": "PT2H",
+    "tools": [
+      "React",
+      "Framer Motion",
+      "Lucide Icons"
+    ],
+    "steps": [
+      {
+        "name": "הנהלת המדינה",
+        "text": "השתמש בחנות גלובלית (Zustand או Context) כדי לנהל את מצב הפתיחה/סגירה של הפלטה.",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "מאזיני מקלדת",
+        "text": "צרף מאזין אירועים עבור Ctrl+K או Cmd+K כדי להפעיל את הפלטה.",
+        "url": "https://faranaiki.id/project/script#step-2"
+      },
+      {
+        "name": "חיפוש מטושטש",
+        "text": "הטמע אלגוריתם חיפוש מעורפל לסינון פקודות המבוססות על קלט המשתמש.",
+        "url": "https://faranaiki.id/project/script#step-3"
+      }
+    ]
+  },
+  {
+    "name": "כיצד ליישם i18n בנתב האפליקציה Next.js",
+    "description": "מדריך שלב אחר שלב לתמיכה בשפות מקומיות מרובות באופן דינמי בנתב האפליקציה Next.js.",
+    "totalTime": "PT3H",
+    "tools": [
+      "Next.js 14",
+      "JSON Dictionary",
+      "Middleware"
+    ],
+    "steps": [
+      {
+        "name": "צור תוכנת ביניים",
+        "text": "השתמש ב-Next.js Middleware כדי לזהות את השפה המועדפת על המשתמש ולהפנות אותו לנתיב המקום הנכון.",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "טען מילונים",
+        "text": "צור פונקציות אסינכרון כדי להביא את מילון ה-JSON הנכון בהתבסס על פרמטר כתובת האתר.",
+        "url": "https://faranaiki.id/project/script#step-2"
+      }
+    ]
+  },
+  {
+    "name": "כיצד ליצור גרף 3D Sitemap אינטראקטיבי",
+    "description": "דמיין את מבנה הקישור הפנימי של אתר אינטרנט באמצעות react-force-graph-3d.",
+    "totalTime": "PT2H",
+    "tools": [
+      "react-force-graph-3d",
+      "Three.js",
+      "Next.js"
+    ],
+    "steps": [
+      {
+        "name": "מפה את הצמתים",
+        "text": "חלץ את כל הקישורים והדפים הפנימיים כדי ליצור מערך נתונים של קישורי צומת.",
+        "url": "https://faranaiki.id/sitemap-graph#step-1"
+      },
+      {
+        "name": "עבד את הגרף",
+        "text": "העבר את מערך הנתונים לתוך ForceGraph3D והתאם אישית את הצבעים והגדלים של הצמתים.",
+        "url": "https://faranaiki.id/sitemap-graph#step-2"
+      }
+    ]
+  },
+  {
+    "name": "How to Submit URLs to Bing IndexNow",
+    "description": "Automatically notify Bing and other search engines when your content changes using the IndexNow API.",
+    "totalTime": "PT30M",
+    "tools": [
+      "Node.js",
+      "IndexNow API Key"
+    ],
+    "steps": [
+      {
+        "name": "Generate API Key",
+        "text": "Generate a 32-character hex key and host it at the root of your domain as a txt file.",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "Send POST Request",
+        "text": "Use fetch to send a JSON payload containing all your updated URLs to the IndexNow endpoint.",
+        "url": "https://faranaiki.id/project/script#step-2"
+      }
+    ]
+  },
+  {
+    "name": "כיצד לייצר Lo-Fi Beats עם LMMS",
+    "description": "מדריך למתחילים להלחנה של מוזיקת ​​היפ הופ מרגיעה ב-Lo-Fi באמצעות DAWs בקוד פתוח.",
+    "totalTime": "PT3H",
+    "tools": [
+      "LMMS",
+      "Vinyl Crackle Samples",
+      "Electric Piano VST"
+    ],
+    "steps": [
+      {
+        "name": "הגדר את הטמפו",
+        "text": "הגדר את BPM של הפרויקט שלך בין 70 ל-90.",
+        "url": "https://faranaiki.id/music#step-1"
+      },
+      {
+        "name": "צור את האקורדים",
+        "text": "השתמש באקורדים 7 או 9 ג'אזיים על כלי פסנתר חשמלי עם ביטול קל.",
+        "url": "https://faranaiki.id/music#step-2"
+      },
+      {
+        "name": "הוסף את התופים",
+        "text": "תכנת הפסקת תופים מאובקת עם תחושת נדנדה מעט לא מכווצת.",
+        "url": "https://faranaiki.id/music#step-3"
+      }
+    ]
+  },
+  {
+    "name": "כיצד לכתוב מקרה מבחן טכני",
+    "description": "תיעד את פרויקטי הנדסת התוכנה שלך ביעילות עבור מגייסים ומפתחים.",
+    "totalTime": "PT2H",
+    "tools": [
+      "Markdown",
+      "Mermaid.js"
+    ],
+    "steps": [
+      {
+        "name": "הגדר את הבעיה",
+        "text": "התחל בהסבר ברור של האתגר הטכני או הצורך העסקי.",
+        "url": "https://faranaiki.id/portfolio#step-1"
+      },
+      {
+        "name": "הסבר את הפתרון",
+        "text": "פרט את הארכיטקטורה, הטכנולוגיות בהן נעשה שימוש והטמעה שלב אחר שלב.",
+        "url": "https://faranaiki.id/portfolio#step-2"
+      },
+      {
+        "name": "הדגש את ההשפעה",
+        "text": "ספק מדדים, כגון שיפורי ביצועים או צמיחת משתמשים, כדי להוכיח את ההצלחה.",
+        "url": "https://faranaiki.id/portfolio#step-3"
+      }
+    ]
+  }
+]

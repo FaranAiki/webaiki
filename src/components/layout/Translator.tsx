@@ -23,7 +23,7 @@ export const getDictionary = async (locale: string, namespaces?: string[]): Prom
     let dict: Record<string, string> = {};
 
     for (const file of files) {
-      if (file.endsWith('.json')) {
+      if (file.endsWith('.json') && file !== 'howto.json') {
         const namespace = file.replace('.json', '');
         if (!namespaces || namespaces.includes(namespace)) {
           const filePath = path.join(localeDir, file);
@@ -43,4 +43,20 @@ export const getDictionary = async (locale: string, namespaces?: string[]): Prom
     }
     return {};
   }
+};
+
+export const getHowTos = async (locale: string): Promise<import('@/lib/seo').HowToData[]> => {
+  try {
+    const localeDir = path.join(process.cwd(), 'public', 'locales', locale);
+    const filePath = path.join(localeDir, 'howto.json');
+    if (fs.existsSync(filePath)) {
+      const content = fs.readFileSync(filePath, 'utf8');
+      return JSON.parse(content);
+    } else if (locale !== 'en') {
+      return getHowTos('en');
+    }
+  } catch (error) {
+    console.error(`Failed to load howto.json for locale ${locale}:`, error);
+  }
+  return [];
 };

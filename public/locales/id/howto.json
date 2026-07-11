@@ -1,0 +1,238 @@
+[
+  {
+    "name": "Cara Membuat Kompiler Khusus untuk Bahasa Alkil",
+    "description": "Panduan langkah demi langkah untuk menulis penganalisis leksikal, parser, dan generator kode untuk bahasa pemrograman Alkyl.",
+    "totalTime": "PT4H",
+    "tools": [
+      "C++ Compiler",
+      "Flex & Bison",
+      "LLVM"
+    ],
+    "steps": [
+      {
+        "name": "Analisis Leksikal",
+        "text": "Tentukan token untuk Alkyl dan hasilkan lexer menggunakan Flex.",
+        "url": "https://faranaiki.id/project/alkyl#step-1"
+      },
+      {
+        "name": "Penguraian Sintaks",
+        "text": "Buat aturan tata bahasa dan buat Pohon Sintaks Abstrak (AST) menggunakan Bison.",
+        "url": "https://faranaiki.id/project/alkyl#step-2"
+      },
+      {
+        "name": "Pembuatan Kode",
+        "text": "Lintasi AST untuk memancarkan Representasi Menengah (IR) LLVM.",
+        "url": "https://faranaiki.id/project/alkyl#step-3"
+      }
+    ]
+  },
+  {
+    "name": "Cara Memperbaiki Layout Thrashing di Next.js",
+    "description": "Panduan langkah demi langkah untuk menghapus pengukuran DOM yang sinkron dan memperbaiki kerusakan tata letak.",
+    "totalTime": "PT15M",
+    "tools": [
+      "Chrome DevTools",
+      "Next.js Environment"
+    ],
+    "steps": [
+      {
+        "name": "Identifikasi Kemacetannya",
+        "text": "Buka Chrome DevTools, buka tab Performance, dan catat pemuatan halaman untuk menemukan perubahan posisi yang dipaksakan.",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "Tunda Pengukuran DOM",
+        "text": "Pindahkan panggilan getBoundingClientRect() ke dalam blok requestAnimationFrame atau setTimeout.",
+        "url": "https://faranaiki.id/project/script#step-2"
+      }
+    ]
+  },
+  {
+    "name": "Cara Mengoptimalkan Data Web Inti untuk Portofolio",
+    "description": "Tingkatkan skor LCP, CLS, dan TBT di Next.js 14 untuk mencapai skor Lighthouse 100 yang sempurna.",
+    "totalTime": "PT1H",
+    "tools": [
+      "Lighthouse",
+      "Next.js 14"
+    ],
+    "steps": [
+      {
+        "name": "Optimalkan Gambar",
+        "text": "Gunakan komponen Next.js next/image dengan prioritas dan ambilPrioritas untuk gambar paruh atas.",
+        "url": "https://faranaiki.id/project#step-1"
+      },
+      {
+        "name": "Kurangi TBT",
+        "text": "Tunda skrip pihak ketiga yang tidak penting dan gunakan useTransition React untuk pembaruan UI yang berat.",
+        "url": "https://faranaiki.id/project#step-2"
+      }
+    ]
+  },
+  {
+    "name": "Cara Memenangkan Kompetisi Matematika ONMIPA",
+    "description": "Strategi pembelajaran dan teknik pemecahan masalah Olimpiade Matematika Nasional Indonesia (ONMIPA-PT).",
+    "totalTime": "P6M",
+    "tools": [
+      "Calculus Textbooks",
+      "Past Papers",
+      "Study Group"
+    ],
+    "steps": [
+      {
+        "name": "Kuasai Dasar-Dasarnya",
+        "text": "Pastikan pemahaman yang kuat tentang Analisis Nyata, Aljabar Linier, dan Variabel Kompleks.",
+        "url": "https://faranaiki.id/award#step-1"
+      },
+      {
+        "name": "Selesaikan Makalah Sebelumnya",
+        "text": "Berlatihlah dengan makalah ONMIPA sebelumnya dari tahun-tahun sebelumnya dalam kondisi waktu.",
+        "url": "https://faranaiki.id/award#step-2"
+      }
+    ]
+  },
+  {
+    "name": "Cara Membuat Palet Perintah Kustom di React",
+    "description": "Buat palet perintah yang mudah diakses, cepat, dan digerakkan oleh keyboard menggunakan React dan Framer Motion.",
+    "totalTime": "PT2H",
+    "tools": [
+      "React",
+      "Framer Motion",
+      "Lucide Icons"
+    ],
+    "steps": [
+      {
+        "name": "Manajemen Negara",
+        "text": "Gunakan penyimpanan global (Zusstand atau Context) untuk mengelola status buka/tutup palet.",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "Pendengar Keyboard",
+        "text": "Lampirkan pendengar acara untuk Ctrl+K atau Cmd+K untuk memicu palet.",
+        "url": "https://faranaiki.id/project/script#step-2"
+      },
+      {
+        "name": "Pencarian Fuzzy",
+        "text": "Menerapkan algoritma pencarian fuzzy untuk memfilter perintah berdasarkan input pengguna.",
+        "url": "https://faranaiki.id/project/script#step-3"
+      }
+    ]
+  },
+  {
+    "name": "Cara Menerapkan i18n di Router Aplikasi Next.js",
+    "description": "Panduan langkah demi langkah untuk mendukung beberapa bahasa lokal secara dinamis di Router Aplikasi Next.js.",
+    "totalTime": "PT3H",
+    "tools": [
+      "Next.js 14",
+      "JSON Dictionary",
+      "Middleware"
+    ],
+    "steps": [
+      {
+        "name": "Buat Middleware",
+        "text": "Gunakan Next.js Middleware untuk mendeteksi bahasa pilihan pengguna dan mengarahkan mereka ke jalur lokal yang benar.",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "Muat Kamus",
+        "text": "Buat fungsi async untuk mengambil kamus JSON yang benar berdasarkan parameter URL.",
+        "url": "https://faranaiki.id/project/script#step-2"
+      }
+    ]
+  },
+  {
+    "name": "Cara Membuat Grafik Peta Situs 3D Interaktif",
+    "description": "Visualisasikan struktur tautan internal situs web menggunakan react-force-graph-3d.",
+    "totalTime": "PT2H",
+    "tools": [
+      "react-force-graph-3d",
+      "Three.js",
+      "Next.js"
+    ],
+    "steps": [
+      {
+        "name": "Petakan Node",
+        "text": "Ekstrak semua tautan internal dan halaman untuk membuat kumpulan data tautan simpul.",
+        "url": "https://faranaiki.id/sitemap-graph#step-1"
+      },
+      {
+        "name": "Render Grafiknya",
+        "text": "Teruskan kumpulan data ke ForceGraph3D dan sesuaikan warna dan ukuran simpul.",
+        "url": "https://faranaiki.id/sitemap-graph#step-2"
+      }
+    ]
+  },
+  {
+    "name": "Cara Mengirimkan URL ke Bing IndexNow",
+    "description": "Secara otomatis memberi tahu Bing dan mesin pencari lainnya ketika konten Anda berubah menggunakan IndexNow API.",
+    "totalTime": "PT30M",
+    "tools": [
+      "Node.js",
+      "IndexNow API Key"
+    ],
+    "steps": [
+      {
+        "name": "Hasilkan Kunci API",
+        "text": "Buat kunci hex 32 karakter dan host di root domain Anda sebagai file txt.",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "Kirim Permintaan POST",
+        "text": "Gunakan ambil untuk mengirim payload JSON yang berisi semua URL Anda yang diperbarui ke titik akhir IndexNow.",
+        "url": "https://faranaiki.id/project/script#step-2"
+      }
+    ]
+  },
+  {
+    "name": "Cara Menghasilkan Ketukan Lo-Fi dengan LMMS",
+    "description": "Panduan pemula untuk membuat musik lo-fi hip hop yang menenangkan menggunakan DAW sumber terbuka.",
+    "totalTime": "PT3H",
+    "tools": [
+      "LMMS",
+      "Vinyl Crackle Samples",
+      "Electric Piano VST"
+    ],
+    "steps": [
+      {
+        "name": "Atur Temponya",
+        "text": "Tetapkan BPM proyek Anda antara 70 dan 90.",
+        "url": "https://faranaiki.id/music#step-1"
+      },
+      {
+        "name": "Buat Akordnya",
+        "text": "Gunakan akord jazzy ke-7 atau ke-9 pada instrumen piano elektrik dengan sedikit detune.",
+        "url": "https://faranaiki.id/music#step-2"
+      },
+      {
+        "name": "Tambahkan Drum",
+        "text": "Programkan drum break yang berdebu dengan nuansa ayunan yang sedikit tidak terkuantifikasi.",
+        "url": "https://faranaiki.id/music#step-3"
+      }
+    ]
+  },
+  {
+    "name": "Bagaimana Menulis Studi Kasus Teknis",
+    "description": "Dokumentasikan proyek rekayasa perangkat lunak Anda secara efektif untuk perekrut dan pengembang.",
+    "totalTime": "PT2H",
+    "tools": [
+      "Markdown",
+      "Mermaid.js"
+    ],
+    "steps": [
+      {
+        "name": "Tentukan Masalahnya",
+        "text": "Mulailah dengan menjelaskan secara jelas tantangan teknis atau kebutuhan bisnis.",
+        "url": "https://faranaiki.id/portfolio#step-1"
+      },
+      {
+        "name": "Jelaskan Solusinya",
+        "text": "Rinci arsitektur, teknologi yang digunakan, dan implementasi langkah demi langkah.",
+        "url": "https://faranaiki.id/portfolio#step-2"
+      },
+      {
+        "name": "Soroti Dampaknya",
+        "text": "Berikan metrik, seperti peningkatan kinerja atau pertumbuhan pengguna, untuk membuktikan keberhasilan.",
+        "url": "https://faranaiki.id/portfolio#step-3"
+      }
+    ]
+  }
+]

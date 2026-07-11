@@ -1,0 +1,238 @@
+[
+  {
+    "name": "Alkyl 言語用のカスタム コンパイラを構築する方法",
+    "description": "Alkyl プログラミング言語の字句アナライザー、パーサー、およびコード ジェネレーターを作成するためのステップバイステップのガイド。",
+    "totalTime": "PT4H",
+    "tools": [
+      "C++ Compiler",
+      "Flex & Bison",
+      "LLVM"
+    ],
+    "steps": [
+      {
+        "name": "字句解析",
+        "text": "Alkyl のトークンを定義し、Flex を使用してレクサーを生成します。",
+        "url": "https://faranaiki.id/project/alkyl#step-1"
+      },
+      {
+        "name": "構文解析",
+        "text": "Bison を使用して文法規則を作成し、抽象構文ツリー (AST) を構築します。",
+        "url": "https://faranaiki.id/project/alkyl#step-2"
+      },
+      {
+        "name": "コード生成",
+        "text": "AST をトラバースして、LLVM 中間表現 (IR) を発行します。",
+        "url": "https://faranaiki.id/project/alkyl#step-3"
+      }
+    ]
+  },
+  {
+    "name": "Next.js でレイアウトのスラッシングを修正する方法",
+    "description": "同期 DOM 測定を削除し、レイアウトのスラッシングを修正するためのステップバイステップのガイド。",
+    "totalTime": "PT15M",
+    "tools": [
+      "Chrome DevTools",
+      "Next.js Environment"
+    ],
+    "steps": [
+      {
+        "name": "ボトルネックを特定する",
+        "text": "Chrome DevTools を開いて [パフォーマンス] タブに移動し、ページの読み込みを記録して強制リフローを見つけます。",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "DOM 測定を延期する",
+        "text": "getBoundingClientRect() 呼び出しを requestAnimationFrame または setTimeout ブロック内に移動します。",
+        "url": "https://faranaiki.id/project/script#step-2"
+      }
+    ]
+  },
+  {
+    "name": "ポートフォリオのコア ウェブ バイタルを最適化する方法",
+    "description": "Next.js 14 の LCP、CLS、TBT スコアを改善して、完璧な 100 Lighthouse スコアを達成します。",
+    "totalTime": "PT1H",
+    "tools": [
+      "Lighthouse",
+      "Next.js 14"
+    ],
+    "steps": [
+      {
+        "name": "画像の最適化",
+        "text": "Next.js の next/image コンポーネントを優先度を指定して使用し、スクロールせずに見える画像には fetchPriority を使用します。",
+        "url": "https://faranaiki.id/project#step-1"
+      },
+      {
+        "name": "TBTを削減する",
+        "text": "重要ではないサードパーティのスクリプトを延期し、大量の UI 更新には React の useTransition を使用します。",
+        "url": "https://faranaiki.id/project#step-2"
+      }
+    ]
+  },
+  {
+    "name": "ONMIPA 数学コンテストで優勝する方法",
+    "description": "インドネシア全国数学オリンピック (ONMIPA-PT) に向けた戦略と問題解決テクニックを学習します。",
+    "totalTime": "P6M",
+    "tools": [
+      "Calculus Textbooks",
+      "Past Papers",
+      "Study Group"
+    ],
+    "steps": [
+      {
+        "name": "基礎をマスターする",
+        "text": "実解析、線形代数、複素変数をしっかりと理解する。",
+        "url": "https://faranaiki.id/award#step-1"
+      },
+      {
+        "name": "過去問を解く",
+        "text": "過去の ONMIPA の過去問を時間制限付きで練習します。",
+        "url": "https://faranaiki.id/award#step-2"
+      }
+    ]
+  },
+  {
+    "name": "React でカスタム コマンド パレットを構築する方法",
+    "description": "React と Framer Motion を使用して、アクセスしやすく高速なキーボード駆動のコマンド パレットを作成します。",
+    "totalTime": "PT2H",
+    "tools": [
+      "React",
+      "Framer Motion",
+      "Lucide Icons"
+    ],
+    "steps": [
+      {
+        "name": "状態管理",
+        "text": "パレットの開閉状態を管理するには、グローバル ストア (Zustand または Context) を使用します。",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "キーボードリスナー",
+        "text": "Ctrl+K または Cmd+K のイベント リスナーをアタッチして、パレットをトリガーします。",
+        "url": "https://faranaiki.id/project/script#step-2"
+      },
+      {
+        "name": "あいまい検索",
+        "text": "ユーザー入力に基づいてコマンドをフィルタリングするためのあいまい検索アルゴリズムを実装します。",
+        "url": "https://faranaiki.id/project/script#step-3"
+      }
+    ]
+  },
+  {
+    "name": "Next.js App Router で i18n を実装する方法",
+    "description": "Next.js App Router で複数のローカライズされた言語を動的にサポートするためのステップバイステップ ガイド。",
+    "totalTime": "PT3H",
+    "tools": [
+      "Next.js 14",
+      "JSON Dictionary",
+      "Middleware"
+    ],
+    "steps": [
+      {
+        "name": "ミドルウェアの作成",
+        "text": "Next.js ミドルウェアを使用して、ユーザーの優先言語を検出し、正しいロケール パスにリダイレクトします。",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "辞書のロード",
+        "text": "URL パラメーターに基づいて正しい JSON 辞書をフェッチする非同期関数を作成します。",
+        "url": "https://faranaiki.id/project/script#step-2"
+      }
+    ]
+  },
+  {
+    "name": "インタラクティブな 3D サイトマップ グラフを作成する方法",
+    "description": "React-force-graph-3d を使用して Web サイトの内部リンク構造を視覚化します。",
+    "totalTime": "PT2H",
+    "tools": [
+      "react-force-graph-3d",
+      "Three.js",
+      "Next.js"
+    ],
+    "steps": [
+      {
+        "name": "ノードをマッピングする",
+        "text": "すべての内部リンクとページを抽出して、ノードリンク データセットを作成します。",
+        "url": "https://faranaiki.id/sitemap-graph#step-1"
+      },
+      {
+        "name": "グラフをレンダリングする",
+        "text": "データセットを ForceGraph3D に渡し、ノードの色とサイズをカスタマイズします。",
+        "url": "https://faranaiki.id/sitemap-graph#step-2"
+      }
+    ]
+  },
+  {
+    "name": "URL を Bing IndexNow に送信する方法",
+    "description": "IndexNow API を使用してコンテンツが変更されると、Bing やその他の検索エンジンに自動的に通知します。",
+    "totalTime": "PT30M",
+    "tools": [
+      "Node.js",
+      "IndexNow API Key"
+    ],
+    "steps": [
+      {
+        "name": "APIキーの生成",
+        "text": "32 文字の 16 進キーを生成し、ドメインのルートに txt ファイルとしてホストします。",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "POSTリクエストを送信する",
+        "text": "fetch を使用して、更新されたすべての URL を含む JSON ペイロードを IndexNow エンドポイントに送信します。",
+        "url": "https://faranaiki.id/project/script#step-2"
+      }
+    ]
+  },
+  {
+    "name": "LMMS を使用して Lo-Fi ビートを作成する方法",
+    "description": "オープンソース DAW を使用して、リラックスできるローファイ ヒップホップ ミュージックを作曲するための初心者向けガイド。",
+    "totalTime": "PT3H",
+    "tools": [
+      "LMMS",
+      "Vinyl Crackle Samples",
+      "Electric Piano VST"
+    ],
+    "steps": [
+      {
+        "name": "テンポを設定する",
+        "text": "プロジェクトの BPM を 70 ～ 90 の間に設定します。",
+        "url": "https://faranaiki.id/music#step-1"
+      },
+      {
+        "name": "コードを作成する",
+        "text": "わずかにデチューンを加えたエレクトリック ピアノ楽器で、ジャズっぽい 7 または 9 のコードを使用します。",
+        "url": "https://faranaiki.id/music#step-2"
+      },
+      {
+        "name": "ドラムを追加する",
+        "text": "わずかにクオンタイズされていないスウィング感のある、ほこりっぽいドラムブレイクをプログラムします。",
+        "url": "https://faranaiki.id/music#step-3"
+      }
+    ]
+  },
+  {
+    "name": "技術的なケーススタディの書き方",
+    "description": "採用担当者や開発者のためにソフトウェア エンジニアリング プロジェクトを効果的に文書化します。",
+    "totalTime": "PT2H",
+    "tools": [
+      "Markdown",
+      "Mermaid.js"
+    ],
+    "steps": [
+      {
+        "name": "問題を定義する",
+        "text": "まず、技術的な課題やビジネス上のニーズを明確に説明します。",
+        "url": "https://faranaiki.id/portfolio#step-1"
+      },
+      {
+        "name": "解決策を説明する",
+        "text": "アーキテクチャ、使用されているテクノロジ、および段階的な実装について詳しく説明します。",
+        "url": "https://faranaiki.id/portfolio#step-2"
+      },
+      {
+        "name": "影響を強調する",
+        "text": "成功を証明するために、パフォーマンスの向上やユーザーの増加などの指標を提供します。",
+        "url": "https://faranaiki.id/portfolio#step-3"
+      }
+    ]
+  }
+]

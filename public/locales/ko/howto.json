@@ -1,0 +1,238 @@
+[
+  {
+    "name": "알킬 언어용 사용자 정의 컴파일러를 구축하는 방법",
+    "description": "Alkyl 프로그래밍 언어용 어휘 분석기, 파서 및 코드 생성기를 작성하기 위한 단계별 가이드입니다.",
+    "totalTime": "PT4H",
+    "tools": [
+      "C++ Compiler",
+      "Flex & Bison",
+      "LLVM"
+    ],
+    "steps": [
+      {
+        "name": "어휘 분석",
+        "text": "Alkyl에 대한 토큰을 정의하고 Flex를 사용하여 어휘분석기를 생성합니다.",
+        "url": "https://faranaiki.id/project/alkyl#step-1"
+      },
+      {
+        "name": "구문 분석",
+        "text": "Bison을 사용하여 문법 규칙을 만들고 추상 구문 트리(AST)를 구성합니다.",
+        "url": "https://faranaiki.id/project/alkyl#step-2"
+      },
+      {
+        "name": "코드 생성",
+        "text": "AST를 탐색하여 LLVM IR(Intermediate Representation)을 내보냅니다.",
+        "url": "https://faranaiki.id/project/alkyl#step-3"
+      }
+    ]
+  },
+  {
+    "name": "Next.js에서 레이아웃 스래싱을 ​​수정하는 방법",
+    "description": "동기식 DOM 측정을 제거하고 레이아웃 스래싱을 ​​수정하는 단계별 가이드입니다.",
+    "totalTime": "PT15M",
+    "tools": [
+      "Chrome DevTools",
+      "Next.js Environment"
+    ],
+    "steps": [
+      {
+        "name": "병목 현상 식별",
+        "text": "Chrome DevTools를 열고 성능 탭으로 이동한 후 페이지 로드를 기록하여 강제 리플로우를 찾습니다.",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "DOM 측정 연기",
+        "text": "requestAnimationFrame 또는 setTimeout 블록 내에서 getBoundingClientRect() 호출을 이동합니다.",
+        "url": "https://faranaiki.id/project/script#step-2"
+      }
+    ]
+  },
+  {
+    "name": "포트폴리오의 핵심 웹 바이탈을 최적화하는 방법",
+    "description": "Next.js 14에서 LCP, CLS 및 TBT 점수를 개선하여 완벽한 100 Lighthouse 점수를 달성하세요.",
+    "totalTime": "PT1H",
+    "tools": [
+      "Lighthouse",
+      "Next.js 14"
+    ],
+    "steps": [
+      {
+        "name": "이미지 최적화",
+        "text": "스크롤 없이 볼 수 있는 이미지에 대해서는 우선 순위 및 fetchPriority가 있는 Next.js next/image 구성 요소를 사용하세요.",
+        "url": "https://faranaiki.id/project#step-1"
+      },
+      {
+        "name": "TBT를 줄인다",
+        "text": "중요하지 않은 타사 스크립트를 연기하고 UI 업데이트가 많은 경우 React의 useTransition을 사용하세요.",
+        "url": "https://faranaiki.id/project#step-2"
+      }
+    ]
+  },
+  {
+    "name": "ONMIPA 수학 경시대회 우승 방법",
+    "description": "인도네시아 국가 수학 올림피아드(ONMIPA-PT)를 위한 학습 전략 및 문제 해결 기법.",
+    "totalTime": "P6M",
+    "tools": [
+      "Calculus Textbooks",
+      "Past Papers",
+      "Study Group"
+    ],
+    "steps": [
+      {
+        "name": "기본을 마스터하세요",
+        "text": "실제 분석, 선형 대수 및 복소 변수에 대한 강력한 이해를 보장합니다.",
+        "url": "https://faranaiki.id/award#step-1"
+      },
+      {
+        "name": "과거 논문 해결",
+        "text": "정해진 시간에 맞춰 ONMIPA의 이전 연도 논문을 연습해 보세요.",
+        "url": "https://faranaiki.id/award#step-2"
+      }
+    ]
+  },
+  {
+    "name": "React에서 사용자 정의 명령 팔레트를 구축하는 방법",
+    "description": "React 및 Framer Motion을 사용하여 접근 가능하고 빠른 키보드 기반 명령 팔레트를 만듭니다.",
+    "totalTime": "PT2H",
+    "tools": [
+      "React",
+      "Framer Motion",
+      "Lucide Icons"
+    ],
+    "steps": [
+      {
+        "name": "상태 관리",
+        "text": "팔레트의 열기/닫기 상태를 관리하려면 전역 저장소(Zustand 또는 Context)를 사용하십시오.",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "키보드 청취자",
+        "text": "팔레트를 트리거하려면 Ctrl+K 또는 Cmd+K에 대한 이벤트 리스너를 연결하세요.",
+        "url": "https://faranaiki.id/project/script#step-2"
+      },
+      {
+        "name": "퍼지 검색",
+        "text": "사용자 입력을 기반으로 명령을 필터링하는 퍼지 검색 알고리즘을 구현합니다.",
+        "url": "https://faranaiki.id/project/script#step-3"
+      }
+    ]
+  },
+  {
+    "name": "Next.js 앱 라우터에서 i18n을 구현하는 방법",
+    "description": "Next.js 앱 라우터에서 동적으로 현지화된 여러 언어를 지원하는 방법에 대한 단계별 가이드입니다.",
+    "totalTime": "PT3H",
+    "tools": [
+      "Next.js 14",
+      "JSON Dictionary",
+      "Middleware"
+    ],
+    "steps": [
+      {
+        "name": "미들웨어 생성",
+        "text": "Next.js 미들웨어를 사용하여 사용자가 선호하는 언어를 감지하고 올바른 로캘 경로로 리디렉션합니다.",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "사전 로드",
+        "text": "URL 매개변수를 기반으로 올바른 JSON 사전을 가져오는 비동기 함수를 만듭니다.",
+        "url": "https://faranaiki.id/project/script#step-2"
+      }
+    ]
+  },
+  {
+    "name": "대화형 3D 사이트맵 그래프를 만드는 방법",
+    "description": "React-force-graph-3d를 사용하여 웹사이트의 내부 연결 구조를 시각화합니다.",
+    "totalTime": "PT2H",
+    "tools": [
+      "react-force-graph-3d",
+      "Three.js",
+      "Next.js"
+    ],
+    "steps": [
+      {
+        "name": "노드 매핑",
+        "text": "모든 내부 링크와 페이지를 추출하여 노드 링크 데이터 세트를 만듭니다.",
+        "url": "https://faranaiki.id/sitemap-graph#step-1"
+      },
+      {
+        "name": "그래프 렌더링",
+        "text": "데이터 세트를 ForceGraph3D에 전달하고 노드 색상과 크기를 사용자 정의합니다.",
+        "url": "https://faranaiki.id/sitemap-graph#step-2"
+      }
+    ]
+  },
+  {
+    "name": "Bing IndexNow에 URL을 제출하는 방법",
+    "description": "IndexNow API를 사용하여 콘텐츠가 변경되면 Bing 및 기타 검색 엔진에 자동으로 알립니다.",
+    "totalTime": "PT30M",
+    "tools": [
+      "Node.js",
+      "IndexNow API Key"
+    ],
+    "steps": [
+      {
+        "name": "API 키 생성",
+        "text": "32자 16진수 키를 생성하고 도메인 루트에 txt 파일로 호스팅합니다.",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "POST 요청 보내기",
+        "text": "가져오기를 사용하여 업데이트된 모든 URL이 포함된 JSON 페이로드를 IndexNow 엔드포인트로 보냅니다.",
+        "url": "https://faranaiki.id/project/script#step-2"
+      }
+    ]
+  },
+  {
+    "name": "LMMS를 사용하여 Lo-Fi 비트를 생성하는 방법",
+    "description": "오픈 소스 DAW를 사용하여 편안한 로파이 힙합 음악을 작곡하는 초보자 가이드입니다.",
+    "totalTime": "PT3H",
+    "tools": [
+      "LMMS",
+      "Vinyl Crackle Samples",
+      "Electric Piano VST"
+    ],
+    "steps": [
+      {
+        "name": "템포 설정",
+        "text": "프로젝트 BPM을 70에서 90 사이로 설정하세요.",
+        "url": "https://faranaiki.id/music#step-1"
+      },
+      {
+        "name": "코드 만들기",
+        "text": "전자 피아노 악기에 약간의 디튠을 적용하여 재즈적인 7도 또는 9도 코드를 사용하세요.",
+        "url": "https://faranaiki.id/music#step-2"
+      },
+      {
+        "name": "드럼 추가",
+        "text": "약간 양자화되지 않은 스윙 느낌으로 더스티 드럼 브레이크를 프로그래밍합니다.",
+        "url": "https://faranaiki.id/music#step-3"
+      }
+    ]
+  },
+  {
+    "name": "기술 사례 연구 작성 방법",
+    "description": "채용 담당자와 개발자를 위해 소프트웨어 엔지니어링 프로젝트를 효과적으로 문서화하세요.",
+    "totalTime": "PT2H",
+    "tools": [
+      "Markdown",
+      "Mermaid.js"
+    ],
+    "steps": [
+      {
+        "name": "문제 정의",
+        "text": "기술적 과제나 비즈니스 요구 사항을 명확하게 설명하는 것부터 시작하세요.",
+        "url": "https://faranaiki.id/portfolio#step-1"
+      },
+      {
+        "name": "솔루션 설명",
+        "text": "아키텍처, 사용된 기술 및 단계별 구현을 자세히 설명합니다.",
+        "url": "https://faranaiki.id/portfolio#step-2"
+      },
+      {
+        "name": "영향을 강조하세요",
+        "text": "성능 개선, 사용자 증가 등의 지표를 제공하여 성공을 입증하세요.",
+        "url": "https://faranaiki.id/portfolio#step-3"
+      }
+    ]
+  }
+]

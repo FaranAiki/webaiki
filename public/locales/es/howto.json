@@ -1,0 +1,238 @@
+[
+  {
+    "name": "Cómo construir un compilador personalizado para lenguaje Alkyl",
+    "description": "Una guía paso a paso para escribir un analizador léxico, un analizador y un generador de código para el lenguaje de programación Alkyl.",
+    "totalTime": "PT4H",
+    "tools": [
+      "C++ Compiler",
+      "Flex & Bison",
+      "LLVM"
+    ],
+    "steps": [
+      {
+        "name": "Análisis léxico",
+        "text": "Defina los tokens para Alkyl y genere el lexer usando Flex.",
+        "url": "https://faranaiki.id/project/alkyl#step-1"
+      },
+      {
+        "name": "Análisis de sintaxis",
+        "text": "Cree las reglas gramaticales y construya el árbol de sintaxis abstracta (AST) usando Bison.",
+        "url": "https://faranaiki.id/project/alkyl#step-2"
+      },
+      {
+        "name": "Generación de código",
+        "text": "Atraviese el AST para emitir la Representación Intermedia (IR) LLVM.",
+        "url": "https://faranaiki.id/project/alkyl#step-3"
+      }
+    ]
+  },
+  {
+    "name": "Cómo arreglar el diseño alterado en Next.js",
+    "description": "Una guía paso a paso para eliminar mediciones DOM sincrónicas y corregir la alteración del diseño.",
+    "totalTime": "PT15M",
+    "tools": [
+      "Chrome DevTools",
+      "Next.js Environment"
+    ],
+    "steps": [
+      {
+        "name": "Identificar el cuello de botella",
+        "text": "Abra Chrome DevTools, vaya a la pestaña Rendimiento y registre la carga de la página para encontrar reflujos forzados.",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "Aplazar las mediciones de DOM",
+        "text": "Mueva las llamadas getBoundingClientRect() dentro de un bloque requestAnimationFrame o setTimeout.",
+        "url": "https://faranaiki.id/project/script#step-2"
+      }
+    ]
+  },
+  {
+    "name": "Cómo optimizar Core Web Vitals para carteras",
+    "description": "Mejore las puntuaciones LCP, CLS y TBT en Next.js 14 para lograr una puntuación perfecta de 100 Lighthouse.",
+    "totalTime": "PT1H",
+    "tools": [
+      "Lighthouse",
+      "Next.js 14"
+    ],
+    "steps": [
+      {
+        "name": "Optimizar imágenes",
+        "text": "Utilice el componente next/image de Next.js con prioridad y fetchPriority para las imágenes de la mitad superior de la página.",
+        "url": "https://faranaiki.id/project#step-1"
+      },
+      {
+        "name": "Reducir los TBT",
+        "text": "Posponga scripts de terceros no críticos y use useTransition de React para actualizaciones intensas de la interfaz de usuario.",
+        "url": "https://faranaiki.id/project#step-2"
+      }
+    ]
+  },
+  {
+    "name": "Cómo ganar el concurso de matemáticas de ONMIPA",
+    "description": "Estrategias de estudio y técnicas de resolución de problemas para la olimpiada nacional de matemáticas de Indonesia (ONMIPA-PT).",
+    "totalTime": "P6M",
+    "tools": [
+      "Calculus Textbooks",
+      "Past Papers",
+      "Study Group"
+    ],
+    "steps": [
+      {
+        "name": "Domina los fundamentos",
+        "text": "Asegure una sólida comprensión del análisis real, el álgebra lineal y las variables complejas.",
+        "url": "https://faranaiki.id/award#step-1"
+      },
+      {
+        "name": "Resolver trabajos anteriores",
+        "text": "Practique con trabajos anteriores de ONMIPA de años anteriores en condiciones cronometradas.",
+        "url": "https://faranaiki.id/award#step-2"
+      }
+    ]
+  },
+  {
+    "name": "Cómo crear una paleta de comandos personalizada en React",
+    "description": "Cree una paleta de comandos accesible, rápida y controlada por teclado usando React y Framer Motion.",
+    "totalTime": "PT2H",
+    "tools": [
+      "React",
+      "Framer Motion",
+      "Lucide Icons"
+    ],
+    "steps": [
+      {
+        "name": "Gestión del Estado",
+        "text": "Utilice una tienda global (Zustand o Context) para gestionar el estado de apertura/cierre de la paleta.",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "Oyentes de teclado",
+        "text": "Adjunte un detector de eventos para Ctrl+K o Cmd+K para activar la paleta.",
+        "url": "https://faranaiki.id/project/script#step-2"
+      },
+      {
+        "name": "Búsqueda difusa",
+        "text": "Implemente un algoritmo de búsqueda difusa para filtrar comandos según la entrada del usuario.",
+        "url": "https://faranaiki.id/project/script#step-3"
+      }
+    ]
+  },
+  {
+    "name": "Cómo implementar i18n en el enrutador de aplicaciones Next.js",
+    "description": "Guía paso a paso para admitir múltiples idiomas localizados de forma dinámica en Next.js App Router.",
+    "totalTime": "PT3H",
+    "tools": [
+      "Next.js 14",
+      "JSON Dictionary",
+      "Middleware"
+    ],
+    "steps": [
+      {
+        "name": "Crear software intermedio",
+        "text": "Utilice Next.js Middleware para detectar el idioma preferido del usuario y redirigirlo a la ruta local correcta.",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "Cargar diccionarios",
+        "text": "Cree funciones asíncronas para buscar el diccionario JSON correcto según el parámetro de URL.",
+        "url": "https://faranaiki.id/project/script#step-2"
+      }
+    ]
+  },
+  {
+    "name": "Cómo crear un gráfico de mapa de sitio 3D interactivo",
+    "description": "Visualice la estructura de enlaces internos de un sitio web utilizando reaccionar-force-graph-3d.",
+    "totalTime": "PT2H",
+    "tools": [
+      "react-force-graph-3d",
+      "Three.js",
+      "Next.js"
+    ],
+    "steps": [
+      {
+        "name": "Mapear los nodos",
+        "text": "Extraiga todos los enlaces y páginas internos para crear un conjunto de datos de enlaces de nodos.",
+        "url": "https://faranaiki.id/sitemap-graph#step-1"
+      },
+      {
+        "name": "Representar el gráfico",
+        "text": "Pase el conjunto de datos a ForceGraph3D y personalice los colores y tamaños de los nodos.",
+        "url": "https://faranaiki.id/sitemap-graph#step-2"
+      }
+    ]
+  },
+  {
+    "name": "Cómo enviar URL a Bing IndexNow",
+    "description": "Notifique automáticamente a Bing y otros motores de búsqueda cuando su contenido cambie utilizando la API IndexNow.",
+    "totalTime": "PT30M",
+    "tools": [
+      "Node.js",
+      "IndexNow API Key"
+    ],
+    "steps": [
+      {
+        "name": "Generar clave API",
+        "text": "Genere una clave hexadecimal de 32 caracteres y alójela en la raíz de su dominio como un archivo txt.",
+        "url": "https://faranaiki.id/project/script#step-1"
+      },
+      {
+        "name": "Enviar solicitud POST",
+        "text": "Utilice fetch para enviar una carga útil JSON que contenga todas sus URL actualizadas al punto final de IndexNow.",
+        "url": "https://faranaiki.id/project/script#step-2"
+      }
+    ]
+  },
+  {
+    "name": "Cómo producir ritmos Lo-Fi con LMMS",
+    "description": "Una guía para principiantes sobre cómo componer música hip hop relajante de baja fidelidad utilizando DAW de código abierto.",
+    "totalTime": "PT3H",
+    "tools": [
+      "LMMS",
+      "Vinyl Crackle Samples",
+      "Electric Piano VST"
+    ],
+    "steps": [
+      {
+        "name": "Establecer el tempo",
+        "text": "Establece el BPM de tu proyecto entre 70 y 90.",
+        "url": "https://faranaiki.id/music#step-1"
+      },
+      {
+        "name": "Crea los acordes",
+        "text": "Utilice acordes de séptima o novena de jazz en un instrumento de piano eléctrico con una ligera desafinación.",
+        "url": "https://faranaiki.id/music#step-2"
+      },
+      {
+        "name": "Agrega los tambores",
+        "text": "Programe una pausa de batería polvorienta con una sensación de swing ligeramente no cuantificada.",
+        "url": "https://faranaiki.id/music#step-3"
+      }
+    ]
+  },
+  {
+    "name": "Cómo escribir un estudio de caso técnico",
+    "description": "Documente sus proyectos de ingeniería de software de forma eficaz para reclutadores y desarrolladores.",
+    "totalTime": "PT2H",
+    "tools": [
+      "Markdown",
+      "Mermaid.js"
+    ],
+    "steps": [
+      {
+        "name": "Definir el problema",
+        "text": "Empiece por explicar claramente el desafío técnico o la necesidad empresarial.",
+        "url": "https://faranaiki.id/portfolio#step-1"
+      },
+      {
+        "name": "Explica la solución",
+        "text": "Detalla la arquitectura, las tecnologías utilizadas y la implementación paso a paso.",
+        "url": "https://faranaiki.id/portfolio#step-2"
+      },
+      {
+        "name": "Resalte el impacto",
+        "text": "Proporcione métricas, como mejoras de rendimiento o crecimiento de usuarios, para demostrar el éxito.",
+        "url": "https://faranaiki.id/portfolio#step-3"
+      }
+    ]
+  }
+]

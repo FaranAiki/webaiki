@@ -337,3 +337,45 @@ export function getFaqSchema(faqs: { question: string; answer: string }[]) {
     }))
   };
 }
+
+export interface HowToStepData {
+  name: string;
+  text: string;
+  url?: string;
+}
+
+export interface HowToData {
+  name: string;
+  description: string;
+  totalTime?: string;
+  tools?: string[];
+  supplies?: string[];
+  steps: HowToStepData[];
+}
+
+export function getHowToSchema(howto: HowToData) {
+  return {
+    "@type": "HowTo",
+    "name": howto.name,
+    "description": howto.description,
+    ...(howto.totalTime && { "totalTime": howto.totalTime }),
+    ...(howto.tools && howto.tools.length > 0 && {
+      "tool": howto.tools.map(t => ({
+        "@type": "HowToTool",
+        "name": t
+      }))
+    }),
+    ...(howto.supplies && howto.supplies.length > 0 && {
+      "supply": howto.supplies.map(s => ({
+        "@type": "HowToSupply",
+        "name": s
+      }))
+    }),
+    "step": howto.steps.map(step => ({
+      "@type": "HowToStep",
+      "name": step.name,
+      "text": step.text,
+      ...(step.url && { "url": step.url })
+    }))
+  };
+}
