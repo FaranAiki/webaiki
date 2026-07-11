@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useTransition } from 'react';
 import { ChevronRight, Link as LinkIcon, XCircle, LayoutPanelLeft, Milestone, LayoutGrid } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import FadeInSection from '@/components/shared/FadeInSection';
@@ -10,6 +10,10 @@ import { formatCJK } from '@/lib/utils';
 import { m as motion } from 'framer-motion';
 import { LayoutSwitcher } from '../shared/LayoutSwitcher';
 import BookmarkButton from '@/components/interactive/BookmarkButton';
+import dynamic from 'next/dynamic';
+
+const DynamicLoader = dynamic(() => import('lucide-react').then(mod => mod.Loader2), { ssr: false });
+
 
 // Define typescript data
 export type CollectionsData = Record<string, Record<string, Record<string, { path: string; point: number }>>>;
@@ -45,6 +49,7 @@ export default function InteractiveCollections( {
   bookmarkedItemIds = [],
 }: InteractiveCollectionsProps ) {
   const [currentLayout, setCurrentLayout] = useState<CollectionLayoutType>('original');
+  const [isPending, startTransition] = useTransition();
   const [activeHeadingOne, setActiveHeadingOne] = useState<string | null>(null);
   const [activeHeadingTwo, setActiveHeadingTwo] = useState<string | null>(null);
   const { resolvedTheme } = useTheme();
@@ -107,6 +112,12 @@ export default function InteractiveCollections( {
 
   const titleColor = isDark ? 'text-white' : 'text-black';
 
+  const handleLayoutChange = (layout: CollectionLayoutType) => {
+    startTransition(() => {
+      setCurrentLayout(layout);
+    });
+  };
+
   return (
     <div className="w-full h-full">
       {/* Presentation Mode */}
@@ -168,11 +179,11 @@ export default function InteractiveCollections( {
 
       {/* Normal Mode */}
       {!isPresentationMode && (
-        <main className={`block min-h-screen text-foreground p-4 sm:p-8 pt-8`}>
+        <main className={`block min-h-screen text-foreground p-4 sm:p-8 pt-8 relative`}>
           {hasContent && (
               <LayoutSwitcher
                   currentLayout={currentLayout}
-                  setCurrentLayout={setCurrentLayout}
+                  setCurrentLayout={handleLayoutChange}
                   canChange={true}
                   options={[
                       { id: 'original', icon: <LayoutPanelLeft size={18} />, label: original_text },
@@ -182,7 +193,13 @@ export default function InteractiveCollections( {
               />
           )}
 
-          <div className="container mx-auto max-w-6xl">
+          {isPending && (
+            <div className="absolute inset-0 z-50 flex items-start justify-center pt-32 bg-background/20 backdrop-blur-[2px] rounded-xl">
+              <DynamicLoader className="w-12 h-12 text-theme-500 animate-spin" />
+            </div>
+          )}
+
+          <div className={`container mx-auto max-w-6xl transition-opacity duration-300 ${isPending ? 'opacity-40' : 'opacity-100'}`}>
               {currentLayout === 'original' && (
                   <div className="flex flex-col items-center gap-6 max-w-xl mx-auto">
                       {Object.entries(data).map(([headingOne, courses]) => (

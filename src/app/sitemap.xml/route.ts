@@ -1,4 +1,5 @@
 import { db } from '@/lib/db';
+import { HREFLANG_MAP } from '@/lib/seo';
 
 const SITE_URL = 'https://faranaiki.id';
 const locales = ['en', 'id', 'zh', 'jp', 'ru', 'fr', 'ar', 'es', 'ko', 'de', 'nl', 'ha', 'he', 'el', 'hi', 'pt', 'bn', 'vi'];
@@ -24,8 +25,10 @@ export async function GET() {
       xml += `    <priority>${route === '' ? 1 : 0.8}</priority>\n`;
       
       for (const altLocale of locales) {
-        xml += `    <xhtml:link rel="alternate" hreflang="${altLocale}" href="${SITE_URL}/${altLocale}${route}" />\n`;
+        const hreflang = HREFLANG_MAP[altLocale] || altLocale;
+        xml += `    <xhtml:link rel="alternate" hreflang="${hreflang}" href="${SITE_URL}/${altLocale}${route}" />\n`;
       }
+      xml += `    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE_URL}/id${route}" />\n`;
       xml += `  </url>\n`;
     }
   }
@@ -45,8 +48,10 @@ export async function GET() {
         xml += `    <priority>0.6</priority>\n`;
         
         for (const altLocale of locales) {
-          xml += `    <xhtml:link rel="alternate" hreflang="${altLocale}" href="${SITE_URL}/${altLocale}/news/${item.id}" />\n`;
+          const hreflang = HREFLANG_MAP[altLocale] || altLocale;
+          xml += `    <xhtml:link rel="alternate" hreflang="${hreflang}" href="${SITE_URL}/${altLocale}/news/${item.id}" />\n`;
         }
+        xml += `    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE_URL}/id/news/${item.id}" />\n`;
         xml += `  </url>\n`;
       }
     }
