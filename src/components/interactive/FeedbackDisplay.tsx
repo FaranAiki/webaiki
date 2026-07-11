@@ -6,6 +6,7 @@ import { MessageSquare, Send, User, Camera, Trash2, AlertCircle, Search } from '
 import { getFeedbacks, submitFeedback, uploadFile, deleteFeedback } from '@/app/actions';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useClientAuth } from '@/components/layout/ClientAuthWrapper';
 import Link from 'next/link';
 import { usePresentation } from '../providers/PresentationContext';
 import FadeInSection from '../shared/FadeInSection';
@@ -29,10 +30,11 @@ interface FeedbackItem {
 interface FeedbackDisplayProps {
   dict: import('@/components/layout/Translator').TranslationDict;
   lang: string;
-  currentUserId: string | null;
 }
 
-export default function FeedbackDisplay({ dict, lang, currentUserId }: FeedbackDisplayProps) {
+export default function FeedbackDisplay({ dict, lang }: FeedbackDisplayProps) {
+  const { user } = useClientAuth();
+  const currentUserId = user?.id || null;
   const router = useRouter();
   const searchParams = useSearchParams();
   const initialFilter = searchParams.get('filter') === 'mine' ? 'mine' : 'all';

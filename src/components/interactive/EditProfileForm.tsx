@@ -8,28 +8,22 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { getErrorMessage } from '@/lib/errors';
 import { MessageSquare, Briefcase } from 'lucide-react';
+import { useClientAuth } from '@/components/layout/ClientAuthWrapper';
 
 interface EditProfileFormProps {
   dict: import('@/components/layout/Translator').TranslationDict;
-  user: {
-    email?: string;
-    user_metadata?: {
-      full_name?: string;
-      username?: string;
-      avatar_url?: string;
-    };
-  };
 }
 
-export default function EditProfileForm({ dict, user }: EditProfileFormProps) {
+export default function EditProfileForm({ dict }: EditProfileFormProps) {
+  const { user } = useClientAuth();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 
-  const [name, setName] = useState(user.user_metadata?.full_name || '');
-  const [username, setUsername] = useState(user.user_metadata?.username || '');
-  const [avatarUrl, setAvatarUrl] = useState(user.user_metadata?.avatar_url || '');
+  const [name, setName] = useState(user?.user_metadata?.full_name || '');
+  const [username, setUsername] = useState(user?.user_metadata?.username || '');
+  const [avatarUrl, setAvatarUrl] = useState(user?.user_metadata?.avatar_url || '');
   const [uploading, setUploading] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
 
@@ -135,7 +129,7 @@ export default function EditProfileForm({ dict, user }: EditProfileFormProps) {
           {dict.Edit_Profile}
         </h1>
         <p className="text-theme-muted font-medium ml-1">
-          {user.email}
+          {user?.email}
         </p>
       </motion.div>
 

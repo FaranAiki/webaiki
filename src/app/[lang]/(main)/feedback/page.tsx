@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { getDictionary } from '@/components/layout/Translator';
 import FeedbackDisplay from '@/components/interactive/FeedbackDisplay';
 import { getBaseMetadata, getLanguageAlternates } from '@/lib/seo';
-import { createClient } from '@/utils/supabase/server';
+import ClientAuthWrapper from '@/components/layout/ClientAuthWrapper';
+import { Suspense } from 'react';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -23,16 +24,15 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
 export default async function FeedbackPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const [dict, userResult] = await Promise.all([
-    getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','feedback']),
-    createClient().then(supabase => supabase.auth.getUser())
-  ]);
-
-  const user = userResult.data.user;
+  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','feedback']);
 
   return (
-    <main className="container mx-auto px-4 md:px-8 pt-32 pb-16 min-h-screen">
-      <FeedbackDisplay dict={dict} lang={lang} currentUserId={user?.id || null} />
-    </main>
+    <ClientAuthWrapper>
+      <main className="container mx-auto px-4 md:px-8 pt-32 pb-16 min-h-screen">
+        <Suspense fallback={<div>Loading feedback...</div>}>
+          <FeedbackDisplay dict={dict} lang={lang} />
+        </Suspense>
+      </main>
+    </ClientAuthWrapper>
   );
 }

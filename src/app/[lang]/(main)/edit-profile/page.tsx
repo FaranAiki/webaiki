@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { getDictionary } from '@/components/layout/Translator';
 import EditProfileForm from '@/components/interactive/EditProfileForm';
 import { getBaseMetadata, getLanguageAlternates } from '@/lib/seo';
-import { createClient } from '@/utils/supabase/server';
-import { redirect } from 'next/navigation';
+import ClientAuthWrapper from '@/components/layout/ClientAuthWrapper';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -26,16 +25,11 @@ export default async function EditProfilePage({ params }: { params: Promise<{ la
   const { lang } = await params;
   const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','edit-profile']);
 
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-
-  if (!user) {
-    redirect(`/${lang}/login?next=/${lang}/edit-profile`);
-  }
-
   return (
-    <main className="container mx-auto px-4 md:px-8 pt-32 pb-16 min-h-screen">
-      <EditProfileForm dict={dict} user={user} />
-    </main>
+    <ClientAuthWrapper requireAuth fallback={<div className="container mx-auto px-4 md:px-8 pt-32 pb-16 min-h-screen">Loading...</div>}>
+      <main className="container mx-auto px-4 md:px-8 pt-32 pb-16 min-h-screen">
+        <EditProfileForm dict={dict} />
+      </main>
+    </ClientAuthWrapper>
   );
 }
