@@ -101,8 +101,7 @@ const nextConfig: NextConfig = {
   },
 
     webpack: (
-      config: WebpackConfiguration,
-      { dev, isServer }: { dev: boolean; isServer: boolean }
+      config: WebpackConfiguration
     ) => {
       // Remove custom minimizer mutation which corrupts Next.js SWC minifier
       return config;

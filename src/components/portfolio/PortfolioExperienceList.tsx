@@ -68,7 +68,7 @@ export default function PortfolioExperienceList({
   awardExperiences,
   labels
 }: PortfolioExperienceListProps) {
-  const { portfolioFilter, setPortfolioFilter, isAtsMode } = useSettings();
+  const { portfolioFilter, isAtsMode } = useSettings();
 
   const [removedKeys, setRemovedKeys] = useState<string[]>([]);
 

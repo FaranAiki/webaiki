@@ -4,9 +4,6 @@ import { getDictionary } from '@/components/layout/Translator';
 import type { Experience, Job } from '@/components/portfolio/ExperienceDisplayer';
 import type { CertificateData } from '@/components/portfolio/CertificatesContext';
 import type { CollectionsData } from '@/components/portfolio/InteractiveCollections';
-import type { SocialLink } from '@/components/portfolio/SocialDisplay';
-import { Github, Linkedin, Instagram, Twitter, Youtube, Share2 } from 'lucide-react';
-import Image from 'next/image';
 import { redirect } from 'next/navigation';
 
 import dynamic from 'next/dynamic';
@@ -14,8 +11,6 @@ import dynamic from 'next/dynamic';
 const ExperiencesClient = dynamic(() => import('@/components/portfolio/ExperienceServerDisplayer'));
 const CertificatesDisplay = dynamic(() => import('@/components/portfolio/CertificatesDisplay'));
 const InteractiveCollections = dynamic(() => import('@/components/portfolio/InteractiveCollections'));
-const FAQ = dynamic(() => import('@/components/portfolio/FAQ'));
-const SocialDisplay = dynamic(() => import('@/components/portfolio/SocialDisplay'));
 
 import { getLanguageAlternates, getBaseMetadata, getPersonSchema, getBreadcrumbSchema, getFaqSchema, SITE_URL } from '@/lib/seo';
 import PageEntrance from "@/components/shared/PageEntrance";
@@ -133,50 +128,6 @@ export default async function BookmarksPage({params }: { params: Promise<{ lang:
   const importantCollege = filterImportantCollections(collegeData);
   const importantLiterature = filterImportantCollections(literatureData);
 
-  const importantSocialLinks: SocialLink[] = [
-    {
-      name: "GitHub",
-      username: "FaranAiki",
-      url: "https://github.com/FaranAiki",
-      icon: <Github size={32} />,
-      color: "hover:border-theme-border"
-    },
-    {
-      name: "LinkedIn",
-      username: "Muhammad Faran Aiki",
-      url: "https://www.linkedin.com/in/faranaiki/",
-      icon: <Linkedin size={32} className="text-theme-500" />,
-      color: "hover:border-theme-500"
-    },
-    {
-      name: "Instagram",
-      username: "@mfaranaiki",
-      url: "https://www.instagram.com/mfaranaiki/",
-      icon: <Instagram size={32} className="text-pink-500" />,
-      color: "hover:border-pink-500"
-    },
-    {
-      name: "Twitter / X",
-      username: "@FaranAiki",
-      url: "https://x.com/FaranAiki",
-      icon: <Twitter size={32} className="text-sky-500" />,
-      color: "hover:border-sky-500"
-    },
-    {
-      name: "Link Tree",
-      username: "Faran Aiki",
-      url: "https://linktr.ee/FaranAiki",
-      icon: <Image alt="LinkTree Muhammad Faran Aiki Social Link" width="32" height="32" src="/images/social/linktree.webp" className="brightness-0 invert-[0.5] sepia-[1] hue-rotate-[70deg] saturate-[3]" />,
-      color: "hover:border-green-200"
-    },
-    {
-      name: "YouTube",
-      username: "Muhammad Faran Aiki",
-      url: "https://www.youtube.com/@FaranAiki",
-      icon: <Youtube size={32} className="text-red-600" />,
-      color: "hover:border-red-600"
-    },
-  ];
 
   const faranFaqs = [
     { question: dict.FAQ_Faran_Q1, answer: dict.FAQ_Faran_A1 },

@@ -126,7 +126,7 @@ export default function PortfolioSkills({ skills: initialSkills, title }: Portfo
           </h2>
         </div>
         <div className="flex flex-col gap-2 text-xs text-[var(--text-muted)] mt-1.5">
-          {skills.map((cat, idx) => (
+          {skills.map((cat) => (
             <div key={cat.category} className="leading-relaxed">
               <div className="font-bold text-foreground">{cat.category}:</div>
               {cat.subcategories ? (

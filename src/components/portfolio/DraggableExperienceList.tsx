@@ -4,7 +4,6 @@ import React from 'react';
 import { Reorder, useDragControls } from 'framer-motion';
 import { GripVertical } from 'lucide-react';
 import PortfolioSummaryItem from './PortfolioSummaryItem';
-import { useSettings } from '../providers/SettingsContext';
 
 interface Job {
   title: string;

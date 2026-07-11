@@ -194,8 +194,9 @@ export default function InteractiveCollections( {
           )}
 
           {isPending && (
-            <div className="absolute inset-0 z-50 flex items-start justify-center pt-32 bg-background/20 backdrop-blur-[2px] rounded-xl">
+            <div className="absolute inset-0 z-50 flex flex-col items-center justify-start pt-32 bg-background/20 backdrop-blur-[2px] rounded-xl">
               <DynamicLoader className="w-12 h-12 text-theme-500 animate-spin" />
+              <span className="mt-4 font-bold text-lg text-theme-600 animate-pulse">{dict.Loading || 'Loading...'}</span>
             </div>
           )}
 
