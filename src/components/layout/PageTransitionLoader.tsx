@@ -184,47 +184,49 @@ export default function PageTransitionLoader({ label }: { label: string }) {
             {/* Ambient Background Glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-theme-500/20 blur-3xl rounded-full pointer-events-none" />
 
-            {/* Unified Logo */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center animate-pulse pointer-events-none z-10 md:top-[calc(50%-14px)]">
-               <LogoIcon 
-                 className="w-12 h-12 md:w-7 md:h-7 opacity-80 md:opacity-70 dark:opacity-100 md:dark:opacity-90 drop-shadow-2xl md:drop-shadow-none"
-               />
-            </div>
-
-            {/* Desktop View - Circular */}
-            <div className="hidden md:flex relative items-center justify-center w-16 h-16">
-
-              {/* Progress SVG */}
-              <svg className="w-full h-full transform -rotate-90 overflow-visible">
-                <defs>
-                  <linearGradient id="loadingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="var(--gacor-1)" />
-                    <stop offset="50%" stopColor="var(--gacor-2)" />
-                    <stop offset="100%" stopColor="var(--gacor-3)" />
-                  </linearGradient>
-                </defs>
-                <circle
-                  cx="32"
-                  cy="32"
-                  r={radius}
-                  className="stroke-theme-muted/10 dark:stroke-theme-muted/20"
-                  strokeWidth="3.5"
-                  fill="none"
+            {/* Loader Header: Unified Logo & Desktop Circular SVG */}
+            <div className="relative flex items-center justify-center w-12 h-12 md:w-16 md:h-16">
+              {/* Unified Logo */}
+              <div className="animate-pulse z-10 flex items-center justify-center">
+                <LogoIcon 
+                  className="w-12 h-12 md:w-7 md:h-7 opacity-80 md:opacity-70 dark:opacity-100 md:dark:opacity-90 drop-shadow-2xl md:drop-shadow-none"
                 />
-                <circle
-                  cx="32"
-                  cy="32"
-                  r={radius}
-                  className="transition-all duration-300 ease-out"
-                  strokeWidth="3.5"
-                  fill="none"
-                  stroke="url(#loadingGradient)"
-                  strokeDasharray={circumference}
-                  strokeDashoffset={strokeDashoffset}
-                  strokeLinecap="round"
-                  style={{ filter: 'drop-shadow(0 0 6px var(--accent-shadow))' }}
-                />
-              </svg>
+              </div>
+
+              {/* Desktop View - Circular */}
+              <div className="hidden md:flex absolute inset-0 items-center justify-center w-full h-full">
+                {/* Progress SVG */}
+                <svg className="w-full h-full transform -rotate-90 overflow-visible">
+                  <defs>
+                    <linearGradient id="loadingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="var(--gacor-1)" />
+                      <stop offset="50%" stopColor="var(--gacor-2)" />
+                      <stop offset="100%" stopColor="var(--gacor-3)" />
+                    </linearGradient>
+                  </defs>
+                  <circle
+                    cx="32"
+                    cy="32"
+                    r={radius}
+                    className="stroke-theme-muted/10 dark:stroke-theme-muted/20"
+                    strokeWidth="3.5"
+                    fill="none"
+                  />
+                  <circle
+                    cx="32"
+                    cy="32"
+                    r={radius}
+                    className="transition-all duration-300 ease-out"
+                    strokeWidth="3.5"
+                    fill="none"
+                    stroke="url(#loadingGradient)"
+                    strokeDasharray={circumference}
+                    strokeDashoffset={strokeDashoffset}
+                    strokeLinecap="round"
+                    style={{ filter: 'drop-shadow(0 0 6px var(--accent-shadow))' }}
+                  />
+                </svg>
+              </div>
             </div>
 
             {/* Mobile View - Linear */}
