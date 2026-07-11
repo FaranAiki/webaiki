@@ -76,7 +76,7 @@ export function ExperienceTimelineServer({
                                                         {isPdf ? (
                                                             <PdfRenderer url={job.image[0]} />
                                                         ) : (
-                                                            <Image src={job.image[0]} alt={`${job.title} at ${job.company}`} fill sizes="(max-width: 768px) 400px, 250px" quality={60} priority={rowIdx === 0 && idx === 0} className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                                                            <Image src={job.image[0]} alt={`${job.title} at ${job.company}`} fill sizes="(max-width: 768px) 50vw, 250px" quality={60} priority={rowIdx === 0 && idx === 0} className="object-cover group-hover:scale-110 transition-transform duration-700" />
                                                         )}
                                                     </div>
                                                 )}
@@ -144,7 +144,7 @@ export function ExperienceTimelineServer({
                                                     {job.image[0].toLowerCase().endsWith('.pdf') ? (
                                                         <PdfRenderer url={job.image[0]} />
                                                     ) : (
-                                                        <Image src={job.image[0]} alt={`${job.title} at ${job.company}`} fill sizes="(max-width: 768px) 400px, 250px" quality={60} priority={rowIdx === 0 && idx === 0} className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                                                        <Image src={job.image[0]} alt={`${job.title} at ${job.company}`} fill sizes="(max-width: 768px) 50vw, 250px" quality={60} priority={rowIdx === 0 && idx === 0} className="object-cover group-hover:scale-110 transition-transform duration-700" />
                                                     )}
                                                 </div>
                                             )}
@@ -194,7 +194,7 @@ export function ExperienceTimelineServer({
                                         {job.image[0].toLowerCase().endsWith('.pdf') ? (
                                             <PdfRenderer url={job.image[0]} />
                                         ) : (
-                                            <Image src={job.image[0]} alt={`${job.title} at ${job.company}`} fill sizes="(max-width: 768px) 400px, 250px" quality={60} priority={idx === 0} className="object-cover" />
+                                            <Image src={job.image[0]} alt={`${job.title} at ${job.company}`} fill sizes="(max-width: 768px) 50vw, 250px" quality={60} priority={idx === 0} className="object-cover" />
                                         )}
                                     </div>
                                 )}
