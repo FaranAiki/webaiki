@@ -22,9 +22,9 @@ export const shimmer = (w: number, h: number) => {
 };
 
 export const toBase64 = (str: string) =>
-  typeof window === 'undefined'
-    ? Buffer.from(str).toString('base64')
-    : window.btoa(str);
+  typeof btoa !== 'undefined'
+    ? btoa(str)
+    : Buffer.from(str).toString('base64');
 
 /**
  * Adds hair spaces (\u200A) between CJK characters.

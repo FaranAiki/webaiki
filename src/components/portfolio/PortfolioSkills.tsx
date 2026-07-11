@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSettings } from '../providers/SettingsContext';
-import { Wrench, GripVertical, X } from 'lucide-react';
+import { Wrench, GripVertical, Trash2 } from 'lucide-react';
 import { SkillCategory } from '@/lib/data';
 import { Reorder, useDragControls } from 'framer-motion';
 
@@ -16,7 +16,7 @@ function DraggableSkillItem({ cat, idx, handleDeleteCategory, handleDeleteItem }
       dragControls={controls}
       className={`p-4 rounded-xl border border-theme-border bg-theme-surface/10 hover:border-theme-500/30 transition-all duration-300 relative group`}
     >
-      <div className="absolute right-2 top-2 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-2 z-10">
+      <div className="absolute right-2 top-2 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-2 z-10">
          <div 
            onPointerDown={(e) => controls.start(e)}
            className="cursor-grab active:cursor-grabbing flex items-center h-full px-1"
@@ -31,7 +31,7 @@ function DraggableSkillItem({ cat, idx, handleDeleteCategory, handleDeleteItem }
            className="text-theme-muted hover:text-red-500"
            aria-label={`Delete category ${cat.category}`}
          >
-           <X size={16} />
+           <Trash2 size={16} />
          </button>
       </div>
       
@@ -53,10 +53,10 @@ function DraggableSkillItem({ cat, idx, handleDeleteCategory, handleDeleteItem }
                     <span>{item}</span>
                     <button 
                       onClick={() => handleDeleteItem(idx, iIdx, sIdx)} 
-                      className="opacity-0 group-hover/item:opacity-100 hover:text-red-500 ml-1"
+                      className="opacity-100 md:opacity-0 group-hover/item:opacity-100 hover:text-red-500 ml-1"
                       aria-label={`Delete skill ${item}`}
                     >
-                      <X size={10} />
+                      <Trash2 size={12} />
                     </button>
                   </div>
                 ))}
@@ -74,10 +74,10 @@ function DraggableSkillItem({ cat, idx, handleDeleteCategory, handleDeleteItem }
               <span>{item}</span>
               <button 
                 onClick={() => handleDeleteItem(idx, iIdx)} 
-                className="opacity-0 group-hover/item:opacity-100 hover:text-red-500 ml-1"
+                className="opacity-100 md:opacity-0 group-hover/item:opacity-100 hover:text-red-500 ml-1"
                 aria-label={`Delete skill ${item}`}
               >
-                <X size={10} />
+                <Trash2 size={12} />
               </button>
             </div>
           ))}
@@ -102,11 +102,12 @@ export default function PortfolioSkills({ skills: initialSkills, title }: Portfo
   }, [initialSkills]);
 
   const handleDeleteItem = (catIdx: number, itemIdx: number, subIdx?: number) => {
-    const newSkills = [...skills];
+    // Create a deep copy to ensure React and Framer Motion detect the change
+    const newSkills = JSON.parse(JSON.stringify(skills));
     if (subIdx !== undefined && newSkills[catIdx].subcategories) {
-      newSkills[catIdx].subcategories![subIdx].items.splice(itemIdx, 1);
+      newSkills[catIdx].subcategories[subIdx].items.splice(itemIdx, 1);
     } else if (newSkills[catIdx].items) {
-      newSkills[catIdx].items!.splice(itemIdx, 1);
+      newSkills[catIdx].items.splice(itemIdx, 1);
     }
     setSkills(newSkills);
   };

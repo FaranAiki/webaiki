@@ -81,7 +81,7 @@ export async function proxy(request: NextRequest) {
   // Memanggil Supabase API di setiap klik akan membuat transisi halaman lemot (+300ms).
   // (Note: Currently disabled because it broke auth state sync for client navigations)
   
-  const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
+  const nonce = btoa(crypto.randomUUID());
   request.headers.set('x-nonce', nonce);
 
   let response = NextResponse.next({ request });

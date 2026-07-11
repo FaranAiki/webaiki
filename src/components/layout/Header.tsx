@@ -11,6 +11,7 @@ import dynamic from 'next/dynamic';
 import { useSettings } from '@/components/providers/SettingsContext';
 import type { User as SupabaseUser } from '@supabase/supabase-js';
 import { m as motion, AnimatePresence } from 'framer-motion';
+import { createClient } from '@/utils/supabase/client';
 
 const SettingsPopup = dynamic(() => import('@/components/providers/SettingsPopup'), { ssr: false });
 const CommandPalette = dynamic(() => import('@/components/interactive/CommandPalette').then(mod => mod.CommandPalette), { ssr: false });
@@ -246,12 +247,10 @@ export default function Header(props: HeaderProps) {
             let mounted = true;
             const fetchUser = async () => {
                 try {
-                    const res = await fetch('/api/auth/user', { cache: 'no-store' });
-                    if (res.ok) {
-                        const data = await res.json();
-                        if (mounted) {
-                            setUser(data.user);
-                        }
+                    const supabase = createClient();
+                    const { data: { user }, error } = await supabase.auth.getUser();
+                    if (mounted) {
+                        setUser(user || null);
                     }
                 } catch (e) {
                     console.error("Failed to fetch user auth state", e);
@@ -1042,13 +1041,13 @@ export default function Header(props: HeaderProps) {
 
                                     {/* Mobile Auth */}
                                     <div className="mt-6">
-                                        {props.user ? (
+                                        {user ? (
                                             <div className="flex flex-col space-y-4">
                                                 <div className="flex items-center space-x-3 p-3 rounded-xl bg-theme-surface-strong/30 border border-theme-border">
                                                     <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-theme-border shadow-md flex-shrink-0">
                                                         <Image
-                                                            src={props.user.user_metadata?.avatar_url || '/images/no_photo_profile.webp'}
-                                                            alt={`${props.user.user_metadata?.full_name || props.user.email || 'User'} - Faran Aiki Portfolio Profile`}
+                                                            src={user.user_metadata?.avatar_url || '/images/no_photo_profile.webp'}
+                                                            alt={`${user.user_metadata?.full_name || user.email || 'User'} - Faran Aiki Portfolio Profile`}
                                                             fill
                                                             sizes="48px"
                                                             className="object-cover"
@@ -1056,10 +1055,10 @@ export default function Header(props: HeaderProps) {
                                                     </div>
                                                     <div className="flex flex-col overflow-hidden">
                                                         <span className="font-bold text-sm truncate">
-                                                            {props.user.user_metadata?.full_name || props.user.user_metadata?.username || 'User'}
+                                                            {user.user_metadata?.full_name || user.user_metadata?.username || 'User'}
                                                         </span>
                                                         <span className="text-xs text-theme-muted truncate">
-                                                            {props.user.email}
+                                                           {user.email}
                                                         </span>
                                                     </div>
                                                 </div>
@@ -1091,7 +1090,7 @@ export default function Header(props: HeaderProps) {
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                                                         {settings_labels.My_Bookmarks || 'My Bookmarks'}
                                                     </button>
-                                                    {props.user?.email === 'faran.aiki.business@gmail.com' && (
+                                                    {user?.email === 'faran.aiki.business@gmail.com' && (
                                                     <button
                                                         onClick={() => {
                                                             setMobileMenuOpen(false);
