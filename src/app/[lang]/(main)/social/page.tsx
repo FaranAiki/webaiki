@@ -44,7 +44,7 @@ export default async function SocialPage({params }: { params: Promise<{ lang: st
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <div className="pt-8 md:pt-0">
-        <SocialDisplay dict={dict} />
+        <SocialDisplay dict={dict} hidePresentation={true} />
       </div>
     </main>
   );

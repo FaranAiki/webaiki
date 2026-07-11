@@ -58,13 +58,6 @@ const itemVariants: Variants = {
 
 export const defaultSocialLinks: SocialLink[] = [
     {
-      name: "dev.to",
-      username: "FaranAiki",
-      url: "https://dev.to/faranaiki",
-      icon: <MaskIcon src="/images/social/devto.svg" colorClass="bg-black dark:bg-white" />,
-      color: "hover:border-neutral-500"
-    },
-    {
       name: "GitHub",
       username: "FaranAiki",
       url: "https://github.com/FaranAiki",
@@ -93,6 +86,13 @@ export const defaultSocialLinks: SocialLink[] = [
       color: "hover:border-sky-500"
     },
     {
+      name: "dev.to",
+      username: "FaranAiki",
+      url: "https://dev.to/faranaiki",
+      icon: <MaskIcon src="/images/social/devto.svg" colorClass="bg-black dark:bg-white" />,
+      color: "hover:border-neutral-500"
+    },
+    {
       name: "Link Tree",
       username: "Faran Aiki",
       url: "https://linktr.ee/FaranAiki",
@@ -119,13 +119,6 @@ export const defaultSocialLinks: SocialLink[] = [
       url: "mailto:faran.aiki.business@gmail.com",
       icon: <Mail size={48} className="text-teal-400" />,
       color: "hover:border-teal-400"
-    },
-    {
-      name: "My Anime List",
-      username: "FaranAiki",
-      url: "https://myanimelist.net/profile/FaranAiki",
-      icon: <MaskIcon src="/images/social/myanimelist.webp" colorClass="bg-blue-600 dark:bg-blue-400" />,
-      color: "hover:border-blue-600"
     },
     {
       name: "Lichess",
@@ -175,6 +168,13 @@ export const defaultSocialLinks: SocialLink[] = [
       url: "https://t.me/FaranAiki",
       icon: <MaskIcon src="/images/social/telegram.webp" colorClass="bg-blue-500 dark:bg-blue-400" />,
       color: "hover:border-blue-300"
+    },
+    {
+      name: "My Anime List",
+      username: "FaranAiki",
+      url: "https://myanimelist.net/profile/FaranAiki",
+      icon: <MaskIcon src="/images/social/myanimelist.webp" colorClass="bg-blue-600 dark:bg-blue-400" />,
+      color: "hover:border-blue-600"
     },
   ];
 

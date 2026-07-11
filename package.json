@@ -1,6 +1,6 @@
 {
   "name": "webaiki",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "private": false,
   "scripts": {
     "optimize:assets": "sh scripts/compress_pdfs.sh public/documents && sh scripts/convert_to_webp.sh public",

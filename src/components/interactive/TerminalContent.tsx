@@ -279,7 +279,7 @@ To navigate to this page in your browser, type:
         {
           output: (
             <div className="space-y-1">
-              <p className="text-theme-500 font-bold">Muhammad Faran Aiki - Terminal Shell [v3.0.0]</p>
+              <p className="text-theme-500 font-bold">Muhammad Faran Aiki - Terminal Shell [v4.0.0]</p>
               <p className="text-theme-muted text-xs">
                 {lang === 'id' 
                   ? "Ketik 'help' untuk melihat daftar perintah. Tekan '`' (backtick) atau 'Ctrl + \\' untuk menutup." 
@@ -445,7 +445,7 @@ To navigate to this page in your browser, type:
               <p><span className="text-theme-500 font-bold">Host:</span> https://faranaiki.id</p>
               <p><span className="text-theme-500 font-bold">Kernel:</span> Next.js 15 / React 19</p>
               <p><span className="text-theme-500 font-bold">Uptime:</span> {uptimeStr}</p>
-              <p><span className="text-theme-500 font-bold">Shell:</span> webaiki-sh v3.0</p>
+              <p><span className="text-theme-500 font-bold">Shell:</span> webaiki-sh v4.0</p>
               <p><span className="text-theme-500 font-bold">Theme:</span> {terminalTheme}</p>
               <p><span className="text-theme-500 font-bold">Platform:</span> Web Browser Canvas</p>
             </div>

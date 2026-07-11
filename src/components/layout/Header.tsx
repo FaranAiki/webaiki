@@ -607,7 +607,7 @@ export default function Header(props: HeaderProps) {
                         </div>
 
                         {/* Presentation Mode Toggle */}
-                        {(normalizedPathname !== '/' && normalizedPathname !== '/portfolio' && normalizedPathname !== '/all' && normalizedPathname !== '/login' && normalizedPathname !== '/register' && normalizedPathname !== '/hire-me') && (
+                        {(normalizedPathname !== '/' && normalizedPathname !== '/portfolio' && normalizedPathname !== '/all' && normalizedPathname !== '/login' && normalizedPathname !== '/register' && normalizedPathname !== '/hire-me' && normalizedPathname !== '/social') && (
                             <div className="hidden md:flex items-center justify-center ml-4 self-center">
                                 <button
                                     onClick={togglePresentationMode}
