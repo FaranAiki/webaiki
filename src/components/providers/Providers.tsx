@@ -5,8 +5,7 @@ import React, { createContext, useContext, useState, useEffect, Suspense } from 
 import { PresentationProvider } from "./PresentationContext";
 import { SettingsProvider } from "./SettingsContext";
 import QueryProvider from "./QueryProvider";
-import dynamic from "next/dynamic";
-const SmoothScroll = dynamic(() => import("./SmoothScroll"), { ssr: false });
+import SmoothScroll from "./SmoothScroll";
 
 import { usePathname, useSearchParams } from "next/navigation";
 import { useAppStore } from "@/lib/store";

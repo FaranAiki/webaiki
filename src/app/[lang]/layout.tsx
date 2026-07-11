@@ -45,8 +45,8 @@ export default async function BaseLayout({
         }} />
 
         {/* LCP Preloads */}
-        <link rel="preload" as="image" href="/images/background/pattern_01.avif" type="image/avif" />
-        <link rel="preload" as="image" href="/images/background/pattern_02.avif" type="image/avif" />
+        <link rel="preload" as="image" href="/images/background/pattern_01.avif" type="image/avif" fetchPriority="high" />
+        <link rel="preload" as="image" href="/images/background/pattern_02.avif" type="image/avif" fetchPriority="high" />
       </head>
       <body className="font-serif antialiased">
         <Providers nonce={nonce} isBot={isBot}>

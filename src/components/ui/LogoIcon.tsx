@@ -20,6 +20,7 @@ export default function LogoIcon({ size = 256, className, ...props }: LogoIconPr
         width={typeof size === 'number' ? size : parseInt(size, 10)}
         height={typeof size === 'number' ? size : parseInt(size, 10)}
         unoptimized
+        priority
         className={className}
       />
     );

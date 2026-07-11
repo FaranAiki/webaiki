@@ -231,6 +231,12 @@ export default function Header(props: HeaderProps) {
         business_requests_label
         } = props;
         const pathname = usePathname();
+
+        useEffect(() => {
+            if (document.activeElement instanceof HTMLElement) {
+                document.activeElement.blur();
+            }
+        }, [pathname]);
         const router = useRouter();
         const [isSettingsOpen, setIsSettingsOpen] = useState(false);
         const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
@@ -696,6 +702,7 @@ export default function Header(props: HeaderProps) {
                                                                 <Link
                                                                     href={getLocalizedHref(subLink.href)}
                                                                     prefetch={false}
+                                                                    onClick={(e) => e.currentTarget.blur()}
                                                                     className={`flex items-center px-5 py-3 text-[14px] hover:bg-theme-surface-strong/50 transition-[colors,transform] ${isSubActive
                                                                             ? `nav-active-gacor font-bold`
                                                                             : `${textColor} hover-gacor font-medium`
@@ -973,7 +980,8 @@ export default function Header(props: HeaderProps) {
                                             return (
                                                 <li key={link.name}>
                                                     <button
-                                                        onClick={() => {
+                                                        onClick={(e) => {
+                                                            e.currentTarget.blur();
                                                             router.push(getLocalizedHref(link.subLinks![0].href));
                                                             setMobileMenuOpen(false);
                                                         }}
