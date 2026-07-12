@@ -199,23 +199,25 @@ async function SuspendedAllContent({ lang, dict }: { lang: string, dict: Record<
               </div>
           </div>
           <div className="pt-[12px] w-full px-4 md:px-0">
-            <ExperiencesClient
-              experiences={importantWork}
-              lang={lang}
-              layout="bento"
-              canChange={false}
-              click_to_close_text={dict.Click_To_Close}
-              modern_text={dict.Presentation_Modern}
-              cinematic_text={dict.Presentation_Cinematic}
-              editorial_text={dict.Presentation_Editorial}
-              visit_external_link_text={dict.Visit_External_Link}
-            hover_to_preview_text={dict.Hover_To_Preview}
-            hover_an_experience_text={dict.Hover_An_Experience}
-            visit_project_text={dict.Visit_Project}
-              isLoggedIn={isLoggedIn}
-              bookmarkedItemIds={experienceBookmarks}
-              priorityImages={true}
-            />
+            <Suspense fallback={<AllContentSkeleton />}>
+              <ExperiencesClient
+                experiences={importantWork}
+                lang={lang}
+                layout="bento"
+                canChange={false}
+                click_to_close_text={dict.Click_To_Close}
+                modern_text={dict.Presentation_Modern}
+                cinematic_text={dict.Presentation_Cinematic}
+                editorial_text={dict.Presentation_Editorial}
+                visit_external_link_text={dict.Visit_External_Link}
+                hover_to_preview_text={dict.Hover_To_Preview}
+                hover_an_experience_text={dict.Hover_An_Experience}
+                visit_project_text={dict.Visit_Project}
+                isLoggedIn={isLoggedIn}
+                bookmarkedItemIds={experienceBookmarks}
+                priorityImages={true}
+              />
+            </Suspense>
           </div>
         </section>
       )}
@@ -229,22 +231,24 @@ async function SuspendedAllContent({ lang, dict }: { lang: string, dict: Record<
               </div>
           </div>
           <div className="pt-[12px] w-full px-4 md:px-0">
-            <ExperiencesClient
-              experiences={importantProjects}
-              lang={lang}
-              layout="original"
-              canChange={false}
-              click_to_close_text={dict.Click_To_Close}
-              modern_text={dict.Presentation_Modern}
-              cinematic_text={dict.Presentation_Cinematic}
-              editorial_text={dict.Presentation_Editorial}
-              visit_external_link_text={dict.Visit_External_Link}
-            hover_to_preview_text={dict.Hover_To_Preview}
-            hover_an_experience_text={dict.Hover_An_Experience}
-            visit_project_text={dict.Visit_Project}
-              isLoggedIn={isLoggedIn}
-              bookmarkedItemIds={experienceBookmarks}
-            />
+            <Suspense fallback={<AllContentSkeleton />}>
+              <ExperiencesClient
+                experiences={importantProjects}
+                lang={lang}
+                layout="original"
+                canChange={false}
+                click_to_close_text={dict.Click_To_Close}
+                modern_text={dict.Presentation_Modern}
+                cinematic_text={dict.Presentation_Cinematic}
+                editorial_text={dict.Presentation_Editorial}
+                visit_external_link_text={dict.Visit_External_Link}
+                hover_to_preview_text={dict.Hover_To_Preview}
+                hover_an_experience_text={dict.Hover_An_Experience}
+                visit_project_text={dict.Visit_Project}
+                isLoggedIn={isLoggedIn}
+                bookmarkedItemIds={experienceBookmarks}
+              />
+            </Suspense>
           </div>
         </section>
       )}
@@ -260,22 +264,24 @@ async function SuspendedAllContent({ lang, dict }: { lang: string, dict: Record<
               </div>
               <div className="lg:contents">
                 <div className="pt-[12px] w-full px-4 md:px-0">
-                  <ExperiencesClient
-                    experiences={importantOrg}
-                    lang={lang}
-                    layout="timeline"
-                    canChange={false}
-                    click_to_close_text={dict.Click_To_Close}
-                    modern_text={dict.Presentation_Modern}
-                    cinematic_text={dict.Presentation_Cinematic}
-                    editorial_text={dict.Presentation_Editorial}
-                    visit_external_link_text={dict.Visit_External_Link}
-            hover_to_preview_text={dict.Hover_To_Preview}
-            hover_an_experience_text={dict.Hover_An_Experience}
-            visit_project_text={dict.Visit_Project}
-                    isLoggedIn={isLoggedIn}
-                    bookmarkedItemIds={experienceBookmarks}
-                  />
+                  <Suspense fallback={<AllContentSkeleton />}>
+                    <ExperiencesClient
+                      experiences={importantOrg}
+                      lang={lang}
+                      layout="timeline"
+                      canChange={false}
+                      click_to_close_text={dict.Click_To_Close}
+                      modern_text={dict.Presentation_Modern}
+                      cinematic_text={dict.Presentation_Cinematic}
+                      editorial_text={dict.Presentation_Editorial}
+                      visit_external_link_text={dict.Visit_External_Link}
+                      hover_to_preview_text={dict.Hover_To_Preview}
+                      hover_an_experience_text={dict.Hover_An_Experience}
+                      visit_project_text={dict.Visit_Project}
+                      isLoggedIn={isLoggedIn}
+                      bookmarkedItemIds={experienceBookmarks}
+                    />
+                  </Suspense>
                 </div>
               </div>
             </section>
@@ -289,22 +295,24 @@ async function SuspendedAllContent({ lang, dict }: { lang: string, dict: Record<
               </div>
               <div className="lg:contents">
                 <div className="pt-[12px] w-full px-4 md:px-0">
-                  <ExperiencesClient
-                    experiences={importantAwards}
-                    lang={lang}
-                    layout="timeline"
-                    canChange={false}
-                    click_to_close_text={dict.Click_To_Close}
-                    modern_text={dict.Presentation_Modern}
-                    cinematic_text={dict.Presentation_Cinematic}
-                    editorial_text={dict.Presentation_Editorial}
-                    visit_external_link_text={dict.Visit_External_Link}
-            hover_to_preview_text={dict.Hover_To_Preview}
-            hover_an_experience_text={dict.Hover_An_Experience}
-            visit_project_text={dict.Visit_Project}
-                    isLoggedIn={isLoggedIn}
-                    bookmarkedItemIds={experienceBookmarks}
-                  />
+                  <Suspense fallback={<AllContentSkeleton />}>
+                    <ExperiencesClient
+                      experiences={importantAwards}
+                      lang={lang}
+                      layout="timeline"
+                      canChange={false}
+                      click_to_close_text={dict.Click_To_Close}
+                      modern_text={dict.Presentation_Modern}
+                      cinematic_text={dict.Presentation_Cinematic}
+                      editorial_text={dict.Presentation_Editorial}
+                      visit_external_link_text={dict.Visit_External_Link}
+                      hover_to_preview_text={dict.Hover_To_Preview}
+                      hover_an_experience_text={dict.Hover_An_Experience}
+                      visit_project_text={dict.Visit_Project}
+                      isLoggedIn={isLoggedIn}
+                      bookmarkedItemIds={experienceBookmarks}
+                    />
+                  </Suspense>
                 </div>
               </div>
             </section>
@@ -321,7 +329,9 @@ async function SuspendedAllContent({ lang, dict }: { lang: string, dict: Record<
                   <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Certificate}</h2>
               </div>
           </div>
-          <CertificatesDisplay certificates={importantCerts} lang={lang} allTranslation={dict.All} click_to_close_text={dict.Click_To_Close} isLoggedIn={isLoggedIn} bookmarkedItemIds={certificateBookmarks} />
+          <Suspense fallback={<AllContentSkeleton />}>
+            <CertificatesDisplay certificates={importantCerts} lang={lang} allTranslation={dict.All} click_to_close_text={dict.Click_To_Close} isLoggedIn={isLoggedIn} bookmarkedItemIds={certificateBookmarks} />
+          </Suspense>
         </section>
       )}
 
@@ -331,12 +341,16 @@ async function SuspendedAllContent({ lang, dict }: { lang: string, dict: Record<
           <div className="flex items-center gap-3 border-b border-black/10 dark:border-white/10 pb-1.5">
               <Star size={18} className="text-theme-500" />
               <h2 className="text-lg md:text-xl font-bold tracking-tight text-black dark:text-white">{dict.Important_Highlights}</h2>
-          </div>            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          </div>          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {Object.keys(importantCollege).length > 0 && (
+                <Suspense fallback={<AllContentSkeleton />}>
                   <InteractiveCollections data={importantCollege} lang={lang} force_click={true} isLoggedIn={isLoggedIn} bookmarkedItemIds={collectionBookmarks} />
+                </Suspense>
               )}
               {Object.keys(importantLiterature).length > 0 && (
+                <Suspense fallback={<AllContentSkeleton />}>
                   <InteractiveCollections data={importantLiterature} lang={lang} force_click={true} isLoggedIn={isLoggedIn} bookmarkedItemIds={collectionBookmarks} />
+                </Suspense>
               )}
           </div>
         </section>
