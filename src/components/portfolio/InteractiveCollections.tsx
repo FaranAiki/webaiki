@@ -53,12 +53,7 @@ export default function InteractiveCollections( {
   const [activeHeadingOne, setActiveHeadingOne] = useState<string | null>(null);
   const [activeHeadingTwo, setActiveHeadingTwo] = useState<string | null>(null);
   const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-  const { isPresentationMode } = usePresentation();
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   // Flatten for presentation mode: Max 4 items per slide
   const allSlides = useMemo(() => {
@@ -97,20 +92,20 @@ export default function InteractiveCollections( {
     return slides;
   }, [data]);
 
-  const isDark = mounted && resolvedTheme === 'dark';
+  const { isPresentationMode } = usePresentation();
+  const isDark = resolvedTheme === 'dark';
   const hasContent = useMemo(() => {
     return Object.values(data).some(h1 =>
       Object.values(h1).some(h2 => Object.keys(h2).length > 0)
     );
   }, [data]);
 
-  const buttonBg = isDark ? 'bg-theme-surface-strong/70 hover:bg-theme-surface-strong' : 'bg-theme-surface hover:bg-theme-surface-strong shadow-sm border border-theme-border';
+  const buttonBg = 'bg-theme-surface hover:bg-theme-surface-strong shadow-sm border border-theme-border dark:bg-theme-surface-strong/70 dark:hover:bg-theme-surface-strong dark:shadow-none dark:border-none';
   const activeButtonBg = 'bg-theme-600/90 text-white shadow-lg';
-  const buttonText = isDark ? 'text-white' : 'text-black';
-  const dropdownBg = isDark ? 'bg-theme-surface-strong/45 border-theme-border' : 'bg-theme-surface border-theme-border shadow-xl';
+  const buttonText = 'text-black dark:text-white';
+  const dropdownBg = 'bg-theme-surface border-theme-border shadow-xl dark:bg-theme-surface-strong/45 dark:shadow-none';
   const linkText = 'text-theme-muted';
-
-  const titleColor = isDark ? 'text-white' : 'text-black';
+  const titleColor = 'text-black dark:text-white';
 
   const handleLayoutChange = (layout: CollectionLayoutType) => {
     startTransition(() => {

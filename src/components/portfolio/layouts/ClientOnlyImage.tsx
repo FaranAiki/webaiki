@@ -10,6 +10,8 @@ interface ClientOnlyImageProps extends ImageProps {
 export function ClientOnlyImage({ fallback, ...props }: ClientOnlyImageProps) {
     const [mounted, setMounted] = useState(false);
 
+    const [error, setError] = useState(false);
+
     useEffect(() => {
         setMounted(true);
     }, []);
@@ -18,6 +20,10 @@ export function ClientOnlyImage({ fallback, ...props }: ClientOnlyImageProps) {
         return <>{fallback || null}</>;
     }
 
+    if (error) {
+        return <>{fallback || <div className="absolute inset-0 bg-theme-surface-strong/50 animate-pulse" />}</>;
+    }
+
     const { alt, ...rest } = props;
-    return <Image alt={alt || ''} {...rest} />;
+    return <Image alt={alt || ''} {...rest} onError={() => setError(true)} />;
 }

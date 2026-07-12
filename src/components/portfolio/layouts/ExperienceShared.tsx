@@ -152,11 +152,13 @@ export const BentoCard = React.memo(({ job, spanClass, cardBorder, inactiveCardB
                     priority={priority}
                     fetchPriority={priority ? "high" : "auto"}
                     quality={70}
-                    sizes="(max-width: 768px) 90vw, (max-width: 1200px) 45vw, 400px"
+                    sizes="(max-width: 768px) 50vw, (max-width: 1200px) 45vw, 400px"
                     className={`object-cover transition-transform duration-700
                         ${isExpanded
-                            ? (isDark ? 'scale-110 blur-sm brightness-[0.2]' : 'scale-110 blur-md opacity-20')
-                            : 'group-hover:scale-105 opacity-60 group-hover:opacity-100'}`}
+                            ? 'scale-110 blur-md opacity-20 dark:blur-sm dark:brightness-[0.2] dark:opacity-100'
+                            : 'group-hover:scale-105 opacity-60 group-hover:opacity-100'
+                        }
+                    `}
                 />
             ) : (
                 <div className={`absolute inset-0 transition-opacity duration-700 ${isExpanded ? 'blur-sm brightness-[0.3]' : 'opacity-40 group-hover:opacity-80'}`}>
@@ -219,7 +221,7 @@ export const BentoCard = React.memo(({ job, spanClass, cardBorder, inactiveCardB
                         <div className="overflow-y-auto max-h-full pr-2 custom-scrollbar" data-lenis-prevent>
                             <p className="text-theme-500 text-xs font-bold mb-2">{job.date}</p>
                             <h3 className="text-xl font-black mb-1 nav-active-gacor">{job.title}<TagBadge labels={job.tag} /></h3>
-                            <p className={`text-sm italic mb-4 ${isDark ? 'text-theme-300' : 'text-theme-600'}`}>{job.company}</p>
+                            <p className={`text-sm italic mb-4 text-theme-600 dark:text-theme-300`}>{job.company}</p>
                             <div className={`text-sm leading-relaxed text-foreground ${justifyClass}`}>
                                 {Array.isArray(job.description) ? (
                                     <ul className="list-disc pl-5 space-y-1">

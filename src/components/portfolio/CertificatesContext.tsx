@@ -71,12 +71,7 @@ export function CertificatesProvider({
     const [openCategories, setOpenCategories] = useState<string[]>([]);
     const [selectedYears, setSelectedYears] = useState<{ [key: string]: string }>({});
     const { resolvedTheme } = useTheme();
-    const [mounted, setMounted] = useState(false);
-    const { isPresentationMode } = usePresentation();
 
-    useEffect(() => {
-        setMounted(true);
-    }, []);
 
     const handleCategoryClick = (category: string) => {
         setOpenCategories((prev) =>
@@ -134,7 +129,8 @@ export function CertificatesProvider({
         return slides;
     }, [certificates]);
 
-    const isDark = mounted && resolvedTheme === 'dark';
+    const { isPresentationMode } = usePresentation();
+    const isDark = resolvedTheme === 'dark';
     const hasCertificates = useMemo(() => {
         return Object.values(certificates).some(yearsData =>
             Object.values(yearsData).some(files => Object.keys(files).length > 0)

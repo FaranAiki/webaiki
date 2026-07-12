@@ -195,13 +195,15 @@ export function PresentationProvider({
     }
   }, [isPresentationMode]);
 
+  const contextValue = React.useMemo(() => ({
+    isPresentationMode,
+    togglePresentationMode,
+    slideNumberFormat,
+    cycleSlideNumberFormat
+  }), [isPresentationMode, slideNumberFormat]);
+
   return (
-    <PresentationContext.Provider value={{ 
-      isPresentationMode, 
-      togglePresentationMode, 
-      slideNumberFormat, 
-      cycleSlideNumberFormat 
-    }}>
+    <PresentationContext.Provider value={contextValue}>
       {children}
     </PresentationContext.Provider>
   );

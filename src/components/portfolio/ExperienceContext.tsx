@@ -58,14 +58,10 @@ export function ExperienceProvider({
     const [activeJob, setActiveJob] = useState<Job | null>(null);
     const { resolvedTheme } = useTheme();
     const { textAlign } = useSettings();
-    const [mounted, setMounted] = useState(false);
-    
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-
-    const isDark = mounted && resolvedTheme === 'dark';
+    // We remove `mounted` state to prevent forcing a full re-render on hydration.
+    // Components that need strict client-side theming without hydration mismatch
+    // should use tailwind `dark:` variants instead of checking `isDark`.
+    const isDark = resolvedTheme === 'dark';
     
     // UI Classes calculation
     const mainText = "text-foreground";

@@ -265,8 +265,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     };
   }, [font, textAlign, textScale, letterSpacing, lineHeight, color, isAtsMode, isExpandAll, isFullDescription, portfolioFilter, mounted]);
 
-  return (
-  <SettingsContext.Provider value={{ 
+  const contextValue = React.useMemo(() => ({
     font, setFont, 
     textAlign, setTextAlign, 
     textScale, setTextScale,
@@ -279,7 +278,10 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     portfolioFilter, setPortfolioFilter,
     colorRGB,
     resetSettings
-  }}>
+  }), [font, textAlign, textScale, letterSpacing, lineHeight, color, isAtsMode, isExpandAll, isFullDescription, portfolioFilter, colorRGB]);
+
+  return (
+  <SettingsContext.Provider value={contextValue}>
     {children}
   </SettingsContext.Provider>
   );
