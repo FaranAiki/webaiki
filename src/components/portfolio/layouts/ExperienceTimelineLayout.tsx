@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { ClientOnlyImage } from './ClientOnlyImage';
 import { useExperienceContext } from '../ExperienceContext';
 import BookmarkButton from '@/components/interactive/BookmarkButton';
@@ -9,10 +9,26 @@ import { TagBadge, PdfRenderer } from './ExperienceShared';
 export default function ExperienceTimelineLayout() {
     const { paginatedExperiences, bookmarkedItemIds, isLoggedIn, priorityImages } = useExperienceContext();
     const allJobs = useMemo(() => paginatedExperiences.flatMap(e => e.jobs), [paginatedExperiences]);
+    
+    const [mounted, setMounted] = useState(false);
+    const [viewport, setViewport] = useState<'desktop' | 'tablet' | 'mobile'>('mobile');
+
+    useEffect(() => {
+        setMounted(true);
+        const handleResize = () => {
+            if (window.innerWidth >= 1024) setViewport('desktop');
+            else if (window.innerWidth >= 768) setViewport('tablet');
+            else setViewport('mobile');
+        };
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     return (
         <div className="relative w-full py-10 overflow-hidden font-sans">
             {/* DESKTOP: 3-column Snake Path */}
+            {(viewport === 'desktop') && (
             <div className="hidden lg:flex flex-col w-full max-w-7xl mx-auto">
                 {(() => {
                     const chunks = [];
@@ -86,8 +102,10 @@ export default function ExperienceTimelineLayout() {
                     })
                 })()}
             </div>
+            )}
 
-            {/* TABLET: 2-column Snake Path */}
+            {/* TABLET: 2-column alternating */}
+            {(viewport === 'tablet') && (
             <div className="hidden md:flex lg:hidden flex-col w-full max-w-4xl mx-auto">
                 {Array.from({ length: Math.ceil(allJobs.length / 2) }).map((_, rowIdx) => {
                     const row = allJobs.slice(rowIdx * 2, rowIdx * 2 + 2);
@@ -149,8 +167,10 @@ export default function ExperienceTimelineLayout() {
                     )
                 })}
             </div>
+            )}
 
             {/* MOBILE: 1-column Vertical Line */}
+            {(!mounted || viewport === 'mobile') && (
             <div className="block md:hidden relative w-full px-2">
                 <div className="absolute left-7 top-10 bottom-10 w-1 bg-theme-500/30 z-0" />
                 <div className="space-y-8">
@@ -189,6 +209,7 @@ export default function ExperienceTimelineLayout() {
                     ))}
                 </div>
             </div>
+            )}
         </div>
     );
 }
