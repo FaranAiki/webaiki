@@ -48,8 +48,14 @@ export default async function BaseLayout({
         <link rel="alternate" type="text/plain" href="/llms-full.txt" title="LLM-friendly text representation of this website" />
         <link rel="alternate" type="text/plain" href="/llms.txt" title="Core AI instruction set" />
 
+        {/* Preconnect Hints */}
+        <link rel="preconnect" href="https://cloud.umami.is" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://github-readme-stats.vercel.app" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.google.com" crossOrigin="anonymous" />
+
         {/* LCP Preloads */}
         <link rel="preload" as="image" href="/images/background/pattern_01.avif" type="image/avif" fetchPriority="high" />
+        <link rel="preload" as="image" href="/images/background/pattern_02.avif" type="image/avif" fetchPriority="high" />
 
         {/* Fallback for JS Disabled Users (Prevent Blank Canvas from FadeInSection) */}
         <noscript>

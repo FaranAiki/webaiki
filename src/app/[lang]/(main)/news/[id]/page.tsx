@@ -22,7 +22,10 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     title: news.title,
     description: news.content.substring(0, 160),
     keywords: [...existingKeywords, news.title, ...lsiKeywords],
-    alternates: getLanguageAlternates(`/news/${id}`),
+    alternates: {
+      canonical: `/${lang}/news/${id}`,
+      languages: getLanguageAlternates(`/news/${id}`),
+    },
     openGraph: {
       ...baseMetadata.openGraph,
       title: news.title,

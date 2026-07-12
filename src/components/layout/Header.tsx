@@ -313,7 +313,6 @@ export default function Header(props: HeaderProps) {
         const tickingRef = useRef(false);
 
         const { resolvedTheme } = useTheme();
-        const [mounted, setMounted] = useState(false);
         const isPresentationMode = useAppStore((state) => state.isPresentationMode);
         const setScrollLocked = useAppStore((state) => state.setScrollLocked);
         const setGlobalLoading = useAppStore((state) => state.setGlobalLoading);
@@ -374,10 +373,6 @@ export default function Header(props: HeaderProps) {
             console.error('Could not copy text: ', err);
         });
     };
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
 
     // Handle body overflow and scroll locking when mobile menu is open
     useEffect(() => {
@@ -456,17 +451,12 @@ export default function Header(props: HeaderProps) {
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
-    const isDark = mounted && resolvedTheme === 'dark';
-
-    // Dynamic Classes - Reduce backdrop-blur on mobile for performance
-    const headerBg = isDark
-        ? 'bg-theme-bg-dark/80 border-theme-border'
-        : 'bg-theme-surface/80 border-theme-border';
-
-    const mobileMenuBg = isDark ? 'bg-theme-bg-dark/95' : 'bg-theme-surface-strong/95';
+    // Dynamic Classes
+    const headerBg = 'bg-theme-surface/80 dark:bg-theme-bg-dark/80 border-theme-border';
+    const mobileMenuBg = 'bg-theme-surface-strong/95 dark:bg-theme-bg-dark/95';
     const textColor = "text-[var(--text-muted)]";
-    const activeText = isDark ? 'text-theme-400' : 'text-theme-600';
-    const dropdownBg = isDark ? 'bg-theme-bg-dark border-theme-border' : 'bg-theme-surface border-theme-border';
+    const activeText = 'text-theme-600 dark:text-theme-400';
+    const dropdownBg = 'bg-theme-surface dark:bg-theme-bg-dark border-theme-border';
 
     const languages = [
         { code: 'id', name: id_lang, flag: '/images/flags/id.webp' },
@@ -593,9 +583,7 @@ export default function Header(props: HeaderProps) {
                                     flex items-center justify-center transition-all duration-300 p-2 rounded-full
                                     ${showShareSuccess
                                         ? 'text-green-500 bg-green-500/10 scale-110'
-                                        : isDark
-                                            ? 'text-theme-muted hover:text-theme-400'
-                                            : 'text-theme-muted hover:text-theme-600'
+                                        : 'text-theme-muted hover:text-theme-600 dark:hover:text-theme-400'
                                     }
                                 `}
                             >
@@ -613,9 +601,7 @@ export default function Header(props: HeaderProps) {
                                     flex items-center justify-center transition-all duration-300 p-2 rounded-full
                                     ${showShareSuccess
                                         ? 'text-green-500 bg-green-500/10 scale-110'
-                                        : isDark
-                                            ? 'text-theme-muted hover:text-theme-400 hover:bg-theme-surface-strong'
-                                            : 'text-theme-muted hover:text-theme-600 hover:bg-theme-surface-strong'
+                                        : 'text-theme-muted hover:text-theme-600 dark:hover:text-theme-400 hover:bg-theme-surface-strong'
                                     }
                                 `}
                             >
@@ -887,11 +873,7 @@ export default function Header(props: HeaderProps) {
                                     title={login_label}
                                     aria-label={login_label}
                                     className={`
-                                        flex items-center justify-center transition-all duration-300 p-2 rounded-full
-                                        ${isDark
-                                            ? 'text-theme-muted hover:text-theme-400 hover:bg-theme-surface-strong'
-                                            : 'text-theme-muted hover:text-theme-600 hover:bg-theme-surface-strong'
-                                        }
+                                        flex items-center justify-center transition-all duration-300 p-2 rounded-full text-theme-muted hover:text-theme-600 dark:hover:text-theme-400 hover:bg-theme-surface-strong
                                     `}
                                 >
                                     <LogIn size={24} strokeWidth={2} />

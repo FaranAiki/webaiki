@@ -1,16 +1,29 @@
 import { getDictionary } from '@/components/layout/Translator';
 import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
+import { getBaseMetadata, getLanguageAlternates, SITE_URL } from '@/lib/seo';
 
 const SitemapGraphClient = dynamic(() => import('@/components/interactive/SitemapGraphClient'));
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','sitemap-graph']);
+  const baseMetadata = getBaseMetadata();
 
   return {
+    ...baseMetadata,
     title: `${dict.Sitemap_Graph || 'Sitemap Graph'} | FaranAiki`,
     description: dict.SEO_Sitemap_Graph_Description || "Explore the visual relationship graph of Muhammad Faran Aiki's personal interactive website. Navigate through an interactive 3D map of pages, projects, and resources available on the site.",
+    openGraph: {
+      ...baseMetadata.openGraph,
+      title: `${dict.Sitemap_Graph || 'Sitemap Graph'} | FaranAiki`,
+      description: dict.SEO_Sitemap_Graph_Description || "Explore the visual relationship graph of Muhammad Faran Aiki's personal interactive website.",
+      url: `${SITE_URL}/${lang}/sitemap-graph`,
+    },
+    alternates: {
+      canonical: `/${lang}/sitemap-graph`,
+      languages: getLanguageAlternates('/sitemap-graph'),
+    }
   };
 }
 

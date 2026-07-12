@@ -17,7 +17,10 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     ...baseMetadata,
     title,
     description,
-    alternates: getLanguageAlternates('/news'),
+    alternates: {
+      canonical: `/${lang}/news`,
+      languages: getLanguageAlternates('/news'),
+    },
   };
 }
 

@@ -118,10 +118,10 @@ export default function PortfolioExperienceList({
   const filteredOrg = useMemo(() => filterJobs(organizationExperiences, 'org'), [organizationExperiences, filterJobs]);
   const filteredAward = useMemo(() => filterJobs(awardExperiences, 'award'), [awardExperiences, filterJobs]);
 
-  const [orderedWork, setOrderedWork] = useState<Job[]>([]);
-  const [orderedProject, setOrderedProject] = useState<Job[]>([]);
-  const [orderedOrg, setOrderedOrg] = useState<Job[]>([]);
-  const [orderedAward, setOrderedAward] = useState<Job[]>([]);
+  const [orderedWork, setOrderedWork] = useState<Job[]>(filteredWork);
+  const [orderedProject, setOrderedProject] = useState<Job[]>(filteredProject);
+  const [orderedOrg, setOrderedOrg] = useState<Job[]>(filteredOrg);
+  const [orderedAward, setOrderedAward] = useState<Job[]>(filteredAward);
 
   useEffect(() => setOrderedWork(filteredWork), [filteredWork]);
   useEffect(() => setOrderedProject(filteredProject), [filteredProject]);

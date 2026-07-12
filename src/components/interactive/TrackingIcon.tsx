@@ -69,7 +69,7 @@ export default function TrackingIcon({ type }: TrackerProps) {
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', updateRect);
-      window.removeEventListener('scroll', updateRect);
+      window.removeEventListener('scroll', onScroll);
       if (frameId !== null) cancelAnimationFrame(frameId);
     };
   }, [mouseX, mouseY, type]);

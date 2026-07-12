@@ -10,9 +10,7 @@ import LatestActivity from '@/components/interactive/LatestActivity';
 import HomeHero from "@/components/home/HomeHero";
 import HomeSearchBar from "@/components/home/HomeSearchBar";
 import FadeInSection from "@/components/shared/FadeInSection";
-import dynamicImport from "next/dynamic";
-
-const HomeTutorial = dynamicImport(() => import("@/components/home/HomeTutorial"));
+import HomeTutorialWrapper from "@/components/home/HomeTutorialWrapper";
 import { PortfolioAboutHeader } from '@/components/portfolio/PortfolioAboutHeader';
 import { getFaranAikiPhoto } from '@/lib/data';
 
@@ -116,7 +114,7 @@ export default async function HomePage({
         <div className="md:pt-0 pt-24 w-full max-w-6xl overflow-visible">
           <HomeHero dict={homeDict} parts={parts} />
           <HomeSearchBar dict={homeDict} />
-          <HomeTutorial />
+          <HomeTutorialWrapper />
 
           {/* Latest Activity Section */}
           <FadeInSection initialVisible={true}>
