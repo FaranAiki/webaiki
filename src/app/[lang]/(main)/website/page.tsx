@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import dynamic from 'next/dynamic';
 const FAQ = dynamic(() => import('@/components/portfolio/FAQ'));
 const FadeInSection = dynamic(() => import('@/components/shared/FadeInSection'));
@@ -71,103 +72,107 @@ export default async function WebsitePage({
       </div>
 
       <div className="mt-24">
-        <FadeInSection>
-          <div className="space-y-12">
-            <div className="flex items-center gap-4">
-              <div className="h-10 w-2 bg-theme-500 rounded-full" />
-              <h2 className="text-3xl font-black tracking-tight">{dict.Tech_Reference || "Architectural Reference"}</h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Framework */}
-              <div className="p-8 bg-theme-surface border border-theme-border rounded-3xl shadow-sm hover:shadow-xl transition-all group">
-                <div className="mb-6 p-3 bg-theme-500/10 text-theme-500 w-fit rounded-2xl group-hover:scale-110 transition-transform">
-                  <Cpu size={32} />
-                </div>
-                <h3 className="text-xl font-bold mb-3">{dict.Framework_Title}</h3>
-                <p className="text-theme-muted leading-relaxed">
-                  {dict.Framework_Desc}
-                </p>
+        <Suspense fallback={<div className="w-full h-96 bg-black/5 dark:bg-white/5 rounded-3xl animate-pulse" />}>
+          <FadeInSection>
+            <div className="space-y-12">
+              <div className="flex items-center gap-4">
+                <div className="h-10 w-2 bg-theme-500 rounded-full" />
+                <h2 className="text-3xl font-black tracking-tight">{dict.Tech_Reference || "Architectural Reference"}</h2>
               </div>
-
-              {/* Styling */}
-              <div className="p-8 bg-theme-surface border border-theme-border rounded-3xl shadow-sm hover:shadow-xl transition-all group">
-                <div className="mb-6 p-3 bg-theme-500/10 text-theme-500 w-fit rounded-2xl group-hover:scale-110 transition-transform">
-                  <Palette size={32} />
-                </div>
-                <h3 className="text-xl font-bold mb-3">{dict.Styling_Title}</h3>
-                <p className="text-theme-muted leading-relaxed">
-                  {dict.Styling_Desc}
-                </p>
-              </div>
-
-              {/* Database */}
-              <div className="p-8 bg-theme-surface border border-theme-border rounded-3xl shadow-sm hover:shadow-xl transition-all group">
-                <div className="mb-6 p-3 bg-theme-500/10 text-theme-500 w-fit rounded-2xl group-hover:scale-110 transition-transform">
-                  <Database size={32} />
-                </div>
-                <h3 className="text-xl font-bold mb-3">{dict.Database_Title}</h3>
-                <p className="text-theme-muted leading-relaxed">
-                  {dict.Database_Desc}
-                </p>
-              </div>
-
-              {/* Localization */}
-              <div className="p-8 bg-theme-surface border border-theme-border rounded-3xl shadow-sm hover:shadow-xl transition-all group">
-                <div className="mb-6 p-3 bg-theme-500/10 text-theme-500 w-fit rounded-2xl group-hover:scale-110 transition-transform">
-                  <Languages size={32} />
-                </div>
-                <h3 className="text-xl font-bold mb-3">{dict.Localization_Title}</h3>
-                <p className="text-theme-muted leading-relaxed">
-                  {dict.Localization_Desc}
-                </p>
-              </div>
-
-              {/* Holistic */}
-              <div className="md:col-span-2 p-8 bg-theme-surface border border-theme-border rounded-3xl shadow-sm hover:shadow-xl transition-all group border-l-4 border-l-theme-500">
-                <div className="flex flex-col md:flex-row gap-8 items-start md:items-center">
-                  <div className="p-4 bg-theme-500 text-white w-fit rounded-3xl shadow-lg group-hover:rotate-12 transition-transform">
-                    <Activity size={40} />
+  
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Framework */}
+                <div className="p-8 bg-theme-surface border border-theme-border rounded-3xl shadow-sm hover:shadow-xl transition-all group">
+                  <div className="mb-6 p-3 bg-theme-500/10 text-theme-500 w-fit rounded-2xl group-hover:scale-110 transition-transform">
+                    <Cpu size={32} />
                   </div>
-                  <div>
-                    <h3 className="text-2xl font-black mb-3">{dict.Holistic_Title}</h3>
-                    <p className="text-theme-muted leading-relaxed text-lg max-w-3xl">
-                      {dict.Holistic_Approach_Desc}
+                  <h3 className="text-xl font-bold mb-3">{dict.Framework_Title}</h3>
+                  <p className="text-theme-muted leading-relaxed">
+                    {dict.Framework_Desc}
+                  </p>
+                </div>
+  
+                {/* Styling */}
+                <div className="p-8 bg-theme-surface border border-theme-border rounded-3xl shadow-sm hover:shadow-xl transition-all group">
+                  <div className="mb-6 p-3 bg-theme-500/10 text-theme-500 w-fit rounded-2xl group-hover:scale-110 transition-transform">
+                    <Palette size={32} />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3">{dict.Styling_Title}</h3>
+                  <p className="text-theme-muted leading-relaxed">
+                    {dict.Styling_Desc}
+                  </p>
+                </div>
+  
+                {/* Database */}
+                <div className="p-8 bg-theme-surface border border-theme-border rounded-3xl shadow-sm hover:shadow-xl transition-all group">
+                  <div className="mb-6 p-3 bg-theme-500/10 text-theme-500 w-fit rounded-2xl group-hover:scale-110 transition-transform">
+                    <Database size={32} />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3">{dict.Database_Title}</h3>
+                  <p className="text-theme-muted leading-relaxed">
+                    {dict.Database_Desc}
+                  </p>
+                </div>
+  
+                {/* Localization */}
+                <div className="p-8 bg-theme-surface border border-theme-border rounded-3xl shadow-sm hover:shadow-xl transition-all group">
+                  <div className="mb-6 p-3 bg-theme-500/10 text-theme-500 w-fit rounded-2xl group-hover:scale-110 transition-transform">
+                    <Languages size={32} />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3">{dict.Localization_Title}</h3>
+                  <p className="text-theme-muted leading-relaxed">
+                    {dict.Localization_Desc}
+                  </p>
+                </div>
+  
+                {/* Holistic */}
+                <div className="md:col-span-2 p-8 bg-theme-surface border border-theme-border rounded-3xl shadow-sm hover:shadow-xl transition-all group border-l-4 border-l-theme-500">
+                  <div className="flex flex-col md:flex-row gap-8 items-start md:items-center">
+                    <div className="p-4 bg-theme-500 text-white w-fit rounded-3xl shadow-lg group-hover:rotate-12 transition-transform">
+                      <Activity size={40} />
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-black mb-3">{dict.Holistic_Title}</h3>
+                      <p className="text-theme-muted leading-relaxed text-lg max-w-3xl">
+                        {dict.Holistic_Approach_Desc}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-16 bg-theme-surface border border-theme-border rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all group">
+                <div className="grid grid-cols-1 md:grid-cols-2">
+                  <div className="relative h-64 md:h-auto w-full bg-theme-surface-strong">
+                    <Image 
+                      src="/documents/website/debug_bear_0.webp" 
+                      alt="DebugBear Performance Score Benchmarks"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
+                  <div className="p-8 md:p-12 flex flex-col justify-center">
+                    <div className="mb-6 p-3 bg-green-500/10 text-green-500 w-fit rounded-2xl">
+                      <CheckCircle2 size={32} />
+                    </div>
+                    <h3 className="text-2xl font-black mb-4">{dict.Performance_Score_Title}</h3>
+                    <p className="text-theme-muted leading-relaxed text-lg">
+                      {dict.Performance_Score_Desc}
                     </p>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="mt-16 bg-theme-surface border border-theme-border rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all group">
-              <div className="grid grid-cols-1 md:grid-cols-2">
-                <div className="relative h-64 md:h-auto w-full bg-theme-surface-strong">
-                  <Image 
-                    src="/documents/website/debug_bear_0.webp" 
-                    alt="DebugBear Performance Score Benchmarks"
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
-                <div className="p-8 md:p-12 flex flex-col justify-center">
-                  <div className="mb-6 p-3 bg-green-500/10 text-green-500 w-fit rounded-2xl">
-                    <CheckCircle2 size={32} />
-                  </div>
-                  <h3 className="text-2xl font-black mb-4">{dict.Performance_Score_Title}</h3>
-                  <p className="text-theme-muted leading-relaxed text-lg">
-                    {dict.Performance_Score_Desc}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </FadeInSection>
+          </FadeInSection>
+        </Suspense>
       </div>
 
       <div className="mt-24 md:mt-32">
-        <FadeInSection>
-            <FAQ id="faq-website" title={dict.FAQ_Website_Title} items={websiteFaqs} />
-        </FadeInSection>
+        <Suspense fallback={<div className="w-full h-64 bg-black/5 dark:bg-white/5 rounded-3xl animate-pulse" />}>
+          <FadeInSection>
+              <FAQ id="faq-website" title={dict.FAQ_Website_Title} items={websiteFaqs} />
+          </FadeInSection>
+        </Suspense>
       </div>
     </main>
   );
