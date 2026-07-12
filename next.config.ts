@@ -16,10 +16,16 @@ const withPWA = withPWAInit({
     ignoreURLParametersMatching: [/^utm_/, /^fbclid$/, /^_rsc$/],
     runtimeCaching: [
       {
-        // Don't intercept next-image requests with Service Worker in production
-        // to prevent unexpected errors due to opaque responses.
+        // Cache optimized next-images
         urlPattern: /^\/_next\/image\?/,
-        handler: 'NetworkOnly',
+        handler: 'StaleWhileRevalidate',
+        options: {
+          cacheName: 'next-image',
+          expiration: {
+            maxEntries: 64,
+            maxAgeSeconds: 86400,
+          },
+        },
       },
       {
         // Don't intercept vercel.app requests to prevent async generator errors
@@ -205,6 +211,7 @@ async headers() {
       { protocol: 'https', hostname: 'placehold.co' },
       { protocol: 'https', hostname: 'upload.wikimedia.org' },
       { protocol: 'https', hostname: 'faranaiki.id' },
+      { protocol: 'https', hostname: 'www.faranaiki.id' },
       { protocol: 'https', hostname: 'raw.githubusercontent.com' },
       { protocol: 'https', hostname: 'github.com' },
       { protocol: 'https', hostname: 'imgur.com' },

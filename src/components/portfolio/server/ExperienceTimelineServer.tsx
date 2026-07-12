@@ -4,16 +4,16 @@ import BookmarkButton from '@/components/interactive/BookmarkButton';
 import { TagBadge, PdfRenderer } from '../layouts/ExperienceShared';
 import type { Experience, Job } from '../ExperienceDisplayer';
 
-const CardWrapper = ({ job, children, className }: { job: Job, children: React.ReactNode, className: string }) => {
+const CardWrapper = ({ job, children, className, style }: { job: Job, children: React.ReactNode, className: string, style?: React.CSSProperties }) => {
     if (job.url) {
         return (
-            <a href={job.url} target="_blank" rel="noopener noreferrer" className={className}>
+            <a href={job.url} target="_blank" rel="noopener noreferrer" className={className} style={style}>
                 {children}
             </a>
         );
     }
     return (
-        <div className={className}>
+        <div className={className} style={style}>
             {children}
         </div>
     );
@@ -70,6 +70,7 @@ export function ExperienceTimelineServer({
                                             <CardWrapper
                                                 job={job}
                                                 className="w-full mt-4 flex-grow bg-theme-surface/90 backdrop-blur-md border border-theme-border rounded-3xl p-4 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group text-left block"
+                                                style={{ contentVisibility: 'auto', containIntrinsicSize: '0 300px' }}
                                             >
                                                 {job.image && job.image.length > 0 && (
                                                     <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-4 bg-theme-surface-strong">
@@ -138,6 +139,7 @@ export function ExperienceTimelineServer({
                                         <CardWrapper
                                             job={job}
                                             className="w-full mt-4 flex-grow bg-theme-surface/90 backdrop-blur-md border border-theme-border rounded-3xl p-5 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group text-left block"
+                                            style={{ contentVisibility: 'auto', containIntrinsicSize: '0 300px' }}
                                         >
                                             {job.image && job.image.length > 0 && (
                                                 <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-4 bg-theme-surface-strong">
@@ -188,6 +190,7 @@ export function ExperienceTimelineServer({
                             <CardWrapper
                                 job={job}
                                 className="w-full bg-theme-surface/90 backdrop-blur-md border border-theme-border rounded-2xl p-4 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:-translate-y-1 text-left block"
+                                style={{ contentVisibility: 'auto', containIntrinsicSize: '0 300px' }}
                             >
                                 {job.image && job.image.length > 0 && (
                                     <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-3 bg-theme-surface-strong">
