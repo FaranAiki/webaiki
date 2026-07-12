@@ -4,11 +4,10 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { setCookies } from '@/app/actions';
-import { useState, useEffect, useRef, useCallback, startTransition } from 'react';
+import { useState, useEffect, useRef, useCallback, startTransition, useMemo } from 'react';
 import ThemeToggle from '@/components/shared/ThemeToggle';
 import { useTheme } from 'next-themes';
 import dynamic from 'next/dynamic';
-import type { User as SupabaseUser } from '@supabase/supabase-js';
 import { m as motion, AnimatePresence } from 'framer-motion';
 
 const SettingsPopup = dynamic(() => import('@/components/providers/SettingsPopup'), { ssr: false });
@@ -125,6 +124,7 @@ interface HeaderProps {
             avatar_url?: string;
             full_name?: string;
             username?: string;
+            registration_reason?: string;
         };
     } | null;
     settings_labels: {
@@ -238,8 +238,7 @@ export default function Header(props: HeaderProps) {
         const router = useRouter();
         const [isSettingsOpen, setIsSettingsOpen] = useState(false);
         const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
-        const [user, setUser] = useState<SupabaseUser | null>(null);
-        const [dynamicNavLinks, setDynamicNavLinks] = useState<NavLink[]>(navLinks);
+        const [user, setUser] = useState<HeaderProps['user']>(null);
 
         useEffect(() => {
             const handleOpenCommandPalette = () => setIsCommandPaletteOpen(true);
@@ -251,11 +250,10 @@ export default function Header(props: HeaderProps) {
             let mounted = true;
             const fetchUser = async () => {
                 try {
-                    const { createClient } = await import('@/utils/supabase/client');
-                    const supabase = createClient();
-                    const { data: { user } } = await supabase.auth.getUser();
-                    if (mounted) {
-                        setUser(user || null);
+                    const res = await fetch('/api/auth/user');
+                    if (res.ok) {
+                        const { user } = await res.json();
+                        if (mounted) setUser(user);
                     }
                 } catch (_error) {
                     console.error("Failed to fetch user auth state", _error);
@@ -266,7 +264,7 @@ export default function Header(props: HeaderProps) {
         }, []);
 
         // Sync navLinks when props change, and apply user-specific links if logged in
-        useEffect(() => {
+        const dynamicNavLinks = useMemo(() => {
             const newNavLinks = navLinks.map(link => ({
                 ...link,
                 subLinks: link.subLinks ? [...link.subLinks] : undefined
@@ -292,7 +290,7 @@ export default function Header(props: HeaderProps) {
                     });
                 }
             }
-            setDynamicNavLinks(newNavLinks);
+            return newNavLinks;
         }, [navLinks, hire_me_label, business_requests_label, user]);
 
         useEffect(() => {

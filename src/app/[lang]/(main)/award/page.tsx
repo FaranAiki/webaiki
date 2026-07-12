@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       description: dict.SEO_Award_Description || "Faran Aiki's Awards and Scholarships",
       url: `${SITE_URL}/${lang}/award`,
     },
-    alternates: { 
+    alternates: {
       canonical: `/${lang}/award`,
       languages: getLanguageAlternates('/award'),
     },
@@ -53,14 +53,14 @@ export default async function AwardPage({params }: { params: Promise<{ lang: str
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <div className="pt-[12px] w-full px-4 md:px-0">
-        <ExperiencesClient 
+        <ExperiencesClient
         isLoggedIn={isLoggedIn}
         bookmarkedItemIds={experienceBookmarks}
 
-        experiences={awards} 
-        lang={lang} 
-        layout="grid" 
-        canChange={true} 
+        experiences={awards}
+        lang={lang}
+        layout="original"
+        canChange={true}
         original_text={dict.Original}
         timeline_text={dict.Timeline}
         grid_text={dict.Grid}
