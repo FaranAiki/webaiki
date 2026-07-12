@@ -1,5 +1,6 @@
 import React from 'react';
-import ExperiencesClient from './ExperienceDisplayer';
+import dynamic from 'next/dynamic';
+const ExperiencesClient = dynamic(() => import('./ExperienceDisplayer'));
 import { ExperienceServerOriginalLayout } from './layouts/ExperienceServerOriginalLayout';
 import type { LayoutType, Experience } from './ExperienceDisplayer';
 
