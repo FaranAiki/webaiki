@@ -5,7 +5,7 @@
   "Python_Terminal_Finished": "--- Programme terminé ---",
   "Python_Terminal_Welcome": "Bienvenue dans le terminal Web Python !",
   "Python_Terminal_Input_Too_Long": "Entrée trop longue !",
-  "SEO_Project_Description": "A collection of Muhammad Faran Aiki's technical projects, ranging from the Alkyl compiler, ALTH Flutter application, to Indonesia socio-economic data integration. Discover innovative software solutions.",
+  "SEO_Project_Description": "Une collection de projets techniques de Muhammad Faran Aiki, allant du compilateur Alkyl, de l'application ALTH Flutter, à l'intégration de données socio-économiques indonésiennes. Découvrez des solutions logicielles innovantes.",
   "Make_Interactive_UAS": "Apprentissage interactif untuk UAS MA1101 ITB",
   "Make_Interactive_UAS_Description": [
     "Création d'un outil d'apprentissage interactif des mathématiques en utilisant Flutter, Dart et FL Chart.",
@@ -20,9 +20,9 @@
   ],
   "Lidia_Project": "Analyse des données d'intégration socio-économique pour Indonesia Emas 2045",
   "Lidia_Project_Description": [
-    "Engineered an ETL pipeline using Python, Pandas, and Jupyter Notebook from 5 different datasets.",
-    "Integrated Gemini-CLI to enhance data processing capabilities.",
-    "Streamlined data workflows, thereby significantly reducing manual processing time."
+    "Conception d'un pipeline ETL à l'aide de Python, Pandas et Jupyter Notebook à partir de 5 ensembles de données différents.",
+    "Gemini-CLI intégré pour améliorer les capacités de traitement des données.",
+    "Flux de travail de données rationalisés, réduisant ainsi considérablement le temps de traitement manuel."
   ],
   "Alkyl_Compiler": "Langage de programmation et compilateur Alkyl",
   "Alkyl_Compiler_Description": [
@@ -32,13 +32,13 @@
   ],
   "ALTH_Project": "ALTH : J'ai oublié de marquer ma présence",
   "ALTH_Project_Description": [
-    "Using Burp Suite to analyze the usage of SSO and Cookies",
-    "Developed a \"mark attendance\" reminder app for Institut Teknologi Bandung students using Flutter and Dart"
+    "Analyse de l'utilisation du SSO et des cookies à l'aide de Burp Suite...",
+    "Développement d'une application de rappel de « notation de présence » pour les étudiants de l'Institut Teknologi Bandung à l'aide de Flutter et Dart"
   ],
-  "Jump_Game_Project": "Jump! Game",
-  "Below_Below_Project": "Below Below",
+  "Jump_Game_Project": "Saut! Jeu",
+  "Below_Below_Project": "Ci-dessous Ci-dessous",
   "Superskill_Project": "Jardin Cognitif",
-  "View_Project": "View Project",
+  "View_Project": "Voir le projet",
   "National_Statistics_Competition_Prep": "Préparation au Concours National de Statistique",
   "National_Statistics_Competition_Prep_Description": [
     "Préparation et modélisation de données statistiques à l'aide des Probabilités et Statistiques, de SARIMAX et de MANOVA.",
@@ -55,15 +55,15 @@
     "Développement de mécaniques de jeu, d'interactions physiques et de commandes de joueur.",
     "Création de ressources pixel art personnalisées et intégration d'effets sonores pour une expérience cohérente."
   ],
-  "Olive_Divergence": "Olive Divergence",
+  "Olive_Divergence": "Divergence des olives",
   "Olive_Divergence_Desc": [
     "Programmation de 'Olive Divergence' utilisant C++ et le framework Qt.",
     "Conception d'une interface graphique avec des éléments visuels riches et des widgets personnalisés.",
     "Gestion efficace de l'état de l'application et du flux de données au sein de la boucle d'événements Qt."
   ],
   "Superskill_Description": [
-    "Developed Cognitive Garden, a cutting-edge cross-platform application using Flutter and Dart.",
-    "Designed games that train brain cognition and stimulate the brain.",
-    "Designed an intuitive and engaging user interface with rich animations."
+    "Développement de Cognitive Garden, une application multiplateforme de pointe utilisant Flutter et Dart.",
+    "Jeux conçus qui entraînent la cognition cérébrale et stimulent le cerveau.",
+    "Conception d'une interface utilisateur intuitive et attrayante avec des animations riches."
   ]
 }

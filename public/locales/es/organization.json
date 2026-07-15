@@ -1,5 +1,5 @@
 {
-  "SEO_Organization_Description": "Muhammad Faran Aiki's organizational experience at GDG ITB, STEI-K, and various committees at the Institut Teknologi Bandung. Learn about his contributions to community building and technology initiatives.",
+  "SEO_Organization_Description": "La experiencia organizativa de Muhammad Faran Aiki en GDG ITB, STEI-K y varios comités del Institut Teknologi Bandung. Conozca sus contribuciones a la construcción de comunidades y las iniciativas tecnológicas.",
   "Committee": "Comité",
   "NBK_Member": "Miembro del Club Nihongo Benkyoukai",
   "NBK_Member_Description": [
@@ -11,22 +11,22 @@
   ],
   "Impact_Web_Lead": "Líder del Equipo de Desarrollo Web Impact 6.0",
   "Impact_Web_Lead_Description": [
-    "Designed and managed the IMPACT 6.0 olympiad website used by 400+ teams and 1100+ high school students nationwide",
+    "Diseñé y administré el sitio web de la olimpiada IMPACT 6.0 utilizado por más de 400 equipos y más de 1100 estudiantes de secundaria en todo el país.",
     "Diseñó la arquitectura del backend aprovechando la base de datos SQL de Supabase junto con Prisma ORM para una gestión de datos confiable y escalable.",
     "Administró las plataformas Moodle y Judgel para garantizar un entorno competitivo fluido para todos los participantes.",
     "Gestionó y coordinó a los equipos de desarrollo front-end y back-end para garantizar la entrega eficiente del proyecto.",
-    "Mengelola dan mengoordinasikan tim beranggotakan 8 orang untuk memastikan pengiriman proyek yang efisien."
+    "Gestioné y coordiné un equipo de 8 miembros para garantizar la entrega eficiente del proyecto."
   ],
   "Treasurer_SYNC": "Tesorero del Evento de Convivencia STEI-K",
   "Treasurer_SYNC_Description": [
-    "Ensuring transparent and efficient allocation of organizational funds.",
-    "Increased the event's financial budget by around 5.45% by securing 1 million sponsorship deals with Analitica"
+    "Garantizar una asignación transparente y eficiente de los fondos organizacionales.",
+    "Aumentó el presupuesto financiero del evento en aproximadamente un 5,45% al ​​asegurar 1 millón de acuerdos de patrocinio con Analitica."
   ],
   "IT_Club_Vice_Renpy": "Vicegerente de Proyecto para el Proyecto Final del IT Club 2024",
   "IT_Club_Vice_Renpy_Description": [
     "Me desempeñé como Vicepresidente, organizando actividades del club y guiando a los miembros.",
     "Enseñé conceptos de desarrollo de juegos utilizando el motor de novela visual Ren'Py.",
-    "Asesoré a estudiantes en lógica de programación y narración interactiva."
+    "Tutoré a más de 8 estudiantes en lógica de programación y narración interactiva."
   ],
   "Student_Club_Member": "Miembro del Club de Estudiantes",
   "Student_Club_Member_Description": [
@@ -47,13 +47,13 @@
   ],
   "Concerto": "Coordinador de la Etapa Final de la Competencia Concerto",
   "Concerto_Description": [
-    "Organized question generation as the person in charge of the final round.",
-    "Learned that being a leader entails high responsibility and one cannot blame subordinates."
+    "Generación organizada de preguntas como responsable de la ronda final.",
+    "Aprendí que ser líder implica una gran responsabilidad y no se puede culpar a los subordinados."
   ],
   "GDG_ITB_Title": "Google Developer Group Campus en ITB - Explorador de Gerente de Producto",
   "GDG_ITB_Description": [
-    "Learning Product Management from basic to advanced.",
-    "Learning to empathize with users."
+    "Aprender Gestión de Productos desde básico hasta avanzado.",
+    "Aprender a empatizar con los usuarios."
   ],
   "GDGOC ITB_Product Manager": "GDGOC ITB Gerente de Producto"
 }

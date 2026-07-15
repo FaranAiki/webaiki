@@ -1,7 +1,7 @@
 {
-  "SEO_Organization_Description": "Muhammad Faran Aiki's organizational experience at GDG ITB, STEI-K, and various committees at the Institut Teknologi Bandung. Learn about his contributions to community building and technology initiatives.",
-  "Committee": "Committee",
-  "NBK_Member": "Nihongo Benkyoukai Club Member",
+  "SEO_Organization_Description": "जीडीजी आईटीबी, एसटीईआई-के और इंस्टीट्यूट टेक्नोलोजी बांडुंग में विभिन्न समितियों में मुहम्मद फरान अकी का संगठनात्मक अनुभव। सामुदायिक निर्माण और प्रौद्योगिकी पहल में उनके योगदान के बारे में जानें।",
+  "Committee": "समिति",
+  "NBK_Member": "निहोंगो बेनक्योकाई क्लब सदस्य",
   "NBK_Member_Description": [
     "निहोंगो बेनकोकाई (Nihongo Benkyoukai) के सदस्य के रूप में जापानी भाषा और संस्कृति का अध्ययन किया।"
   ],
@@ -11,35 +11,35 @@
   ],
   "Impact_Web_Lead": "Web Development Team Lead Web Impact 6.0",
   "Impact_Web_Lead_Description": [
-    "Designed and managed the IMPACT 6.0 olympiad website used by 400+ teams and 1100+ high school students nationwide",
+    "देश भर में 400 से अधिक टीमों और 1100 से अधिक हाई स्कूल के छात्रों द्वारा उपयोग की जाने वाली इम्पैक्ट 6.0 ओलंपियाड वेबसाइट को डिजाइन और प्रबंधित किया गया।",
     "विश्वसनीय और स्केलेबल डेटा प्रबंधन के लिए प्रिज्मा (Prisma) ORM के साथ सुपबेस (Supabase) SQL डेटाबेस का उपयोग करके बैकएंड आर्किटेक्चर को इंजीनियर किया।",
     "सभी प्रतिभागियों के लिए निर्बाध प्रतिस्पर्धी वातावरण सुनिश्चित करने के लिए मूडल (Moodle) और जजेल (Judgel) प्लेटफॉर्म को प्रशासित किया।",
     "कुशल परियोजना वितरण सुनिश्चित करने के लिए फ्रंट-एंड और बैक-एंड विकास टीमों का प्रबंधन और समन्वय किया।",
-    "Mengelola dan mengoordinasikan tim beranggotakan 8 orang untuk memastikan pengiriman proyek yang efisien."
+    "कुशल परियोजना वितरण सुनिश्चित करने के लिए 8 सदस्यीय टीम का प्रबंधन और समन्वय किया।"
   ],
   "Treasurer_SYNC": "Treasurer for the STEI-K Gathering Event",
   "Treasurer_SYNC_Description": [
-    "Ensuring transparent and efficient allocation of organizational funds.",
-    "Increased the event's financial budget by around 5.45% by securing 1 million sponsorship deals with Analitica"
+    "संगठनात्मक निधियों का पारदर्शी और कुशल आवंटन सुनिश्चित करना।",
+    "एनालिटिका के साथ 1 मिलियन प्रायोजन सौदे हासिल करके कार्यक्रम के वित्तीय बजट में लगभग 5.45% की वृद्धि की गई"
   ],
   "IT_Club_Vice_Renpy": "Vice Project Manager for the 2024 IT Club Final Project",
   "IT_Club_Vice_Renpy_Description": [
     "उपाध्यक्ष के रूप में कार्य किया, क्लब की गतिविधियों का आयोजन किया और सदस्यों का मार्गदर्शन किया।",
     "Ren'Py विज़ुअल नॉवेल इंजन का उपयोग करके गेम डेवलपमेंट अवधारणाओं को सिखाया।",
-    "प्रोग्रामिंग लॉजिक और इंटरैक्टिव स्टोरीटेलिंग में छात्रों को सलाह दी।"
+    "प्रोग्रामिंग लॉजिक और इंटरैक्टिव स्टोरीटेलिंग में 8+ छात्रों को सलाह दी गई।"
   ],
-  "Student_Club_Member": "Student Club Member",
+  "Student_Club_Member": "छात्र क्लब सदस्य",
   "Student_Club_Member_Description": [
     "स्टूडेंट क्लब 1 डेपोक कार्यक्रमों और पहलों में सक्रिय रूप से भाग लिया।",
     "समुदाय-निर्माण गतिविधियों को व्यवस्थित करने के लिए साथियों के साथ सहयोग किया।",
     "समर्पित टीम वर्क के माध्यम से क्लब के लक्ष्यों में योगदान दिया।"
   ],
-  "English_Club_Member": "English Club Member",
+  "English_Club_Member": "इंग्लिश क्लब सदस्य",
   "English_Club_Member_Description": [
     "संचार और सार्वजनिक बोलने के कौशल में सुधार किया।",
     "'द अग्ली डकलिंग' सहित सामग्री निर्माण में सहायता की।"
   ],
-  "PARAS": "Logo Designer and MC Script Editor for PARAS Glorigion 1445H",
+  "PARAS": "पारस ग्लोरिजियन 1445एच के लिए लोगो डिजाइनर और एमसी स्क्रिप्ट संपादक",
   "PARAS_Description": [
     "SMA Negeri 1 Kota Depok में PARAS कार्यक्रम के आयोजन में योगदान दिया।",
     "कार्यक्रम के लोगो को डिजाइन करने और बनाने में सहयोग किया।",
@@ -47,13 +47,13 @@
   ],
   "Concerto": "Coordinator for the Final Stage of the Concerto Competition",
   "Concerto_Description": [
-    "Organized question generation as the person in charge of the final round.",
-    "Learned that being a leader entails high responsibility and one cannot blame subordinates."
+    "अंतिम दौर के प्रभारी व्यक्ति के रूप में प्रश्न निर्माण का आयोजन किया।",
+    "सीखा कि एक नेता होने के नाते उच्च जिम्मेदारी की आवश्यकता होती है और कोई भी अधीनस्थों को दोष नहीं दे सकता।"
   ],
-  "GDG_ITB_Title": "Google Developer Group Campus on ITB - Product Manager Explorer",
+  "GDG_ITB_Title": "आईटीबी पर Google डेवलपर समूह कैम्पस - उत्पाद प्रबंधक एक्सप्लोरर",
   "GDG_ITB_Description": [
-    "Learning Product Management from basic to advanced.",
-    "Learning to empathize with users."
+    "बुनियादी से उन्नत तक उत्पाद प्रबंधन सीखना।",
+    "उपयोगकर्ताओं के साथ सहानुभूति रखना सीखना।"
   ],
   "GDGOC ITB_Product Manager": "GDGOC ITB उत्पाद प्रबंधक"
 }

@@ -5,7 +5,7 @@
   "Python_Terminal_Finished": "--- Программа завершена ---",
   "Python_Terminal_Welcome": "Добро пожаловать в веб-терминал Python!",
   "Python_Terminal_Input_Too_Long": "Слишком длинный ввод!",
-  "SEO_Project_Description": "A collection of Muhammad Faran Aiki's technical projects, ranging from the Alkyl compiler, ALTH Flutter application, to Indonesia socio-economic data integration. Discover innovative software solutions.",
+  "SEO_Project_Description": "Коллекция технических проектов Мухаммада Фаран Айки, начиная от компилятора Alkyl, приложения ALTH Flutter и заканчивая интеграцией социально-экономических данных Индонезии. Откройте для себя инновационные программные решения.",
   "Make_Interactive_UAS": "Интерактивное обучение для UAS MA1101 ITB",
   "Make_Interactive_UAS_Description": [
     "Создал интерактивный инструмент для изучения математики с использованием Flutter, Dart и FL Chart.",
@@ -20,9 +20,9 @@
   ],
   "Lidia_Project": "Анализ данных социально-экономической интеграции для «Индонезии Эмас 2045»",
   "Lidia_Project_Description": [
-    "Engineered an ETL pipeline using Python, Pandas, and Jupyter Notebook from 5 different datasets.",
-    "Integrated Gemini-CLI to enhance data processing capabilities.",
-    "Streamlined data workflows, thereby significantly reducing manual processing time."
+    "Спроектировал конвейер ETL с использованием Python, Pandas и Jupyter Notebook из 5 различных наборов данных.",
+    "Интегрированный Gemini-CLI для расширения возможностей обработки данных.",
+    "Оптимизированы рабочие процессы с данными, что значительно сокращает время ручной обработки."
   ],
   "Alkyl_Compiler": "Язык программирования и компилятор Alkyl",
   "Alkyl_Compiler_Description": [
@@ -32,13 +32,13 @@
   ],
   "ALTH_Project": "ALTH: Я забыл отметиться",
   "ALTH_Project_Description": [
-    "Using Burp Suite to analyze the usage of SSO and Cookies",
-    "Developed a \"mark attendance\" reminder app for Institut Teknologi Bandung students using Flutter and Dart"
+    "Проанализировано использование единого входа и файлов cookie с помощью Burp Suite...",
+    "Разработано приложение для напоминания об «отметке посещаемости» для студентов Institut Teknologi Bandung, использующее Flutter и Dart."
   ],
-  "Jump_Game_Project": "Jump! Game",
-  "Below_Below_Project": "Below Below",
-  "Superskill_Project": "Cognitive Garden",
-  "View_Project": "View Project",
+  "Jump_Game_Project": "Прыгай! Игра",
+  "Below_Below_Project": "Ниже Ниже",
+  "Superskill_Project": "Когнитивный сад",
+  "View_Project": "Посмотреть проект",
   "National_Statistics_Competition_Prep": "Подготовка к Национальной олимпиаде по статистике",
   "National_Statistics_Competition_Prep_Description": [
     "Подготовил и смоделировал статистические данные с использованием теории вероятностей, SARIMAX и MANOVA.",
@@ -55,15 +55,15 @@
     "Разработал игровую механику, физические взаимодействия и элементы управления игроком.",
     "Создал пользовательские пиксельные рисунки и интегрировал звуковые эффекты для целостного опыта."
   ],
-  "Olive_Divergence": "Olive Divergence",
+  "Olive_Divergence": "Оливковая дивергенция",
   "Olive_Divergence_Desc": [
     "Запрограммировал 'Olive Divergence' с использованием C++ и фреймворка Qt.",
     "Спроектировал графический интерфейс пользователя с богатыми визуальными элементами и пользовательскими виджетами.",
     "Эффективно управлял состоянием приложения и потоком данных в цикле событий Qt."
   ],
   "Superskill_Description": [
-    "Developed Cognitive Garden, a cutting-edge cross-platform application using Flutter and Dart.",
-    "Designed games that train brain cognition and stimulate the brain.",
-    "Designed an intuitive and engaging user interface with rich animations."
+    "Разработан Cognitive Garden, передовое кроссплатформенное приложение с использованием Flutter и Dart.",
+    "Разработаны игры, которые тренируют когнитивные способности и стимулируют мозг.",
+    "Разработан интуитивно понятный и привлекательный пользовательский интерфейс с богатой анимацией."
   ]
 }

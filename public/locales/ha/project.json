@@ -5,14 +5,14 @@
   "Python_Terminal_Finished": "--- Shirin ya gama ---",
   "Python_Terminal_Welcome": "Barka da zuwa Python Web Terminal!",
   "Python_Terminal_Input_Too_Long": "Shigar da ya yi tsayi da yawa!",
-  "SEO_Project_Description": "A collection of Muhammad Faran Aiki's technical projects, ranging from the Alkyl compiler, ALTH Flutter application, to Indonesia socio-economic data integration. Discover innovative software solutions.",
+  "SEO_Project_Description": "Tarin ayyukan fasaha na Muhammad Faran Aiki, tun daga na'urar tattara bayanai na Alkyl, aikace-aikacen ALTH Flutter, zuwa haɗa bayanan zamantakewa da tattalin arzikin Indonesia. Gano sabbin hanyoyin magance software.",
   "Make_Interactive_UAS": "Koyon Sadarwa don UAS MA1101 ITB",
   "Make_Interactive_UAS_Description": [
     "Na gina kayan aikin koyon ilimin lissafi na mu'amala ta amfani da Flutter, Dart, da FL Chart.",
     "An kalli rikitattun dabarun lissafi don taimakawa fahimtar ɗalibai.",
     "Na tsara fasahar mu'amala mai sauƙin amfani."
   ],
-  "Make_Nihwm": "NihWM Window Manager",
+  "Make_Nihwm": "Mai sarrafa Window NihWM",
   "Make_Nihwm_Description": [
     "Na haɓaka 'nihwm', mai kula da taga mai sauƙin X11 wanda aka rubuta gaba ɗaya a C don Linux.",
     "Na aiwatar da ainihin ayyukan gudanarwa na taga.",
@@ -20,9 +20,9 @@
   ],
   "Lidia_Project": "Nazarin Bayanan Haɗin Kan Tattalin Arziki ga Indonesiya Emas 2045",
   "Lidia_Project_Description": [
-    "Engineered an ETL pipeline using Python, Pandas, and Jupyter Notebook from 5 different datasets.",
-    "Integrated Gemini-CLI to enhance data processing capabilities.",
-    "Streamlined data workflows, thereby significantly reducing manual processing time."
+    "Ƙirƙirar bututun ETL ta amfani da Python, Pandas, da Jupyter Notebook daga saitin bayanai daban-daban guda 5.",
+    "Haɗin Gemini-CLI don haɓaka ƙarfin sarrafa bayanai.",
+    "Ingantattun hanyoyin tafiyar da bayanai, ta yadda za a rage lokacin sarrafa hannu sosai."
   ],
   "Alkyl_Compiler": "Yaren Programming Alkyl da Compiler",
   "Alkyl_Compiler_Description": [
@@ -30,15 +30,15 @@
     "An yi amfani da Valgrind da GDB don ingantaccen sarrafa ƙwaƙwalwa.",
     "An fassara ginin harshe mai babban matsayi zuwa ingantaccen lambar na'ura."
   ],
-  "ALTH_Project": "ALTH: Aku Lupa Tandai Hadir",
+  "ALTH_Project": "ALTH: Na Manta Alamar Kasancewar",
   "ALTH_Project_Description": [
-    "Using Burp Suite to analyze the usage of SSO and Cookies",
-    "Developed a \"mark attendance\" reminder app for Institut Teknologi Bandung students using Flutter and Dart"
+    "An yi nazarin amfani da SSO da Kukis ta amfani da Burp Suite...",
+    "Ƙirƙirar aikace-aikacen tunatarwa na \"alama halarta\" don ɗaliban Institut Teknologi Bandung ta amfani da Flutter da Dart"
   ],
   "Jump_Game_Project": "Wasan Jump!",
-  "Below_Below_Project": "Below Below",
+  "Below_Below_Project": "Kasa Kasa",
   "Superskill_Project": "Aljannar Hankali",
-  "View_Project": "View Project",
+  "View_Project": "Duba Project",
   "National_Statistics_Competition_Prep": "Shirye-shiryen Gasar Ƙididdiga ta Ƙasa",
   "National_Statistics_Competition_Prep_Description": [
     "Na shirya bayanai ta amfani da SARIMAX da MANOVA.",
@@ -55,15 +55,15 @@
     "Na haɓaka injin wasan, motsin kimiyya da sarrafa 'yan wasa.",
     "Na ƙirƙiri zane-zanen pixel don wasan."
   ],
-  "Olive_Divergence": "Olive Divergence",
+  "Olive_Divergence": "Banbancin Zaitun",
   "Olive_Divergence_Desc": [
     "Na tsara 'Olive Divergence' ta amfani da C++ da Qt framework.",
     "Na tsara tsarin gani mai amfani da maɓallan musamman.",
     "Na gudanar da gudana na aikace-aikacen a cikin Qt."
   ],
   "Superskill_Description": [
-    "Developed Cognitive Garden, a cutting-edge cross-platform application using Flutter and Dart.",
-    "Designed games that train brain cognition and stimulate the brain.",
-    "Designed an intuitive and engaging user interface with rich animations."
+    "Lambun Fahimi Haɓaka, aikace-aikacen dandamali mai yanke-yanke ta amfani da Flutter da Dart.",
+    "Wasannin da aka ƙera waɗanda ke horar da fahintar ƙwaƙwalwa da kuma motsa kwakwalwa.",
+    "An ƙirƙira ilhama mai ban sha'awa da jan hankalin mai amfani tare da wadataccen rayarwa."
   ]
 }

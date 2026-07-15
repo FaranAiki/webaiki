@@ -5,7 +5,7 @@
   "Python_Terminal_Finished": "--- Programm beendet ---",
   "Python_Terminal_Welcome": "Willkommen im Python Web Terminal!",
   "Python_Terminal_Input_Too_Long": "Eingabe zu lang!",
-  "SEO_Project_Description": "A collection of Muhammad Faran Aiki's technical projects, ranging from the Alkyl compiler, ALTH Flutter application, to Indonesia socio-economic data integration. Discover innovative software solutions.",
+  "SEO_Project_Description": "Eine Sammlung der technischen Projekte von Muhammad Faran Aiki, die vom Alkyl-Compiler über die ALTH Flutter-Anwendung bis hin zur sozioökonomischen Datenintegration in Indonesien reichen. Entdecken Sie innovative Softwarelösungen.",
   "Make_Interactive_UAS": "Interaktives Lernen für UAS MA1101 ITB",
   "Make_Interactive_UAS_Description": [
     "Erstellte ein interaktives Mathematik-Lerntool mit Flutter, Dart und FL Chart.",
@@ -20,9 +20,9 @@
   ],
   "Lidia_Project": "Datenanalyse zur sozioökonomischen Integration für Indonesia Emas 2045",
   "Lidia_Project_Description": [
-    "Engineered an ETL pipeline using Python, Pandas, and Jupyter Notebook from 5 different datasets.",
-    "Integrated Gemini-CLI to enhance data processing capabilities.",
-    "Streamlined data workflows, thereby significantly reducing manual processing time."
+    "Entwickelte eine ETL-Pipeline mit Python, Pandas und Jupyter Notebook aus 5 verschiedenen Datensätzen.",
+    "Integrierte Gemini-CLI zur Verbesserung der Datenverarbeitungsfunktionen.",
+    "Optimierte Datenabläufe, wodurch die manuelle Verarbeitungszeit erheblich reduziert wird."
   ],
   "Alkyl_Compiler": "Alkyl Programmiersprache und Compiler",
   "Alkyl_Compiler_Description": [
@@ -30,15 +30,15 @@
     "Verwendete Valgrind und GDB für strenges Speichermanagement und Debugging.",
     "Übersetzte Konstrukte höherer Programmiersprachen in effizienten Maschinencode."
   ],
-  "ALTH_Project": "ALTH: Aku Lupa Tandai Hadir",
+  "ALTH_Project": "ALTH: Ich habe vergessen, Mark Presence zu markieren",
   "ALTH_Project_Description": [
-    "Using Burp Suite to analyze the usage of SSO and Cookies",
-    "Developed a \"mark attendance\" reminder app for Institut Teknologi Bandung students using Flutter and Dart"
+    "Analysierte die Verwendung von SSO und Cookies mit der Burp Suite ...",
+    "Entwickelte eine „Anwesenheitsnoten“-Erinnerungs-App für Studenten des Institut Teknologi Bandung mit Flutter und Dart"
   ],
-  "Jump_Game_Project": "Jump! Game",
-  "Below_Below_Project": "Below Below",
+  "Jump_Game_Project": "Springen! Spiel",
+  "Below_Below_Project": "Unten Unten",
   "Superskill_Project": "Kognitiver Garten",
-  "View_Project": "View Project",
+  "View_Project": "Projekt anzeigen",
   "National_Statistics_Competition_Prep": "Vorbereitung auf den nationalen Statistikwettbewerb",
   "National_Statistics_Competition_Prep_Description": [
     "Bereitete statistische Daten auf und modellierte diese mithilfe von Wahrscheinlichkeitsrechnung, SARIMAX und MANOVA.",
@@ -55,15 +55,15 @@
     "Entwickelte Spielmechaniken, physikalische Interaktionen und Spielersteuerungen.",
     "Erstellte benutzerdefinierte Pixel-Art-Assets und integrierte Soundeffekte für ein kohärentes Erlebnis."
   ],
-  "Olive_Divergence": "Olive Divergence",
+  "Olive_Divergence": "Olivendivergenz",
   "Olive_Divergence_Desc": [
     "Programmierte 'Olive Divergence' mit C++ und dem Qt-Framework.",
     "Entwarf eine grafische Benutzeroberfläche mit reichhaltigen visuellen Elementen und benutzerdefinierten Widgets.",
     "Verwaltete den Anwendungsstatus und den Datenfluss effizient innerhalb der Qt-Ereignisschleife."
   ],
   "Superskill_Description": [
-    "Developed Cognitive Garden, a cutting-edge cross-platform application using Flutter and Dart.",
-    "Designed games that train brain cognition and stimulate the brain.",
-    "Designed an intuitive and engaging user interface with rich animations."
+    "Entwicklung von Cognitive Garden, einer hochmodernen plattformübergreifenden Anwendung mit Flutter und Dart.",
+    "Entwickelte Spiele, die die Gehirnkognition trainieren und das Gehirn stimulieren.",
+    "Entwarf eine intuitive und ansprechende Benutzeroberfläche mit umfangreichen Animationen."
   ]
 }

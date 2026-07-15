@@ -1,5 +1,5 @@
 {
-  "SEO_Organization_Description": "Muhammad Faran Aiki's organizational experience at GDG ITB, STEI-K, and various committees at the Institut Teknologi Bandung. Learn about his contributions to community building and technology initiatives.",
+  "SEO_Organization_Description": "الخبرة التنظيمية لمحمد فاران أيكي في GDG ITB وSTEI-K واللجان المختلفة في المعهد التكنولوجي باندونغ. تعرف على مساهماته في بناء المجتمع ومبادرات التكنولوجيا.",
   "Committee": "لجنة",
   "NBK_Member": "عضو نادي Nihongo Benkyoukai",
   "NBK_Member_Description": [
@@ -11,22 +11,22 @@
   ],
   "Impact_Web_Lead": "رئيس فريق تطوير الويب Web Impact 6.0",
   "Impact_Web_Lead_Description": [
-    "Designed and managed the IMPACT 6.0 olympiad website used by 400+ teams and 1100+ high school students nationwide",
+    "تم تصميم وإدارة موقع أولمبياد IMPACT 6.0 الذي يستخدمه أكثر من 400 فريق وأكثر من 1100 طالب من طلاب المدارس الثانوية على مستوى الدولة",
     "صممت بنية الواجهة الخلفية بالاستفادة من قاعدة بيانات Supabase SQL مع Prisma ORM لإدارة بيانات موثوقة وقابلة للتطوير.",
     "أدرت منصتي Moodle و Judgel لضمان بيئة تنافسية سلسة لجميع المشاركين.",
     "أدرت ونسقت فرق التطوير للواجهة الأمامية والخلفية لضمان تسليم المشروع بكفاءة.",
-    "Mengelola dan mengoordinasikan tim beranggotakan 8 orang untuk memastikan pengiriman proyek yang efisien."
+    "إدارة وتنسيق فريق مكون من 8 أعضاء لضمان تنفيذ المشروع بكفاءة."
   ],
   "Treasurer_SYNC": "أمين الصندوق لحدث تجمع STEI-K",
   "Treasurer_SYNC_Description": [
-    "Ensuring transparent and efficient allocation of organizational funds.",
-    "Increased the event's financial budget by around 5.45% by securing 1 million sponsorship deals with Analitica"
+    "ضمان تخصيص الأموال التنظيمية بشكل شفاف وفعال.",
+    "زيادة الميزانية المالية للحدث بحوالي 5.45% من خلال تأمين مليون صفقة رعاية مع Analitica"
   ],
   "IT_Club_Vice_Renpy": "نائب مدير المشروع للمشروع النهائي لنادي تكنولوجيا المعلومات 2024",
   "IT_Club_Vice_Renpy_Description": [
     "العمل كنائب رئيس، وتنظيم أنشطة النادي وتوجيه الأعضاء.",
     "تعليم مفاهيم تطوير الألعاب باستخدام محرك الروايات المرئية Ren'Py.",
-    "توجيه الطلاب في منطق البرمجة ورواية القصص التفاعلية."
+    "قام بإرشاد أكثر من 8 طلاب في منطق البرمجة وسرد القصص التفاعلية."
   ],
   "Student_Club_Member": "عضو نادي الطلاب",
   "Student_Club_Member_Description": [
@@ -47,13 +47,13 @@
   ],
   "Concerto": "منسق المرحلة النهائية لمسابقة Concerto",
   "Concerto_Description": [
-    "Organized question generation as the person in charge of the final round.",
-    "Learned that being a leader entails high responsibility and one cannot blame subordinates."
+    "تنظيم توليد الأسئلة باعتباره الشخص المسؤول عن الجولة النهائية.",
+    "تعلمت أن كونك قائداً يستلزم مسؤولية عالية ولا يمكن إلقاء اللوم على مرؤوسيك."
   ],
-  "GDG_ITB_Title": "Google Developer Group Campus on ITB - Product Manager Explorer",
+  "GDG_ITB_Title": "Google Developer Group Campus على ITB - مستكشف مدير المنتج",
   "GDG_ITB_Description": [
-    "Learning Product Management from basic to advanced.",
-    "Learning to empathize with users."
+    "تعلم إدارة المنتجات من الأساسي إلى المتقدم.",
+    "تعلم التعاطف مع المستخدمين."
   ],
   "GDGOC ITB_Product Manager": "GDGOC ITB مدير المنتج"
 }

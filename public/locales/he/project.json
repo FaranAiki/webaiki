@@ -5,14 +5,14 @@
   "Python_Terminal_Finished": "--- התוכנית הסתיימה ---",
   "Python_Terminal_Welcome": "ברוכים הבאים למסוף האינטרנט של פייתון!",
   "Python_Terminal_Input_Too_Long": "קלט ארוך מדי!",
-  "SEO_Project_Description": "A collection of Muhammad Faran Aiki's technical projects, ranging from the Alkyl compiler, ALTH Flutter application, to Indonesia socio-economic data integration. Discover innovative software solutions.",
+  "SEO_Project_Description": "אוסף של הפרויקטים הטכניים של מוחמד פארן אייקי, החל מהמהדר Alkyl, אפליקציית ALTH Flutter, ועד אינטגרציה של נתונים סוציו-אקונומיים באינדונזיה. גלה פתרונות תוכנה חדשניים.",
   "Make_Interactive_UAS": "למידה אינטראקטיבית עבור UAS MA1101 ITB",
   "Make_Interactive_UAS_Description": [
     "בניתי כלי למידת מתמטיקה אינטראקטיבי באמצעות Flutter, Dart ו-FL Chart.",
     "המחשה דינמית של מושגים מתמטיים מורכבים כדי לעזור להבנת התלמידים.",
     "עיצבתי ממשק רספונסיבי וידידותי למשתמש לאינטראקציה חלקה."
   ],
-  "Make_Nihwm": "NihWM Window Manager",
+  "Make_Nihwm": "מנהל חלונות NihWM",
   "Make_Nihwm_Description": [
     "פיתחתי את 'nihwm', מנהל חלונות X11 קל משקל שנכתב כולו ב-C עבור לינוקס.",
     "יישמתי פונקציות ליבה של ניהול חלונות וטיפול בקלט באמצעות XOrg.",
@@ -20,9 +20,9 @@
   ],
   "Lidia_Project": "ניתוח נתוני אינטגרציה סוציו-כלכלית עבור אינדונזיה אמאס 2045",
   "Lidia_Project_Description": [
-    "Engineered an ETL pipeline using Python, Pandas, and Jupyter Notebook from 5 different datasets.",
-    "Integrated Gemini-CLI to enhance data processing capabilities.",
-    "Streamlined data workflows, thereby significantly reducing manual processing time."
+    "הנדסה צינור ETL ​​באמצעות Python, Pandas ו-Jupyter Notebook מ-5 מערכי נתונים שונים.",
+    "משולב Gemini-CLI לשיפור יכולות עיבוד הנתונים.",
+    "זרימת עבודה יעילה של נתונים, ובכך הפחיתה משמעותית את זמן העיבוד הידני."
   ],
   "Alkyl_Compiler": "שפת תכנות וקומפיילר Alkyl",
   "Alkyl_Compiler_Description": [
@@ -30,15 +30,15 @@
     "השתמשתי ב-Valgrind וב-GDB לניהול זיכרון וניפוי באגים קפדני.",
     "תרגמתי מבני שפה ברמה גבוהה לקוד מכונה יעיל."
   ],
-  "ALTH_Project": "ALTH: Aku Lupa Tandai Hadir",
+  "ALTH_Project": "אלת': שכחתי לסמן נוכחות",
   "ALTH_Project_Description": [
-    "Using Burp Suite to analyze the usage of SSO and Cookies",
-    "Developed a \"mark attendance\" reminder app for Institut Teknologi Bandung students using Flutter and Dart"
+    "ניתח את השימוש ב-SSO וקובצי Cookie באמצעות Burp Suite...",
+    "פיתח אפליקציית תזכורת \"סימון נוכחות\" לתלמידי Institut Teknologi Bandung המשתמשים ב-Flutter ו-Dart"
   ],
-  "Jump_Game_Project": "Jump! Game",
-  "Below_Below_Project": "Below Below",
+  "Jump_Game_Project": "קְפִיצָה! מִשְׂחָק",
+  "Below_Below_Project": "למטה למטה",
   "Superskill_Project": "גן קוגניטיבי",
-  "View_Project": "View Project",
+  "View_Project": "צפה בפרויקט",
   "National_Statistics_Competition_Prep": "הכנה לתחרות הסטטיסטיקה הלאומית",
   "National_Statistics_Competition_Prep_Description": [
     "הכנתי ומדלתי נתונים סטטיסטיים תוך שימוש בהסתברות וסטטיסטיקה, SARIMAX ו-MANOVA.",
@@ -55,15 +55,15 @@
     "פיתחתי מכניקת משחק, אינטראקציות פיזיקליות ובקרות שחקן.",
     "יצרתי נכסי פיקסל ארט מותאמים אישית ושילבתי אפקטים קוליים לחוויה מגובשת."
   ],
-  "Olive_Divergence": "Olive Divergence",
+  "Olive_Divergence": "התפרקות זית",
   "Olive_Divergence_Desc": [
     "תכנתתי את 'Olive Divergence' באמצעות C++ ומסגרת Qt.",
     "עיצבתי ממשק משתמש גרפי עם אלמנטים חזותיים עשירים ווידג'טים מותאמים אישית.",
     "ניהלתי את מצב האפליקציה וזרימת הנתונים ביעילות בתוך לולאת האירועים של Qt."
   ],
   "Superskill_Description": [
-    "Developed Cognitive Garden, a cutting-edge cross-platform application using Flutter and Dart.",
-    "Designed games that train brain cognition and stimulate the brain.",
-    "Designed an intuitive and engaging user interface with rich animations."
+    "פיתח גן קוגניטיבי, יישום חדשני בין פלטפורמות באמצעות Flutter ו-Dart.",
+    "משחקים מעוצבים המאמנים קוגניציה מוחית ומגרים את המוח.",
+    "עיצב ממשק משתמש אינטואיטיבי ומרתק עם אנימציות עשירות."
   ]
 }

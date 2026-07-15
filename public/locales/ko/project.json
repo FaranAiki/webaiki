@@ -5,7 +5,7 @@
   "Python_Terminal_Finished": "--- 프로그램 종료 ---",
   "Python_Terminal_Welcome": "파이썬 웹 터미널에 오신 것을 환영합니다!",
   "Python_Terminal_Input_Too_Long": "입력이 너무 깁니다!",
-  "SEO_Project_Description": "A collection of Muhammad Faran Aiki's technical projects, ranging from the Alkyl compiler, ALTH Flutter application, to Indonesia socio-economic data integration. Discover innovative software solutions.",
+  "SEO_Project_Description": "Alkyl 컴파일러, ALTH Flutter 애플리케이션부터 인도네시아 사회 경제적 데이터 통합에 이르는 Muhammad Faran Aiki의 기술 프로젝트 모음입니다. 혁신적인 소프트웨어 솔루션을 찾아보세요.",
   "Make_Interactive_UAS": "ITB UAS MA1101을 위한 대화형 학습",
   "Make_Interactive_UAS_Description": [
     "Flutter, Dart 및 FL Chart를 사용하여 대화형 수학 학습 도구를 구축했습니다.",
@@ -20,9 +20,9 @@
   ],
   "Lidia_Project": "인도네시아 에마스 2045를 위한 사회 경제적 통합 데이터 분석",
   "Lidia_Project_Description": [
-    "Engineered an ETL pipeline using Python, Pandas, and Jupyter Notebook from 5 different datasets.",
-    "Integrated Gemini-CLI to enhance data processing capabilities.",
-    "Streamlined data workflows, thereby significantly reducing manual processing time."
+    "5가지 데이터 세트의 Python, Pandas 및 Jupyter Notebook을 사용하여 ETL 파이프라인을 엔지니어링했습니다.",
+    "데이터 처리 기능을 향상시키기 위해 Gemini-CLI를 통합했습니다.",
+    "데이터 워크플로우를 간소화하여 수동 처리 시간을 대폭 단축합니다."
   ],
   "Alkyl_Compiler": "Alkyl 프로그래밍 언어 및 컴파일러",
   "Alkyl_Compiler_Description": [
@@ -32,13 +32,13 @@
   ],
   "ALTH_Project": "ALTH: 출석 체크를 잊었어요",
   "ALTH_Project_Description": [
-    "Using Burp Suite to analyze the usage of SSO and Cookies",
-    "Developed a \"mark attendance\" reminder app for Institut Teknologi Bandung students using Flutter and Dart"
+    "Burp Suite를 이용하여 SSO와 쿠키의 사용을 분석하였습니다...",
+    "Flutter 및 Dart를 사용하여 Institut Teknologi Bandung 학생들을 위한 \"출석 표시\" 알림 앱 개발"
   ],
-  "Jump_Game_Project": "Jump! Game",
-  "Below_Below_Project": "Below Below",
-  "Superskill_Project": "Cognitive Garden",
-  "View_Project": "View Project",
+  "Jump_Game_Project": "도약! 게임",
+  "Below_Below_Project": "아래 아래",
+  "Superskill_Project": "인지정원",
+  "View_Project": "프로젝트 보기",
   "National_Statistics_Competition_Prep": "전국 통계 대회 준비",
   "National_Statistics_Competition_Prep_Description": [
     "Probability & Statistics, SARIMAX 및 MANOVA를 활용하여 통계 데이터를 준비하고 모델링했습니다.",
@@ -55,15 +55,15 @@
     "게임 메커니즘, 물리적 상호 작용 및 플레이어 제어를 개발했습니다.",
     "응집력 있는 경험을 위해 사용자 정의 픽셀 아트 자산을 만들고 음향 효과를 통합했습니다."
   ],
-  "Olive_Divergence": "Olive Divergence",
+  "Olive_Divergence": "올리브 발산",
   "Olive_Divergence_Desc": [
     "C++ 및 Qt 프레임워크를 사용하여 'Olive Divergence'를 프로그래밍했습니다.",
     "풍부한 시각적 요소 및 사용자 정의 위젯으로 그래픽 사용자 인터페이스를 디자인했습니다.",
     "Qt 이벤트 루프 내에서 애플리케이션 상태 및 데이터 흐름을 효율적으로 관리했습니다."
   ],
   "Superskill_Description": [
-    "Developed Cognitive Garden, a cutting-edge cross-platform application using Flutter and Dart.",
-    "Designed games that train brain cognition and stimulate the brain.",
-    "Designed an intuitive and engaging user interface with rich animations."
+    "Flutter와 Dart를 사용하여 최첨단 크로스 플랫폼 애플리케이션인 Cognitive Garden을 개발했습니다.",
+    "뇌 인지를 훈련하고 뇌를 자극하는 게임을 디자인했습니다.",
+    "풍부한 애니메이션으로 직관적이고 매력적인 사용자 인터페이스를 디자인했습니다."
   ]
 }

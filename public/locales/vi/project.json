@@ -1,18 +1,18 @@
 {
   "Loading_Python": "Downloading Python and Source Code....",
-  "Python_Web_Title": "Python Interactive Interface",
-  "Python_Terminal_Error": "CRITICAL ERROR: SharedArrayBuffer is not defined. Ensure Cross-Origin-Opener-Policy (COOP) and Cross-Origin-Embedder-Policy (COEP) headers are set on the server.",
-  "Python_Terminal_Finished": "--- Program Finished ---",
+  "Python_Web_Title": "Giao diện tương tác Python",
+  "Python_Terminal_Error": "LỖI QUAN TRỌNG: SharedArrayBuffer không được xác định. Đảm bảo các tiêu đề Cross-Origin-Opener-Policy (COOP) và Cross-Origin-Embedder-Policy (COEP) được đặt trên máy chủ.",
+  "Python_Terminal_Finished": "--- Chương trình đã kết thúc ---",
   "Python_Terminal_Welcome": "Welcome to the Python Web Terminal!",
-  "Python_Terminal_Input_Too_Long": "Input too long!",
-  "SEO_Project_Description": "A collection of Muhammad Faran Aiki's technical projects, ranging from the Alkyl compiler, ALTH Flutter application, to Indonesia socio-economic data integration. Discover innovative software solutions.",
-  "Make_Interactive_UAS": "Interactive Learning for UAS MA1101 ITB",
+  "Python_Terminal_Input_Too_Long": "Nhập quá dài!",
+  "SEO_Project_Description": "Tập hợp các dự án kỹ thuật của Muhammad Faran Aiki, từ trình biên dịch Alkyl, ứng dụng ALTH Flutter đến tích hợp dữ liệu kinh tế xã hội của Indonesia. Khám phá các giải pháp phần mềm sáng tạo.",
+  "Make_Interactive_UAS": "Học tập tương tác cho UAS MA1101 ITB",
   "Make_Interactive_UAS_Description": [
     "Xây dựng một công cụ học toán tương tác sử dụng Flutter, Dart và FL Chart.",
     "Trực quan hóa các khái niệm toán học phức tạp một cách động lực để hỗ trợ sự hiểu biết của học sinh.",
     "Thiết kế một giao diện phản hồi nhanh và thân thiện với người dùng để tương tác mượt mà."
   ],
-  "Make_Nihwm": "NihWM Window Manager",
+  "Make_Nihwm": "Trình quản lý cửa sổ NihWM",
   "Make_Nihwm_Description": [
     "Phát triển 'nihwm', một trình quản lý cửa sổ X11 nhẹ được viết hoàn toàn bằng C cho Linux.",
     "Triển khai các chức năng quản lý cửa sổ cốt lõi và xử lý đầu vào bằng XOrg.",
@@ -20,25 +20,25 @@
   ],
   "Lidia_Project": "Socio-Economic Integration Data Analysis for Indonesia Emas 2045",
   "Lidia_Project_Description": [
-    "Engineered an ETL pipeline using Python, Pandas, and Jupyter Notebook from 5 different datasets.",
-    "Integrated Gemini-CLI to enhance data processing capabilities.",
-    "Streamlined data workflows, thereby significantly reducing manual processing time."
+    "Đã thiết kế một đường dẫn ETL bằng Python, Pandas và Jupyter Notebook từ 5 bộ dữ liệu khác nhau.",
+    "Tích hợp Gemini-CLI để nâng cao khả năng xử lý dữ liệu.",
+    "Luồng công việc dữ liệu được sắp xếp hợp lý, từ đó giảm đáng kể thời gian xử lý thủ công."
   ],
-  "Alkyl_Compiler": "Alkyl Programming Language and Compiler",
+  "Alkyl_Compiler": "Ngôn ngữ lập trình và trình biên dịch Alkyl",
   "Alkyl_Compiler_Description": [
     "Kiến trúc và triển khai một trình biên dịch tùy chỉnh từ đầu sử dụng C và LLVM.",
     "Sử dụng Valgrind và GDB để quản lý và gỡ lỗi bộ nhớ nghiêm ngặt.",
     "Dịch các cấu trúc ngôn ngữ cấp cao thành mã máy hiệu quả."
   ],
-  "ALTH_Project": "ALTH: Aku Lupa Tandai Hadir",
+  "ALTH_Project": "ALTH: Tôi quên đánh dấu sự hiện diện",
   "ALTH_Project_Description": [
-    "Using Burp Suite to analyze the usage of SSO and Cookies",
-    "Developed a \"mark attendance\" reminder app for Institut Teknologi Bandung students using Flutter and Dart"
+    "Đã phân tích việc sử dụng SSO và Cookie bằng Burp Suite...",
+    "Phát triển ứng dụng nhắc nhở \"điểm danh\" dành cho sinh viên Institut Teknologi Bandung bằng Flutter và Dart"
   ],
-  "Jump_Game_Project": "Jump! Game",
-  "Below_Below_Project": "Below Below",
-  "Superskill_Project": "Cognitive Garden",
-  "View_Project": "View Project",
+  "Jump_Game_Project": "Nhảy! Trò chơi",
+  "Below_Below_Project": "Dưới Dưới Dưới",
+  "Superskill_Project": "Vườn nhận thức",
+  "View_Project": "Xem dự án",
   "National_Statistics_Competition_Prep": "Chuẩn bị cho Cuộc thi Thống kê Quốc gia",
   "National_Statistics_Competition_Prep_Description": [
     "Chuẩn bị và mô hình hóa dữ liệu thống kê bằng Xác suất & Thống kê, SARIMAX và MANOVA.",
@@ -55,15 +55,15 @@
     "Phát triển cơ chế trò chơi, tương tác vật lý và bộ điều khiển người chơi.",
     "Tạo nghệ thuật pixel tùy chỉnh và tích hợp hiệu ứng âm thanh cho trải nghiệm nhất quán."
   ],
-  "Olive_Divergence": "Olive Divergence",
+  "Olive_Divergence": "Phân kỳ ô liu",
   "Olive_Divergence_Desc": [
     "Lập trình 'Olive Divergence' sử dụng C++ và framework Qt.",
     "Thiết kế giao diện đồ họa người dùng với các yếu tố hình ảnh phong phú và widget tùy chỉnh.",
     "Quản lý trạng thái ứng dụng và luồng dữ liệu hiệu quả trong vòng lặp sự kiện Qt."
   ],
   "Superskill_Description": [
-    "Developed Cognitive Garden, a cutting-edge cross-platform application using Flutter and Dart.",
-    "Designed games that train brain cognition and stimulate the brain.",
-    "Designed an intuitive and engaging user interface with rich animations."
+    "Đã phát triển Cognitive Garden, một ứng dụng đa nền tảng tiên tiến sử dụng Flutter và Dart.",
+    "Thiết kế các trò chơi rèn luyện khả năng nhận thức của não và kích thích trí não.",
+    "Được thiết kế giao diện người dùng trực quan và hấp dẫn với hình ảnh động phong phú."
   ]
 }

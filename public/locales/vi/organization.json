@@ -1,7 +1,7 @@
 {
-  "SEO_Organization_Description": "Muhammad Faran Aiki's organizational experience at GDG ITB, STEI-K, and various committees at the Institut Teknologi Bandung. Learn about his contributions to community building and technology initiatives.",
-  "Committee": "Committee",
-  "NBK_Member": "Nihongo Benkyoukai Club Member",
+  "SEO_Organization_Description": "Kinh nghiệm tổ chức của Muhammad Faran Aiki tại GDG ITB, STEI-K và các ủy ban khác nhau tại Institut Teknologi Bandung. Tìm hiểu về những đóng góp của anh ấy cho việc xây dựng cộng đồng và các sáng kiến ​​công nghệ.",
+  "Committee": "Ủy ban",
+  "NBK_Member": "Thành viên câu lạc bộ Nihongo Benkyoukai",
   "NBK_Member_Description": [
     "Học ngôn ngữ và văn hóa Nhật Bản với tư cách là thành viên của Nihongo Benkyoukai."
   ],
@@ -11,35 +11,35 @@
   ],
   "Impact_Web_Lead": "Web Development Team Lead Web Impact 6.0",
   "Impact_Web_Lead_Description": [
-    "Designed and managed the IMPACT 6.0 olympiad website used by 400+ teams and 1100+ high school students nationwide",
+    "Thiết kế và quản lý trang web Olympic IMPACT 6.0 được hơn 400 đội thi và hơn 1100+ học sinh trung học trên toàn quốc sử dụng",
     "Thiết kế kiến trúc backend tận dụng cơ sở dữ liệu Supabase SQL kết hợp với Prisma ORM để quản lý dữ liệu đáng tin cậy và có thể mở rộng.",
     "Quản lý các nền tảng Moodle và Judgel để đảm bảo môi trường cạnh tranh liền mạch cho tất cả người tham gia.",
     "Quản lý và điều phối các nhóm phát triển front-end và back-end để đảm bảo tiến độ dự án hiệu quả.",
-    "Mengelola dan mengoordinasikan tim beranggotakan 8 orang untuk memastikan pengiriman proyek yang efisien."
+    "Quản lý và điều phối một nhóm gồm 8 thành viên để đảm bảo thực hiện dự án hiệu quả."
   ],
   "Treasurer_SYNC": "Treasurer for the STEI-K Gathering Event",
   "Treasurer_SYNC_Description": [
-    "Ensuring transparent and efficient allocation of organizational funds.",
-    "Increased the event's financial budget by around 5.45% by securing 1 million sponsorship deals with Analitica"
+    "Đảm bảo phân bổ nguồn vốn của tổ chức một cách minh bạch và hiệu quả.",
+    "Tăng ngân sách tài chính của sự kiện lên khoảng 5,45% bằng cách đảm bảo 1 triệu hợp đồng tài trợ với Analitica"
   ],
   "IT_Club_Vice_Renpy": "Vice Project Manager for the 2024 IT Club Final Project",
   "IT_Club_Vice_Renpy_Description": [
     "Đảm nhiệm vai trò Phó Chủ tịch, tổ chức các hoạt động của câu lạc bộ và hướng dẫn các thành viên.",
     "Dạy các khái niệm phát triển trò chơi sử dụng công cụ visual novel Ren'Py.",
-    "Hướng dẫn sinh viên tư duy lập trình và kể chuyện tương tác."
+    "Hướng dẫn hơn 8 sinh viên về logic lập trình và kể chuyện tương tác."
   ],
-  "Student_Club_Member": "Student Club Member",
+  "Student_Club_Member": "Thành viên câu lạc bộ sinh viên",
   "Student_Club_Member_Description": [
     "Tham gia tích cực vào các sự kiện và sáng kiến của Student Club 1 Depok.",
     "Hợp tác với các bạn đồng trang lứa để tổ chức các hoạt động xây dựng cộng đồng.",
     "Đóng góp vào các mục tiêu của câu lạc bộ thông qua tinh thần đồng đội tận tâm."
   ],
-  "English_Club_Member": "English Club Member",
+  "English_Club_Member": "Thành viên Câu lạc bộ Tiếng Anh",
   "English_Club_Member_Description": [
     "Cải thiện kỹ năng giao tiếp và nói trước công chúng.",
     "Hỗ trợ sáng tạo nội dung, bao gồm 'Vịt Con Xấu Xí'."
   ],
-  "PARAS": "Logo Designer and MC Script Editor for PARAS Glorigion 1445H",
+  "PARAS": "Trình thiết kế Logo và Biên tập tập lệnh MC cho PARAS Glorigion 1445H",
   "PARAS_Description": [
     "Đóng góp vào việc tổ chức sự kiện PARAS tại SMA Negeri 1 Kota Depok.",
     "Hợp tác thiết kế và sản xuất logo sự kiện.",
@@ -47,13 +47,13 @@
   ],
   "Concerto": "Coordinator for the Final Stage of the Concerto Competition",
   "Concerto_Description": [
-    "Organized question generation as the person in charge of the final round.",
-    "Learned that being a leader entails high responsibility and one cannot blame subordinates."
+    "Tổ chức đặt câu hỏi với tư cách là người phụ trách vòng chung kết.",
+    "Học được rằng làm người lãnh đạo đòi hỏi trách nhiệm cao và không thể đổ lỗi cho cấp dưới."
   ],
-  "GDG_ITB_Title": "Google Developer Group Campus on ITB - Product Manager Explorer",
+  "GDG_ITB_Title": "Khuôn viên nhóm nhà phát triển Google trên ITB - Trình quản lý sản phẩm Explorer",
   "GDG_ITB_Description": [
-    "Learning Product Management from basic to advanced.",
-    "Learning to empathize with users."
+    "Học Quản lý sản phẩm từ cơ bản đến nâng cao.",
+    "Học cách đồng cảm với người dùng."
   ],
   "GDGOC ITB_Product Manager": "GDGOC ITB Quản lý Sản phẩm"
 }

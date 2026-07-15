@@ -5,7 +5,7 @@
   "Python_Terminal_Finished": "--- Programa Finalizado ---",
   "Python_Terminal_Welcome": "¡Bienvenido a la Terminal Web de Python!",
   "Python_Terminal_Input_Too_Long": "¡Entrada demasiado larga!",
-  "SEO_Project_Description": "A collection of Muhammad Faran Aiki's technical projects, ranging from the Alkyl compiler, ALTH Flutter application, to Indonesia socio-economic data integration. Discover innovative software solutions.",
+  "SEO_Project_Description": "Una colección de proyectos técnicos de Muhammad Faran Aiki, que van desde el compilador Alkyl y la aplicación ALTH Flutter hasta la integración de datos socioeconómicos de Indonesia. Descubra soluciones de software innovadoras.",
   "Make_Interactive_UAS": "Aprendizaje Interactivo para UAS MA1101 ITB",
   "Make_Interactive_UAS_Description": [
     "Construí una herramienta de aprendizaje interactivo de matemáticas utilizando Flutter, Dart y FL Chart.",
@@ -20,9 +20,9 @@
   ],
   "Lidia_Project": "Análisis de Datos de Integración Socioeconómica para Indonesia Emas 2045",
   "Lidia_Project_Description": [
-    "Engineered an ETL pipeline using Python, Pandas, and Jupyter Notebook from 5 different datasets.",
-    "Integrated Gemini-CLI to enhance data processing capabilities.",
-    "Streamlined data workflows, thereby significantly reducing manual processing time."
+    "Diseñé una canalización ETL utilizando Python, Pandas y Jupyter Notebook a partir de 5 conjuntos de datos diferentes.",
+    "Gemini-CLI integrado para mejorar las capacidades de procesamiento de datos.",
+    "Flujos de trabajo de datos optimizados, lo que reduce significativamente el tiempo de procesamiento manual."
   ],
   "Alkyl_Compiler": "Lenguaje de Programación y Compilador Alkyl",
   "Alkyl_Compiler_Description": [
@@ -30,15 +30,15 @@
     "Utilicé Valgrind y GDB para una rigurosa gestión de memoria y depuración.",
     "Traduje construcciones de lenguaje de alto nivel a código máquina eficiente."
   ],
-  "ALTH_Project": "ALTH: Aku Lupa Tandai Hadir",
+  "ALTH_Project": "ALTH: Olvidé marcar presencia",
   "ALTH_Project_Description": [
-    "Using Burp Suite to analyze the usage of SSO and Cookies",
-    "Developed a \"mark attendance\" reminder app for Institut Teknologi Bandung students using Flutter and Dart"
+    "Analicé el uso de SSO y Cookies usando Burp Suite...",
+    "Desarrollé una aplicación de recordatorio de \"marcar asistencia\" para estudiantes del Institut Teknologi Bandung usando Flutter y Dart."
   ],
-  "Jump_Game_Project": "Jump! Game",
-  "Below_Below_Project": "Below Below",
+  "Jump_Game_Project": "¡Saltar! Juego",
+  "Below_Below_Project": "Abajo Abajo",
   "Superskill_Project": "Jardín Cognitivo",
-  "View_Project": "View Project",
+  "View_Project": "Ver proyecto",
   "National_Statistics_Competition_Prep": "Preparación para la Competencia Nacional de Estadística",
   "National_Statistics_Competition_Prep_Description": [
     "Preparé y modelé datos estadísticos utilizando Probabilidad y Estadística, SARIMAX y MANOVA.",
@@ -55,15 +55,15 @@
     "Desarrollé mecánicas de juego, interacciones físicas y controles del jugador.",
     "Creé recursos de arte de píxeles personalizados e integré efectos de sonido para una experiencia cohesiva."
   ],
-  "Olive_Divergence": "Olive Divergence",
+  "Olive_Divergence": "Divergencia de oliva",
   "Olive_Divergence_Desc": [
     "Programé 'Olive Divergence' usando C++ y el marco Qt.",
     "Diseñé una interfaz gráfica de usuario con ricos elementos visuales y widgets personalizados.",
     "Gestioné el estado de la aplicación y el flujo de datos de manera eficiente dentro del bucle de eventos de Qt."
   ],
   "Superskill_Description": [
-    "Developed Cognitive Garden, a cutting-edge cross-platform application using Flutter and Dart.",
-    "Designed games that train brain cognition and stimulate the brain.",
-    "Designed an intuitive and engaging user interface with rich animations."
+    "Desarrollé Cognitive Garden, una aplicación multiplataforma de vanguardia que utiliza Flutter y Dart.",
+    "Juegos diseñados que entrenan la cognición cerebral y estimulan el cerebro.",
+    "Diseñó una interfaz de usuario intuitiva y atractiva con animaciones ricas."
   ]
 }

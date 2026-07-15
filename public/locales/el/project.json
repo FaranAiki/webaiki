@@ -5,14 +5,14 @@
   "Python_Terminal_Finished": "--- Το πρόγραμμα ολοκληρώθηκε ---",
   "Python_Terminal_Welcome": "Καλώς ήρθατε στο Python Web Terminal!",
   "Python_Terminal_Input_Too_Long": "Η είσοδος είναι πολύ μεγάλη!",
-  "SEO_Project_Description": "A collection of Muhammad Faran Aiki's technical projects, ranging from the Alkyl compiler, ALTH Flutter application, to Indonesia socio-economic data integration. Discover innovative software solutions.",
+  "SEO_Project_Description": "Μια συλλογή από τεχνικά έργα του Muhammad Faran Aiki, που κυμαίνονται από τον μεταγλωττιστή Alkyl, εφαρμογή ALTH Flutter, έως την ενοποίηση κοινωνικοοικονομικών δεδομένων της Ινδονησίας. Ανακαλύψτε καινοτόμες λύσεις λογισμικού.",
   "Make_Interactive_UAS": "Διαδραστική Μάθηση για UAS MA1101 ITB",
   "Make_Interactive_UAS_Description": [
     "Κατασκευή ενός διαδραστικού εργαλείου εκμάθησης μαθηματικών χρησιμοποιώντας Flutter, Dart και FL Chart.",
     "Δυναμική οπτικοποίηση πολύπλοκων μαθηματικών εννοιών για την υποβοήθηση της κατανόησης των μαθητών.",
     "Σχεδιασμός ενός ανταποκρίσιμου και φιλικού προς τον χρήστη περιβάλλοντος για απρόσκοπτη αλληλεπίδραση."
   ],
-  "Make_Nihwm": "NihWM Window Manager",
+  "Make_Nihwm": "Διαχείριση παραθύρων NihWM",
   "Make_Nihwm_Description": [
     "Ανάπτυξη του 'nihwm', ενός ελαφρού διαχειριστή παραθύρων X11 γραμμένου εξ ολοκλήρου σε C για Linux.",
     "Υλοποίηση βασικών λειτουργιών διαχείρισης παραθύρων και χειρισμού εισόδου χρησιμοποιώντας XOrg.",
@@ -20,9 +20,9 @@
   ],
   "Lidia_Project": "Ανάλυση Δεδομένων Κοινωνικο-Οικονομικής Ένταξης για την Ινδονησία Emas 2045",
   "Lidia_Project_Description": [
-    "Engineered an ETL pipeline using Python, Pandas, and Jupyter Notebook from 5 different datasets.",
-    "Integrated Gemini-CLI to enhance data processing capabilities.",
-    "Streamlined data workflows, thereby significantly reducing manual processing time."
+    "Κατασκεύασε έναν αγωγό ETL χρησιμοποιώντας Python, Pandas και Jupyter Notebook από 5 διαφορετικά σύνολα δεδομένων.",
+    "Ενσωματωμένο Gemini-CLI για ενίσχυση των δυνατοτήτων επεξεργασίας δεδομένων.",
+    "Βελτιστοποιημένες ροές εργασίας δεδομένων, μειώνοντας έτσι σημαντικά τον χρόνο μη αυτόματης επεξεργασίας."
   ],
   "Alkyl_Compiler": "Γλώσσα Προγραμματισμού Alkyl και Μεταγλωττιστής",
   "Alkyl_Compiler_Description": [
@@ -30,15 +30,15 @@
     "Χρήση Valgrind και GDB για αυστηρή διαχείριση μνήμης και εκσφαλμάτωση.",
     "Μετάφραση δομών γλωσσών υψηλού επιπέδου σε αποδοτικό κώδικα μηχανής."
   ],
-  "ALTH_Project": "ALTH: Aku Lupa Tandai Hadir",
+  "ALTH_Project": "ΑΛΘ: Ξέχασα να επισημάνω την παρουσία",
   "ALTH_Project_Description": [
-    "Using Burp Suite to analyze the usage of SSO and Cookies",
-    "Developed a \"mark attendance\" reminder app for Institut Teknologi Bandung students using Flutter and Dart"
+    "Ανάλυσε τη χρήση των SSO και των cookies χρησιμοποιώντας το Burp Suite...",
+    "Ανέπτυξε μια εφαρμογή υπενθύμισης \"επισήμανσης συμμετοχής\" για φοιτητές του Institut Teknologi Bandung χρησιμοποιώντας Flutter και Dart"
   ],
   "Jump_Game_Project": "Παιχνίδι Jump!",
-  "Below_Below_Project": "Below Below",
+  "Below_Below_Project": "Παρακάτω Παρακάτω",
   "Superskill_Project": "Γνωστικός Κήπος",
-  "View_Project": "View Project",
+  "View_Project": "Προβολή έργου",
   "National_Statistics_Competition_Prep": "Προετοιμασία Εθνικού Διαγωνισμού Στατιστικής",
   "National_Statistics_Competition_Prep_Description": [
     "Προετοιμασία και μοντελοποίηση στατιστικών δεδομένων αξιοποιώντας Πιθανότητες & Στατιστική, SARIMAX και MANOVA.",
@@ -55,15 +55,15 @@
     "Ανάπτυξη μηχανικών παιχνιδιού, αλληλεπιδράσεων φυσικής και ελέγχων παικτών.",
     "Δημιουργία προσαρμοσμένων στοιχείων τέχνης pixel και ενσωμάτωση ηχητικών εφέ για μια συνεκτική εμπειρία."
   ],
-  "Olive_Divergence": "Olive Divergence",
+  "Olive_Divergence": "Απόκλιση ελιάς",
   "Olive_Divergence_Desc": [
     "Προγραμματισμός του 'Olive Divergence' χρησιμοποιώντας C++ και το πλαίσιο Qt.",
     "Σχεδιασμός ενός γραφικού περιβάλλοντος χρήστη με πλούσια οπτικά στοιχεία και προσαρμοσμένα γραφικά στοιχεία.",
     "Αποτελεσματική διαχείριση της κατάστασης της εφαρμογής και της ροής δεδομένων εντός του βρόχου συμβάντων του Qt."
   ],
   "Superskill_Description": [
-    "Developed Cognitive Garden, a cutting-edge cross-platform application using Flutter and Dart.",
-    "Designed games that train brain cognition and stimulate the brain.",
-    "Designed an intuitive and engaging user interface with rich animations."
+    "Αναπτύχθηκε το Cognitive Garden, μια εφαρμογή αιχμής για πολλαπλές πλατφόρμες που χρησιμοποιεί Flutter και Dart.",
+    "Σχεδιασμένα παιχνίδια που εκπαιδεύουν τη γνώση του εγκεφάλου και διεγείρουν τον εγκέφαλο.",
+    "Σχεδιάστηκε ένα διαισθητικό και συναρπαστικό περιβάλλον χρήστη με πλούσια κινούμενα σχέδια."
   ]
 }

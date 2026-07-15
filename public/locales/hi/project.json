@@ -1,18 +1,18 @@
 {
   "Loading_Python": "Downloading Python and Source Code....",
-  "Python_Web_Title": "Python Interactive Interface",
-  "Python_Terminal_Error": "CRITICAL ERROR: SharedArrayBuffer is not defined. Ensure Cross-Origin-Opener-Policy (COOP) and Cross-Origin-Embedder-Policy (COEP) headers are set on the server.",
-  "Python_Terminal_Finished": "--- Program Finished ---",
+  "Python_Web_Title": "पायथन इंटरएक्टिव इंटरफ़ेस",
+  "Python_Terminal_Error": "गंभीर त्रुटि: SharedArrayBuffer परिभाषित नहीं है। सुनिश्चित करें कि क्रॉस-ऑरिजिन-ओपनर-पॉलिसी (COOP) और क्रॉस-ऑरिजिन-एंबेडर-पॉलिसी (COEP) हेडर सर्वर पर सेट हैं।",
+  "Python_Terminal_Finished": "--- कार्यक्रम समाप्त ---",
   "Python_Terminal_Welcome": "Welcome to the Python Web Terminal!",
-  "Python_Terminal_Input_Too_Long": "Input too long!",
-  "SEO_Project_Description": "A collection of Muhammad Faran Aiki's technical projects, ranging from the Alkyl compiler, ALTH Flutter application, to Indonesia socio-economic data integration. Discover innovative software solutions.",
-  "Make_Interactive_UAS": "Interactive Learning for UAS MA1101 ITB",
+  "Python_Terminal_Input_Too_Long": "इनपुट बहुत लंबा है!",
+  "SEO_Project_Description": "मुहम्मद फ़रान अकी की तकनीकी परियोजनाओं का एक संग्रह, जिसमें अल्काइल कंपाइलर, एएलटीएच फ़्लटर एप्लिकेशन से लेकर इंडोनेशिया सामाजिक-आर्थिक डेटा एकीकरण तक शामिल है। नवोन्मेषी सॉफ़्टवेयर समाधान खोजें।",
+  "Make_Interactive_UAS": "यूएएस एमए1101 आईटीबी के लिए इंटरएक्टिव लर्निंग",
   "Make_Interactive_UAS_Description": [
     "फ़्लटर, डार्ट और FL चार्ट का उपयोग करके एक इंटरैक्टिव गणित सीखने का उपकरण बनाया।",
     "छात्रों की समझ में सहायता के लिए जटिल गणितीय अवधारणाओं को गतिशील रूप से कल्पना की।",
     "सहज बातचीत के लिए एक उत्तरदायी और उपयोगकर्ता के अनुकूल इंटरफ़ेस डिज़ाइन किया गया।"
   ],
-  "Make_Nihwm": "NihWM Window Manager",
+  "Make_Nihwm": "NihWM विंडो मैनेजर",
   "Make_Nihwm_Description": [
     "Linux के लिए पूरी तरह से C में लिखा गया 'nihwm' नामक एक हल्का X11 विंडो मैनेजर विकसित किया।",
     "XOrg का उपयोग करके मुख्य विंडो प्रबंधन कार्यक्षमता और इनपुट हैंडलिंग लागू की गई।",
@@ -20,25 +20,25 @@
   ],
   "Lidia_Project": "Socio-Economic Integration Data Analysis for Indonesia Emas 2045",
   "Lidia_Project_Description": [
-    "Engineered an ETL pipeline using Python, Pandas, and Jupyter Notebook from 5 different datasets.",
-    "Integrated Gemini-CLI to enhance data processing capabilities.",
-    "Streamlined data workflows, thereby significantly reducing manual processing time."
+    "5 अलग-अलग डेटासेट से पायथन, पांडा और ज्यूपिटर नोटबुक का उपयोग करके एक ईटीएल पाइपलाइन का निर्माण किया।",
+    "डेटा प्रोसेसिंग क्षमताओं को बढ़ाने के लिए एकीकृत जेमिनी-सीएलआई।",
+    "सुव्यवस्थित डेटा वर्कफ़्लो, जिससे मैन्युअल प्रोसेसिंग समय में काफी कमी आती है।"
   ],
-  "Alkyl_Compiler": "Alkyl Programming Language and Compiler",
+  "Alkyl_Compiler": "अल्काइल प्रोग्रामिंग भाषा और कंपाइलर",
   "Alkyl_Compiler_Description": [
     "C और LLVM का उपयोग करके खरोंच से एक कस्टम कंपाइलर को तैयार और लागू किया गया।",
     "कठोर मेमोरी प्रबंधन और डिबगिंग के लिए Valgrind और GDB का उपयोग किया गया।",
     "कुशल मशीन कोड में उच्च-स्तरीय भाषा निर्माण का अनुवाद किया।"
   ],
-  "ALTH_Project": "ALTH: Aku Lupa Tandai Hadir",
+  "ALTH_Project": "ALTH: मैं उपस्थिति दर्ज करना भूल गया",
   "ALTH_Project_Description": [
-    "Using Burp Suite to analyze the usage of SSO and Cookies",
-    "Developed a \"mark attendance\" reminder app for Institut Teknologi Bandung students using Flutter and Dart"
+    "बर्प सूट का उपयोग करके एसएसओ और कुकीज़ के उपयोग का विश्लेषण किया गया...",
+    "फ़्लटर और डार्ट का उपयोग करके इंस्टीट्यूट टेक्नोलोजी बांडुंग के छात्रों के लिए एक \"मार्क अटेंडेंस\" अनुस्मारक ऐप विकसित किया गया"
   ],
-  "Jump_Game_Project": "Jump! Game",
-  "Below_Below_Project": "Below Below",
-  "Superskill_Project": "Cognitive Garden",
-  "View_Project": "View Project",
+  "Jump_Game_Project": "कूदना! खेल",
+  "Below_Below_Project": "नीचे नीचे",
+  "Superskill_Project": "संज्ञानात्मक उद्यान",
+  "View_Project": "प्रोजेक्ट देखें",
   "National_Statistics_Competition_Prep": "राष्ट्रीय सांख्यिकी प्रतियोगिता की तैयारी",
   "National_Statistics_Competition_Prep_Description": [
     "Probability & Statistics, SARIMAX और MANOVA का उपयोग करके सांख्यिकीय डेटा तैयार और मॉडल किया गया।",
@@ -55,15 +55,15 @@
     "गेम मैकेनिक्स, भौतिकी इंटरैक्शन और प्लेयर कंट्रोल विकसित किए।",
     "कस्टम पिक्सेल आर्ट एसेट बनाए और एक सामंजस्यपूर्ण अनुभव के लिए ध्वनि प्रभावों को एकीकृत किया।"
   ],
-  "Olive_Divergence": "Olive Divergence",
+  "Olive_Divergence": "जैतून विचलन",
   "Olive_Divergence_Desc": [
     "C++ और Qt फ्रेमवर्क का उपयोग करके 'Olive Divergence' प्रोग्राम किया गया।",
     "समृद्ध दृश्य तत्वों और कस्टम विगेट्स के साथ एक ग्राफिकल यूजर इंटरफेस तैयार किया।",
     "Qt ईवेंट लूप के भीतर एप्लिकेशन स्थिति और डेटा प्रवाह को कुशलतापूर्वक प्रबंधित किया।"
   ],
   "Superskill_Description": [
-    "Developed Cognitive Garden, a cutting-edge cross-platform application using Flutter and Dart.",
-    "Designed games that train brain cognition and stimulate the brain.",
-    "Designed an intuitive and engaging user interface with rich animations."
+    "फ़्लटर और डार्ट का उपयोग करके एक अत्याधुनिक क्रॉस-प्लेटफ़ॉर्म एप्लिकेशन, कॉग्निटिव गार्डन विकसित किया गया।",
+    "ऐसे गेम डिज़ाइन किए गए हैं जो मस्तिष्क की अनुभूति को प्रशिक्षित करते हैं और मस्तिष्क को उत्तेजित करते हैं।",
+    "समृद्ध एनिमेशन के साथ एक सहज और आकर्षक उपयोगकर्ता इंटरफ़ेस डिज़ाइन किया गया।"
   ]
 }

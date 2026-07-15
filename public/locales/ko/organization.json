@@ -1,5 +1,5 @@
 {
-  "SEO_Organization_Description": "Muhammad Faran Aiki's organizational experience at GDG ITB, STEI-K, and various committees at the Institut Teknologi Bandung. Learn about his contributions to community building and technology initiatives.",
+  "SEO_Organization_Description": "Muhammad Faran Aiki의 GDG ITB, STEI-K 및 Institut Teknologi Bandung의 다양한 위원회에서의 조직 경험. 커뮤니티 구축 및 기술 이니셔티브에 대한 그의 기여에 대해 알아보세요.",
   "Committee": "위원회",
   "NBK_Member": "일본어 공부회(NBK) 클럽 회원",
   "NBK_Member_Description": [
@@ -11,22 +11,22 @@
   ],
   "Impact_Web_Lead": "Web Impact 6.0 웹 개발 팀장",
   "Impact_Web_Lead_Description": [
-    "Designed and managed the IMPACT 6.0 olympiad website used by 400+ teams and 1100+ high school students nationwide",
+    "전국 400개 이상의 팀과 1,100명 이상의 고등학생이 사용하는 IMPACT 6.0 올림피아드 웹사이트를 디자인하고 관리했습니다.",
     "안정적이고 확장 가능한 데이터 관리를 위해 Prisma ORM과 결합된 Supabase SQL 데이터베이스를 활용하여 백엔드 아키텍처를 설계했습니다.",
     "모든 참가자에게 원활한 경쟁 환경을 제공하기 위해 Moodle 및 Judgel 플랫폼을 관리했습니다.",
     "효율적인 프로젝트 진행을 보장하기 위해 프론트엔드 및 백엔드 개발 팀을 관리하고 조율했습니다.",
-    "Mengelola dan mengoordinasikan tim beranggotakan 8 orang untuk memastikan pengiriman proyek yang efisien."
+    "효율적인 프로젝트 전달을 위해 8명으로 구성된 팀을 관리하고 조정했습니다."
   ],
   "Treasurer_SYNC": "STEI-K 친목 행사 회계",
   "Treasurer_SYNC_Description": [
-    "Ensuring transparent and efficient allocation of organizational funds.",
-    "Increased the event's financial budget by around 5.45% by securing 1 million sponsorship deals with Analitica"
+    "조직 자금의 투명하고 효율적인 배분을 보장합니다.",
+    "Analitica와 100만 건의 후원 계약을 체결하여 행사 재정 예산을 약 5.45% 늘렸습니다."
   ],
   "IT_Club_Vice_Renpy": "2024 IT 클럽 최종 프로젝트 부팀장",
   "IT_Club_Vice_Renpy_Description": [
     "부회장으로 활동하며 동아리 활동을 조직하고 회원들을 지도했습니다.",
     "Ren'Py 비주얼 노벨 엔진을 사용하여 게임 개발 개념을 가르쳤습니다.",
-    "프로그래밍 논리 및 대화형 스토리텔링에 대해 학생들을 멘토링했습니다."
+    "프로그래밍 논리 및 대화형 스토리텔링 분야에서 8명 이상의 학생을 멘토링했습니다."
   ],
   "Student_Club_Member": "학생 클럽 회원",
   "Student_Club_Member_Description": [
@@ -47,13 +47,13 @@
   ],
   "Concerto": "Concerto 경연 대회 최종 단계 코디네이터",
   "Concerto_Description": [
-    "Organized question generation as the person in charge of the final round.",
-    "Learned that being a leader entails high responsibility and one cannot blame subordinates."
+    "최종 라운드를 담당하는 사람으로서 질문 생성을 체계화했습니다.",
+    "리더가 된다는 것은 높은 책임을 수반하며 부하를 비난할 수 없다는 것을 배웠습니다."
   ],
   "GDG_ITB_Title": "ITB Google Developer Group Campus - 제품 관리자 익스플로러",
   "GDG_ITB_Description": [
-    "Learning Product Management from basic to advanced.",
-    "Learning to empathize with users."
+    "제품관리 기초부터 고급까지 학습합니다.",
+    "사용자와 공감하는 법을 배웁니다."
   ],
   "GDGOC ITB_Product Manager": "GDGOC ITB 제품 관리자"
 }

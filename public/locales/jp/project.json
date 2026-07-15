@@ -32,7 +32,7 @@
   ],
   "ALTH_Project": "ALTH：出席登録を忘れました",
   "ALTH_Project_Description": [
-    "Using Burp Suite to analyze the usage of SSO and Cookies",
+    "Analyzed the usage of SSO and Cookies using Burp Suite...",
     "Developed a \"mark attendance\" reminder app for Institut Teknologi Bandung students using Flutter and Dart"
   ],
   "Jump_Game_Project": "Jump! Game",

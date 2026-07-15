@@ -32,13 +32,13 @@
   ],
   "ALTH_Project": "ALTH: 我忘了签到",
   "ALTH_Project_Description": [
-    "使用 Burp Suite 分析 SSO 和 Cookie 的使用情况。",
+    "使用 Burp Suite 分析 SSO 和 Cookies 的使用...",
     "使用 Flutter 和 Dart 为万隆理工学院学生开发了一款“打卡”提醒应用。"
   ],
-  "Jump_Game_Project": "Jump! Game",
-  "Below_Below_Project": "Below Below",
-  "Superskill_Project": "Cognitive Garden",
-  "View_Project": "View Project",
+  "Jump_Game_Project": "跳！游戏",
+  "Below_Below_Project": "下方 下方",
+  "Superskill_Project": "认知花园",
+  "View_Project": "查看项目",
   "National_Statistics_Competition_Prep": "全国统计竞赛准备",
   "National_Statistics_Competition_Prep_Description": [
     "利用概率统计、SARIMAX和MANOVA准备并建模了统计数据。",
@@ -55,7 +55,7 @@
     "开发了游戏机制、物理交互和玩家控制。",
     "创建了自定义像素艺术资产，并集成了音效以提供连贯的体验。"
   ],
-  "Olive_Divergence": "Olive Divergence",
+  "Olive_Divergence": "橄榄分歧",
   "Olive_Divergence_Desc": [
     "使用C++和Qt框架编程了'Olive Divergence'。",
     "设计了一个带有丰富视觉元素和自定义小部件的图形用户界面。",

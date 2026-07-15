@@ -5,7 +5,7 @@
   "Python_Terminal_Finished": "--- انتهى البرنامج ---",
   "Python_Terminal_Welcome": "مرحباً بكم في محطة بايثون على الويب!",
   "Python_Terminal_Input_Too_Long": "الإدخال طويل جداً!",
-  "SEO_Project_Description": "A collection of Muhammad Faran Aiki's technical projects, ranging from the Alkyl compiler, ALTH Flutter application, to Indonesia socio-economic data integration. Discover innovative software solutions.",
+  "SEO_Project_Description": "مجموعة من المشاريع الفنية لمحمد فاران أيكي، بدءًا من مترجم Alkyl وتطبيق ALTH Flutter وحتى تكامل البيانات الاجتماعية والاقتصادية في إندونيسيا. اكتشف الحلول البرمجية المبتكرة.",
   "Make_Interactive_UAS": "التعلم التفاعلي لـ UAS MA1101 ITB",
   "Make_Interactive_UAS_Description": [
     "بناء أداة تعليمية تفاعلية للرياضيات باستخدام Flutter و Dart و FL Chart.",
@@ -20,9 +20,9 @@
   ],
   "Lidia_Project": "تحليل بيانات التكامل الاجتماعي والاقتصادي لإندونيسيا الذهبية 2045",
   "Lidia_Project_Description": [
-    "Engineered an ETL pipeline using Python, Pandas, and Jupyter Notebook from 5 different datasets.",
-    "Integrated Gemini-CLI to enhance data processing capabilities.",
-    "Streamlined data workflows, thereby significantly reducing manual processing time."
+    "تم تصميم خط أنابيب ETL باستخدام Python وPandas وJupyter Notebook من 5 مجموعات بيانات مختلفة.",
+    "Gemini-CLI المتكامل لتعزيز قدرات معالجة البيانات.",
+    "تبسيط سير عمل البيانات، وبالتالي تقليل وقت المعالجة اليدوية بشكل كبير."
   ],
   "Alkyl_Compiler": "لغة برمجة ومترجم Alkyl",
   "Alkyl_Compiler_Description": [
@@ -32,13 +32,13 @@
   ],
   "ALTH_Project": "ALTH: نسيان تسجيل الحضور",
   "ALTH_Project_Description": [
-    "Using Burp Suite to analyze the usage of SSO and Cookies",
-    "Developed a \"mark attendance\" reminder app for Institut Teknologi Bandung students using Flutter and Dart"
+    "تم تحليل استخدام الدخول الموحّد (SSO) وملفات تعريف الارتباط باستخدام Burp Suite...",
+    "تم تطوير تطبيق تذكير \"علامة الحضور\" لطلاب Institut Teknologi Bandung باستخدام Flutter وDart"
   ],
-  "Jump_Game_Project": "Jump! Game",
-  "Below_Below_Project": "Below Below",
+  "Jump_Game_Project": "القفز! لعبة",
+  "Below_Below_Project": "أدناه أدناه",
   "Superskill_Project": "الحديقة المعرفية",
-  "View_Project": "View Project",
+  "View_Project": "عرض المشروع",
   "National_Statistics_Competition_Prep": "الإعداد للمسابقة الوطنية للإحصاء",
   "National_Statistics_Competition_Prep_Description": [
     "إعداد ونمذجة البيانات الإحصائية باستخدام الاحتمالات والإحصاء و SARIMAX و MANOVA.",
@@ -55,15 +55,15 @@
     "تطوير آليات اللعبة والتفاعلات الفيزيائية وضوابط اللاعب.",
     "إنشاء أصول فن البكسل المخصصة ودمج المؤثرات الصوتية لتجربة متماسكة."
   ],
-  "Olive_Divergence": "Olive Divergence",
+  "Olive_Divergence": "تباين الزيتون",
   "Olive_Divergence_Desc": [
     "برمجة 'Olive Divergence' باستخدام C++ وإطار عمل Qt.",
     "تصميم واجهة مستخدم رسومية مع عناصر مرئية غنية وعناصر واجهة مستخدم مخصصة.",
     "إدارة حالة التطبيق وتدفق البيانات بكفاءة داخل حلقة أحداث Qt."
   ],
   "Superskill_Description": [
-    "Developed Cognitive Garden, a cutting-edge cross-platform application using Flutter and Dart.",
-    "Designed games that train brain cognition and stimulate the brain.",
-    "Designed an intuitive and engaging user interface with rich animations."
+    "تم تطوير Cognitive Garden، وهو تطبيق متطور متعدد المنصات يستخدم Flutter وDart.",
+    "ألعاب مصممة لتدريب إدراك الدماغ وتحفيز الدماغ.",
+    "صمم واجهة مستخدم بديهية وجذابة مع رسوم متحركة غنية."
   ]
 }
