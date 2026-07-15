@@ -60,7 +60,7 @@
   "Hausa": "豪萨语",
   "Make_Website": "个人网站 faranaiki.id",
   "Make_Website_Description": [
-    "使用NextJS、TailwindCSS和TypeScript设计了一个动态且高性能的个人作品集网站。",
+    "Engineered a portfolio website with around 2,000+ visitors and 10,000+ views",
     "使用Lenis和Framer-Motion实现了平滑滚动和动画效果。",
     "使用Drizzle和SQL构建了强大的后端数据库结构。"
   ],

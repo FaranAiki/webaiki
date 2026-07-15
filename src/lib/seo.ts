@@ -135,9 +135,8 @@ export function getBaseMetadata(dict: import('@/components/layout/Translator').T
       icon: '/logo.png',
       apple: '/apple-icon.png',
     },
-    alternates: {
-      languages: getLanguageAlternates(''),
-    },
+    // Removed alternates here because it forces wrong hreflang (e.g. pointing to root) 
+    // on pages that do not override it. Pages should specify their own alternates in generateMetadata.
     robots: {
       index: true,
       follow: true,

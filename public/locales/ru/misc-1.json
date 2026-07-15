@@ -60,7 +60,7 @@
   "Hausa": "Хауса",
   "Make_Website": "Персональный сайт faranaiki.id",
   "Make_Website_Description": [
-    "Разработал динамичный и высокопроизводительный сайт-портфолио с использованием NextJS, TailwindCSS и TypeScript.",
+    "Engineered a portfolio website with around 2,000+ visitors and 10,000+ views",
     "Реализовал плавную прокрутку и анимацию с помощью Lenis и Framer-Motion.",
     "Спроектировал надежную структуру внутренней базы данных с использованием Drizzle и SQL."
   ],
