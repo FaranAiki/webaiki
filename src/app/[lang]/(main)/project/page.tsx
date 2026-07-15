@@ -25,6 +25,13 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       title: `${dict.Project} | Faran Aiki`,
       description: dict.SEO_Project_Description || "Showcase of Faran Aiki's software projects and contributions",
       url: `${SITE_URL}/${lang}/project`,
+      images: [
+        {
+          url: `${SITE_URL}/api/og?title=${encodeURIComponent(dict.Project || 'Project')}`,
+          width: 1200,
+          height: 630,
+        }
+      ]
     },
     alternates: { 
       canonical: `/${lang}/project`,

@@ -1,6 +1,6 @@
 import { getDictionary } from '@/components/layout/Translator';
 import { Metadata } from 'next';
-import { getLanguageAlternates, getBaseMetadata, SITE_URL } from '@/lib/seo';
+import { getLanguageAlternates, getBaseMetadata, SITE_URL , getBreadcrumbSchema } from '@/lib/seo';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;

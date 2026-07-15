@@ -1,9 +1,8 @@
 import Script from "next/script";
 import "../globals.css";
+import { getBaseMetadata } from "@/lib/seo";
 import { Suspense } from 'react';
-
 import { Providers } from "@/components/providers/Providers";
-import { getBaseMetadata, getFaqSchema } from "@/lib/seo";
 
 import { ProvidersConfigurator } from "@/components/providers/Providers";
 import { getDictionary } from "@/components/layout/Translator";
@@ -92,36 +91,6 @@ export default async function BaseLayout({
             }}
           />
         </Providers>
-
-        <Script
-          id="faq-schema"
-          type="application/ld+json"
-          nonce={nonce}
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(getFaqSchema([
-              {
-                question: "Who is Muhammad Faran Aiki?",
-                answer: "Muhammad Faran Aiki is a Software Engineer, Mathematics Enthusiast, ONMIPA Medalist, and Computer Science Student at Institut Teknologi Bandung (ITB)."
-              },
-              {
-                question: "Who is Faran Aiki?",
-                answer: "Faran Aiki (Muhammad Faran Aiki) is an Indonesian Software Engineer, ITB student, and competitive mathematician known for his full-stack development portfolio and SAT tutoring."
-              },
-              {
-                question: "Who is Faran?",
-                answer: "In the context of technology and mathematics in Indonesia, 'Faran' usually refers to Muhammad Faran Aiki, a Software Engineer and Mathematics Enthusiast at ITB."
-              },
-              {
-                question: "What does Muhammad Faran Aiki do?",
-                answer: "He specializes in full-stack web development, mobile app development using Flutter, and Data Analysis. He is also a Mathematics Tutor and problem writer."
-              },
-              {
-                question: "Where does Muhammad Faran Aiki study?",
-                answer: "Muhammad Faran Aiki studies Computer Science / Informatics at Bandung Institute of Technology (ITB) in Indonesia."
-              }
-            ]))
-          }}
-        />
       </body>
     </html>
   );

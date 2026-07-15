@@ -159,6 +159,12 @@ export function getBaseMetadata(dict: import('@/components/layout/Translator').T
         'baidu-site-verification': '', // Insert Baidu site verification ID here if available
       },
     },
+    other: {
+      'geo.region': 'ID-JB',
+      'geo.placename': 'Bandung',
+      'geo.position': '-6.8915;107.6106',
+      'ICBM': '-6.8915, 107.6106',
+    },
     openGraph: {
       type: 'profile',
       firstName: 'Muhammad Faran',
@@ -269,6 +275,43 @@ export function getOrganizationSchema() {
     "url": SITE_URL,
     "logo": `${SITE_URL}/logo.png`,
     "founder": {
+      "@id": `${SITE_URL}/#person`
+    }
+  };
+}
+
+export function getProfessionalServiceSchema(lang: string, description?: string) {
+  return {
+    "@type": "ProfessionalService",
+    "@id": `${SITE_URL}/#professionalservice`,
+    "name": "Muhammad Faran Aiki Services",
+    "description": description || "Software Engineering, Full Stack Web Development, and SAT Tutoring Services in Bandung, Indonesia.",
+    "image": `${SITE_URL}/images/og-preview.jpg`,
+    "url": SITE_URL,
+    "telephone": "", 
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bandung",
+      "addressRegion": "West Java",
+      "addressCountry": "ID"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -6.8915,
+      "longitude": 107.6106
+    },
+    "areaServed": [
+      {
+        "@type": "Country",
+        "name": "Indonesia"
+      },
+      {
+        "@type": "City",
+        "name": "Bandung"
+      }
+    ],
+    "priceRange": "$$",
+    "provider": {
       "@id": `${SITE_URL}/#person`
     }
   };

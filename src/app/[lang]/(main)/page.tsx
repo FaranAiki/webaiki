@@ -1,7 +1,7 @@
 export const dynamic = 'error';
 import type { Metadata } from "next";
 import { getDictionary } from '@/components/layout/Translator';
-import { getLanguageAlternates, getBaseMetadata, SITE_URL, getPersonSchema, getWebsiteSchema, getProfilePageSchema, getOrganizationSchema } from '@/lib/seo';
+import { getLanguageAlternates, getBaseMetadata, SITE_URL, getPersonSchema, getWebsiteSchema, getProfilePageSchema, getOrganizationSchema, getFaqSchema, getProfessionalServiceSchema } from '@/lib/seo';
 
 import { getNews, getFeedbacks } from '@/app/actions';
 import { NewsItem } from '@/lib/types';
@@ -82,7 +82,30 @@ export default async function HomePage({
       getPersonSchema(lang),
       getWebsiteSchema(lang, ''),
       getOrganizationSchema(),
-      getProfilePageSchema(lang)
+      getProfessionalServiceSchema(lang),
+      getProfilePageSchema(lang),
+      getFaqSchema([
+        {
+          question: "Who is Muhammad Faran Aiki?",
+          answer: "Muhammad Faran Aiki is a Software Engineer, Mathematics Enthusiast, ONMIPA Medalist, and Computer Science Student at Institut Teknologi Bandung (ITB)."
+        },
+        {
+          question: "Who is Faran Aiki?",
+          answer: "Faran Aiki (Muhammad Faran Aiki) is an Indonesian Software Engineer, ITB student, and competitive mathematician known for his full-stack development portfolio and SAT tutoring."
+        },
+        {
+          question: "Who is Faran?",
+          answer: "In the context of technology and mathematics in Indonesia, 'Faran' usually refers to Muhammad Faran Aiki, a Software Engineer and Mathematics Enthusiast at ITB."
+        },
+        {
+          question: "What does Muhammad Faran Aiki do?",
+          answer: "He specializes in full-stack web development, mobile app development using Flutter, and Data Analysis. He is also a Mathematics Tutor and problem writer."
+        },
+        {
+          question: "Where does Muhammad Faran Aiki study?",
+          answer: "Muhammad Faran Aiki studies Computer Science / Informatics at Bandung Institute of Technology (ITB) in Indonesia."
+        }
+      ])
     ]
   };
 

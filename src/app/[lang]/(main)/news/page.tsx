@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getDictionary } from '@/components/layout/Translator';
 import NewsDisplay from '@/components/interactive/NewsDisplay';
-import { getBaseMetadata, getLanguageAlternates } from '@/lib/seo';
+import { getBaseMetadata, getLanguageAlternates , getBreadcrumbSchema } from '@/lib/seo';
 import { getNews } from '@/app/actions';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
@@ -17,6 +17,19 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     ...baseMetadata,
     title,
     description,
+    openGraph: {
+      ...baseMetadata.openGraph,
+      title,
+      description,
+      url: `https://faranaiki.id/${lang}/news`,
+      images: [
+        {
+          url: `https://faranaiki.id/api/og?title=${encodeURIComponent(dict.News || 'News')}`,
+          width: 1200,
+          height: 630,
+        }
+      ]
+    },
     alternates: {
       canonical: `/${lang}/news`,
       languages: getLanguageAlternates('/news'),
@@ -50,8 +63,22 @@ export default async function NewsPage({ params }: { params: Promise<{ lang: str
     Read_More: dict.Read_More
   };
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      getBreadcrumbSchema([
+        { name: 'Home', item: `/${lang}` },
+        { name: dict.News || 'News', item: `/${lang}/news` }
+      ])
+    ]
+  };
+
   return (
     <main className="container mx-auto px-4 md:px-8 pt-32 pb-16 min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <NewsDisplay 
         dict={newsDict as import('@/components/layout/Translator').TranslationDict} 
         lang={lang} 

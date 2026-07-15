@@ -2,7 +2,7 @@ export const dynamic = 'error';
 import type { Metadata } from "next";
 import "../../../globals.css";
 import { getDictionary } from '@/components/layout/Translator';
-import { SITE_URL, getBaseMetadata, getLanguageAlternates } from '@/lib/seo';
+import { SITE_URL, getBaseMetadata, getLanguageAlternates , getBreadcrumbSchema } from '@/lib/seo';
 import PortfolioHeader from '@/components/portfolio/PortfolioHeader';
 import PortfolioClientWrapper from '@/components/portfolio/PortfolioClientWrapper';
 
@@ -37,6 +37,13 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       title: `${dict.Portfolio || 'Portfolio'} | Faran Aiki`,
       description: dict.Portfolio_Summary_Description || "Compact summary of Muhammad Faran Aiki's professional experiences and highlights",
       url: `${SITE_URL}/${lang}/portfolio`,
+      images: [
+        {
+          url: `${SITE_URL}/api/og?title=${encodeURIComponent(dict.Portfolio || 'Portfolio')}`,
+          width: 1200,
+          height: 630,
+        }
+      ]
     },
     alternates: {
       canonical: `/${lang}/portfolio`,
@@ -77,24 +84,32 @@ export default async function PortfolioSummaryPage({params }: { params: Promise<
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Muhammad Faran Aiki",
-    "url": `${SITE_URL}/${lang}/portfolio`,
-    "jobTitle": dict.STI,
-    "worksFor": {
-      "@type": "Organization",
-      "name": dict.ITB
-    },
-    "description": dict.Portfolio_Summary_Description,
-    "knowsAbout": ["Mathematics", "Computer Science", "Software Engineering", "Game Development"],
-    "hasCredential": awardExp.map(a => ({
-      "@type": "EducationalOccupationalCredential",
-      "name": a.title,
-      "recognizedBy": {
-        "@type": "Organization",
-        "name": a.company
-      }
-    }))
+    "@graph": [
+      {
+        "@type": "Person",
+        "name": "Muhammad Faran Aiki",
+        "url": `${SITE_URL}/${lang}/portfolio`,
+        "jobTitle": dict.STI,
+        "worksFor": {
+          "@type": "Organization",
+          "name": dict.ITB
+        },
+        "description": dict.Portfolio_Summary_Description,
+        "knowsAbout": ["Mathematics", "Computer Science", "Software Engineering", "Game Development"],
+        "hasCredential": awardExp.map(a => ({
+          "@type": "EducationalOccupationalCredential",
+          "name": a.title,
+          "recognizedBy": {
+            "@type": "Organization",
+            "name": a.company
+          }
+        }))
+      },
+      getBreadcrumbSchema([
+        { name: 'Home', item: `/${lang}` },
+        { name: dict.Portfolio || 'Portfolio', item: `/${lang}/portfolio` }
+      ])
+    ]
   };
 
   return (
