@@ -34,7 +34,7 @@ const seoUpdates = {
       SEO_Project_Description: "Kumpulan proyek teknis Muhammad Faran Aiki, mulai dari kompilator Alkyl, aplikasi Flutter ALTH, hingga integrasi data socio-economic Indonesia. Temukan solusi perangkat lunak inovatif open-source."
     },
     work: {
-      SEO_Work_Description: "Riwayat profesional Muhammad Faran Aiki sebagai Software Engineer di Analitica, Tutor SAT di Kobi Education, dan peran lainnya di bidang teknologi. Lihat dampak, kontribusi, dan keahlian industrinya."
+      SEO_Work_Description: "Riwayat profesional Muhammad Faran Aiki sebagai orang yang pernah magang Software Engineer di Analitica, Tutor SAT di Kobi Education, dan peran lainnya di bidang teknologi. Lihat dampak, kontribusi, dan keahlian industrinya."
     },
     portfolio: {
       Portfolio_Summary_Description: "Ringkasan padat dari pengalaman profesional dan sorotan Muhammad Faran Aiki. Jelajahi cuplikan terbaik dari proyek unggulan, penghargaan, dan riwayat pekerjaan di bidang rekayasa perangkat lunak.",
