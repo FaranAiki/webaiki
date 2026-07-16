@@ -43,7 +43,7 @@ export const getWorkExperiences = (dict: Dictionary) => [
         tag: [dict.Education]
       },
       {
-        date: `${dict.January} 2026 — ${dict.Present}`,
+        date: `${dict.January} 2026 — ${dict.March} 2026`,
         title: dict.Compile_Module_Author,
         company: 'STEI-K 2025',
         description: dict.Compile_Module_Author_Description,
@@ -73,7 +73,7 @@ export const getWorkExperiences = (dict: Dictionary) => [
         tag: [dict.Technology]
       },
       {
-        date: `${dict.August} 2025 — ${dict.Present}`,
+        date: `${dict.August} 2025 — ${dict.December} 2025`,
         title: dict.Mathematics_Private_Tutor,
         company: 'KPM-Nol Persen',
         description: dict.Mathematics_Private_Tutor_Description,
@@ -237,7 +237,7 @@ export const getProjectExperiences = (dict: Dictionary) => [
     year: '2023',
     jobs: [
       {
-        date: `${dict.November} 2023 — ${dict.Present}`,
+        date: `${dict.November} 2023 — ${dict.February} 2024`,
         title: dict.Make_Nihwm,
         company: 'Linux, C, XOrg',
         description: dict.Make_Nihwm_Description,
@@ -298,7 +298,7 @@ export const getOrganizationExperiences = (dict: Dictionary) => [
         tag: [dict.Management, dict.User]
       },
       {
-        date: `${dict.March} 2026 — ${dict.Present}`,
+        date: `${dict.March} 2026 — ${dict.July} 2026`,
         title: dict.Impact_Web_Lead,
         company: dict['STEI-K'] || 'STEI-K',
         description: dict.Impact_Web_Lead_Description,

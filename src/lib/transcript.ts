@@ -14,6 +14,7 @@ export interface SemesterData {
   courses: Course[];
 }
 
+// TODO: internationalize properly
 export const academicTranscript: SemesterData[] = [
   {
     title: "Tahap Persiapan Bersama",
