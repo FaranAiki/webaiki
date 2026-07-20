@@ -2,6 +2,14 @@
 
 import { cookies, headers } from 'next/headers';
 import { unstable_cache, revalidateTag } from 'next/cache';
+import { submitIndexNow } from '@/lib/indexnow';
+
+const LOCALES = ["en", "id", "zh", "jp", "ru", "fr", "ar", "es", "ko", "de", "nl", "ha", "he", "el", "hi", "pt", "bn", "vi"];
+
+function notifyIndexNow(paths: string[]) {
+  const urls = paths.flatMap((path) => LOCALES.map((lang) => `https://faranaiki.id/${lang}${path}`));
+  void submitIndexNow(urls);
+}
 import fs from 'fs';
 import path from 'path';
 import { db } from '@/lib/db';
@@ -354,6 +362,9 @@ export async function submitFeedback(content: string, image?: string, captchaTok
     // @ts-expect-error - Next 15 types require 2 arguments but it actually works with 1
     revalidateTag('feedbacks');
 
+    // Notify search engines (IndexNow) about the new public feedback
+    notifyIndexNow(["/feedback", "/latest", ""]);
+
     return { success: true };
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'Unknown error';
@@ -485,8 +496,9 @@ export async function postNews(title: string, content: string, image?: string) {
       throw pe; // Re-throw to be caught by the outer catch
     }
 
+    const newsId = crypto.randomUUID();
     await db.insert(news).values({
-      id: crypto.randomUUID(),
+      id: newsId,
       title,
       content,
       image: image || null,
@@ -497,6 +509,9 @@ export async function postNews(title: string, content: string, image?: string) {
     // Invalidate the news cache so newly posted news appears immediately
     // @ts-expect-error - Next 15 types require 2 arguments but it actually works with 1
     revalidateTag('news');
+
+    // Notify search engines (IndexNow) so the new content is indexed instantly
+    notifyIndexNow([`/news/${newsId}`, "/news", "/latest", ""]);
 
     return { success: true };
   } catch (error: unknown) {

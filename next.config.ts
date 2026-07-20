@@ -90,7 +90,8 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
 
-  productionBrowserSourceMaps: true,
+  // Security/perf: don't ship source maps to production (they're only needed for devtools)
+  productionBrowserSourceMaps: false,
 
   // Vercel OOM Fixes: Limit workers to prevent memory spikes during static generation
   experimental: {

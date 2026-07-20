@@ -84,6 +84,21 @@ export default async function HomePage({
       getOrganizationSchema(),
       getProfessionalServiceSchema(lang),
       getProfilePageSchema(lang),
+      {
+        "@type": "WebPage",
+        "@id": `${SITE_URL}/${lang}#webpage`,
+        "name": "Muhammad Faran Aiki (Faran Aiki)",
+        "url": `${SITE_URL}/${lang}`,
+        "description": "Muhammad Faran Aiki, also known as Faran Aiki or Faran, is a Software Engineer, Mathematics Enthusiast, ONMIPA Medalist, and Computer Science Student at ITB.",
+        "about": { "@id": `${SITE_URL}/#person` },
+        "isPartOf": { "@id": `${SITE_URL}/#website` },
+        "inLanguage": lang,
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": `${SITE_URL}/${lang}/search?q={search_term_string}`,
+          "query-input": "required name=search_term_string"
+        }
+      },
       getFaqSchema([
         {
           question: "Who is Muhammad Faran Aiki?",
@@ -133,7 +148,7 @@ export default async function HomePage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <main className="min-h-[50vh] flex flex-col items-center justify-center px-4 md:px-8 pt-24 md:pt-12 pb-12">
-        <h1 className="sr-only">{dict.Search_About_Faran || "Search about Muhammad Faran Aiki"}</h1>
+        <p className="sr-only">{dict.Search_About_Faran || "Search about Muhammad Faran Aiki"}</p>
         <div className="md:pt-0 pt-24 w-full max-w-6xl overflow-visible">
           <HomeHero dict={homeDict} parts={parts} />
           <HomeSearchBar dict={homeDict} />

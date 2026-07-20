@@ -208,9 +208,16 @@ export function getPersonSchema(lang: string, description?: string) {
     "givenName": "Muhammad Faran",
     "familyName": "Aiki",
     "additionalName": ["Faran", "Aiki", "Muhammad Aiki"],
-    "alternateName": ["Faran Aiki", "FaranAiki", "Faran ITB", "Faran ONMIPA", "mfaranaiki"],
+    "alternateName": ["Faran Aiki", "FaranAiki", "Faran ITB", "Faran ONMIPA", "mfaranaiki", "Muhammad Faran", "M Faran Aiki"],
     "url": SITE_URL,
     "image": `${SITE_URL}/images/og-preview.jpg`,
+    "birthDate": "2007-04-08",
+    "gender": "Male",
+    "nationality": {
+      "@type": "Country",
+      "name": "Indonesia"
+    },
+    "knowsLanguage": ["Indonesian", "English"],
     "sameAs": [
       "https://github.com/FaranAiki",
       "https://medium.com/@18225122",
@@ -274,6 +281,15 @@ export function getOrganizationSchema() {
     "name": "Muhammad Faran Aiki",
     "url": SITE_URL,
     "logo": `${SITE_URL}/logo.png`,
+    "sameAs": [
+      "https://github.com/FaranAiki",
+      "https://www.linkedin.com/in/faranaiki/",
+      "https://x.com/FaranAiki",
+      "https://www.instagram.com/mfaranaiki/",
+      "https://www.youtube.com/@FaranAiki",
+      "https://linktr.ee/FaranAiki",
+      "https://myanimelist.net/profile/FaranAiki"
+    ],
     "founder": {
       "@id": `${SITE_URL}/#person`
     }
