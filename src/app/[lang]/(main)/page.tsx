@@ -6,13 +6,14 @@ import { getLanguageAlternates, getBaseMetadata, SITE_URL, getPersonSchema, getW
 import { getNews, getFeedbacks } from '@/app/actions';
 import { NewsItem } from '@/lib/types';
 import nextDynamic from 'next/dynamic';
+import { Suspense } from 'react';
 const LatestActivity = nextDynamic(() => import('@/components/interactive/LatestActivity'));
 
 import HomeHero from "@/components/home/HomeHero";
 import HomeSearchBar from "@/components/home/HomeSearchBar";
 import FadeInSection from "@/components/shared/FadeInSection";
 import HomeTutorialWrapper from "@/components/home/HomeTutorialWrapper";
-import { PortfolioAboutHeader } from '@/components/portfolio/PortfolioAboutHeader';
+import PortfolioAboutHeaderLazy from "@/components/portfolio/PortfolioAboutHeaderLazy";
 import { getFaranAikiPhoto } from '@/lib/data';
 
 export const revalidate = 3600;
@@ -51,31 +52,9 @@ export default async function HomePage({
   const dict = await getDictionary(lang);
   const faranPhotos = await getFaranAikiPhoto();
 
-  let combinedActivity: NewsItem[] = [];
-  try {
-    const [fetchedNews, fetchedFeedbacks] = await Promise.all([
-      getNews(),
-      getFeedbacks()
-    ]);
-
-    const mappedFeedbacks = (fetchedFeedbacks || []).map((fb: { id: string, content: string, image: string | null, createdAt: Date, user?: { id: string, name: string | null, avatarUrl: string | null } | null }) => ({
-      id: fb.id,
-      title: dict.Feedback_From ? `${dict.Feedback_From} ${fb.user?.name || 'Anonymous'}` : `Feedback from ${fb.user?.name || 'Anonymous'}`,
-      content: fb.content,
-      image: fb.image || null,
-      createdAt: fb.createdAt,
-      author: {
-        id: fb.user?.id || 'unknown',
-        name: fb.user?.name || 'Anonymous',
-        avatarUrl: fb.user?.avatarUrl || null,
-      }
-    })) as unknown as NewsItem[];
-
-    combinedActivity = [...(fetchedNews as unknown as NewsItem[]), ...mappedFeedbacks]
-      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-  } catch (error) {
-    console.error("Error fetching activity in HomePage:", error);
-  }
+  // NOTE: the news/feedbacks query is intentionally NOT awaited here.
+  // It runs inside <AsyncLatestActivity> below, wrapped in <Suspense>, so the
+  // hero (the LCP text) streams immediately instead of blocking on DB latency.
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -155,14 +134,17 @@ export default async function HomePage({
           <HomeSearchBar dict={homeDict} />
           <HomeTutorialWrapper />
 
-          {/* Latest Activity Section */}
+          {/* Latest Activity Section — streamed so the hero (LCP) paints
+              immediately instead of blocking on the news/feedbacks query. */}
           <FadeInSection initialVisible={true}>
-            <LatestActivity lang={lang} dict={homeDict} initialNews={combinedActivity.slice(0, 3)} />
+            <Suspense fallback={<div className="w-full h-64 animate-pulse rounded-2xl bg-theme-surface-strong/40" />}>
+              <AsyncLatestActivity lang={lang} dict={homeDict} />
+            </Suspense>
           </FadeInSection>
 
           <FadeInSection initialVisible={true}>
             <div className="md:mt-16 mt-32 pt-12 w-full pt-8 border-t border-black/10 dark:border-white/10">
-              <PortfolioAboutHeader
+              <PortfolioAboutHeaderLazy
                 carouselPhotos={faranPhotos}
                 faran_photo={dict.Faran_Photo || "Faran Aiki Photo"}
                 about_title={dict.About_Me}
@@ -186,4 +168,43 @@ export default async function HomePage({
       </main>
     </>
   );
+}
+
+// Streamed server component: fetches the news/feedbacks data on the
+// server (inside a Suspense boundary) so the above-the-fold hero
+// is sent to the browser immediately instead of waiting on DB latency.
+async function AsyncLatestActivity({
+  lang,
+  dict,
+}: {
+  lang: string;
+  dict: import('@/components/layout/Translator').TranslationDict;
+}) {
+  let combinedActivity: NewsItem[] = [];
+  try {
+    const [fetchedNews, fetchedFeedbacks] = await Promise.all([
+      getNews(),
+      getFeedbacks()
+    ]);
+
+    const mappedFeedbacks = (fetchedFeedbacks || []).map((fb: { id: string, content: string, image: string | null, createdAt: Date, user?: { id: string, name: string | null, avatarUrl: string | null } | null }) => ({
+      id: fb.id,
+      title: dict.Feedback_From ? `${dict.Feedback_From} ${fb.user?.name || 'Anonymous'}` : `Feedback from ${fb.user?.name || 'Anonymous'}`,
+      content: fb.content,
+      image: fb.image || null,
+      createdAt: fb.createdAt,
+      author: {
+        id: fb.user?.id || 'unknown',
+        name: fb.user?.name || 'Anonymous',
+        avatarUrl: fb.user?.avatarUrl || null,
+      }
+    })) as unknown as NewsItem[];
+
+    combinedActivity = [...(fetchedNews as unknown as NewsItem[]), ...mappedFeedbacks]
+      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+  } catch (error) {
+    console.error("Error fetching activity in AsyncLatestActivity:", error);
+  }
+
+  return <LatestActivity lang={lang} dict={dict} initialNews={combinedActivity.slice(0, 3)} />;
 }

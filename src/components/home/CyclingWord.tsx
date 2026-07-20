@@ -45,11 +45,19 @@ export default function CyclingWord({ dict, onTypeChange }: CyclingWordProps) {
     }
   }, [wordIndex, isReady, cyclingData, onTypeChange]);
 
+  // The widest word reserves space so the surrounding sentence keeps a
+  // constant width regardless of which word is currently shown. This
+  // prevents the layout from reflowing (CLS) when the word cycles.
+  const widestWord = useMemo(
+    () => cyclingData.reduce((a, b) => (b.word.length > a.word.length ? b : a), cyclingData[0]),
+    [cyclingData]
+  );
+
   return (
     <span className="inline-flex relative align-middle overflow-visible">
-      {/* Invisible placeholder to maintain width */}
-      <span className="invisible select-none pointer-events-none whitespace-nowrap nav-active-gacor">
-        {cyclingData[wordIndex].word.trim()}
+      {/* Invisible placeholder that always matches the widest word's width */}
+      <span aria-hidden className="invisible select-none pointer-events-none lowercase whitespace-nowrap nav-active-gacor">
+        {widestWord.word}
       </span>
       {isReady && (
         <AnimatePresence mode="popLayout" initial={false}>
