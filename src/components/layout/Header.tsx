@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import Image from 'next/image';
 import { setCookies } from '@/app/actions';
 import { useState, useEffect, useRef, useCallback, startTransition, useMemo } from 'react';
 import ThemeToggle from '@/components/shared/ThemeToggle';
@@ -15,8 +14,11 @@ const CommandPalette = dynamic(() => import('@/components/interactive/CommandPal
   ssr: false,
   loading: () => <div className="fixed inset-0 z-50 cursor-wait bg-black/20 backdrop-blur-sm transition-all flex items-start justify-center pt-[15vh] sm:pt-[20vh]" />
 });
+const HeaderDropdown = dynamic(() => import("@/components/layout/HeaderDropdown"));
+const HeaderMobileMenu = dynamic(() => import("@/components/layout/HeaderMobileMenu"), { ssr: false });
+const HeaderUserMenu = dynamic(() => import("@/components/layout/HeaderUserMenu"), { ssr: false });
 import {
-  Share2, Check, LogIn, LogOut, User, ChevronDown, Handshake, Briefcase,
+  Share2, Check, User, ChevronDown, Handshake, Briefcase,
   Home, FileCheck, Users, Trophy, Palette, Music, BookOpen, GraduationCap, Compass, Code,
   Star, LayoutGrid, Fingerprint, Globe, MessageSquare, Newspaper, MoreHorizontal, Network,
   History, FileText
@@ -26,6 +28,7 @@ import { formatCJK } from '@/lib/utils';
 import LogoIcon from '@/components/ui/LogoIcon';
 import { useAppStore } from '@/lib/store';
 import { useAuthActions } from '@/app/auth-hooks';
+import type { NavLink, HeaderAuthUser, HeaderSettingsLabels } from './header.types';
 
 export function renderIcon(name?: string, size: number = 18) {
   if (!name) return null;
@@ -56,13 +59,6 @@ export function renderIcon(name?: string, size: number = 18) {
     case 'network': return <Network size={size} />;
     default: return null;
   }
-}
-
-export interface NavLink {
-    name: string;
-    href: string;
-    subLinks?: NavLink[];
-    iconName?: string;
 }
 
 interface HeaderProps {
@@ -118,58 +114,8 @@ interface HeaderProps {
     logo_alt: string;
     share_copied: string;
     share_description: string;
-    user?: {
-        email?: string;
-        user_metadata?: {
-            avatar_url?: string;
-            full_name?: string;
-            username?: string;
-            registration_reason?: string;
-        };
-    } | null;
-    settings_labels: {
-        Settings: string;
-        Typography: string;
-        Alignment: string;
-        Text_Scaling: string;
-        Letter_Spacing: string;
-        Line_Height: string;
-        Font_Default: string;
-        Reset_Settings: string;
-        Color_Variant: string;
-        Color_Blue: string;
-        Color_Pink: string;
-        Color_Green: string;
-        Color_Purple: string;
-        Color_Orange: string;
-        Color_Grey: string;
-        Color_Mono: string;
-        Color_Red: string;
-        Color_Teal: string;
-        Color_Gold: string;
-        Advanced_Section: string;
-        ATS_Friendly: string;
-        Expand_All: string;
-        Full_Description_Portfolio: string;
-        Portfolio_Filter: string;
-        Filter_All: string;
-        Filter_Top: string;
-        Education: string;
-        Data: string;
-        Human: string;
-        Technology: string;
-        Math: string;
-        Management: string;
-        Arts: string;
-        Achievement: string;
-        Language: string;
-        User: string;
-        Select_Language: string;
-        My_Bookmarks?: string;
-        My_Requests?: string;
-        My_Feedbacks?: string;
-        My_Preferences?: string;
-    };
+    user?: HeaderAuthUser | null;
+    settings_labels: HeaderSettingsLabels;
     hire_me_label: string;
     business_requests_label: string;
 }
@@ -437,20 +383,6 @@ export default function Header(props: HeaderProps) {
         return () => window.removeEventListener('scroll', onScroll);
     }, [updateHeaderVisibility]);
 
-    const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-    const userMenuRef = useRef<HTMLDivElement>(null);
-
-    // Close user menu when clicking outside
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (userMenuRef.current && !userMenuRef.current.contains(event.target as Node)) {
-                setIsUserMenuOpen(false);
-            }
-        };
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => document.removeEventListener('mousedown', handleClickOutside);
-    }, []);
-
     // Dynamic Classes
     const headerBg = 'bg-theme-surface/80 dark:bg-theme-bg-dark/80 border-theme-border';
     const mobileMenuBg = 'bg-theme-surface-strong/95 dark:bg-theme-bg-dark/95';
@@ -653,30 +585,14 @@ export default function Header(props: HeaderProps) {
                                                 <ChevronDown />
                                             </button>
 
-                                            {/* Dropdown Menu */}
-                                            <div className="absolute top-full left-1/2 transform -translate-x-1/2 pt-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-[colors,transform,opacity] duration-200 ease-in-out">
-                                                <ul className={`${dropdownBg} rounded-xl shadow-xl py-3 min-w-[200px] ring-1 ring-black/5`}>
-                                                    {link.subLinks!.map((subLink) => {
-                                                        const isSubActive = normalizedPathname === subLink.href;
-                                                        return (
-                                                            <li key={subLink.href}>
-                                                                <Link
-                                                                    href={getLocalizedHref(subLink.href)}
-                                                                    prefetch={false}
-                                                                    onClick={(e) => e.currentTarget.blur()}
-                                                                    className={`flex items-center px-5 py-3 text-[14px] hover:bg-theme-surface-strong/50 transition-[colors,transform] ${isSubActive
-                                                                            ? `nav-active-gacor font-bold`
-                                                                            : `${textColor} hover-gacor font-medium`
-                                                                        }`}
-                                                                >
-                                                                    {subLink.iconName && <span className="mr-3 opacity-70 group-hover:opacity-100 hidden lg:inline-block scale-90">{renderIcon(subLink.iconName)}</span>}
-                                                                    {formatCJK(subLink.name, current_lang)}
-                                                                </Link>
-                                                            </li>
-                                                        );
-                                                    })}
-                                                </ul>
-                                            </div>
+                                            <HeaderDropdown
+                                                subLinks={link.subLinks!}
+                                                current_lang={current_lang}
+                                                textColor={textColor}
+                                                dropdownBg={dropdownBg}
+                                                normalizedPathname={normalizedPathname}
+                                                renderIcon={renderIcon}
+                                            />
                                         </li>
                                     );
                                 }
@@ -753,375 +669,59 @@ export default function Header(props: HeaderProps) {
                         </div>
                     {/* Desktop Auth Section */}
                         <div className="flex items-center">
-                            {user ? (
-                                <div className="relative" ref={userMenuRef}>
-                                    <button
-                                        onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                                        aria-label="Toggle user menu"
-                                        aria-expanded={isUserMenuOpen}
-                                        className="flex items-center space-x-2 p-1 rounded-full hover:bg-theme-surface-strong transition-colors border border-transparent hover:border-theme-border"
-                                    >
-                                        <div className="relative w-8 h-8 rounded-full overflow-hidden border border-theme-border shadow-sm">
-                                            <Image
-                                                src={user.user_metadata?.avatar_url || '/images/no_photo_profile.webp'}
-                                                alt={`${user.user_metadata?.full_name || user.email || 'User'} - Faran Aiki Portfolio Profile`}
-                                                fill
-                                                sizes="32px"
-                                                className="object-cover"
-                                            />
-                                        </div>
-                                        <ChevronDown />
-                                    </button>
-
-                                    <AnimatePresence>
-                                        {isUserMenuOpen && (
-                                            <motion.div
-                                                initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                                                animate={{ opacity: 1, y: 0, scale: 1 }}
-                                                exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                                                className={`absolute right-0 mt-2 w-48 rounded-xl shadow-xl border border-theme-border ${dropdownBg} py-2 z-50`}
-                                            >
-                                                <div className="px-4 py-2 border-b border-theme-border mb-1">
-                                                    <p className="text-sm font-bold truncate">
-                                                        {user.user_metadata?.full_name || user.user_metadata?.username || 'User'}
-                                                    </p>
-                                                    <p className="text-xs text-theme-muted truncate">
-                                                        {user.email}
-                                                    </p>
-                                                </div>
-
-                                                                                                <button
-                                                    onClick={() => {
-                                                        setIsUserMenuOpen(false);
-                                                        setGlobalLoading(true);
-                                                        startTransition(() => {
-                                                            router.push(getLocalizedHref('/edit-profile'));
-                                                        });
-                                                    }}
-                                                    className={`w-full text-left px-4 py-2 text-sm ${textColor} hover:bg-theme-surface-strong transition-all flex items-center group`}
-                                                >
-                                                    <User size={16} className="mr-2 group-hover-gacor-svg transition-all" />
-                                                    <span className="group-hover-gacor-text transition-all duration-300">{edit_profile_label}</span>
-                                                </button>
-
-                                                <div className="h-px bg-theme-border/50 my-1 mx-2" />
-
-                                                <button
-                                                    onClick={() => {
-                                                        setIsUserMenuOpen(false);
-                                                        setGlobalLoading(true);
-                                                        startTransition(() => {
-                                                            router.push(getLocalizedHref('/bookmarks'));
-                                                        });
-                                                    }}
-                                                    className={`w-full text-left px-4 py-2 text-sm ${textColor} hover:bg-theme-surface-strong transition-all flex items-center group`}
-                                                >
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2 group-hover-gacor-svg transition-all"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                                    <span className="group-hover-gacor-text transition-all duration-300">{settings_labels.My_Bookmarks || 'My Bookmarks'}</span>
-                                                </button>
-
-                                                {user?.email === 'faran.aiki.business@gmail.com' && (
-                                                <button
-                                                    onClick={() => {
-                                                        setIsUserMenuOpen(false);
-                                                        setGlobalLoading(true);
-                                                        startTransition(() => {
-                                                            router.push(getLocalizedHref('/business-requests'));
-                                                        });
-                                                    }}
-                                                    className={`w-full text-left px-4 py-2 text-sm ${textColor} hover:bg-theme-surface-strong transition-all flex items-center group`}
-                                                >
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2 group-hover-gacor-svg transition-all"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-                                                    <span className="group-hover-gacor-text transition-all duration-300">{settings_labels.My_Requests || 'My Requests'}</span>
-                                                </button>
-                                                )}
-
-                                                <button
-                                                    onClick={() => {
-                                                        setIsUserMenuOpen(false);
-                                                        setGlobalLoading(true);
-                                                        startTransition(() => {
-                                                            router.push(getLocalizedHref('/feedback?filter=mine'));
-                                                        });
-                                                    }}
-                                                    className={`w-full text-left px-4 py-2 text-sm ${textColor} hover:bg-theme-surface-strong transition-all flex items-center group`}
-                                                >
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2 group-hover-gacor-svg transition-all"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                                                    <span className="group-hover-gacor-text transition-all duration-300">{settings_labels.My_Feedbacks || 'My Feedbacks'}</span>
-                                                </button>
-
-
-
-                                                <button
-                                                    onClick={() => {
-                                                        setIsUserMenuOpen(false);
-                                                        signOut();
-                                                    }}
-                                                    className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-500/10 transition-colors flex items-center"
-                                                >
-                                                    <LogOut size={16} className="mr-2" />
-                                                    {logout_label}
-                                                </button>
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
-                                </div>
-                            ) : (
-                                <Link
-                                    href={getLocalizedHref('/login')}
-                                    prefetch={false}
-                                    title={login_label}
-                                    aria-label={login_label}
-                                    className={`
-                                        flex items-center justify-center transition-all duration-300 p-2 rounded-full text-theme-muted hover:text-theme-600 dark:hover:text-theme-400 hover:bg-theme-surface-strong
-                                    `}
-                                >
-                                    <LogIn size={24} strokeWidth={2} />
-                                </Link>
-                            )}
+                            <HeaderUserMenu
+                                user={user}
+                                current_lang={current_lang}
+                                settings_labels={settings_labels}
+                                edit_profile_label={edit_profile_label}
+                                login_label={login_label}
+                                logout_label={logout_label}
+                                textColor={textColor}
+                                dropdownBg={dropdownBg}
+                                getLocalizedHref={getLocalizedHref}
+                            />
                         </div>
 
                         </div>
                 </div>
             </header>
 
-            {/* --- Mobile Sidebar Navigation --- */}
+                        {/* --- Mobile Sidebar Navigation --- */}
             <AnimatePresence>
                 {isMobileMenuOpen && (
-                    <>
-                        {/* Backdrop */}
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            onClick={() => setMobileMenuOpen(false)}
-                            className="md:hidden fixed inset-0 bg-black/40 z-[50] backdrop-blur-sm"
-                        />
-
-                        {/* Sidebar */}
-                        <motion.div
-                            data-lenis-prevent
-                            initial={{ x: "100%" }}
-                            animate={{ x: 0 }}
-                            exit={{ x: "100%" }}
-                            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                            className={`no-scrollbar fixed top-0 right-0 h-full w-[85%] max-w-sm ${mobileMenuBg} md:backdrop-blur-xl shadow-2xl z-[60] md:hidden overflow-y-auto`}
-                        >
-                            <div
-                                className="absolute inset-0 z-[-1] pointer-events-none opacity-[0.02] dark:opacity-[0.02]"
-                                style={{
-                                    backgroundImage: "url('/images/background/pattern_02.avif')",
-                                    backgroundRepeat: 'repeat',
-                                    backgroundSize: '626px 626px'
-                                }}
-                            />
-                            <div className="absolute top-4 right-4 z-[70]">
-                                <button
-                                    onClick={() => setMobileMenuOpen(false)}
-                                    className={`p-2 rounded-lg hover:bg-theme-surface-strong transition-colors hover-gacor ${textColor}`}
-                                    aria-label="Close menu"
-                                >
-                                    <CloseIcon />
-                                </button>
-                            </div>
-                            <nav className="mt-20 px-8 pb-12">
-                                <div className="mb-8 border-b border-theme-border pb-4">
-                                    <span className={`text-xl font-black tracking-tight nav-active-gacor`}>
-                                        {formatCJK(navigation_label, current_lang)}
-                                    </span>
-                                </div>
-
-                                <ul className="flex flex-col space-y-6 mb-10">
-                                    {navLinks.map((link) => {
-                                        if (link.subLinks && link.subLinks.length > 0) {
-                                            return (
-                                                <li key={link.name}>
-                                                    <button
-                                                        onClick={(e) => {
-                                                            e.currentTarget.blur();
-                                                            router.push(getLocalizedHref(link.subLinks![0].href));
-                                                            setMobileMenuOpen(false);
-                                                        }}
-                                                        className={`flex items-center text-sm font-bold text-theme-muted mb-4 text-left w-full`}
-                                                    >
-                                                        {link.iconName && <span className="mr-2 inline-block flex-shrink-0 opacity-70">{renderIcon(link.iconName)}</span>}
-                                                        {formatCJK(link.name, current_lang)}
-                                                    </button>
-                                                    <ul className="flex flex-col space-y-4 pl-4 border-l-2 border-theme-border">
-                                                        {link.subLinks.map(subLink => {
-                                                            const isActive = normalizedPathname === subLink.href;
-                                                            return (
-                                                                <li key={subLink.href}>
-                                                                    <Link
-                                                                        href={getLocalizedHref(subLink.href)}
-                                                                        prefetch={false}
-                                                                        onClick={() => setMobileMenuOpen(false)}
-                                                                        className={`flex items-center text-[16px] transition-[colors,transform] duration-300 ${isActive
-                                                                                ? `${activeText} font-bold`
-                                                                                : `${textColor} font-medium hover:text-theme-600 hover:translate-x-1`
-                                                                            }`}
-                                                                    >
-                                                                        {subLink.iconName && <span className="mr-3 scale-90 inline-block flex-shrink-0 opacity-70">{renderIcon(subLink.iconName)}</span>}
-                                                                        {formatCJK(subLink.name, current_lang)}
-                                                                    </Link>
-                                                                </li>
-                                                            )
-                                                        })}
-                                                    </ul>
-                                                </li>
-                                            );
-                                        }
-
-                                        const isActive = normalizedPathname === link.href;
-                                        return (
-                                            <li key={link.href}>
-                                                <Link
-                                                    href={getLocalizedHref(link.href)}
-                                                    prefetch={false}
-                                                    onClick={() => setMobileMenuOpen(false)}
-                                                    className={`flex items-center text-lg transition-[colors,transform] duration-300 ${isActive
-                                                            ? `${activeText} font-bold`
-                                                            : `${textColor} font-semibold hover:text-theme-600`
-                                                        }`}
-                                                >
-                                                    {link.iconName && <span className="mr-3 inline-block flex-shrink-0 opacity-80">{renderIcon(link.iconName)}</span>}
-                                                    {formatCJK(link.name, current_lang)}
-                                                </Link>
-                                            </li>
-                                        );
-                                    })}
-                                </ul>
-
-                                <div className={`mt-10 mb-8 border-t border-theme-border pt-8`}>
-                                    <div className="flex justify-between items-center mb-6">
-                                        <ThemeToggle />
-                                    </div>
-                                    <SettingsPopup
-                                        labels={settings_labels}
-                                        inline={true}
-                                        current_lang={current_lang}
-                                        languages={languages}
-                                        onLanguageChange={handleLanguageChange}
-                                    />
-
-                                    {/* Mobile Auth */}
-                                    <div className="mt-6">
-                                        {user ? (
-                                            <div className="flex flex-col space-y-4">
-                                                <div className="flex items-center space-x-3 p-3 rounded-xl bg-theme-surface-strong/30 border border-theme-border">
-                                                    <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-theme-border shadow-md flex-shrink-0">
-                                                        <Image
-                                                            src={user.user_metadata?.avatar_url || '/images/no_photo_profile.webp'}
-                                                            alt={`${user.user_metadata?.full_name || user.email || 'User'} - Faran Aiki Portfolio Profile`}
-                                                            fill
-                                                            sizes="48px"
-                                                            className="object-cover"
-                                                        />
-                                                    </div>
-                                                    <div className="flex flex-col overflow-hidden">
-                                                        <span className="font-bold text-sm truncate">
-                                                            {user.user_metadata?.full_name || user.user_metadata?.username || 'User'}
-                                                        </span>
-                                                        <span className="text-xs text-theme-muted truncate">
-                                                           {user.email}
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div className="flex flex-col space-y-2">
-                                                    <button
-                                                        onClick={() => {
-                                                            setMobileMenuOpen(false);
-                                                            setGlobalLoading(true);
-                                                            startTransition(() => {
-                                                                router.push(getLocalizedHref('/edit-profile'));
-                                                            });
-                                                        }}
-                                                        className={`flex items-center w-full text-lg font-semibold ${textColor} transition-all duration-300 px-2 group`}
-                                                    >
-                                                        <User size={20} className="mr-3 group-hover-gacor-svg transition-all" />
-                                                        <span className="group-hover-gacor-text transition-all duration-300">{edit_profile_label}</span>
-                                                    </button>
-                                                    <div className="h-px bg-theme-border/50 my-2 mx-2" />
-                                                    <button
-                                                        onClick={() => {
-                                                            setMobileMenuOpen(false);
-                                                            setGlobalLoading(true);
-                                                            startTransition(() => {
-                                                                router.push(getLocalizedHref('/bookmarks'));
-                                                            });
-                                                        }}
-                                                        className={`flex items-center w-full text-lg font-semibold ${textColor} transition-all duration-300 px-2 group`}
-                                                    >
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-3 group-hover-gacor-svg transition-all"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                                        <span className="group-hover-gacor-text transition-all duration-300">{settings_labels.My_Bookmarks || 'My Bookmarks'}</span>
-                                                    </button>
-                                                    {user?.email === 'faran.aiki.business@gmail.com' && (
-                                                    <button
-                                                        onClick={() => {
-                                                            setMobileMenuOpen(false);
-                                                            setGlobalLoading(true);
-                                                            startTransition(() => {
-                                                                router.push(getLocalizedHref('/business-requests'));
-                                                            });
-                                                        }}
-                                                        className={`flex items-center w-full text-lg font-semibold ${textColor} transition-all duration-300 px-2 group`}
-                                                    >
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-3 group-hover-gacor-svg transition-all"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-                                                        <span className="group-hover-gacor-text transition-all duration-300">{settings_labels.My_Requests || 'My Requests'}</span>
-                                                    </button>
-                                                    )}
-                                                    <button
-                                                        onClick={() => {
-                                                            setMobileMenuOpen(false);
-                                                            setGlobalLoading(true);
-                                                            startTransition(() => {
-                                                                router.push(getLocalizedHref('/feedback?filter=mine'));
-                                                            });
-                                                        }}
-                                                        className={`flex items-center w-full text-lg font-semibold ${textColor} transition-all duration-300 px-2 group`}
-                                                    >
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-3 group-hover-gacor-svg transition-all"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                                                        <span className="group-hover-gacor-text transition-all duration-300">{settings_labels.My_Feedbacks || 'My Feedbacks'}</span>
-                                                    </button>
-                                                    <button
-                                                        onClick={() => {
-                                                            signOut();
-                                                            setMobileMenuOpen(false);
-                                                        }}
-                                                        className={`flex items-center w-full text-lg font-semibold text-red-500 transition-colors duration-300 hover:text-red-600 px-2`}
-                                                    >
-                                                        <LogOut size={20} className="mr-3" />
-                                                        {logout_label}
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        ) : (
-                                            <div className="flex flex-col space-y-4 px-2">
-                                                <Link
-                                                    href={getLocalizedHref('/login')}
-                                                    prefetch={false}
-                                                    onClick={() => setMobileMenuOpen(false)}
-                                                    className={`flex items-center w-full text-lg font-bold ${textColor} transition-colors duration-300 hover:text-theme-600`}
-                                                >
-                                                    <LogIn size={20} className="mr-3 text-theme-500" />
-                                                    {login_label}
-                                                </Link>
-                                                <Link
-                                                    href={getLocalizedHref('/register')}
-                                                    prefetch={false}
-                                                    onClick={() => setMobileMenuOpen(false)}
-                                                    className={`flex items-center w-full text-lg font-bold ${textColor} transition-colors duration-300 hover:text-theme-600`}
-                                                >
-                                                    <User size={20} className="mr-3 text-theme-500" />
-                                                    {register_label}
-                                                </Link>
-                                            </div>
-                                        )}
-                                    </div>
-                                </div>
-                            </nav>
-                        </motion.div>
-                    </>
+                    <HeaderMobileMenu
+                        key="mobile-menu"
+                        navLinks={navLinks}
+                        current_lang={current_lang}
+                        normalizedPathname={normalizedPathname}
+                        textColor={textColor}
+                        activeText={activeText}
+                        mobileMenuBg={mobileMenuBg}
+                        navigation_label={navigation_label}
+                        login_label={login_label}
+                        register_label={register_label}
+                        logout_label={logout_label}
+                        edit_profile_label={edit_profile_label}
+                        settings_labels={settings_labels}
+                        languages={languages}
+                        onLanguageChange={handleLanguageChange}
+                        user={user}
+                        renderIcon={renderIcon}
+                        getLocalizedHref={getLocalizedHref}
+                        onClose={() => setMobileMenuOpen(false)}
+                        navigateWithLoading={(href) => {
+                            setMobileMenuOpen(false);
+                            setGlobalLoading(true);
+                            startTransition(() => {
+                                router.push(getLocalizedHref(href));
+                            });
+                        }}
+                        navigateSub={(href) => {
+                            router.push(getLocalizedHref(href));
+                            setMobileMenuOpen(false);
+                        }}
+                        signOut={signOut}
+                    />
                 )}
             </AnimatePresence>
 

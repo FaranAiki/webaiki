@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       url: `https://faranaiki.id/${lang}/news`,
       images: [
         {
-          url: `https://faranaiki.id/api/og?title=${encodeURIComponent(dict.News || 'News')}`,
+          url: `https://faranaiki.id/og-default.png`,
           width: 1200,
           height: 630,
         }

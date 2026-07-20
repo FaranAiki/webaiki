@@ -304,7 +304,7 @@ export default function InteractiveCollections( {
                                                           <span className={`font-medium ${titleColor} hover-gacor`}><span dangerouslySetInnerHTML={{ __html: formatCJK(docName, lang) }} /></span>
                                                           <div className="flex items-center gap-2">
                                                               {filePath ? (
-                                                                  <a href={filePath} target="_blank" rel="noopener noreferrer" className="text-theme-500 hover:text-theme-600 transition-colors flex-shrink-0">
+                                                                  <a href={filePath} target="_blank" rel="noopener noreferrer" aria-label={docName} className="text-theme-500 hover:text-theme-600 transition-colors flex-shrink-0">
                                                                       <LinkIcon size={18} />
                                                                   </a>
                                                               ) : (

@@ -47,12 +47,9 @@ export default async function BaseLayout({
         <link rel="alternate" type="text/plain" href="/llms-full.txt" title="LLM-friendly text representation of this website" />
         <link rel="alternate" type="text/plain" href="/llms.txt" title="Core AI instruction set" />
 
-        {/* Preconnect Hints */}
-
-
-        {/* LCP Preloads */}
-        <link rel="preload" as="image" href="/images/background/pattern_01.avif" type="image/avif" fetchPriority="high" />
-        <link rel="preload" as="image" href="/images/background/pattern_02.avif" type="image/avif" fetchPriority="high" />
+        {/* Preconnect to third-party origins used at runtime (analytics + database) */}
+        <link rel="preconnect" href="https://cloud.umami.is" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://ndutyvnkhavzchhjmzfm.supabase.co" crossOrigin="anonymous" />
 
         {/* Fallback for JS Disabled Users (Prevent Blank Canvas from FadeInSection) */}
         <noscript>

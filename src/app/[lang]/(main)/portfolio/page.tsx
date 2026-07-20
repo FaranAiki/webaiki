@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       url: `${SITE_URL}/${lang}/portfolio`,
       images: [
         {
-          url: `${SITE_URL}/api/og?title=${encodeURIComponent(dict.Portfolio || 'Portfolio')}`,
+          url: `${SITE_URL}/og-default.png`,
           width: 1200,
           height: 630,
         }

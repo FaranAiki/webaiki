@@ -5,7 +5,8 @@ import { getLanguageAlternates, getBaseMetadata, SITE_URL, getPersonSchema, getW
 
 import { getNews, getFeedbacks } from '@/app/actions';
 import { NewsItem } from '@/lib/types';
-import LatestActivity from '@/components/interactive/LatestActivity';
+import nextDynamic from 'next/dynamic';
+const LatestActivity = nextDynamic(() => import('@/components/interactive/LatestActivity'));
 
 import HomeHero from "@/components/home/HomeHero";
 import HomeSearchBar from "@/components/home/HomeSearchBar";
