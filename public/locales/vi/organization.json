@@ -11,11 +11,11 @@
   ],
   "Impact_Web_Lead": "Web Development Team Lead Web Impact 6.0",
   "Impact_Web_Lead_Description": [
-    "Thiết kế và quản lý trang web Olympic IMPACT 6.0 được hơn 400 đội thi và hơn 1100+ học sinh trung học trên toàn quốc sử dụng",
-    "Thiết kế kiến trúc backend tận dụng cơ sở dữ liệu Supabase SQL kết hợp với Prisma ORM để quản lý dữ liệu đáng tin cậy và có thể mở rộng.",
-    "Quản lý các nền tảng Moodle và Judgel để đảm bảo môi trường cạnh tranh liền mạch cho tất cả người tham gia.",
-    "Quản lý và điều phối các nhóm phát triển front-end và back-end để đảm bảo tiến độ dự án hiệu quả.",
-    "Quản lý và điều phối một nhóm gồm 8 thành viên để đảm bảo thực hiện dự án hiệu quả."
+    "Thiết kế và quản lý trang web của kỳ thi Olympic IMPACT 6.0 được sử dụng bởi hơn 400 đội và hơn 1100 học sinh trung học trên toàn quốc",
+    "Phát triển một ứng dụng full-stack mạnh mẽ với NextJS, TailwindCSS, TypeScript, cùng backend Supabase và Prisma ORM để quản lý dữ liệu đáng tin cậy.",
+    "Tối ưu hóa quy trình làm việc của bộ phận giám sát cuộc thi nhanh hơn gấp 3 lần bằng cách thiết kế tập lệnh định dạng dữ liệu thô của hơn 400 đội thành bảng tính có cấu trúc, tạo điều kiện cho việc truy cập dữ liệu và giám sát.",
+    "Quản lý nền tảng Moodle và Judgel để đảm bảo môi trường cạnh tranh liền mạch cho tất cả người tham gia.",
+    "Quản lý và điều phối nhóm 8+ thành viên để đảm bảo tiến độ dự án hiệu quả."
   ],
   "Treasurer_SYNC": "Treasurer for the STEI-K Gathering Event",
   "Treasurer_SYNC_Description": [

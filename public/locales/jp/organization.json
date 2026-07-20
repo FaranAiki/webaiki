@@ -11,11 +11,11 @@
   ],
   "Impact_Web_Lead": "Web開発チームリーダー Web Impact 6.0",
   "Impact_Web_Lead_Description": [
-    "Designed and managed the IMPACT 6.0 olympiad website used by 400+ teams and 1100+ high school students nationwide",
-    "信頼性とスケーラビリティの高いデータ管理のために、Prisma ORMと組み合わせたSupabase SQLデータベースを活用してバックエンドアーキテクチャを構築しました。",
-    "すべての参加者にシームレスな競技環境を保証するため、MoodleとJudgelプラットフォームを管理しました。",
-    "効率的なプロジェクトの提供を確実にするため、フロントエンドとバックエンドの開発チームを管理・調整しました。",
-    "Managed and coordinated an 8-member team to ensure efficient project delivery."
+    "全国で400以上のチームと1100人以上の高校生が使用するIMPACT 6.0オリンピアードのウェブサイトを設計および管理",
+    "NextJS、TailwindCSS、TypeScript、および信頼性の高いデータ管理のためのSupabaseおよびPrisma ORMバックエンドを備えた堅牢なフルスタックアプリケーションを開発しました。",
+    "400以上のチームの生データを構造化されたスプレッドシートにフォーマットするスクリプトを設計することで、コンテスト監督部門のワークフローを最大3倍高速化し、データアクセスと監督を容易にしました。",
+    "すべての参加者にシームレスな競争環境を確保するために、MoodleとJudgelプラットフォームを管理しました。",
+    "効率的なプロジェクトの提供を確保するために、8人以上のチームを管理および調整しました。"
   ],
   "Treasurer_SYNC": "STEI-K交流イベント会計",
   "Treasurer_SYNC_Description": [

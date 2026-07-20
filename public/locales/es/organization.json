@@ -11,11 +11,11 @@
   ],
   "Impact_Web_Lead": "Líder del Equipo de Desarrollo Web Impact 6.0",
   "Impact_Web_Lead_Description": [
-    "Diseñé y administré el sitio web de la olimpiada IMPACT 6.0 utilizado por más de 400 equipos y más de 1100 estudiantes de secundaria en todo el país.",
-    "Diseñó la arquitectura del backend aprovechando la base de datos SQL de Supabase junto con Prisma ORM para una gestión de datos confiable y escalable.",
-    "Administró las plataformas Moodle y Judgel para garantizar un entorno competitivo fluido para todos los participantes.",
-    "Gestionó y coordinó a los equipos de desarrollo front-end y back-end para garantizar la entrega eficiente del proyecto.",
-    "Gestioné y coordiné un equipo de 8 miembros para garantizar la entrega eficiente del proyecto."
+    "Diseñé y administré el sitio web de la olimpiada IMPACT 6.0 utilizado por más de 400 equipos y más de 1100 estudiantes de secundaria a nivel nacional",
+    "Desarrollé una sólida aplicación full-stack con NextJS, TailwindCSS, TypeScript y un backend de Supabase y Prisma ORM para una gestión de datos confiable.",
+    "Optimicé el flujo de trabajo de la división de supervisores de competencia hasta 3 veces más rápido mediante el diseño de un script que formatea datos sin procesar de más de 400 equipos en hojas de cálculo estructuradas, lo que facilita el acceso a los datos y la supervisión.",
+    "Administré las plataformas Moodle y Judgel para garantizar un entorno competitivo perfecto para todos los participantes.",
+    "Dirigí y coordiné un equipo de más de 8 miembros para garantizar la entrega eficiente del proyecto."
   ],
   "Treasurer_SYNC": "Tesorero del Evento de Convivencia STEI-K",
   "Treasurer_SYNC_Description": [

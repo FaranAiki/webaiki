@@ -11,11 +11,11 @@
   ],
   "Impact_Web_Lead": "Jagoran Ƙungiyar Haɓaka Yanar Gizo Impact 6.0",
   "Impact_Web_Lead_Description": [
-    "An ƙirƙira da sarrafa gidan yanar gizon olympiad IMPACT 6.0 wanda ƙungiyoyi 400+ da ɗaliban makarantar sakandare 1100+ ke amfani da su a duk faɗin ƙasar.",
-    "Ya tsara tsarin backend ta amfani da Supabase SQL database tare da Prisma ORM don ingantaccen sarrafa bayanai masu faɗi.",
-    "Ya gudanar da tsarin Moodle da Judgel don tabbatar da ingantaccen yanayi na gasa ga duk mahalarta.",
-    "Ya gudanar da kuma haɗa kan ƙungiyoyin haɓaka front-end da back-end don tabbatar da ingantaccen isar da aiki.",
-    "Sarrafa da daidaita ƙungiyar membobi 8 don tabbatar da ingantaccen isar da aikin."
+    "Tsara da kuma sarrafa gidan yanar gizon IMPACT 6.0 wanda kungiyoyi 400+ da ɗaliban makarantar sakandare 1100+ ke amfani da su a duk faɗin ƙasar",
+    "Ci gaban ƙaƙƙarfan aikace-aikacen cikakken tari tare da NextJS, TailwindCSS, TypeScript, da kuma ingantaccen bayanai na Supabase da Prisma ORM.",
+    "Inganta tsarin aiki na sashen masu kula da gasa har zuwa sau 3 cikin sauri ta hanyar tsara wani rubutun da ke tsara bayanan sirri na ƙungiyoyi 400+ a cikin tsari mai tsari, sauƙaƙe damar samun bayanai da kulawa.",
+    "Gudanar da dandamali na Moodle da Judgel don tabbatar da yanayin gasa mara kyau ga duk mahalarta.",
+    "Gudanarwa da daidaita ƙungiyar membobi 8+ don tabbatar da isar da aikin yadda ya kamata."
   ],
   "Treasurer_SYNC": "Ma'ajin don taron STEI-K Gathering",
   "Treasurer_SYNC_Description": [
