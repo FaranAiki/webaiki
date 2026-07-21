@@ -39,6 +39,13 @@ function AboutSkeleton() {
   );
 }
 
+import { useInView } from "@/hooks/useInView";
+
 export default function PortfolioAboutHeaderLazy(props: AboutMeProps) {
-  return <PortfolioAboutHeader {...props} />;
+  const { ref, isInView } = useInView({ rootMargin: '200px' });
+  return (
+    <div ref={ref}>
+      {isInView ? <PortfolioAboutHeader {...props} /> : <AboutSkeleton />}
+    </div>
+  );
 }

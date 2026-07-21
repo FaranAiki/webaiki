@@ -40,7 +40,9 @@ export default function FadeInSection({
 
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
-    setMounted(true);
+    // Defer the mount state to break up the hydration Long Task and reduce TBT.
+    const timer = setTimeout(() => setMounted(true), 10);
+    return () => clearTimeout(timer);
   }, []);
 
   // Memoize options to avoid continuous re-rendering

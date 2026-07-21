@@ -14,9 +14,6 @@ interface LatestActivityProps {
 }
 
 export default function LatestActivity({ lang, dict, initialNews }: LatestActivityProps) {
-  const isDeferred = useUserInteraction(1500); // Wait 1.5s or interaction
-
-  // Removed useEffect as state is handled by useUserInteraction
 
   return (
     <section className="mt-8 md:mt-20 w-full no-print">
@@ -41,8 +38,8 @@ export default function LatestActivity({ lang, dict, initialNews }: LatestActivi
       </div>
 
       {initialNews.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-in min-h-[300px]">
-          {isDeferred && initialNews.map((item, idx) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 min-h-[300px]">
+          {initialNews.map((item, idx) => (
             <div
               key={item.id}
               className="group flex flex-col bg-theme-surface border border-theme-border rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 h-full"

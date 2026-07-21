@@ -15,11 +15,16 @@ export default function PopRotateSection({ children, delay = 0, className = "", 
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    const timer = setTimeout(() => {
+      setMounted(true);
+      const checkMobile = () => setIsMobile(window.innerWidth < 768);
+      checkMobile();
+      window.addEventListener('resize', checkMobile);
+    }, 10);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', () => setIsMobile(window.innerWidth < 768));
+    };
   }, []);
 
   if (mounted && isMobile) {
