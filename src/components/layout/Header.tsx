@@ -4,19 +4,20 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { setCookies } from '@/app/actions';
 import { useState, useEffect, useRef, useCallback, startTransition, useMemo } from 'react';
-import ThemeToggle from '@/components/shared/ThemeToggle';
 import { useTheme } from 'next-themes';
 import dynamic from 'next/dynamic';
 import { m as motion, AnimatePresence } from 'framer-motion';
 
 const SettingsPopup = dynamic(() => import('@/components/providers/SettingsPopup'), { ssr: false });
-const CommandPalette = dynamic(() => import('@/components/interactive/CommandPalette').then(mod => mod.CommandPalette), { 
+const CommandPalette = dynamic(() => import('@/components/interactive/CommandPalette').then(mod => mod.CommandPalette), {
   ssr: false,
   loading: () => <div className="fixed inset-0 z-50 cursor-wait bg-black/20 backdrop-blur-sm transition-all flex items-start justify-center pt-[15vh] sm:pt-[20vh]" />
 });
 const HeaderDropdown = dynamic(() => import("@/components/layout/HeaderDropdown"));
 const HeaderMobileMenu = dynamic(() => import("@/components/layout/HeaderMobileMenu"), { ssr: false });
 const HeaderUserMenu = dynamic(() => import("@/components/layout/HeaderUserMenu"), { ssr: false });
+const ThemeToggle = dynamic(() => import("@/components/shared/ThemeToggle"), { ssr: false });
+
 import {
   Share2, Check, User, ChevronDown, Handshake, Briefcase,
   Home, FileCheck, Users, Trophy, Palette, Music, BookOpen, GraduationCap, Compass, Code,

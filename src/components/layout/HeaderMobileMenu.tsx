@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import { LogIn, User } from "lucide-react";
 import ThemeToggle from "@/components/shared/ThemeToggle";
 import SettingsPopup from "@/components/providers/SettingsPopup";

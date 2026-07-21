@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo, useTransition } from 'react';
-import { ChevronRight, Link as LinkIcon, XCircle, LayoutPanelLeft, Milestone, LayoutGrid } from 'lucide-react';
+import { ChevronRight, Link as LinkIcon, XCircle, LayoutPanelLeft, Milestone, LayoutGrid, Loader2 } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import FadeInSection from '@/components/shared/FadeInSection';
 import PopRotateSection from '@/components/shared/PopRotateSection';
@@ -12,7 +12,7 @@ import { LayoutSwitcher } from '../shared/LayoutSwitcher';
 import BookmarkButton from '@/components/interactive/BookmarkButton';
 import dynamic from 'next/dynamic';
 
-const DynamicLoader = dynamic(() => import('lucide-react').then(mod => mod.Loader2), { ssr: false });
+const DynamicLoader = Loader2;
 
 
 // Define typescript data
