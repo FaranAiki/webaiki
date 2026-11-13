@@ -65,7 +65,6 @@
     "Xây dựng cấu trúc cơ sở dữ liệu backend mạnh mẽ sử dụng Drizzle và SQL."
   ],
   "STEI-K": "School of Electrical Engineering and Informatics - Computation",
-  "": "",
   "Navigation": "Navigation",
   "Presentation_Mode": "Presentation Mode",
   "Presentation_Modern": "Modern",
@@ -95,5 +94,6 @@
   "Image_Optional": "Hình ảnh (Tùy chọn)",
   "Hover_To_Preview": "Di chuột để xem trước",
   "Hover_An_Experience": "Di chuột qua kinh nghiệm để xem chi tiết",
-  "Visit_Project": "Xem Dự án"
+  "Visit_Project": "Xem Dự án",
+  "Loading": "Memuat..."
 }

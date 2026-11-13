@@ -9,21 +9,11 @@
   "FAQ_Website_A4": "Yes, it supports over 12 languages to ensure accessibility for a global audience.",
   "FAQ_Website_Q5": "How is user privacy handled on this site?",
   "FAQ_Website_A5": "The website respects user privacy with zero invasive tracking or data collection.",
-  "Framework_Desc": [
-    "Được xây dựng với Next.js 15, sử dụng App Router mới nhất, React Server Components (RSC) và Turbopack cho hiệu suất cực nhanh."
-  ],
-  "Styling_Desc": [
-    "Phong cách tùy chỉnh sử dụng Vanilla CSS và Tailwind CSS, tập trung vào thẩm mỹ độc đáo với hỗ trợ đa chủ đề (Modern, Cinematic, Editorial)."
-  ],
-  "Database_Desc": [
-    "Quản lý cơ sở dữ liệu serverless sử dụng Drizzle ORM với PostgreSQL được lưu trữ trên Supabase, đảm bảo tính toàn vẹn và khả năng mở rộng dữ liệu."
-  ],
-  "Localization_Desc": [
-    "Hỗ trợ i18n toàn diện cho hơn 18 ngữ, đảm bảo khả năng tiếp cận và trải nghiệm liền mạch cho khán giả toàn cầu."
-  ],
-  "Holistic_Approach_Desc": [
-    "Một phương pháp kỹ thuật phần mềm toàn diện kết hợp các tiêu chuẩn web hiện đại, tính an toàn kiểu nghiêm ngặt (TypeScript) và thiết kế định hướng hiệu suất."
-  ],
+  "Framework_Desc": "Dibangun dengan Next.js 15, menggunakan App Router terbaru, React Server Components (RSC), dan Turbopack untuk performa yang sangat cepat.",
+  "Styling_Desc": "Gaya kustom menggunakan Vanilla CSS dan Tailwind CSS, berfokus pada estetika unik dengan dukungan multi-tema (Modern, Cinematic, Editorial).",
+  "Database_Desc": "Manajemen database serverless menggunakan Drizzle ORM dengan PostgreSQL yang dihosting di Supabase, menjamin integritas data dan skalabilitas.",
+  "Localization_Desc": "Dukungan i18n komprehensif untuk 18+ bahasa, memastikan aksesibilitas dan pengalaman mulus bagi audiens global.",
+  "Holistic_Approach_Desc": "Pendekatan rekayasa perangkat lunak holistik yang menggabungkan standar web modern, keamanan tipe (TypeScript), dan desain berbasis performa.",
   "Framework_Title": "Next.js 15 Framework",
   "Styling_Title": "Tùy chỉnh phong cách UI/UX",
   "Database_Title": "PostgreSQL & Drizzle",

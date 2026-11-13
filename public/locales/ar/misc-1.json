@@ -65,7 +65,6 @@
     "بنيت بنية قاعدة بيانات خلفية قوية باستخدام Drizzle و SQL."
   ],
   "STEI-K": "كلية الهندسة الكهربائية والمعلوماتية - الحوسبة",
-  "": "",
   "Navigation": "التنقل",
   "Presentation_Mode": "وضع العرض التقديمي",
   "Presentation_Modern": "حديث",
@@ -95,5 +94,6 @@
   "Image_Optional": "صورة (اختياري)",
   "Hover_To_Preview": "مرر للتمهيد",
   "Hover_An_Experience": "مرر على تجربة لرؤية التفاصيل",
-  "Visit_Project": "زيارة المشروع"
+  "Visit_Project": "زيارة المشروع",
+  "Loading": "Memuat..."
 }

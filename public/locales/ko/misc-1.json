@@ -65,7 +65,6 @@
     "Drizzle과 SQL을 사용하여 견고한 백엔드 데이터베이스 구조를 설계했습니다."
   ],
   "STEI-K": "전기공학 및 정보학부 - 컴퓨팅",
-  "": "",
   "Navigation": "네비게이션",
   "Presentation_Mode": "프레젠테이션 모드",
   "Presentation_Modern": "모던",
@@ -95,5 +94,6 @@
   "Image_Optional": "이미지 (선택 사항)",
   "Hover_To_Preview": "미리 보려면 마우스를 올리세요",
   "Hover_An_Experience": "자세히 보려면 경험 위에 마우스를 올리세요",
-  "Visit_Project": "프로젝트 방문"
+  "Visit_Project": "프로젝트 방문",
+  "Loading": "Memuat..."
 }

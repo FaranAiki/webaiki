@@ -65,7 +65,6 @@
     "Ontwierp een robuuste backend-databasestructuur met behulp van Drizzle en SQL."
   ],
   "STEI-K": "School of Electrical Engineering and Informatics - Computation",
-  "": "",
   "Navigation": "Navigatie",
   "Presentation_Mode": "Presentatiemodus",
   "Presentation_Modern": "Modern",
@@ -95,5 +94,6 @@
   "Image_Optional": "Afbeelding (optioneel)",
   "Hover_To_Preview": "Zweef om te bekijken",
   "Hover_An_Experience": "Zweef over een ervaring om details te zien",
-  "Visit_Project": "Bezoek Project"
+  "Visit_Project": "Bezoek Project",
+  "Loading": "Memuat..."
 }

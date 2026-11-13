@@ -65,7 +65,6 @@
     "Eine robuste Backend-Datenbankstruktur mit Drizzle und SQL entworfen."
   ],
   "STEI-K": "Schule für Elektrotechnik und Informatik - Computerwesen",
-  "": "",
   "Navigation": "Navigation",
   "Presentation_Mode": "Präsentationsmodus",
   "Presentation_Modern": "Modern",
@@ -95,5 +94,6 @@
   "Image_Optional": "Bild (optional)",
   "Hover_To_Preview": "Zum Vorschauen schweben",
   "Hover_An_Experience": "Über eine Erfahrung schweben, um Details zu sehen",
-  "Visit_Project": "Projekt ansehen"
+  "Visit_Project": "Projekt ansehen",
+  "Loading": "Memuat..."
 }

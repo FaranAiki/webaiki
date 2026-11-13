@@ -65,7 +65,6 @@
     "בנה ארכיטקטורת מסד נתונים אחורית חזקה באמצעות Drizzle ו-SQL."
   ],
   "STEI-K": "School of Electrical Engineering and Informatics - Computation",
-  "": "",
   "Navigation": "ניווט",
   "Presentation_Mode": "מצב מצגת",
   "Presentation_Modern": "מודרני",
@@ -95,5 +94,6 @@
   "Image_Optional": "תמונה (אופציונלי)",
   "Hover_To_Preview": "העבר עכבר לתצוגה מקדימה",
   "Hover_An_Experience": "העבר עכבר על חוויה לפרטים",
-  "Visit_Project": "בקר בפרויקט"
+  "Visit_Project": "בקר בפרויקט",
+  "Loading": "Memuat..."
 }

@@ -8,9 +8,7 @@
   "Sultan_PDF_Creating": "PDF 생성 중...",
   "Sultan_PDF_Ready": "PDF가 준비되었습니다!",
   "Sultan_PDF_Failed": "PDF 생성 실패.",
-  "Sultan_PDF_Description": [
-    "고해상도 벡터 PDF 렌더링."
-  ],
+  "Sultan_PDF_Description": "Merender PDF dengan kualitas tinggi",
   "Sultan_PDF_Download": "다운로드 중...",
   "Preparing_Portfolio": "포트폴리오 준비 중",
   "Portfolio_Filter": "포트폴리오 필터",

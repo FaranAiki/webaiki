@@ -6,7 +6,6 @@
   "Python_Terminal_Welcome": "Welcome to Python Web Terminal!",
   "Python_Terminal_Input_Too_Long": "Input too long!",
   "SEO_Project_Description": "A collection of Muhammad Faran Aiki's technical projects, ranging from the Alkyl compiler, ALTH Flutter application, to Indonesia socio-economic data integration. Discover innovative software solutions.",
-  "View_Project": "View Project",
   "Make_Interactive_UAS": "Interactive Learning for UAS MA1101 ITB",
   "Make_Interactive_UAS_Description": [
     "Built an interactive mathematics learning tool using Flutter, Dart, and FL Chart.",
@@ -39,6 +38,7 @@
   "Jump_Game_Project": "Jump! Game",
   "Below_Below_Project": "Below Below",
   "Superskill_Project": "Cognitive Garden",
+  "View_Project": "View Project",
   "National_Statistics_Competition_Prep": "National Statistics Competition Preparation",
   "National_Statistics_Competition_Prep_Description": [
     "Prepared and modeled statistical data utilizing Probability & Statistics, SARIMAX, and MANOVA.",

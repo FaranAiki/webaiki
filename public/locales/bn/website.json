@@ -9,21 +9,11 @@
   "FAQ_Website_A4": "Yes, it supports over 12 languages to ensure accessibility for a global audience.",
   "FAQ_Website_Q5": "How is user privacy handled on this site?",
   "FAQ_Website_A5": "The website respects user privacy with zero invasive tracking or data collection.",
-  "Framework_Desc": [
-    "Next.js 15 দিয়ে তৈরি, লেটেস্ট App Router, React Server Components (RSC) এবং দ্রুত পারফরম্যান্সের জন্য Turbopack ব্যবহার করা হয়েছে।"
-  ],
-  "Styling_Desc": [
-    "Vanilla CSS এবং Tailwind CSS ব্যবহার করে কাস্টম স্টাইল, একটি অনন্য নান্দনিকতা এবং মাল্টি-থিম সাপোর্ট (আধুনিক, সিনেমাটিক, এডিটোরিয়াল) এর উপর ফোকাস করা হয়েছে।"
-  ],
-  "Database_Desc": [
-    "Supabase-এ হোস্ট করা PostgreSQL-এর সাথে Drizzle ORM ব্যবহার করে সার্ভারহীন ডাটাবেস ম্যানেজমেন্ট, ডাটা ইন্টিগ্রিটি এবং স্কেলেবিলিটি নিশ্চিত করে।"
-  ],
-  "Localization_Desc": [
-    "১৮টিরও বেশি ভাষার জন্য ব্যাপক i18n সাপোর্ট, বিশ্বব্যাপী দর্শকদের জন্য অ্যাক্সেসিবিলিটি এবং একটি বিরামহীন অভিজ্ঞতা নিশ্চিত করে।"
-  ],
-  "Holistic_Approach_Desc": [
-    "একটি সামগ্রিক সফটওয়্যার ইঞ্জিনিয়ারিং পদ্ধতি যা আধুনিক ওয়েব স্ট্যান্ডার্ড, কঠোর টাইপ সেফটি (TypeScript) এবং পারফরম্যান্স-চালিত ডিজাইনকে একত্রিত করে।"
-  ],
+  "Framework_Desc": "Dibangun dengan Next.js 15, menggunakan App Router terbaru, React Server Components (RSC), dan Turbopack untuk performa yang sangat cepat.",
+  "Styling_Desc": "Gaya kustom menggunakan Vanilla CSS dan Tailwind CSS, berfokus pada estetika unik dengan dukungan multi-tema (Modern, Cinematic, Editorial).",
+  "Database_Desc": "Manajemen database serverless menggunakan Drizzle ORM dengan PostgreSQL yang dihosting di Supabase, menjamin integritas data dan skalabilitas.",
+  "Localization_Desc": "Dukungan i18n komprehensif untuk 18+ bahasa, memastikan aksesibilitas dan pengalaman mulus bagi audiens global.",
+  "Holistic_Approach_Desc": "Pendekatan rekayasa perangkat lunak holistik yang menggabungkan standar web modern, keamanan tipe (TypeScript), dan desain berbasis performa.",
   "Framework_Title": "Next.js 15 Framework",
   "Styling_Title": "কাস্টম UI/UX স্টাইলিং",
   "Database_Title": "PostgreSQL & Drizzle",

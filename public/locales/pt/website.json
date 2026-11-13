@@ -9,21 +9,11 @@
   "FAQ_Website_A4": "Yes, it supports over 12 languages to ensure accessibility for a global audience.",
   "FAQ_Website_Q5": "How is user privacy handled on this site?",
   "FAQ_Website_A5": "The website respects user privacy with zero invasive tracking or data collection.",
-  "Framework_Desc": [
-    "Construído com Next.js 15, utilizando o mais recente App Router, React Server Components (RSC) e Turbopack para um desempenho ultrarrápido."
-  ],
-  "Styling_Desc": [
-    "Estilos personalizados usando Vanilla CSS e Tailwind CSS, focando em uma estética única com suporte multi-tema (Moderno, Cinemático, Editorial)."
-  ],
-  "Database_Desc": [
-    "Gerenciamento de banco de dados serverless usando Drizzle ORM com PostgreSQL hospedado no Supabase, garantindo integridade de dados e escalabilidade."
-  ],
-  "Localization_Desc": [
-    "Suporte abrangente a i18n para mais de 18 idiomas, garantindo acessibilidade e uma experiência perfeita para um público global."
-  ],
-  "Holistic_Approach_Desc": [
-    "Uma abordagem holística de engenharia de software que combina padrões web modernos, segurança de tipo rigorosa (TypeScript) e design voltado para o desempenho."
-  ],
+  "Framework_Desc": "Dibangun dengan Next.js 15, menggunakan App Router terbaru, React Server Components (RSC), dan Turbopack untuk performa yang sangat cepat.",
+  "Styling_Desc": "Gaya kustom menggunakan Vanilla CSS dan Tailwind CSS, berfokus pada estetika unik dengan dukungan multi-tema (Modern, Cinematic, Editorial).",
+  "Database_Desc": "Manajemen database serverless menggunakan Drizzle ORM dengan PostgreSQL yang dihosting di Supabase, menjamin integritas data dan skalabilitas.",
+  "Localization_Desc": "Dukungan i18n komprehensif untuk 18+ bahasa, memastikan aksesibilitas dan pengalaman mulus bagi audiens global.",
+  "Holistic_Approach_Desc": "Pendekatan rekayasa perangkat lunak holistik yang menggabungkan standar web modern, keamanan tipe (TypeScript), dan desain berbasis performa.",
   "Framework_Title": "Next.js 15 Framework",
   "Styling_Title": "Estilo UI/UX Personalizado",
   "Database_Title": "PostgreSQL & Drizzle",

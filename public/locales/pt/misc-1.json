@@ -65,7 +65,6 @@
     "Arquitetou uma estrutura robusta de banco de dados backend usando Drizzle e SQL."
   ],
   "STEI-K": "School of Electrical Engineering and Informatics - Computation",
-  "": "",
   "Navigation": "Navigation",
   "Presentation_Mode": "Presentation Mode",
   "Presentation_Modern": "Modern",
@@ -95,5 +94,6 @@
   "Image_Optional": "Imagem (Opcional)",
   "Hover_To_Preview": "Passe o mouse para visualizar",
   "Hover_An_Experience": "Passe o mouse sobre uma experiência para ver os detalhes",
-  "Visit_Project": "Visitar Projeto"
+  "Visit_Project": "Visitar Projeto",
+  "Loading": "Memuat..."
 }

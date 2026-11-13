@@ -65,7 +65,6 @@
     "DrizzleとSQLを使用して堅牢なバックエンドデータベース構造を設計しました。"
   ],
   "STEI-K": "電気工学・情報学部 - コンピューテーション",
-  "": "",
   "Navigation": "ナビゲーション",
   "Presentation_Mode": "プレゼンテーションモード",
   "Presentation_Modern": "モダン",
@@ -95,5 +94,6 @@
   "Image_Optional": "画像（オプション）",
   "Hover_To_Preview": "ホバーしてプレビュー",
   "Hover_An_Experience": "ホバーして詳細を表示",
-  "Visit_Project": "プロジェクトを見る"
+  "Visit_Project": "プロジェクトを見る",
+  "Loading": "Memuat..."
 }

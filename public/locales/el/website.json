@@ -9,21 +9,11 @@
   "FAQ_Website_A4": "Ναι, υποστηρίζει πάνω από 12 γλώσσες.",
   "FAQ_Website_Q5": "Πώς αντιμετωπίζεται το απόρρητο των χρηστών σε αυτόν τον ιστότοπο;",
   "FAQ_Website_A5": "Ο ιστότοπος σέβεται το απόρρητο των χρηστών.",
-  "Framework_Desc": [
-    "Κατασκευασμένο με Next.js 15, χρησιμοποιώντας το πιο πρόσφατο App Router, React Server Components (RSC) και Turbopack για αστραπιαία απόδοση."
-  ],
-  "Styling_Desc": [
-    "Προσαρμοσμένα στυλ με χρήση Vanilla CSS και Tailwind CSS, εστιάζοντας σε μια μοναδική αισθητική με υποστήριξη πολλαπλών θεμάτων (Modern, Cinematic, Editorial)."
-  ],
-  "Database_Desc": [
-    "Διαχείριση βάσης δεδομένων χωρίς διακομιστή χρησιμοποιώντας Drizzle ORM με PostgreSQL που φιλοξενείται στο Supabase, διασφαλίζοντας την ακεραιότητα και την επεκτασιμότητα των δεδομένων."
-  ],
-  "Localization_Desc": [
-    "Ολοκληρωμένη υποστήριξη i18n για 18+ γλώσσες, διασφαλίζοντας την προσβασιμότητα και μια απρόσκοπτη εμπειρία για ένα παγκόσμιο κοινό."
-  ],
-  "Holistic_Approach_Desc": [
-    "Μια ολιστική προσέγγιση μηχανικής λογισμικού που συνδυάζει σύγχρονα πρότυπα ιστού, αυστηρή ασφάλεια τύπων (TypeScript) και σχεδιασμό με γνώμονα την απόδοση."
-  ],
+  "Framework_Desc": "Dibangun dengan Next.js 15, menggunakan App Router terbaru, React Server Components (RSC), dan Turbopack untuk performa yang sangat cepat.",
+  "Styling_Desc": "Gaya kustom menggunakan Vanilla CSS dan Tailwind CSS, berfokus pada estetika unik dengan dukungan multi-tema (Modern, Cinematic, Editorial).",
+  "Database_Desc": "Manajemen database serverless menggunakan Drizzle ORM dengan PostgreSQL yang dihosting di Supabase, menjamin integritas data dan skalabilitas.",
+  "Localization_Desc": "Dukungan i18n komprehensif untuk 18+ bahasa, memastikan aksesibilitas dan pengalaman mulus bagi audiens global.",
+  "Holistic_Approach_Desc": "Pendekatan rekayasa perangkat lunak holistik yang menggabungkan standar web modern, keamanan tipe (TypeScript), dan desain berbasis performa.",
   "Framework_Title": "Next.js 15 Framework",
   "Styling_Title": "Προσαρμοσμένο UI/UX Styling",
   "Database_Title": "PostgreSQL & Drizzle",

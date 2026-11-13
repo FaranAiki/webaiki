@@ -8,9 +8,7 @@
   "Sultan_PDF_Creating": "पीडीएफ बन रहा है...",
   "Sultan_PDF_Ready": "पीडीएफ तैयार है!",
   "Sultan_PDF_Failed": "पीडीएफ विफल।",
-  "Sultan_PDF_Description": [
-    "उच्च गुणवत्ता पीडीएफ रेंडरिंग।"
-  ],
+  "Sultan_PDF_Description": "Merender PDF dengan kualitas tinggi",
   "Sultan_PDF_Download": "डाउनलोड हो रहा है...",
   "Preparing_Portfolio": "पोर्टफोलियो तैयार हो रहा है",
   "Portfolio_Filter": "फ़िल्टर",

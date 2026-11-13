@@ -9,21 +9,11 @@
   "FAQ_Website_A4": "Oui, il prend en charge plus de 12 langues pour garantir l'accessibilité à un public mondial.",
   "FAQ_Website_Q5": "Comment la confidentialité des utilisateurs est-elle gérée sur ce site ?",
   "FAQ_Website_A5": "Le site web respecte la vie privée des utilisateurs avec zéro suivi invasif ou collecte de données.",
-  "Framework_Desc": [
-    "Construit avec Next.js 15, utilisant le dernier App Router, les React Server Components (RSC) et Turbopack pour des performances ultra-rapides."
-  ],
-  "Styling_Desc": [
-    "Styles personnalisés utilisant Vanilla CSS et Tailwind CSS, axés sur une esthétique unique avec un support multi-thème (Moderne, Cinématographique, Éditorial)."
-  ],
-  "Database_Desc": [
-    "Gestion de base de données sans serveur utilisant l'ORM Drizzle avec PostgreSQL hébergé sur Supabase, garantissant l'intégrité et l'évolutivité des données."
-  ],
-  "Localization_Desc": [
-    "Prise en charge complète de l'i18n pour plus de 18 langues, garantissant l'accessibilité et une expérience fluide pour un public mondial."
-  ],
-  "Holistic_Approach_Desc": [
-    "Une approche holistique de l'ingénierie logicielle combinant les standards web modernes, une sécurité de type rigoureuse (TypeScript) et une conception axée sur la performance."
-  ],
+  "Framework_Desc": "Dibangun dengan Next.js 15, menggunakan App Router terbaru, React Server Components (RSC), dan Turbopack untuk performa yang sangat cepat.",
+  "Styling_Desc": "Gaya kustom menggunakan Vanilla CSS dan Tailwind CSS, berfokus pada estetika unik dengan dukungan multi-tema (Modern, Cinematic, Editorial).",
+  "Database_Desc": "Manajemen database serverless menggunakan Drizzle ORM dengan PostgreSQL yang dihosting di Supabase, menjamin integritas data dan skalabilitas.",
+  "Localization_Desc": "Dukungan i18n komprehensif untuk 18+ bahasa, memastikan aksesibilitas dan pengalaman mulus bagi audiens global.",
+  "Holistic_Approach_Desc": "Pendekatan rekayasa perangkat lunak holistik yang menggabungkan standar web modern, keamanan tipe (TypeScript), dan desain berbasis performa.",
   "Framework_Title": "Next.js 15 Framework",
   "Styling_Title": "Style UI/UX Personnalisé",
   "Database_Title": "PostgreSQL & Drizzle",

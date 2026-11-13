@@ -65,7 +65,6 @@
     "An gina kyakkyawan tsarin rumbun adana bayanai na baya ta amfani da Drizzle da SQL."
   ],
   "STEI-K": "Makarantar Injin Lantarki da Informatika - Lissafi",
-  "": "",
   "Navigation": "Kewayawa",
   "Presentation_Mode": "Yanayin Gabatarwa",
   "Presentation_Modern": "Na zamani",
@@ -95,5 +94,6 @@
   "Image_Optional": "Hoto (Na zaɓi)",
   "Hover_To_Preview": "Sanya don duba",
   "Hover_An_Experience": "Sanya akan kwarewa don ganin bayanai",
-  "Visit_Project": "Ziyarci aikin"
+  "Visit_Project": "Ziyarci aikin",
+  "Loading": "Memuat..."
 }

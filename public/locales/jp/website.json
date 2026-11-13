@@ -9,21 +9,11 @@
   "FAQ_Website_A4": "12以上の言語をサポートしており、世界中のユーザーが利用可能です。",
   "FAQ_Website_Q5": "プライバシーについてはどうですか？",
   "FAQ_Website_A5": "侵襲的な追跡を一切行わず、ユーザーのプライバシーを尊重しています。",
-  "Framework_Desc": [
-    "Next.js 15で構築され、最新のApp Router、React Server Components (RSC)、およびTurbopackを利用して超高速なパフォーマンスを実現しています。"
-  ],
-  "Styling_Desc": [
-    "Vanilla CSSとTailwind CSSを使用したカスタムスタイル。マルチテーマ対応（モダン、シネマティック、エディトリアル）で独自の美学に焦点を当てています。"
-  ],
-  "Database_Desc": [
-    "SupabaseにホストされたPostgreSQLとDrizzle ORMを使用したサーバーレスデータベース管理により、データの整合性とスケーラビリティを確保しています。"
-  ],
-  "Localization_Desc": [
-    "18以上の言語をカバーする包括的なi18nサポート。グローバルなオーディエンスにアクセシビリティとシームレスな体験を提供します。"
-  ],
-  "Holistic_Approach_Desc": [
-    "現代のウェブ標準、厳格な型安全性 (TypeScript)、およびパフォーマンス重視の設計を組み合わせた、ホリスティックなソフトウェアエンジニアリングアプローチ。"
-  ],
+  "Framework_Desc": "Dibangun dengan Next.js 15, menggunakan App Router terbaru, React Server Components (RSC), dan Turbopack untuk performa yang sangat cepat.",
+  "Styling_Desc": "Gaya kustom menggunakan Vanilla CSS dan Tailwind CSS, berfokus pada estetika unik dengan dukungan multi-tema (Modern, Cinematic, Editorial).",
+  "Database_Desc": "Manajemen database serverless menggunakan Drizzle ORM dengan PostgreSQL yang dihosting di Supabase, menjamin integritas data dan skalabilitas.",
+  "Localization_Desc": "Dukungan i18n komprehensif untuk 18+ bahasa, memastikan aksesibilitas dan pengalaman mulus bagi audiens global.",
+  "Holistic_Approach_Desc": "Pendekatan rekayasa perangkat lunak holistik yang menggabungkan standar web modern, keamanan tipe (TypeScript), dan desain berbasis performa.",
   "Framework_Title": "Next.js 15 Framework",
   "Styling_Title": "カスタムUI/UXスタイリング",
   "Database_Title": "PostgreSQL & Drizzle",

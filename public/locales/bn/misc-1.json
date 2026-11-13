@@ -65,7 +65,6 @@
     "Drizzle এবং SQL ব্যবহার করে একটি শক্তিশালী ব্যাকএন্ড ডাটাবেস কাঠামো তৈরি করেছি।"
   ],
   "STEI-K": "School of Electrical Engineering and Informatics - Computation",
-  "": "",
   "Navigation": "Navigation",
   "Presentation_Mode": "Presentation Mode",
   "Presentation_Modern": "Modern",
@@ -95,5 +94,6 @@
   "Image_Optional": "ছবি (ঐচ্ছিক)",
   "Hover_To_Preview": "প্রিভিউ দেখতে হোভার করুন",
   "Hover_An_Experience": "বিস্তারিত দেখতে একটি অভিজ্ঞতার উপর হোভার করুন",
-  "Visit_Project": "প্রকল্প দেখুন"
+  "Visit_Project": "প্রকল্প দেখুন",
+  "Loading": "Memuat..."
 }

@@ -9,21 +9,11 @@
   "FAQ_Website_A4": "Ee, yana goyan bayan harsuna fiye da 12 don tabbatar da samun dama ga masu sauraro na duniya.",
   "FAQ_Website_Q5": "Yaya ake sarrafa sirrin mai amfani a wannan rukunin yanar gizon?",
   "FAQ_Website_A5": "Rukunin yanar gizon yana girmama sirrin mai amfani tare da sifili mai sa ido ko tattara bayanai.",
-  "Framework_Desc": [
-    "An gina shi da Next.js 15, ta amfani da sabon App Router, React Server Components (RSC), da Turbopack don yin aiki cikin sauri."
-  ],
-  "Styling_Desc": [
-    "Salo na musamman ta amfani da Vanilla CSS da Tailwind CSS, tare da mai da hankali kan kyawu na musamman tare da tallafin jigogi da yawa (Modern, Cinematic, Editorial)."
-  ],
-  "Database_Desc": [
-    "Gudanar da bayanan uwar garken ta amfani da Drizzle ORM tare da PostgreSQL da aka shirya akan Supabase, tabbatar da amincin bayanai da haɓaka."
-  ],
-  "Localization_Desc": [
-    "Cikakken tallafin i18n don harsuna 18+, tabbatar da sauƙin shiga da ƙwarewa mara kyau ga masu sauraro na duniya."
-  ],
-  "Holistic_Approach_Desc": [
-    "Hanyar injiniyan software gaba ɗaya wacce ta haɗa da ka'idodin yanar gizo na zamani, amincin nau'in TypeScript (TypeScript), da ƙira mai amfani da aiki."
-  ],
+  "Framework_Desc": "Dibangun dengan Next.js 15, menggunakan App Router terbaru, React Server Components (RSC), dan Turbopack untuk performa yang sangat cepat.",
+  "Styling_Desc": "Gaya kustom menggunakan Vanilla CSS dan Tailwind CSS, berfokus pada estetika unik dengan dukungan multi-tema (Modern, Cinematic, Editorial).",
+  "Database_Desc": "Manajemen database serverless menggunakan Drizzle ORM dengan PostgreSQL yang dihosting di Supabase, menjamin integritas data dan skalabilitas.",
+  "Localization_Desc": "Dukungan i18n komprehensif untuk 18+ bahasa, memastikan aksesibilitas dan pengalaman mulus bagi audiens global.",
+  "Holistic_Approach_Desc": "Pendekatan rekayasa perangkat lunak holistik yang menggabungkan standar web modern, keamanan tipe (TypeScript), dan desain berbasis performa.",
   "Framework_Title": "Next.js 15 Framework",
   "Styling_Title": "Tsarin UI/UX na Musamman",
   "Database_Title": "PostgreSQL & Drizzle",

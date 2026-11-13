@@ -8,9 +8,7 @@
   "Sultan_PDF_Creating": "جاري إنشاء ملف PDF...",
   "Sultan_PDF_Ready": "ملف PDF جاهز!",
   "Sultan_PDF_Failed": "فشل إنشاء الملف.",
-  "Sultan_PDF_Description": [
-    "تصيير PDF عالي الجودة."
-  ],
+  "Sultan_PDF_Description": "Merender PDF dengan kualitas tinggi",
   "Sultan_PDF_Download": "جاري التحميل...",
   "Preparing_Portfolio": "جاري تحضير الموقع",
   "Portfolio_Filter": "تصفية الأعمال",
