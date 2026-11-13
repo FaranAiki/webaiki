@@ -15,7 +15,7 @@ export default async function RootLayout({
   params: Promise<{ lang: string }>;
 }>) {
   const { lang } = await params;
-  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar']);
+  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','portfolio']);
 
   // Navigation Links with Icons
   const navLinks = [

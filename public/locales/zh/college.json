@@ -67,5 +67,13 @@
   "Transcript_Type_L": "跨专业选修",
   "Course_KI1101": "基础化学 I",
   "Transcript_Grade_Pass": "及格",
-  "Transcript_Grade_Fail": "不及格"
+  "Transcript_Grade_Fail": "不及格",
+  "IF2010": "面向对象编程",
+  "IF2040": "数据库建模",
+  "II2100": "人际与公共沟通",
+  "II2110": "离散数学",
+  "II2120": "计算机网络",
+  "II2130": "计算机系统与体系结构",
+  "MA2111": "数学基础",
+  "WI2004": "英语"
 }

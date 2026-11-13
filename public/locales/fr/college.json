@@ -67,5 +67,13 @@
   "Transcript_Type_L": "Option Hors Spécialité",
   "Course_KI1101": "Chimie Fondamentale I",
   "Transcript_Grade_Pass": "Réussi",
-  "Transcript_Grade_Fail": "Échoué"
+  "Transcript_Grade_Fail": "Échoué",
+  "IF2010": "Programmation Orientée Objet",
+  "IF2040": "Modélisation de Bases de Données",
+  "II2100": "Communication Interpersonnelle et Publique",
+  "II2110": "Mathématiques Discrètes",
+  "II2120": "Réseaux Informatiques",
+  "II2130": "Systèmes et Architecture des Ordinateurs",
+  "MA2111": "Fondements des Mathématiques",
+  "WI2004": "Anglais"
 }

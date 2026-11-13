@@ -287,6 +287,17 @@ export const getOrganizationExperiences = (dict: Dictionary) => [
     year: '2026',
     jobs: [
       {
+        date: `${dict.October} 2026 — ${dict.Present}`,
+        title: dict.GSA_Title,
+        company: 'Google Student Ambassador Indonesia',
+        description: dict.GSA_Description,
+        point: 90,
+        image: [
+          '/documents/organization/GSA_0.webp',
+        ],
+        tag: [dict.Technology, dict.User, dict.Achievement]
+      },
+      {
         date: `${dict.May} 2026 — ${dict.Present}`,
         title: dict.GDG_ITB_Title,
         company: 'GDG Campus ITB',
@@ -485,7 +496,7 @@ export const getCollectionsData = unstable_cache(async (lang: string, type: 'lit
 
   if (!fs.existsSync(baseDir)) return {};
 
-  const folders = fs.readdirSync(baseDir);
+  const folders = fs.readdirSync(baseDir).sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }));
   const allCollectionsData: CollectionsData = {};
 
   for (const folder of folders) {
@@ -494,30 +505,32 @@ export const getCollectionsData = unstable_cache(async (lang: string, type: 'lit
 
     if (fs.statSync(folderPath).isDirectory()) {
       allCollectionsData[folderName] = {};
-      const subFolders = fs.readdirSync(folderPath);
+      const subFolders = fs.readdirSync(folderPath).sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }));
 
       for (const sub of subFolders) {
         const subPath = path.join(folderPath, sub);
 
-        if (fs.statSync(subPath).isDirectory()) {
-          const subName = (dict[sub as keyof Dictionary] as string) || sub;
-          allCollectionsData[folderName][subName] = {};
-          const files = fs.readdirSync(subPath);
+          if (fs.statSync(subPath).isDirectory()) {
+            const subName = (dict[sub as keyof Dictionary] as string) || sub;
+            allCollectionsData[folderName][subName] = {};
+            const files = fs.readdirSync(subPath).sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }));
 
-          for (const file of files) {
-            const fileName = path.parse(file).name;
-            let openPath: string = '';
+            for (const file of files) {
+              const filePathOnDisk = path.join(subPath, file);
+              if (fs.statSync(filePathOnDisk).isDirectory()) continue;
+              const fileName = path.parse(file).name;
+              let openPath: string = '';
 
-            if (file.endsWith('.link') || file.endsWith('.lnk')) {
-              openPath = fs.readFileSync(path.join(baseDir, folder, sub, file), 'utf-8');
-            } else if (file.endsWith('py') || file.endsWith('python')) {
-              openPath= `https://faranaiki.id/project/script?type=python&source=/documents/${type}/${folder}/${sub}/${file}`;
-            } else {
-              openPath = `/documents/${type}/${folder}/${sub}/${file}`;
+              if (file.endsWith('.link') || file.endsWith('.lnk')) {
+                openPath = fs.readFileSync(filePathOnDisk, 'utf-8');
+              } else if (file.endsWith('py') || file.endsWith('python')) {
+                openPath= `https://faranaiki.id/project/script?type=python&source=/documents/${type}/${folder}/${sub}/${file}`;
+              } else {
+                openPath = `/documents/${type}/${folder}/${sub}/${file}`;
+              }
+
+              allCollectionsData[folderName][subName][fileName] = { path: openPath, point: 50 };
             }
-
-            allCollectionsData[folderName][subName][fileName] = { path: openPath, point: 50 };
-          }
         }
       }
     }

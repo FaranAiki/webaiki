@@ -67,5 +67,13 @@
   "Transcript_Type_L": "Wahlfach (extern)",
   "Course_KI1101": "Grundlagen der Chemie I",
   "Transcript_Grade_Pass": "Bestanden",
-  "Transcript_Grade_Fail": "Durchgefallen"
+  "Transcript_Grade_Fail": "Durchgefallen",
+  "IF2010": "Objektorientierte Programmierung",
+  "IF2040": "Datenbankmodellierung",
+  "II2100": "Interpersonelle und Öffentliche Kommunikation",
+  "II2110": "Diskrete Mathematik",
+  "II2120": "Computernetzwerke",
+  "II2130": "Computersysteme und -architektur",
+  "MA2111": "Grundlagen der Mathematik",
+  "WI2004": "Englisch"
 }

@@ -67,5 +67,13 @@
   "Transcript_Type_L": "Optativa Externa",
   "Course_KI1101": "Química Básica I",
   "Transcript_Grade_Pass": "Aprobado",
-  "Transcript_Grade_Fail": "Reprobado"
+  "Transcript_Grade_Fail": "Reprobado",
+  "IF2010": "Programación Orientada a Objetos",
+  "IF2040": "Modelado de Bases de Datos",
+  "II2100": "Comunicación Interpersonal y Pública",
+  "II2110": "Matemáticas Discretas",
+  "II2120": "Redes de Computadoras",
+  "II2130": "Sistemas y Arquitectura de Computadoras",
+  "MA2111": "Fundamentos de Matemáticas",
+  "WI2004": "Inglés"
 }

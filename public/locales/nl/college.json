@@ -67,5 +67,13 @@
   "Transcript_Type_L": "Keuzevak Buiten Major",
   "Course_KI1101": "Basischemie I",
   "Transcript_Grade_Pass": "Geslaagd",
-  "Transcript_Grade_Fail": "Gezakt"
+  "Transcript_Grade_Fail": "Gezakt",
+  "IF2010": "Objectgeoriënteerd Programmeren",
+  "IF2040": "Databasemodellering",
+  "II2100": "Interpersoonlijke en Publieke Communicatie",
+  "II2110": "Discrete Wiskunde",
+  "II2120": "Computernetwerken",
+  "II2130": "Computersystemen en -architectuur",
+  "MA2111": "Grondslagen van de Wiskunde",
+  "WI2004": "Engels"
 }

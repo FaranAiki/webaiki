@@ -67,5 +67,13 @@
   "Transcript_Type_L": "Pilihan luar Prodi",
   "Course_KI1101": "Kimia Dasar I",
   "Transcript_Grade_Pass": "Lulus",
-  "Transcript_Grade_Fail": "Gagal"
+  "Transcript_Grade_Fail": "Gagal",
+  "IF2010": "Pemrograman Berorientasi Objek",
+  "IF2040": "Pemodelan Basis Data",
+  "II2100": "Komunikasi Interpersonal dan Publik",
+  "II2110": "Matematika Diskret",
+  "II2120": "Jaringan Komputer",
+  "II2130": "Sistem dan Arsitektur Komputer",
+  "MA2111": "Dasar-dasar Matematika",
+  "WI2004": "Bahasa Inggris"
 }

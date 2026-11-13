@@ -67,5 +67,13 @@
   "Transcript_Type_L": "Out-Major Elective",
   "Course_KI1101": "Basic Chemistry I",
   "Transcript_Grade_Pass": "Pass",
-  "Transcript_Grade_Fail": "Fail"
+  "Transcript_Grade_Fail": "Fail",
+  "IF2010": "Object-Oriented Programming",
+  "IF2040": "Database Modeling",
+  "II2100": "Interpersonal and Public Communication",
+  "II2110": "Discrete Mathematics",
+  "II2120": "Computer Networks",
+  "II2130": "Computer Systems and Architecture",
+  "MA2111": "Fundamentals of Mathematics",
+  "WI2004": "English"
 }
