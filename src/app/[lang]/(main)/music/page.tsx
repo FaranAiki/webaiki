@@ -7,7 +7,7 @@ import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema }
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','music']);
+  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','music','seo']);
   const baseMetadata = getBaseMetadata();
 
   return {
@@ -31,7 +31,7 @@ const YOUTUBE_PLAYLIST_ITEMS_API = "https://www.googleapis.com/youtube/v3/playli
 
 export default async function MusicPage({params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','music']);
+  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','music','seo']);
   
   let youtubeItems = [];
   let errorString = undefined;
@@ -60,12 +60,17 @@ export default async function MusicPage({params }: { params: Promise<{ lang: str
   ]);
 
   return (
-    <main className="min-h-screen">
-      <h1 className="sr-only">{dict.Music}</h1>
+    <main className="container mx-auto pb-16 pt-16">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+      <header className="px-4 sm:px-8 mb-8 mt-12 max-w-4xl mx-auto">
+        <h1 className="text-3xl sm:text-4xl font-bold mb-3">{dict.Music}</h1>
+        {dict.SEO_Music_Description && (
+          <p className="text-base opacity-80 leading-relaxed">{dict.SEO_Music_Description}</p>
+        )}
+      </header>
       <MusicDisplay youtubeItems={youtubeItems} error={errorString} lang={lang} dict={dict} />
     </main>
   );

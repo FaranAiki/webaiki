@@ -62,11 +62,16 @@ export default async function WorkExperiencesPage({params }: { params: Promise<{
 
   return (
     <main className="w-full pt-16">
-      <h1 className="sr-only">{dict.Work || 'Work'}</h1>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <header className="px-4 sm:px-8 mb-8 mt-12 max-w-4xl mx-auto">
+        <h1 className="text-3xl sm:text-4xl font-bold mb-3">{dict.Work}</h1>
+        {dict.SEO_Work_Description && (
+          <p className="text-base opacity-80 leading-relaxed">{dict.SEO_Work_Description}</p>
+        )}
+      </header>
       <div className="pt-[12px] w-full px-4 md:px-0">
         <ExperiencesClient 
         isLoggedIn={isLoggedIn}

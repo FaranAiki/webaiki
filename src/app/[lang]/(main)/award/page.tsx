@@ -4,13 +4,13 @@ import "../../../globals.css";
 import { getDictionary } from '@/components/layout/Translator';
 import ExperiencesClient from '@/components/portfolio/ExperienceServerDisplayer';
 
-import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema } from '@/lib/seo';
+import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema, getPersonSchema } from '@/lib/seo';
 
 import { getAwardExperiences } from '@/lib/data';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','award']);
+  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','award','seo']);
   const baseMetadata = getBaseMetadata();
 
   return {
@@ -30,28 +30,42 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
+
 export default async function AwardPage({params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','award']);
+  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','award','seo']);
 
   const isLoggedIn = false;
   const experienceBookmarks: string[] = [];
 
-
   const awards = getAwardExperiences(dict);
 
+  const personSchema = getPersonSchema(lang);
   const breadcrumbSchema = getBreadcrumbSchema([
     { name: dict.Home, item: `/${lang}` },
     { name: dict.Award, item: `/${lang}/award` },
   ]);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      personSchema,
+      breadcrumbSchema,
+    ],
+  };
+
   return (
     <main className="w-full pt-16">
-      <h1 className="sr-only">{dict.Award || 'Award'}</h1>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <header className="px-4 sm:px-8 mb-8 mt-12 max-w-4xl mx-auto">
+        <h1 className="text-3xl sm:text-4xl font-bold mb-3">{dict.Award}</h1>
+        {dict.SEO_Award_Description && (
+          <p className="text-base opacity-80 leading-relaxed">{dict.SEO_Award_Description}</p>
+        )}
+      </header>
       <div className="pt-[12px] w-full px-4 md:px-0">
         <ExperiencesClient
         isLoggedIn={isLoggedIn}

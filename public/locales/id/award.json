@@ -1,16 +1,16 @@
 {
-  "SEO_Award_Description": "Penghargaan dan beasiswa bergengsi yang diterima oleh Muhammad Faran Aiki, termasuk Beasiswa Paragon Program Excellence 2025, prestasi ONMIPA Matematika, dan kompetisi hackathon tingkat nasional.",
-  "Paragon_Scholarship_Title": "Paragon Scholarship Program Excellence Grantee Angkatan 2025",
-  "Paragon_Scholarship_Desc": [
-    "Meraih Beasiswa Paragon yang sangat kompetitif (1% dari mahasiswa Indonesia) atas keunggulan akademis dan potensi kepemimpinan.",
-    "Berpartisipasi dalam 10+ pelatihan kepemimpinan dan program pengembangan masyarakat."
-  ],
-  "PT Paragon": "PT Paragon",
-  "ONMIPA_Award_Title": "Medali Perak ONMIPA-PT 2026 Bidang Matematika",
   "ONMIPA_Award_Company": "Kemendikti & Belmawa",
   "ONMIPA_Award_Desc": [
     "Meraih Medali Perak, 0.1% dari 5000-an mahasiswa matematika terbaik di universitasnya, dalam kompetisi Matematika bergengsi ONMIPA-PT 2026.",
     "Menunjukkan keterampilan pemecahan masalah yang luar biasa dan penguasaan konsep matematika tingkat lanjut.",
     "Mencetak prestasi unggul meski masih berada di semester dua program studi Sistem dan Teknologi Informasi."
-  ]
+  ],
+  "ONMIPA_Award_Title": "Medali Perak ONMIPA-PT 2026 Bidang Matematika",
+  "PT Paragon": "PT Paragon",
+  "Paragon_Scholarship_Desc": [
+    "Meraih Beasiswa Paragon yang sangat kompetitif (1% dari mahasiswa Indonesia) atas keunggulan akademis dan potensi kepemimpinan.",
+    "Berpartisipasi dalam 10+ pelatihan kepemimpinan dan program pengembangan masyarakat."
+  ],
+  "Paragon_Scholarship_Title": "Paragon Scholarship Program Excellence Grantee Angkatan 2025",
+  "SEO_Award_Description": "Penghargaan dan beasiswa Muhammad Faran Aiki menunjukkan keunggulan akademik termasuk Beasiswa Paragon Program Excellence 2025, Medali Perak ONMIPA-PT 2026 Matematika, kemenangan hackathon tingkat nasional, dan prestasi kompetisi pemrograman. Jelahi pencapaian yang diakui dari institusi terkemuka Indonesia."
 }

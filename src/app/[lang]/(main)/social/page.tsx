@@ -3,11 +3,11 @@ import { getDictionary } from '@/components/layout/Translator';
 import SocialDisplay from '@/components/portfolio/SocialDisplay';
 import "../../../globals.css";
 
-import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema } from '@/lib/seo';
+import { getLanguageAlternates, getBaseMetadata, SITE_URL, getBreadcrumbSchema, getPersonSchema } from '@/lib/seo';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','social']);
+  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','social','seo']);
   const baseMetadata = getBaseMetadata();
 
   return {
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
 export default async function SocialPage({params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','social']);
+  const dict = await getDictionary(lang, ['home','misc-1','misc-2','misc-3','website','navbar','social','seo']);
   
 
   const breadcrumbSchema = getBreadcrumbSchema([
@@ -37,13 +37,29 @@ export default async function SocialPage({params }: { params: Promise<{ lang: st
     { name: dict.Social, item: `/${lang}/social` },
   ]);
 
+  const personSchema = getPersonSchema(lang);
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      personSchema,
+      breadcrumbSchema,
+    ],
+  };
+
   return (
-    <main className="min-h-screen">
+    <main className="container mx-auto pb-16 pt-16">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="pt-8 md:pt-0">
+      <header className="px-4 sm:px-8 mb-8 mt-12 max-w-4xl mx-auto">
+        <h1 className="text-3xl sm:text-4xl font-bold mb-3">{dict.Social}</h1>
+        {dict.SEO_Social_Description && (
+          <p className="text-base opacity-80 leading-relaxed">{dict.SEO_Social_Description}</p>
+        )}
+      </header>
+      <div className="w-full px-4 md:px-0">
         <SocialDisplay dict={dict} hidePresentation={true} />
       </div>
     </main>

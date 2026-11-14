@@ -158,6 +158,12 @@ export default async function TimelinePage({params }: { params: Promise<{ lang: 
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <header className="px-4 sm:px-8 mb-8 mt-12 max-w-4xl mx-auto">
+        <h1 className="text-3xl sm:text-4xl font-bold mb-3">{dict.Timeline}</h1>
+        {dict.SEO_Timeline_Description && (
+          <p className="text-base opacity-80 leading-relaxed">{dict.SEO_Timeline_Description}</p>
+        )}
+      </header>
       <Suspense fallback={<TimelineSkeleton />}>
         <SuspendedTimelineContent lang={lang} dict={dict} />
       </Suspense>
